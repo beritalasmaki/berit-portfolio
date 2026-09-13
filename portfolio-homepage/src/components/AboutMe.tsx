@@ -76,6 +76,10 @@ function TeamIcon() {
   );
 }
 
+// The site's standard grey mono eyebrow, shared by the two placements of
+// the "hover/press for more" hint below so they can't drift apart.
+const HINT_CLASS = "font-mono-label text-mono-label uppercase text-muted";
+
 type WorkingWithMeItem = {
   icon: ReactNode;
   statement: string;
@@ -161,6 +165,12 @@ function WorkingWithMeRow({
 }) {
   const [hovered, setHovered] = useState(false);
   const expanded = pinned || (hoverCapable && hovered);
+  // The hint names the gesture that actually opens the row, so it reads off
+  // the same `hoverCapable` flag that decides which gesture that is — a
+  // touch device has no hover to offer, and telling it to hover is an
+  // instruction it cannot follow. Deriving both from one source keeps the
+  // label from drifting out of step with the behaviour.
+  const hint = hoverCapable ? "hover for more" : "press for more";
 
   return (
     <li className="relative">
@@ -181,12 +191,28 @@ function WorkingWithMeRow({
         <span className="w-11 h-11 flex items-center justify-center bg-white border border-rule rounded-frame shrink-0">
           {item.icon}
         </span>
-        <span className="flex-1 text-body-em font-semibold text-ink text-pretty">{item.statement}</span>
-        <span
-          aria-hidden="true"
-          className="shrink-0 font-mono-label text-mono-label uppercase text-muted whitespace-nowrap"
-        >
-          hover for more
+        {/* `min-w-0` matters: without it this flex child refuses to shrink
+            below its own content width, and the nowrap hint beside it spilled
+            past the card's right edge instead of giving way. */}
+        <span className="flex-1 min-w-0 flex flex-col gap-1.5">
+          <span className="text-body-em font-semibold text-ink text-pretty">{item.statement}</span>
+          {/* Below xl the hint drops onto its own line under the statement.
+              Side by side, its ~130px of nowrap mono left roughly 85px for
+              the statement in the narrow one-column mobile card — enough to
+              wrap "I'll make the coffee and bring the snacks." to one word
+              per line.
+              `xl` and not `lg`, which is where this first landed: from `md`
+              the About grid makes this a half-width column, so at 1024 a
+              side-by-side hint left the statement just 173px — *narrower*
+              than the 224px it gets stacked on a 414px phone. Measured
+              statement widths with the hint beside it: 173px @1024 (too
+              tight), 290px @1280, 346px @1440. */}
+          <span aria-hidden="true" className={`${HINT_CLASS} xl:hidden`}>
+            {hint}
+          </span>
+        </span>
+        <span aria-hidden="true" className={`hidden xl:block shrink-0 whitespace-nowrap ${HINT_CLASS}`}>
+          {hint}
         </span>
       </button>
       {/* See point 2 and 3 above: same box as the button (inset-0), always

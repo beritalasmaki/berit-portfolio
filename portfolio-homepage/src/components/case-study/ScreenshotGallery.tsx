@@ -12,6 +12,12 @@ const FOCUSABLE_SELECTOR =
 // scroll to see the whole thing), click again to return to 60%.
 const ZOOM_LEVELS = [0.6, 1] as const;
 
+// Horizontal distance (px) a touch has to travel before it counts as a
+// swipe rather than a tap or a slightly-crooked vertical scroll. 50px is
+// far enough that stray movement during a tap never steps the gallery,
+// short enough to feel responsive on a narrow phone.
+const SWIPE_THRESHOLD = 50;
+
 export default function ScreenshotGallery({ images }: { images: GalleryImage[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [zoomed, setZoomed] = useState(false);
@@ -24,6 +30,7 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
   const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   const isOpen = openIndex !== null;
   const current = isOpen ? images[openIndex] : null;
@@ -52,6 +59,37 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
     },
     [images.length]
   );
+
+  // Swipe left/right to move between screenshots. This is the *only* way to
+  // change image on a phone: the ‹ › buttons are hidden below sm, where
+  // caption + counter + two arrows + Close could not fit the toolbar without
+  // pushing Close off the right edge.
+  //
+  // Deliberately touch events rather than pointer events — they fire only
+  // for real touch input, so a desktop mouse-drag across the image can never
+  // be mistaken for a swipe, and there's no need to track button state.
+  function onTouchStart(event: React.TouchEvent) {
+    // A second finger means a pinch-zoom, not a swipe. Drop the gesture
+    // rather than stepping the gallery when the fingers lift.
+    touchStartRef.current =
+      event.touches.length === 1
+        ? { x: event.touches[0].clientX, y: event.touches[0].clientY }
+        : null;
+  }
+
+  function onTouchEnd(event: React.TouchEvent) {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start || images.length < 2) return;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    // Require the movement to be both long enough and more horizontal than
+    // vertical, so scrolling a tall screenshot up and down never flips to
+    // the next image.
+    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return;
+    step(dx < 0 ? 1 : -1);
+  }
 
   // Lock body scroll, move focus into the dialog, and return it to the
   // thumbnail that opened it when the dialog closes.
@@ -152,8 +190,12 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
             className="relative flex max-w-[92vw] max-h-[92vh] flex-col gap-4 cursor-auto"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="shrink-0 flex items-center justify-between gap-6 rounded-chrome bg-ink px-4 py-3">
-              <p className="font-mono-label text-mono-label uppercase text-white m-0 whitespace-nowrap">
+            {/* gap-3 on mobile, and the caption truncates rather than
+                running `whitespace-nowrap` past the edge: at 390px a long
+                caption plus the counter plus the controls overflowed the
+                toolbar and cut the Close button in half. */}
+            <div className="shrink-0 flex items-center justify-between gap-3 sm:gap-6 rounded-chrome bg-ink px-4 py-3">
+              <p className="font-mono-label text-mono-label uppercase text-white m-0 min-w-0 truncate">
                 {current.caption}
                 {images.length > 1 && (
                   <span className="text-white/60">
@@ -163,13 +205,18 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
                 )}
               </p>
               <div className="flex items-center gap-2 shrink-0">
+                {/* Arrows are desktop chrome only. On touch, swiping the
+                    image replaces them (see onTouchEnd) — keeping them would
+                    mean either an overflowing toolbar or a squeezed caption,
+                    and they are the least necessary control of the three
+                    once swipe exists. Keyboard users still have ←/→. */}
                 {images.length > 1 && (
                   <>
                     <button
                       type="button"
                       onClick={() => step(-1)}
                       aria-label="Previous screenshot"
-                      className="text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-3 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
+                      className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-3 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
                     >
                       ‹
                     </button>
@@ -177,7 +224,7 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
                       type="button"
                       onClick={() => step(1)}
                       aria-label="Next screenshot"
-                      className="text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-3 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
+                      className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-3 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
                     >
                       ›
                     </button>
@@ -198,7 +245,7 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
                 not a div, so it's reachable in the Tab order the focus trap
                 above already walks. Desktop only — on mobile the image just
                 renders at one fit-to-width size with no toggle. */}
-            <div className="min-h-0 flex-1 overflow-auto">
+            <div className="min-h-0 flex-1 overflow-auto" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
               {isDesktop ? (
                 <button
                   type="button"
@@ -233,6 +280,19 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
                 />
               )}
             </div>
+            {/* Swipe is invisible until tried, and on mobile it's the only
+                way to reach the other screenshots now that the arrows are
+                gone, so it gets an explicit label. aria-hidden: the counter
+                in the toolbar already tells assistive tech where it is, and
+                keyboard/SR users move with ←/→ rather than by swiping. */}
+            {images.length > 1 && (
+              <p
+                aria-hidden="true"
+                className="sm:hidden shrink-0 m-0 text-center font-mono-label text-mono-label uppercase text-white/60"
+              >
+                ‹ swipe to see more ›
+              </p>
+            )}
           </div>
         </div>
       )}

@@ -310,12 +310,27 @@ before `ProcessTimeline`):
   white-vs-cream distinction from the left card, not the dark/light contrast
   of the reference layout this was built from; DESIGN-SYSTEM.md's "existing
   light theme" always wins over a visual reference's own color choices).
-  Five rows (`bg-panel` chips, icon badge + statement + a grey "hover for
-  more" label in the standard mono eyebrow style — `font-mono-label
-  text-mono-label uppercase text-muted`, matching "03 / ABOUT"; it
-  replaced a "⌄" chevron, which said less about what the interaction
-  actually is), each
+  Five rows (`bg-panel` chips, icon badge + statement + a grey hint label in
+  the standard mono eyebrow style — `font-mono-label text-mono-label
+  uppercase text-muted`, matching "03 / ABOUT"; it replaced a "⌄" chevron,
+  which said less about what the interaction actually is), each
   revealing a short explanation:
+  - **The hint names the gesture that actually works**: "hover for more" on a
+    mouse, **"press for more" on touch**, read off the very same
+    `hoverCapable` flag that decides which gesture opens the row, so the two
+    can't drift apart. Telling a phone to "hover" asks for something the
+    device cannot do.
+  - **The hint stacks under the statement below `xl:`**, sitting beside it
+    only from `xl:` up. Its ~130px of nowrap mono is a large share of a
+    narrow card: side by side it left the statement about 85px in the
+    one-column mobile card, wrapping "I'll make the coffee and bring the
+    snacks." to roughly one word per line, and it also overflowed the card's
+    right edge (fixed with `min-w-0` on the text column, without which a flex
+    child refuses to shrink below its content width). `xl` and not `lg`:
+    from `md` the About grid makes this a half-width column, so at 1024 a
+    side-by-side hint left the statement just 173px — *narrower* than the
+    224px it gets stacked on a 414px phone. Measured statement widths beside:
+    173px @1024, 290px @1280, 346px @1440; stacked: 200px @390, 405px @1279.
   - Desktop (an actual mouse): reveals on **hover**, detected via
     `(hover: hover) and (pointer: fine)` — not a viewport-width guess.
     Touch devices reveal on **tap** instead (tap again to collapse).
@@ -477,6 +492,23 @@ Real interactive component (not the design files' CSS-only `:target` version):
   wrapper) — a tap-to-zoom toggle only fights with pinch-zoom/scroll on a
   touch viewport, and there's no pixel-detail gain from jumping to 100% on a
   small screen the way there is on desktop.
+- **Navigation below `sm:` is swipe, not buttons.** The Previous/Next pills
+  are `hidden sm:block`; on a phone, caption + counter + two arrows + Close
+  could not share the header bar, and the overflow cut the Close button in
+  half at 390px. Swiping the image region left/right steps the gallery
+  instead, and a `‹ swipe to see more ›` hint sits under the image (mobile
+  only, `aria-hidden` — the counter already conveys position to assistive
+  tech, and keyboard/SR users navigate with `←`/`→`, which are unchanged).
+  The header bar also drops to `gap-3` and the caption `truncate`s rather
+  than `whitespace-nowrap`, so a long caption can never push Close off-screen
+  again.
+- Swipe implementation notes: **touch events, not pointer events** — they
+  fire only for genuine touch input, so a desktop mouse-drag across the image
+  can't be mistaken for a swipe. A gesture counts only if it travels ≥50px
+  horizontally *and* further horizontally than vertically, so scrolling a
+  tall screenshot never flips to the next image; a second finger (pinch-zoom)
+  cancels the gesture outright. Verified: swipe left/right steps ±1, a
+  vertical drag and a short tap both leave the image unchanged.
 
 ### Sticky TOC (case study pages)
 - Two-column layout under the top header: TOC left (`280px`), content right
