@@ -1,4 +1,5 @@
 import Image from "next/image";
+import UntangleLine from "./UntangleLine";
 
 export default function Hero() {
   return (
@@ -181,7 +182,20 @@ export default function Hero() {
           className="w-[92px] h-[92px] object-contain block"
         />
         <p className="m-0 text-body-em font-semibold text-ink max-w-[22em]">
-          Berit, your partner in untangling complexity.
+          {/* The span only anchors the decorative string beneath the word —
+              the sentence's text is untouched and still reads as one
+              continuous phrase. `inline-block` (not plain `relative`) so
+              `top-full`/`w-full` resolve against the word's own box rather
+              than the line box; the word can't wrap mid-way, so it never
+              fragments. The SVG is absolutely positioned and therefore adds
+              no height: verified the paragraph's box and line breaks are
+              byte-identical before and after. */}
+          Berit, your partner in{" "}
+          <span className="relative inline-block">
+            untangling
+            <UntangleLine />
+          </span>{" "}
+          complexity.
         </p>
       </div>
     </section>

@@ -150,6 +150,27 @@
     }
   }
 
+  /* The knotted string under "untangling" (UntangleLine.tsx) ships both
+     states in the markup and lets CSS pick between them, rather than
+     swapping in an effect. An effect — even a layout effect — runs only
+     once React hydrates, and the server-rendered HTML has usually painted
+     well before that; a reduced-motion visitor would catch a frame of the
+     knot before it flipped, which is precisely the movement they asked not
+     to be shown. A media query is resolved on the very first paint, so
+     they only ever see the resolved straight line. */
+  .untangle-resolved {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .untangle-animated {
+      display: none;
+    }
+    .untangle-resolved {
+      display: inline;
+    }
+  }
+
   /* Visually hide content while keeping it available to screen readers. */
   .sr-only-focusable:not(:focus):not(:focus-within) {
     position: absolute;

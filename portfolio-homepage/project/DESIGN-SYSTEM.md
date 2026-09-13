@@ -868,6 +868,57 @@ is wrapped in a shared `<Reveal>` component.
   study cards, impact cards, process steps) reveal together with their
   parent section rather than staggering card-by-card
 
+### Untangling knot (hero closing line)
+A small hand-drawn string under the word "untangling" in "Berit, your partner
+in untangling complexity." It starts tied in a visible loop and pulls itself
+straight, once, when it scrolls into view. `UntangleLine.tsx`.
+
+- **Scale is deliberately secondary.** It is an underline, ~88px wide and
+  ~16px tall, sitting directly under one word — the big orange flourish just
+  above it in the hero is the illustration; this is a footnote to it. Same
+  `#FC890C` accent, same `round` caps, and the same thick-stroke-plus-thinner-
+  offset-echo pairing the flourish and the logo signature use to avoid reading
+  as a uniform vector line.
+- **The word itself never animates.** The `<span>` around it exists only to
+  anchor the absolutely-positioned SVG (`top-full`, `w-full`), so the string
+  always spans exactly the word's width and contributes no height. Verified:
+  the paragraph's box and line count are identical with and without it, and
+  stripping every `aria-hidden` node leaves the sentence text unchanged.
+- **Morph, not a crossfade.** Both shapes are built from the *same* command
+  structure — one moveto plus six cubics, 38 numbers — and the numbers are
+  lerped on a rAF loop, so the shape sweeps continuously. The loop's anchors
+  double back on themselves in the knot where the straight version runs
+  steadily rightward; unwinding that reversal is what reads as a pull.
+- **Why JS and not CSS/SMIL:** animating `d` via CSS keyframes isn't supported
+  everywhere, and the failure mode is the bad one — a browser that ignores CSS
+  `d` keeps painting the attribute, leaving the string knotted forever with no
+  animation and no signal that anything is wrong.
+- **Easing: `easeOutSine` over 1400ms, not the obvious `easeOutCubic`.** The
+  loop's *area* shrinks much faster than the interpolation parameter moves, so
+  a steeply front-loaded curve spends its whole motion budget early: with cubic
+  the knot was gone by ~350ms and the remaining second was an imperceptible
+  settle — a snap followed by a wait. With sine the unwind measures 22% at
+  200ms, 43% at 400ms, 71% at 700ms, 90% at 1000ms, so it reads as a steady
+  pull that decelerates into rest.
+- **Trigger:** IntersectionObserver at `threshold: 0.6` (not 0 — the string is
+  only ~16px tall, so "one pixel entered" would play it clipped at the screen
+  edge). Plays once per page visit, guarded by a ref rather than by observer
+  disconnection alone. Verified below the fold: still fully knotted 2.5s after
+  load, animates on scroll-in, and does not replay on leaving and returning.
+  > Testing note: `scroll-behavior: smooth` is global, so a test that "jumps"
+  > the page with `window.scrollTo` actually *animates* there and the element
+  > can sit in the viewport for hundreds of ms on the way — which looks exactly
+  > like the animation firing on page load. Set `scrollBehavior = "auto"`, or
+  > use a viewport short enough that the line starts below the fold.
+- **Reduced motion is handled in CSS, not in the effect.** Both states ship in
+  the markup — `.untangle-animated` (knot) and `.untangle-resolved` (straight)
+  — and a `prefers-reduced-motion` media query picks one. An effect, even a
+  layout effect, only runs once React hydrates, and the server-rendered HTML
+  usually paints before that, so an effect-based swap showed reduced-motion
+  visitors a frame of the knot first (measured). A media query resolves on the
+  first paint: verified 1 distinct path value across 1.8s, every sample already
+  straight.
+
 ### Back to top
 Fixed bottom-right, links to `#page-top`. Ink fill (fully opaque `#222222`),
 mono label, `shadow-lightbox`, plus a `ring-1 ring-white/25` so the dark pill
