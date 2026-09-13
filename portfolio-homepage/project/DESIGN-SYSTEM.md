@@ -893,16 +893,24 @@ straight, once, when it scrolls into view. `UntangleLine.tsx`.
   everywhere, and the failure mode is the bad one — a browser that ignores CSS
   `d` keeps painting the attribute, leaving the string knotted forever with no
   animation and no signal that anything is wrong.
-- **Easing: `easeOutSine` over 2600ms, not the obvious `easeOutCubic`.** The
+- **Easing: `easeOutSine` over 4500ms, not the obvious `easeOutCubic`.** The
   loop's *area* shrinks much faster than the interpolation parameter moves, so
   a steeply front-loaded curve spends its whole motion budget early: with cubic
   the knot was gone by ~350ms and the remaining second was an imperceptible
-  settle — a snap followed by a wait. With sine the unwind measures 25% at
-  400ms, 48% at 800ms, 69% at 1200ms, 86% at 1600ms and 97% at 2000ms, so it
-  reads as a steady pull that decelerates into rest, finishing around 2.2s
-  with the last sliver of travel too small to see. The duration started at
-  1400ms and was doubled on review — at that length the pull still read as
-  hurried for something meant to feel like a knot coming loose.
+  settle — a snap followed by a wait. With sine the unwind measures 14% at
+  400ms, 28% at 800ms, 55% at 1600ms, 77% at 2400ms and 94% at 3200ms, so it
+  reads as a steady pull that decelerates into rest, finishing around 3.7s
+  with the last sliver of travel too small to see.
+- **The duration has walked 1400ms → 2600ms → 4500ms**, each step because the
+  previous still read as hurried. It is long for a decorative flourish on
+  purpose: the loop's collapse is the whole point of the element and needs
+  room to be watched. If it ever needs to feel slower again, the next lever is
+  the *shape* of the curve rather than more milliseconds — `easeOutSine` is
+  already the gentlest standard ease-out, but its fastest motion is still at
+  the very first frame, and that opening rush is most of what reads as "fast".
+  An ease-in-out would ramp in instead. That would depart from the ease-out
+  the element was specified with, so it is a decision to take deliberately,
+  not a silent tweak.
 - **Trigger:** IntersectionObserver at `threshold: 0.6` (not 0 — the string is
   only ~16px tall, so "one pixel entered" would play it clipped at the screen
   edge). Plays once per page visit, guarded by a ref rather than by observer
