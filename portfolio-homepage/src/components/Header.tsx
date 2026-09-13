@@ -116,7 +116,12 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
 
   return (
     <header className="border-b border-rule px-gutter pt-8 pb-4">
-      <div className="flex items-center justify-between gap-8">
+      {/* gap-3 below md: this is a `justify-between` row, so the gap only
+          ever acts as a minimum separation — but at 360px the logo lockup
+          and the menu button together leave under 20px of slack, and a
+          32px minimum was enough on its own to push the button past the
+          right gutter. Full gap-8 returns at md, where the nav has room. */}
+      <div className="flex items-center justify-between gap-3 md:gap-8">
         <Link href="/" className="block shrink-0" aria-label={`${site.name} — home`}>
           <Logo animated={animateLogo} />
         </Link>

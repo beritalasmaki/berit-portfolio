@@ -29,17 +29,20 @@ export default function Logo({ animated = false }: {
   const maskId = useId();
 
   return (
-    <span className="inline-flex items-center gap-3">
-      {/* h-16 (64px) below md, h-20 (80px) at md+ — a fixed 80px mark plus
-          the wordmark next to it doesn't fit a 390px-wide mobile header
-          without pushing into the menu button (confirmed with Playwright:
-          ~22px of horizontal overflow at 390px). Width stays auto so the
-          mark keeps its own aspect ratio at both sizes. */}
+    <span className="inline-flex items-center gap-2 sm:gap-3">
+      {/* h-12 (48px) on the narrowest phones, h-16 (64px) from sm, h-20
+          (80px) at md+ — a fixed mark plus the wordmark next to it doesn't
+          fit a narrow mobile header without pushing into the menu button
+          (confirmed with Playwright: ~22px of horizontal overflow at 390px
+          with a fixed 80px mark, and still ~26px at 360px with 64px). The
+          wordmark itself can't shrink — its role line is `whitespace-nowrap`
+          mono at a fixed 11px — so the mark is what gives way. Width stays
+          auto so the mark keeps its own aspect ratio at every size. */}
       <svg
         viewBox={MARK_VIEWBOX}
         role="presentation"
         aria-hidden="true"
-        className="shrink-0 block h-16 w-auto md:h-20"
+        className="shrink-0 block h-12 w-auto sm:h-16 md:h-20"
       >
         {animated && (
           <defs>

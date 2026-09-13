@@ -122,6 +122,25 @@ Mono label (emphasis) row above — preceded by a 24×2px accent rule.
 | Header / nav gap | `clamp(16px, 2.2vw, 32px)` |
 | Contact block padding | `clamp(48px, 7vw, 96px) clamp(24px, 5vw, 72px)` |
 
+### Section rhythm is uniform — every break, no exceptions
+Every top-level section on the homepage carries `mt-rhythm`, so all five
+section breaks measure identically at a given width (verified 64px at
+360/390/414, 92px at 1024, 120px at 1440). `ClientLogos` was the one
+offender: it opened with `border-t` + `pt-8` and no top margin, seating its
+divider rule flush against the hero — a 0px break where every other section
+got the full rhythm. It now takes `mt-rhythm` as well, with `pt-8` kept as
+internal space between the rule and its heading.
+
+> **Measuring this correctly:** `Reveal`-wrapped sections start at
+> `translateY(28px) scale(0.97)` and only settle once their
+> IntersectionObserver fires. Screenshotting or measuring before a section
+> has actually been scrolled into view reports its *pre-reveal* box, which
+> reads as a phantom 50–80px of extra spacing that grows the further down
+> the page you look. Scroll the full page (re-reading `scrollHeight` as you
+> go, since it grows as wrappers pop back to full size), then assert
+> `getComputedStyle(wrapper).transform === "none"` on every wrapper before
+> trusting any vertical measurement.
+
 ### Exception
 - **Minimum touch target: 44px.** Icon-only interactive controls (e.g. the mobile
   nav toggle) size to 44×44px regardless of the 8px scale — this is the WCAG 2.5.5
@@ -622,15 +641,22 @@ Single row, one hairline below:
 ```
 - Logo: real vector mark (blob + signature paths, exact 1:1-scale overlay
   measured against the original `berit-logo.png`) + real text ("Berit
-  Alasmäki" / "UX & Product Designer"), not a flat image — `height: 64px`
-  below `md`, `80px` at `md:` and up (same in header and footer), large
-  enough that the role line under the wordmark stays legible. Fixed at 80px
-  everywhere used to overflow the header row by ~22px at a 390px mobile
-  viewport (logo + wordmark + the mobile menu button don't fit un-shrunk,
-  and the row doesn't wrap), pushing the menu button half off-screen —
-  confirmed with Playwright (`scrollWidth` > `clientWidth`) and fixed by
-  making the mark's own height responsive rather than touching the row
-  layout. See `Logo.tsx` and the Entrance sequence below.
+  Alasmäki" / "UX & Product Designer"), not a flat image — `height: 48px`
+  below `sm`, `64px` at `sm:`, `80px` at `md:` and up (same in header and
+  footer), large enough that the role line under the wordmark stays legible.
+  The mark's height is the site's shock absorber for the header row: the
+  wordmark beside it *cannot* shrink (its role line is `whitespace-nowrap`
+  mono at a fixed 11px), and the row doesn't wrap, so when the row runs out
+  of width the mark is what gives way. Fixed at 80px everywhere it overflowed
+  by ~22px at 390px; at 64px it still overflowed by ~26px at 360px, pushing
+  the mobile menu button off-screen. Both confirmed with Playwright
+  (`scrollWidth` > `clientWidth`) and fixed by stepping the mark's own height
+  down rather than touching the row layout. Header row gap is also `gap-3`
+  below `md:` (`gap-8` from `md:`): it is a `justify-between` row, so the gap
+  only acts as a minimum, but a 32px minimum alone was enough to push the
+  button past the right gutter at 360px. Measured slack between the logo and
+  the menu button after both changes: 19px @360, 49px @390, 73px @414. See
+  `Logo.tsx` and the Entrance sequence below.
 - **Wordmark lockup: the two text lines are the same width.** "Berit
   Alasmäki" (22px/800 Manrope) naturally paints 151.97px while "UX &
   PRODUCT DESIGNER" (11px IBM Plex Mono + 0.14em tracking) paints
@@ -811,8 +837,26 @@ is wrapped in a shared `<Reveal>` component.
   parent section rather than staggering card-by-card
 
 ### Back to top
-Fixed bottom-right, appears on scroll, links to `#page-top`. Ink pill, mono label,
-`shadow-lightbox`.
+Fixed bottom-right, links to `#page-top`. Ink fill (fully opaque `#222222`),
+mono label, `shadow-lightbox`, plus a `ring-1 ring-white/25` so the dark pill
+separates from dark content scrolling beneath it rather than merging into it.
+
+Because it floats, it will always cover *something*; three rules keep that
+from landing on content the reader needs:
+
+1. **Appears only after a full viewport height of scrolling** (was `0.6 ×
+   innerHeight`). The whole first screen is now free of it, so it never sits
+   over hero/intro content still being read.
+2. **Icon-only 48×48 circle below `sm:`**, full pill from `sm:` up. The pill
+   is 138px wide — 38% of a 360px viewport, wide enough to lie across a
+   heading. The circle is 13%.
+3. **The footer reserves room for it**: `pb-24` (96px) rather than a
+   visually-sufficient `pb-10`. The button sits `bottom-6` (24px) up and is
+   at most 52px tall, so it claims the bottom ~76px of the viewport; at the
+   very end of the page that band falls on the footer, and with 40px of
+   padding it covered the copyright line outright (measured at 360/390/414).
+   96px clears it with ~24px to spare. **Keep `Footer.tsx`'s `pb` and this
+   button's size/offset in step.**
 
 ### Contact block (page closer)
 ```

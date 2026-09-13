@@ -3,7 +3,13 @@ import { clientLogos } from "@/data/site";
 
 export default function ClientLogos() {
   return (
-    <section aria-labelledby="clients-heading" className="border-t border-rule pt-8">
+    // `mt-rhythm` matches every other top-level section break on the page
+    // (64px mobile / 120px desktop). Without it this section's divider rule
+    // sat flush against the bottom of the hero — a 0px break where every
+    // other section gets the full rhythm, which was the one genuinely
+    // inconsistent gap on the homepage. `pt-8` stays as the internal space
+    // between the rule and the heading.
+    <section aria-labelledby="clients-heading" className="mt-rhythm border-t border-rule pt-8">
       <h2 id="clients-heading" className="font-mono-label text-mono-label uppercase text-muted m-0">
         Experience with well-known organisations
       </h2>

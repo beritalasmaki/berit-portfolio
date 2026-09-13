@@ -20,7 +20,7 @@ const tabs: Tab[] = [
     linkHref: "/usecases/education-platform",
   },
   {
-    question: "Can she handle complex problems, or does she avoid them?",
+    question: "How does she approach complex problems?",
     body: "I start working on complex problems early and adjust my approach as I learn more, instead of trying to plan everything in advance.",
     highlight:
       "Modernizing old environmental data systems meant working with tools researchers had used for years without a clear structure. Instead of waiting for a perfect solution, I focused on shipping something useful quickly, and then improving it based on what we learned.",
@@ -36,7 +36,7 @@ const tabs: Tab[] = [
     linkHref: "/usecases/industrial-tool",
   },
   {
-    question: "Does she ship her work, or keep polishing it?",
+    question: "How does she know when something is ready to ship?",
     body: "I prefer to release something, learn from real feedback, and improve it, instead of spending too much time perfecting a first version nobody has tested yet.",
     highlight:
       "A university's digital portal launched as a first version, then kept improving based on real usage after launch.",
