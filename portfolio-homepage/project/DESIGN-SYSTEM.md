@@ -893,13 +893,16 @@ straight, once, when it scrolls into view. `UntangleLine.tsx`.
   everywhere, and the failure mode is the bad one — a browser that ignores CSS
   `d` keeps painting the attribute, leaving the string knotted forever with no
   animation and no signal that anything is wrong.
-- **Easing: `easeOutSine` over 1400ms, not the obvious `easeOutCubic`.** The
+- **Easing: `easeOutSine` over 2600ms, not the obvious `easeOutCubic`.** The
   loop's *area* shrinks much faster than the interpolation parameter moves, so
   a steeply front-loaded curve spends its whole motion budget early: with cubic
   the knot was gone by ~350ms and the remaining second was an imperceptible
-  settle — a snap followed by a wait. With sine the unwind measures 22% at
-  200ms, 43% at 400ms, 71% at 700ms, 90% at 1000ms, so it reads as a steady
-  pull that decelerates into rest.
+  settle — a snap followed by a wait. With sine the unwind measures 25% at
+  400ms, 48% at 800ms, 69% at 1200ms, 86% at 1600ms and 97% at 2000ms, so it
+  reads as a steady pull that decelerates into rest, finishing around 2.2s
+  with the last sliver of travel too small to see. The duration started at
+  1400ms and was doubled on review — at that length the pull still read as
+  hurried for something meant to feel like a knot coming loose.
 - **Trigger:** IntersectionObserver at `threshold: 0.6` (not 0 — the string is
   only ~16px tall, so "one pixel entered" would play it clipped at the screen
   edge). Plays once per page visit, guarded by a ref rather than by observer

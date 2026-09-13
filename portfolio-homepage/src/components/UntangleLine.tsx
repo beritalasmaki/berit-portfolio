@@ -56,7 +56,7 @@ const STRAIGHT = [
   104, 9.2, 110, 9.6, 116, 9.4,
 ];
 
-const DURATION_MS = 1400;
+const DURATION_MS = 2600;
 
 /** Builds "M x y C … C …" from a flat [x, y, …] list. */
 function toPath(points: number[], yOffset = 0) {
@@ -78,7 +78,10 @@ function toPath(points: number[], yOffset = 0) {
 // remaining second was an imperceptible settle — a snap followed by a wait,
 // which is the opposite of the slow pull this is meant to be. Sine keeps the
 // unwinding legible through the middle of the duration and still decelerates
-// into rest.
+// into rest. Measured against DURATION_MS above, the unwind runs 25% at
+// 400ms, 48% at 800ms, 69% at 1200ms, 86% at 1600ms and 97% at 2000ms — so
+// it reads as finished around 2.2s, with the last sliver of travel too small
+// to see. Re-measure these if the duration or the easing changes.
 function easeOutSine(t: number) {
   return Math.sin((t * Math.PI) / 2);
 }
