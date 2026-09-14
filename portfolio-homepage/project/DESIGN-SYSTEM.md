@@ -318,12 +318,26 @@ display: flex; flex-direction: column;      /* stretch in a grid row */
   border, same active-state ink/white treatment as the desktop tab column);
   its answer — same body/highlight/link content as the desktop pane —
   renders directly below that question when expanded, not in a shared panel
-  after the full list. One open at a time; the first question's answer is
-  open by default (matching the desktop panel, which always shows an active
-  answer), the rest start collapsed. `aria-expanded` + `aria-controls` on the
+  after the full list. `aria-expanded` + `aria-controls` on the
   button, `role="region"` on the panel, panel conditionally rendered (not the
   `hidden` attribute) — each expand is a genuine mount, so the same
   `.panel-fade-item` fade applies with no extra key needed.
+- **One open at a time, and all four start closed.** The first answer used to
+  be open by default, mirroring the desktop panel, which always has an active
+  answer — but the two are not the same situation. On desktop the answer sits
+  *beside* the list, so an open one costs nothing; on mobile it pushes the
+  other three questions down past the fold. Closed by default keeps all four
+  readable at once (verified: the whole block is 296px and every question is
+  on screen at 360/390/414), which is the point of a section built around the
+  questions themselves.
+- **The open answer's surface is white, not `panel`.** The collapsed question
+  rows are `panel-alt` (#f0eee9) and the panel was `panel` (#f5f3ee) — 1.046:1
+  against each other, which read as one flat surface, so an open answer didn't
+  separate from the questions stacked under it. White is the lightest surface
+  in the palette and takes that to 1.159:1 (3.5× the contrast step), with the
+  open question's own `ink` header above it framing the answer from the top.
+  This is mobile only; the desktop pane stays `panel`, where it sits beside a
+  `panel-alt` tab column rather than above more rows.
 
 ### Detail-panel cross-fade (`.panel-fade-item`)
 For a detail panel whose content swaps in place on click (MindTabs' answer

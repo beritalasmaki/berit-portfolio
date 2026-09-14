@@ -47,9 +47,13 @@ const tabs: Tab[] = [
 
 export default function MindTabs() {
   const [active, setActive] = useState(0);
-  // First question's answer is open by default (matches the desktop panel,
-  // which always shows an active answer) — the rest start collapsed.
-  const [openMobile, setOpenMobile] = useState<number | null>(0);
+  // Every question starts collapsed on mobile. It used to open the first one
+  // to mirror the desktop panel, which always has an active answer — but the
+  // two are not the same situation: on desktop the answer sits *beside* the
+  // list, so an open one costs nothing, while on mobile it pushes the other
+  // three questions down past the fold. Closed by default keeps all four
+  // readable at once, which is the point of the section.
+  const [openMobile, setOpenMobile] = useState<number | null>(null);
   const baseId = useId();
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
@@ -218,7 +222,14 @@ export default function MindTabs() {
                   id={panelId}
                   role="region"
                   aria-labelledby={buttonId}
-                  className="panel-fade-item flex flex-col gap-4 bg-panel p-pane-pad"
+                  // `bg-white`, not the `bg-panel` this used to share with the
+                  // block behind it. The collapsed question rows are
+                  // `panel-alt` (#f0eee9) and the panel was `panel` (#f5f3ee)
+                  // — a 5-value difference that read as one flat surface, so
+                  // an open answer didn't visibly separate from the questions
+                  // stacked under it. White is the lightest surface in the
+                  // palette and lifts the answer clear of them.
+                  className="panel-fade-item flex flex-col gap-4 bg-white p-pane-pad"
                 >
                   <p className="m-0 text-body-lg text-body max-w-prose">{tab.body}</p>
                   <div className="flex gap-4 items-start border-t border-rule-strong pt-4">
