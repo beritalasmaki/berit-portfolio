@@ -24,7 +24,7 @@ export function Button({ variant = "primary", mode = "default", disabled, childr
       type="button"
       aria-busy={isLoading || undefined}
       disabled={isDisabled}
-      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition ${variants[variant]} ${modeClass} disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-bold transition ${variants[variant]} ${modeClass} disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       {...props}
     >
       {isLoading ? <span aria-hidden="true" className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" /> : null}
