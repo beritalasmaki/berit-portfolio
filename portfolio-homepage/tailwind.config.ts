@@ -31,12 +31,12 @@ const config: Config = {
         rule: "#eeece7",
         "rule-strong": "#e2ded6",
         "ink-alt": "#3a3a3a",
-        // "Available/status" green — sage-leaning rather than a stock
-        // Tailwind green, so it reads as part of this warm cream/orange
-        // palette rather than a generic UI-kit color. Currently only the
-        // header's rotating status pill (StatusPill.tsx).
-        success: "#3F7A54",
-        "success-bg": "#E9F3EA",
+        // The "available/status" green (#3F7A54) and its tint (#E9F3EA) that
+        // used to live here are gone. Their only consumer was the rotating
+        // availability badge, which now sits on the contact block's accent
+        // orange, where that green measures 2.12:1 — invisible on a 6px dot —
+        // so the badge uses `ink` (6.61:1) instead. Reintroduce them only
+        // alongside a real use on a light ground; see DESIGN-SYSTEM.md.
       },
       fontFamily: {
         sans: ["Manrope", "Helvetica", "Arial", "sans-serif"],
@@ -108,7 +108,7 @@ const config: Config = {
         lightbox: "0 12px 30px rgba(34, 34, 34, 0.22)",
       },
       keyframes: {
-        // The header status badge's dot. Replaces Tailwind's stock
+        // The availability badge's dot (contact block). Replaces Tailwind's stock
         // `animate-pulse`, which dips to 0.5 over 2s — barely readable on
         // a 6px dot, and on a rhythm unrelated to anything else on screen.
         // This is slower and dips further so it registers as "this thing

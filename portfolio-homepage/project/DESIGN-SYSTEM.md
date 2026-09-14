@@ -30,8 +30,8 @@ introduce new colors, sizes or radii without adding them here first.
 | Rule strong | `#e2ded6` | Medium borders, inner card dividers, pill outlines |
 | Ink alt | `#3a3a3a` | Dark-on-dark separators inside the dark tab column; also the body-text color for the highlight-quote callout inside each tab pane |
 | Overlay | `rgba(34, 34, 34, 0.8)` | Lightbox backdrop (Ink at 80%) |
-| Success | `#3F7A54` | The dot on the header's rotating status badge — and nothing else (the badge's text is `muted` grey; see the Status badge entry). A sage green chosen to sit next to this palette's warm cream/orange rather than a stock Tailwind green. |
-| ~~Success bg~~ | ~~`#E9F3EA`~~ | **Retired.** Was the status badge's pill fill; the badge no longer has one (see the Status badge entry for why). Still defined in `tailwind.config.ts` — reuse it if a tinted "available/positive" surface is ever needed again, rather than inventing a second green. |
+| ~~Success~~ | ~~`#3F7A54`~~ | **Retired, removed from `tailwind.config.ts`.** Was the availability badge's dot while the badge lived in the header on white. The badge now sits on the contact block's accent orange, where this green measures **2.12:1** — invisible on a 6px dot — so the dot is `ink` (6.61:1) there instead. Reintroduce only alongside a real use on a light ground. |
+| ~~Success bg~~ | ~~`#E9F3EA`~~ | **Retired, removed from `tailwind.config.ts`.** Was the badge's pill fill; the badge no longer has one (see the Availability badge entry for why). |
 
 ### Rules
 - Two neutral background tones maximum per page (`#ffffff` + `#f5f3ee`).
@@ -714,7 +714,7 @@ Focus box, Starting Point, Impact cards) stays permanently visible.
 ### Header (all pages)
 Single row, one hairline below:
 ```
-[logo 80px]  ————————  [page links]  |  [LinkedIn icon]  [GitHub icon]  [Contact button]  [status badge]
+[logo 80px]  ————————  [page links]  |  [LinkedIn icon]  [GitHub icon]  [Contact button]
 ```
 - Logo: real vector mark (blob + signature paths, exact 1:1-scale overlay
   measured against the original `berit-logo.png`) + real text ("Berit
@@ -767,76 +767,8 @@ Single row, one hairline below:
   tap just navigates. The mobile nav panel keeps the original labeled
   pills unchanged (plenty of vertical room there; an icon alone reads
   less clearly in a full-screen stacked menu).
-- **Status badge** (`StatusPill.tsx` — filename kept, but it is no longer
-  a pill): a small `success`-green dot plus rotating text, on the right of
-  Contact, inside the same tight-gap `LinkedIn/GitHub/Contact` cluster
-  rather than the wider page-links group. Cross-fades through "Open to
-  work" / "Open to networking" / "Open to brainstorming" on a 4.5s
-  `setInterval`, `duration-700` opacity crossfade. Tried next to the logo
-  first, then directly to the left of Contact; settled on the right of it,
-  separated by `ml-4` on top of the cluster's `gap-2` (24px total) so it
-  doesn't crowd the Contact button.
-  - **No pill chrome.** It began as a rounded `bg-success-bg` pill, but
-    the fill is what made the fixed width below *visible*: a short status
-    left a wide stretch of empty green, and the whole box read as heavy
-    chrome for what is really a caption. With the fill gone the leftover
-    width is simply invisible, so only the dot and the text remain.
-  - **Typography is the standard mono eyebrow**, identical to "03 / ABOUT"
-    and every other label on the site: `font-mono-label text-mono-label
-    uppercase text-muted` (IBM Plex Mono, 11px, 0.14em tracking, `#6b6660`
-    grey). It started as 12px semibold sans in the sage green, which read
-    as a foreign element next to the site's own labels. Only the dot stays
-    `success` green now — it alone carries the "available" signal.
-  - **Text is left-aligned in the fixed box, not centered.** Centering
-    split the leftover width evenly, which pushed a short status ~50px
-    away from the dot and left the dot stranded. Left-aligning keeps the
-    dot a constant 8px from the first glyph on every status, and keeps the
-    dot's own x-position perfectly still as the text rotates (verified
-    pixel-identical across all three).
-  - **Fixed width, not hug-to-content.** An earlier version measured each
-    status's natural width and resized the box to match, but that pill
-    sat wedged against Contact and the icon buttons — its own footprint
-    changing size as the text rotated shifted Contact sideways with it,
-    which is exactly the "things move around" behavior a header shouldn't
-    have. The text box is now a constant `212px` (the longest status,
-    "Open to brainstorming", measures 165px at the mono-label face and
-    tracking, leaving ~7px of slack for font-fallback variance) and never
-    resizes; only its content's opacity crossfades. Height is a fixed
-    `h-4` rather than `1em` so the box doesn't depend on inherited
-    font-size and has room for uppercase descenders without
-    `overflow-hidden` clipping them. Keep it tight rather than generous —
-    every px is a px of header row, and this width sets the breakpoint
-    below (it has gone 212px -> 204px -> 172px as the chrome and the
-    longest status changed).
-  - `prefers-reduced-motion` stops the interval outright (checked in JS,
-    not just a CSS transition-duration kill — the requirement is "no
-    rotation happens", not "the rotation happens instantly"), leaving it
-    on the first message.
-  - The rotation is `aria-hidden`; a single static `sr-only` label ("Open
-    to work, networking, and brainstorming") covers all three states
-    for screen readers rather than an `aria-live` region re-announcing
-    every few seconds.
-  - `hidden min-[1300px]:inline-flex` — the first thing to disappear as
-    the viewport narrows, before the nav links, icons, or Contact button
-    are ever at risk of wrapping. Not a stock breakpoint on purpose: it
-    tracks the width the badge actually fits at, measured on the real
-    header rather than guessed. At its current 186px the nav row wraps to
-    a second line at every width up to 1280px but fits cleanly from
-    1290px up, so 1300 is that threshold plus a small cushion (verified
-    exactly: visible at 1300, hidden at 1299, and never wrapping while
-    visible). Re-measure whenever the badge's width or the surrounding
-    nav changes — this has already walked 1360 -> 1340 -> 1300 as the
-    badge shed its pill chrome and then its longest status string.
-  - **The dot breathes rather than pulses.** `animate-status-breathe`
-    (a keyframe in `tailwind.config.ts`) fades it 1 -> 0.3 -> 1 over the
-    same 4.5s as the rotation, replacing Tailwind's stock `animate-pulse`
-    (0.5 dip over 2s), which is barely perceptible on a 6px dot and runs
-    on a rhythm unrelated to anything else on screen. The slower, deeper
-    fade on the rotation's own cadence is what cues that the text beside
-    it changes. The keyframe ends at full opacity so the reduced-motion
-    kill-switch in `globals.css` — which forces `animation-iteration-count: 1`
-    at a 0.01ms duration — settles it to a solid dot rather than a dimmed
-    one (verified: opacity pinned at 1 under `prefers-reduced-motion`).
+- The rotating **availability badge** used to end this cluster. It has moved
+  to the contact block — see **Availability badge** under Contact block below.
 - `nav-gap` (the fluid gap between page links) tightened to
   `clamp(10px, 1.8vw, 32px)` — down from `clamp(16px, 2.2vw, 32px)` — once
   a third nav link (My Process) joined "Selected case studies" and "About"
@@ -1003,9 +935,53 @@ background: #FC890C;
 margin: clamp(64px, 9vw, 120px) calc(-1 * clamp(24px, 5vw, 72px)) 0;
 padding: clamp(48px, 7vw, 96px) clamp(24px, 5vw, 72px);
 ```
-Full-bleed. All text `#222222`. Contains the headline, subtext, email
-(`berit.alasmaki@gmail.com`, 2px ink underline), the freelance availability line, and a
-LinkedIn link.
+Full-bleed. All text `#222222`. Left column is the headline; right column is
+the availability badge, subtext, email (`berit.alasmaki@gmail.com`, 2px ink
+underline) and a LinkedIn link.
+
+#### Availability badge (`StatusPill.tsx`)
+A small dot plus rotating text — "Open to work" / "Open to networking" /
+"Open to brainstorming" — cross-fading on a 4.5s `setInterval` with a
+`duration-700` opacity transition. Filename kept, but it is not a pill.
+
+**It sits at the top of the contact block's right column**, as a kicker above
+the invitation: by the time someone is reading "tell me what you're building",
+whether I'm actually free is the next thing they want to know. It previously
+lived in the header beside Contact, which was the worst of both worlds — it
+sat in the busiest row on the page competing with the nav, *and* it had to be
+`hidden` below 1300px because the header ran out of width, so the people most
+likely to be scanning for availability on a phone never saw it. Nothing in the
+contact column is width-constrained, so **it now shows at every size**
+(verified visible 360 → 1920 with no overflow).
+
+- **The dot is `ink`, not green.** The `success` sage green that carried the
+  "available" signal on white measures **2.12:1** on the block's accent
+  orange — effectively invisible at 6px. Ink is 6.61:1 and matches the
+  block's own "every element is ink" rule; the breathing animation is what
+  still reads as "live". Both `success` tokens are retired as a result.
+- **Typography is the standard mono eyebrow** — `font-mono-label
+  text-mono-label uppercase`, same as every other label on the site — in
+  `ink` here rather than `muted` grey, for the same contrast reason.
+- **No pill chrome.** It began as a rounded filled pill, but the fill is what
+  made the fixed width below *visible*: a short status left a wide stretch of
+  empty fill, and the box read as heavy chrome for what is really a caption.
+- **Fixed `172px` text box, left-aligned**, so only opacity crossfades and
+  the block never twitches as the text swaps (verified frozen across
+  rotations). Left-aligned rather than centered keeps the dot tight against
+  the first glyph instead of stranding it ~50px away on a short status.
+  Height is a fixed `h-4` so the box doesn't depend on inherited font-size.
+- **The dot breathes rather than pulses.** `animate-status-breathe` (a
+  keyframe in `tailwind.config.ts`) fades it 1 → 0.3 → 1 over the same 4.5s
+  as the rotation, replacing Tailwind's stock `animate-pulse` (0.5 dip over
+  2s), which is barely perceptible on a 6px dot and runs on an unrelated
+  rhythm. The keyframe ends at full opacity so the reduced-motion kill-switch
+  in `globals.css` settles it to a solid dot rather than a dimmed one.
+- `prefers-reduced-motion` stops the interval outright (checked in JS, not
+  just a CSS duration kill — the requirement is "no rotation happens", not
+  "the rotation happens instantly"), leaving it on the first message.
+- The rotation is `aria-hidden`; one static `sr-only` label ("Open to work,
+  networking, and brainstorming") covers all three states, rather than an
+  `aria-live` region re-announcing every few seconds.
 
 ---
 

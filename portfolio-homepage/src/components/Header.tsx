@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import Logo from "./Logo";
-import StatusPill from "./StatusPill";
 import { primaryNav, site } from "@/data/site";
 
 type HeaderProps = {
@@ -150,9 +149,11 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
             ))
           )}
           <span aria-hidden="true" className="block w-px h-5 bg-rule-strong ml-2" />
-          {/* LinkedIn + GitHub + Contact + status pill grouped with their
-              own tight 8px gap, separate from the wider gap-nav-gap the
-              rest of the nav uses. */}
+          {/* LinkedIn + GitHub + Contact grouped with their own tight 8px
+              gap, separate from the wider gap-nav-gap the rest of the nav
+              uses. The rotating availability badge used to sit at the end of
+              this cluster; it moved to the contact block, which is both
+              calmer and not width-constrained (see StatusPill.tsx). */}
           <span className="flex items-center gap-2">
             <IconLink
               href={site.linkedinUrl}
@@ -167,7 +168,6 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
             >
               Contact
             </a>
-            <StatusPill />
           </span>
         </nav>
 

@@ -1,3 +1,4 @@
+import StatusPill from "./StatusPill";
 import { site } from "@/data/site";
 
 export default function ContactSection() {
@@ -14,6 +15,12 @@ export default function ContactSection() {
           make better?
         </h2>
         <div className="flex flex-col gap-4">
+          {/* Availability sits at the top of this column as a kicker above
+              the invitation — by the time someone is reading "tell me what
+              you're building", whether I'm actually free is the next thing
+              they want to know. Moved here from the header, where it
+              competed with the nav and was hidden below 1300px. */}
+          <StatusPill />
           <p className="m-0 text-lead text-ink max-w-prose">
             Tell me what you&apos;re building, what&apos;s getting in the way, and where
             you want to go.
