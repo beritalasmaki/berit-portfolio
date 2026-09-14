@@ -377,7 +377,24 @@ before `ProcessTimeline`):
   a second typeface — a whole extra web font for one line of copy wasn't
   worth it), three body paragraphs, then a `Connect on LinkedIn` pill button
   in the site's primary filled-pill style (`bg-ink`/`hover:bg-ink-alt`,
-  matching Hero's primary CTA and Header's "Contact" button).
+  matching Hero's primary CTA and Header's "Contact" button), and finally a
+  **Spotify playlist embed** under a "MUSIC I KEEP LISTENING TO" mono eyebrow.
+  The paragraphs above it are the professional story; this closes the column
+  with a bit of personality, and the eyebrow keeps it reading as a caption on
+  the card rather than a section of its own.
+  - The iframe carries a real `title` — without one a screen reader announces
+    nothing but "frame" (WCAG 4.1.2) — plus `loading="lazy"`, since it sits
+    well below the fold and there's no reason for Spotify's player to be on
+    the critical path. `rounded-chrome` (12px) and `border-0` rather than the
+    deprecated `frameborder` attribute from the copied snippet.
+  - The share-tracking `si` parameter that Spotify's copy-embed adds is
+    dropped: it identifies the share event that produced the snippet, and the
+    player works without it.
+  - **Not verifiable in this sandbox.** The agent proxy denies CONNECT to
+    non-allowlisted hosts, so `open.spotify.com` returns
+    `ERR_TUNNEL_CONNECTION_FAILED` and the slot renders as Chromium's broken-
+    frame placeholder locally. The markup, sizing and layout are verified; the
+    player itself has to be confirmed on a deployed build.
 - **Right, "Working with me" card** (`bg-white border border-rule` — a subtle
   white-vs-cream distinction from the left card, not the dark/light contrast
   of the reference layout this was built from; DESIGN-SYSTEM.md's "existing
@@ -697,13 +714,55 @@ too (not just the accordions) is what makes the page read as one
 consistent "each section is a card" system rather than the accordions
 looking singled out.
 
-### Starting Point (full case studies)
-Plain (non-accordion) section card directly below the sneak-peek hero,
+### Case-study sections render per field, not all-or-nothing
+`hasFullContent` still decides the **hero** — a sneak-peek needs a gallery to
+peek at — but every section below it renders on its own data being present.
+The route was previously a binary: a study either had everything (hero,
+Starting Point, gallery, Impact, three accordions) or it got the minimal
+hero-plus-cross-links template.
+
+That binary made a half-written case study impossible: **design-system** has an
+intro and a "How it started" but no gallery yet, and under the old gate showed
+neither. It now renders exactly those two sections, keeps the minimal
+`CaseStudyHero` (with its "Visit live project" outline-pill link), and the four
+fully-written studies are untouched — verified identical section lists and TOCs
+before and after.
+
+The TOC is built from the same presence checks, so it can never offer a link to
+a section that isn't on the page. The JSX gates on the fields inline
+(`study.gallery !== undefined && …`) rather than on the `has*` consts above it:
+only the inline form narrows the optional props for TypeScript.
+
+### Starting Point
+Plain (non-accordion) section card directly below the hero,
 same eyebrow+`<h2>` chrome as any other plain section (eyebrow "The brief" —
 see Section numbering for the no-repeating rule). Renders
 `study.intro` — the field name didn't change (`hasFullContent`
 type-guards on its presence), only where it's displayed: previously
 inline in the old hero right under the `<h1>`, now its own card.
+
+### Findings list (`FindingsList`)
+A numbered, scannable set inside a section body — a bold body-size lead-in per
+item, then the explanation. Used by "How it started" on design-system, where
+the section builds to five specific findings rather than running as prose.
+
+Deliberately lighter than `ChallengesSection`, which renders the same
+`{title, body}` shape: that one gives each item a `card-h3` heading and its own
+rule because those *are* sub-sections you can land on from the TOC. These read
+straight down as one set, so the lead-in is `body-em` bold and the rules are
+hairlines between items.
+
+A real `<ol>` carries the ordinal; the visible `01`–`05` is `aria-hidden`, the
+same convention `ChallengesSection` and `ImpactSection` already use for their
+numbers, so a screen reader doesn't announce the position twice.
+
+The data shape is three fields rather than one mixed array — `howItStarted`
+(opening prose), `howItStartedFindings`, `howItStartedClosing` — so the
+ordering is stated by the shape itself and the four prose case studies, which
+supply only the first, need no changes. Both new fields are optional **inside**
+`CaseStudyFullContent`, not merely via the `Partial<>` on `CaseStudy`:
+`hasFullContent` asserts a study satisfies that whole type, so anything
+required there would be a claim those four don't actually meet.
 
 ### Accordion sections (`AccordionSection`, full case studies)
 "How it started", "Challenges & Problem-Solving", and "What I would do
@@ -1073,8 +1132,10 @@ case/edu-*.png               Education platform case screenshots
 case/syke-*.png               Environmental data case screenshots
 ```
 
-All four case studies now have full detail content (`hasFullContent()` is true for
-all of them — none render the minimal template anymore). Industrial Data's gallery
+Four of the five case studies have full detail content (`hasFullContent()` is
+true for them). **design-system** is the partial one: an intro and a "How it
+started" but no gallery yet, so it keeps the minimal hero and renders only the
+sections it has — see "Case-study sections render per field" above. Industrial Data's gallery
 (`kem-*.png`) came from original, full-resolution source screenshots; the other
 three case studies' galleries (`uni-*`, `edu-*`, `syke-*`) were cropped from the
 screenshots embedded in the case-study PDFs the client provided, since no separate

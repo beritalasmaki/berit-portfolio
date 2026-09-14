@@ -13,6 +13,7 @@ export type {
   ImpactCard,
   GalleryImage,
   ChallengeSubsection,
+  Finding,
 } from "./types";
 export { hasFullContent } from "./types";
 

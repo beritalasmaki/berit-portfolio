@@ -320,6 +320,31 @@ export default function AboutMe() {
           <LinkedInIcon />
           Connect on LinkedIn
         </a>
+
+        {/* Closes out the bio column: the paragraphs above are the
+            professional story, this is the bit of personality at the end of
+            it. Label uses the site's standard mono eyebrow so it reads as a
+            caption on the card rather than a section of its own.
+            `title` is required — an iframe without one gives screen readers
+            nothing but "frame" to announce (WCAG 4.1.2). `loading="lazy"`
+            keeps Spotify's player off the critical path; it sits well below
+            the fold. The share-tracking `si` parameter from the copied embed
+            code is dropped: it identifies the share event that produced the
+            snippet and the player works without it. */}
+        <div className="flex flex-col gap-3">
+          <p className="m-0 font-mono-label text-mono-label uppercase text-muted">
+            Music I keep listening to
+          </p>
+          <iframe
+            title="Spotify playlist: music I keep listening to"
+            src="https://open.spotify.com/embed/playlist/0yPE6DjVE7ovzpKaHumEHQ?utm_source=generator&theme=0"
+            height={152}
+            loading="lazy"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            allowFullScreen
+            className="block w-full border-0 rounded-chrome"
+          />
+        </div>
       </div>
 
       <WorkingWithMe />

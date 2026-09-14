@@ -72,6 +72,17 @@ export type ChallengeSubsection = {
   body: string;
 };
 
+/**
+ * One numbered item in a scannable findings list: a bold lead-in claim plus
+ * the explanation behind it. Lighter than `ChallengeSubsection`, which gets a
+ * `card-h3` heading and its own rule — these are meant to be read down
+ * quickly as a set, not treated as sub-sections.
+ */
+export type Finding = {
+  title: string;
+  body: string;
+};
+
 /** A "sneak peek" skill/contribution pill — short label plus a one-line
  * elaboration (used as the pill's `title` tooltip, not shown inline). */
 export type SkillTag = {
@@ -106,6 +117,21 @@ export type CaseStudyFullContent = {
   impactCards: ImpactCard[];
   /** One or more paragraphs, in order. */
   howItStarted: string[];
+  /**
+   * Optional numbered list rendered *between* `howItStarted` and
+   * `howItStartedClosing`, for a section that builds to a set of findings
+   * rather than running as continuous prose. Split into three fields rather
+   * than one mixed array so the ordering is stated by the shape itself and
+   * the four existing case studies, which are pure prose, need no changes.
+   *
+   * Optional *inside* `CaseStudyFullContent`, not just via the `Partial<>`
+   * on `CaseStudy`: `hasFullContent` asserts a study satisfies this whole
+   * type, so anything required here would be a claim the four prose case
+   * studies don't actually meet.
+   */
+  howItStartedFindings?: Finding[];
+  /** Paragraphs closing out "How it started", after `howItStartedFindings`. */
+  howItStartedClosing?: string[];
   challenges: ChallengeSubsection[];
   /** One or more paragraphs, in order. */
   whatIWouldDoDifferently: string[];
