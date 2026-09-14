@@ -330,14 +330,28 @@ display: flex; flex-direction: column;      /* stretch in a grid row */
   readable at once (verified: the whole block is 296px and every question is
   on screen at 360/390/414), which is the point of a section built around the
   questions themselves.
-- **The open answer's surface is white, not `panel`.** The collapsed question
-  rows are `panel-alt` (#f0eee9) and the panel was `panel` (#f5f3ee) — 1.046:1
-  against each other, which read as one flat surface, so an open answer didn't
-  separate from the questions stacked under it. White is the lightest surface
-  in the palette and takes that to 1.159:1 (3.5× the contrast step), with the
-  open question's own `ink` header above it framing the answer from the top.
-  This is mobile only; the desktop pane stays `panel`, where it sits beside a
-  `panel-alt` tab column rather than above more rows.
+- **The open answer's surface is white, not `panel`, and it carries a
+  hairline.** The collapsed question rows are `panel-alt` (#f0eee9) and the
+  panel was `panel` (#f5f3ee) — 1.046:1 against each other, which read as one
+  flat surface, so an open answer didn't separate from the questions stacked
+  under it. White is the lightest surface in the palette and takes that to
+  1.159:1 (3.5× the contrast step), with the open question's own `ink` header
+  framing the answer from the top.
+  White alone wasn't enough, though: the panel runs flush to its container's
+  edges, so its sides met the *page's* white background and the block
+  dissolved there. It takes `border-x border-b border-rule-strong` —
+  `rule-strong` (#e2ded6) rather than the usual `rule` (#eeece7) because this
+  border's whole job is separating white from white, where `rule` manages only
+  1.09:1 against it and `rule-strong` 1.17:1. No top border (the `ink` header
+  states that edge); the bottom one stays even though it lands against the
+  container's `divide-y` for every panel but the last — the two stack to 2px
+  of near-identical grey and read as one separator. The last panel has no
+  `divide-y` beneath it, its bottom *being* the container's bottom edge, so
+  without that border it would dissolve the way the sides did.
+  **General rule this is an instance of: a white surface needs a border
+  wherever it can end up adjacent to the page background, which is also
+  white.** All of this is mobile only; the desktop pane stays `panel`, where
+  it sits beside a `panel-alt` tab column rather than above more rows.
 
 ### Detail-panel cross-fade (`.panel-fade-item`)
 For a detail panel whose content swaps in place on click (MindTabs' answer

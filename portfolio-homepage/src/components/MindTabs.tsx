@@ -229,7 +229,25 @@ export default function MindTabs() {
                   // an open answer didn't visibly separate from the questions
                   // stacked under it. White is the lightest surface in the
                   // palette and lifts the answer clear of them.
-                  className="panel-fade-item flex flex-col gap-4 bg-white p-pane-pad"
+                  //
+                  // The hairline is what makes that white legible as a
+                  // *surface*. The panel runs flush to its container's edges,
+                  // so its left and right sides meet the page's own white
+                  // background directly and the block simply dissolved there.
+                  // `rule-strong` rather than `rule`: this border's whole job
+                  // is to separate white from white, and `rule` is only
+                  // 1.09:1 against it where `rule-strong` is 1.17:1.
+                  //
+                  // No top border — the `ink` question header sits directly
+                  // on that edge and already states it. The bottom one is
+                  // kept even though it lands against the container's own
+                  // `divide-y` for every panel but the last (measured: the
+                  // two stack to 2px of near-identical grey and read as one
+                  // separator, not a double line). The last panel has no
+                  // `divide-y` under it — its bottom *is* the container's
+                  // bottom edge, meeting the page — so without this it would
+                  // dissolve exactly the way the sides did.
+                  className="panel-fade-item flex flex-col gap-4 bg-white p-pane-pad border-x border-b border-rule-strong"
                 >
                   <p className="m-0 text-body-lg text-body max-w-prose">{tab.body}</p>
                   <div className="flex gap-4 items-start border-t border-rule-strong pt-4">
