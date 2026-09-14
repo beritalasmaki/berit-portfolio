@@ -31,18 +31,22 @@ export default function Logo({ animated = false }: {
   return (
     <span className="inline-flex items-center gap-2 sm:gap-3">
       {/* h-12 (48px) on the narrowest phones, h-16 (64px) from sm, h-20
-          (80px) at md+ — a fixed mark plus the wordmark next to it doesn't
+          (80px) at xl+ — a fixed mark plus the wordmark next to it doesn't
           fit a narrow mobile header without pushing into the menu button
           (confirmed with Playwright: ~22px of horizontal overflow at 390px
           with a fixed 80px mark, and still ~26px at 360px with 64px). The
           wordmark itself can't shrink — its role line is `whitespace-nowrap`
           mono at a fixed 11px — so the mark is what gives way. Width stays
-          auto so the mark keeps its own aspect ratio at every size. */}
+          auto so the mark keeps its own aspect ratio at every size.
+          The full 80px waits for `xl` rather than `md` because the header
+          row is at its tightest just after the desktop nav switches on at
+          `lg`: at 1024 the mark's extra 26px of width was a sixth of the
+          gap between the nav fitting on one line and wrapping to two. */}
       <svg
         viewBox={MARK_VIEWBOX}
         role="presentation"
         aria-hidden="true"
-        className="shrink-0 block h-12 w-auto sm:h-16 md:h-20"
+        className="shrink-0 block h-12 w-auto sm:h-16 xl:h-20"
       >
         {animated && (
           <defs>

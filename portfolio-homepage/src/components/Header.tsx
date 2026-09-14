@@ -115,20 +115,29 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
 
   return (
     <header className="border-b border-rule px-gutter pt-8 pb-4">
-      {/* gap-3 below md: this is a `justify-between` row, so the gap only
+      {/* gap-3 below lg: this is a `justify-between` row, so the gap only
           ever acts as a minimum separation — but at 360px the logo lockup
           and the menu button together leave under 20px of slack, and a
           32px minimum was enough on its own to push the button past the
-          right gutter. Full gap-8 returns at md, where the nav has room. */}
-      <div className="flex items-center justify-between gap-3 md:gap-8">
+          right gutter. Full gap-8 returns at lg, with the desktop nav. */}
+      <div className="flex items-center justify-between gap-3 lg:gap-8">
         <Link href="/" className="block shrink-0" aria-label={`${site.name} — home`}>
           <Logo animated={animateLogo} />
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop nav — `lg` (1024px), not `md` (768px). The full row is
+            three page links + a divider + two icon buttons + Contact, which
+            needs ~565px of content; at 768px the row only has ~347px left
+            after the logo, so from `md` this nav simply wrapped to two lines
+            and stayed wrapped until ~1100px. No amount of gap-tightening
+            closes a 218px gap — the honest fix is to show this nav only
+            where it fits and let the mobile menu (which is built for exactly
+            this) cover everything below. At 1024 it now fits on one line
+            with room to spare; see the Logo's `xl:h-20` note for the other
+            half of that budget. */}
         <nav
           aria-label="Primary"
-          className="hidden md:flex items-center justify-end gap-nav-gap flex-wrap min-w-0"
+          className="hidden lg:flex items-center justify-end gap-nav-gap flex-wrap min-w-0"
         >
           {backHref ? (
             <Link
@@ -148,7 +157,7 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
               </a>
             ))
           )}
-          <span aria-hidden="true" className="block w-px h-5 bg-rule-strong ml-2" />
+          <span aria-hidden="true" className="block w-px h-5 bg-rule-strong" />
           {/* LinkedIn + GitHub + Contact grouped with their own tight 8px
               gap, separate from the wider gap-nav-gap the rest of the nav
               uses. The rotating availability badge used to sit at the end of
@@ -175,7 +184,7 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
         <button
           ref={toggleRef}
           type="button"
-          className="md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-chrome border border-rule-strong shrink-0 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
+          className="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-chrome border border-rule-strong shrink-0 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
           aria-expanded={open}
           aria-controls={panelId}
           aria-label={open ? "Close menu" : "Open menu"}
@@ -205,7 +214,7 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
           Tailwind's `flex` utility for control of `display` the way a
           native `hidden` attribute + `flex` class combo would. */}
       {open && (
-        <nav id={panelId} aria-label="Primary" className="md:hidden flex flex-col items-start gap-4 pt-6">
+        <nav id={panelId} aria-label="Primary" className="lg:hidden flex flex-col items-start gap-4 pt-6">
           {backHref ? (
             <Link
               href={backHref}

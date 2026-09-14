@@ -529,8 +529,11 @@ Real interactive component (not the design files' CSS-only `:target` version):
   exists). Focus moves to Close on open and returns to the thumbnail that
   opened it on close.
 - Expanded image: `border-radius: 12px`, `box-shadow` = Lightbox shadow (see Radii & elevation above)
-- **Click-to-zoom is desktop-only** (`≥768px`, checked via `matchMedia`, same
-  breakpoint the header's mobile nav uses). Below that, there's no toggle at
+- **Click-to-zoom is desktop-only** (`≥768px`, checked via `matchMedia`).
+  This used to be described as "the same breakpoint the header's mobile nav
+  uses"; it no longer is — the header's desktop nav moved to 1024px, and
+  these two thresholds are answering different questions (is there room for a
+  nav row, vs. is there pixel detail worth zooming into). Below that, there's no toggle at
   all: the expanded image just renders at one fit-to-width size
   (`width: 100%; height: auto`, no `zoom-in`/`zoom-out` cursor, no button
   wrapper) — a tap-to-zoom toggle only fights with pinch-zoom/scroll on a
@@ -719,7 +722,7 @@ Single row, one hairline below:
 - Logo: real vector mark (blob + signature paths, exact 1:1-scale overlay
   measured against the original `berit-logo.png`) + real text ("Berit
   Alasmäki" / "UX & Product Designer"), not a flat image — `height: 48px`
-  below `sm`, `64px` at `sm:`, `80px` at `md:` and up (same in header and
+  below `sm`, `64px` at `sm:`, `80px` at `xl:` and up (same in header and
   footer), large enough that the role line under the wordmark stays legible.
   The mark's height is the site's shock absorber for the header row: the
   wordmark beside it *cannot* shrink (its role line is `whitespace-nowrap`
@@ -728,12 +731,34 @@ Single row, one hairline below:
   by ~22px at 390px; at 64px it still overflowed by ~26px at 360px, pushing
   the mobile menu button off-screen. Both confirmed with Playwright
   (`scrollWidth` > `clientWidth`) and fixed by stepping the mark's own height
-  down rather than touching the row layout. Header row gap is also `gap-3`
-  below `md:` (`gap-8` from `md:`): it is a `justify-between` row, so the gap
-  only acts as a minimum, but a 32px minimum alone was enough to push the
-  button past the right gutter at 360px. Measured slack between the logo and
-  the menu button after both changes: 19px @360, 49px @390, 73px @414. See
-  `Logo.tsx` and the Entrance sequence below.
+  down rather than touching the row layout. The full 80px now waits for `xl:`
+  rather than `md:` for the same reason at the other end: the row is tightest
+  just after the desktop nav switches on at `lg:`, and the mark's extra 26px
+  of width was a large share of the margin between the nav fitting on one line
+  and wrapping. Header row gap is also `gap-3` below `lg:` (`gap-8` from
+  `lg:`): it is a `justify-between` row, so the gap only acts as a minimum,
+  but a 32px minimum alone was enough to push the button past the right gutter
+  at 360px. Measured slack between the logo and the menu button after both
+  changes: 19px @360, 49px @390, 73px @414. See `Logo.tsx` and the Entrance
+  sequence below.
+
+- **The desktop nav appears at `lg:` (1024px), not `md:` (768px), and it
+  never wraps.** The full row is three page links + a divider + two icon
+  buttons + Contact — about 565px of content. At 768px only ~347px is left
+  after the logo, so from `md:` this nav wrapped to two lines and *stayed*
+  wrapped all the way to ~1100px. No amount of gap-tightening closes a 218px
+  gap, so the rule is: show this nav only where it fits on one line, and let
+  the mobile menu — which is built for exactly this — cover everything below.
+  Everything below 1024 therefore gets the menu button rather than a wrapped
+  row (`lg:hidden` / `hidden lg:flex`, applied to the toggle, the panel and
+  the desktop nav together so they can never both show or both hide).
+  Getting 1024 itself to fit took two small savings on top of the breakpoint
+  move: the logo's `xl:h-20` step above (~26px) and dropping an `ml-2` from
+  the divider, which was pure asymmetry on top of the nav's own gap (8px).
+  **Measured budget at 1024: 575px of content in 604px of space, ~29px
+  spare.** Verified no wrap and no overflow at 1024 / 1100 / 1279 / 1280 /
+  1440 / 1920, and the boundary is exact — menu button at 1023, desktop nav
+  at 1024.
 - **Wordmark lockup: the two text lines are the same width.** "Berit
   Alasmäki" (22px/800 Manrope) naturally paints 151.97px while "UX &
   PRODUCT DESIGNER" (11px IBM Plex Mono + 0.14em tracking) paints
