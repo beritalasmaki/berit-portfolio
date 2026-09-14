@@ -84,7 +84,7 @@ export default function MindTabs() {
 
   return (
     <section id="key-skills" aria-labelledby="mind-heading" className="mt-rhythm">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">01 / your next move</p>
+      <p className="font-mono-label text-mono-label uppercase text-muted m-0">02 / your next move</p>
       <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap mt-4">
         <h2 id="mind-heading" className="m-0 text-section-h2 text-ink">
           The questions behind the résumé

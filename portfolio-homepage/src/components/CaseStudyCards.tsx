@@ -5,7 +5,7 @@ import { caseStudies } from "@/data/case-studies";
 export default function CaseStudyCards() {
   return (
     <section id="case-studies" aria-labelledby="case-studies-heading" className="mt-rhythm">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">02 / selected case studies</p>
+      <p className="font-mono-label text-mono-label uppercase text-muted m-0">03 / selected case studies</p>
       <h2 id="case-studies-heading" className="mt-4 m-0 text-section-h2 text-ink">
         A closer look at the work.
       </h2>

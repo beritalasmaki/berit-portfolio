@@ -10,7 +10,14 @@ export default function ClientLogos() {
     // inconsistent gap on the homepage. `pt-8` stays as the internal space
     // between the rule and the heading.
     <section aria-labelledby="clients-heading" className="mt-rhythm border-t border-rule pt-8">
+      {/* The number is `aria-hidden` here and only here: this eyebrow is a
+          real `<h2>` doing double duty as the section's accessible name (see
+          `aria-labelledby` above), and "01 slash Experience with…" is a worse
+          name than the sentence on its own. Every other numbered eyebrow on
+          the page is a plain `<p>` sitting beside its own `<h2>`, so the
+          number is free to be read there. */}
       <h2 id="clients-heading" className="font-mono-label text-mono-label uppercase text-muted m-0">
+        <span aria-hidden="true">01 / </span>
         Experience with well-known organisations
       </h2>
       {/* Uniform grid cells: every logo gets the same evenly padded space

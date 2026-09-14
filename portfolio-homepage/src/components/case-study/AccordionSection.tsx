@@ -48,6 +48,13 @@ function ChevronIcon() {
  * "Show more/less" label plus the rotating chevron are what mark it as
  * interactive, not a shaded box behind the text.
  *
+ * `label` is the mono eyebrow above the heading, and it must say something
+ * the heading does not. It used to be passed the section's own title, so the
+ * page read "WHAT I WOULD DO DIFFERENTLY / What I would do differently" — a
+ * line of vertical space that told the reader nothing. It now carries a
+ * short kicker naming what the section is *for* ("In hindsight" over "What I
+ * would do differently"), which is what earns it the line.
+ *
  * The panel is always in the DOM (not conditionally rendered) and animates
  * via the `grid-template-rows: 0fr -> 1fr` technique — animates to an
  * intrinsic, unmeasured height in pure CSS, same pattern as AboutMe's
@@ -64,6 +71,8 @@ export default function AccordionSection({
   children,
 }: {
   id: string;
+  /** Mono eyebrow above the heading. Must say something the heading doesn't
+   * — see the note in the component docblock. */
   label: string;
   heading: string;
   defaultOpen?: boolean;

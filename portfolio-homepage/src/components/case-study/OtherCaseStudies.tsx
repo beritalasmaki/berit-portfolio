@@ -8,7 +8,7 @@ export default function OtherCaseStudies({ currentSlug }: { currentSlug: CaseStu
 
   return (
     <section id="other" aria-labelledby="other-heading">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">Other case studies</p>
+      <p className="font-mono-label text-mono-label uppercase text-muted m-0">Keep reading</p>
       <h2 id="other-heading" className="mt-4 m-0 text-section-h2 text-ink">
         Other case studies
       </h2>

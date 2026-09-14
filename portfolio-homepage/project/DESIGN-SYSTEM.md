@@ -91,8 +91,52 @@ Fallbacks:      Helvetica, Arial, sans-serif / monospace
 - Mono is used only for labels, eyebrows, captions and numbering — never for body copy.
 
 ### Section numbering
-Sections carry a mono eyebrow in the pattern `NN / lowercase label`, e.g.
-`01 / your next move`, `02 / selected case studies`, `03 / about`.
+**Homepage sections carry a numbered mono eyebrow** in the pattern
+`NN / lowercase label`, running in document order with no gaps:
+
+| | |
+|---|---|
+| `01 / experience with well-known organisations` | ClientLogos |
+| `02 / your next move` | MindTabs |
+| `03 / selected case studies` | CaseStudyCards |
+| `04 / about` | AboutSection |
+| `05 / my process` | ProcessTimeline (nested inside About, but a section in its own right — it has its own `<h2>`, its own `id`, and a nav link pointing at it) |
+
+The numbers are a running order for the page, so **adding or reordering a
+homepage section means renumbering the ones after it.** Only top-level section
+eyebrows are numbered — labels on cards, rows and controls inside a section
+(e.g. ProcessTimeline's "What kind of project?") stay unnumbered.
+
+One exception on the number's accessibility: ClientLogos' eyebrow is a real
+`<h2>` doing double duty as that section's accessible name via
+`aria-labelledby`, so its number is wrapped in `aria-hidden` — "01 slash
+Experience with…" is a worse accessible name than the sentence alone. Every
+other numbered eyebrow is a plain `<p>` sitting beside its own `<h2>`, so the
+number is free to be read there.
+
+**Case-study sections are not numbered. They keep their eyebrow, but it says
+something the heading doesn't** — a short kicker naming what the section is
+*for*:
+
+| Eyebrow | Heading |
+|---|---|
+| `The brief` | Starting Point |
+| `Selected screens` | *(`<h2>` is `sr-only`)* |
+| `Results` | The Impact |
+| `Background` | How it started |
+| `The hard parts` | Challenges & Problem-Solving |
+| `In hindsight` | What I would do differently |
+| `Keep reading` | Other case studies |
+
+Each of these was previously set to its own section's title, so the page read
+"WHAT I WOULD DO DIFFERENTLY / What I would do differently" — a line of
+vertical space that told the reader nothing. **The rule is that an eyebrow has
+to earn its line: never a second printing of the heading.** That applies to
+`AccordionSection`'s `label` prop too, which is what fed three of these.
+The hero's "Case study" kicker and ScreenshotGallery's "Selected screens" /
+"Desktop and mobile, one platform" pair already followed the rule and are
+unchanged.
+
 Emphasized variants (inside tab panes) are **Ink** at 12px/500 — matching the
 Mono label (emphasis) row above — preceded by a 24×2px accent rule.
 
@@ -624,7 +668,8 @@ looking singled out.
 
 ### Starting Point (full case studies)
 Plain (non-accordion) section card directly below the sneak-peek hero,
-same eyebrow+`<h2>` chrome as any other plain section. Renders
+same eyebrow+`<h2>` chrome as any other plain section (eyebrow "The brief" —
+see Section numbering for the no-repeating rule). Renders
 `study.intro` — the field name didn't change (`hasFullContent`
 type-guards on its presence), only where it's displayed: previously
 inline in the old hero right under the `<h1>`, now its own card.

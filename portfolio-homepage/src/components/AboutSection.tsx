@@ -4,7 +4,7 @@ import ProcessTimeline from "./ProcessTimeline";
 export default function AboutSection() {
   return (
     <section id="about" aria-labelledby="about-heading" className="mt-rhythm">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">03 / about</p>
+      <p className="font-mono-label text-mono-label uppercase text-muted m-0">04 / about</p>
 
       <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap mt-4">
         <h2 id="about-heading" className="m-0 text-section-h2 text-ink">

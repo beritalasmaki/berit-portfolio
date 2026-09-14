@@ -83,7 +83,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     aria-labelledby="starting-point-heading"
                     className="rounded-card border border-rule bg-white p-card-pad"
                   >
-                    <p className="font-mono-label text-mono-label uppercase text-muted m-0">Starting Point</p>
+                    <p className="font-mono-label text-mono-label uppercase text-muted m-0">The brief</p>
                     <h2 id="starting-point-heading" className="mt-4 m-0 text-section-h2 text-ink">
                       Starting Point
                     </h2>
@@ -102,7 +102,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 </Reveal>
 
                 <Reveal>
-                  <AccordionSection id="started" label="How it started" heading="How it started" defaultOpen>
+                  <AccordionSection id="started" label="Background" heading="How it started" defaultOpen>
                     <ParagraphList paragraphs={study.howItStarted} />
                   </AccordionSection>
                 </Reveal>
@@ -110,7 +110,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 <Reveal>
                   <AccordionSection
                     id="challenges"
-                    label="Challenges & Problem-Solving"
+                    label="The hard parts"
                     heading="Challenges & Problem-Solving"
                   >
                     <ChallengesSection subsections={study.challenges} />
@@ -120,7 +120,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 <Reveal>
                   <AccordionSection
                     id="differently"
-                    label="What I would do differently"
+                    label="In hindsight"
                     heading="What I would do differently"
                   >
                     <ParagraphList paragraphs={study.whatIWouldDoDifferently} />
