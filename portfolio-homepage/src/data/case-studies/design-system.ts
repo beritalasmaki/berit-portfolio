@@ -16,11 +16,10 @@ export const designSystem: CaseStudy = {
     "A personal design system of tokens, components and documentation, built to show how I structure and maintain a system over time.",
   liveUrl: "https://design-system-use-case.vercel.app/",
 
-  // Two paragraphs on the detail page's hero where the card gets one — see
-  // `heroIntro` in types.ts.
+  // The detail page's hero copy, separate from the shorter card
+  // `description` above — see `heroIntro` in types.ts.
   heroIntro: [
     "DS by Berit is a personal design system, built from scratch and still in progress. A design system is the shared set of colours, text styles, spacing rules and ready-made parts that keep a product looking and working the same way everywhere. In this one, every colour, text style and spacing value is saved as a token: a named value, such as “accent colour” or “spacing 16”, that the rest of the system refers to by name instead of repeating the value itself. Components are built from those tokens: the ready-made parts, like buttons and cards, that get reused across a product. Around them sits the documentation and the structure that keep the system usable as it grows. I build it to show how I work on a design system over time, both the components themselves and how I organise, document and maintain them.",
-    "I built it with an AI agent, and that turned out to raise a more interesting question than the system itself.",
   ],
 
   // Partial content: `intro`, the "How it started" fields and two extra
@@ -34,8 +33,8 @@ export const designSystem: CaseStudy = {
   ],
 
   howItStarted: [
-    "I built the system with an AI agent, and it was ready quickly. That speed raised a question I had not expected: how well do I understand a system I did not write myself? If the agent stopped being available tomorrow, could I keep the system going on my own?",
-    "So I read my own code, file by file. The system looked consistent from the outside. Underneath, I found four things.",
+    "I built the system with an AI agent. I wanted to see what would happen if I had an AI agent build a simple design system from scratch, and then find out how well I understood the system it wrote for me. If the agent stopped being available tomorrow, could I keep it going on my own?",
+    "It was ready quickly. Then I went through the repository file by file, with a second AI agent as a reviewer rather than a builder. The system looked consistent from the outside. Underneath, we found four things.",
   ],
 
   howItStartedFindings: [
@@ -58,7 +57,7 @@ export const designSystem: CaseStudy = {
   ],
 
   howItStartedClosing: [
-    "On their own these are small, and that is what makes them a problem. Each one is easy to miss, and an agent produces them faster than a person can check them. Over time they build up, and cleaning them up later costs more time than the fast start saved.",
+    "None of these problems is serious on its own, but they add up. Technical debt like this makes the system more expensive to maintain and more likely to break in small ways over time.",
   ],
 
   additionalSections: [
@@ -68,8 +67,8 @@ export const designSystem: CaseStudy = {
       heading: "How I started fixing it",
       paragraphs: [
         "All seven came from the same place: the system had no written rules. An AI agent reads its instructions from two files in the project, and both of them held only a short technical note that the framework had put there automatically. Nothing described how this system was meant to be built, so the agent worked the rules out from the existing code every time it started.",
-        "So I wrote the rules down: what the project is and what stage it is at, where new components go, how the two token files relate to each other, the spacing tokens as a fixed list, and accessibility as a minimum requirement. I also listed the changes I want to be asked about before they happen, such as adding a new outside library or changing how an existing component is used.",
-        "Then I fixed what I had found by hand, instead of asking the agent to do it. Removing the unused font was one line. Correcting the spacing value was two small edits. Rewriting the outdated text was one paragraph. I had started with the question of whether I could look after a system I had not written myself, and doing the work myself was the only way to answer it.",
+        "So I wrote the rules down with my AI-assistant: what the project is and what stage it is at, where new components go, how the two token files relate to each other, the spacing tokens as a fixed list, and accessibility as a minimum requirement. I also listed the changes I want to be asked about before they happen, such as adding a new outside library or changing how an existing component is used.",
+        "Then I fixed what I had found by hand, instead of asking the agent to do it. I wanted to see whether I could handle the coding side myself, at least to some extent. Removing the unused font was one line. Correcting the spacing was two small edits. Rewriting the outdated text was one paragraph. None of it was work I needed the agent for.",
       ],
     },
     {
