@@ -36,11 +36,17 @@ export default function Hero() {
             complexity into value that people can feel.
           </p>
           <div className="flex flex-wrap gap-4 mt-10 fade-up-item" style={{ animationDelay: "1160ms" }}>
+            {/* Same target and same mechanism as the header's Contact
+                button: a plain `#contact` anchor, with the smooth scroll
+                coming from `scroll-behavior: smooth` on `html` in
+                globals.css (and disabled there under
+                prefers-reduced-motion). No scroll handler here — one
+                behaviour, defined once. */}
             <a
-              href="#key-skills"
+              href="#contact"
               className="inline-block bg-ink text-white text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap transition-[background-color,transform] duration-150 ease-out hover:bg-ink-alt hover:text-white hover:-translate-y-px focus-visible:bg-ink-alt focus-visible:text-white focus-visible:-translate-y-px focus-visible:outline-white"
             >
-              Find your starting point
+              Get in touch
             </a>
             <a
               href="#case-studies"
