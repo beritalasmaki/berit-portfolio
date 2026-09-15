@@ -100,4 +100,4 @@ npm run build
 
 The visual direction builds on the parent portfolio's documented palette and typography, but this app is intentionally standalone and has no runtime dependency on `portfolio-homepage`.
 
-Version history is maintained manually in `Version history/VERSION-HISTORY.md`. It is not generated automatically.
+Version history is maintained manually on the `/version-history` page (`src/app/version-history/page.tsx`). It is not generated automatically.

@@ -46,15 +46,20 @@ export const semanticTokens = [
   { name: "color.content.primary", value: "{color.charcoal.950}", description: "Headings, primary labels, and important values." },
   { name: "color.content.secondary", value: "{color.charcoal.700}", description: "Body copy and supporting labels." },
   { name: "color.content.muted", value: "{color.charcoal.500}", description: "Metadata that remains readable at small sizes." },
+  { name: "color.content.inverse", value: "{color.paper.0}", description: "Content that sits on an inverse or accent surface." },
   { name: "color.surface.canvas", value: "{color.paper.0}", description: "The documentation page background." },
   { name: "color.surface.subtle", value: "{color.sage.50}", description: "Quiet grouping surface." },
+  { name: "color.surface.raised", value: "{color.sage.100}", description: "Surface lifted above the canvas, such as a selected row." },
   { name: "color.surface.inverse", value: "{color.charcoal.950}", description: "Navigation and emphasis surface." },
   { name: "color.action.primary", value: "{color.charcoal.950}", description: "Primary action background." },
   { name: "color.action.accent", value: "{color.orange.500}", description: "Accent action and active marker." },
+  { name: "color.action.accent-dark", value: "{color.orange.700}", description: "Accent at text contrast, used for hover states and accent labels." },
   { name: "color.border.default", value: "{color.border.200}", description: "Default component boundary." },
+  { name: "color.border.strong", value: "{color.border.300}", description: "Boundary of an interactive control, such as an input or a secondary button." },
   { name: "color.focus.ring", value: "{color.orange.700}", description: "Visible keyboard focus indicator." },
   { name: "space.component.gap", value: "{space.4}", description: "Default gap between related component parts." },
   { name: "radius.component.control", value: "{radius.pill}", description: "Shared control shape." },
+  { name: "elevation.panel", value: "{shadow.panel}", description: "Lift for a panel that floats above the page." },
 ] as const;
 
 export type PrimitiveGroup = keyof typeof primitiveTokens;

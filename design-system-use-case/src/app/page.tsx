@@ -18,7 +18,7 @@ export default function Home() {
       <section className="surface-grid border-b border-[var(--color-border-default)] px-6 py-24 lg:px-12 lg:py-36">
         <div className="mx-auto grid max-w-[1440px] gap-14 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
           <div>
-            <p className="eyebrow mb-6">Fieldwork / design system 01</p>
+            <p className="eyebrow mb-6">DS by Berit / design system 01</p>
             <h1 className="display-title">A system for work that moves.</h1>
           </div>
           <div className="max-w-xl lg:pb-2">

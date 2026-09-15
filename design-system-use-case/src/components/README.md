@@ -18,13 +18,15 @@ are the components used to build the site that presents it.
 - `ComponentPage` and `TokenPage` are page templates that keep every
   documentation page consistent
 - `CodeTabs` displays code samples
+- `Variation` puts a small mono label above a single variant inside an
+  example, so each one is named where it is shown
 - `DeviceMockup` frames example interfaces in a desktop view
 
 ## Why both live here
 
 These two groups serve different purposes, and in a larger system they
-would sit in separate folders. With eight components in total, one
-folder is still easier to navigate than two. As the system grows, these
+would sit in separate folders. With this few components, one folder is
+still easier to navigate than two. As the system grows, these
 will be split into `ui/` and `docs/`.
 
 ## Note on naming
