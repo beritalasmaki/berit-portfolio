@@ -4,23 +4,23 @@ export const environmentalDataTool: CaseStudy = {
   slug: "environmental-data-tool",
   title: "Modernization of Environmental Data Systems",
   label: "ENVIRONMENTAL DATA SYSTEMS · 2020–2024",
-  headline: "Legacy systems.\nNow something researchers actually trust.",
+  headline: "Outdated systems.\nNow something researchers actually trust.",
   description:
     "Monitoring and reporting tools for environmental data, built so specialists can find, compare and publish results without fighting the interface.",
   thumbnail: "/case/syke-new.png",
   thumbnailAlt: "Environmental data systems",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:
-    "Transformed outdated legacy systems into modern, efficient tools that help environmental researchers manage and analyze critical data.",
+    "Transformed outdated systems into modern, efficient tools that help environmental researchers manage and analyze critical data.",
 
   intro:
     "An environmental research institute relied on outdated tools to manage and analyze critical data, often defaulting to Excel just to make sense of it. Over several projects between 2020 and 2023, I was brought in as the institute's only UX designer to modernize these tools.",
   roleLabel: "UI/UX Designer (sole designer, long-term client relationship)",
-  focusLabel: "Modernizing legacy data systems, combining UX/UI design with lightweight service design",
+  focusLabel: "Modernizing outdated data systems, combining UX/UI design with lightweight service design",
   categoryTag: "Data Platform",
   skillTags: [
     {
-      label: "Legacy System Modernization",
+      label: "Modernizing Old Systems",
       description: "Rebuilt tools around how researchers actually work today",
     },
     {
@@ -33,7 +33,7 @@ export const environmentalDataTool: CaseStudy = {
     },
     {
       label: "Lean Discovery",
-      description: "Shipped something small and useful fast, then iterated",
+      description: "Released something small and useful quickly, then improved it",
     },
     {
       label: "Solo Ownership",
@@ -86,7 +86,7 @@ export const environmentalDataTool: CaseStudy = {
   ],
 
   howItStarted: [
-    "Every system I worked on was outdated and needed to be rebuilt, but rarely as a like-for-like replacement. In most cases, we couldn't simply recreate the old system with a new interface. We had to rethink how the data and workflows should actually work, then build something new on top of that. For a couple of the projects, this meant starting with some lightweight discovery work myself, closer to a Lean Design approach, working directly with the system's specialists to gather the material needed before I could start on the actual interface.",
+    "Every system I worked on was outdated and needed to be rebuilt, but rarely as an exact copy of the old one. In most cases, we could not simply recreate the old system with a new interface. We had to rethink how the data and workflows should actually work, then build something new on top of that. For a couple of the projects, this meant starting with a short round of research myself, close to what is called Lean Design: gather just enough to start, then learn the rest by building. I did that directly with the system's specialists to gather the material needed before I could start on the actual interface.",
   ],
 
   challenges: [

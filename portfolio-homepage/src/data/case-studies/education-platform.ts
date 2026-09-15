@@ -14,7 +14,7 @@ export const educationPlatform: CaseStudy = {
     "Brought structure to a massive public sector platform by uniting complex municipal school workflows into a clear, accessible tool for teachers and administrators.",
 
   intro:
-    "A consortium of public sector organizations needed to replace legacy systems used across basic and upper secondary education, serving many municipalities with different needs. I joined as UX & Product Designer, later becoming Lead Designer, over a three-year period.",
+    "A consortium of public sector organizations needed to replace the outdated systems used across basic and upper secondary education, serving many municipalities with different needs. I joined as UX & Product Designer, later becoming Lead Designer, over a three-year period.",
   roleLabel: "UX & Product Designer, and later Lead Designer, over a three-year period",
   focusLabel: "Service design, Design Systems, and cross-team design consistency across a multi-vendor public sector platform",
   categoryTag: "Public Sector Platform",
@@ -98,17 +98,17 @@ export const educationPlatform: CaseStudy = {
     {
       number: "01",
       title: "Clearer, more usable interfaces",
-      body: "We replaced complex, outdated legacy systems with interfaces that are genuinely easier to understand and use, for teachers, administrators, guardians and students alike, built around real user needs instead of old system logic.",
+      body: "We replaced complex, outdated systems with interfaces that are genuinely easier to understand and use, for teachers, administrators, guardians and students alike, built around real user needs instead of old system logic.",
     },
     {
       number: "02",
       title: "A mobile experience that actually works",
-      body: "Legacy systems had mobile apps, but they were often confusing and frustrating to use. For many guardians and students, this may be the first time managing school-related tasks on a phone actually feels easy instead of like a chore.",
+      body: "The old systems had mobile apps, but they were often confusing and frustrating to use. For many guardians and students, this may be the first time managing school-related tasks on a phone actually feels easy instead of like a chore.",
     },
     {
       number: "03",
       title: "One consistent experience, many vendors",
-      body: "Despite several development teams and third-party platforms working in parallel, we delivered a visually and functionally consistent experience, something that's genuinely hard to pull off at this scale.",
+      body: "Despite several development teams and third-party platforms working in parallel, we delivered an experience that looks and behaves consistently, which is genuinely hard to achieve at this scale.",
     },
   ],
 
@@ -131,7 +131,7 @@ export const educationPlatform: CaseStudy = {
     {
       number: "03",
       title: "Facing budget pressure, and rebuilding trust",
-      body: "At one point, the project went over budget, and two municipalities withdrew because it became too expensive for them to continue. Trust took a hit, both from stakeholders and within the teams. We rebuilt it by staying visible in the right meetings, communicating clearly about what we were doing and why, and writing decisions down so everyone could follow the reasoning. Looking back, planning the design work more carefully from the very start could have prevented some of this friction. Despite the setbacks, the platform launched in the remaining five municipalities in spring 2026, with a wider rollout to schools planned for this autumn.",
+      body: "At one point, the project went over budget, and two municipalities withdrew because it became too expensive for them to continue. Trust suffered, both among stakeholders and within the teams. We rebuilt it by staying visible in the right meetings, communicating clearly about what we were doing and why, and writing decisions down so everyone could follow the reasoning. Looking back, planning the design work more carefully from the very start could have prevented some of this friction. Despite the setbacks, the platform launched in the remaining five municipalities in spring 2026, with a wider rollout to schools planned for this autumn.",
     },
   ],
 
@@ -140,8 +140,8 @@ export const educationPlatform: CaseStudy = {
     "Defining success metrics earlier. Knowing from the outset what we wanted to achieve and how we'd measure it would have made prioritization easier throughout the project. One concrete example, suggested by the project's technical project manager in hindsight, would have been tracking legal compliance directly: which regulatory requirements were already met, and which ones weren't yet, as an actual metric to follow throughout the project.",
     "A more structured Design System from the beginning. This was 2021, and while Design Systems were a known concept, implementing one fully into code at this scale wasn't yet common practice. If I could go back, I would push for building that foundation more deliberately from day one.",
     "Involving legal and regulatory expertise earlier. Alongside the design system, the project would have benefited from bringing in a legal or regulatory expert from the very start, to make sure GDPR and basic education legislation were accounted for early on. A number of feature requests were based on how the previous system worked, without realizing that some of it was no longer legally permitted.",
-    "Treating MVP as an actual MVP. In practice, we weren't building a minimum viable product. We were building something closer to a final product that tried to cover every need from day one, which had a real impact on both timeline and workload.",
-    "Being present in daily discussions earlier. We had regular dailies and weeklies, and the cadence itself was right, but I underestimated early on how much value came from being consistently present in those conversations.",
+    "Treating the first release as a genuine minimum viable product. In practice we were not building a minimum viable product, meaning the smallest version worth releasing. We were building something closer to a final product that tried to cover every need from day one, which had a real impact on both timeline and workload.",
+    "Being present in daily discussions earlier. We had regular daily and weekly meetings, and that rhythm itself was right, but I underestimated early on how much value came from being consistently present in those conversations.",
     "Involving a designer earlier when evaluating third-party solutions. When purchasing ready-made platforms, having a designer assess customization options upfront would have helped avoid some difficult trade-offs later.",
   ],
 

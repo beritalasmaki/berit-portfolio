@@ -13,7 +13,7 @@ type Tab = {
 const tabs: Tab[] = [
   {
     question: "Is she keeping her collaboration skills up to date?",
-    body: "Developer collaboration looks different today than it did a few years ago. I keep adapting to that: I don't just hand off a finished design and disappear, I stay part of the conversation while developers are building. I also build real prototypes myself with tools like Claude Design and VS Code, so developers see working components early, not just static images to interpret.",
+    body: "Developer collaboration looks different today than it did a few years ago. I keep adapting to that: I do not just hand a finished design over and disappear, I stay part of the conversation while developers are building. I also build real prototypes myself with tools like Claude Design and VS Code, so developers see working components early, not just static images to interpret.",
     highlight:
       "On a national education platform with many municipalities and vendors, I ran the team's daily meetings and created the workshop process the team used to move from research to real concepts.",
     linkLabel: "See the National Education case study →",
@@ -23,13 +23,13 @@ const tabs: Tab[] = [
     question: "How does she approach complex problems?",
     body: "I start working on complex problems early and adjust my approach as I learn more, instead of trying to plan everything in advance.",
     highlight:
-      "Modernizing old environmental data systems meant working with tools researchers had used for years without a clear structure. Instead of waiting for a perfect solution, I focused on shipping something useful quickly, and then improving it based on what we learned.",
+      "Modernizing old environmental data systems meant working with tools researchers had used for years without a clear structure. Instead of waiting for a perfect solution, I focused on releasing something useful quickly, and then improving it based on what we learned.",
     linkLabel: "See the Environmental Data Systems case study →",
     linkHref: "/usecases/environmental-data-tool",
   },
   {
-    question: "Does her work survive the handoff to developers?",
-    body: "Before a handoff, I walk developers through the design and explain the reasoning behind each decision, not just what to build.",
+    question: "Does her work survive when developers start building it?",
+    body: "Before I hand a design over, I walk the developers through it and explain the reasoning behind each decision, not only what to build.",
     highlight:
       "I moved a design system from Sketch to Figma during an active project, rebuilding the components properly instead of copying them as they were. Both the developers and the project manager told me how much smoother their work became because of this.",
     linkLabel: "See the Industrial Data case study →",

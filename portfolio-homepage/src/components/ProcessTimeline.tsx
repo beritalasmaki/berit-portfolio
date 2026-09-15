@@ -31,7 +31,7 @@ const CATEGORIES: Record<CategoryKey, Category> = {
   code: { label: "Code", dot: "#116330", fill: "#D4EEDD", border: "#8ECFA7", text: "#0D4E26" },
   testing: { label: "Testing", dot: "#A8710A", fill: "#FBEDBE", border: "#E4C86A", text: "#6B4606" },
   systems: { label: "Systems", dot: "#7E22CE", fill: "#EEDCFB", border: "#C99AF0", text: "#5B1799" },
-  ship: { label: "Ship", dot: "#0B5A54", fill: "#D2EAE6", border: "#8CC9C1", text: "#084741" },
+  ship: { label: "Launch", dot: "#0B5A54", fill: "#D2EAE6", border: "#8CC9C1", text: "#084741" },
 };
 
 type StageKey =
@@ -60,7 +60,7 @@ const STAGES: Record<StageKey, StageMeta> = {
     name: "Research",
     cat: "research",
     when: "When I'm working in a new domain, or the problem is tricky. I talk to real users, look around, and find out what actually needs solving.",
-    skip: "The problem space is already well understood, or we need to move fast and learn by shipping.",
+    skip: "The problem is already well understood, or we need to move fast and learn from a real release.",
   },
   discovery: {
     name: "Discovery",
@@ -99,16 +99,16 @@ const STAGES: Record<StageKey, StageMeta> = {
     skip: "Never. This step always happens.",
   },
   handoff: {
-    name: "Dev Handoff",
+    name: "Handover",
     cat: "ship",
-    when: "Writing clear notes (specs and documentation) and working closely with developers so nothing gets lost.",
+    when: "Writing down exactly what should be built, and working closely with developers so nothing gets lost along the way.",
     skip: "I'm building it myself, or working side by side with a developer already.",
   },
   ship: {
-    name: "Ship",
+    name: "Launch",
     cat: "ship",
-    when: "Put it in front of real users. See what happens. Learn from it.",
-    skip: "Never. Shipping is how you find out if it actually works.",
+    when: "Release it to real users and learn from how they actually use it.",
+    skip: "Never. Releasing it is how you find out whether it works.",
   },
   aiAssisted: {
     name: "AI-assisted",
@@ -404,8 +404,8 @@ export default function ProcessTimeline() {
           </div>
 
           {/* The week ruler + stage rows are laid out by percentage-of-total-
-              weeks, so at narrow viewports a block's own content (e.g. "Dev
-              Handoff") can need more room than its percentage allows —
+              weeks, so at narrow viewports a block's own content (e.g.
+              "Tokens & Systems") can need more room than its percentage allows —
               min-w-fit lets it win that fight rather than truncate/overlap,
               which pushes the row wider than the card. Rather than shrink
               text or let that overflow the page, this strip scrolls

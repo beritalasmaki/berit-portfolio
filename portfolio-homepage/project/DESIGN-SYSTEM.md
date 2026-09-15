@@ -1160,17 +1160,53 @@ contact column is width-constrained, so **it now shows at every size**
 - Availability is stated once, quietly, near the contact info
 - **Plain language, readable by someone who neither codes nor designs.** A
   recruiter, a hiring manager or a client should be able to read any page top
-  to bottom without a glossary. Where a technical term genuinely carries the
-  point, say what it means in the same sentence and then keep using the same
-  word — don't switch synonyms halfway through. Where it doesn't, use the
-  ordinary word: "named values" over "tokens", "the eight allowed spacing
-  values" over "the spacing scale", "checked automatically" over "linted".
+  to bottom without a glossary.
+- **Keep the design-system vocabulary; define it once, then use it.** *Token*
+  and *component* are the right words and they stay — a designer reading this
+  site expects them, and swapping in "named values" and "reusable parts" made
+  the writing vaguer, not clearer. The rule is: the first time a term appears
+  on a page, say what it means in the same sentence ("saved as a token: a
+  named value, such as 'accent colour', that the rest of the system refers to
+  by name"), then use that one word everywhere after. Never rotate synonyms
+  for the same thing.
+  Terms that carry no meaning for the reader get the ordinary word instead:
+  "calculation window" not "modal", "outdated systems" not "legacy systems",
+  "handing a design over" not "handoff", "released" not "shipped", "the list
+  of work waiting to be done" not "the backlog".
 - **No idioms, no wordplay, no figurative phrasing.** Berit's English is
   fluent but not native, and the copy has to sound like her. Write the literal
   sentence: "they build up, and cleaning them up later costs more time than
   the fast start saved", not "they compound into the kind of debt that costs
   more than the speed was worth". Avoid "under the hood", "move the needle",
-  "slips past", "end to end", "out of the box" and the rest of that family.
+  "slips past", "end to end", "out of the box", "pull off", "take a hit",
+  "like-for-like" and the rest of that family.
+
+### The editing rules the copy is held to
+From Berit's own AI Content Reviser brief (`b6850d52`, Sep 2026). Applied to
+every page during the September 2026 copy pass and binding on new copy:
+
+- **Cut formulaic openings.** Start on information the reader needs, not
+  scene-setting.
+- **No manufactured contrast.** "It is not about X, but Y" and "the real
+  question is not X" stage an insight instead of stating one. Say the point
+  directly; keep a contrast only when the two things genuinely need
+  distinguishing, and then only once.
+- **No packaged conclusions.** No habitual three-part lists, no dramatic final
+  item, no slogan closing a section. A section may simply end.
+- **No performed candor.** "Honestly", "let's talk about the elephant in the
+  room", "perhaps the most important thing". Real qualifiers ("may",
+  "probably") stay when the uncertainty is real.
+- **No buzzwords or stock metaphors:** resonate, deep dive, catalyst, navigate
+  the landscape, delve, pivotal, crucial, robust, valuable insights, leverage.
+  Do not trade one cliché for another.
+- **No artificially dramatic formatting.** Isolated fragments and one-line
+  paragraphs used for effect become ordinary sentences in ordinary paragraphs.
+- **No repetition dressed up as development.** Cut a sentence that restates
+  the previous one without adding evidence or a distinction.
+- **Preserve** the claim's strength and scope, the first person, the humour,
+  and any technical term needed for accuracy. Do not invent facts, numbers or
+  examples to make a passage more concrete — if a claim needs a detail the
+  source doesn't have, leave the claim as it is and ask.
 
 ---
 

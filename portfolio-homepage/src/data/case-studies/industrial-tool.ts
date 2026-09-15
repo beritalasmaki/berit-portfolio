@@ -21,7 +21,7 @@ export const industrialTool: CaseStudy = {
   skillTags: [
     {
       label: "UX & Interface Design",
-      description: "Turned dense data into visual, scannable dashboards",
+      description: "Turned dense data into dashboards that can be read at a glance",
     },
     {
       label: "Design System Migration",
@@ -92,12 +92,12 @@ export const industrialTool: CaseStudy = {
     {
       number: "01",
       title: "Faster, clearer data at a glance",
-      body: "Turning widget data into visual cards meant specialists no longer had to read through long text lists to find what they needed. Information that used to take scanning and interpreting now became something they could understand in seconds, directly speeding up their daily monitoring and reporting work.",
+      body: "Turning the dashboard's data panels into visual cards meant specialists no longer had to read through long text lists to find what they needed. Information that used to take scanning and interpreting now became something they could understand in seconds, directly speeding up their daily monitoring and reporting work.",
     },
     {
       number: "02",
       title: "Complex calculations, without the guesswork",
-      body: "Before the calculation modal, performing complex calculations required deep expertise and careful manual work. The new multi-step interface guided specialists through the process step by step, reducing the risk of errors and making it possible for more people on the team to run these calculations confidently, not just the most experienced ones.",
+      body: "Before this, running a complex calculation required deep expertise and careful manual work. The new calculation window guided specialists through the process step by step, reducing the risk of errors and making it possible for more people on the team to run these calculations confidently, not just the most experienced ones.",
     },
     {
       number: "03",
@@ -107,19 +107,19 @@ export const industrialTool: CaseStudy = {
     {
       number: "04",
       title: "A foundation the whole team could build on",
-      body: "Migrating the Design System from Sketch to Figma didn't just modernize the tool, it meant developers and designers were finally working in the same environment. That made handoff faster and reduced the back-and-forth that came from working across two disconnected design tools, freeing up time developers had previously spent interpreting or translating designs between formats. I received direct, positive feedback from both the developers and the project manager, who noted how much smoother their day-to-day work became as a result.",
+      body: "Migrating the Design System from Sketch to Figma didn't just modernize the tool, it meant developers and designers were finally working in the same environment. That made handing designs over faster and reduced the back-and-forth that came from working across two disconnected design tools, freeing up time developers had previously spent interpreting or translating designs between formats. I received direct, positive feedback from both the developers and the project manager, who noted how much smoother their day-to-day work became as a result.",
     },
   ],
 
   howItStarted: [
-    "I stepped into an ongoing project, picking up work from a previous designer. Some of the first things I focused on were visual improvements to the interface, for example turning widget elements into visual cards instead of plain text lists, making them much easier to scan. From there, we also designed an auto-save feature for data and reporting views, and improved the structure and content of reports.",
+    "I stepped into an ongoing project, picking up work from a previous designer. Some of the first things I focused on were visual improvements to the interface, for example turning the small panels on the dashboard into visual cards instead of plain text lists, which made them much easier to read at a glance. From there, we also designed an auto-save feature for data and reporting views, and improved the structure and content of reports.",
   ],
 
   challenges: [
     {
       number: "01",
       title: "Designing for complex expert workflows",
-      body: "One of the ongoing challenges was clarifying complex work processes for expert users. I worked on a multi-step calculation modal that helped specialists perform complex calculations through a much simpler interface. What consistently helped was never trying to solve this alone. I worked closely with the specialists and factory workers who used the tool daily, co-designing solutions with them instead of guessing what they needed.",
+      body: "One of the ongoing challenges was clarifying complex work processes for expert users. I designed a calculation window that splits a complex calculation into steps, so specialists could run it through a much simpler interface. What consistently helped was never trying to solve this alone. I worked closely with the specialists and factory workers who used the tool daily, co-designing solutions with them instead of guessing what they needed.",
     },
     {
       number: "02",
