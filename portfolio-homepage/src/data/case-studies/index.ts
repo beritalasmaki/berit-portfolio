@@ -14,6 +14,7 @@ export type {
   GalleryImage,
   ChallengeSubsection,
   Finding,
+  ProseSection,
 } from "./types";
 export { hasFullContent } from "./types";
 

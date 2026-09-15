@@ -10,7 +10,16 @@ export default function CaseStudyHero({ study }: { study: CaseStudy }) {
       <h1 id="case-study-title" className="mt-4 m-0 text-hero max-w-[22em]">
         {study.title}
       </h1>
-      <p className="mt-6 max-w-prose-cs text-lead text-body">{study.description}</p>
+      {/* `heroIntro` when the page wants its own, longer opening; otherwise
+          the card copy, which is what every study had before the field
+          existed. */}
+      <div className="mt-6 flex flex-col gap-4">
+        {(study.heroIntro ?? [study.description]).map((paragraph, i) => (
+          <p key={i} className="m-0 max-w-prose-cs text-lead text-body">
+            {paragraph}
+          </p>
+        ))}
+      </div>
 
       {study.liveUrl && (
         <a

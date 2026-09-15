@@ -108,10 +108,15 @@ export default function AccordionSection({
           aria-expanded={open}
           aria-controls={panelId}
           onClick={() => setOpen((current) => !current)}
-          className="group flex w-full items-center justify-between gap-4 text-left"
+          className="group flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 text-left"
         >
           <span className="text-section-h2 text-ink">{heading}</span>
-          <span className="flex items-center gap-3 shrink-0">
+          {/* `flex-wrap` above, `ml-auto` here: side by side while both fit,
+              and the control drops to its own row — still on the card's right
+              edge — once the heading needs the full width. Without it a long
+              heading keeps its ~60% column and shreds into one or two words
+              per line on a phone. */}
+          <span className="flex items-center gap-3 shrink-0 ml-auto">
             <span className="font-mono-label text-mono-label uppercase text-muted whitespace-nowrap group-hover:text-accent-dark group-focus-visible:text-accent-dark">
               {open ? "Show less" : "Show more"}
             </span>

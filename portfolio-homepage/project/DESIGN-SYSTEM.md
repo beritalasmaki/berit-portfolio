@@ -127,6 +127,8 @@ something the heading doesn't** — a short kicker naming what the section is
 | `The hard parts` | Challenges & Problem-Solving |
 | `In hindsight` | What I would do differently |
 | `Keep reading` | Other case studies |
+| `The response` | How I started fixing it *(DS by Berit)* |
+| `What I took from it` | Rules are not enough… *(DS by Berit)* |
 
 Each of these was previously set to its own section's title, so the page read
 "WHAT I WOULD DO DIFFERENTLY / What I would do differently" — a line of
@@ -723,7 +725,7 @@ hero-plus-cross-links template.
 
 That binary made a half-written case study impossible: **design-system** has an
 intro and a "How it started" but no gallery yet, and under the old gate showed
-neither. It now renders exactly those two sections, keeps the minimal
+neither. It now renders exactly those sections, keeps the minimal
 `CaseStudyHero` (with its "Visit live project" outline-pill link), and the four
 fully-written studies are untouched — verified identical section lists and TOCs
 before and after.
@@ -741,10 +743,19 @@ see Section numbering for the no-repeating rule). Renders
 type-guards on its presence), only where it's displayed: previously
 inline in the old hero right under the `<h1>`, now its own card.
 
+### Hero intro (`heroIntro`)
+A case study's detail-page hero shows `heroIntro` (one paragraph per entry,
+`gap-4` between them) when the field is set, and falls back to `description`
+when it isn't. A homepage card has room for one tight paragraph; the page it
+links to can afford two and a line that sets up what follows. Only
+design-system sets it so far — everywhere else the hero still prints the card
+copy, unchanged.
+
 ### Findings list (`FindingsList`)
 A numbered, scannable set inside a section body — a bold body-size lead-in per
-item, then the explanation. Used by "How it started" on design-system, where
-the section builds to five specific findings rather than running as prose.
+item, then the explanation. Used on design-system by "How it started" (seven
+findings) and "Rules are not enough…" (three levels), where the section builds
+to a specific set rather than running as prose.
 
 Deliberately lighter than `ChallengesSection`, which renders the same
 `{title, body}` shape: that one gives each item a `card-h3` heading and its own
@@ -752,9 +763,9 @@ rule because those *are* sub-sections you can land on from the TOC. These read
 straight down as one set, so the lead-in is `body-em` bold and the rules are
 hairlines between items.
 
-A real `<ol>` carries the ordinal; the visible `01`–`05` is `aria-hidden`, the
-same convention `ChallengesSection` and `ImpactSection` already use for their
-numbers, so a screen reader doesn't announce the position twice.
+A real `<ol>` carries the ordinal; the visible `01`, `02`, … is `aria-hidden`,
+the same convention `ChallengesSection` and `ImpactSection` already use for
+their numbers, so a screen reader doesn't announce the position twice.
 
 The data shape is three fields rather than one mixed array — `howItStarted`
 (opening prose), `howItStartedFindings`, `howItStartedClosing` — so the
@@ -764,10 +775,34 @@ supply only the first, need no changes. Both new fields are optional **inside**
 `hasFullContent` asserts a study satisfies that whole type, so anything
 required there would be a claim those four don't actually meet.
 
+`SectionBody` is that three-part body (prose → findings → closing prose) as one
+component, so "How it started" and every content-defined section below share
+one layout: `gap-8` between the three blocks against `ParagraphList`'s `gap-6`
+between paragraphs *within* one, which is what makes the list read as its own
+block rather than as two more paragraphs.
+
+### Content-defined sections (`additionalSections`)
+A study can keep going past the standard outline without the route growing a
+branch per section. `additionalSections: ProseSection[]` — `id`, eyebrow
+`label`, `heading`, optional shorter `navLabel`, then the `SectionBody` fields
+— renders in array order as **collapsed** accordions after "How it started",
+and the TOC entries are generated from the same array, so nav order and content
+order cannot drift apart. Clicking one scrolls to it *and* expands it: it is an
+`AccordionSection` like any other, so the existing `cs:open-section` event
+already covers it.
+
+`navLabel` exists because the sidebar is 280px: "Rules are not enough: what an
+AI-ready design system actually needs" is listed as "Rules are not enough" and
+prints in full as the section's own `<h2>`. It falls back to `heading`.
+
+Optional inside `CaseStudyFullContent` for the same `hasFullContent` reason as
+the findings fields above.
+
 ### Accordion sections (`AccordionSection`, full case studies)
-"How it started", "Challenges & Problem-Solving", and "What I would do
-differently" — everything else on a case study page (sneak-peek hero, Role/
-Focus box, Starting Point, Impact cards) stays permanently visible.
+"How it started", "Challenges & Problem-Solving", "What I would do
+differently", and any `additionalSections` a study defines — everything else on
+a case study page (sneak-peek hero, Role/Focus box, Starting Point, Impact
+cards) stays permanently visible.
 - Same section-card wrapper as every other titled section (see above), and
   the same eyebrow+`<h2>` chrome, but the `<h2>` itself *is* the toggle
   button (`<h2><button aria-expanded aria-controls>`, matching MindTabs'
@@ -790,7 +825,16 @@ Focus box, Starting Point, Impact cards) stays permanently visible.
   this codebase's established preference for state to live as close to the
   thing it controls as possible (see AboutMe's per-row independent hover
   state for the same call made previously)
-- "How it started" starts open (`defaultOpen`), the other two start closed
+- **The heading and the "Show more" control sit side by side while both fit,
+  and the control drops to its own row — still on the card's right edge —
+  once the heading needs the full width** (`flex-wrap` on the button,
+  `ml-auto` on the control). Without it the heading keeps a fixed ~60% column
+  no matter how long it is: "Rules are not enough: what an AI-ready design
+  system actually needs" shredded into eight lines of one or two words at
+  360px. The side-by-side row is unchanged wherever it still fits, which is
+  every heading at desktop width; on a phone every accordion header now costs
+  one extra ~31px row and reads far better for it
+- "How it started" starts open (`defaultOpen`), everything else starts closed
 - Panel is always in the DOM (not conditionally rendered) and animates via
   the `grid-template-rows: 0fr -> 1fr` technique — animates to an
   intrinsic, unmeasured height in pure CSS, the same pattern as AboutMe's
@@ -1114,6 +1158,19 @@ contact column is width-constrained, so **it now shows at every size**
 - No "fresh energy", "clarity not deliverables", or CV-style phrasing
 - Sentence case in headlines; mono labels are lowercase after the number
 - Availability is stated once, quietly, near the contact info
+- **Plain language, readable by someone who neither codes nor designs.** A
+  recruiter, a hiring manager or a client should be able to read any page top
+  to bottom without a glossary. Where a technical term genuinely carries the
+  point, say what it means in the same sentence and then keep using the same
+  word — don't switch synonyms halfway through. Where it doesn't, use the
+  ordinary word: "named values" over "tokens", "the eight allowed spacing
+  values" over "the spacing scale", "checked automatically" over "linted".
+- **No idioms, no wordplay, no figurative phrasing.** Berit's English is
+  fluent but not native, and the copy has to sound like her. Write the literal
+  sentence: "they build up, and cleaning them up later costs more time than
+  the fast start saved", not "they compound into the kind of debt that costs
+  more than the speed was worth". Avoid "under the hood", "move the needle",
+  "slips past", "end to end", "out of the box" and the rest of that family.
 
 ---
 
@@ -1133,9 +1190,10 @@ case/syke-*.png               Environmental data case screenshots
 ```
 
 Four of the five case studies have full detail content (`hasFullContent()` is
-true for them). **design-system** is the partial one: an intro and a "How it
-started" but no gallery yet, so it keeps the minimal hero and renders only the
-sections it has — see "Case-study sections render per field" above. Industrial Data's gallery
+true for them). **design-system** is the partial one: an intro, a "How it
+started" and two content-defined sections but no gallery yet, so it keeps the
+minimal hero and renders only the sections it has — see "Case-study sections
+render per field" above. Industrial Data's gallery
 (`kem-*.png`) came from original, full-resolution source screenshots; the other
 three case studies' galleries (`uni-*`, `edu-*`, `syke-*`) were cropped from the
 screenshots embedded in the case-study PDFs the client provided, since no separate

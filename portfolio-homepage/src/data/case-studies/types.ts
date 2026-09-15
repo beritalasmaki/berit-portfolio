@@ -49,6 +49,14 @@ export type CaseStudySummary = {
   placeholderLabel?: string;
   /** Optional external link to a live/deployed version of the project. */
   liveUrl?: string;
+  /**
+   * Body copy for the detail page's hero, when it should differ from the
+   * homepage card's `description` — one paragraph per entry. A card has room
+   * for one tight paragraph; the page it links to can afford two and a line
+   * that sets up what follows. Falls back to `description` when unset, so the
+   * other studies are unaffected.
+   */
+  heroIntro?: string[];
 };
 
 export type ImpactCard = {
@@ -81,6 +89,30 @@ export type ChallengeSubsection = {
 export type Finding = {
   title: string;
   body: string;
+};
+
+/**
+ * A case-study section written entirely as content: prose, an optional
+ * numbered `Finding` list, then closing prose — the same body shape as
+ * "How it started". Rendered as a collapsed accordion after the fixed
+ * sections, so a study can keep going past the standard outline without the
+ * route growing a branch per section.
+ */
+export type ProseSection = {
+  /** Anchor id; also what the TOC dispatches to open the accordion. */
+  id: string;
+  /** Mono eyebrow above the heading. Must say something the heading doesn't. */
+  label: string;
+  heading: string;
+  /** Shorter stand-in for `heading` in the table of contents. The sidebar is
+   * 280px wide, so a heading with a subtitle after a colon needs a stand-in
+   * that fits on one or two lines. Falls back to `heading`. */
+  navLabel?: string;
+  /** Opening paragraphs, in order. */
+  paragraphs: string[];
+  findings?: Finding[];
+  /** Paragraphs after `findings`. */
+  closing?: string[];
 };
 
 /** A "sneak peek" skill/contribution pill — short label plus a one-line
@@ -132,6 +164,12 @@ export type CaseStudyFullContent = {
   howItStartedFindings?: Finding[];
   /** Paragraphs closing out "How it started", after `howItStartedFindings`. */
   howItStartedClosing?: string[];
+  /**
+   * Extra sections rendered as collapsed accordions after "How it started",
+   * in array order. Optional inside `CaseStudyFullContent` for the same
+   * reason as the two fields above.
+   */
+  additionalSections?: ProseSection[];
   challenges: ChallengeSubsection[];
   /** One or more paragraphs, in order. */
   whatIWouldDoDifferently: string[];
