@@ -12,7 +12,7 @@ As a designer, most of my work lives in Figma, workshops, and stakeholder conver
 
 | Project | Description | Stack | Link |
 |---|---|---|---|
-| [`portfolio-homepage`](./portfolio-homepage) | My personal UX/product design portfolio site, rebuilt from Webflow as a real coded app | Next.js, TypeScript, Tailwind CSS | https://portfolio-homepage-navy.vercel.app/ |
+| [`portfolio-homepage`](./portfolio-homepage) | My personal UX/product design portfolio site | Next.js, TypeScript, Tailwind CSS | https://portfolio-homepage-navy.vercel.app/ |
 | `Design System Case study` | Simple Design System structure | Typescript, CSS | https://design-system-use-case.vercel.app/ |
 
 *(This list is a work in progress, updated as new experiments get added.)*
