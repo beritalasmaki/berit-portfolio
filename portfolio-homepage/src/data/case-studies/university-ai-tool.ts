@@ -13,8 +13,9 @@ export const universityAiTool: CaseStudy = {
   otherCaseStudyDescription:
     "Designed a smarter search and service hub so students can find guidance and support without getting lost in fragmented systems.",
 
-  intro:
+  intro: [
     "A major university had information scattered across many separate websites, so students, staff, and visitors often didn't know where to start looking. I joined as Senior UX & Product Designer to turn early concepts into real screens, test them with users, and shape the first version people could actually use.",
+  ],
   roleLabel: "Senior UX & Product Designer",
   focusLabel: "UX/UI Design, AI search flow, service architecture, Design System adoption, post-launch iteration",
   categoryTag: "AI Search Platform",

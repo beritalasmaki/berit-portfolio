@@ -20,6 +20,7 @@ export const designSystem: CaseStudy = {
   // `heroIntro` in types.ts.
   heroIntro: [
     "DS by Berit is a personal design system, built from scratch and still in progress. A design system is the shared set of colours, text styles, spacing rules and ready-made parts that keep a product looking and working the same way everywhere. In this one, every colour, text style and spacing value is saved as a token: a named value, such as “accent colour” or “spacing 16”, that the rest of the system refers to by name instead of repeating the value itself. Components are built from those tokens: the ready-made parts, like buttons and cards, that get reused across a product. Around them sits the documentation and the structure that keep the system usable as it grows. I build it to show how I work on a design system over time, both the components themselves and how I organise, document and maintain them.",
+    "I built it with an AI agent, and that turned out to raise a more interesting question than the system itself.",
   ],
 
   // Partial content: `intro`, the "How it started" fields and two extra
@@ -27,47 +28,37 @@ export const designSystem: CaseStudy = {
   // and this page keeps the minimal `CaseStudyHero` — the sections below
   // render on their own presence rather than on that flag. See the route's
   // section gating.
-  intro:
+  intro: [
     "I wanted to find out what happens when a designer builds a design system in code instead of in a design tool like Figma, so I built one. It is built on tokens, it meets accessibility requirements from the start, and it is made of working components that a real product can use, not drawings of them.",
+    "What I took from it is that written rules are the weakest way to guide an agent. Most of the work is building the system so that the wrong thing is not possible in the first place.",
+  ],
 
   howItStarted: [
-    "I built the system with an AI agent. I wanted to see what would happen if I had an AI agent build a simple design system from scratch, and then find out how well I understood the system it wrote for me. If the agent stopped being available tomorrow, could I keep it going on my own?",
-    "It was ready quickly. Then I went through the repository file by file, with a second AI agent as a reviewer rather than a builder. The system looked consistent from the outside. Underneath, we found seven things.",
+    "I built the system with an AI agent, and it was ready quickly. That speed raised a question I had not expected: how well do I understand a system I did not write myself? If the agent stopped being available tomorrow, could I keep the system going on my own?",
+    "So I read my own code, file by file. The system looked consistent from the outside. Underneath, I found four things.",
   ],
 
   howItStartedFindings: [
     {
-      title: "The spacing tokens were documented but not used.",
-      body: "The system defines eight spacing tokens, from 4px to 64px, so that the gaps between elements stay consistent. The button uses 20px, which is not one of the eight.",
+      title: "Spacing values that were not in the system.",
+      body: "The system defines eight spacing tokens, but the button uses 20px, which is not one of them. The same value had spread to a link on another page. Nothing in the project said it was not allowed.",
     },
     {
-      title: "The same value from outside the tokens appeared in a second place.",
-      body: "A link on the version history page used 20px as well. Nothing in the project said that the value was not allowed, so it spread.",
+      title: "Colours used without a token.",
+      body: "Three colours were in the code but never given a token, so the documentation showed a smaller system than the real one. The preview views also typed out colour values that already existed as tokens, which means they keep showing the old colour if a token changes.",
     },
     {
-      title: "Three colours were in use without a token.",
-      body: "The colours for raised surfaces, strong borders and the dark accent are used in the code, but none of them was ever given a token. The documentation showed the system as smaller than it really was.",
-    },
-    {
-      title: "The preview views typed out colour values instead of using the tokens.",
-      body: "The light and dark previews repeat the same colour codes that are already defined as tokens at the top of the same file. If I change a token, the previews keep showing the old colour, and nothing warns me about it.",
-    },
-    {
-      title: "A font was loaded but never used.",
-      body: "Manrope was downloaded every time a page opened. I was sure I had a plan for it, subtitles on the documentation pages, but when I checked, the plan existed only in my head and nothing in the system knew about it.",
-    },
-    {
-      title: "The version history page described a file that no longer existed.",
-      body: "It said it was showing a history file that I kept up to date by hand. It never read that file, and the file had been deleted some time before.",
+      title: "Things that described something that was no longer true.",
+      body: "A font was loaded on every page but never used. The version history page said it was showing a file I maintained by hand, but it had never read that file, and the file had been deleted.",
     },
     {
       title: "The documentation site had stopped using its own components.",
-      body: "A link was made to look like a button by copying the button's styling by hand, instead of using the button the system already has. The system has no way to make a link that looks like a button, so someone found a way around that gap instead of closing it.",
+      body: "A link was made to look like a button by copying the button's styling by hand. The system has no way to make a link that looks like a button, so someone worked around the gap instead of closing it.",
     },
   ],
 
   howItStartedClosing: [
-    "None of these problems is serious on its own, but they add up. Technical debt like this makes the system more expensive to maintain and more likely to break in small ways over time.",
+    "On their own these are small, and that is what makes them a problem. Each one is easy to miss, and an agent produces them faster than a person can check them. Over time they build up, and cleaning them up later costs more time than the fast start saved.",
   ],
 
   additionalSections: [
@@ -77,8 +68,8 @@ export const designSystem: CaseStudy = {
       heading: "How I started fixing it",
       paragraphs: [
         "All seven came from the same place: the system had no written rules. An AI agent reads its instructions from two files in the project, and both of them held only a short technical note that the framework had put there automatically. Nothing described how this system was meant to be built, so the agent worked the rules out from the existing code every time it started.",
-        "So I wrote the rules down with my AI-assistant: what the project is and what stage it is at, where new components go, how the two token files relate to each other, the spacing tokens as a fixed list, and accessibility as a minimum requirement. I also listed the changes I want to be asked about before they happen, such as adding a new outside library or changing how an existing component is used.",
-        "Then I fixed what I had found by hand, instead of asking the agent to do it. I wanted to see whether I could handle the coding side myself, at least to some extent. Removing the unused font was one line. Correcting the spacing was two small edits. Rewriting the outdated text was one paragraph. None of it was work I needed the agent for.",
+        "So I wrote the rules down: what the project is and what stage it is at, where new components go, how the two token files relate to each other, the spacing tokens as a fixed list, and accessibility as a minimum requirement. I also listed the changes I want to be asked about before they happen, such as adding a new outside library or changing how an existing component is used.",
+        "Then I fixed what I had found by hand, instead of asking the agent to do it. Removing the unused font was one line. Correcting the spacing value was two small edits. Rewriting the outdated text was one paragraph. I had started with the question of whether I could look after a system I had not written myself, and doing the work myself was the only way to answer it.",
       ],
     },
     {
@@ -105,7 +96,7 @@ export const designSystem: CaseStudy = {
         },
       ],
       closing: [
-        "All seven of the things I found would have been caught at one of these levels, and none of them were, because none of the levels existed. The agent was not being careless. It was working without rules, and it had no way of knowing that.",
+        "All four of the things I found would have been caught at one of these levels, and none of them were, because none of the levels existed. The agent was not being careless. It was working without rules, and it had no way of knowing that.",
         "Making a system clear enough that an agent can work in it without slowly breaking it is design work, not a tooling problem, and it is the part I find most interesting right now. Level 2 and level 3 come next.",
       ],
     },

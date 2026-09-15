@@ -13,8 +13,9 @@ export const industrialTool: CaseStudy = {
   otherCaseStudyDescription:
     "Built practical expert tools for industrial data workflows, making complex calculations and monitoring more reliable for specialists.",
 
-  intro:
+  intro: [
     "An industrial platform for monitoring and reporting had grown complex over time, with expert users struggling through long text lists and manual calculations. I joined as the sole designer, taking over from a previous one, to make the tool work the way specialists actually needed it to.",
+  ],
   roleLabel: "UX Designer (sole designer on the project)",
   focusLabel: "Expert tools, data visualization, and Design System modernization",
   categoryTag: "Industrial Platform",

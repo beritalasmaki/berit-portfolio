@@ -125,11 +125,12 @@ export type SkillTag = {
 /** Everything beyond the summary — present only on fully-written case studies. */
 export type CaseStudyFullContent = {
   /**
-   * Now displayed in its own labeled "Starting Point" section (below the
-   * sneak-peek hero), not inline in the hero itself — the field name stays
-   * `intro` since `hasFullContent` type-guards on its presence.
+   * The "Starting Point" section's copy — one paragraph per entry, matching
+   * `heroIntro` and `howItStarted`. Displayed in its own labeled section
+   * below the sneak-peek hero, not inline in the hero itself; the field name
+   * stays `intro` since `hasFullContent` type-guards on its presence.
    */
-  intro: string;
+  intro: string[];
   roleLabel: string;
   focusLabel: string;
   /** Short category pill in the sneak-peek hero, e.g. "AI Search Platform". */

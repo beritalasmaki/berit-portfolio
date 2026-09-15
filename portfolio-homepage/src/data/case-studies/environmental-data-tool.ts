@@ -13,8 +13,9 @@ export const environmentalDataTool: CaseStudy = {
   otherCaseStudyDescription:
     "Transformed outdated systems into modern, efficient tools that help environmental researchers manage and analyze critical data.",
 
-  intro:
+  intro: [
     "An environmental research institute relied on outdated tools to manage and analyze critical data, often defaulting to Excel just to make sense of it. Over several projects between 2020 and 2023, I was brought in as the institute's only UX designer to modernize these tools.",
+  ],
   roleLabel: "UI/UX Designer (sole designer, long-term client relationship)",
   focusLabel: "Modernizing outdated data systems, combining UX/UI design with lightweight service design",
   categoryTag: "Data Platform",

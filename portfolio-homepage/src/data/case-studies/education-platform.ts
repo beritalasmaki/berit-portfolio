@@ -13,8 +13,9 @@ export const educationPlatform: CaseStudy = {
   otherCaseStudyDescription:
     "Brought structure to a massive public sector platform by uniting complex municipal school workflows into a clear, accessible tool for teachers and administrators.",
 
-  intro:
+  intro: [
     "A consortium of public sector organizations needed to replace the outdated systems used across basic and upper secondary education, serving many municipalities with different needs. I joined as UX & Product Designer, later becoming Lead Designer, over a three-year period.",
+  ],
   roleLabel: "UX & Product Designer, and later Lead Designer, over a three-year period",
   focusLabel: "Service design, Design Systems, and cross-team design consistency across a multi-vendor public sector platform",
   categoryTag: "Public Sector Platform",

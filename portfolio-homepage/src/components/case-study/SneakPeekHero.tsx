@@ -18,7 +18,7 @@ function ClockIcon() {
  * per case study, so it can't drift out of sync as content changes. */
 function estimateReadMinutes(study: CaseStudy & CaseStudyFullContent): number {
   const text = [
-    study.intro,
+    ...study.intro,
     study.impactIntro,
     ...study.impactCards.map((card) => card.body),
     ...study.howItStarted,

@@ -46,7 +46,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   // design-system has an intro and a "How it started" but no gallery yet,
   // and gets exactly those two sections instead of all-or-nothing.
   const full = hasFullContent(study);
-  const hasIntro = study.intro !== undefined;
+  const hasIntro = study.intro !== undefined && study.intro.length > 0;
   const hasGallery = study.gallery !== undefined && study.gallery.length > 0;
   const hasImpact = study.impactIntro !== undefined && study.impactCards !== undefined;
   const hasStarted = study.howItStarted !== undefined && study.howItStarted.length > 0;
@@ -87,7 +87,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             {/* Each section is gated on its own field rather than on `full`.
                 The checks are inline (not the `has*` consts above) because
                 that is what narrows the optional props for TypeScript. */}
-            {study.intro !== undefined && (
+            {study.intro !== undefined && study.intro.length > 0 && (
               <Reveal>
                 <section
                   id="starting-point"
@@ -99,7 +99,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     Starting Point
                   </h2>
                   <div className="mt-6">
-                    <ParagraphList paragraphs={[study.intro]} />
+                    <ParagraphList paragraphs={study.intro} />
                   </div>
                 </section>
               </Reveal>
