@@ -478,6 +478,29 @@ before `ProcessTimeline`):
     via the "duration/easing live on whichever class list is active" CSS
     trick (no keyframes needed for a plain two-state toggle).
 
+### What I do (About section, `WhatIDo`)
+Four areas of work as a scannable grid, between the About Me cards and the
+process timeline. **Part of About (04), not a section of its own** — no
+eyebrow and no number, so the page sequence still reads 04 About → 05 My
+process. An `<h3>` (`text-card-h3`), matching "Working with me"; the section's
+own `<h2>` stays "About Me".
+
+- Same `bg-panel rounded-card p-card-pad` card as the bio block directly above
+  it, full width beneath the two-up About Me grid, so it reads as one more
+  part of About rather than a new section.
+- Inside the card the four groups carry no borders or cards of their own. Each
+  is marked by a 24×2px `bg-accent` rule above its title — the same accent
+  rule the type scale already uses to mark an emphasized label — and that plus
+  the weight jump from `sub-h4` title (19–24px/700, ink) to `body-lg` copy
+  (15–17px/400, body) is what makes the four areas pickable at a glance
+  without reading the paragraphs. The rule is `aria-hidden`.
+- `grid-cols-1 md:grid-cols-2`, the same breakpoint AboutMe uses, so the whole
+  About section switches to one column at once instead of in stages.
+- Row gap (`gap-y-8`) is deliberately wider than the column gap
+  (`gap-x-grid-gap`): at two columns the vertical space is what separates the
+  rows, and matching the two gaps made it read as a loose four-cell table
+  rather than four distinct blocks.
+
 ### Process timeline (About section, "My process")
 Imported from a Claude Design canvas component (`ProcessTimeline.tsx`) and
 reimplemented as a real React component — the `.dc.html` export's own
@@ -743,6 +766,13 @@ see Section numbering for the no-repeating rule). Renders
 type-guards on its presence), only where it's displayed: previously
 inline in the old hero right under the `<h1>`, now its own card.
 
+`intro` is `string[]`, one paragraph per entry, matching `heroIntro` and
+`howItStarted`. It was a bare `string` until a second paragraph was needed on
+design-system; widening the field beat both alternatives (a `\n` inside one
+string, which `ParagraphList` would have printed as a single run-on paragraph,
+and a second field for the overflow). The four prose studies each wrap their
+one existing paragraph in an array and render identically.
+
 ### Hero intro (`heroIntro`)
 A case study's detail-page hero shows `heroIntro` (one paragraph per entry,
 `gap-4` between them) when the field is set, and falls back to `description`
@@ -753,7 +783,7 @@ copy, unchanged.
 
 ### Findings list (`FindingsList`)
 A numbered, scannable set inside a section body — a bold body-size lead-in per
-item, then the explanation. Used on design-system by "How it started" (seven
+item, then the explanation. Used on design-system by "How it started" (four
 findings) and "Rules are not enough…" (three levels), where the section builds
 to a specific set rather than running as prose.
 

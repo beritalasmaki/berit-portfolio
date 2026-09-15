@@ -1,5 +1,6 @@
 import AboutMe from "./AboutMe";
 import ProcessTimeline from "./ProcessTimeline";
+import WhatIDo from "./WhatIDo";
 
 export default function AboutSection() {
   return (
@@ -16,6 +17,12 @@ export default function AboutSection() {
       </div>
 
       <AboutMe />
+
+      {/* Part of About (04), not a section of its own — no eyebrow and no
+          number, so the page sequence still runs 04 About -> 05 My process.
+          Placed after the bio and "Working with me" cards and before the
+          numbered process block. */}
+      <WhatIDo />
 
       <ProcessTimeline />
 
