@@ -74,29 +74,34 @@ export const designSystem: CaseStudy = {
     {
       id: "ai-ready",
       label: "What I took from it",
-      heading: "Rules are not enough: what an AI-ready design system actually needs",
-      navLabel: "Rules are not enough",
+      heading: "How I would build a design system with an agent",
+      navLabel: "Building with an agent",
       paragraphs: [
-        "Writing the rules down was the obvious first step, and the weakest one. A written rule is a request. The agent reads it, usually follows it, and sometimes does not: it can misunderstand a rule, or lose track of it during a long piece of work. If a written rule is the only thing preventing a mistake, the mistake will happen at some point.",
-        "For a design system to stay intact while an agent works in it, the rules need to exist at three levels. Each level is stronger than the one before it.",
+        "An agent does not know what good design is unless it is told. Left to decide for itself, it produces something that looks right and quietly breaks the system underneath: a value outside the scale, a contrast ratio that fails, a component that recreates one that already exists.",
+        "Guiding it is not about writing better prompts. It is about breaking the work into parts where the agent's reasoning stays visible and checkable. For a design system to stay intact while an agent works in it, the rules need to exist at four levels.",
       ],
       findings: [
         {
           title: "Level 1: rules written down, so the agent can read them.",
-          body: "This is the instructions file, and it is where I am now. It says which spacing tokens exist, where new components go, what must never be typed in by hand, and which changes I want to be asked about first. Without it the agent works the rules out again from nothing every time it starts, so having it is a real improvement. But a written rule can only ask. The agent can still misunderstand it or forget it, and nothing stops the mistake from being made.",
+          body: "This is the instructions file, and it is where I am now. It says which spacing tokens exist, where new components go, what must never be typed in by hand, and which changes I want to be asked about first. It also gives the agent the token set as the only pieces it is allowed to use, and accessibility as a requirement rather than a preference: every text and background pair meets WCAG AA at 4.5:1, calculated before anything is produced. Without this file the agent works the rules out again from nothing every time it starts. But a written rule can only ask. The agent can still misunderstand it or forget it, and nothing stops the mistake from being made.",
         },
         {
-          title: "Level 2: the system built so that the wrong value does not exist.",
-          body: "This is what I mean by structure: instead of asking for the right value, the project is set up so the wrong one is not available. The eight spacing tokens can be made the only spacing values the code accepts. After that, nobody can use 20px anywhere, because 20px is not one of the options and the code will not work with it. The rule stops being something to remember and becomes part of how the system is built.",
+          title: "Level 2: ask the agent to explain its reasoning before it builds.",
+          body: "How does this component behave in an error state? How does it work with a screen reader? Why this colour pairing from the token set? Asking for the reasoning first shows immediately whether the agent understood the task or produced something that only looks finished. It is the difference between checking the output and checking the thinking that led to it.",
         },
         {
-          title: "Level 3: a program that reads every change and reports mistakes.",
+          title: "Level 3: the system built so that the wrong value does not exist.",
+          body: "Instead of asking for the right value, the project is set up so the wrong one is not available. The eight spacing tokens can be made the only spacing values the code accepts. After that, nobody can use 20px anywhere, because 20px is not one of the options and the code will not work with it. The rule stops being something to remember and becomes part of how the system is built.",
+        },
+        {
+          title: "Level 4: a program that reads every change and reports mistakes.",
           body: "Not every rule can be built into the structure like that. Colour is one example: a colour value is just text, so nothing prevents anyone from typing one in by hand instead of using a token. Rules like this need a program that reads the code after every change and reports what does not follow them. This project already runs one. It needs one more rule in it: reject colour values that are typed in by hand instead of being taken from a token. The program checks every line every time, and it does not get tired the way a person reviewing code does.",
         },
       ],
       closing: [
         "All four of the things I found would have been caught at one of these levels, and none of them were, because none of the levels existed. The agent was not being careless. It was working without rules, and it had no way of knowing that.",
-        "Making a system clear enough that an agent can work in it without slowly breaking it is design work, not a tooling problem, and it is the part I find most interesting right now. Level 2 and level 3 come next.",
+        "An agent can produce a system faster than anyone can review it, which makes it easy to end up responsible for something you do not understand. Using these tools well means being open about where they did the work, keeping enough understanding to maintain the system without them, and checking the output rather than trusting it. Anything less is handing over decisions you are still accountable for. That is why I read the code instead of assuming it was fine, and why the fixes were mine.",
+        "Making a system clear enough that an agent can work in it without slowly breaking it is design work, not a tooling problem, and it is the part I find most interesting right now. Levels 2 to 4 come next.",
       ],
     },
   ],
