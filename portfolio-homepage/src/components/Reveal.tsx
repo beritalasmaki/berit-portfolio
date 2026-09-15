@@ -45,6 +45,12 @@ export default function Reveal({ children }: { children: ReactNode }) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // No IntersectionObserver (very old browser): reveal immediately rather
+    // than leaving the section hidden for good.
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -52,10 +58,26 @@ export default function Reveal({ children }: { children: ReactNode }) {
           observer.disconnect();
         }
       },
-      // Triggers a little before the section's top edge reaches the very
-      // bottom of the viewport, so it grows in as it approaches, not only
-      // once fully on screen.
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+      // `threshold: 0` — fire as soon as any part of the section crosses the
+      // line, NOT once some fraction of it is visible.
+      //
+      // A ratio threshold is a trap for a tall section, because the ratio is
+      // capped at (root height / element height): a section taller than
+      // 1/threshold viewports can never reach it, so it stays hidden
+      // forever. This was `0.15`, and the About section — one Reveal
+      // wrapping the bio, "What I do" and the whole process timeline — grew
+      // to 4195px, which on a 664px-tall iPhone viewport (598px of root
+      // after the margin below) peaks at a ratio of 0.142. It never fired,
+      // and About plus the timeline were invisible on short phones while
+      // rendering fine on taller ones.
+      //
+      // The rootMargin is what actually sets the trigger point, and it is
+      // height-independent: the reveal starts when the section's top edge
+      // reaches 90% of the way down the viewport, so it still grows in as it
+      // approaches rather than only once fully on screen. For a
+      // normal-height section that is within a few percent of where the old
+      // threshold fired.
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();

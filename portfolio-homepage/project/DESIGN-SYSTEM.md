@@ -1007,9 +1007,24 @@ has its own load-in sequence above) and every section of a case-study page
 is wrapped in a shared `<Reveal>` component.
 - Starts `opacity: 0`, `translateY(28px) scale(0.97)`; transitions to
   `opacity: 1`, `translateY(0) scale(1)` over `700ms ease-out`
-- Driven by a real `IntersectionObserver` (`threshold: 0.15`,
-  `rootMargin: "0px 0px -10% 0px"` — triggers a little before the section's
-  top edge reaches the bottom of the viewport), not a scroll listener
+- Driven by a real `IntersectionObserver` (`threshold: 0`,
+  `rootMargin: "0px 0px -10% 0px"`), not a scroll listener. The rootMargin is
+  what sets the trigger point: the reveal starts when the section's top edge
+  reaches 90% of the way down the viewport, so it grows in as it approaches
+  rather than only once fully on screen
+- **Never use a ratio threshold here.** An intersection ratio is capped at
+  (root height ÷ element height), so a section taller than `1/threshold`
+  viewports can never reach it and stays hidden forever. This was
+  `threshold: 0.15`, and it broke exactly that way: the About section — one
+  `Reveal` wrapping the bio, "What I do" and the whole process timeline —
+  grew to 4195px, and on a 664px-tall iPhone viewport (598px of root after
+  the bottom margin) its ratio peaked at 0.142. About and the timeline were
+  invisible on short phones while rendering normally on taller ones, which is
+  why it read as a mobile-only bug. `threshold: 0` is height-independent and
+  fires the moment any part of the section crosses the line. Verified down to
+  a 360px-tall viewport, where the About section is 12× the viewport height
+- If `IntersectionObserver` is missing entirely (very old browser), the
+  section reveals immediately rather than staying hidden
 - **Fires once per section** — the observer disconnects after the first
   reveal, so scrolling back up and down never replays it; this is a one-time
   entrance, not a repeating effect
