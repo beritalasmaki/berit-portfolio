@@ -23,7 +23,7 @@ The initial direction was intentionally narrow: build four component families an
 3. Built a landing page explaining the purpose of the system.
 4. Created documentation routes for Getting started, Foundations, Components, and Version history.
 5. Separated foundation tokens into dedicated Colors, Spacing, Typography, and Shape & elevation pages.
-6. Implemented the four component families: Navigation, Buttons, Cards, and Table.
+6. Implemented the component families: Navigation, Buttons, Cards, Table, and Forms.
 7. Added reusable inner parts such as NavigationLink, Tabs, CardImage, TableRow, TableCell, and TableColumnHeader.
 8. Added documented component modes including hover, active, selected, disabled, loading, Light, and Dark previews.
 9. Added View, CSS, and JavaScript tabs so each example exposes both behavior and implementation.
@@ -53,7 +53,8 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/components/navigation` - top navigation, sidebar, wayfinding, and keyboard model
 - `/components/buttons` - primary, secondary, tertiary, loading, and disabled states
 - `/components/cards` - metric, action, and composable card parts
-- `/components/table` - filtering, sorting, selection, empty state, and responsive overflow
+- `/components/table` - cell anatomy, filtering, sorting, selection, empty state, and responsive overflow
+- `/components/forms` - input, select, checkbox, and radio in every documented mode
 - `/getting-started` - introduction to the documentation structure
 - `/foundations` - dedicated token and foundation documentation
 - `/foundations/colors` - color tokens and semantic color roles
@@ -77,7 +78,7 @@ Components should consume semantic roles rather than raw palette values. This ke
 
 ## Component conventions
 
-The project focuses on four families: `Navigation`, `Button`, `Card`, and `DataTable`. Inner patterns such as tabs, breadcrumbs, pagination, filters, row selection, and loading states stay within those families. Native HTML semantics are preferred for landmarks, buttons, links, tables, headings, and form controls.
+The project focuses on five families: `Navigation`, `Button`, `Card`, `DataTable`, and the form controls (`Input`, `Select`, `Checkbox`, `Radio`). Inner patterns such as tabs, breadcrumbs, pagination, filters, row selection, and loading states stay within those families. Native HTML semantics are preferred for landmarks, buttons, links, tables, headings, and form controls.
 
 ## Accessibility baseline
 
@@ -88,6 +89,8 @@ The project focuses on four families: `Navigation`, `Button`, `Card`, and `DataT
 - Real table markup with captions, scoped headers, `aria-sort`, and labeled selection controls.
 - Reduced-motion support.
 - Responsive table overflow rather than unreadable compressed columns.
+- Visible, persistent labels on every form control, with hints and errors associated by id.
+- Control chrome drawn inline rather than with an icon font, so a failed font load cannot leave a word inside a select.
 
 ## Scripts
 

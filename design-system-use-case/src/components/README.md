@@ -4,11 +4,16 @@ This folder holds the React components used across the design system.
 
 ## System components
 
-`buttons`, `cards`, `navigation` and `table` are the design system
-components themselves. They read their values from the tokens in
+`buttons`, `cards`, `forms`, `navigation` and `table` are the design
+system components themselves. They read their values from the tokens in
 `src/data`, so appearance is controlled centrally rather than component
 by component. If you want to change how something looks, start from the
 tokens rather than editing a component directly.
+
+`forms` also holds `controlStyles.tsx`, which is not a component. It is
+the shared control shape, the mode list and the two inline icons that
+the four controls have in common, kept in one file so a select and an
+input cannot drift apart.
 
 ## Documentation components
 
