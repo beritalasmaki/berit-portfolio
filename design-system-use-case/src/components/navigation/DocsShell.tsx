@@ -9,6 +9,7 @@ const componentLinks = [
   { href: "/components/buttons", label: "Buttons" },
   { href: "/components/cards", label: "Cards" },
   { href: "/components/table", label: "Table" },
+  { href: "/components/forms", label: "Forms" },
 ];
 
 const navItem = (active: boolean) => `block whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold ${active ? "bg-[var(--color-surface-inverse)] text-white" : "text-[var(--color-content-secondary)] hover:bg-[var(--color-surface-subtle)]"}`;

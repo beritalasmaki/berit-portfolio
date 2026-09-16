@@ -6,14 +6,18 @@
 	--color-content-secondary: #4d5550;
 	--color-content-muted: #69736c;
 	--color-content-inverse: #ffffff;
+	--color-content-muted-dark: #c5cec7;
 	--color-surface-canvas: #ffffff;
 	--color-surface-subtle: #f3f6f0;
 	--color-surface-raised: #e8eee5;
+	--color-surface-canvas-dark: #222222;
+	--color-surface-raised-dark: #303733;
 	--color-surface-inverse: #1f2321;
 	--color-action-primary: #1f2321;
 	--color-action-accent: #f28b30;
 	--color-action-accent-dark: #b85b16;
 	--color-border-default: #dce3dc;
+	--color-border-subtle: #c7d1c8;
 	--color-border-strong: #7d8b80;
 	--color-focus-ring: #b85b16;
 	--shadow-panel: 0 18px 45px rgba(31, 35, 33, 0.08);
@@ -83,6 +87,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	text-transform: uppercase;
 }
 
+.focus-ring {
+	outline: 3px solid var(--color-focus-ring);
+	outline-offset: 3px;
+}
+
 .variation-label {
 	color: var(--preview-content-muted, var(--color-content-muted));
 	font-family: "IBM Plex Mono", monospace;
@@ -121,7 +130,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-surface-raised: var(--color-surface-subtle);
 	--preview-content: var(--color-content-primary);
 	--preview-content-muted: var(--color-content-muted);
-	--preview-border: #c7d1c8;
+	--preview-border: var(--color-border-subtle);
 	--preview-action: var(--color-action-primary);
 	--preview-action-text: var(--color-content-inverse);
 	background: var(--preview-surface);
@@ -129,10 +138,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .preview-surface[data-preview-theme="dark"] {
-	--preview-surface: var(--color-surface-inverse);
-	--preview-surface-raised: #303733;
+	--preview-surface: var(--color-surface-canvas-dark);
+	--preview-surface-raised: var(--color-surface-raised-dark);
 	--preview-content: var(--color-content-inverse);
-	--preview-content-muted: #c5cec7;
+	--preview-content-muted: var(--color-content-muted-dark);
 	--preview-border: var(--color-border-strong);
 	--preview-action: var(--color-content-inverse);
 	--preview-action-text: var(--color-content-primary);

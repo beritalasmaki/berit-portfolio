@@ -8,12 +8,12 @@ type NavigationLinkProps = ComponentProps<typeof Link> & {
 };
 
 const variants: Record<LinkVariant, string> = {
-  default: "text-[var(--preview-content-muted,var(--color-content-secondary))] hover:text-[var(--preview-content,var(--color-content-primary))]",
-  current: "bg-[var(--preview-action,var(--color-surface-inverse))] text-[var(--preview-action-text,var(--color-content-inverse))]",
-  muted: "text-[var(--preview-content-muted,var(--color-content-muted))] hover:text-[var(--preview-content,var(--color-content-primary))]",
-  inverse: "text-[var(--preview-content-muted,rgba(255,255,255,.7))] hover:bg-[var(--preview-surface-raised,rgba(255,255,255,.1))] hover:text-[var(--preview-content,var(--color-content-inverse))]",
+  default: "font-semibold text-[var(--preview-content,var(--color-content-secondary))] hover:text-[var(--color-action-accent-dark)]",
+  current: "font-semibold bg-[var(--preview-action,var(--color-surface-inverse))] text-[var(--preview-action-text,var(--color-content-inverse))]",
+  muted: "font-normal text-[var(--preview-content-muted,var(--color-content-muted))] hover:text-[var(--preview-content,var(--color-content-primary))] hover:underline hover:underline-offset-4",
+  inverse: "font-semibold text-[var(--color-content-muted-dark)] hover:bg-[var(--color-surface-raised-dark)] hover:text-[var(--color-content-inverse)]",
 };
 
 export function NavigationLink({ variant = "default", className = "", ...props }: NavigationLinkProps) {
-  return <Link className={`block rounded-lg px-3 py-2 text-sm font-semibold transition ${variants[variant]} ${className}`} {...props} />;
+  return <Link className={`block rounded-lg px-3 py-2 text-sm transition ${variants[variant]} ${className}`} {...props} />;
 }

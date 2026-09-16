@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 type ButtonVariant = "primary" | "secondary" | "tertiary";
-type ButtonMode = "default" | "hover" | "active" | "disabled" | "loading";
+type ButtonMode = "default" | "hover" | "active" | "focus" | "disabled" | "loading";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
@@ -18,7 +18,7 @@ const variants: Record<ButtonVariant, string> = {
 export function Button({ variant = "primary", mode = "default", disabled, children, className = "", ...props }: ButtonProps) {
   const isLoading = mode === "loading";
   const isDisabled = disabled || mode === "disabled" || isLoading;
-  const modeClass = mode === "hover" ? "!bg-[var(--color-action-accent-dark)]" : mode === "active" ? "!scale-[.98] !bg-[var(--color-action-accent-dark)]" : "";
+  const modeClass = mode === "hover" ? "!bg-[var(--color-action-accent-dark)]" : mode === "active" ? "!scale-[.98] !bg-[var(--color-action-accent-dark)]" : mode === "focus" ? "focus-ring" : "";
   return (
     <button
       type="button"
