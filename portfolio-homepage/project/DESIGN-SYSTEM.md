@@ -882,7 +882,7 @@ Single row, one hairline below:
 ```
 - Logo: real vector mark (blob + signature paths, exact 1:1-scale overlay
   measured against the original `berit-logo.png`) + real text ("Berit
-  Alasmäki" / "UX & Product Designer"), not a flat image — `height: 48px`
+  Alasmäki" / "UX & Product Designer"), not a flat image — `height: 32px`
   below `sm`, `64px` at `sm:`, `80px` at `xl:` and up (same in header and
   footer), large enough that the role line under the wordmark stays legible.
   The mark's height is the site's shock absorber for the header row: the
@@ -892,7 +892,18 @@ Single row, one hairline below:
   by ~22px at 390px; at 64px it still overflowed by ~26px at 360px, pushing
   the mobile menu button off-screen. Both confirmed with Playwright
   (`scrollWidth` > `clientWidth`) and fixed by stepping the mark's own height
-  down rather than touching the row layout. The full 80px now waits for `xl:`
+  down rather than touching the row layout. The sub-`sm` size was 48px, which
+  cleared 360px and up but still overflowed **320px** (iPhone SE) by 17px,
+  scrolling *every* page sideways — the widths tested at the time started at
+  360, so it went unnoticed until a 320px profile was checked. At 320 the row
+  has 272px of content box plus the 8px the menu button's `-mr-2` reaches into
+  the gutter, and the wordmark alone is 171px, leaving the mark roughly 100px
+  including both gaps. Measured at 320: 40px overflows by 4, 36px clears by 3,
+  32px clears by 9, 28px by 16. **32px** is the size in use — enough margin
+  that a font-metric change cannot put it back over, and still close to the
+  wordmark block's own 43px height, where 28px reads as undersized beside it.
+  **Test the header at 320px, not just 360px**, whenever anything in that row
+  changes. The full 80px now waits for `xl:`
   rather than `md:` for the same reason at the other end: the row is tightest
   just after the desktop nav switches on at `lg:`, and the mark's extra 26px
   of width was a large share of the margin between the nav fitting on one line

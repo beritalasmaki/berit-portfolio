@@ -30,13 +30,23 @@ export default function Logo({ animated = false }: {
 
   return (
     <span className="inline-flex items-center gap-2 sm:gap-3">
-      {/* h-12 (48px) on the narrowest phones, h-16 (64px) from sm, h-20
+      {/* h-8 (32px) on the narrowest phones, h-16 (64px) from sm, h-20
           (80px) at xl+ — a fixed mark plus the wordmark next to it doesn't
           fit a narrow mobile header without pushing into the menu button
           (confirmed with Playwright: ~22px of horizontal overflow at 390px
           with a fixed 80px mark, and still ~26px at 360px with 64px). The
           wordmark itself can't shrink — its role line is `whitespace-nowrap`
-          mono at a fixed 11px — so the mark is what gives way. Width stays
+          mono at a fixed 11px — so the mark is what gives way.
+          Below `sm` it was 48px, which fit 360px and up but still overflowed
+          320px (iPhone SE) by 17px, scrolling every page sideways. At that
+          width the row has 272px of content box plus the 8px the button's
+          `-mr-2` reaches into the gutter, and the wordmark alone is 171px,
+          so the mark's whole budget is ~100px including both gaps. Measured
+          at 320: 40px overflows by 4, 36px clears by 3, 32px clears by 9,
+          28px by 16. 32px is the balance — enough margin that a font-metric
+          change can't put it back over, and still close to the wordmark
+          block's own 43px height, where 28px would read as undersized
+          beside it. Width stays
           auto so the mark keeps its own aspect ratio at every size.
           The full 80px waits for `xl` rather than `md` because the header
           row is at its tightest just after the desktop nav switches on at
@@ -46,7 +56,7 @@ export default function Logo({ animated = false }: {
         viewBox={MARK_VIEWBOX}
         role="presentation"
         aria-hidden="true"
-        className="shrink-0 block h-12 w-auto sm:h-16 xl:h-20"
+        className="shrink-0 block h-8 w-auto sm:h-16 xl:h-20"
       >
         {animated && (
           <defs>
