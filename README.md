@@ -12,6 +12,7 @@ As a designer, most of my work lives in Figma, workshops, and stakeholder conver
 
 | Project | Description | Stack | Link |
 |---|---|---|---|
+| `Agent run review dashboard` | A single production-quality screen for reviewing what an AI agent changed, before a human releases it. | React 19 + TypeScript, Vite, Tailwind CSS, shadcn/ui, lucide-react (icons) | [https://design-system-use-case.vercel.app/](https://demo-t-example.vercel.app/) |
 | [`portfolio-homepage`](./portfolio-homepage) | My personal UX/product design portfolio site | Next.js, TypeScript, Tailwind CSS | https://portfolio-homepage-navy.vercel.app/ |
 | `Design System Case study` | Simple Design System structure | Typescript, CSS | https://design-system-use-case.vercel.app/ |
 
