@@ -10,11 +10,11 @@ As a designer, most of my work lives in Figma, workshops, and stakeholder conver
 
 ## 📂 What you'll find here
 
-| Project | Description | Stack | Link |
-|---|---|---|---|
-| `Agent run review dashboard` | A single production-quality screen for reviewing what an AI agent changed, before a human releases it. | React 19 + TypeScript, Vite, Tailwind CSS, shadcn/ui, lucide-react (icons) | [https://design-system-use-case.vercel.app/](https://demo-t-example.vercel.app/) |
-| [`portfolio-homepage`](./portfolio-homepage) | My personal UX/product design portfolio site | Next.js, TypeScript, Tailwind CSS | https://portfolio-homepage-navy.vercel.app/ |
-| `Design System Case study` | Simple Design System structure | Typescript, CSS | https://design-system-use-case.vercel.app/ |
+| Project | Description | Stack | Link | Repo |
+|---|---|---|---|---|
+| `Agent run review dashboard` | A single production-quality screen for reviewing what an AI agent changed, before a human releases it. | React 19 + TypeScript, Vite, Tailwind CSS, shadcn/ui, lucide-react (icons) | [https://design-system-use-case.vercel.app/](https://demo-t-example.vercel.app/) | https://github.com/beritalasmaki/demo-t-example |
+| [`portfolio-homepage`](./portfolio-homepage) | My personal UX/product design portfolio site | Next.js, TypeScript, Tailwind CSS | https://portfolio-homepage-navy.vercel.app/ | This repo |
+| `Design System Case study` | Simple Design System structure | Typescript, CSS | https://design-system-use-case.vercel.app/ | This repo |
 
 *(This list is a work in progress, updated as new experiments get added.)*
 
