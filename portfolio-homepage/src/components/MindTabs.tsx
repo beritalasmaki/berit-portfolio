@@ -21,7 +21,7 @@ const tabs: Tab[] = [
   },
   {
     question: "How does she approach complex problems?",
-    body: "I start working on complex problems early and adjust my approach as I learn more, instead of trying to plan everything in advance.",
+    body: "I map the problem, build early concepts, and adapt quickly instead of trying to plan every detail in advance.",
     highlight:
       "Modernizing old environmental data systems meant working with tools researchers had used for years without a clear structure. Instead of waiting for a perfect solution, I focused on releasing something useful quickly, and then improving it based on what we learned.",
     linkLabel: "See the Environmental Data Systems case study →",
