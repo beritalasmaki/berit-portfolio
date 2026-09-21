@@ -15,7 +15,7 @@ export default function Footer() {
     <footer className="flex items-center justify-between gap-6 flex-wrap px-gutter pt-8 pb-24">
       <Logo />
       <p className="m-0 text-[13px] text-footer-meta whitespace-nowrap">
-        © {year} {site.name}. All rights reserved.
+        © {year} {site.name}. Built and designed by Berit in colloboration with Claude and Vercel. All rights reserved.
       </p>
     </footer>
   );
