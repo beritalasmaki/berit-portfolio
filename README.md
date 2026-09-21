@@ -24,6 +24,7 @@ As a designer, most of my work lives in Figma, workshops, and stakeholder conver
 
 - **Design:** Figma, Design Systems, Design Tokens
 - **AI-assisted prototyping & development:** Claude, Claude Design, VSCode
+- **Publishing and database:** Vercel, Superbase
 - **Frontend basics:** HTML, CSS, TypeScript
 - **Other:** Jira, Confluence, Miro
 
