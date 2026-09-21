@@ -6,7 +6,7 @@ This repository is where I experiment outside of Figma: exploring information ar
 
 ## 🧭 Why this repo exists
 
-As a designer, most of my work lives in Figma, workshops, and stakeholder conversations. This space is different: it's where I explore how design decisions translate into actual structure and code, and where I practice the technical side of building, not just designing, digital products.
+As a designer, most of my work lives in Figma, workshops, and stakeholder conversations. This space is where I explore how design decisions translate into actual structure and code, and where I practice the technical side of building, not just designing, digital products.
 
 ## 📂 What you'll find here
 
