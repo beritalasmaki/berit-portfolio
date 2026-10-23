@@ -209,7 +209,7 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
               <IconLink href={site.githubUrl} label="Visit my GitHub" tooltip="Visit my GitHub" icon={<GithubIcon />} />
               <a
                 href="#contact"
-                className="text-nav font-semibold whitespace-nowrap text-white bg-ink rounded-pill py-3 px-6 transition-[background-color,transform] duration-150 ease-out hover:bg-ink-alt hover:text-white hover:-translate-y-px focus-visible:bg-ink-alt focus-visible:text-white focus-visible:-translate-y-px focus-visible:outline-white"
+                className="glass-button-ink text-nav font-semibold whitespace-nowrap text-white rounded-pill py-3 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
               >
                 Contact
               </a>
@@ -295,7 +295,7 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="text-nav font-semibold text-white bg-ink rounded-pill py-3 px-6 transition-[background-color,transform] duration-150 ease-out hover:bg-ink-alt hover:text-white hover:-translate-y-px focus-visible:bg-ink-alt focus-visible:text-white focus-visible:-translate-y-px focus-visible:outline-white"
+              className="glass-button-ink text-nav font-semibold text-white rounded-pill py-3 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
             >
               Contact
             </a>
