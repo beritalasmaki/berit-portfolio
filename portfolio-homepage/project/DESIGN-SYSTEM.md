@@ -22,7 +22,7 @@ introduce new colors, sizes or radii without adding them here first.
 | Accent | `#FC890C` | Orange from the logo flourish. Underlines, markers, dots, borders, the contact block's link underlines — **decorative use only.** Never used as text color on a light background: raw accent is ~2.4:1 contrast, which fails WCAG AA even at large-text sizes. |
 | Accent dark | `#A45B0B` | Accent-colored **text** at normal (non-large) sizes on light backgrounds — the sticky TOC's active-item text (15px). Passes AA at 5.15:1 (needs 4.5:1 at these sizes). |
 | Accent hero | `#D9770C` | Accent-colored **text** at large-bold sizes only — currently the contact block's "better?" (part of an 800-weight heading; the hero H1 used it for "forward." until the hero rewrite). WCAG AA only requires 3:1 for large/bold text, so this stays closer to the true brand orange than Accent dark while still passing at ~3.2:1. Not for use at normal text sizes — use Accent dark there instead. |
-| Background | `#ffffff` over background video | Page background. The white is now a veil (`--bg-veil: 0.77`, i.e. 77% white) over a fixed, slowly panning floral-linen video. See "Background texture & glass" below. |
+| Background | `#fffaf4` cream + glow orbs | Page background: a light cream ground with soft brand-orange orbs drifting behind every page. See "Background texture & glass" below. |
 | Cream | `#fff8ef` | Warm translucent surfaces, always used at an opacity (`bg-cream/30`–`/70`): panes inside glass cards, hovered tabs. Pure white films read cool and grey over the warm background. |
 | Glass | `rgb(255 251 245 / .62)` + `blur(16px) saturate(140%)` | Cards (the `.glass` utility). Replaces `panel` / white + `rule` border as the card surface. |
 | Glass clear | `rgb(255 251 245 / .34)` + `blur(8px) saturate(150%)` | See-through glass (`.glass .glass-clear`), currently the MindTabs question card |
@@ -46,43 +46,39 @@ introduce new colors, sizes or radii without adding them here first.
 - Client / customer logos are normalized to `#222222`.
 
 ### Background texture & glass
-- **Background video** (`BackgroundVideo.tsx`, `/public/bg/wall.*`): a slow
-  pan across floral-printed linen (it replaced an orange plaster wall), fixed
-  behind every page, `object-cover`, muted, looping, `aria-hidden`. The
-  source clip is pre-processed:
-  - Its black side bars (35px each side) are cropped off.
-  - A one-frame "Media Not Found" glitch card near the start is trimmed out.
-  - It's nudged warm with a gentle color balance, since the linen's natural
-    grey read cool under the white veil.
-  - Stabilized with two-pass `vidstab`, with the motion tracked on a blurred
-    copy. On the sharp frames, the repeating weave fooled the tracker and
-    made the shake worse. Frame-to-frame jitter dropped from 0.81px to
-    0.22px RMS.
-  - A 3s stretch, where the pink flowers drift in, is slowed 30×, with
-    frames blended in between (`minterpolate=mi_mode=blend`; under this much
-    blur, a blend reads as smooth as motion interpolation and renders far
-    faster). The drift is ~14px/s on a 1280px-wide frame, down from ~156px/s
-    at the original speed. At 2.5×, ~36px/s still pulled the eye while
-    browsing.
-  - It plays forward then reversed (~3 min), so the loop has no visible
-    jump, at 15fps. At this speed that's ~1px per frame, invisible under
-    the blur, and it halves the file size.
-  - Light temporal denoise (`hqdn3d`) keeps the fine weave cheap to encode.
-    Without it, the weave cost ~1 MB per second at 1080p.
-  - A "very soft" glow: `gblur σ7` screen-blended at 66% with `gblur σ22`,
-    done in RGB (`gbrp`), since blending in YUV tinted everything pink. The
-    fabric grid and the flowers' faint pink and green remain, but nothing is
-    crisp, and the glow lifts the brightness slightly. Weaker blurs (σ2/σ4)
-    still read rough behind text.
-
-  The files are 1280×720 and audio-free: a webm (~2.6 MB, VP9) with an mp4
-  (~3.8 MB, H.264, CRF 33, which is visually identical under the veil)
-  fallback for older Safari, plus a poster frame.
-- **Veil** `--bg-veil: 0.77` (globals.css). This one value sets how much
-  texture shows. 0.7 read as orange-beige; 0.85 lost most of the light
-  movement. 0.8 was a little too faint.
-- **Reduced motion:** the video is paused on its poster frame, so the texture
-  stays and the movement goes.
+- **Glow orbs** (`GlowOrbs.tsx`, `.glow-orb` / `orb-drift-*` in globals.css):
+  7 soft orbs of brand orange drift slowly behind every page, fixed to the
+  screen, on a `#fffaf4` cream ground (also `html`'s background).
+  - **Tones:** brand orange `#FC890C`, peach `#FFB566`, amber `#E8730A` and
+    apricot `#FFD3A1`.
+  - **Opacity:** peaks of 0.12–0.35. The largest orbs are the faintest, so
+    the page stays mostly cream and the orange reads as warmth.
+  - **Sizes:** 22–60vmax, so the composition holds on any screen shape.
+  - **Softness:** comes from each orb's radial gradient fading to
+    transparent, not from `filter: blur()`. The orbs only move by
+    `transform`, so they composite on the GPU instead of re-blurring the
+    screen every frame.
+  - **Motion:** each orb has its own path, 75–140s per leg, `alternate`,
+    with negative delays so they never move in sync. Measured at about
+    3–7px/s.
+  - It replaced the floral-linen background video (and its `--bg-veil`
+    white layer). The page no longer downloads ~2.6–3.8 MB of video.
+- **Hero blob** (`HeroBlob.tsx`, `.hero-blob`): the hero's right-hand focal
+  point is the logo's own orange blob (`BLOB_PATH`, exported from
+  `Logo.tsx`, `#FF890C`), so it's the brand shape itself. A generic sphere
+  didn't read as the brand.
+  - A static blurred copy behind it (an SVG `feGaussianBlur`, 45%) gives a
+    soft glow that ties it to the background orbs.
+  - At rest it floats: a 16s tilt-and-breathe.
+  - While hovered, it glides toward the cursor: the target is 18% of the
+    pointer's offset from center, clamped to 44px, eased 7.5% of the way
+    there per frame, with a slight tilt in the direction of travel. It eases
+    home on leave.
+  - It's transform-only, so the glow is never re-blurred.
+  - It replaced the hand-drawn flourish line, and it's hidden below `lg`.
+- **Reduced motion:** the global reduced-motion rule collapses the
+  animations, so the orbs rest at their starting positions as a still glow,
+  and the hero blob neither floats nor follows the cursor.
 - **Glass cards** (`.glass`): a light, translucent cream fill (62%, so cards
   read clearly lighter than the background), backdrop blur, a 1px `white/75` edge with an inset top highlight, and the frame shadow. Inner
   panes inside a glass card use plain `bg-cream/NN` tints, never a nested
