@@ -134,8 +134,8 @@ type TabStage = { key: StageKey; start: number; len: number; row: number };
 type Tab = { id: string; label: string; icon: ReactNode; weeks: number; durationLabel: string; stages: TabStage[] };
 
 // Small line icons, one per project type — decorative, matching the accent-
-// stroke SVG convention already used elsewhere on the site (Hero's flourish,
-// the mobile TOC chevron).
+// stroke SVG convention already used elsewhere on the site (the untangle
+// string, the mobile TOC chevron).
 function ZeroToOneIcon() {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true" className="w-5 h-5 shrink-0 block">

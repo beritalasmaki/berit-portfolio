@@ -44,7 +44,7 @@ const KNOT = [
 
 // Same 38 slots, but every anchor spaced along one gently uneven line. The
 // waver is intentional: a perfectly straight path would read as a border
-// rule, not as the same hand that drew the hero flourish and the logo.
+// rule, not as the same hand that drew the logo signature.
 // prettier-ignore
 const STRAIGHT = [
   4, 9.6,
@@ -134,9 +134,8 @@ export default function UntangleLine({ delayMs = 0, positionClassName = "top-ful
       const points = lerpPoints(progress);
       mainRef.current?.setAttribute("d", toPath(points));
       // The echo rides ~0.55 units below the main stroke. Two strokes of
-      // different weight slightly out of register is the same trick the hero
-      // flourish and the logo signature use to avoid looking like a uniform
-      // vector line.
+      // different weight slightly out of register is the same trick the logo
+      // signature uses to avoid looking like a uniform vector line.
       echoRef.current?.setAttribute("d", toPath(points, 0.55));
     }
 

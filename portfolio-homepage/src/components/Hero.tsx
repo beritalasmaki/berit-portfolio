@@ -18,7 +18,7 @@ export default function Hero() {
               globals.css. */}
           {/* Byline: who's talking, before the promise. The photo is small
               on purpose so it reads as a signature, not a second hero
-              image; the orange flourish keeps the right-hand column. */}
+              image; the glowing hero orb keeps the right-hand column. */}
           <div className="flex items-center gap-3 mb-6 fade-up-item" style={{ animationDelay: "700ms" }}>
             <LiquidHover strength={4} className="shrink-0">
               <Image
@@ -91,127 +91,25 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="min-w-0 flex flex-col justify-center">
-          {/* Hand-drawn flourish, matching the logo's mark treatment
-              (swapped in from the Claude Design canvas — was concentric
-              orbit ellipses before). */}
-          <LiquidHover strength={7} className="w-full">
-            <svg
-              viewBox="0 0 420 260"
-              role="presentation"
-              aria-hidden="true"
-              className="w-full h-auto block overflow-visible"
-            >
-              {/* Draw-in on load: pathLength=100 normalizes every path's stroke-
-                  dasharray/dashoffset to the same 0-100 scale regardless of its
-                  real length, so each one just animates dashoffset 100 -> 0 (see
-                  .hero-flourish-path / @keyframes hero-draw in globals.css).
-                  Delays are grouped, not purely per-path: the thin "echo" stroke
-                  riding each main petal curve shares its partner's delay so the
-                  two are read as one hand-drawn line, not two competing draws,
-                  and delays otherwise increase top-to-bottom. Every delay carries
-                  a +650ms baseline, overlapping the tail of the header logo's own
-                  draw-on (Logo.tsx, animated on this page only, 1300ms) rather
-                  than waiting for it to fully finish -- ease-out front-loads most
-                  of the logo's visible motion into roughly its first 60%, so by
-                  650ms it already reads as essentially drawn, and starting the
-                  line there keeps the entrance feeling continuous instead of
-                  pausing after the logo before anything else moves. */}
-              <g fill="none" stroke="#FC890C" strokeLinecap="round" strokeLinejoin="round">
-                <path
-                  d="M 8 24 C 23 20 33 33 41 49 C 49 65 61 74 82 74 C 111 74 143 71 158 78"
-                  strokeWidth="13"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "650ms" }}
-                />
-                <path
-                  d="M 10 27 C 26 25 35 37 43 52 C 52 69 63 77 84 77 C 113 77 142 74 156 80"
-                  strokeWidth="7"
-                  opacity="0.85"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "650ms" }}
-                />
-                <path
-                  d="M 88 72 C 104 68 122 67 138 69"
-                  strokeWidth="4.5"
-                  opacity="0.6"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "800ms" }}
-                />
-                <path
-                  d="M 158 78 C 170 83 172 96 162 108 C 152 120 152 132 164 138"
-                  strokeWidth="11"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "900ms" }}
-                />
-                <path
-                  d="M 156 81 C 168 87 169 98 159 110 C 150 121 151 130 162 136"
-                  strokeWidth="6.5"
-                  opacity="0.8"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "900ms" }}
-                />
-                <path
-                  d="M 152 102 C 147 111 148 121 155 128"
-                  strokeWidth="5"
-                  opacity="0.75"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "1050ms" }}
-                />
-                <path
-                  d="M 164 138 C 182 147 217 148 251 156 C 287 165 311 181 335 203"
-                  strokeWidth="12.5"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "1150ms" }}
-                />
-                <path
-                  d="M 166 141 C 185 150 219 151 252 159 C 287 168 310 184 333 205"
-                  strokeWidth="6"
-                  opacity="0.8"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "1150ms" }}
-                />
-                <path
-                  d="M 244 154 C 268 158 290 166 308 178"
-                  strokeWidth="4.5"
-                  opacity="0.55"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "1300ms" }}
-                />
-                <path
-                  d="M 335 203 C 348 215 358 226 366 236"
-                  strokeWidth="10"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "1400ms" }}
-                />
-                <path
-                  d="M 366 236 C 371 242 375 246 379 249"
-                  strokeWidth="6"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "1550ms" }}
-                />
-                <path
-                  d="M 379 249 C 383 252 386 254 389 255"
-                  strokeWidth="3.2"
-                  opacity="0.85"
-                  pathLength={100}
-                  className="hero-flourish-path"
-                  style={{ strokeDasharray: 100, strokeDashoffset: 100, animationDelay: "1650ms" }}
-                />
-              </g>
-            </svg>
-          </LiquidHover>
+        <div className="min-w-0 hidden lg:flex flex-col justify-center">
+          {/* Hero orb: a brand-orange glow, the same family as the drifting
+              background orbs (GlowOrbs.tsx) but concentrated into the
+              hero's focal point. It replaced the hand-drawn flourish line.
+              Three soft radial layers: a wide peach halo that breathes, a
+              strong orange core that drifts, and a pale glint for depth.
+              Each moves slowly on its own cycle (hero-orb-* in globals.css),
+              so it never reads as a loop. Hidden below lg: on phones it
+              landed under the buttons and only added scroll, and the
+              background orbs already carry the warmth there. */}
+          <div
+            aria-hidden="true"
+            className="relative w-full max-w-[460px] aspect-square mx-auto fade-up-item"
+            style={{ animationDelay: "650ms" }}
+          >
+            <span className="hero-orb hero-orb-halo" />
+            <span className="hero-orb hero-orb-core" />
+            <span className="hero-orb hero-orb-glint" />
+          </div>
         </div>
       </div>
     </section>

@@ -3,12 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  /* How much of the white page sits over the background video
-     (BackgroundVideo.tsx). 0.77 keeps the texture and the slow light drift
-     visible while text stays on an effectively near-white ground. */
   :root {
-    --bg-veil: 0.77;
-
     /* The one edge every glass surface shares (cards, pills, buttons), so
        they read as one family. */
     --glass-edge: rgb(255 255 255 / 0.85);
@@ -39,14 +34,14 @@
     }
   }
 
-  /* `html` keeps the white ground (what shows before the video's poster
-     loads); `body` is transparent so the fixed video layer behind it shows
-     through. scroll-padding keeps in-page anchor jumps clear of the sticky
-     header. */
+  /* `html` carries the same cream ground as the glow-orb layer
+     (GlowOrbs.tsx), so overscroll and any frame before it paints match;
+     `body` is transparent so the fixed orb layer behind it shows through.
+     scroll-padding keeps in-page anchor jumps clear of the fixed header. */
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 96px;
-    @apply bg-white;
+    background-color: #fffaf4;
   }
 
   body {
@@ -111,28 +106,61 @@
     font-family: var(--font-plex-mono), monospace;
   }
 
-  /* Hero flourish draw-in: each path uses pathLength=100 so a fixed
-     stroke-dasharray/dashoffset of 100 always maps to "fully drawn",
-     regardless of the path's actual geometric length — no runtime
-     getTotalLength() measurement needed, so there's no flash of a
-     fully-drawn illustration before JS hydrates; the SSR'd HTML is
-     already in the undrawn state via the dasharray/dashoffset
-     attributes baked into the markup. Runs once on load (no `infinite`,
-     `animation-fill-mode: forwards` holds the end state) and is never
-     re-triggered on scroll or re-render. */
-  .hero-flourish-path {
-    animation: hero-draw 900ms ease-out forwards;
+  /* Hero orb (Hero.tsx): three stacked radial glows. Like the background
+     orbs, the softness is all in the gradients (each fades to transparent
+     by 70%), not a blur filter, and the motion only touches `transform`.
+     The cycles are slow (14–22s legs, `alternate`) and of different
+     lengths, so the halo breathing and the core drifting never line up. */
+  .hero-orb {
+    position: absolute;
+    border-radius: 9999px;
+    will-change: transform;
   }
 
-  @keyframes hero-draw {
-    to {
-      stroke-dashoffset: 0;
-    }
+  .hero-orb-halo {
+    inset: -14%;
+    background: radial-gradient(circle closest-side, rgb(255 181 102 / 0.5) 0%, rgb(255 181 102 / 0.2) 55%, rgb(255 181 102 / 0) 100%);
+    animation: hero-orb-breathe 14s ease-in-out infinite alternate;
   }
 
-  /* Logo signature mark draw-in: same pathLength=100 trick as the hero
-     flourish, but here it drives an SVG <mask> instead of the stroke
-     itself — the mark is a filled brush-stroke silhouette (not a simple
+  .hero-orb-core {
+    inset: 12%;
+    /* `closest-side`, so the gradient reaches full transparency exactly at
+       the circle's edge. The default `farthest-corner` sizing still had
+       ~18% opacity there and drew a hard disc outline. */
+    background: radial-gradient(
+      circle closest-side,
+      rgb(252 137 12 / 0.9) 0%,
+      rgb(252 137 12 / 0.55) 32%,
+      rgb(232 115 10 / 0.2) 64%,
+      rgb(232 115 10 / 0) 100%
+    );
+    animation: hero-orb-drift 18s ease-in-out infinite alternate;
+  }
+
+  .hero-orb-glint {
+    left: 24%;
+    top: 20%;
+    width: 36%;
+    height: 36%;
+    background: radial-gradient(circle closest-side, rgb(255 238 214 / 0.75) 0%, rgb(255 238 214 / 0) 100%);
+    animation: hero-orb-drift 22s ease-in-out -7s infinite alternate-reverse;
+  }
+
+  @keyframes hero-orb-breathe {
+    0% { transform: scale(0.94); }
+    100% { transform: scale(1.06); }
+  }
+
+  @keyframes hero-orb-drift {
+    0% { transform: translate3d(-3%, 2%, 0) scale(0.97); }
+    100% { transform: translate3d(3%, -2%, 0) scale(1.03); }
+  }
+
+  /* Logo signature mark draw-in: each path uses pathLength=100, so a fixed
+     dasharray/dashoffset of 100 always maps to "fully drawn" with no runtime
+     length measurement and no pre-hydration flash. Here it drives an SVG
+     <mask> instead of the stroke itself — the mark is a filled brush-stroke silhouette (not a simple
      open line), so stroking that path directly would render as a thin
      outline of the silhouette's edge, not "the pen drawing the
      signature". A wide horizontal bar animates across the mask instead,
@@ -213,7 +241,7 @@
     }
   }
 
-  /* Frosted-glass surface for cards over the background video: a translucent
+  /* Frosted-glass surface for cards over the glowing background: a translucent
      cream fill, a backdrop blur that softens the texture behind it, the
      shared 1px light edge (`--glass-edge`) and a soft, low shadow. Inner panes inside a
      glass card use plain `bg-white/NN` tints, not another `.glass`: a
@@ -351,6 +379,64 @@
   .site-header .logo-mark {
     height: calc(var(--mark-full) - (var(--mark-full) - var(--mark-compact)) * var(--shrink, 0));
     transition: height 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Background glow orbs (GlowOrbs.tsx). Each is a circle centered on its
+     left/top point; its color and softness come from an inline radial
+     gradient. The drift paths below are deliberately different shapes and
+     only ever touch `transform`, so they composite cheaply. Each orb runs
+     its path `alternate` over 75–140s, so a leg moves at most ~16vmax (a
+     few px per second) and never snaps back. */
+  .glow-orb {
+    position: absolute;
+    width: var(--orb-size);
+    height: var(--orb-size);
+    margin-left: calc(var(--orb-size) / -2);
+    margin-top: calc(var(--orb-size) / -2);
+    border-radius: 9999px;
+    will-change: transform;
+  }
+
+  @keyframes orb-drift-1 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(12vmax, 8vmax, 0) scale(1.08); }
+    100% { transform: translate3d(4vmax, 16vmax, 0) scale(0.96); }
+  }
+
+  @keyframes orb-drift-2 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    40% { transform: translate3d(-14vmax, 6vmax, 0) scale(0.94); }
+    100% { transform: translate3d(-6vmax, 14vmax, 0) scale(1.06); }
+  }
+
+  @keyframes orb-drift-3 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    60% { transform: translate3d(-10vmax, -12vmax, 0) scale(1.1); }
+    100% { transform: translate3d(-16vmax, -4vmax, 0) scale(1); }
+  }
+
+  @keyframes orb-drift-4 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(10vmax, -10vmax, 0) scale(1.12); }
+    100% { transform: translate3d(16vmax, -2vmax, 0) scale(0.95); }
+  }
+
+  @keyframes orb-drift-5 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-12vmax, -8vmax, 0) scale(1.05); }
+    100% { transform: translate3d(8vmax, -14vmax, 0) scale(0.97); }
+  }
+
+  @keyframes orb-drift-6 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    35% { transform: translate3d(8vmax, 10vmax, 0) scale(0.92); }
+    100% { transform: translate3d(-10vmax, 14vmax, 0) scale(1.08); }
+  }
+
+  @keyframes orb-drift-7 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    55% { transform: translate3d(14vmax, -6vmax, 0) scale(1.06); }
+    100% { transform: translate3d(6vmax, 10vmax, 0) scale(1); }
   }
 
   /* Visually hide content while keeping it available to screen readers. */

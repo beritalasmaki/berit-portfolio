@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, IBM_Plex_Mono } from "next/font/google";
-import BackgroundVideo from "@/components/BackgroundVideo";
+import GlowOrbs from "@/components/GlowOrbs";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${manrope.variable} ${plexMono.variable}`}>
       <body>
-        <BackgroundVideo />
+        <GlowOrbs />
         <div id="page-top" />
         {children}
       </body>
