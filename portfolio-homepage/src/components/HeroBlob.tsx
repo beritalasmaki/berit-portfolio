@@ -14,8 +14,10 @@ const FOLLOW = 0.075;
  * #FF890C), so the hero's focal point *is* the brand shape rather than a
  * generic sphere. It replaced the hand-drawn flourish line.
  *
- * - A blurred copy behind it gives a soft glow that ties it to the drifting
- *   background orbs (GlowOrbs.tsx). It's a static SVG blur, rasterized once.
+ * - Its edge is feathered (a small SVG blur on the blob itself) and a more
+ *   blurred copy behind it gives a soft glow that ties it to the drifting
+ *   background orbs (GlowOrbs.tsx). Both are static SVG blurs, rasterized
+ *   once.
  * - At rest it floats: a slow tilt-and-breathe (`.hero-blob` in
  *   globals.css).
  * - While hovered, it glides toward the cursor. The target is the pointer's
@@ -86,7 +88,13 @@ export default function HeroBlob() {
         <svg viewBox="-34 -34 182 176" className="hero-blob block w-full h-auto overflow-visible">
           <defs>
             <filter id="hero-blob-glow" x="-40%" y="-40%" width="180%" height="180%">
-              <feGaussianBlur stdDeviation="12" />
+              <feGaussianBlur stdDeviation="14" />
+            </filter>
+            {/* Feathers the blob's own edge so it melts into its glow
+                instead of ending in a hard line; the shape stays readable
+                because the blur is small next to the blob's ~110-unit size. */}
+            <filter id="hero-blob-feather" x="-25%" y="-25%" width="150%" height="150%">
+              <feGaussianBlur stdDeviation="5" />
             </filter>
           </defs>
           <path
@@ -96,7 +104,7 @@ export default function HeroBlob() {
             filter="url(#hero-blob-glow)"
             transform="translate(56.8 53.7) scale(1.12) translate(-56.8 -53.7)"
           />
-          <path d={BLOB_PATH} fill="#FF890C" />
+          <path d={BLOB_PATH} fill="#FF890C" filter="url(#hero-blob-feather)" />
         </svg>
       </div>
     </div>
