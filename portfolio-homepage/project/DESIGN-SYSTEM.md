@@ -19,11 +19,11 @@ introduce new colors, sizes or radii without adding them here first.
 | Ink | `#222222` | All primary text, headlines, dark panels, filled buttons. **Never pure black.** |
 | Body | `#4a4a4a` | Body copy, secondary paragraphs |
 | Muted | `#6b6660` | Mono labels, captions, eyebrows, meta text, copyright line. **Supersedes `#8a8580`** — that value is only 3.65:1 on white, which fails WCAG AA (4.5:1) at the small sizes this token is used for everywhere. `#6b6660` passes at 5.69:1. (Absorbs the old separate "Footer meta" token — same value, one name now.) |
-| Accent | `#FC890C` | Orange from the logo flourish. Underlines, markers, dots, borders, the contact block background — **decorative use only.** Never used as text color on a light background: raw accent is ~2.4:1 contrast, which fails WCAG AA even at large-text sizes. |
+| Accent | `#FC890C` | Orange from the logo flourish. Underlines, markers, dots, borders, the contact block's link underlines — **decorative use only.** Never used as text color on a light background: raw accent is ~2.4:1 contrast, which fails WCAG AA even at large-text sizes. |
 | Accent dark | `#A45B0B` | Accent-colored **text** at normal (non-large) sizes on light backgrounds — the sticky TOC's active-item text (15px). Passes AA at 5.15:1 (needs 4.5:1 at these sizes). |
 | Accent hero | `#D9770C` | Accent-colored **text** at large-bold sizes only — currently just the hero's "forward." (part of an 800-weight, 40–84px heading). WCAG AA only requires 3:1 for large/bold text, so this stays closer to the true brand orange than Accent dark while still passing at ~3.2:1. Not for use at normal text sizes — use Accent dark there instead. |
-| Background | `#ffffff` over wall video | Page background. The white is now a veil (`--bg-veil: 0.77`, i.e. 77% white) over a fixed, slowly moving orange plaster-wall video. See "Background texture & glass" below. |
-| Cream | `#fff8ef` | Warm translucent surfaces, always used at an opacity (`bg-cream/30`–`/70`): panes inside glass cards, hovered tabs. Pure white films read cool and grey over the warm wall. |
+| Background | `#ffffff` over background video | Page background. The white is now a veil (`--bg-veil: 0.77`, i.e. 77% white) over a fixed, slowly panning floral-linen video. See "Background texture & glass" below. |
+| Cream | `#fff8ef` | Warm translucent surfaces, always used at an opacity (`bg-cream/30`–`/70`): panes inside glass cards, hovered tabs. Pure white films read cool and grey over the warm background. |
 | Glass | `rgb(255 251 245 / .62)` + `blur(16px) saturate(140%)` | Cards (the `.glass` utility). Replaces `panel` / white + `rule` border as the card surface. |
 | Glass clear | `rgb(255 251 245 / .34)` + `blur(8px) saturate(150%)` | See-through glass (`.glass .glass-clear`), currently the MindTabs question card |
 | Glass bar | `rgb(255 248 239 / .55)` + `blur(20px) saturate(160%)` | The fixed header (`.glass-bar`) |
@@ -42,44 +42,54 @@ introduce new colors, sizes or radii without adding them here first.
 - Accent orange is used sparingly: markers, underlines, active states, borders, and
   exactly one large closing block (the contact section) — **never as text color on a
   light background** (see Accent dark above).
-- Text on the orange contact block is `#222222`, never white.
+- Text on any orange surface is `#222222`, never white.
 - Client / customer logos are normalized to `#222222`.
 
 ### Background texture & glass
-- **Wall video** (`BackgroundVideo.tsx`, `/public/bg/`): fixed behind every
-  page, `object-cover`, muted, looping, `aria-hidden`. The source clip is
-  pre-processed:
-  - Color-graded so its shadows stay saturated orange. Under the white veil,
-    the raw brown shadows mixed to a cool grey-beige; graded, every frame
-    stays warm (darkest frame ≈ `#F3E6D7`, brightest ≈ `#FDF1DA` after the
-    veil).
-  - Played forward then reversed (36s) so the loop has no visible jump.
+- **Background video** (`BackgroundVideo.tsx`, `/public/bg/wall.*`): a slow
+  pan across floral-printed linen (it replaced an orange plaster wall), fixed
+  behind every page, `object-cover`, muted, looping, `aria-hidden`. The
+  source clip is pre-processed:
+  - Its black side bars (35px each side) are cropped off.
+  - A one-frame "Media Not Found" glitch card near the start is trimmed out.
+  - It's nudged warm with a gentle color balance, since the linen's natural
+    grey read cool under the white veil.
+  - A 12.5s stretch, from plain linen into the pink flowers, plays forward
+    then reversed (25s), so the loop has no visible jump.
+  - Light temporal denoise (`hqdn3d`) keeps the fine weave cheap to encode.
+    Without it, the weave cost ~1 MB per second at 1080p.
+  - A "very soft" glow: `gblur σ7` screen-blended at 66% with `gblur σ22`,
+    done in RGB (`gbrp`), since blending in YUV tinted everything pink. The
+    fabric grid and the flowers' faint pink and green remain, but nothing is
+    crisp, and the glow lifts the brightness slightly. Weaker blurs (σ2/σ4)
+    still read rough behind text.
 
-  - Lightly sharpened, since the source footage is soft and the veil flattens
-    texture further.
-
-  The files are a 1920×1080, audio-free webm (~6 MB, VP9) with an mp4
-  (~11 MB, H.264) fallback for older Safari, plus a poster frame. An earlier
-  1280px, heavily compressed encode looked smeared.
+  The files are 1280×720 and audio-free: a webm (~0.4 MB, VP9) with an mp4
+  (~1.3 MB, H.264) fallback for older Safari, plus a poster frame.
 - **Veil** `--bg-veil: 0.77` (globals.css). This one value sets how much
   texture shows. 0.7 read as orange-beige; 0.85 lost most of the light
   movement. 0.8 was a little too faint.
 - **Reduced motion:** the video is paused on its poster frame, so the texture
   stays and the movement goes.
 - **Glass cards** (`.glass`): a light, translucent cream fill (62%, so cards
-  read clearly lighter than the wall), backdrop blur, a 1px `white/75` edge with an inset top highlight, and the frame shadow. Inner
+  read clearly lighter than the background), backdrop blur, a 1px `white/75` edge with an inset top highlight, and the frame shadow. Inner
   panes inside a glass card use plain `bg-cream/NN` tints, never a nested
   `.glass`. Without `backdrop-filter` support, the fill falls back to 90%
   cream. Add `.glass-clear` for a see-through variant.
-- **Liquid-glass buttons:** both are a gradient lens with strong blur and
-  saturation, a bright rim and a specular sheen (`::before`). Drop shadows
-  are kept faint (`0 4px 10px` at 7–8%) so the buttons stay calm: the rim
-  and sheen do the lifting. Both rise 1px on hover/focus.
-  - `.glass-button`: the light secondary ("See the work").
-  - `.glass-button-ink`: the same lens in ink for primary actions (hero
-    "Get in touch", header Contact, the About CTA) and Back to top.
-  - The header's LinkedIn/GitHub icon buttons and the mobile menu's
-    LinkedIn/GitHub pills use `.glass-button` instead of a hairline outline.
+- **Flat glass buttons and pills:** one flat translucent fill, a 12px
+  backdrop blur and the shared 1px light edge (`--glass-edge`,
+  `rgb(255 255 255 / .85)`, the same edge the cards use), so cards, pills and
+  buttons read as one family. There's no gradient, sheen or inset shadow: an
+  earlier glossy version read as 2000s 3D. Interactive ones rise 1px on
+  hover/focus and their fill firms up.
+  - `.glass-pill`: static tags and labels (case-study category and skill
+    tags, the Process timeline pill).
+  - `.glass-button`: the light, interactive version ("See the work", the
+    header's LinkedIn/GitHub icons, the mobile menu's pills and the menu
+    toggle).
+  - `.glass-button-ink`: flat ink at 92% with a faint `white/12` edge, for
+    primary actions (hero "Get in touch", header Contact, the About CTA)
+    and Back to top.
 - **Case-study thumbnails** (`/case/*-card.png`): the mockup compositions
   with their old flat `#EEE` backdrop made transparent and trimmed. Only the
   backdrop connected to the image edge was removed, and drop shadows became
@@ -98,8 +108,31 @@ introduce new colors, sizes or radii without adding them here first.
   The header mark is smaller than the footer's, with more air above and
   below. `html` has `scroll-padding-top: 96px` so anchor jumps clear the
   header. The sticky TOC sits at `top-28` for the same reason.
-- The orange contact block, dark buttons, screenshot frames and the lightbox
-  stay solid.
+- **Contact block:** a `.glass` card (`rounded-card`, `px-pane-pad
+  py-contact-y`), no longer a full-bleed orange band, which read as a
+  different site next to the glass. Orange stays as an accent: the
+  heading's last word ("better?", in `accent-hero`, large bold) and the
+  email/LinkedIn underlines.
+- **Footer** (`.glass-footer`): full-width frost like the header, but a
+  warm taupe tint (`rgb(214 198 180 / .28)`, 4px blur) with the shared light
+  top edge. It's a shade deeper than the header, so the page ends on its own
+  band, but still see-through: at 60% with a 20px blur it read as a solid slab. Its meta line is `text-body`,
+  since `footer-meta` falls under AA on the deeper tint.
+- **Liquid hover** (`LiquidHover.tsx`): the hero line (20px), the hero photo
+  (9px) and each client logo (7px) ripple like they're seen through water
+  while hovered. An SVG filter displaces them by smoothed, slowly flowing
+  noise (one octave, low frequency, for broad waves), with a 0.6px blur
+  after to anti-alias the warped edges. Strength eases in over 520ms and out
+  over 680ms. The filter is only applied while active, and it's off for
+  reduced motion.
+- **Icons** (`icons.tsx`): 16px line icons, 1.6px stroke, `currentColor`,
+  `aria-hidden`.
+  - Buttons end in a right arrow that nudges 2px on hover/focus.
+  - Nav links lead with a themed icon (grid = case studies, person = About,
+    connected steps = My Process). On the desktop nav these show from `xl`
+    only; at `lg` they wrapped the one-line nav.
+  - "Back to work" leads with a left arrow.
+- Screenshot frames and the lightbox stay solid.
 
 ---
 

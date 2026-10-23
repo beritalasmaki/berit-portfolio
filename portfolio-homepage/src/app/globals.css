@@ -3,11 +3,15 @@
 @tailwind utilities;
 
 @layer base {
-  /* How much of the white page sits over the wall video
+  /* How much of the white page sits over the background video
      (BackgroundVideo.tsx). 0.77 keeps the texture and the slow light drift
      visible while text stays on an effectively near-white ground. */
   :root {
     --bg-veil: 0.77;
+
+    /* The one edge every glass surface shares (cards, pills, buttons), so
+       they read as one family. */
+    --glass-edge: rgb(255 255 255 / 0.85);
 
     /* Header row heights and logo-mark heights, at the top of the page
        (full) and once scrolled (compact). Header.tsx eases `--shrink` from
@@ -209,26 +213,24 @@
     }
   }
 
-  /* Frosted-glass surface for cards over the wall video: a translucent
-     white fill, a backdrop blur that softens the texture behind it, a
-     bright hairline edge and the soft `frame` shadow. Inner panes inside a
+  /* Frosted-glass surface for cards over the background video: a translucent
+     cream fill, a backdrop blur that softens the texture behind it, the
+     shared 1px light edge (`--glass-edge`) and a soft, low shadow. Inner panes inside a
      glass card use plain `bg-white/NN` tints, not another `.glass`: a
      nested backdrop-filter only blurs the parent glass, so it costs paint
      time for no visible effect. */
   .glass {
-    /* Cream (#fff8ef), not pure white: a white film over the warm wall
+    /* Cream (#fff8ef), not pure white: a white film over the warm background
        read as cool and grey. */
     background-color: rgb(255 251 245 / 0.62);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
     backdrop-filter: blur(16px) saturate(140%);
-    border: 1px solid rgb(255 255 255 / 0.75);
-    box-shadow:
-      0 8px 22px rgba(34, 34, 34, 0.06),
-      inset 0 1px 0 rgb(255 255 255 / 0.7);
+    border: 1px solid var(--glass-edge);
+    box-shadow: 0 8px 22px rgba(34, 34, 34, 0.05);
   }
 
   /* A clearer glass for surfaces that should read as see-through (the
-     MindTabs question column): less fill and a lighter blur, so the wall's
+     MindTabs question column): less fill and a lighter blur, so the background's
      texture and moving light come through. Pair with `.glass`; declared
      after it so it wins. */
   .glass-clear {
@@ -248,96 +250,65 @@
       0 8px 24px rgba(34, 34, 34, 0.05);
   }
 
-  /* Liquid-glass buttons. `.glass-button` is the light secondary (the
-     hero's "See the work"): a clear, strongly blurred and saturated lens
-     with a bright top rim and a soft specular sheen, so it lifts off the
-     wall instead of sitting flat on it. `.glass-button-ink` is the same
-     lens in ink for primary actions. Drop shadows are deliberately faint:
-     the rim and sheen do the lifting, and a heavy shadow under every
-     button read as busy. */
-  /* `relative` anchors the sheen, but under :where() (zero specificity) so
-     a positioning utility on the element itself, like Back to top's
-     `fixed`, always wins regardless of stylesheet order. */
-  :where(.glass-button, .glass-button-ink) {
-    position: relative;
+  /* The footer's frost: a warm taupe tint, a shade deeper than the header's
+     cream so the page's end reads as its own band, but kept see-through.
+     At 60% fill with a 20px blur it read as a solid slab, and over the
+     already-soft linen even 10px wiped the texture out. */
+  .glass-footer {
+    background-color: rgb(214 198 180 / 0.28);
+    -webkit-backdrop-filter: blur(4px) saturate(130%);
+    backdrop-filter: blur(4px) saturate(130%);
+    border-top: 1px solid var(--glass-edge);
+  }
+
+  /* Flat glass for buttons and pills. Earlier versions layered gradients,
+     an inner sheen and inset shadows, which read as glossy 2000s 3D. Now
+     it's one flat translucent fill, a backdrop blur and the same 1px light
+     edge the cards use (`--glass-edge`), so pills, buttons and cards read as
+     one family.
+     - `.glass-pill`: static surface (tags, labels).
+     - `.glass-button`: the light, interactive version (secondary actions,
+       icon buttons).
+     - `.glass-button-ink`: flat ink for primary actions, with a faint light
+       edge. */
+  .glass-pill,
+  .glass-button,
+  .glass-button-ink {
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    backdrop-filter: blur(12px) saturate(140%);
+  }
+
+  .glass-pill,
+  .glass-button {
+    background-color: rgb(255 251 245 / 0.55);
+    border: 1px solid var(--glass-edge);
+    box-shadow: 0 1px 2px rgba(34, 34, 34, 0.05);
+  }
+
+  .glass-button-ink {
+    background-color: rgb(34 34 34 / 0.92);
+    border: 1px solid rgb(255 255 255 / 0.12);
   }
 
   .glass-button,
   .glass-button-ink {
-    isolation: isolate;
-    overflow: hidden;
-    -webkit-backdrop-filter: blur(14px) saturate(180%);
-    backdrop-filter: blur(14px) saturate(180%);
     transition:
       transform 150ms ease-out,
-      box-shadow 150ms ease-out,
-      background 150ms ease-out,
+      background-color 150ms ease-out,
       color 150ms ease-out,
       opacity 150ms ease-out;
   }
 
-  .glass-button {
-    background: linear-gradient(180deg, rgb(255 255 255 / 0.78) 0%, rgb(255 246 234 / 0.42) 100%);
-    border: 1px solid rgb(255 255 255 / 0.85);
-    box-shadow:
-      inset 0 1px 1px rgb(255 255 255 / 0.95),
-      inset 0 -3px 8px rgb(252 137 12 / 0.08),
-      0 1px 2px rgba(34, 34, 34, 0.06),
-      0 4px 10px rgba(164, 91, 11, 0.07);
-  }
-
-  .glass-button-ink {
-    background: linear-gradient(180deg, rgb(70 66 62 / 0.94) 0%, rgb(34 34 34 / 0.96) 100%);
-    border: 1px solid rgb(255 255 255 / 0.14);
-    box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.22),
-      inset 0 -3px 8px rgb(0 0 0 / 0.25),
-      0 1px 2px rgba(34, 34, 34, 0.08),
-      0 4px 10px rgba(34, 34, 34, 0.08);
-  }
-
-  .glass-button::before,
-  .glass-button-ink::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    pointer-events: none;
-  }
-
-  .glass-button::before {
-    background: radial-gradient(120% 80% at 30% -10%, rgb(255 255 255 / 0.85), transparent 55%);
-  }
-
-  .glass-button-ink::before {
-    background: radial-gradient(120% 80% at 30% -10%, rgb(255 255 255 / 0.2), transparent 55%);
-  }
-
   .glass-button:hover,
-  .glass-button:focus-visible,
-  .glass-button-ink:hover,
-  .glass-button-ink:focus-visible {
+  .glass-button:focus-visible {
+    background-color: rgb(255 251 245 / 0.85);
     transform: translateY(-1px);
   }
 
-  .glass-button:hover,
-  .glass-button:focus-visible {
-    box-shadow:
-      inset 0 1px 1px rgb(255 255 255 / 0.95),
-      inset 0 -3px 8px rgb(252 137 12 / 0.12),
-      0 1px 3px rgba(34, 34, 34, 0.07),
-      0 6px 14px rgba(164, 91, 11, 0.1);
-  }
-
   .glass-button-ink:hover,
   .glass-button-ink:focus-visible {
-    background: linear-gradient(180deg, rgb(84 80 75 / 0.94) 0%, rgb(46 45 44 / 0.96) 100%);
-    box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.26),
-      inset 0 -3px 8px rgb(0 0 0 / 0.25),
-      0 1px 3px rgba(34, 34, 34, 0.09),
-      0 6px 14px rgba(34, 34, 34, 0.1);
+    background-color: rgb(58 58 58 / 0.94);
+    transform: translateY(-1px);
   }
 
   /* Without backdrop-filter, the texture would sit behind the text
@@ -349,8 +320,12 @@
     .glass-bar {
       background-color: rgb(255 248 239 / 0.94);
     }
+    .glass-footer {
+      background-color: rgb(226 214 200 / 0.94);
+    }
+    .glass-pill,
     .glass-button {
-      background: rgb(255 248 239 / 0.92);
+      background-color: rgb(255 251 245 / 0.92);
     }
   }
 

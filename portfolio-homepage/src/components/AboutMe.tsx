@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useId, useState, type ReactNode } from "react";
 import { site } from "@/data/site";
+import { ArrowRightIcon } from "./icons";
 
 // Small brand mark for the LinkedIn button — same path Header.tsx uses for
 // its own LinkedIn pill, duplicated locally rather than shared, matching
@@ -315,10 +316,11 @@ export default function AboutMe() {
           href={site.linkedinUrl}
           target="_blank"
           rel="noreferrer"
-          className="glass-button-ink inline-flex items-center gap-2 text-white text-nav font-semibold py-3 px-6 rounded-pill self-start whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
+          className="glass-button-ink group inline-flex items-center gap-2 text-white text-nav font-semibold py-3 px-6 rounded-pill self-start whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
         >
           <LinkedInIcon />
           Connect on LinkedIn
+          <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
         </a>
 
         {/* Closes out the bio column: the paragraphs above are the
