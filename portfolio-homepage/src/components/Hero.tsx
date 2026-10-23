@@ -1,4 +1,5 @@
 import Image from "next/image";
+import HeroBlob from "./HeroBlob";
 import { ArrowRightIcon } from "./icons";
 import LiquidHover from "./LiquidHover";
 import UntangleLine from "./UntangleLine";
@@ -92,23 +93,12 @@ export default function Hero() {
         </div>
 
         <div className="min-w-0 hidden lg:flex flex-col justify-center">
-          {/* Hero orb: a brand-orange glow, the same family as the drifting
-              background orbs (GlowOrbs.tsx) but concentrated into the
-              hero's focal point. It replaced the hand-drawn flourish line.
-              Three soft radial layers: a wide peach halo that breathes, a
-              strong orange core that drifts, and a pale glint for depth.
-              Each moves slowly on its own cycle (hero-orb-* in globals.css),
-              so it never reads as a loop. Hidden below lg: on phones it
-              landed under the buttons and only added scroll, and the
-              background orbs already carry the warmth there. */}
-          <div
-            aria-hidden="true"
-            className="relative w-full max-w-[460px] aspect-square mx-auto fade-up-item"
-            style={{ animationDelay: "650ms" }}
-          >
-            <span className="hero-orb hero-orb-halo" />
-            <span className="hero-orb hero-orb-core" />
-            <span className="hero-orb hero-orb-glint" />
+          {/* Hero blob: the logo's orange blob, floating and following the
+              cursor on hover (see HeroBlob.tsx). Hidden below lg: on phones
+              it landed under the buttons and only added scroll, and the
+              background orbs carry the warmth there. */}
+          <div className="fade-up-item" style={{ animationDelay: "650ms" }}>
+            <HeroBlob />
           </div>
         </div>
       </div>

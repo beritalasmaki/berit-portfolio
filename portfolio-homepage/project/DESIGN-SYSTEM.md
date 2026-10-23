@@ -63,14 +63,22 @@ introduce new colors, sizes or radii without adding them here first.
     3–7px/s.
   - It replaced the floral-linen background video (and its `--bg-veil`
     white layer). The page no longer downloads ~2.6–3.8 MB of video.
-- **Hero orb** (`Hero.tsx`, `.hero-orb-*`): the hero's right-hand focal
-  point, the same family concentrated: a breathing peach halo (14s), a
-  drifting orange core (18s) and a pale glint (22s), all `closest-side`
-  radial gradients so they fade to nothing at their edge. With the default
-  `farthest-corner` sizing, the off-center core drew a hard disc outline.
-  It replaced the hand-drawn flourish line, and it's hidden below `lg`.
+- **Hero blob** (`HeroBlob.tsx`, `.hero-blob`): the hero's right-hand focal
+  point is the logo's own orange blob (`BLOB_PATH`, exported from
+  `Logo.tsx`, `#FF890C`), so it's the brand shape itself. A generic sphere
+  didn't read as the brand.
+  - A static blurred copy behind it (an SVG `feGaussianBlur`, 45%) gives a
+    soft glow that ties it to the background orbs.
+  - At rest it floats: a 16s tilt-and-breathe.
+  - While hovered, it glides toward the cursor: the target is 18% of the
+    pointer's offset from center, clamped to 44px, eased 7.5% of the way
+    there per frame, with a slight tilt in the direction of travel. It eases
+    home on leave.
+  - It's transform-only, so the glow is never re-blurred.
+  - It replaced the hand-drawn flourish line, and it's hidden below `lg`.
 - **Reduced motion:** the global reduced-motion rule collapses the
-  animations, so the orbs rest at their starting positions as a still glow.
+  animations, so the orbs rest at their starting positions as a still glow,
+  and the hero blob neither floats nor follows the cursor.
 - **Glass cards** (`.glass`): a light, translucent cream fill (62%, so cards
   read clearly lighter than the background), backdrop blur, a 1px `white/75` edge with an inset top highlight, and the frame shadow. Inner
   panes inside a glass card use plain `bg-cream/NN` tints, never a nested
