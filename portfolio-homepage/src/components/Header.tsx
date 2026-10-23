@@ -70,7 +70,7 @@ function IconLink({
         target="_blank"
         rel="noreferrer"
         aria-label={label}
-        className="inline-flex items-center justify-center w-11 h-11 rounded-pill border border-rule-strong text-body transition-[border-color,color,transform] duration-150 ease-out hover:border-ink hover:text-ink hover:-translate-y-px focus-visible:border-ink focus-visible:text-ink focus-visible:-translate-y-px"
+        className="glass-button inline-flex items-center justify-center w-11 h-11 rounded-pill text-body hover:text-ink focus-visible:text-ink"
       >
         {icon}
       </a>
@@ -220,7 +220,7 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
           <button
             ref={toggleRef}
             type="button"
-            className="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-chrome border border-rule-strong shrink-0 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
+            className="glass-button lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-chrome shrink-0"
             aria-expanded={open}
             aria-controls={panelId}
             aria-label={open ? "Close menu" : "Open menu"}
@@ -278,7 +278,7 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
               href={site.linkedinUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono-label text-mono-label-em font-medium uppercase text-body border border-rule-strong rounded-pill py-3 px-5 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
+              className="glass-button inline-flex items-center gap-1.5 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill py-3 px-5 hover:text-ink focus-visible:text-ink"
             >
               <LinkedInIcon />
               LinkedIn
@@ -287,7 +287,7 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
               href={site.githubUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono-label text-mono-label-em font-medium uppercase text-body border border-rule-strong rounded-pill py-3 px-5 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
+              className="glass-button inline-flex items-center gap-1.5 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill py-3 px-5 hover:text-ink focus-visible:text-ink"
             >
               <GithubIcon />
               GitHub

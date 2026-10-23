@@ -255,9 +255,15 @@
      lens in ink for primary actions. Drop shadows are deliberately faint:
      the rim and sheen do the lifting, and a heavy shadow under every
      button read as busy. */
+  /* `relative` anchors the sheen, but under :where() (zero specificity) so
+     a positioning utility on the element itself, like Back to top's
+     `fixed`, always wins regardless of stylesheet order. */
+  :where(.glass-button, .glass-button-ink) {
+    position: relative;
+  }
+
   .glass-button,
   .glass-button-ink {
-    position: relative;
     isolation: isolate;
     overflow: hidden;
     -webkit-backdrop-filter: blur(14px) saturate(180%);
@@ -265,7 +271,9 @@
     transition:
       transform 150ms ease-out,
       box-shadow 150ms ease-out,
-      background 150ms ease-out;
+      background 150ms ease-out,
+      color 150ms ease-out,
+      opacity 150ms ease-out;
   }
 
   .glass-button {

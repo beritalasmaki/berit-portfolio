@@ -77,7 +77,9 @@ introduce new colors, sizes or radii without adding them here first.
   and sheen do the lifting. Both rise 1px on hover/focus.
   - `.glass-button`: the light secondary ("See the work").
   - `.glass-button-ink`: the same lens in ink for primary actions (hero
-    "Get in touch", header Contact, the About CTA).
+    "Get in touch", header Contact, the About CTA) and Back to top.
+  - The header's LinkedIn/GitHub icon buttons and the mobile menu's
+    LinkedIn/GitHub pills use `.glass-button` instead of a hairline outline.
 - **Case-study thumbnails** (`/case/*-card.png`): the mockup compositions
   with their old flat `#EEE` backdrop made transparent and trimmed. Only the
   backdrop connected to the image edge was removed, and drop shadows became
@@ -294,7 +296,7 @@ white-space: nowrap;
 ```
 font-family: 'IBM Plex Mono', monospace;
 font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-color: #4a4a4a; border: 1px solid #e2ded6;
+color: #4a4a4a; /* surface: .glass-button (liquid glass), not an outline */
 border-radius: 999px; padding: 12px 20px;
 white-space: nowrap;
 gap: 6px; /* between the brand mark and the label */
@@ -1178,9 +1180,10 @@ straight, once, when it scrolls into view. `UntangleLine.tsx`.
   straight.
 
 ### Back to top
-Fixed bottom-right, links to `#page-top`. Ink fill (fully opaque `#222222`),
-mono label, `shadow-lightbox`, plus a `ring-1 ring-white/25` so the dark pill
-separates from dark content scrolling beneath it rather than merging into it.
+Fixed bottom-right, links to `#page-top`. Ink liquid glass
+(`.glass-button-ink`) with a mono label. Its `white/14` rim and top highlight
+separate the dark pill from dark content scrolling beneath it, the job the old
+`ring-1 ring-white/25` did.
 
 Because it floats, it will always cover *something*; three rules keep that
 from landing on content the reader needs:
