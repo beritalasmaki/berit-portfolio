@@ -23,10 +23,12 @@ introduce new colors, sizes or radii without adding them here first.
 | Accent dark | `#A45B0B` | Accent-colored **text** at normal (non-large) sizes on light backgrounds — the sticky TOC's active-item text (15px). Passes AA at 5.15:1 (needs 4.5:1 at these sizes). |
 | Accent hero | `#D9770C` | Accent-colored **text** at large-bold sizes only — currently just the hero's "forward." (part of an 800-weight, 40–84px heading). WCAG AA only requires 3:1 for large/bold text, so this stays closer to the true brand orange than Accent dark while still passing at ~3.2:1. Not for use at normal text sizes — use Accent dark there instead. |
 | Background | `#ffffff` over wall video | Page background. The white is now a veil (`--bg-veil: 0.8`, i.e. 80% white) over a fixed, slowly moving orange plaster-wall video. See "Background texture & glass" below. |
-| Glass | `rgb(255 255 255 / .45)` + `blur(16px) saturate(140%)` | Cards (the `.glass` utility). Replaces `panel` / white + `rule` border as the card surface. |
-| Glass bar | `rgb(255 255 255 / .55)` + `blur(20px) saturate(160%)` | The sticky header (`.glass-bar`) |
-| Panel | `#f5f3ee` | Legacy card fill. Cards are now `.glass`, and panes inside a glass card use `bg-white/30`–`/70` tints. |
-| Panel alt | `#f0eee9` | Legacy inactive-tab fill (tabs are now transparent on glass, `bg-white/70` on hover/focus) |
+| Cream | `#fff8ef` | Warm translucent surfaces, always used at an opacity (`bg-cream/30`–`/70`): panes inside glass cards, hovered tabs. Pure white films read cool and grey over the warm wall. |
+| Glass | `rgb(255 248 239 / .42)` + `blur(16px) saturate(140%)` | Cards (the `.glass` utility). Replaces `panel` / white + `rule` border as the card surface. |
+| Glass clear | `rgb(255 248 239 / .2)` + `blur(8px) saturate(150%)` | See-through glass (`.glass .glass-clear`), currently the MindTabs question card |
+| Glass bar | `rgb(255 248 239 / .55)` + `blur(20px) saturate(160%)` | The fixed header (`.glass-bar`) |
+| Panel | `#f5f3ee` | Legacy card fill. Cards are now `.glass`, and panes inside a glass card use `bg-cream/NN` tints. |
+| Panel alt | `#f0eee9` | Legacy inactive-tab fill (tabs are now transparent on glass, `bg-cream/60` on hover/focus) |
 | Soft | `#fbfaf7` | Very light fills (image frames, nested blocks) |
 | Rule | `#eeece7` | Hairline dividers, light card borders |
 | Rule strong | `#e2ded6` | Medium borders, inner card dividers, pill outlines |
@@ -53,22 +55,44 @@ introduce new colors, sizes or radii without adding them here first.
     veil).
   - Played forward then reversed (36s) so the loop has no visible jump.
 
-  The files are a 1280px wide, audio-free webm (~1 MB) with an mp4 (~2.2 MB)
-  fallback and a poster frame.
+  - Lightly sharpened, since the source footage is soft and the veil flattens
+    texture further.
+
+  The files are a 1920×1080, audio-free webm (~6 MB, VP9) with an mp4
+  (~11 MB, H.264) fallback for older Safari, plus a poster frame. An earlier
+  1280px, heavily compressed encode looked smeared.
 - **Veil** `--bg-veil: 0.8` (globals.css). This one value sets how much
   texture shows. 0.7 read as orange-beige; 0.85 lost most of the light
   movement.
 - **Reduced motion:** the video is paused on its poster frame, so the texture
   stays and the movement goes.
-- **Glass cards** (`.glass`): translucent white fill, backdrop blur, a 1px
+- **Glass cards** (`.glass`): translucent cream fill, backdrop blur, a 1px
   `white/60` edge with an inset top highlight, and the frame shadow. Inner
-  panes inside a glass card use plain `bg-white/NN` tints, never a nested
-  `.glass`. Without `backdrop-filter` support, the fill falls back to 85%
-  white.
-- **Header** (`.glass-bar`): sticky to the top. It is full height at the top
-  of the page and goes compact after 48px of scroll (`py-3`, 44px mark from
-  `sm`; it returns below 8px). `html` has `scroll-padding-top: 96px` so
-  anchor jumps clear it. The sticky TOC sits at `top-28` for the same reason.
+  panes inside a glass card use plain `bg-cream/NN` tints, never a nested
+  `.glass`. Without `backdrop-filter` support, the fill falls back to 88%
+  cream. Add `.glass-clear` for a see-through variant.
+- **Liquid-glass button** (`.glass-button`, the hero's secondary "See the
+  work"): a gradient lens with strong blur and saturation, a bright rim, a
+  specular sheen (`::before`) and a warm drop shadow, so it lifts off the
+  wall. It rises 1px with a deeper shadow on hover/focus.
+- **Case-study thumbnails** (`/case/*-card.png`): the mockup compositions
+  with their old flat `#EEE` backdrop made transparent and trimmed. Only the
+  backdrop connected to the image edge was removed, and drop shadows became
+  semi-transparent, so the glass card shows through around the UI.
+- **Case-study hero stack** (`SneakPeekHero`): each card takes its
+  screenshot's own aspect ratio and shows it uncropped, with gentle tilts.
+- **Header** (`.glass-bar`): `fixed`, with an in-flow spacer of its full
+  height, so resizing it never moves the page content. The row height and the
+  logo mark interpolate continuously over the first 160px of scroll by
+  `--shrink` (a smoothstep-eased 0 → 1), not as a two-state toggle:
+  - row: 96 → 64px below `sm`, 116 → 72px from `sm`, 124 → 72px from `xl`
+    (`--hdr-full`, `--hdr-compact`)
+  - mark: 52 → 40px from `sm`, 60 → 40px from `xl` (`--mark-full`,
+    `--mark-compact`); below `sm` it stays at its 32px floor
+
+  The header mark is smaller than the footer's, with more air above and
+  below. `html` has `scroll-padding-top: 96px` so anchor jumps clear the
+  header. The sticky TOC sits at `top-28` for the same reason.
 - The orange contact block, dark buttons, screenshot frames and the lightbox
   stay solid.
 

@@ -25,6 +25,9 @@ const config: Config = {
         // AA at normal text sizes, so accent-dark remains the token for
         // small text (mono eyebrows, TOC items).
         "accent-hero": "#D9770C",
+        // Warm translucent surfaces over the wall video (glass cards, panes
+        // inside them), used at an opacity: `bg-cream/50` etc.
+        cream: "#fff8ef",
         panel: "#f5f3ee",
         "panel-alt": "#f0eee9",
         soft: "#fbfaf7",

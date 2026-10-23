@@ -7,7 +7,7 @@ export const environmentalDataTool: CaseStudy = {
   headline: "Outdated systems.\nNow something researchers actually trust.",
   description:
     "Monitoring and reporting tools for environmental data, built so specialists can find, compare and publish results without fighting the interface.",
-  thumbnail: "/case/syke-new.png",
+  thumbnail: "/case/syke-new-card.png",
   thumbnailAlt: "Environmental data systems",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:

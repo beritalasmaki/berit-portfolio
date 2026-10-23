@@ -7,7 +7,7 @@ export const universityAiTool: CaseStudy = {
   headline: "Scattered student services. One AI-powered hub.",
   description:
     "An AI-powered search and service hub that lowers support pressure and helps students find what they need on their own.",
-  thumbnail: "/case/university-new.png",
+  thumbnail: "/case/university-new-card.png",
   thumbnailAlt: "University CX and AI tools",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:

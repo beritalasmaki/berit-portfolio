@@ -113,175 +113,195 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
     return () => query.removeEventListener("change", onChange);
   }, []);
 
-  // Sticky frosted header that slims down once the page is scrolled: full
-  // height at the top, compact (less padding, 44px mark — see
-  // `.site-header[data-compact]` in globals.css) after. Two thresholds
-  // rather than one: shrinking the header shortens the page above the
-  // fold, and a single cut-off can flip back and forth at the boundary.
-  const [compact, setCompact] = useState(false);
+  // Frosted header that slims down as the page scrolls. Rather than flipping
+  // between two states, it follows the scroll position: `--shrink` runs
+  // 0 → 1 over the first SHRINK_RANGE px, eased with a smoothstep curve so
+  // the change starts and lands softly, and the row and logo heights are
+  // interpolated from it in CSS (`.site-header-row`, globals.css). A short
+  // height transition smooths out the coarse steps of a mouse wheel.
+  const headerRef = useRef<HTMLElement>(null);
   useEffect(() => {
-    function onScroll() {
-      const y = window.scrollY;
-      setCompact((current) => (current ? y > 8 : y > 48));
+    const SHRINK_RANGE = 160;
+    let frame = 0;
+    function update() {
+      frame = 0;
+      const t = Math.min(Math.max(window.scrollY / SHRINK_RANGE, 0), 1);
+      const eased = t * t * (3 - 2 * t);
+      headerRef.current?.style.setProperty("--shrink", eased.toFixed(3));
     }
-    onScroll();
+    function onScroll() {
+      if (!frame) frame = requestAnimationFrame(update);
+    }
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
-    <header
-      data-compact={compact}
-      className={`site-header glass-bar sticky top-0 z-40 border-b border-white/70 px-gutter transition-[padding] duration-200 ease-out ${
-        compact ? "py-3" : "pt-8 pb-4"
-      }`}
-    >
-      {/* gap-3 below lg: this is a `justify-between` row, so the gap only
-          ever acts as a minimum separation — but at 360px the logo lockup
-          and the menu button together leave under 20px of slack, and a
-          32px minimum was enough on its own to push the button past the
-          right gutter. Full gap-8 returns at lg, with the desktop nav. */}
-      <div className="flex items-center justify-between gap-3 lg:gap-8">
-        <Link href="/" className="block shrink-0" aria-label={`${site.name} — home`}>
-          <Logo animated={animateLogo} />
-        </Link>
+    <>
+      {/* The header is `fixed`, so this spacer holds its full-height place in
+          the flow. Shrinking the header then never moves the page content
+          under it; with a sticky header every height change pushed the
+          content up or down mid-scroll, which read as a jolt. */}
+      <div aria-hidden="true" className="h-[var(--hdr-full)]" />
+      <header
+        ref={headerRef}
+        className="site-header glass-bar fixed inset-x-0 top-0 z-40 border-b border-white/70 px-gutter"
+      >
+        {/* gap-3 below lg: this is a `justify-between` row, so the gap only
+            ever acts as a minimum separation — but at 360px the logo lockup
+            and the menu button together leave under 20px of slack, and a
+            32px minimum was enough on its own to push the button past the
+            right gutter. Full gap-8 returns at lg, with the desktop nav. */}
+        <div className="site-header-row flex items-center justify-between gap-3 lg:gap-8">
+          <Link href="/" className="block shrink-0" aria-label={`${site.name} — home`}>
+            <Logo animated={animateLogo} />
+          </Link>
 
-        {/* Desktop nav — `lg` (1024px), not `md` (768px). The full row is
-            three page links + a divider + two icon buttons + Contact, which
-            needs ~565px of content; at 768px the row only has ~347px left
-            after the logo, so from `md` this nav simply wrapped to two lines
-            and stayed wrapped until ~1100px. No amount of gap-tightening
-            closes a 218px gap — the honest fix is to show this nav only
-            where it fits and let the mobile menu (which is built for exactly
-            this) cover everything below. At 1024 it now fits on one line
-            with room to spare; see the Logo's `xl:h-20` note for the other
-            half of that budget. */}
-        <nav
-          aria-label="Primary"
-          className="hidden lg:flex items-center justify-end gap-nav-gap flex-wrap min-w-0"
-        >
-          {backHref ? (
-            <Link
-              href={backHref}
-              className="text-nav font-semibold whitespace-nowrap text-body underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
-            >
-              {backLabel}
-            </Link>
-          ) : (
-            primaryNav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
+          {/* Desktop nav — `lg` (1024px), not `md` (768px). The full row is
+              three page links + a divider + two icon buttons + Contact, which
+              needs ~565px of content; at 768px the row only has ~347px left
+              after the logo, so from `md` this nav simply wrapped to two lines
+              and stayed wrapped until ~1100px. No amount of gap-tightening
+              closes a 218px gap — the honest fix is to show this nav only
+              where it fits and let the mobile menu (which is built for exactly
+              this) cover everything below. At 1024 it now fits on one line
+              with room to spare; see the Logo's `xl:h-20` note for the other
+              half of that budget. */}
+          <nav
+            aria-label="Primary"
+            className="hidden lg:flex items-center justify-end gap-nav-gap flex-wrap min-w-0"
+          >
+            {backHref ? (
+              <Link
+                href={backHref}
                 className="text-nav font-semibold whitespace-nowrap text-body underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
               >
-                {item.label}
+                {backLabel}
+              </Link>
+            ) : (
+              primaryNav.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-nav font-semibold whitespace-nowrap text-body underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
+                >
+                  {item.label}
+                </a>
+              ))
+            )}
+            <span aria-hidden="true" className="block w-px h-5 bg-rule-strong" />
+            {/* LinkedIn + GitHub + Contact grouped with their own tight 8px
+                gap, separate from the wider gap-nav-gap the rest of the nav
+                uses. The rotating availability badge used to sit at the end of
+                this cluster; it moved to the contact block, which is both
+                calmer and not width-constrained (see StatusPill.tsx). */}
+            <span className="flex items-center gap-2">
+              <IconLink
+                href={site.linkedinUrl}
+                label="Connect with me on LinkedIn"
+                tooltip="Connect with me on LinkedIn"
+                icon={<LinkedInIcon />}
+              />
+              <IconLink href={site.githubUrl} label="Visit my GitHub" tooltip="Visit my GitHub" icon={<GithubIcon />} />
+              <a
+                href="#contact"
+                className="text-nav font-semibold whitespace-nowrap text-white bg-ink rounded-pill py-3 px-6 transition-[background-color,transform] duration-150 ease-out hover:bg-ink-alt hover:text-white hover:-translate-y-px focus-visible:bg-ink-alt focus-visible:text-white focus-visible:-translate-y-px focus-visible:outline-white"
+              >
+                Contact
               </a>
-            ))
-          )}
-          <span aria-hidden="true" className="block w-px h-5 bg-rule-strong" />
-          {/* LinkedIn + GitHub + Contact grouped with their own tight 8px
-              gap, separate from the wider gap-nav-gap the rest of the nav
-              uses. The rotating availability badge used to sit at the end of
-              this cluster; it moved to the contact block, which is both
-              calmer and not width-constrained (see StatusPill.tsx). */}
-          <span className="flex items-center gap-2">
-            <IconLink
+            </span>
+          </nav>
+
+          {/* Mobile nav toggle */}
+          <button
+            ref={toggleRef}
+            type="button"
+            className="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-chrome border border-rule-strong shrink-0 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
+            aria-expanded={open}
+            aria-controls={panelId}
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              {open ? (
+                <path
+                  d="M4 4l12 12M16 4L4 16"
+                  stroke="#222222"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                />
+              ) : (
+                <path
+                  d="M2.5 5.5h15M2.5 10h15M2.5 14.5h15"
+                  stroke="#222222"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile nav panel — only rendered while open, so it never fights
+            Tailwind's `flex` utility for control of `display` the way a
+            native `hidden` attribute + `flex` class combo would. */}
+        {open && (
+          <nav
+            id={panelId}
+            aria-label="Primary"
+            className="lg:hidden flex flex-col items-start gap-4 pt-2 pb-6 max-h-[calc(100dvh-var(--hdr-compact))] overflow-y-auto"
+          >
+            {backHref ? (
+              <Link
+                href={backHref}
+                className="text-nav font-semibold text-body whitespace-nowrap underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
+              >
+                {backLabel}
+              </Link>
+            ) : (
+              primaryNav.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-nav font-semibold whitespace-nowrap underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))
+            )}
+            <a
               href={site.linkedinUrl}
-              label="Connect with me on LinkedIn"
-              tooltip="Connect with me on LinkedIn"
-              icon={<LinkedInIcon />}
-            />
-            <IconLink href={site.githubUrl} label="Visit my GitHub" tooltip="Visit my GitHub" icon={<GithubIcon />} />
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono-label text-mono-label-em font-medium uppercase text-body border border-rule-strong rounded-pill py-3 px-5 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
+            >
+              <LinkedInIcon />
+              LinkedIn
+            </a>
+            <a
+              href={site.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono-label text-mono-label-em font-medium uppercase text-body border border-rule-strong rounded-pill py-3 px-5 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
+            >
+              <GithubIcon />
+              GitHub
+            </a>
             <a
               href="#contact"
-              className="text-nav font-semibold whitespace-nowrap text-white bg-ink rounded-pill py-3 px-6 transition-[background-color,transform] duration-150 ease-out hover:bg-ink-alt hover:text-white hover:-translate-y-px focus-visible:bg-ink-alt focus-visible:text-white focus-visible:-translate-y-px focus-visible:outline-white"
+              onClick={() => setOpen(false)}
+              className="text-nav font-semibold text-white bg-ink rounded-pill py-3 px-6 transition-[background-color,transform] duration-150 ease-out hover:bg-ink-alt hover:text-white hover:-translate-y-px focus-visible:bg-ink-alt focus-visible:text-white focus-visible:-translate-y-px focus-visible:outline-white"
             >
               Contact
             </a>
-          </span>
-        </nav>
-
-        {/* Mobile nav toggle */}
-        <button
-          ref={toggleRef}
-          type="button"
-          className="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-chrome border border-rule-strong shrink-0 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
-          aria-expanded={open}
-          aria-controls={panelId}
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            {open ? (
-              <path
-                d="M4 4l12 12M16 4L4 16"
-                stroke="#222222"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-              />
-            ) : (
-              <path
-                d="M2.5 5.5h15M2.5 10h15M2.5 14.5h15"
-                stroke="#222222"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-              />
-            )}
-          </svg>
-        </button>
-      </div>
-
-      {/* Mobile nav panel — only rendered while open, so it never fights
-          Tailwind's `flex` utility for control of `display` the way a
-          native `hidden` attribute + `flex` class combo would. */}
-      {open && (
-        <nav id={panelId} aria-label="Primary" className="lg:hidden flex flex-col items-start gap-4 pt-6">
-          {backHref ? (
-            <Link
-              href={backHref}
-              className="text-nav font-semibold text-body whitespace-nowrap underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
-            >
-              {backLabel}
-            </Link>
-          ) : (
-            primaryNav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-nav font-semibold whitespace-nowrap underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))
-          )}
-          <a
-            href={site.linkedinUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 font-mono-label text-mono-label-em font-medium uppercase text-body border border-rule-strong rounded-pill py-3 px-5 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
-          >
-            <LinkedInIcon />
-            LinkedIn
-          </a>
-          <a
-            href={site.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 font-mono-label text-mono-label-em font-medium uppercase text-body border border-rule-strong rounded-pill py-3 px-5 transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
-          >
-            <GithubIcon />
-            GitHub
-          </a>
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="text-nav font-semibold text-white bg-ink rounded-pill py-3 px-6 transition-[background-color,transform] duration-150 ease-out hover:bg-ink-alt hover:text-white hover:-translate-y-px focus-visible:bg-ink-alt focus-visible:text-white focus-visible:-translate-y-px focus-visible:outline-white"
-          >
-            Contact
-          </a>
-        </nav>
-      )}
-    </header>
+          </nav>
+        )}
+      </header>
+    </>
   );
 }

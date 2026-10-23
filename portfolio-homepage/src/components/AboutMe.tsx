@@ -184,7 +184,7 @@ function WorkingWithMeRow({
         onMouseLeave={() => setHovered(false)}
         onFocus={() => setHovered(true)}
         onBlur={() => setHovered(false)}
-        className={`group relative z-0 flex w-full min-h-[124px] items-center gap-4 bg-white/50 rounded-frame p-4 text-left transition-[background-color,opacity] duration-500 ease-out hover:bg-white focus-visible:bg-white ${
+        className={`group relative z-0 flex w-full min-h-[124px] items-center gap-4 bg-cream/50 rounded-frame p-4 text-left transition-[background-color,opacity] duration-500 ease-out hover:bg-cream focus-visible:bg-cream ${
           expanded ? "opacity-0" : "opacity-100"
         }`}
       >

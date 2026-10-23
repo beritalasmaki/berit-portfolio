@@ -102,8 +102,8 @@ export default function MindTabs() {
           Hidden below md, where the accordion block just below takes over —
           two separate markup blocks rather than one responsive layout,
           matching Header.tsx's mobile-nav split. */}
-      <div className="relative mt-8 hidden glass rounded-card overflow-hidden md:grid md:grid-cols-2 items-stretch">
-        <div role="tablist" aria-orientation="vertical" aria-label="Questions" className="flex flex-col bg-white/30">
+      <div className="relative mt-8 hidden glass glass-clear rounded-card overflow-hidden md:grid md:grid-cols-2 items-stretch">
+        <div role="tablist" aria-orientation="vertical" aria-label="Questions" className="flex flex-col bg-transparent">
           {tabs.map((tab, index) => {
             const selected = index === active;
             const tabId = `${baseId}-tab-${index}`;
@@ -122,10 +122,10 @@ export default function MindTabs() {
                 tabIndex={selected ? 0 : -1}
                 onClick={() => setActive(index)}
                 onKeyDown={(event) => onKeyDown(event, index)}
-                className={`group flex flex-1 items-center justify-between gap-4 py-[clamp(16px,2.2vw,24px)] px-[clamp(16px,2.2vw,32px)] text-left border-b border-rule last:border-b-0 border-l-4 transition-[background-color,border-color] duration-150 ease-out ${
+                className={`group flex flex-1 items-center justify-between gap-4 py-[clamp(16px,2.2vw,24px)] px-[clamp(16px,2.2vw,32px)] text-left border-b border-white/60 last:border-b-0 border-l-4 transition-[background-color,border-color] duration-150 ease-out ${
                   selected
                     ? "bg-ink text-white border-l-ink focus-visible:outline-white"
-                    : "bg-transparent text-ink border-l-transparent hover:bg-white/70 hover:border-l-accent focus-visible:bg-white/70 focus-visible:border-l-accent"
+                    : "bg-transparent text-ink border-l-transparent hover:bg-cream/60 hover:border-l-accent focus-visible:bg-cream/60 focus-visible:border-l-accent"
                 }`}
               >
                 {/* min-h reserves space for 2 lines (em-based, so it scales
@@ -162,7 +162,7 @@ export default function MindTabs() {
           role="tabpanel"
           aria-labelledby={`${baseId}-tab-${active}`}
           tabIndex={0}
-          className="panel-fade-item flex flex-col gap-4 bg-white/50 p-pane-pad"
+          className="panel-fade-item flex flex-col gap-4 bg-cream/55 p-pane-pad"
         >
           <p className="m-0 text-body-lg text-body max-w-prose">{current.body}</p>
           <div className="flex gap-4 items-start border-t border-rule-strong pt-4">
@@ -184,7 +184,7 @@ export default function MindTabs() {
           attribute), same precedent as Header.tsx's mobile nav — which also
           means each panel is a genuine fresh mount, so `.panel-fade-item`
           fades in on every expand with no extra key needed. */}
-      <div className="mt-8 flex flex-col glass rounded-card overflow-hidden divide-y divide-rule md:hidden">
+      <div className="mt-8 flex flex-col glass glass-clear rounded-card overflow-hidden divide-y divide-white/60 md:hidden">
         {tabs.map((tab, index) => {
           const expanded = index === openMobile;
           const buttonId = `${baseId}-accordion-button-${index}`;
@@ -201,7 +201,7 @@ export default function MindTabs() {
                   className={`flex w-full items-center justify-between gap-4 py-4 px-[clamp(16px,4vw,24px)] text-left border-l-4 transition-[background-color,border-color] duration-150 ease-out ${
                     expanded
                       ? "bg-ink text-white border-l-ink focus-visible:outline-white"
-                      : "bg-transparent text-ink border-l-transparent focus-visible:bg-white/70 focus-visible:border-l-accent"
+                      : "bg-transparent text-ink border-l-transparent focus-visible:bg-cream/60 focus-visible:border-l-accent"
                   }`}
                 >
                   <span className="min-h-[2.75em] flex items-center text-[15px] font-semibold leading-snug text-pretty">
@@ -222,7 +222,7 @@ export default function MindTabs() {
                   id={panelId}
                   role="region"
                   aria-labelledby={buttonId}
-                  // `bg-white/70`, well above the transparent question rows
+                  // `bg-cream/70`, well above the transparent question rows
                   // on the `glass` block behind it. When both shared one
                   // panel tone the answer read as the same flat surface, so
                   // an open answer didn't visibly separate from the questions
@@ -245,7 +245,7 @@ export default function MindTabs() {
                   // `divide-y` under it — its bottom *is* the container's
                   // bottom edge, meeting the page — so without this it would
                   // dissolve exactly the way the sides did.
-                  className="panel-fade-item flex flex-col gap-4 bg-white/70 p-pane-pad border-x border-b border-rule-strong"
+                  className="panel-fade-item flex flex-col gap-4 bg-cream/70 p-pane-pad border-x border-b border-white/70"
                 >
                   <p className="m-0 text-body-lg text-body max-w-prose">{tab.body}</p>
                   <div className="flex gap-4 items-start border-t border-rule-strong pt-4">

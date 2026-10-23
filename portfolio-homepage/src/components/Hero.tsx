@@ -50,7 +50,7 @@ export default function Hero() {
             </a>
             <a
               href="#case-studies"
-              className="inline-block border border-rule-strong text-ink text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
+              className="glass-button inline-block text-ink text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap hover:text-ink focus-visible:text-ink"
             >
               See the work
             </a>
