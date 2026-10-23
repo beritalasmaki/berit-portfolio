@@ -4,7 +4,10 @@ import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 /**
  * Liquid hover: while the pointer is over the wrapped content, it ripples
- * like it's seen through moving water. An SVG filter displaces the content
+ * faintly, like it's seen through slow-moving water. Kept deliberately
+ * subtle (a few px, a slow 12s flow, ~1s ease) and limited to the hero line
+ * and photo: stronger, faster or on every client logo, it made the page
+ * feel busy. An SVG filter displaces the content
  * by a slowly flowing noise field (`feTurbulence`, its frequency animated
  * with SMIL so the ripple keeps moving). The displacement strength eases in
  * on enter and back out on leave, so it never snaps.
@@ -16,7 +19,7 @@ import { useEffect, useId, useRef, useState, type ReactNode } from "react";
  */
 export default function LiquidHover({
   children,
-  strength = 10,
+  strength = 5,
   className = "",
 }: {
   children: ReactNode;
@@ -46,7 +49,7 @@ export default function LiquidHover({
   function animateTo(target: number) {
     cancelAnimationFrame(frame.current);
     const from = current.current;
-    const duration = target > from ? 520 : 680;
+    const duration = target > from ? 900 : 1100;
     const start = performance.now();
     if (target > 0) setActive(true);
     const step = (now: number) => {
@@ -78,7 +81,7 @@ export default function LiquidHover({
           <feTurbulence type="fractalNoise" baseFrequency="0.007 0.012" numOctaves={1} seed={3} result="noise">
             <animate
               attributeName="baseFrequency"
-              dur="6s"
+              dur="12s"
               values="0.007 0.012; 0.01 0.016; 0.007 0.012"
               repeatCount="indefinite"
             />

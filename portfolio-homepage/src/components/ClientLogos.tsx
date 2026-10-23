@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { clientLogos } from "@/data/site";
-import LiquidHover from "./LiquidHover";
 
 export default function ClientLogos() {
   return (
@@ -29,15 +28,13 @@ export default function ClientLogos() {
       <ul className="mt-8 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-11 gap-3 sm:gap-4 list-none p-0 m-0">
         {clientLogos.map((logo) => (
           <li key={logo.name} className="relative h-20 sm:h-24 lg:h-20">
-            <LiquidHover strength={7} className="absolute inset-0">
-              <Image
-                src={logo.src}
-                alt={logo.name}
-                fill
-                sizes="(min-width: 1024px) 9vw, (min-width: 640px) 22vw, 30vw"
-                className="object-contain p-4"
-              />
-            </LiquidHover>
+            <Image
+              src={logo.src}
+              alt={logo.name}
+              fill
+              sizes="(min-width: 1024px) 9vw, (min-width: 640px) 22vw, 30vw"
+              className="object-contain p-4"
+            />
           </li>
         ))}
       </ul>

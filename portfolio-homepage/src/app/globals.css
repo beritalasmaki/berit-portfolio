@@ -340,6 +340,14 @@
     transition: height 260ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
+  /* The footer's mark sits at a fixed 40px from sm (below sm it's already
+     at its 32px floor), so the band stays compact. */
+  @media (min-width: 640px) {
+    .site-footer .logo-mark {
+      height: 40px;
+    }
+  }
+
   .site-header .logo-mark {
     height: calc(var(--mark-full) - (var(--mark-full) - var(--mark-compact)) * var(--shrink, 0));
     transition: height 260ms cubic-bezier(0.22, 1, 0.36, 1);
