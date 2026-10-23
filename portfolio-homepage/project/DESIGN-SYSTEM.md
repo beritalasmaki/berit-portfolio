@@ -67,8 +67,10 @@ introduce new colors, sizes or radii without adding them here first.
   point is the logo's own orange blob (`BLOB_PATH`, exported from
   `Logo.tsx`, `#FF890C`), so it's the brand shape itself. A generic sphere
   didn't read as the brand.
-  - A static blurred copy behind it (an SVG `feGaussianBlur`, 45%) gives a
-    soft glow that ties it to the background orbs.
+  - Its edge is feathered (`feGaussianBlur` 5 on the blob itself; a crisp
+    edge read too sharp against the soft orbs), and a more blurred copy
+    behind it (blur 14, 45%) gives a soft glow that ties it to the
+    background orbs.
   - At rest it floats: a 16s tilt-and-breathe.
   - While hovered, it glides toward the cursor: the target is 18% of the
     pointer's offset from center, clamped to 44px, eased 7.5% of the way
