@@ -58,11 +58,15 @@ introduce new colors, sizes or radii without adding them here first.
     copy. On the sharp frames, the repeating weave fooled the tracker and
     made the shake worse. Frame-to-frame jitter dropped from 0.81px to
     0.22px RMS.
-  - A 12.5s stretch, from plain linen into the pink flowers, is slowed 2.5×
-    with motion-interpolated frames (`minterpolate`, so it stays fluid
-    rather than steppy). It plays forward then reversed (~62s), so the loop
-    has no visible jump. At the original speed, the drift read as fast and
-    shaky.
+  - A 3s stretch, where the pink flowers drift in, is slowed 30×, with
+    frames blended in between (`minterpolate=mi_mode=blend`; under this much
+    blur, a blend reads as smooth as motion interpolation and renders far
+    faster). The drift is ~14px/s on a 1280px-wide frame, down from ~156px/s
+    at the original speed. At 2.5×, ~36px/s still pulled the eye while
+    browsing.
+  - It plays forward then reversed (~3 min), so the loop has no visible
+    jump, at 15fps. At this speed that's ~1px per frame, invisible under
+    the blur, and it halves the file size.
   - Light temporal denoise (`hqdn3d`) keeps the fine weave cheap to encode.
     Without it, the weave cost ~1 MB per second at 1080p.
   - A "very soft" glow: `gblur σ7` screen-blended at 66% with `gblur σ22`,
@@ -71,8 +75,9 @@ introduce new colors, sizes or radii without adding them here first.
     crisp, and the glow lifts the brightness slightly. Weaker blurs (σ2/σ4)
     still read rough behind text.
 
-  The files are 1280×720 and audio-free: a webm (~1.1 MB, VP9) with an mp4
-  (~3.1 MB, H.264) fallback for older Safari, plus a poster frame.
+  The files are 1280×720 and audio-free: a webm (~2.6 MB, VP9) with an mp4
+  (~3.8 MB, H.264, CRF 33, which is visually identical under the veil)
+  fallback for older Safari, plus a poster frame.
 - **Veil** `--bg-veil: 0.77` (globals.css). This one value sets how much
   texture shows. 0.7 read as orange-beige; 0.85 lost most of the light
   movement. 0.8 was a little too faint.
@@ -113,7 +118,10 @@ introduce new colors, sizes or radii without adding them here first.
     `--mark-compact`); below `sm` it stays at its 32px floor
 
   The header mark is smaller than the footer's, with more air above and
-  below. `html` has `scroll-padding-top: 96px` so anchor jumps clear the
+  below. On narrow screens the logo is the part that gives way: the link is
+  `min-w-0` and the name and role lines truncate with "…", so Android text
+  scaling or display zoom (common on Samsung phones) can't push the menu
+  button off-screen. It stays visible with 150% text and at 280px. `html` has `scroll-padding-top: 96px` so anchor jumps clear the
   header. The sticky TOC sits at `top-28` for the same reason.
 - **Contact block:** a `.glass` card (`rounded-card`, `px-pane-pad
   py-contact-y`), no longer a full-bleed orange band, which read as a

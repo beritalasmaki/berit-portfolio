@@ -15,7 +15,9 @@ import { useEffect, useRef } from "react";
  * - It's heavily softened with a glow: a blurred copy screen-blended with a
  *   much more blurred one. The weave stays as a hint of grid, since anything
  *   crisper read rough behind text.
- * - A 12.5s stretch plays forward then reversed (25s), so the loop has no
+ * - It's stabilized, then a 3s stretch is slowed 30× (frame-blended) to a
+ *   ~14px/s drift: barely-there motion that doesn't pull the eye while
+ *   browsing. It plays forward then reversed (~3 min), so the loop has no
  *   jump where it restarts.
  *
  * Reduced motion: the video is paused, leaving the still poster frame —
