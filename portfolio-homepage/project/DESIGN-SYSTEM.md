@@ -114,8 +114,9 @@ introduce new colors, sizes or radii without adding them here first.
   heading's last word ("better?", in `accent-hero`, large bold) and the
   email/LinkedIn underlines.
 - **Footer** (`.glass-footer`): full-width frost like the header, but a
-  deeper warm taupe tint (`rgb(226 214 200 / .6)`) with the shared light top
-  edge, so the page ends on a grounded band. Its meta line is `text-body`,
+  warm taupe tint (`rgb(214 198 180 / .28)`, 4px blur) with the shared light
+  top edge. It's a shade deeper than the header, so the page ends on its own
+  band, but still see-through: at 60% with a 20px blur it read as a solid slab. Its meta line is `text-body`,
   since `footer-meta` falls under AA on the deeper tint.
 - **Liquid hover** (`LiquidHover.tsx`): the hero line (20px), the hero photo
   (9px) and each client logo (7px) ripple like they're seen through water

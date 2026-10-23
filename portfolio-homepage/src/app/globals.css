@@ -250,12 +250,14 @@
       0 8px 24px rgba(34, 34, 34, 0.05);
   }
 
-  /* The footer's frost: the header's recipe with a deeper warm taupe tint,
-     so the page's end reads as a separate, grounded band. */
+  /* The footer's frost: a warm taupe tint, a shade deeper than the header's
+     cream so the page's end reads as its own band, but kept see-through.
+     At 60% fill with a 20px blur it read as a solid slab, and over the
+     already-soft linen even 10px wiped the texture out. */
   .glass-footer {
-    background-color: rgb(226 214 200 / 0.6);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    backdrop-filter: blur(20px) saturate(140%);
+    background-color: rgb(214 198 180 / 0.28);
+    -webkit-backdrop-filter: blur(4px) saturate(130%);
+    backdrop-filter: blur(4px) saturate(130%);
     border-top: 1px solid var(--glass-edge);
   }
 
