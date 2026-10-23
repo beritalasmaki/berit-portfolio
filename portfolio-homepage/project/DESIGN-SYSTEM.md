@@ -54,8 +54,15 @@ introduce new colors, sizes or radii without adding them here first.
   - A one-frame "Media Not Found" glitch card near the start is trimmed out.
   - It's nudged warm with a gentle color balance, since the linen's natural
     grey read cool under the white veil.
-  - A 12.5s stretch, from plain linen into the pink flowers, plays forward
-    then reversed (25s), so the loop has no visible jump.
+  - Stabilized with two-pass `vidstab`, with the motion tracked on a blurred
+    copy. On the sharp frames, the repeating weave fooled the tracker and
+    made the shake worse. Frame-to-frame jitter dropped from 0.81px to
+    0.22px RMS.
+  - A 12.5s stretch, from plain linen into the pink flowers, is slowed 2.5×
+    with motion-interpolated frames (`minterpolate`, so it stays fluid
+    rather than steppy). It plays forward then reversed (~62s), so the loop
+    has no visible jump. At the original speed, the drift read as fast and
+    shaky.
   - Light temporal denoise (`hqdn3d`) keeps the fine weave cheap to encode.
     Without it, the weave cost ~1 MB per second at 1080p.
   - A "very soft" glow: `gblur σ7` screen-blended at 66% with `gblur σ22`,
@@ -64,8 +71,8 @@ introduce new colors, sizes or radii without adding them here first.
     crisp, and the glow lifts the brightness slightly. Weaker blurs (σ2/σ4)
     still read rough behind text.
 
-  The files are 1280×720 and audio-free: a webm (~0.4 MB, VP9) with an mp4
-  (~1.3 MB, H.264) fallback for older Safari, plus a poster frame.
+  The files are 1280×720 and audio-free: a webm (~1.1 MB, VP9) with an mp4
+  (~3.1 MB, H.264) fallback for older Safari, plus a poster frame.
 - **Veil** `--bg-veil: 0.77` (globals.css). This one value sets how much
   texture shows. 0.7 read as orange-beige; 0.85 lost most of the light
   movement. 0.8 was a little too faint.
@@ -113,18 +120,20 @@ introduce new colors, sizes or radii without adding them here first.
   different site next to the glass. Orange stays as an accent: the
   heading's last word ("better?", in `accent-hero`, large bold) and the
   email/LinkedIn underlines.
-- **Footer** (`.glass-footer`): full-width frost like the header, but a
+- **Footer** (`.glass-footer`, compact: a 40px mark from `sm`, `py-6`):
+  full-width frost like the header, but a
   warm taupe tint (`rgb(214 198 180 / .28)`, 4px blur) with the shared light
   top edge. It's a shade deeper than the header, so the page ends on its own
   band, but still see-through: at 60% with a 20px blur it read as a solid slab. Its meta line is `text-body`,
   since `footer-meta` falls under AA on the deeper tint.
-- **Liquid hover** (`LiquidHover.tsx`): the hero line (20px), the hero photo
-  (9px) and each client logo (7px) ripple like they're seen through water
-  while hovered. An SVG filter displaces them by smoothed, slowly flowing
-  noise (one octave, low frequency, for broad waves), with a 0.6px blur
-  after to anti-alias the warped edges. Strength eases in over 520ms and out
-  over 680ms. The filter is only applied while active, and it's off for
-  reduced motion.
+- **Liquid hover** (`LiquidHover.tsx`): only the hero line (7px) and the hero
+  photo (4px) ripple faintly while hovered, like they're seen through
+  slow-moving water. An SVG filter displaces them by smoothed, slowly flowing
+  noise (one octave, low frequency, a 12s cycle), with a 0.6px blur after to
+  anti-alias the warped edges. Strength eases in over 900ms and out over
+  1100ms. It's kept deliberately subtle and off the client logos: at 20px,
+  with a fast flow and on every logo, it made the page feel busy. The
+  filter is only applied while active, and it's off for reduced motion.
 - **Icons** (`icons.tsx`): 16px line icons, 1.6px stroke, `currentColor`,
   `aria-hidden`.
   - Buttons end in a right arrow that nudges 2px on hover/focus.
@@ -1227,13 +1236,16 @@ from landing on content the reader needs:
 2. **Icon-only 48×48 circle below `sm:`**, full pill from `sm:` up. The pill
    is 138px wide — 38% of a 360px viewport, wide enough to lie across a
    heading. The circle is 13%.
-3. **The footer reserves room for it**: `pb-24` (96px) rather than a
-   visually-sufficient `pb-10`. The button sits `bottom-6` (24px) up and is
-   at most 52px tall, so it claims the bottom ~76px of the viewport; at the
-   very end of the page that band falls on the footer, and with 40px of
-   padding it covered the copyright line outright (measured at 360/390/414).
-   96px clears it with ~24px to spare. **Keep `Footer.tsx`'s `pb` and this
-   button's size/offset in step.**
+3. **The footer reserves room for it on the right, not underneath.** At the
+   end of the page the button lands inside the compact footer band, so the
+   footer keeps its text out of the button's column instead of adding tall
+   bottom padding:
+   - `sm:pr-48` (192px) clears the ~138px pill;
+   - `pr-[84px]` below `sm` clears the 48px circle.
+
+   The old `pb-24` reserve made the footer ~210px tall; it's now 92px on
+   desktop and 143px on phones, with no overlap at 320–1440px.
+   **Keep `Footer.tsx`'s padding and this button's size/offset in step.**
 
 ### Contact block (page closer)
 ```

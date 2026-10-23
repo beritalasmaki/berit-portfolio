@@ -65,7 +65,7 @@ export default function Hero() {
           {/* Hand-drawn flourish, matching the logo's mark treatment
               (swapped in from the Claude Design canvas — was concentric
               orbit ellipses before). */}
-          <LiquidHover strength={20} className="w-full">
+          <LiquidHover strength={7} className="w-full">
             <svg
               viewBox="0 0 420 260"
               role="presentation"
@@ -186,7 +186,7 @@ export default function Hero() {
       </div>
 
       <div className="flex items-center gap-6 py-2 pb-[clamp(48px,7vw,88px)]">
-        <LiquidHover strength={9} className="shrink-0">
+        <LiquidHover strength={4} className="shrink-0">
           <Image
             src="/photo.png"
             alt="Berit Alasmäki"
