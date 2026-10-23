@@ -393,9 +393,9 @@ export default function ProcessTimeline() {
         role="tabpanel"
         aria-labelledby={`${baseId}-tab-${tabIndex}`}
         tabIndex={0}
-        className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] mt-4 items-stretch border border-rule-strong rounded-card overflow-hidden"
+        className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] mt-4 items-stretch glass rounded-card overflow-hidden"
       >
-        <div className="bg-panel p-card-pad min-w-0">
+        <div className="bg-white/30 p-card-pad min-w-0">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <h3 className="m-0 text-sub-h4 font-extrabold whitespace-nowrap">Typical timeline</h3>
             <span className="font-mono-label text-mono-label-em uppercase text-body bg-white border border-rule-strong rounded-pill py-2 px-4 whitespace-nowrap">
@@ -482,7 +482,7 @@ export default function ProcessTimeline() {
           </div>
         </div>
 
-        <div className="bg-white p-card-pad min-w-0 flex flex-col gap-6 border-t lg:border-t-0 lg:border-l border-rule-strong">
+        <div className="bg-white/70 p-card-pad min-w-0 flex flex-col gap-6 border-t lg:border-t-0 lg:border-l border-rule-strong">
           {detail ? (
             <div className="flex flex-col gap-6">
               <span

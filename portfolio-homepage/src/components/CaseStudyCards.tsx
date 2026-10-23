@@ -23,7 +23,7 @@ export default function CaseStudyCards() {
           return (
             <article
               key={study.slug}
-              className={`flex flex-col bg-panel rounded-card overflow-hidden ${isLastOdd ? "md:col-span-2" : ""}`}
+              className={`flex flex-col glass rounded-card overflow-hidden ${isLastOdd ? "md:col-span-2" : ""}`}
             >
               <Link
                 href={`/usecases/${study.slug}`}

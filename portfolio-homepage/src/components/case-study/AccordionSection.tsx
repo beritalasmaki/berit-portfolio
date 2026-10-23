@@ -39,7 +39,7 @@ function ChevronIcon() {
 /**
  * A collapsible page section ("How it started", "Challenges &
  * Problem-Solving", "What I would do differently"), presented as a white
- * card (`rounded-card border border-rule bg-white p-card-pad`) — the same
+ * card (`rounded-card glass p-card-pad`) — the same
  * treatment given to the plain sections around it (Starting Point,
  * ImpactSection), so the page reads as one consistent
  * "each section is a card" system rather than the accordions looking like
@@ -95,7 +95,7 @@ export default function AccordionSection({
     <section
       id={id}
       aria-labelledby={headingId}
-      className="rounded-card border border-rule bg-white p-card-pad"
+      className="rounded-card glass p-card-pad"
     >
       <p className="font-mono-label text-mono-label uppercase text-muted m-0">{label}</p>
       <h2 id={headingId} className="mt-4 m-0">

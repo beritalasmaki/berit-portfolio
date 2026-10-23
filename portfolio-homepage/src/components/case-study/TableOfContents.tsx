@@ -117,7 +117,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
       {/* Desktop / tablet: fully expanded, sticky sidebar. */}
       <nav
         aria-label="On this page"
-        className="hidden lg:sticky lg:top-8 lg:flex flex-col gap-4 rounded-card border border-rule bg-white p-6"
+        className="hidden lg:sticky lg:top-28 lg:flex flex-col gap-4 rounded-card glass p-6"
       >
         <p className="font-mono-label text-mono-label uppercase text-muted m-0 pb-2">On this page</p>
         {sectionLinks()}
@@ -127,7 +127,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
       {/* Mobile: collapsed dropdown, native <details> for built-in keyboard
           + screen-reader disclosure semantics with no extra JS wiring. */}
       <details
-        className="group rounded-card border border-rule bg-white lg:hidden"
+        className="group rounded-card glass lg:hidden"
         open={mobileOpen}
         onToggle={(event) => setMobileOpen(event.currentTarget.open)}
       >

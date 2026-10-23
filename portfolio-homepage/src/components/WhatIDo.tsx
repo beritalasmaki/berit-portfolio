@@ -3,7 +3,7 @@
  * column — the whole block fits on screen at once, which is the point.
  *
  * Sits inside the About section (no eyebrow, no number of its own) and takes
- * the same `bg-panel rounded-card p-card-pad` card as the bio block directly
+ * the same `glass rounded-card p-card-pad` card as the bio block directly
  * above it, so it reads as one more part of About rather than a new section.
  * Inside the card the groups carry no borders: each one is marked by a short
  * accent rule above its title, the same 24×2px accent rule the design system
@@ -32,7 +32,7 @@ const groups = [
 
 export default function WhatIDo() {
   return (
-    <div className="mt-grid-gap flex flex-col gap-8 bg-panel rounded-card p-card-pad">
+    <div className="mt-grid-gap flex flex-col gap-8 glass rounded-card p-card-pad">
       <h3 id="what-i-do-heading" className="m-0 text-card-h3 text-ink">
         What I do
       </h3>

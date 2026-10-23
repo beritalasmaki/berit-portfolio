@@ -184,7 +184,7 @@ function WorkingWithMeRow({
         onMouseLeave={() => setHovered(false)}
         onFocus={() => setHovered(true)}
         onBlur={() => setHovered(false)}
-        className={`group relative z-0 flex w-full min-h-[124px] items-center gap-4 bg-panel rounded-frame p-4 text-left transition-[background-color,opacity] duration-500 ease-out hover:bg-rule-strong focus-visible:bg-rule-strong ${
+        className={`group relative z-0 flex w-full min-h-[124px] items-center gap-4 bg-white/50 rounded-frame p-4 text-left transition-[background-color,opacity] duration-500 ease-out hover:bg-white focus-visible:bg-white ${
           expanded ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -258,7 +258,7 @@ function WorkingWithMe() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-6 bg-white border border-rule rounded-card p-card-pad">
+    <div className="flex flex-col gap-6 glass rounded-card p-card-pad">
       <h3 className="m-0 text-card-h3 text-ink">Working with me</h3>
       <ul className="flex flex-col gap-3 list-none p-0 m-0">
         {items.map((item, index) => (
@@ -280,7 +280,7 @@ function WorkingWithMe() {
 export default function AboutMe() {
   return (
     <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-grid-gap items-stretch">
-      <div className="flex flex-col gap-6 bg-panel rounded-card p-card-pad">
+      <div className="flex flex-col gap-6 glass rounded-card p-card-pad">
         <div className="flex items-center gap-4">
           <Image
             src="/photo.png"

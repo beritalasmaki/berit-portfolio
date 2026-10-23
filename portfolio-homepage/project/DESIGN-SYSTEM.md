@@ -22,9 +22,11 @@ introduce new colors, sizes or radii without adding them here first.
 | Accent | `#FC890C` | Orange from the logo flourish. Underlines, markers, dots, borders, the contact block background — **decorative use only.** Never used as text color on a light background: raw accent is ~2.4:1 contrast, which fails WCAG AA even at large-text sizes. |
 | Accent dark | `#A45B0B` | Accent-colored **text** at normal (non-large) sizes on light backgrounds — the sticky TOC's active-item text (15px). Passes AA at 5.15:1 (needs 4.5:1 at these sizes). |
 | Accent hero | `#D9770C` | Accent-colored **text** at large-bold sizes only — currently just the hero's "forward." (part of an 800-weight, 40–84px heading). WCAG AA only requires 3:1 for large/bold text, so this stays closer to the true brand orange than Accent dark while still passing at ~3.2:1. Not for use at normal text sizes — use Accent dark there instead. |
-| Background | `#ffffff` | Page background |
-| Panel | `#f5f3ee` | Cards, step cards, quote blocks, tab panes |
-| Panel alt | `#f0eee9` | Inactive tabs (slightly darker than white so tabs read against the page); also used as the loading-placeholder background behind case-study thumbnails |
+| Background | `#ffffff` over wall video | Page background. The white is now a veil (`--bg-veil: 0.8`, i.e. 80% white) over a fixed, slowly moving orange plaster-wall video. See "Background texture & glass" below. |
+| Glass | `rgb(255 255 255 / .45)` + `blur(16px) saturate(140%)` | Cards (the `.glass` utility). Replaces `panel` / white + `rule` border as the card surface. |
+| Glass bar | `rgb(255 255 255 / .55)` + `blur(20px) saturate(160%)` | The sticky header (`.glass-bar`) |
+| Panel | `#f5f3ee` | Legacy card fill. Cards are now `.glass`, and panes inside a glass card use `bg-white/30`–`/70` tints. |
+| Panel alt | `#f0eee9` | Legacy inactive-tab fill (tabs are now transparent on glass, `bg-white/70` on hover/focus) |
 | Soft | `#fbfaf7` | Very light fills (image frames, nested blocks) |
 | Rule | `#eeece7` | Hairline dividers, light card borders |
 | Rule strong | `#e2ded6` | Medium borders, inner card dividers, pill outlines |
@@ -40,6 +42,35 @@ introduce new colors, sizes or radii without adding them here first.
   light background** (see Accent dark above).
 - Text on the orange contact block is `#222222`, never white.
 - Client / customer logos are normalized to `#222222`.
+
+### Background texture & glass
+- **Wall video** (`BackgroundVideo.tsx`, `/public/bg/`): fixed behind every
+  page, `object-cover`, muted, looping, `aria-hidden`. The source clip is
+  pre-processed:
+  - Color-graded so its shadows stay saturated orange. Under the white veil,
+    the raw brown shadows mixed to a cool grey-beige; graded, every frame
+    stays warm (darkest frame ≈ `#F3E6D7`, brightest ≈ `#FDF1DA` after the
+    veil).
+  - Played forward then reversed (36s) so the loop has no visible jump.
+
+  The files are a 1280px wide, audio-free webm (~1 MB) with an mp4 (~2.2 MB)
+  fallback and a poster frame.
+- **Veil** `--bg-veil: 0.8` (globals.css). This one value sets how much
+  texture shows. 0.7 read as orange-beige; 0.85 lost most of the light
+  movement.
+- **Reduced motion:** the video is paused on its poster frame, so the texture
+  stays and the movement goes.
+- **Glass cards** (`.glass`): translucent white fill, backdrop blur, a 1px
+  `white/60` edge with an inset top highlight, and the frame shadow. Inner
+  panes inside a glass card use plain `bg-white/NN` tints, never a nested
+  `.glass`. Without `backdrop-filter` support, the fill falls back to 85%
+  white.
+- **Header** (`.glass-bar`): sticky to the top. It is full height at the top
+  of the page and goes compact after 48px of scroll (`py-3`, 44px mark from
+  `sm`; it returns below 8px). `html` has `scroll-padding-top: 96px` so
+  anchor jumps clear it. The sticky TOC sits at `top-28` for the same reason.
+- The orange contact block, dark buttons, screenshot frames and the lightbox
+  stay solid.
 
 ---
 

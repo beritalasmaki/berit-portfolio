@@ -26,7 +26,7 @@ export default function AboutSection() {
 
       <ProcessTimeline />
 
-      <div className="flex items-center gap-4 bg-panel rounded-card p-card-pad mt-grid-gap">
+      <div className="flex items-center gap-4 glass rounded-card p-card-pad mt-grid-gap">
         <span aria-hidden="true" className="text-xl text-accent-dark whitespace-nowrap">
           ↗
         </span>
