@@ -61,11 +61,11 @@ export default function StatusPill() {
 
   return (
     <span className="inline-flex items-center gap-2 shrink-0">
-      {/* Ink, not the `success` green this used on white. The contact block
-          is full-bleed accent orange, and #3F7A54 on #FC890C measures
-          2.12:1 — a 6px dot at that contrast is effectively invisible. Ink
-          is 6.61:1 there and matches the block's own "every element is ink"
-          rule. The breathing animation is what still reads as "live". */}
+      {/* Ink: the strongest contrast on the contact block's light glass card,
+          and a 6px dot needs it to read at all. (The block used to be
+          full-bleed accent orange, where the old `success` green measured
+          only 2.12:1.) The breathing animation is what still reads as
+          "live". */}
       <span className="relative w-1.5 h-1.5 shrink-0" aria-hidden="true">
         <span className="absolute inset-0 rounded-pill bg-ink animate-status-breathe" />
       </span>

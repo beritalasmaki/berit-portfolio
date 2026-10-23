@@ -398,7 +398,7 @@ export default function ProcessTimeline() {
         <div className="bg-cream/30 p-card-pad min-w-0">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <h3 className="m-0 text-sub-h4 font-extrabold whitespace-nowrap">Typical timeline</h3>
-            <span className="font-mono-label text-mono-label-em uppercase text-body bg-white border border-rule-strong rounded-pill py-2 px-4 whitespace-nowrap">
+            <span className="font-mono-label text-mono-label-em uppercase text-body glass-pill rounded-pill py-2 px-4 whitespace-nowrap">
               {tab.durationLabel}
             </span>
           </div>
