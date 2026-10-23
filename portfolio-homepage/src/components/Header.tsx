@@ -165,7 +165,13 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             32px minimum was enough on its own to push the button past the
             right gutter. Full gap-8 returns at lg, with the desktop nav. */}
         <div className="site-header-row flex items-center justify-between gap-3 lg:gap-8">
-          <Link href="/" className="block shrink-0" aria-label={`${site.name} — home`}>
+          {/* `min-w-0`, not `shrink-0`: when the row runs out of room the logo
+              must give way, never the menu button. Android's text scaling
+              (common on Samsung phones) or display zoom widens the
+              non-wrapping wordmark, and as a fixed `shrink-0` item it pushed
+              the toggle past the right edge, where a fixed header can't be
+              scrolled to. Now the wordmark truncates instead (see Logo.tsx). */}
+          <Link href="/" className="block min-w-0" aria-label={`${site.name} — home`}>
             <Logo animated={animateLogo} />
           </Link>
 

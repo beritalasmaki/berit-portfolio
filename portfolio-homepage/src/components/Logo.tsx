@@ -29,7 +29,7 @@ export default function Logo({ animated = false }: {
   const maskId = useId();
 
   return (
-    <span className="inline-flex items-center gap-2 sm:gap-3">
+    <span className="inline-flex max-w-full min-w-0 items-center gap-2 sm:gap-3">
       {/* h-8 (32px) on the narrowest phones, h-16 (64px) from sm, h-20
           (80px) at xl+ — a fixed mark plus the wordmark next to it doesn't
           fit a narrow mobile header without pushing into the menu button
@@ -83,7 +83,7 @@ export default function Logo({ animated = false }: {
         </g>
       </svg>
 
-      <span className="flex flex-col justify-center gap-1 whitespace-nowrap">
+      <span className="flex min-w-0 flex-col justify-center gap-1 whitespace-nowrap">
         {/* `tracking-[0.0616em]` makes the name span exactly as wide as
             the role line under it, so the two read as one justified
             lockup instead of a short name over a wider subtitle. Another
@@ -104,8 +104,8 @@ export default function Logo({ animated = false }: {
             one trailing space after the last glyph — as it does on the
             role line, so both lines carry it and they cancel out.)
             Recompute the same way if `site.name` or `site.role` changes. */}
-        <span className="text-[22px] leading-none font-bold tracking-[0.0616em] text-ink">{site.name}</span>
-        <span className="font-mono-label text-mono-label uppercase text-muted">{site.role}</span>
+        <span className="truncate text-[22px] leading-none font-bold tracking-[0.0616em] text-ink">{site.name}</span>
+        <span className="truncate font-mono-label text-mono-label uppercase text-muted">{site.role}</span>
       </span>
     </span>
   );
