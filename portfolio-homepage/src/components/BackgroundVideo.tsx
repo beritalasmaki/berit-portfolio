@@ -12,8 +12,9 @@ import { useEffect, useRef } from "react";
  *   "Media Not Found" card) is trimmed out.
  * - It's nudged warm, because the linen's natural grey read cool under the
  *   veil.
- * - It's softened with a glow: a lightly blurred copy screen-blended with a
- *   heavily blurred one. The raw weave read harsh behind text.
+ * - It's heavily softened with a glow: a blurred copy screen-blended with a
+ *   much more blurred one. The weave stays as a hint of grid, since anything
+ *   crisper read rough behind text.
  * - A 12.5s stretch plays forward then reversed (25s), so the loop has no
  *   jump where it restarts.
  *

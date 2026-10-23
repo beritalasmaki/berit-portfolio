@@ -58,12 +58,14 @@ introduce new colors, sizes or radii without adding them here first.
     then reversed (25s), so the loop has no visible jump.
   - Light temporal denoise (`hqdn3d`) keeps the fine weave cheap to encode.
     Without it, the weave cost ~1 MB per second at 1080p.
-  - A soft-focus glow: `gblur σ2` screen-blended at 45% with `gblur σ8`,
+  - A "very soft" glow: `gblur σ7` screen-blended at 66% with `gblur σ22`,
     done in RGB (`gbrp`), since blending in YUV tinted everything pink. The
-    raw weave read harsh behind text.
+    fabric grid and the flowers' faint pink and green remain, but nothing is
+    crisp, and the glow lifts the brightness slightly. Weaker blurs (σ2/σ4)
+    still read rough behind text.
 
-  The files are 1280×720 and audio-free: a webm (~0.9 MB, VP9) with an mp4
-  (~1.9 MB, H.264) fallback for older Safari, plus a poster frame.
+  The files are 1280×720 and audio-free: a webm (~0.4 MB, VP9) with an mp4
+  (~1.3 MB, H.264) fallback for older Safari, plus a poster frame.
 - **Veil** `--bg-veil: 0.77` (globals.css). This one value sets how much
   texture shows. 0.7 read as orange-beige; 0.85 lost most of the light
   movement. 0.8 was a little too faint.
@@ -111,6 +113,24 @@ introduce new colors, sizes or radii without adding them here first.
   different site next to the glass. Orange stays as an accent: the
   heading's last word ("better?", in `accent-hero`, large bold) and the
   email/LinkedIn underlines.
+- **Footer** (`.glass-footer`): full-width frost like the header, but a
+  deeper warm taupe tint (`rgb(226 214 200 / .6)`) with the shared light top
+  edge, so the page ends on a grounded band. Its meta line is `text-body`,
+  since `footer-meta` falls under AA on the deeper tint.
+- **Liquid hover** (`LiquidHover.tsx`): the hero line (20px), the hero photo
+  (9px) and each client logo (7px) ripple like they're seen through water
+  while hovered. An SVG filter displaces them by smoothed, slowly flowing
+  noise (one octave, low frequency, for broad waves), with a 0.6px blur
+  after to anti-alias the warped edges. Strength eases in over 520ms and out
+  over 680ms. The filter is only applied while active, and it's off for
+  reduced motion.
+- **Icons** (`icons.tsx`): 16px line icons, 1.6px stroke, `currentColor`,
+  `aria-hidden`.
+  - Buttons end in a right arrow that nudges 2px on hover/focus.
+  - Nav links lead with a themed icon (grid = case studies, person = About,
+    connected steps = My Process). On the desktop nav these show from `xl`
+    only; at `lg` they wrapped the one-line nav.
+  - "Back to work" leads with a left arrow.
 - Screenshot frames and the lightbox stay solid.
 
 ---

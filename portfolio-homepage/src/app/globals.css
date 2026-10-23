@@ -250,6 +250,15 @@
       0 8px 24px rgba(34, 34, 34, 0.05);
   }
 
+  /* The footer's frost: the header's recipe with a deeper warm taupe tint,
+     so the page's end reads as a separate, grounded band. */
+  .glass-footer {
+    background-color: rgb(226 214 200 / 0.6);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    border-top: 1px solid var(--glass-edge);
+  }
+
   /* Flat glass for buttons and pills. Earlier versions layered gradients,
      an inner sheen and inset shadows, which read as glossy 2000s 3D. Now
      it's one flat translucent fill, a backdrop blur and the same 1px light
@@ -308,6 +317,9 @@
     }
     .glass-bar {
       background-color: rgb(255 248 239 / 0.94);
+    }
+    .glass-footer {
+      background-color: rgb(226 214 200 / 0.94);
     }
     .glass-pill,
     .glass-button {

@@ -12,9 +12,14 @@ export default function Footer() {
     // (measured at 360/390/414px). 96px clears the button with ~20px to
     // spare. Keep the two in step if either the button's size or its
     // `bottom-6` offset changes.
-    <footer className="flex items-center justify-between gap-6 flex-wrap px-gutter pt-8 pb-24">
+    //
+    // Frosted like the header (`.glass-footer`), but a deeper warm tint, so
+    // the page ends on a grounded band instead of a second copy of the top
+    // bar. The meta line is `text-body`, not `footer-meta`: on the deeper
+    // tint, footer-meta dropped to ~4:1, under AA for 13px text.
+    <footer className="glass-footer flex items-center justify-between gap-6 flex-wrap px-gutter pt-8 pb-24">
       <Logo />
-      <p className="m-0 text-[13px] text-footer-meta whitespace-nowrap">
+      <p className="m-0 text-[13px] text-body whitespace-nowrap">
         Designed & built by Berit. Powered by Claude and Vercel. © {year}
       </p>
     </footer>

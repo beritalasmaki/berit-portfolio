@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import Logo from "./Logo";
+import { AboutIcon, ArrowLeftIcon, ArrowRightIcon, CaseStudiesIcon, ProcessIcon } from "./icons";
 import { primaryNav, site } from "@/data/site";
 
 type HeaderProps = {
@@ -84,7 +85,14 @@ function IconLink({
   );
 }
 
-export default function Header({ backHref, backLabel = "← Back to work", animateLogo = false }: HeaderProps) {
+// Theme icon for each primary nav link, keyed by its href.
+const NAV_ICONS: Record<(typeof primaryNav)[number]["href"], typeof AboutIcon> = {
+  "/#case-studies": CaseStudiesIcon,
+  "/#about": AboutIcon,
+  "/#process": ProcessIcon,
+};
+
+export default function Header({ backHref, backLabel = "Back to work", animateLogo = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -178,20 +186,27 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
             {backHref ? (
               <Link
                 href={backHref}
-                className="text-nav font-semibold whitespace-nowrap text-body underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
+                className="group inline-flex items-center gap-1.5 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
               >
-                {backLabel}
+                <ArrowLeftIcon />
+                <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{backLabel}</span>
               </Link>
             ) : (
-              primaryNav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-nav font-semibold whitespace-nowrap text-body underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
-                >
-                  {item.label}
-                </a>
-              ))
+              primaryNav.map((item) => {
+                const NavIcon = NAV_ICONS[item.href];
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="group inline-flex items-center gap-1.5 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
+                  >
+                    {/* From xl only: at lg (1024px) the three icons push the one-line
+                        nav onto a second row. */}
+                    <NavIcon className="hidden xl:block" />
+                    <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{item.label}</span>
+                  </a>
+                );
+              })
             )}
             <span aria-hidden="true" className="block w-px h-5 bg-rule-strong" />
             {/* LinkedIn + GitHub + Contact grouped with their own tight 8px
@@ -209,9 +224,10 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
               <IconLink href={site.githubUrl} label="Visit my GitHub" tooltip="Visit my GitHub" icon={<GithubIcon />} />
               <a
                 href="#contact"
-                className="glass-button-ink text-nav font-semibold whitespace-nowrap text-white rounded-pill py-3 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
+                className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-white rounded-pill py-3 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
               >
                 Contact
+                <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
               </a>
             </span>
           </nav>
@@ -258,21 +274,26 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
             {backHref ? (
               <Link
                 href={backHref}
-                className="text-nav font-semibold text-body whitespace-nowrap underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
+                className="group inline-flex items-center gap-1.5 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
               >
-                {backLabel}
+                <ArrowLeftIcon />
+                <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{backLabel}</span>
               </Link>
             ) : (
-              primaryNav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-nav font-semibold whitespace-nowrap underline decoration-transparent underline-offset-4 transition-[color,text-decoration-color] duration-150 ease-out hover:text-ink hover:decoration-current focus-visible:text-ink focus-visible:decoration-current"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))
+              primaryNav.map((item) => {
+                const NavIcon = NAV_ICONS[item.href];
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="group inline-flex items-center gap-1.5 text-nav font-semibold whitespace-nowrap transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
+                    onClick={() => setOpen(false)}
+                  >
+                    <NavIcon />
+                    <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{item.label}</span>
+                  </a>
+                );
+              })
             )}
             <a
               href={site.linkedinUrl}
@@ -295,9 +316,10 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="glass-button-ink text-nav font-semibold text-white rounded-pill py-3 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
+              className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold text-white rounded-pill py-3 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
             >
               Contact
+              <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
             </a>
           </nav>
         )}
