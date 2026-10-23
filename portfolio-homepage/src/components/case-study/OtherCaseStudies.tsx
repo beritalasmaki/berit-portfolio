@@ -26,7 +26,7 @@ export default function OtherCaseStudies({ currentSlug }: { currentSlug: CaseStu
           return (
             <article
               key={study.slug}
-              className={`flex flex-col bg-panel rounded-card overflow-hidden ${isIsolatedLast ? "lg:col-span-3" : ""}`}
+              className={`flex flex-col glass rounded-card overflow-hidden ${isIsolatedLast ? "lg:col-span-3" : ""}`}
             >
               <Link
                 href={`/usecases/${study.slug}`}

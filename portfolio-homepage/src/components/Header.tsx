@@ -113,8 +113,29 @@ export default function Header({ backHref, backLabel = "← Back to work", anima
     return () => query.removeEventListener("change", onChange);
   }, []);
 
+  // Sticky frosted header that slims down once the page is scrolled: full
+  // height at the top, compact (less padding, 44px mark — see
+  // `.site-header[data-compact]` in globals.css) after. Two thresholds
+  // rather than one: shrinking the header shortens the page above the
+  // fold, and a single cut-off can flip back and forth at the boundary.
+  const [compact, setCompact] = useState(false);
+  useEffect(() => {
+    function onScroll() {
+      const y = window.scrollY;
+      setCompact((current) => (current ? y > 8 : y > 48));
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="border-b border-rule px-gutter pt-8 pb-4">
+    <header
+      data-compact={compact}
+      className={`site-header glass-bar sticky top-0 z-40 border-b border-white/70 px-gutter transition-[padding] duration-200 ease-out ${
+        compact ? "py-3" : "pt-8 pb-4"
+      }`}
+    >
       {/* gap-3 below lg: this is a `justify-between` row, so the gap only
           ever acts as a minimum separation — but at 360px the logo lockup
           and the menu button together leave under 20px of slack, and a

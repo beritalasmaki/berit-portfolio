@@ -51,7 +51,7 @@ export default function SneakPeekHero({ study }: { study: CaseStudy & CaseStudyF
       <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-grid-gap-lg items-center">
         <div className="min-w-0 flex flex-col gap-6">
           <p className="font-mono-label text-mono-label uppercase text-muted m-0">Case study</p>
-          <span className="self-start font-mono-label text-mono-label-em uppercase text-accent-dark bg-panel border border-rule-strong rounded-pill py-2 px-4 whitespace-nowrap">
+          <span className="self-start font-mono-label text-mono-label-em uppercase text-accent-dark bg-white/70 border border-rule-strong rounded-pill py-2 px-4 whitespace-nowrap">
             {study.categoryTag}
           </span>
           <h1 id="case-study-title" className="m-0 text-hero max-w-[18em]">
@@ -59,7 +59,7 @@ export default function SneakPeekHero({ study }: { study: CaseStudy & CaseStudyF
           </h1>
           <p className="m-0 max-w-prose-cs text-lead text-body">{study.description}</p>
 
-          <div className="flex flex-col gap-2 bg-panel rounded-card border border-rule-strong p-card-pad max-w-[30em]">
+          <div className="flex flex-col gap-2 glass rounded-card p-card-pad max-w-[30em]">
             <p className="m-0 text-body-sm text-ink">
               <span className="font-bold">Role:</span> {study.roleLabel}
             </p>

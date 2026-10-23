@@ -15,7 +15,7 @@ import type { CaseStudy } from "@/data/case-studies";
  */
 export default function CaseStudyThumbnail({ study, sizes }: { study: CaseStudy; sizes: string }) {
   return (
-    <div className="relative aspect-[16/13] bg-panel-alt overflow-hidden">
+    <div className="relative aspect-[16/13] bg-white/30 overflow-hidden">
       {study.placeholderLabel ? (
         <div className="absolute inset-4 flex items-center justify-center border border-dashed border-rule-strong rounded-frame transition-transform duration-150 ease-out group-hover:scale-[1.02] group-focus-visible:scale-[1.02]">
           <p className="m-0 font-mono-label text-mono-label uppercase text-muted text-center px-4">

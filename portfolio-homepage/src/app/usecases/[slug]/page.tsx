@@ -92,7 +92,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 <section
                   id="starting-point"
                   aria-labelledby="starting-point-heading"
-                  className="rounded-card border border-rule bg-white p-card-pad"
+                  className="rounded-card glass p-card-pad"
                 >
                   <p className="font-mono-label text-mono-label uppercase text-muted m-0">The brief</p>
                   <h2 id="starting-point-heading" className="mt-4 m-0 text-section-h2 text-ink">

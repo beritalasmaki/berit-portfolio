@@ -3,12 +3,25 @@
 @tailwind utilities;
 
 @layer base {
+  /* How much of the white page sits over the wall video
+     (BackgroundVideo.tsx). 0.8 keeps the texture and the slow light drift
+     visible while text stays on an effectively near-white ground. */
+  :root {
+    --bg-veil: 0.8;
+  }
+
+  /* `html` keeps the white ground (what shows before the video's poster
+     loads); `body` is transparent so the fixed video layer behind it shows
+     through. scroll-padding keeps in-page anchor jumps clear of the sticky
+     header. */
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+    @apply bg-white;
   }
 
   body {
-    @apply bg-white text-ink antialiased;
+    @apply bg-transparent text-ink antialiased;
     font-family: var(--font-manrope), Helvetica, Arial, sans-serif;
   }
 
@@ -168,6 +181,53 @@
     }
     .untangle-resolved {
       display: inline;
+    }
+  }
+
+  /* Frosted-glass surface for cards over the wall video: a translucent
+     white fill, a backdrop blur that softens the texture behind it, a
+     bright hairline edge and the soft `frame` shadow. Inner panes inside a
+     glass card use plain `bg-white/NN` tints, not another `.glass`: a
+     nested backdrop-filter only blurs the parent glass, so it costs paint
+     time for no visible effect. */
+  .glass {
+    background-color: rgb(255 255 255 / 0.45);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgb(255 255 255 / 0.6);
+    box-shadow:
+      0 8px 22px rgba(34, 34, 34, 0.06),
+      inset 0 1px 0 rgb(255 255 255 / 0.7);
+  }
+
+  /* The sticky header's frost: the same recipe, a touch more opaque and
+     blurred, since body copy scrolls directly under the nav links. */
+  .glass-bar {
+    background-color: rgb(255 255 255 / 0.55);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+    box-shadow:
+      0 1px 0 rgba(34, 34, 34, 0.06),
+      0 8px 24px rgba(34, 34, 34, 0.05);
+  }
+
+  /* Without backdrop-filter, the texture would sit behind the text
+     unblurred, so fall back to nearly solid white. */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass {
+      background-color: rgb(255 255 255 / 0.85);
+    }
+    .glass-bar {
+      background-color: rgb(255 255 255 / 0.92);
+    }
+  }
+
+  /* Compact header once the page is scrolled (Header.tsx sets
+     data-compact). Only the sm+ mark shrinks: below sm it's already 32px.
+     The selector outranks the Logo's own h-16/xl:h-20 utilities. */
+  @media (min-width: 640px) {
+    .site-header[data-compact="true"] .logo-mark {
+      height: 44px;
     }
   }
 
