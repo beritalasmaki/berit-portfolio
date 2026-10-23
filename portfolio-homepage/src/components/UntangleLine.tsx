@@ -97,7 +97,17 @@ function lerpPoints(progress: number) {
   return out;
 }
 
-export default function UntangleLine() {
+export default function UntangleLine({ delayMs = 0, positionClassName = "top-full" }: {
+  /** Wait this long after it comes into view before untangling. The hero
+   * passes one so the string pulls straight just after the heading has
+   * faded in, rather than while it's still invisible. */
+  delayMs?: number;
+  /** Vertical placement under the word. The SVG scales uniformly with the
+   * word's width, so at headline size it's tall, and `top-full` drops the
+   * line onto the next row of text. The hero passes an em-based offset
+   * instead (see Hero.tsx). */
+  positionClassName?: string;
+}) {
   const wrapRef = useRef<HTMLSpanElement>(null);
   const mainRef = useRef<SVGPathElement>(null);
   const echoRef = useRef<SVGPathElement>(null);
@@ -136,8 +146,13 @@ export default function UntangleLine() {
         playedRef.current = true;
         observer.disconnect();
 
-        const start = performance.now();
+        let start = 0;
         function tick(now: number) {
+          if (!start) start = now + delayMs;
+          if (now < start) {
+            frameRef.current = requestAnimationFrame(tick);
+            return;
+          }
           const t = Math.min(1, (now - start) / DURATION_MS);
           draw(easeOutSine(t));
           if (t < 1) {
@@ -159,7 +174,7 @@ export default function UntangleLine() {
       observer.disconnect();
       if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
     };
-  }, []);
+  }, [delayMs]);
 
   return (
     <span
@@ -167,7 +182,7 @@ export default function UntangleLine() {
       aria-hidden="true"
       // `top-full` puts it immediately below the word's own box. Absolute, so
       // it takes no space in the line and cannot shift the sentence.
-      className="pointer-events-none absolute left-0 top-full w-full"
+      className={`pointer-events-none absolute left-0 w-full ${positionClassName}`}
     >
       <svg viewBox="0 0 120 22" className="block w-full h-auto overflow-visible" focusable="false">
         {/* Both states are in the markup; CSS decides which one paints (see

@@ -21,7 +21,7 @@ introduce new colors, sizes or radii without adding them here first.
 | Muted | `#6b6660` | Mono labels, captions, eyebrows, meta text, copyright line. **Supersedes `#8a8580`** — that value is only 3.65:1 on white, which fails WCAG AA (4.5:1) at the small sizes this token is used for everywhere. `#6b6660` passes at 5.69:1. (Absorbs the old separate "Footer meta" token — same value, one name now.) |
 | Accent | `#FC890C` | Orange from the logo flourish. Underlines, markers, dots, borders, the contact block's link underlines — **decorative use only.** Never used as text color on a light background: raw accent is ~2.4:1 contrast, which fails WCAG AA even at large-text sizes. |
 | Accent dark | `#A45B0B` | Accent-colored **text** at normal (non-large) sizes on light backgrounds — the sticky TOC's active-item text (15px). Passes AA at 5.15:1 (needs 4.5:1 at these sizes). |
-| Accent hero | `#D9770C` | Accent-colored **text** at large-bold sizes only — currently just the hero's "forward." (part of an 800-weight, 40–84px heading). WCAG AA only requires 3:1 for large/bold text, so this stays closer to the true brand orange than Accent dark while still passing at ~3.2:1. Not for use at normal text sizes — use Accent dark there instead. |
+| Accent hero | `#D9770C` | Accent-colored **text** at large-bold sizes only — currently the contact block's "better?" (part of an 800-weight heading; the hero H1 used it for "forward." until the hero rewrite). WCAG AA only requires 3:1 for large/bold text, so this stays closer to the true brand orange than Accent dark while still passing at ~3.2:1. Not for use at normal text sizes — use Accent dark there instead. |
 | Background | `#ffffff` over background video | Page background. The white is now a veil (`--bg-veil: 0.77`, i.e. 77% white) over a fixed, slowly panning floral-linen video. See "Background texture & glass" below. |
 | Cream | `#fff8ef` | Warm translucent surfaces, always used at an opacity (`bg-cream/30`–`/70`): panes inside glass cards, hovered tabs. Pure white films read cool and grey over the warm background. |
 | Glass | `rgb(255 251 245 / .62)` + `blur(16px) saturate(140%)` | Cards (the `.glass` utility). Replaces `panel` / white + `rule` border as the card surface. |
@@ -1167,14 +1167,30 @@ is wrapped in a shared `<Reveal>` component.
   study cards, impact cards, process steps) reveal together with their
   parent section rather than staggering card-by-card
 
-### Untangling knot (hero closing line)
-A small hand-drawn string under the word "untangling" in "Berit, your partner
-in untangling complexity." It starts tied in a visible loop and pulls itself
-straight, once, when it scrolls into view. `UntangleLine.tsx`.
+### Hero copy
+- **Byline** (kicker, above the H1): a 44px photo plus "Hi, I'm Berit ·
+  Senior UX & Product Designer" (`text-body-em`, the role in `text-body`).
+  The photo is small so it reads as a signature, not a second hero image.
+- **H1** (`text-hero`): "Your partner in / untangling / complexity.", three
+  lines at every width (360–1440px). It replaced "Good design moves you
+  forward.", which now opens the lead.
+- **Lead**: "Good design moves you forward. I help teams turn complex
+  products and services into experiences that are easier to use and easier
+  to build."
+- Entrance stagger: byline 700ms, H1 800ms, lead 980ms, buttons 1160ms.
 
-- **Scale is deliberately secondary.** It is an underline, ~88px wide and
-  ~16px tall, sitting directly under one word — the big orange flourish just
-  above it in the hero is the illustration; this is a footnote to it. Same
+### Untangling knot (hero headline)
+A hand-drawn string under the word "untangling" in the hero H1, "Your
+partner in untangling complexity." It starts tied in a visible loop and
+pulls itself straight, once, when it scrolls into view. `UntangleLine.tsx`.
+
+- **At headline size it's the H1's accent.** Its SVG is `w-full` of the
+  word and scales uniformly, so under the 40–84px heading it becomes a bold
+  hand-drawn underline, carrying the orange the H1 used to get from
+  "forward.". Because it scales, the hero places it with an em offset
+  (`positionClassName="top-[0.52em]"`, since the word is ~5.1em wide)
+  instead of `top-full`, which dropped it onto the next line. It also
+  waits `delayMs={1300}` so it untangles just after the heading fades in. Same
   `#FC890C` accent, same `round` caps, and the same thick-stroke-plus-thinner-
   offset-echo pairing the flourish and the logo signature use to avoid reading
   as a uniform vector line.
