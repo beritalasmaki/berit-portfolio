@@ -22,8 +22,8 @@ introduce new colors, sizes or radii without adding them here first.
 | Accent | `#FC890C` | Orange from the logo flourish. Underlines, markers, dots, borders, the contact block background — **decorative use only.** Never used as text color on a light background: raw accent is ~2.4:1 contrast, which fails WCAG AA even at large-text sizes. |
 | Accent dark | `#A45B0B` | Accent-colored **text** at normal (non-large) sizes on light backgrounds — the sticky TOC's active-item text (15px). Passes AA at 5.15:1 (needs 4.5:1 at these sizes). |
 | Accent hero | `#D9770C` | Accent-colored **text** at large-bold sizes only — currently just the hero's "forward." (part of an 800-weight, 40–84px heading). WCAG AA only requires 3:1 for large/bold text, so this stays closer to the true brand orange than Accent dark while still passing at ~3.2:1. Not for use at normal text sizes — use Accent dark there instead. |
-| Background | `#ffffff` over wall video | Page background. The white is now a veil (`--bg-veil: 0.77`, i.e. 77% white) over a fixed, slowly moving orange plaster-wall video. See "Background texture & glass" below. |
-| Cream | `#fff8ef` | Warm translucent surfaces, always used at an opacity (`bg-cream/30`–`/70`): panes inside glass cards, hovered tabs. Pure white films read cool and grey over the warm wall. |
+| Background | `#ffffff` over background video | Page background. The white is now a veil (`--bg-veil: 0.77`, i.e. 77% white) over a fixed, slowly panning floral-linen video. See "Background texture & glass" below. |
+| Cream | `#fff8ef` | Warm translucent surfaces, always used at an opacity (`bg-cream/30`–`/70`): panes inside glass cards, hovered tabs. Pure white films read cool and grey over the warm background. |
 | Glass | `rgb(255 251 245 / .62)` + `blur(16px) saturate(140%)` | Cards (the `.glass` utility). Replaces `panel` / white + `rule` border as the card surface. |
 | Glass clear | `rgb(255 251 245 / .34)` + `blur(8px) saturate(150%)` | See-through glass (`.glass .glass-clear`), currently the MindTabs question card |
 | Glass bar | `rgb(255 248 239 / .55)` + `blur(20px) saturate(160%)` | The fixed header (`.glass-bar`) |
@@ -46,28 +46,28 @@ introduce new colors, sizes or radii without adding them here first.
 - Client / customer logos are normalized to `#222222`.
 
 ### Background texture & glass
-- **Wall video** (`BackgroundVideo.tsx`, `/public/bg/`): fixed behind every
-  page, `object-cover`, muted, looping, `aria-hidden`. The source clip is
-  pre-processed:
-  - Color-graded so its shadows stay saturated orange. Under the white veil,
-    the raw brown shadows mixed to a cool grey-beige; graded, every frame
-    stays warm (darkest frame ≈ `#F3E6D7`, brightest ≈ `#FDF1DA` after the
-    veil).
-  - Played forward then reversed (36s) so the loop has no visible jump.
+- **Background video** (`BackgroundVideo.tsx`, `/public/bg/wall.*`): a slow
+  pan across floral-printed linen (it replaced an orange plaster wall), fixed
+  behind every page, `object-cover`, muted, looping, `aria-hidden`. The
+  source clip is pre-processed:
+  - Its black side bars (35px each side) are cropped off.
+  - A one-frame "Media Not Found" glitch card near the start is trimmed out.
+  - It's nudged warm with a gentle color balance, since the linen's natural
+    grey read cool under the white veil.
+  - A 12.5s stretch, from plain linen into the pink flowers, plays forward
+    then reversed (25s), so the loop has no visible jump.
+  - Light temporal denoise (`hqdn3d`) keeps the fine weave cheap to encode.
+    Without it, the weave cost ~1 MB per second at 1080p.
 
-  - Lightly sharpened, since the source footage is soft and the veil flattens
-    texture further.
-
-  The files are a 1920×1080, audio-free webm (~6 MB, VP9) with an mp4
-  (~11 MB, H.264) fallback for older Safari, plus a poster frame. An earlier
-  1280px, heavily compressed encode looked smeared.
+  The files are 1280×720 and audio-free: a webm (~1.6 MB, VP9) with an mp4
+  (~2.5 MB, H.264) fallback for older Safari, plus a poster frame.
 - **Veil** `--bg-veil: 0.77` (globals.css). This one value sets how much
   texture shows. 0.7 read as orange-beige; 0.85 lost most of the light
   movement. 0.8 was a little too faint.
 - **Reduced motion:** the video is paused on its poster frame, so the texture
   stays and the movement goes.
 - **Glass cards** (`.glass`): a light, translucent cream fill (62%, so cards
-  read clearly lighter than the wall), backdrop blur, a 1px `white/75` edge with an inset top highlight, and the frame shadow. Inner
+  read clearly lighter than the background), backdrop blur, a 1px `white/75` edge with an inset top highlight, and the frame shadow. Inner
   panes inside a glass card use plain `bg-cream/NN` tints, never a nested
   `.glass`. Without `backdrop-filter` support, the fill falls back to 90%
   cream. Add `.glass-clear` for a see-through variant.

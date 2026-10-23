@@ -3,14 +3,17 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Site-wide background: a slow-moving light across an orange plaster wall,
- * fixed behind every page with the white page laid over it as a veil
+ * Site-wide background: a slow pan across floral-printed linen, fixed
+ * behind every page with the white page laid over it as a veil
  * (`--bg-veil` in globals.css) so it reads as texture, not imagery.
  *
- * The clip in /public/bg is pre-processed, not the raw footage: graded so
- * the shadow side stays saturated orange (under the white veil, the raw
- * brown shadows mixed to a cool grey-beige), and played forward then
- * reversed (36s) so the loop has no jump where it restarts.
+ * The clip in /public/bg is pre-processed, not the raw footage:
+ * - The source's black side bars are cropped off, and its glitch frame (a
+ *   "Media Not Found" card) is trimmed out.
+ * - It's nudged warm, because the linen's natural grey read cool under the
+ *   veil.
+ * - A 12.5s stretch plays forward then reversed (25s), so the loop has no
+ *   jump where it restarts.
  *
  * Reduced motion: the video is paused, leaving the still poster frame —
  * same texture, no movement.

@@ -16,7 +16,7 @@ import type { CaseStudy } from "@/data/case-studies";
 export default function CaseStudyThumbnail({ study, sizes }: { study: CaseStudy; sizes: string }) {
   return (
     // No fill of its own: the `-card.png` thumbnails have a transparent
-    // backdrop (their old flat #EEE grey clashed with the warm wall), so the
+    // backdrop (their old flat #EEE grey clashed with the warm background), so the
     // card's glass shows through around the mockups.
     <div className="relative aspect-[16/13] overflow-hidden">
       {study.placeholderLabel ? (

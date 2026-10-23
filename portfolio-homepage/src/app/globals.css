@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  /* How much of the white page sits over the wall video
+  /* How much of the white page sits over the background video
      (BackgroundVideo.tsx). 0.77 keeps the texture and the slow light drift
      visible while text stays on an effectively near-white ground. */
   :root {
@@ -209,14 +209,14 @@
     }
   }
 
-  /* Frosted-glass surface for cards over the wall video: a translucent
+  /* Frosted-glass surface for cards over the background video: a translucent
      white fill, a backdrop blur that softens the texture behind it, a
      bright hairline edge and the soft `frame` shadow. Inner panes inside a
      glass card use plain `bg-white/NN` tints, not another `.glass`: a
      nested backdrop-filter only blurs the parent glass, so it costs paint
      time for no visible effect. */
   .glass {
-    /* Cream (#fff8ef), not pure white: a white film over the warm wall
+    /* Cream (#fff8ef), not pure white: a white film over the warm background
        read as cool and grey. */
     background-color: rgb(255 251 245 / 0.62);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
@@ -228,7 +228,7 @@
   }
 
   /* A clearer glass for surfaces that should read as see-through (the
-     MindTabs question column): less fill and a lighter blur, so the wall's
+     MindTabs question column): less fill and a lighter blur, so the background's
      texture and moving light come through. Pair with `.glass`; declared
      after it so it wins. */
   .glass-clear {
@@ -251,7 +251,7 @@
   /* Liquid-glass buttons. `.glass-button` is the light secondary (the
      hero's "See the work"): a clear, strongly blurred and saturated lens
      with a bright top rim and a soft specular sheen, so it lifts off the
-     wall instead of sitting flat on it. `.glass-button-ink` is the same
+     background instead of sitting flat on it. `.glass-button-ink` is the same
      lens in ink for primary actions. Drop shadows are deliberately faint:
      the rim and sheen do the lifting, and a heavy shadow under every
      button read as busy. */
