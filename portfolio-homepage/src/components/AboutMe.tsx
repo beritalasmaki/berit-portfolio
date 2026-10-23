@@ -184,7 +184,7 @@ function WorkingWithMeRow({
         onMouseLeave={() => setHovered(false)}
         onFocus={() => setHovered(true)}
         onBlur={() => setHovered(false)}
-        className={`group relative z-0 flex w-full min-h-[124px] items-center gap-4 bg-white/50 rounded-frame p-4 text-left transition-[background-color,opacity] duration-500 ease-out hover:bg-white focus-visible:bg-white ${
+        className={`group relative z-0 flex w-full min-h-[124px] items-center gap-4 bg-cream/50 rounded-frame p-4 text-left transition-[background-color,opacity] duration-500 ease-out hover:bg-cream focus-visible:bg-cream ${
           expanded ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -315,7 +315,7 @@ export default function AboutMe() {
           href={site.linkedinUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 bg-ink text-white text-nav font-semibold py-3 px-6 rounded-pill self-start whitespace-nowrap transition-[background-color,transform] duration-150 ease-out hover:bg-ink-alt hover:text-white hover:-translate-y-px focus-visible:bg-ink-alt focus-visible:text-white focus-visible:-translate-y-px focus-visible:outline-white"
+          className="glass-button-ink inline-flex items-center gap-2 text-white text-nav font-semibold py-3 px-6 rounded-pill self-start whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
         >
           <LinkedInIcon />
           Connect on LinkedIn

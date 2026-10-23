@@ -30,15 +30,24 @@ function estimateReadMinutes(study: CaseStudy & CaseStudyFullContent): number {
 }
 
 // Absolute position/rotation per stacked card, front-most first. Each card
-// is a fixed-aspect box regardless of its image's real aspect ratio (mixed
-// desktop/mobile screenshots) — next/image `fill` + `object-cover
-// object-top` crops to fit, favoring what's at the top of the shot (the
-// most recognizable part) over showing the whole thing.
+// takes its own screenshot's aspect ratio (see `cardWidth`), so the whole
+// UI is visible. The cards used to be fixed 3:4 boxes cropped with
+// `object-cover`, which showed only a narrow left slice of every wide
+// desktop screenshot. Tilts are kept gentle so the UI stays readable.
 const CARD_POSITION = [
-  "z-20 top-[12%] left-[14%] w-[58%] aspect-[3/4] rotate-[-4deg]",
-  "z-10 top-0 right-[0%] w-[52%] aspect-[3/4] rotate-[9deg]",
-  "z-0 bottom-[0%] left-[0%] w-[50%] aspect-[3/4] rotate-[-14deg]",
+  "z-20 bottom-[4%] left-0 rotate-[-3deg]",
+  "z-10 top-[2%] right-0 rotate-[4deg]",
+  "z-0 top-0 left-[8%] rotate-[-8deg]",
 ];
+
+// Width (as % of the stack) by orientation, so a tall phone-like shot
+// doesn't tower over the stack and a wide dashboard isn't shrunk to a strip.
+// The front card is a step larger than the ones behind it.
+function cardWidth(image: GalleryImage, index: number): string {
+  const ratio = image.width / image.height;
+  const base = ratio >= 1.2 ? 84 : ratio >= 0.85 ? 64 : 50;
+  return `${index === 0 ? base : base - 10}%`;
+}
 
 export default function SneakPeekHero({ study }: { study: CaseStudy & CaseStudyFullContent }) {
   const images = study.sneakPeekImages
@@ -51,7 +60,7 @@ export default function SneakPeekHero({ study }: { study: CaseStudy & CaseStudyF
       <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-grid-gap-lg items-center">
         <div className="min-w-0 flex flex-col gap-6">
           <p className="font-mono-label text-mono-label uppercase text-muted m-0">Case study</p>
-          <span className="self-start font-mono-label text-mono-label-em uppercase text-accent-dark bg-white/70 border border-rule-strong rounded-pill py-2 px-4 whitespace-nowrap">
+          <span className="self-start font-mono-label text-mono-label-em uppercase text-accent-dark bg-cream/70 border border-rule-strong rounded-pill py-2 px-4 whitespace-nowrap">
             {study.categoryTag}
           </span>
           <h1 id="case-study-title" className="m-0 text-hero max-w-[18em]">
@@ -87,23 +96,23 @@ export default function SneakPeekHero({ study }: { study: CaseStudy & CaseStudyF
           </ul>
         </div>
 
-        <div className="relative w-full max-w-[420px] mx-auto aspect-[4/3]">
+        <div className="relative w-full max-w-[520px] mx-auto aspect-[4/3]">
           {images.map((image, i) => (
             <div
               key={image.src}
-              className={`absolute overflow-hidden rounded-frame border border-rule bg-white shadow-frame ${
+              className={`absolute overflow-hidden rounded-frame border border-white/70 bg-white shadow-frame-accent ${
                 CARD_POSITION[i] ?? ""
               }`}
+              style={{ width: cardWidth(image, i), aspectRatio: `${image.width} / ${image.height}` }}
             >
-              <div className="relative w-full h-full">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="(min-width: 1024px) 220px, 50vw"
-                  className="object-cover object-top"
-                />
-              </div>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                sizes="(min-width: 1024px) 380px, 80vw"
+                className="block w-full h-full object-contain"
+              />
             </div>
           ))}
         </div>

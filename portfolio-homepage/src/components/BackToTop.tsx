@@ -37,7 +37,7 @@ export default function BackToTop() {
       // that keeps the name identical at both sizes instead of vanishing
       // along with the text.
       aria-label="Back to top"
-      className={`fixed bottom-6 right-6 z-40 inline-flex items-center justify-center gap-2 rounded-pill bg-ink text-[13px] font-semibold uppercase tracking-[0.04em] text-white shadow-lightbox whitespace-nowrap h-12 w-12 sm:h-auto sm:w-auto sm:px-4 sm:py-4 ring-1 ring-white/25 transition-[opacity,background-color,transform] duration-150 ease-out hover:bg-ink-alt hover:text-white hover:-translate-y-px focus-visible:bg-ink-alt focus-visible:text-white focus-visible:-translate-y-px focus-visible:outline-white ${
+      className={`fixed bottom-6 right-6 z-40 inline-flex items-center justify-center gap-2 glass-button-ink rounded-pill text-[13px] font-semibold uppercase tracking-[0.04em] text-white whitespace-nowrap h-12 w-12 sm:h-auto sm:w-auto sm:px-4 sm:py-4 hover:text-white focus-visible:text-white focus-visible:outline-white ${
         visible ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
       aria-hidden={!visible}

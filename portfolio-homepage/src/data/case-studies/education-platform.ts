@@ -7,7 +7,7 @@ export const educationPlatform: CaseStudy = {
   headline: "Many teams, many systems.\nOne coherent experience.",
   description:
     "A shared, standardised design foundation for complex municipal education systems, unifying usability and logic across several platforms.",
-  thumbnail: "/case/education-new.png",
+  thumbnail: "/case/education-new-card.png",
   thumbnailAlt: "Education platform",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:

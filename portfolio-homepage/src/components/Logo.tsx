@@ -56,7 +56,7 @@ export default function Logo({ animated = false }: {
         viewBox={MARK_VIEWBOX}
         role="presentation"
         aria-hidden="true"
-        className="logo-mark shrink-0 block h-8 w-auto sm:h-16 xl:h-20 transition-[height] duration-200 ease-out"
+        className="logo-mark shrink-0 block h-8 w-auto sm:h-16 xl:h-20"
       >
         {animated && (
           <defs>

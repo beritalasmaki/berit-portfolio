@@ -4,10 +4,35 @@
 
 @layer base {
   /* How much of the white page sits over the wall video
-     (BackgroundVideo.tsx). 0.8 keeps the texture and the slow light drift
+     (BackgroundVideo.tsx). 0.77 keeps the texture and the slow light drift
      visible while text stays on an effectively near-white ground. */
   :root {
-    --bg-veil: 0.8;
+    --bg-veil: 0.77;
+
+    /* Header row heights and logo-mark heights, at the top of the page
+       (full) and once scrolled (compact). Header.tsx eases `--shrink` from
+       0 to 1 between them. Below sm the mark is already at its 32px floor
+       (see Logo.tsx), so only the row's whitespace shrinks there. */
+    --hdr-full: 96px;
+    --hdr-compact: 64px;
+    --mark-full: 32px;
+    --mark-compact: 32px;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --hdr-full: 116px;
+      --hdr-compact: 72px;
+      --mark-full: 52px;
+      --mark-compact: 40px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    :root {
+      --hdr-full: 124px;
+      --mark-full: 60px;
+    }
   }
 
   /* `html` keeps the white ground (what shows before the video's poster
@@ -191,19 +216,31 @@
      nested backdrop-filter only blurs the parent glass, so it costs paint
      time for no visible effect. */
   .glass {
-    background-color: rgb(255 255 255 / 0.45);
+    /* Cream (#fff8ef), not pure white: a white film over the warm wall
+       read as cool and grey. */
+    background-color: rgb(255 251 245 / 0.62);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
     backdrop-filter: blur(16px) saturate(140%);
-    border: 1px solid rgb(255 255 255 / 0.6);
+    border: 1px solid rgb(255 255 255 / 0.75);
     box-shadow:
       0 8px 22px rgba(34, 34, 34, 0.06),
       inset 0 1px 0 rgb(255 255 255 / 0.7);
   }
 
+  /* A clearer glass for surfaces that should read as see-through (the
+     MindTabs question column): less fill and a lighter blur, so the wall's
+     texture and moving light come through. Pair with `.glass`; declared
+     after it so it wins. */
+  .glass-clear {
+    background-color: rgb(255 251 245 / 0.34);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+    backdrop-filter: blur(8px) saturate(150%);
+  }
+
   /* The sticky header's frost: the same recipe, a touch more opaque and
      blurred, since body copy scrolls directly under the nav links. */
   .glass-bar {
-    background-color: rgb(255 255 255 / 0.55);
+    background-color: rgb(255 248 239 / 0.55);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
     backdrop-filter: blur(20px) saturate(160%);
     box-shadow:
@@ -211,24 +248,126 @@
       0 8px 24px rgba(34, 34, 34, 0.05);
   }
 
+  /* Liquid-glass buttons. `.glass-button` is the light secondary (the
+     hero's "See the work"): a clear, strongly blurred and saturated lens
+     with a bright top rim and a soft specular sheen, so it lifts off the
+     wall instead of sitting flat on it. `.glass-button-ink` is the same
+     lens in ink for primary actions. Drop shadows are deliberately faint:
+     the rim and sheen do the lifting, and a heavy shadow under every
+     button read as busy. */
+  /* `relative` anchors the sheen, but under :where() (zero specificity) so
+     a positioning utility on the element itself, like Back to top's
+     `fixed`, always wins regardless of stylesheet order. */
+  :where(.glass-button, .glass-button-ink) {
+    position: relative;
+  }
+
+  .glass-button,
+  .glass-button-ink {
+    isolation: isolate;
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    backdrop-filter: blur(14px) saturate(180%);
+    transition:
+      transform 150ms ease-out,
+      box-shadow 150ms ease-out,
+      background 150ms ease-out,
+      color 150ms ease-out,
+      opacity 150ms ease-out;
+  }
+
+  .glass-button {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.78) 0%, rgb(255 246 234 / 0.42) 100%);
+    border: 1px solid rgb(255 255 255 / 0.85);
+    box-shadow:
+      inset 0 1px 1px rgb(255 255 255 / 0.95),
+      inset 0 -3px 8px rgb(252 137 12 / 0.08),
+      0 1px 2px rgba(34, 34, 34, 0.06),
+      0 4px 10px rgba(164, 91, 11, 0.07);
+  }
+
+  .glass-button-ink {
+    background: linear-gradient(180deg, rgb(70 66 62 / 0.94) 0%, rgb(34 34 34 / 0.96) 100%);
+    border: 1px solid rgb(255 255 255 / 0.14);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.22),
+      inset 0 -3px 8px rgb(0 0 0 / 0.25),
+      0 1px 2px rgba(34, 34, 34, 0.08),
+      0 4px 10px rgba(34, 34, 34, 0.08);
+  }
+
+  .glass-button::before,
+  .glass-button-ink::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .glass-button::before {
+    background: radial-gradient(120% 80% at 30% -10%, rgb(255 255 255 / 0.85), transparent 55%);
+  }
+
+  .glass-button-ink::before {
+    background: radial-gradient(120% 80% at 30% -10%, rgb(255 255 255 / 0.2), transparent 55%);
+  }
+
+  .glass-button:hover,
+  .glass-button:focus-visible,
+  .glass-button-ink:hover,
+  .glass-button-ink:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  .glass-button:hover,
+  .glass-button:focus-visible {
+    box-shadow:
+      inset 0 1px 1px rgb(255 255 255 / 0.95),
+      inset 0 -3px 8px rgb(252 137 12 / 0.12),
+      0 1px 3px rgba(34, 34, 34, 0.07),
+      0 6px 14px rgba(164, 91, 11, 0.1);
+  }
+
+  .glass-button-ink:hover,
+  .glass-button-ink:focus-visible {
+    background: linear-gradient(180deg, rgb(84 80 75 / 0.94) 0%, rgb(46 45 44 / 0.96) 100%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.26),
+      inset 0 -3px 8px rgb(0 0 0 / 0.25),
+      0 1px 3px rgba(34, 34, 34, 0.09),
+      0 6px 14px rgba(34, 34, 34, 0.1);
+  }
+
   /* Without backdrop-filter, the texture would sit behind the text
-     unblurred, so fall back to nearly solid white. */
+     unblurred, so fall back to nearly solid fills. */
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .glass {
-      background-color: rgb(255 255 255 / 0.85);
+      background-color: rgb(255 251 245 / 0.9);
     }
     .glass-bar {
-      background-color: rgb(255 255 255 / 0.92);
+      background-color: rgb(255 248 239 / 0.94);
+    }
+    .glass-button {
+      background: rgb(255 248 239 / 0.92);
     }
   }
 
-  /* Compact header once the page is scrolled (Header.tsx sets
-     data-compact). Only the sm+ mark shrinks: below sm it's already 32px.
-     The selector outranks the Logo's own h-16/xl:h-20 utilities. */
-  @media (min-width: 640px) {
-    .site-header[data-compact="true"] .logo-mark {
-      height: 44px;
-    }
+  /* Header shrink: row and logo heights interpolate between their full
+     and compact values by `--shrink` (0 → 1, eased in Header.tsx). The
+     short transition only smooths over coarse mouse-wheel steps. The
+     header's own mark is smaller than the footer's, with more air above
+     and below it; the selector outranks the Logo's h-16/xl:h-20
+     utilities. */
+  .site-header-row {
+    height: calc(var(--hdr-full) - (var(--hdr-full) - var(--hdr-compact)) * var(--shrink, 0));
+    transition: height 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .site-header .logo-mark {
+    height: calc(var(--mark-full) - (var(--mark-full) - var(--mark-compact)) * var(--shrink, 0));
+    transition: height 260ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   /* Visually hide content while keeping it available to screen readers. */

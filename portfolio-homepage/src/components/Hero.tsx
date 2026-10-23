@@ -44,13 +44,13 @@ export default function Hero() {
                 behaviour, defined once. */}
             <a
               href="#contact"
-              className="inline-block bg-ink text-white text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap transition-[background-color,transform] duration-150 ease-out hover:bg-ink-alt hover:text-white hover:-translate-y-px focus-visible:bg-ink-alt focus-visible:text-white focus-visible:-translate-y-px focus-visible:outline-white"
+              className="glass-button-ink inline-block text-white text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
             >
               Get in touch
             </a>
             <a
               href="#case-studies"
-              className="inline-block border border-rule-strong text-ink text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
+              className="glass-button inline-block text-ink text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap hover:text-ink focus-visible:text-ink"
             >
               See the work
             </a>
