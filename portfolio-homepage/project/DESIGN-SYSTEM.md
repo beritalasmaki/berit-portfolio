@@ -63,9 +63,17 @@ introduce new colors, sizes or radii without adding them here first.
     transparent, not from `filter: blur()`. The orbs only move by
     `transform`, so they composite on the GPU instead of re-blurring the
     screen every frame.
-  - **Motion:** each orb has its own path, 75–120s per leg, `alternate`,
-    kept within about ±8vmax so the composition holds, with negative delays
-    so they never move in sync.
+  - **Motion, flowing:** each orb has its own drift path, 28–44s per leg,
+    `alternate`, kept within about ±8vmax so the composition holds, plus a
+    slower uneven stretch (`orb-breathe`, the individual `scale` property,
+    ~0.47× the drift period) like a drop of liquid. Negative delays keep
+    them out of sync. (It was 75–120s per leg, too slow to notice.)
+  - **Scroll sway** (`OrbScroll.tsx`): as the page scrolls, each orb sways
+    a little on a slow wave of the eased scroll position, set through the
+    individual `translate` property. It's bounded (at most ~40px, for the
+    small near orbs; ~10px for the largest), so it never drifts away
+    however long the page. It glides on briefly after the scroll stops.
+    Off under reduced motion.
   - It replaced the floral-linen background video (and its `--bg-veil`
     white layer). The page no longer downloads ~2.6–3.8 MB of video.
 - **The Line** (`HeroLine.tsx`, `lib/line.ts`): the site's one motion motif,
@@ -109,6 +117,21 @@ introduce new colors, sizes or radii without adding them here first.
   - Gradients are plain vertical ones, because the river only runs down.
     It re-measures with a ResizeObserver, so opening an accordion reshapes
     it. The cards beside it have no orange left borders.
+- **Liquid tabs** (`useLiquidIndicator.ts`): every tab-like control's
+  selection marker is one shared shape that flows to the new tab like
+  liquid reaching out and joining another drop, instead of jumping. Used by
+  the process "What kind of project?" tabs (orange underline), the
+  homepage question tabs (the dark selected fill) and the case-study TOC
+  (orange left marker, as you click or scroll).
+  - The leading edge reaches first (420ms, slight overshoot), the trailing
+    edge lets go 110ms later (480ms), so it stretches across the gap. It
+    thins mid-move (cross-axis squeeze, 600ms) and settles with a soft
+    bulge. The edge timings swap with the direction of travel.
+  - Text colour on the dark fill waits ~120ms, so it turns white as the
+    fill arrives.
+  - It keeps a static selected style until it has placed itself (no flash
+    before hydration, still a visible selection without JS). Resizes
+    mid-flow don't cut the flow short. Under reduced motion it just moves.
 - **Ripple entrances** (`[data-ripple]`, set in `Reveal.tsx`): inside a
   revealing section, cards and logos rise in one after another, 70ms apart,
   left → right, so a row rolls in like a gentle wave.

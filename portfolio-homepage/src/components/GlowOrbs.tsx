@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import OrbScroll from "./OrbScroll";
 
 /**
  * Site-wide background: soft orbs of brand orange drifting slowly behind
@@ -14,13 +15,18 @@ import type { CSSProperties } from "react";
  * Variety is deliberate: four tones of the brand orange, peak opacities from
  * 0.12 to 0.55 (the biggest orbs are the faintest; two small bright accents
  * sit at the edges), golden-ratio sizes and positions (see ORBS), and each
- * orb on its own 75–120s path (`orb-drift-*` in globals.css), kept to about
- * ±8vmax so the composition holds. Negative delays start them mid-path, so
- * they never move in sync.
+ * orb flowing on its own 28–44s path (`orb-drift-*` in globals.css), kept
+ * to about ±8vmax so the composition holds, while it slowly stretches and
+ * relaxes like liquid (`orb-breathe`). Negative delays start them mid-path,
+ * so they never move in sync.
+ *
+ * Scrolling sways them a little (OrbScroll.tsx): each orb gets a small,
+ * bounded drift tied to the scroll position, more for the small near ones
+ * than the large far ones, so the background has depth as the page moves.
  *
  * Reduced motion: the global reduced-motion rule in globals.css collapses
  * the animations, so the orbs rest at their starting positions as a still
- * glow.
+ * glow, and they don't sway with the scroll.
  */
 
 type Orb = {
@@ -52,14 +58,14 @@ const APRICOT = "255 211 161"; // #FFD3A1
 // brighter brand-orange orbs sit in the calm zones at the far right gutter
 // and the bottom-left corner, away from text.
 const ORBS: Orb[] = [
-  { size: 60, x: 61.8, y: 38.2, rgb: PEACH, alpha: 0.16, path: 1, duration: 120, delay: -30 },
-  { size: 37, x: 38.2, y: 61.8, rgb: APRICOT, alpha: 0.3, path: 2, duration: 100, delay: -55 },
-  { size: 37, x: 85.4, y: 23.6, rgb: ORANGE, alpha: 0.12, path: 3, duration: 110, delay: -20 },
-  { size: 23, x: 14.6, y: 14.6, rgb: PEACH, alpha: 0.22, path: 4, duration: 85, delay: -40 },
-  { size: 23, x: 76.4, y: 85.4, rgb: AMBER, alpha: 0.18, path: 5, duration: 95, delay: -70 },
+  { size: 60, x: 61.8, y: 38.2, rgb: PEACH, alpha: 0.16, path: 1, duration: 44, delay: -12 },
+  { size: 37, x: 38.2, y: 61.8, rgb: APRICOT, alpha: 0.3, path: 2, duration: 38, delay: -21 },
+  { size: 37, x: 85.4, y: 23.6, rgb: ORANGE, alpha: 0.12, path: 3, duration: 41, delay: -8 },
+  { size: 23, x: 14.6, y: 14.6, rgb: PEACH, alpha: 0.22, path: 4, duration: 32, delay: -15 },
+  { size: 23, x: 76.4, y: 85.4, rgb: AMBER, alpha: 0.18, path: 5, duration: 35, delay: -26 },
   // Bright accents, kept small and out at the edges.
-  { size: 14, x: 94, y: 38.2, rgb: ORANGE, alpha: 0.55, path: 6, duration: 75, delay: -10 },
-  { size: 14, x: 4, y: 92, rgb: ORANGE, alpha: 0.5, path: 7, duration: 80, delay: -45 },
+  { size: 14, x: 94, y: 38.2, rgb: ORANGE, alpha: 0.55, path: 6, duration: 28, delay: -4 },
+  { size: 14, x: 4, y: 92, rgb: ORANGE, alpha: 0.5, path: 7, duration: 30, delay: -17 },
 ];
 
 export default function GlowOrbs() {
@@ -69,17 +75,22 @@ export default function GlowOrbs() {
         <span
           key={i}
           className="glow-orb"
+          data-sway={(14 / orb.size).toFixed(2)}
           style={
             {
               "--orb-size": `${orb.size}vmax`,
               left: `${orb.x}%`,
               top: `${orb.y}%`,
               background: `radial-gradient(circle, rgb(${orb.rgb} / ${orb.alpha}) 0%, rgb(${orb.rgb} / ${(orb.alpha * 0.5).toFixed(3)}) 35%, rgb(${orb.rgb} / 0) 70%)`,
-              animation: `orb-drift-${orb.path} ${orb.duration}s ease-in-out ${orb.delay}s infinite alternate`,
+              // Two layers of motion with unrelated periods, so the flow
+              // never visibly repeats: the drift path (transform), and a
+              // slow, uneven stretch like a drop of liquid (`scale`).
+              animation: `orb-drift-${orb.path} ${orb.duration}s ease-in-out ${orb.delay}s infinite alternate, orb-breathe ${(orb.duration * 0.47).toFixed(1)}s ease-in-out ${orb.delay}s infinite alternate`,
             } as CSSProperties
           }
         />
       ))}
+      <OrbScroll />
     </div>
   );
 }

@@ -377,6 +377,15 @@
     will-change: transform;
   }
 
+  /* Uneven stretch, like a drop of liquid flowing: uses the individual
+     `scale` property, so it combines with the drift's `transform` (and the
+     scroll sway's `translate`) instead of replacing it. */
+  @keyframes orb-breathe {
+    0% { scale: 1 1; }
+    50% { scale: 1.07 0.94; }
+    100% { scale: 0.95 1.06; }
+  }
+
   @keyframes orb-drift-1 {
     0% { transform: translate3d(0, 0, 0) scale(1); }
     50% { transform: translate3d(6vmax, 4vmax, 0) scale(1.08); }

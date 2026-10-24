@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useLiquidIndicator } from "../useLiquidIndicator";
 import { OPEN_SECTION_EVENT } from "./AccordionSection";
 
 /** `href` overrides the default same-page `#id` anchor for a real
@@ -24,6 +25,16 @@ export type TocItem = { id: string; label: string; href?: string };
 export default function TableOfContents({ items }: { items: TocItem[] }) {
   const [activeId, setActiveId] = useState(items[0]?.id);
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Desktop only: the orange active marker flows from link to link like
+  // liquid (useLiquidIndicator) as you click or scroll.
+  const navRef = useRef<HTMLElement>(null);
+  const linkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
+  const sections = items.filter((item) => !item.href);
+  const activeIndex = sections.findIndex((item) => item.id === activeId);
+  const liquid = useLiquidIndicator(navRef, linkRefs, activeIndex < 0 ? null : activeIndex, {
+    axis: "y",
+    thickness: 4,
+  });
 
   useEffect(() => {
     const elements = items
@@ -54,34 +65,42 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
   // by `pageLinks()` below, deliberately styled differently: a real
   // navigation away from the page reads as a different kind of action than
   // jumping to a section within it, not just one more item in the list.
-  function sectionLinks(onNavigate?: () => void) {
-    return items
-      .filter((item) => !item.href)
-      .map((item) => {
-        const isActive = item.id === activeId;
-        return (
-          <a
-            key={item.id}
-            href={`#${item.id}`}
-            aria-current={isActive ? "location" : undefined}
-            onClick={() => {
-              // Opens the matching accordion section if it is one — harmless
-              // no-op for ids nothing is listening for. See AccordionSection
-              // for why this is a plain event rather than shared state.
-              window.dispatchEvent(new CustomEvent(OPEN_SECTION_EVENT, { detail: { id: item.id } }));
-              onNavigate?.();
-            }}
-            className={`flex items-center gap-2 py-2 pl-4 -ml-px text-nav border-l-4 transition-[border-color,color] duration-150 ease-out ${
-              isActive
-                ? "border-accent text-accent-dark font-bold rounded-r-[16px]"
-                : "border-rule text-body font-semibold hover:border-rule-strong hover:text-ink focus-visible:border-rule-strong focus-visible:text-ink"
-            }`}
-          >
-            {isActive && <span aria-hidden="true" className="w-1.5 h-1.5 rounded-pill bg-accent shrink-0" />}
-            {item.label}
-          </a>
-        );
-      });
+  function sectionLinks(onNavigate?: () => void, desktop = false) {
+    return sections.map((item, index) => {
+      const isActive = item.id === activeId;
+      // On desktop the flowing marker draws the active edge once it's
+      // placed; until then (and on mobile) the border does.
+      const flowing = desktop && liquid.ready;
+      return (
+        <a
+          key={item.id}
+          ref={
+            desktop
+              ? (el) => {
+                  linkRefs.current[index] = el;
+                }
+              : undefined
+          }
+          href={`#${item.id}`}
+          aria-current={isActive ? "location" : undefined}
+          onClick={() => {
+            // Opens the matching accordion section if it is one — harmless
+            // no-op for ids nothing is listening for. See AccordionSection
+            // for why this is a plain event rather than shared state.
+            window.dispatchEvent(new CustomEvent(OPEN_SECTION_EVENT, { detail: { id: item.id } }));
+            onNavigate?.();
+          }}
+          className={`flex items-center gap-2 py-2 pl-4 -ml-px text-nav border-l-4 transition-[border-color,color] duration-150 ease-out ${
+            isActive
+              ? `${flowing ? "border-rule" : "border-accent"} text-accent-dark font-bold rounded-r-[16px]`
+              : "border-rule text-body font-semibold hover:border-rule-strong hover:text-ink focus-visible:border-rule-strong focus-visible:text-ink"
+          }`}
+        >
+          {isActive && <span aria-hidden="true" className="w-1.5 h-1.5 rounded-pill bg-accent shrink-0" />}
+          {item.label}
+        </a>
+      );
+    });
   }
 
   function pageLinks(onNavigate?: () => void) {
@@ -116,11 +135,17 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
     <div className="mb-10 lg:mb-0">
       {/* Desktop / tablet: fully expanded, sticky sidebar. */}
       <nav
+        ref={navRef}
         aria-label="On this page"
         className="hidden lg:sticky lg:top-28 lg:flex flex-col gap-4 rounded-card glass p-6"
       >
+        <span
+          ref={liquid.indicatorRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute z-[1] rounded-pill bg-accent opacity-0 origin-left"
+        />
         <p className="font-mono-label text-mono-label uppercase text-muted m-0 pb-2">On this page</p>
-        {sectionLinks()}
+        {sectionLinks(undefined, true)}
         {pageLinks()}
       </nav>
 
