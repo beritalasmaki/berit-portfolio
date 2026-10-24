@@ -106,24 +106,23 @@
     font-family: var(--font-plex-mono), monospace;
   }
 
-  /* Logo signature mark draw-in: each path uses pathLength=100, so a fixed
-     dasharray/dashoffset of 100 always maps to "fully drawn" with no runtime
-     length measurement and no pre-hydration flash. Here it drives an SVG
-     <mask> instead of the stroke itself — the mark is a filled brush-stroke silhouette (not a simple
-     open line), so stroking that path directly would render as a thin
-     outline of the silhouette's edge, not "the pen drawing the
-     signature". A wide horizontal bar animates across the mask instead,
-     progressively revealing the real, exact, unaltered signature shape
-     left to right — same technique (dasharray/dashoffset, no runtime
-     measurement, no pre-hydration flash), correct result for a filled
-     asset. See Logo.tsx. */
-  .logo-mask-path {
-    animation: logo-draw 1300ms ease-out forwards;
+  /* Logo signature draw-in (Logo.tsx): the mark is a filled brush-stroke
+     silhouette, not an open line, so stroking it would only outline its
+     edge. Instead a bar with a feathered right edge slides across an SVG
+     <mask>, revealing the real, unaltered signature left to right, like
+     ink flowing from a pen. Slow and gentle at both ends, because the
+     hero's star lifts off the end of the stroke as it finishes
+     (PenSpark.tsx). `both` holds the hidden state through the delay. */
+  .logo-mask-wipe {
+    animation: logo-wipe 2200ms cubic-bezier(0.45, 0, 0.25, 1) 200ms both;
   }
 
-  @keyframes logo-draw {
+  @keyframes logo-wipe {
+    from {
+      transform: translateX(0);
+    }
     to {
-      stroke-dashoffset: 0;
+      transform: translateX(226px);
     }
   }
 
@@ -183,15 +182,20 @@
     transform: translateY(16px);
   }
 
-  /* Case-study river (CaseStudyRiver.tsx): section nodes light up as the
-     line reaches them. */
+  /* Case-study river (CaseStudyRiver.tsx): a section's node stays hidden
+     until the star reaches it, then grows in. */
   .river-node {
-    fill: #fffaf4;
-    transition: fill 400ms ease-out;
+    fill: #fc890c;
+    opacity: 0;
+    transform: scale(0.6);
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: opacity 400ms ease-out, transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .river-node[data-lit] {
-    fill: #fc890c;
+    opacity: 1;
+    transform: none;
   }
 
   /* Frosted-glass surface for cards over the glowing background: a translucent

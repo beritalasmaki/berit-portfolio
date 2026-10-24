@@ -2,6 +2,7 @@ import Image from "next/image";
 import HeroLine from "./HeroLine";
 import { ArrowRightIcon } from "./icons";
 import LiquidHover from "./LiquidHover";
+import PenSpark from "./PenSpark";
 
 export default function Hero() {
   return (
@@ -9,13 +10,10 @@ export default function Hero() {
       <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-[clamp(32px,6vw,88px)] items-center py-8 lg:py-[clamp(32px,5vw,56px)]">
         <div className="min-w-0">
           {/* Entrance stagger: byline -> headline -> subheadline -> buttons,
-              ~100-180ms apart, starting once the logo's draw is mostly
-              visible (700ms into its 1300ms animation) rather than waiting
-              for it to fully finish -- ease-out front-loads most of a logo's
-              visible motion early, so waiting for the full duration read as
-              a dead pause. Overlaps the hero line's own draw, "while the line
-              draws", per spec. See .fade-up-item / @keyframes fade-up in
-              globals.css. */}
+              ~100-180ms apart, from 700ms: well inside the signature's slow
+              2.2s draw, so the content is readable while the logo is still
+              writing itself and the star hasn't yet left the pen. See
+              .fade-up-item / @keyframes fade-up in globals.css. */}
           {/* Byline: who's talking, before the promise. The photo is small
               on purpose so it reads as a signature, not a second hero
               image; the Line keeps the right-hand column. */}
@@ -83,12 +81,15 @@ export default function Hero() {
 
         <div className="min-w-0 hidden lg:flex flex-col justify-center">
           {/* The Line: arrives as a tangle and unwinds into a calm,
-              flowing path, the headline acted out (see HeroLine.tsx). */}
+              flowing path, the headline acted out (see HeroLine.tsx). The
+              star is the spark that lifts off the logo signature
+              (PenSpark.tsx). */}
           <div className="fade-up-item w-full max-w-[600px] mx-auto" style={{ animationDelay: "650ms" }}>
             <HeroLine />
           </div>
         </div>
       </div>
+      <PenSpark />
     </section>
   );
 }

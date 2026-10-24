@@ -6,13 +6,14 @@ import { useEffect, useRef, useState } from "react";
  * The case-study "river": the hero's Line (HeroLine.tsx) continued down a
  * case study as a shooting star you steer by scrolling.
  *
- * A thin, faint track meanders down the gutter between the table of contents
- * and the content, swinging gently from side to side between sections, with
- * a node at each section. As you scroll, a star slides along it (its head
- * follows a line just past the middle of the screen) with a tapered tail
- * fading out behind it, and leaves a thin orange line that fades in from the
- * top, where the river starts a little above the first section. Each node
- * lights up as the star reaches it, so the page reads as one connected path.
+ Nothing is drawn ahead of the star. As you scroll, a star glides down the
+ * gutter between the table of contents and the content (its head follows a
+ * line just past the middle of the screen, on a soft spring, so it never
+ * jumps), swinging gently from side to side between sections. A tapered tail
+ * fades out behind it, and it leaves a thin orange line that fades in from
+ * the top, where the river starts a little above the first section. On page
+ * load it glides in from the top. Each section's node appears as the star
+ * reaches it, so the page reads as one connected path.
  *
  * Lives inside the content column, absolutely positioned in the 56px
  * `gap-x-14` gutter to its left, and only on lg and up, where that gutter
@@ -22,8 +23,8 @@ import { useEffect, useRef, useState } from "react";
  * The river runs downward only, so its gradients (the fade-in at the top,
  * the tail behind the star) are plain vertical ones.
  *
- * Reduced motion: drawn in full with every node lit, the star resting at the
- * end, and no scroll handler.
+ * Reduced motion: drawn in full with every node shown, the star resting at
+ * the end, and no scroll handler.
  */
 
 const GUTTER = 56;
@@ -40,6 +41,10 @@ const TIP = 0.6;
 const LEN = 1000;
 // The star's tail, in px.
 const TAIL = 150;
+// Spring stiffness (per ms): the slow glide in on page load, then the
+// quicker follow (settles in ~250ms).
+const ENTER_SPRING = 0.004;
+const FOLLOW_SPRING = 0.016;
 
 type Layout = { height: number; nodes: number[]; d: string };
 type Sample = { x: number; y: number; f: number };
@@ -109,13 +114,33 @@ export default function CaseStudyRiver() {
     updateRef.current();
   }, [layout]);
 
-  // Follow the scroll.
+  // Follow the scroll, smoothly.
   useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function drawTo(f: number, x: number, y: number) {
+    // Where along the path a given y is (the path only runs downward, so y
+    // is sorted: binary search), and the point there.
+    function at(y: number): Sample {
+      const samples = samplesRef.current;
+      let lo = 0;
+      let hi = samples.length - 1;
+      if (y <= samples[0].y) return samples[0];
+      if (y >= samples[hi].y) return samples[hi];
+      while (hi - lo > 1) {
+        const mid = (lo + hi) >> 1;
+        if (samples[mid].y <= y) lo = mid;
+        else hi = mid;
+      }
+      const a = samples[lo];
+      const b = samples[hi];
+      const r = (y - a.y) / Math.max(1e-6, b.y - a.y);
+      return { x: a.x + (b.x - a.x) * r, y, f: a.f + (b.f - a.f) * r };
+    }
+
+    function drawTo(y: number) {
+      const { x, f } = at(y);
       drawnRef.current?.setAttribute("stroke-dashoffset", (LEN * (1 - f)).toFixed(1));
       // The tail: a dash of TAIL px ending at the star, fading in from
       // transparent at its far end.
@@ -130,8 +155,9 @@ export default function CaseStudyRiver() {
       const star = starRef.current;
       if (star) {
         star.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
-        star.setAttribute("opacity", f <= 0 ? "0" : "1");
+        star.setAttribute("opacity", f <= 0.001 ? "0" : "1");
       }
+      // Nodes only appear once the star has reached them.
       nodeRefs.current.forEach((node) => {
         if (!node) return;
         if (Number(node.getAttribute("cy")) <= y + 1) node.setAttribute("data-lit", "");
@@ -139,44 +165,59 @@ export default function CaseStudyRiver() {
       });
     }
 
+    function target() {
+      const samples = samplesRef.current;
+      const tipY = window.innerHeight * TIP - wrap!.getBoundingClientRect().top;
+      return Math.max(samples[0].y, Math.min(samples[samples.length - 1].y, tipY));
+    }
+
+    // The star glides after the scroll position on a critically damped
+    // spring (no overshoot, no jumps). On page load it starts at the top of
+    // the river and glides down to where it belongs, more slowly, so the
+    // line visibly draws itself in.
+    let y: number | null = null;
+    let v = 0;
+    let entering = true;
+    let frame: number | null = null;
+    let last = 0;
+
+    function step(now: number) {
+      frame = null;
+      if (samplesRef.current.length === 0) return;
+      const goal = target();
+      if (y === null) y = samplesRef.current[0].y;
+      const dt = Math.min(50, last ? now - last : 16);
+      last = now;
+      const w = entering ? ENTER_SPRING : FOLLOW_SPRING;
+      v += (w * w * (goal - y) - 2 * w * v) * dt;
+      y += v * dt;
+      drawTo(y);
+      if (Math.abs(goal - y) < 0.5 && Math.abs(v) < 0.01) {
+        y = goal;
+        v = 0;
+        entering = false;
+        drawTo(y);
+        last = 0;
+        return;
+      }
+      frame = requestAnimationFrame(step);
+    }
+
     function update() {
       const samples = samplesRef.current;
       if (samples.length === 0) return;
-      const end = samples[samples.length - 1];
-      if (reduced) return drawTo(1, end.x, end.y);
-      const tipY = window.innerHeight * TIP - wrap!.getBoundingClientRect().top;
-      if (tipY <= samples[0].y) return drawTo(0, samples[0].x, samples[0].y);
-      if (tipY >= end.y) return drawTo(1, end.x, end.y);
-      // The path only ever runs downward, so y is sorted: binary search.
-      let lo = 0;
-      let hi = samples.length - 1;
-      while (hi - lo > 1) {
-        const mid = (lo + hi) >> 1;
-        if (samples[mid].y <= tipY) lo = mid;
-        else hi = mid;
-      }
-      const a = samples[lo];
-      const b = samples[hi];
-      const r = (tipY - a.y) / Math.max(1e-6, b.y - a.y);
-      drawTo(a.f + (b.f - a.f) * r, a.x + (b.x - a.x) * r, tipY);
+      if (reduced) return drawTo(samples[samples.length - 1].y);
+      if (frame === null) frame = requestAnimationFrame(step);
     }
     updateRef.current = update;
     update();
     if (reduced) return;
 
-    let frame: number | null = null;
-    function onScroll() {
-      if (frame !== null) return;
-      frame = requestAnimationFrame(() => {
-        frame = null;
-        update();
-      });
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
       if (frame !== null) cancelAnimationFrame(frame);
     };
   }, []);
@@ -225,8 +266,6 @@ export default function CaseStudyRiver() {
               <stop offset="1" stopColor="#FC890C" stopOpacity="0" />
             </linearGradient>
           </defs>
-          {/* The course still ahead: a thin, faint track. */}
-          <path d={layout.d} stroke="#FC890C" strokeOpacity="0.22" strokeWidth="1" />
           {/* What the star has drawn so far. */}
           <path
             ref={drawnRef}
@@ -256,9 +295,7 @@ export default function CaseStudyRiver() {
               className="river-node"
               cx={MID}
               cy={y}
-              r="5"
-              stroke="#FC890C"
-              strokeWidth="1.5"
+              r="4"
             />
           ))}
           {/* The star: a soft glow, four fine rays and a bright core. */}
