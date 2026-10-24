@@ -1,5 +1,5 @@
 import Image from "next/image";
-import HeroBlob from "./HeroBlob";
+import HeroTimeline from "./HeroTimeline";
 import { ArrowRightIcon } from "./icons";
 import LiquidHover from "./LiquidHover";
 import UntangleLine from "./UntangleLine";
@@ -93,12 +93,12 @@ export default function Hero() {
         </div>
 
         <div className="min-w-0 hidden lg:flex flex-col justify-center">
-          {/* Hero blob: the logo's orange blob, floating and following the
-              cursor on hover (see HeroBlob.tsx). Hidden below lg: on phones
-              it landed under the buttons and only added scroll, and the
-              background orbs carry the warmth there. */}
+          {/* Hero timeline: four logo blobs rolling forward, growing by the
+              golden ratio and fading in (see HeroTimeline.tsx). Hidden below
+              lg: on phones it landed under the buttons and only added scroll,
+              and the background orbs carry the warmth there. */}
           <div className="fade-up-item" style={{ animationDelay: "650ms" }}>
-            <HeroBlob />
+            <HeroTimeline />
           </div>
         </div>
       </div>
