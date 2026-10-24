@@ -12,9 +12,10 @@ import type { CSSProperties } from "react";
  * re-blurring the screen every frame.
  *
  * Variety is deliberate: four tones of the brand orange, peak opacities from
- * 0.12 to 0.35 (the biggest orbs are the faintest, so the page stays mostly
- * cream), sizes from 22 to 60vmax, and each orb on its own 75–140s path
- * (`orb-drift-*` in globals.css). Negative delays start them mid-path, so
+ * 0.12 to 0.55 (the biggest orbs are the faintest; two small bright accents
+ * sit at the edges), golden-ratio sizes and positions (see ORBS), and each
+ * orb on its own 75–120s path (`orb-drift-*` in globals.css), kept to about
+ * ±8vmax so the composition holds. Negative delays start them mid-path, so
  * they never move in sync.
  *
  * Reduced motion: the global reduced-motion rule in globals.css collapses
@@ -43,14 +44,22 @@ const PEACH = "255 181 102"; // #FFB566
 const AMBER = "232 115 10"; // #E8730A
 const APRICOT = "255 211 161"; // #FFD3A1
 
+// Golden-ratio composition: sizes step by φ (60 → 37 → 23 → 14vmax), and
+// centers sit on the golden-section lines (38.2% / 61.8%, then 23.6% /
+// 85.4%), following a golden spiral from the large faint orb at the upper
+// right of center down into the corners. The large orbs stay faint, so the
+// middle of the page, where content lives, reads cream. The two small,
+// brighter brand-orange orbs sit in the calm zones at the far right gutter
+// and the bottom-left corner, away from text.
 const ORBS: Orb[] = [
-  { size: 60, x: 8, y: 6, rgb: PEACH, alpha: 0.2, path: 1, duration: 120, delay: -30 },
-  { size: 46, x: 78, y: 12, rgb: ORANGE, alpha: 0.14, path: 2, duration: 100, delay: -55 },
-  { size: 30, x: 88, y: 58, rgb: AMBER, alpha: 0.26, path: 3, duration: 85, delay: -20 },
-  { size: 22, x: 26, y: 70, rgb: ORANGE, alpha: 0.3, path: 4, duration: 75, delay: -40 },
-  { size: 52, x: 52, y: 92, rgb: APRICOT, alpha: 0.35, path: 5, duration: 140, delay: -70 },
-  { size: 26, x: 60, y: 38, rgb: PEACH, alpha: 0.28, path: 6, duration: 95, delay: -10 },
-  { size: 36, x: 4, y: 48, rgb: AMBER, alpha: 0.12, path: 7, duration: 110, delay: -85 },
+  { size: 60, x: 61.8, y: 38.2, rgb: PEACH, alpha: 0.16, path: 1, duration: 120, delay: -30 },
+  { size: 37, x: 38.2, y: 61.8, rgb: APRICOT, alpha: 0.3, path: 2, duration: 100, delay: -55 },
+  { size: 37, x: 85.4, y: 23.6, rgb: ORANGE, alpha: 0.12, path: 3, duration: 110, delay: -20 },
+  { size: 23, x: 14.6, y: 14.6, rgb: PEACH, alpha: 0.22, path: 4, duration: 85, delay: -40 },
+  { size: 23, x: 76.4, y: 85.4, rgb: AMBER, alpha: 0.18, path: 5, duration: 95, delay: -70 },
+  // Bright accents, kept small and out at the edges.
+  { size: 14, x: 94, y: 38.2, rgb: ORANGE, alpha: 0.55, path: 6, duration: 75, delay: -10 },
+  { size: 14, x: 4, y: 92, rgb: ORANGE, alpha: 0.5, path: 7, duration: 80, delay: -45 },
 ];
 
 export default function GlowOrbs() {

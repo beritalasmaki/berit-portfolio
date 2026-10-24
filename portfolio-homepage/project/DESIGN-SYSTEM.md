@@ -51,36 +51,42 @@ introduce new colors, sizes or radii without adding them here first.
   screen, on a `#fffaf4` cream ground (also `html`'s background).
   - **Tones:** brand orange `#FC890C`, peach `#FFB566`, amber `#E8730A` and
     apricot `#FFD3A1`.
-  - **Opacity:** peaks of 0.12–0.35. The largest orbs are the faintest, so
-    the page stays mostly cream and the orange reads as warmth.
-  - **Sizes:** 22–60vmax, so the composition holds on any screen shape.
+  - **Golden-ratio composition:** sizes step by φ (60 → 37 → 23 → 14vmax),
+    and centers sit on the golden-section lines (38.2% / 61.8%, then
+    23.6% / 85.4%), following a golden spiral from the large faint orb right
+    of center down into the corners.
+  - **Opacity:** the large orbs peak at 0.12–0.3, so the middle of the page,
+    where content lives, stays cream. Two small brand-orange accents are
+    brighter (0.5–0.55) and sit in calm zones away from text: the far right
+    gutter (94%, 38.2%) and the bottom-left corner (4%, 92%).
   - **Softness:** comes from each orb's radial gradient fading to
     transparent, not from `filter: blur()`. The orbs only move by
     `transform`, so they composite on the GPU instead of re-blurring the
     screen every frame.
-  - **Motion:** each orb has its own path, 75–140s per leg, `alternate`,
-    with negative delays so they never move in sync. Measured at about
-    3–7px/s.
+  - **Motion:** each orb has its own path, 75–120s per leg, `alternate`,
+    kept within about ±8vmax so the composition holds, with negative delays
+    so they never move in sync.
   - It replaced the floral-linen background video (and its `--bg-veil`
     white layer). The page no longer downloads ~2.6–3.8 MB of video.
-- **Hero blob** (`HeroBlob.tsx`, `.hero-blob`): the hero's right-hand focal
-  point is the logo's own orange blob (`BLOB_PATH`, exported from
-  `Logo.tsx`, `#FF890C`), so it's the brand shape itself. A generic sphere
-  didn't read as the brand.
-  - Its edge is feathered (`feGaussianBlur` 5 on the blob itself; a crisp
-    edge read too sharp against the soft orbs), and a more blurred copy
-    behind it (blur 14, 45%) gives a soft glow that ties it to the
-    background orbs.
-  - At rest it floats: a 16s tilt-and-breathe.
-  - While hovered, it glides toward the cursor: the target is 18% of the
-    pointer's offset from center, clamped to 44px, eased 7.5% of the way
-    there per frame, with a slight tilt in the direction of travel. It eases
-    home on leave.
-  - It's transform-only, so the glow is never re-blurred.
-  - It replaced the hand-drawn flourish line, and it's hidden below `lg`.
+- **Hero timeline** (`HeroTimeline.tsx`, `.hero-roll` / `.hero-bob`): the
+  hero's right-hand visual is the logo's own blob (`BLOB_PATH`, exported
+  from `Logo.tsx`) repeated as four wheels on a shared baseline, to say
+  "moving forward". It replaced a single floating blob, which said nothing.
+  - *Widths* grow by φ (1 : φ : φ² : φ³, so ~9.5 / 15.4 / 24.9 / 40.2% of
+    the row) and *opacity* steps 0.25 → 0.5 → 0.75 → 1, so the row reads as
+    approaching and arriving.
+  - *Motion:* each blob rolls clockwise at a constant speed; smaller wheels
+    turn faster, with periods of 6 / 9.7 / 15.7 / 25.4s. Each wrapper bobs
+    3px on a 2.8s cycle, with left-to-right delays (0.35s apart), so a wave
+    travels forward. The irregular logo shape is what makes the spin read as
+    rolling.
+  - The edge is feathered (blur 5) with a softer glow behind (blur 14, 45%),
+    both static. The motion is transform-only.
+  - There's no cursor-follow, since the rolling is the motion. It's hidden
+    below `lg`.
 - **Reduced motion:** the global reduced-motion rule collapses the
   animations, so the orbs rest at their starting positions as a still glow,
-  and the hero blob neither floats nor follows the cursor.
+  and the hero timeline's blobs neither roll nor bob.
 - **Glass cards** (`.glass`): a light, translucent cream fill (62%, so cards
   read clearly lighter than the background), backdrop blur, a 1px `white/75` edge with an inset top highlight, and the frame shadow. Inner
   panes inside a glass card use plain `bg-cream/NN` tints, never a nested

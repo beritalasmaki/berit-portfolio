@@ -106,18 +106,29 @@
     font-family: var(--font-plex-mono), monospace;
   }
 
-  /* Hero blob (Hero.tsx): the logo's orange blob, floating. A slow tilt
-     and breathe on one 16s `alternate` cycle. It's transform-only, so the
-     blurred glow inside the SVG is never re-rendered. */
-  .hero-blob {
+  /* Hero timeline (HeroTimeline.tsx): logo blobs rolling forward. Each
+     blob spins clockwise like a wheel (`hero-roll`, constant speed, smaller
+     wheels faster), and its wrapper bobs a few px (`hero-bob`), staggered
+     left to right so a wave of motion travels forward. Transform-only, so
+     the SVG glow inside is never re-blurred. */
+  .hero-roll {
     transform-origin: 50% 50%;
     will-change: transform;
-    animation: hero-blob-float 16s ease-in-out infinite alternate;
+    animation: hero-roll var(--roll-duration) linear infinite;
   }
 
-  @keyframes hero-blob-float {
-    0% { transform: translate3d(0, 6px, 0) rotate(-4deg) scale(0.97); }
-    100% { transform: translate3d(0, -6px, 0) rotate(3deg) scale(1.03); }
+  .hero-bob {
+    will-change: transform;
+    animation: hero-bob 2.8s ease-in-out var(--bob-delay) infinite;
+  }
+
+  @keyframes hero-roll {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes hero-bob {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -3px, 0); }
   }
 
   /* Logo signature mark draw-in: each path uses pathLength=100, so a fixed
@@ -348,8 +359,8 @@
      left/top point; its color and softness come from an inline radial
      gradient. The drift paths below are deliberately different shapes and
      only ever touch `transform`, so they composite cheaply. Each orb runs
-     its path `alternate` over 75–140s, so a leg moves at most ~16vmax (a
-     few px per second) and never snaps back. */
+     its path `alternate` over 75–120s, within about ±8vmax so the golden-ratio
+     composition holds, a few px per second, and never snaps back. */
   .glow-orb {
     position: absolute;
     width: var(--orb-size);
@@ -362,44 +373,44 @@
 
   @keyframes orb-drift-1 {
     0% { transform: translate3d(0, 0, 0) scale(1); }
-    50% { transform: translate3d(12vmax, 8vmax, 0) scale(1.08); }
-    100% { transform: translate3d(4vmax, 16vmax, 0) scale(0.96); }
+    50% { transform: translate3d(6vmax, 4vmax, 0) scale(1.08); }
+    100% { transform: translate3d(2vmax, 8vmax, 0) scale(0.96); }
   }
 
   @keyframes orb-drift-2 {
     0% { transform: translate3d(0, 0, 0) scale(1); }
-    40% { transform: translate3d(-14vmax, 6vmax, 0) scale(0.94); }
-    100% { transform: translate3d(-6vmax, 14vmax, 0) scale(1.06); }
+    40% { transform: translate3d(-7vmax, 3vmax, 0) scale(0.94); }
+    100% { transform: translate3d(-3vmax, 7vmax, 0) scale(1.06); }
   }
 
   @keyframes orb-drift-3 {
     0% { transform: translate3d(0, 0, 0) scale(1); }
-    60% { transform: translate3d(-10vmax, -12vmax, 0) scale(1.1); }
-    100% { transform: translate3d(-16vmax, -4vmax, 0) scale(1); }
+    60% { transform: translate3d(-5vmax, -6vmax, 0) scale(1.1); }
+    100% { transform: translate3d(-8vmax, -2vmax, 0) scale(1); }
   }
 
   @keyframes orb-drift-4 {
     0% { transform: translate3d(0, 0, 0) scale(1); }
-    50% { transform: translate3d(10vmax, -10vmax, 0) scale(1.12); }
-    100% { transform: translate3d(16vmax, -2vmax, 0) scale(0.95); }
+    50% { transform: translate3d(5vmax, -5vmax, 0) scale(1.12); }
+    100% { transform: translate3d(8vmax, -1vmax, 0) scale(0.95); }
   }
 
   @keyframes orb-drift-5 {
     0% { transform: translate3d(0, 0, 0) scale(1); }
-    50% { transform: translate3d(-12vmax, -8vmax, 0) scale(1.05); }
-    100% { transform: translate3d(8vmax, -14vmax, 0) scale(0.97); }
+    50% { transform: translate3d(-6vmax, -4vmax, 0) scale(1.05); }
+    100% { transform: translate3d(4vmax, -7vmax, 0) scale(0.97); }
   }
 
   @keyframes orb-drift-6 {
     0% { transform: translate3d(0, 0, 0) scale(1); }
-    35% { transform: translate3d(8vmax, 10vmax, 0) scale(0.92); }
-    100% { transform: translate3d(-10vmax, 14vmax, 0) scale(1.08); }
+    35% { transform: translate3d(4vmax, 5vmax, 0) scale(0.92); }
+    100% { transform: translate3d(-5vmax, 7vmax, 0) scale(1.08); }
   }
 
   @keyframes orb-drift-7 {
     0% { transform: translate3d(0, 0, 0) scale(1); }
-    55% { transform: translate3d(14vmax, -6vmax, 0) scale(1.06); }
-    100% { transform: translate3d(6vmax, 10vmax, 0) scale(1); }
+    55% { transform: translate3d(7vmax, -3vmax, 0) scale(1.06); }
+    100% { transform: translate3d(3vmax, 5vmax, 0) scale(1); }
   }
 
   /* Visually hide content while keeping it available to screen readers. */
