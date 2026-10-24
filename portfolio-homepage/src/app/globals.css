@@ -110,11 +110,34 @@
      silhouette, not an open line, so stroking it would only outline its
      edge. Instead a bar with a feathered right edge slides across an SVG
      <mask>, revealing the real, unaltered signature left to right, like
-     ink flowing from a pen. Slow and gentle at both ends, because the
-     hero's star lifts off the end of the stroke as it finishes
-     (PenSpark.tsx). `both` holds the hidden state through the delay. */
+     ink flowing from a pen, at a steady writing pace (a gentle in-out, not
+     an ease-out that finishes early and then sits still). Gentle at the end
+     too, because the hero's star
+     lifts off the end of the stroke as it finishes (PenSpark.tsx), together
+     with the headline (Hero.tsx delays). `both` holds the hidden state
+     through the delay. */
   .logo-mask-wipe {
-    animation: logo-wipe 2200ms cubic-bezier(0.45, 0, 0.25, 1) 200ms both;
+    animation: logo-wipe 1700ms cubic-bezier(0.35, 0, 0.65, 1) 150ms both;
+  }
+
+  /* The ball under the signature fades and settles in first (0-450ms), so
+     it's never sitting there empty waiting for its signature; the writing
+     starts while it lands. */
+  .logo-blob-in {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: logo-blob-in 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes logo-blob-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 
   @keyframes logo-wipe {

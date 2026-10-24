@@ -86,7 +86,7 @@ introduce new colors, sizes or radii without adding them here first.
   - *Afterwards:* the resting star twinkles gently, and every 9s a softer
     star runs down the river and brightens it on arrival.
   - *Below lg:* `variant="strip"`, a slim version under the lead. It starts
-    from rest (ease-in-out) 400ms after the signature finishes.
+    from rest (ease-in-out) as the signature finishes, with the headline.
   - *Mechanics:* it's drawn on a canvas, because the tail is a gradient
     along a curve, which SVG strokes can't do. The curve (Catmull-Rom
     through anchors) is sampled every 1.5 units, so the star moves at a
@@ -1135,17 +1135,23 @@ code and applies site-wide:
 
 ### Homepage entrance sequence
 Plays once on load (homepage only — `Header`'s `animateLogo` prop). It is
-one continuous gesture, about 7s, unhurried: the signature writes itself,
-a spark leaves the pen, and becomes the star that draws the hero's river.
+one continuous gesture, about 7s, unhurried: the ball appears, the
+signature writes itself, and the headline comes out at the moment a spark
+leaves the pen and becomes the star that draws the hero's river.
 `prefers-reduced-motion: reduce` shows every element in its finished state
 immediately (no spark, the river already drawn).
-1. **Signature** (`Logo.tsx`, `.logo-mask-wipe`, 200–2400ms): the blob is
-   there from frame one, and the black signature is revealed left to right
+1. **Ball, then signature** (`Logo.tsx`): the orange ball fades and settles
+   in first (`.logo-blob-in`, 0–450ms, from 90% scale), so it never sits
+   there empty, and the signature starts writing over it right away
+   (`.logo-mask-wipe`, 150–1850ms). The signature is revealed left to right
    by a bar with a *feathered* right edge sliding across an SVG `<mask>`,
-   like ink flowing from a pen, on `cubic-bezier(0.45, 0, 0.25, 1)`. (The
+   like ink flowing from a pen, at a steady pace (`cubic-bezier(0.35, 0, 0.65,
+   1)`; an ease-out finished early and then sat still). (The
    mark is a filled silhouette, so stroking it would only outline it.)
-2. **Text** (byline 700ms, H1 800ms, lead 980ms, buttons 1160ms): fades up
-   while the signature is still writing, so the page is readable at once.
+2. **Text with the star** (byline 1550ms, H1 1650ms, lead 1830ms, buttons
+   2010ms): the headline comes out exactly as the star lifts off the end of
+   the signature, so title and star arrive together. Keep these delays in
+   step with `.logo-mask-wipe`.
 3. **Spark leaves the pen** (`PenSpark.tsx`, lg+): 200ms before the
    signature finishes, a spark gathers at the tip of the final flourish
    (`[data-pen-tip]` in `Logo.tsx`). It flicks up the way the flourish

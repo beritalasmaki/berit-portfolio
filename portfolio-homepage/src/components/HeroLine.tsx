@@ -88,8 +88,9 @@ const SETTLE = 700;
 // After arriving, a softer star runs down the river every CYCLE.
 const CYCLE = 9000;
 const ECHO_RUN = 3400;
-// Strip only: pause after the signature before the star sets off.
-const STRIP_PAUSE = 400;
+// Strip only: when to set off after the signature finishes. Immediately,
+// so it starts with the headline, as the hero's star does.
+const STRIP_PAUSE = 0;
 // Hero only: start anyway if the spark never hands over (e.g. it failed to
 // find the logo), this long after the signature finished.
 const HANDOFF_FALLBACK = 2600;

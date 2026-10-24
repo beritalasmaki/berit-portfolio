@@ -85,7 +85,11 @@ export default function Logo({ animated = false }: {
             </mask>
           </defs>
         )}
-        <path d={BLOB_PATH} fill="#FF890C" transform={BLOB_TRANSFORM} />
+        {/* When animated, the ball fades in first and the signature starts
+            writing over it right away (.logo-blob-in in globals.css). */}
+        <g className={animated ? "logo-blob-in" : undefined}>
+          <path d={BLOB_PATH} fill="#FF890C" transform={BLOB_TRANSFORM} />
+        </g>
         <g mask={animated ? `url(#${maskId})` : undefined}>
           <path d={SIGNATURE_PATH} fill="#000000" transform={SIGNATURE_TRANSFORM} />
         </g>
