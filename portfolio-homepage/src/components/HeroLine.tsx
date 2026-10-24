@@ -1,181 +1,281 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { easeOutSine, lerpPoints, throughAnchors, toPath, type Point } from "@/lib/morph";
+import { easeInOutSine, sampleCurve, type Point, type Sampled } from "@/lib/line";
 
 /**
- * The hero's "Line": the headline acted out. It arrives as a sharp, erratic
- * tangle (the complexity), then softens and unwinds into one calm,
- * meandering path, like a river finding its course (the untangling), and
- * keeps flowing gently left → right after that (moving forward). It
- * replaced an aurora and, before that, rolling blobs, neither of which told
- * the headline's story.
+ * The hero's "Line": the headline acted out as a shooting star.
  *
- * It's the same stroke as the rest of the motif (brand orange, round caps,
- * a thinner echo slightly out of register, like the logo signature), and the
- * case-study river (CaseStudyRiver.tsx) continues it down those pages.
+ * It opens on a faint coiled string (the complexity). A glowing star then
+ * slithers through the coils like a snake, drawing as it goes, its tail
+ * tapering and fading behind it, and the coils it has passed through are
+ * gone. Out of the coils it glides into one calm river bend and comes to
+ * rest pointing at the buttons, leaving a thin line that fades in from where
+ * the tangle was (the untangling). Every so often another, softer star runs
+ * down the river (moving forward).
  *
- * - `hero`: the large version in the hero's right column (lg and up). The
- *   meander sweeps right, bends back, and leaves toward the lower left, where
- *   the buttons are.
- * - `strip`: a slim horizontal version for phones and tablets, where the
- *   right column is hidden; the tangle on the left unwinds into a wave that
- *   runs across the screen.
+ * Drawn on a canvas, because the tail is a gradient *along a curve* (width
+ * and opacity grow toward the head), which SVG strokes can't do. The curve
+ * is sampled into evenly spaced points (lib/line.ts), so the star moves at a
+ * steady speed with a gentle start and arrival, and the tail is drawn as many
+ * tiny segments, each a little brighter and wider than the last.
  *
- * The morph is interpolated in JS on rAF (see lib/morph.ts for why). The
- * rAF loop only runs while the line is on screen.
+ * - `hero`: the large version in the hero's right column (lg and up).
+ * - `strip`: a slim version for phones and tablets, under the lead.
  *
- * Reduced motion: both states ship in the markup and CSS shows only the
- * settled meander (.line-resolved in globals.css), from the very first
- * paint; the effect bails out before starting any loop.
+ * The loop only runs while the canvas is on screen. Reduced motion: the
+ * settled river and its resting star are drawn once, and nothing moves.
  */
 
 type Variant = "hero" | "strip";
 
-const SHAPES: Record<Variant, { w: number; h: number; tangle: Point[]; meander: Point[]; wave: number }> = {
+// Coils: a looping string (a prolate cycloid), two loops, moving right.
+function coils(x0: number, y0: number, a: number, b: number): Point[] {
+  const out: Point[] = [];
+  for (let k = 0; k <= 16; k++) {
+    const t = Math.PI + (k * Math.PI) / 4;
+    out.push([x0 + a * t - b * Math.sin(t), y0 - b * Math.cos(t)]);
+  }
+  return out;
+}
+
+const SHAPES: Record<Variant, { w: number; h: number; coil: Point[]; river: Point[]; scale: number }> = {
   hero: {
     w: 600,
     h: 420,
-    // Crossings, reversals and corners, bunched up at the upper left.
-    tangle: [
-      [40, 55], [270, 110], [130, 235], [340, 170], [190, 60], [170, 280],
-      [370, 250], [100, 150], [310, 300], [230, 130], [250, 215],
+    coil: coils(40, 170, 14, 40),
+    // One bend out to the right, then back toward the lower left (the
+    // buttons).
+    river: [
+      [340, 192], [430, 150], [520, 148], [562, 200], [515, 258], [400, 280],
+      [280, 298], [170, 328], [82, 362], [28, 392],
     ],
-    // Two soft river bends, ending toward the lower left (the buttons).
-    meander: [
-      [40, 70], [150, 36], [290, 78], [430, 60], [548, 120], [520, 196],
-      [380, 214], [250, 232], [150, 276], [80, 326], [24, 378],
-    ],
-    wave: 6,
+    scale: 1,
   },
   strip: {
     w: 600,
     h: 120,
-    tangle: [
-      [16, 62], [150, 20], [60, 100], [220, 40], [110, 30], [90, 104],
-      [250, 90], [40, 50], [200, 108], [130, 60], [170, 70],
-    ],
-    meander: [
-      [16, 62], [70, 42], [130, 68], [190, 88], [250, 66], [310, 42],
-      [370, 62], [430, 86], [490, 70], [545, 50], [584, 58],
-    ],
-    wave: 4,
+    coil: coils(14, 60, 9, 26),
+    river: [[215, 80], [280, 52], [350, 38], [420, 58], [490, 82], [550, 72], [586, 56]],
+    scale: 0.7,
   },
 };
 
-// Wait for the H1 to have faded in (it starts at 800ms, see Hero.tsx), then
-// unwind slowly enough to be watched.
-const START_MS = 1500;
-const MORPH_MS = 3000;
-// The ongoing flow: a wave travelling along the line, left → right.
-const WAVE_PERIOD_MS = 9000;
-const WAVE_K = 0.018;
+const ORANGE = "252, 137, 12";
+const GLOW = "255, 181, 102";
 
-function withWave(points: number[], amp: number, phase: number) {
-  if (amp === 0) return points;
-  const out = points.slice();
-  for (let i = 0; i < out.length; i += 2) out[i + 1] += amp * Math.sin(out[i] * WAVE_K - phase);
-  return out;
+// Timing (ms). The star sets off once the H1 has faded in (Hero.tsx).
+const START = 1500;
+const RUN = 5200;
+const SETTLE = 700;
+// After that, a softer star runs down the river every CYCLE.
+const CYCLE = 9000;
+const ECHO_RUN = 3400;
+
+// Lengths, in viewBox units.
+const TAIL = 300;
+const ECHO_TAIL = 200;
+const FADE_IN = 170;
+
+type Ctx = CanvasRenderingContext2D;
+
+/** Strokes samples i0..i1 as one path, at one width and opacity. */
+function strokeSpan(ctx: Ctx, s: Sampled, i0: number, i1: number, width: number, color: string) {
+  if (i1 <= i0) return;
+  ctx.beginPath();
+  ctx.moveTo(s.x[i0], s.y[i0]);
+  for (let i = i0 + 1; i <= i1; i++) ctx.lineTo(s.x[i], s.y[i]);
+  ctx.lineWidth = width;
+  ctx.strokeStyle = color;
+  ctx.stroke();
+}
+
+/** Strokes samples i0..i1 segment by segment, styled by position u (0..1). */
+function strokeRamp(
+  ctx: Ctx,
+  s: Sampled,
+  i0: number,
+  i1: number,
+  style: (u: number) => [alpha: number, width: number],
+  rgb: string
+) {
+  const n = i1 - i0;
+  if (n <= 0) return;
+  ctx.strokeStyle = `rgb(${rgb})`;
+  for (let i = i0; i < i1; i++) {
+    const [alpha, width] = style((i - i0) / n);
+    if (alpha <= 0.004) continue;
+    ctx.globalAlpha = alpha;
+    ctx.lineWidth = width;
+    ctx.beginPath();
+    ctx.moveTo(s.x[i], s.y[i]);
+    ctx.lineTo(s.x[i + 1], s.y[i + 1]);
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+
+/** The star's head: a soft glow, four fine rays and a bright core. */
+function sparkle(ctx: Ctx, x: number, y: number, scale: number) {
+  const size = 1.3 * scale;
+  const glow = ctx.createRadialGradient(x, y, 0, x, y, 18 * size);
+  glow.addColorStop(0, `rgba(${GLOW}, 0.6)`);
+  glow.addColorStop(1, `rgba(${GLOW}, 0)`);
+  ctx.fillStyle = glow;
+  ctx.beginPath();
+  ctx.arc(x, y, 18 * size, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.lineWidth = 1.1 * size;
+  for (const [dx, dy, len] of [[1, 0, 17], [-1, 0, 17], [0, 1, 17], [0, -1, 17], [0.7, 0.7, 7], [-0.7, 0.7, 7], [0.7, -0.7, 7], [-0.7, -0.7, 7]]) {
+    const ex = x + dx * len * size;
+    const ey = y + dy * len * size;
+    const ray = ctx.createLinearGradient(x, y, ex, ey);
+    ray.addColorStop(0, `rgba(${ORANGE}, 0.9)`);
+    ray.addColorStop(1, `rgba(${ORANGE}, 0)`);
+    ctx.strokeStyle = ray;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(ex, ey);
+    ctx.stroke();
+  }
+  ctx.fillStyle = `rgb(${ORANGE})`;
+  ctx.beginPath();
+  ctx.arc(x, y, 3 * size, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#FFF4E6";
+  ctx.beginPath();
+  ctx.arc(x, y, 1.5 * size, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+/** A shooting star: a tail that tapers and fades out behind the head. */
+function comet(ctx: Ctx, s: Sampled, from: number, head: number, strength: number, k: number) {
+  // Glow under the tail, then the tail itself, widest and brightest at the head.
+  strokeRamp(ctx, s, from, head, (u) => [0.12 * strength * u * u, (2 + 9 * u) * k], GLOW);
+  strokeRamp(ctx, s, from, head, (u) => [strength * Math.pow(u, 1.6), (0.4 + 2.8 * u) * k], ORANGE);
 }
 
 export default function HeroLine({ variant = "hero", className = "" }: { variant?: Variant; className?: string }) {
   const shape = SHAPES[variant];
-  // Sharp corners for the tangle (zero-length handles), smooth for the meander.
-  const tangle = throughAnchors(shape.tangle, 0);
-  const meander = throughAnchors(shape.meander, 1);
-  const end = shape.meander[shape.meander.length - 1];
-  const tangleEnd = shape.tangle[shape.tangle.length - 1];
-
-  const svgRef = useRef<SVGSVGElement>(null);
-  const pathRefs = useRef<(SVGPathElement | null)[]>([]);
-  const mainRef = useRef<SVGPathElement>(null);
-  const echoRef = useRef<SVGPathElement>(null);
-  const dotRef = useRef<SVGCircleElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const svg = svgRef.current;
-    if (!svg) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const wrap = wrapRef.current;
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!wrap || !canvas || !ctx) return;
 
-    const from = throughAnchors(SHAPES[variant].tangle, 0);
-    const to = throughAnchors(SHAPES[variant].meander, 1);
-    const amp = SHAPES[variant].wave;
-    const t0 = performance.now() + START_MS;
-    let frame: number | null = null;
+    const { w, coil, river, scale: k } = SHAPES[variant];
+    const s = sampleCurve([...coil, ...river]);
+    const idx = (len: number) => Math.max(0, Math.min(s.x.length - 1, Math.round(len / s.step)));
+    const last = s.x.length - 1;
+    // Where the coils end and the river begins.
+    const M = idx(s.atAnchor[coil.length - 1]);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function draw(now: number) {
-      const p = easeOutSine(Math.min(1, Math.max(0, (now - t0) / MORPH_MS)));
-      const phase = ((now - t0) / WAVE_PERIOD_MS) * Math.PI * 2;
-      const points = withWave(lerpPoints(from, to, p), amp * p, phase);
-      const d = toPath(points);
-      for (const path of pathRefs.current) path?.setAttribute("d", d);
-      echoRef.current?.setAttribute("d", toPath(points, 0.9));
-      // The stroke relaxes as it untangles: slightly heavier while it's a
-      // knot, and the soft echo only fades in once it's flowing.
-      mainRef.current?.setAttribute("stroke-width", (3 - 0.6 * p).toFixed(2));
-      echoRef.current?.setAttribute("opacity", (0.7 * p).toFixed(3));
-      const dot = dotRef.current;
-      if (dot) {
-        dot.setAttribute("cx", points[points.length - 2].toFixed(1));
-        dot.setAttribute("cy", points[points.length - 1].toFixed(1));
-        dot.setAttribute("opacity", p.toFixed(3));
+    function fit() {
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      const cw = wrap!.clientWidth;
+      const ch = wrap!.clientHeight;
+      if (cw === 0) return false;
+      if (canvas!.width !== Math.round(cw * dpr)) {
+        canvas!.width = Math.round(cw * dpr);
+        canvas!.height = Math.round(ch * dpr);
       }
-      frame = requestAnimationFrame(draw);
+      const z = (cw / w) * dpr;
+      ctx!.setTransform(z, 0, 0, z, 0, 0);
+      ctx!.clearRect(0, 0, w, SHAPES[variant].h);
+      ctx!.lineCap = "butt";
+      ctx!.lineJoin = "round";
+      return true;
     }
 
-    // Only animate while visible: no reason to spend frames on a line
-    // nobody can see once the hero has scrolled away.
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && frame === null) {
-        frame = requestAnimationFrame(draw);
-      } else if (!entry.isIntersecting && frame !== null) {
+    // The thin river left behind, fading in from where the coils were.
+    function trail(to: number) {
+      const fade = Math.min(to, M + Math.round(FADE_IN / s.step));
+      strokeRamp(ctx!, s, M, fade, (u) => [0.6 * u, 1.6 * k], ORANGE);
+      strokeSpan(ctx!, s, fade, to, 1.6 * k, `rgba(${ORANGE}, 0.6)`);
+    }
+
+    function draw(t: number) {
+      if (!fit()) return;
+      const run = Math.min(1, Math.max(0, (t - START) / RUN));
+      const head = idx(easeInOutSine(run) * s.length);
+      // The tangle still ahead of the star: faint and thin.
+      if (head < M) strokeSpan(ctx!, s, head, M, 1.4 * k, `rgba(${ORANGE}, 0.28)`);
+      if (head > M) trail(head);
+
+      if (run < 1) {
+        const from = Math.max(0, head - Math.round(TAIL / s.step));
+        if (t > START) comet(ctx!, s, from, head, 1, k);
+        if (t > START) sparkle(ctx!, s.x[head], s.y[head], k);
+        return;
+      }
+
+      // Arrived: the tail draws itself in behind the resting star.
+      const since = t - START - RUN;
+      const settle = Math.min(1, since / SETTLE);
+      if (settle < 1) {
+        const from = Math.max(0, last - Math.round(((1 - settle) * TAIL) / s.step));
+        comet(ctx!, s, from, last, 1 - settle, k);
+      }
+
+      // Every CYCLE, a softer star runs down the river.
+      const phase = (since - SETTLE * 2) % CYCLE;
+      let flare = 0;
+      if (since > SETTLE * 2 && phase < ECHO_RUN) {
+        const eh = M + Math.round(easeInOutSine(phase / ECHO_RUN) * (last - M));
+        comet(ctx!, s, Math.max(M, eh - Math.round(ECHO_TAIL / s.step)), eh, 0.8, k);
+        sparkle(ctx!, s.x[eh], s.y[eh], 0.65 * k);
+        flare = Math.max(0, 1 - (ECHO_RUN - phase) / 400);
+      }
+      // The resting star twinkles gently, and brightens as the next arrives.
+      const twinkle = 0.9 + 0.08 * Math.sin(t / 700) + 0.15 * flare;
+      sparkle(ctx!, s.x[last], s.y[last], twinkle * k);
+    }
+
+    if (reduced) {
+      const still = () => {
+        if (!fit()) return;
+        trail(last);
+        sparkle(ctx!, s.x[last], s.y[last], 0.9 * k);
+      };
+      still();
+      const ro = new ResizeObserver(still);
+      ro.observe(wrap);
+      return () => ro.disconnect();
+    }
+
+    const t0 = performance.now();
+    let frame: number | null = null;
+    const tick = (now: number) => {
+      draw(now - t0);
+      frame = requestAnimationFrame(tick);
+    };
+    // Only animate while visible.
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && frame === null) frame = requestAnimationFrame(tick);
+      else if (!entry.isIntersecting && frame !== null) {
         cancelAnimationFrame(frame);
         frame = null;
       }
     });
-    observer.observe(svg);
+    io.observe(wrap);
     return () => {
-      observer.disconnect();
+      io.disconnect();
       if (frame !== null) cancelAnimationFrame(frame);
     };
   }, [variant]);
 
-  const tangleD = toPath(tangle);
-  const meanderD = toPath(meander);
-
   return (
-    <svg
-      ref={svgRef}
-      viewBox={`0 0 ${shape.w} ${shape.h}`}
+    <div
+      ref={wrapRef}
       aria-hidden="true"
-      focusable="false"
-      className={`block w-full h-auto overflow-visible ${className}`}
+      className={`relative w-full ${className}`}
+      style={{ aspectRatio: `${shape.w} / ${shape.h}` }}
     >
-      <g className="line-animated" fill="none" strokeLinecap="round" strokeLinejoin="round">
-        {/* Soft glow: two wide, faint strokes under the line (no blur
-            filter, which would re-rasterize on every frame of the morph). */}
-        <path ref={(el) => { pathRefs.current[0] = el; }} d={tangleD} stroke="#FFB566" strokeWidth="18" opacity="0.1" />
-        <path ref={(el) => { pathRefs.current[1] = el; }} d={tangleD} stroke="#FFB566" strokeWidth="8" opacity="0.16" />
-        <path ref={(el) => { mainRef.current = el; pathRefs.current[2] = el; }} d={tangleD} stroke="#FC890C" strokeWidth="3" />
-        <path ref={echoRef} d={toPath(tangle, 0.9)} stroke="#FC890C" strokeWidth="1.2" opacity="0" />
-        {/* A glint of light running along the line, downstream. */}
-        <path
-          ref={(el) => { pathRefs.current[3] = el; }}
-          className="hero-line-glint"
-          d={tangleD}
-          pathLength={100}
-          stroke="#FFF1DF"
-          strokeWidth="2"
-        />
-        <circle ref={dotRef} cx={tangleEnd[0]} cy={tangleEnd[1]} r="4.5" fill="#FC890C" opacity="0" />
-      </g>
-      <g className="line-resolved" fill="none" strokeLinecap="round" strokeLinejoin="round">
-        <path d={meanderD} stroke="#FFB566" strokeWidth="18" opacity="0.1" />
-        <path d={meanderD} stroke="#FFB566" strokeWidth="8" opacity="0.16" />
-        <path d={meanderD} stroke="#FC890C" strokeWidth="2.4" />
-        <path d={toPath(meander, 0.9)} stroke="#FC890C" strokeWidth="1.2" opacity="0.7" />
-        <circle cx={end[0]} cy={end[1]} r="4.5" fill="#FC890C" />
-      </g>
-    </svg>
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+    </div>
   );
 }

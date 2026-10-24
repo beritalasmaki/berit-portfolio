@@ -106,21 +106,6 @@
     font-family: var(--font-plex-mono), monospace;
   }
 
-  /* The Line (HeroLine.tsx): a short glint of light runs along the line,
-     downstream, every 8s once it has settled. pathLength=100 with a dash of
-     8 and a gap of 200 means exactly one dash: offset 8 hides it before the
-     start, -100 has carried it past the end. */
-  .hero-line-glint {
-    stroke-dasharray: 8 200;
-    stroke-dashoffset: 8;
-    animation: hero-line-glint 8s cubic-bezier(0.45, 0, 0.55, 1) 4.8s infinite;
-  }
-
-  @keyframes hero-line-glint {
-    0% { stroke-dashoffset: 8; }
-    45%, 100% { stroke-dashoffset: -100; }
-  }
-
   /* Logo signature mark draw-in: each path uses pathLength=100, so a fixed
      dasharray/dashoffset of 100 always maps to "fully drawn" with no runtime
      length measurement and no pre-hydration flash. Here it drives an SVG
@@ -181,26 +166,6 @@
     }
     to {
       opacity: 1;
-    }
-  }
-
-  /* The Line (HeroLine.tsx, CaseStudyRiver.tsx) ships its settled state
-     in the markup next to the animated one and lets CSS pick, rather than
-     swapping in an effect. An effect runs only once React hydrates, and the
-     server-rendered HTML has usually painted well before that; a
-     reduced-motion visitor would catch a frame of the tangle first, which is
-     precisely the movement they asked not to be shown. A media query is
-     resolved on the very first paint, so they only ever see the calm path. */
-  .line-resolved {
-    display: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .line-animated {
-      display: none;
-    }
-    .line-resolved {
-      display: inline;
     }
   }
 
