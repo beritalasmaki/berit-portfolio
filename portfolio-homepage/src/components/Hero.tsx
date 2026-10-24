@@ -1,5 +1,5 @@
 import Image from "next/image";
-import HeroTimeline from "./HeroTimeline";
+import HeroAurora from "./HeroAurora";
 import { ArrowRightIcon } from "./icons";
 import LiquidHover from "./LiquidHover";
 import UntangleLine from "./UntangleLine";
@@ -93,12 +93,13 @@ export default function Hero() {
         </div>
 
         <div className="min-w-0 hidden lg:flex flex-col justify-center">
-          {/* Hero timeline: four logo blobs rolling forward, growing by the
-              golden ratio and fading in (see HeroTimeline.tsx). Hidden below
-              lg: on phones it landed under the buttons and only added scroll,
-              and the background orbs carry the warmth there. */}
+          {/* Hero aurora: warm aurora light flowing like a river, left to
+              right, fading in as it goes, to say "moving forward" (see
+              HeroAurora.tsx). Hidden below lg: on phones it landed under the
+              buttons and only added scroll, and the background orbs carry
+              the warmth there. */}
           <div className="fade-up-item" style={{ animationDelay: "650ms" }}>
-            <HeroTimeline />
+            <HeroAurora />
           </div>
         </div>
       </div>
