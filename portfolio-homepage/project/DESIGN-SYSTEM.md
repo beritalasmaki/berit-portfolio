@@ -68,25 +68,28 @@ introduce new colors, sizes or radii without adding them here first.
     so they never move in sync.
   - It replaced the floral-linen background video (and its `--bg-veil`
     white layer). The page no longer downloads ~2.6–3.8 MB of video.
-- **Hero timeline** (`HeroTimeline.tsx`, `.hero-roll` / `.hero-bob`): the
-  hero's right-hand visual is the logo's own blob (`BLOB_PATH`, exported
-  from `Logo.tsx`) repeated as four wheels on a shared baseline, to say
-  "moving forward". It replaced a single floating blob, which said nothing.
-  - *Widths* grow by φ (1 : φ : φ² : φ³, so ~9.5 / 15.4 / 24.9 / 40.2% of
-    the row) and *opacity* steps 0.25 → 0.5 → 0.75 → 1, so the row reads as
-    approaching and arriving.
-  - *Motion:* each blob rolls clockwise at a constant speed; smaller wheels
-    turn faster, with periods of 6 / 9.7 / 15.7 / 25.4s. Each wrapper bobs
-    3px on a 2.8s cycle, with left-to-right delays (0.35s apart), so a wave
-    travels forward. The irregular logo shape is what makes the spin read as
-    rolling.
-  - The edge is feathered (blur 5) with a softer glow behind (blur 14, 45%),
-    both static. The motion is transform-only.
-  - There's no cursor-follow, since the rolling is the motion. It's hidden
-    below `lg`.
+- **Hero aurora** (`HeroAurora.tsx`, `.hero-aurora-*`): the hero's
+  right-hand visual is warm aurora light flowing like a river, left to
+  right. It acts out the headline: it starts tangled and untangles into neat
+  curtains. Rolling logo blobs (read as messy) and a blurred current (read
+  as ghostly) came before it.
+  - *Structure:* 3 curtains, each made of thin vertical rays rising from a
+    smooth wavy base, brightest at the base and fading upward. A light 2.5
+    blur merges them into glowing bands while keeping the streaks.
+  - *Fade-in and edges:* opacity grows left → right (faint start, warm
+    arrival), and a sine envelope tapers both ends, so there are no hard
+    edges.
+  - *Untangle (once, on load):* every ray starts scattered (random shift,
+    tilt and stretch) and eases into place over 1.4s, sweeping left → right
+    from ~1.1s. The settled state has no randomness, so it's calm and
+    orderly.
+  - *Ongoing flow:* each curtain sways with a slow skew from its base, out
+    of phase (11–17s), and a soft band of brightness travels left → right
+    through the curtains (7s).
+  - It's hidden below `lg`.
 - **Reduced motion:** the global reduced-motion rule collapses the
   animations, so the orbs rest at their starting positions as a still glow,
-  and the hero timeline's blobs neither roll nor bob.
+  and the hero aurora appears already untangled and still.
 - **Glass cards** (`.glass`): a light, translucent cream fill (62%, so cards
   read clearly lighter than the background), backdrop blur, a 1px `white/75` edge with an inset top highlight, and the frame shadow. Inner
   panes inside a glass card use plain `bg-cream/NN` tints, never a nested
