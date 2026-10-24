@@ -68,28 +68,43 @@ introduce new colors, sizes or radii without adding them here first.
     so they never move in sync.
   - It replaced the floral-linen background video (and its `--bg-veil`
     white layer). The page no longer downloads ~2.6–3.8 MB of video.
-- **Hero aurora** (`HeroAurora.tsx`, `.hero-aurora-*`): the hero's
-  right-hand visual is warm aurora light flowing like a river, left to
-  right. It acts out the headline: it starts tangled and untangles into neat
-  curtains. Rolling logo blobs (read as messy) and a blurred current (read
-  as ghostly) came before it.
-  - *Structure:* 3 curtains, each made of thin vertical rays rising from a
-    smooth wavy base, brightest at the base and fading upward. A light 2.5
-    blur merges them into glowing bands while keeping the streaks.
-  - *Fade-in and edges:* opacity grows left → right (faint start, warm
-    arrival), and a sine envelope tapers both ends, so there are no hard
-    edges.
-  - *Untangle (once, on load):* every ray starts scattered (random shift,
-    tilt and stretch) and eases into place over 1.4s, sweeping left → right
-    from ~1.1s. The settled state has no randomness, so it's calm and
-    orderly.
-  - *Ongoing flow:* each curtain sways with a slow skew from its base, out
-    of phase (11–17s), and a soft band of brightness travels left → right
-    through the curtains (7s).
-  - It's hidden below `lg`.
+- **The Line** (`HeroLine.tsx`, `lib/morph.ts`, `.hero-line-glint`,
+  `.line-animated` / `.line-resolved`): the site's one motion motif. A
+  brand-orange hand-drawn stroke (`#FC890C`, round caps, a thinner echo
+  slightly out of register, like the logo signature) that turns chaos into a
+  smooth path. Every motion on the site follows it; don't add a second visual
+  language. It replaced the hero aurora, rolling blobs and the small string
+  under "untangling", none of which told the headline's story as one idea.
+  - *Hero (lg+, right column):* it arrives as a sharp, erratic tangle
+    (zero-length handles, so every anchor is a corner). From 1.5s it unwinds
+    over 3s (`easeOutSine`) into a calm meander with two soft river bends
+    that leaves toward the lower left, where the buttons are, ending in a dot.
+    While it unwinds, the stroke relaxes from 3 to 2.4 and the echo fades in.
+  - *Ongoing flow:* a travelling wave (±6 units, 9s period) moves along the
+    line left → right, and a pale glint runs downstream every 8s. There are
+    two wide, faint glow strokes instead of a blur filter, which would
+    re-rasterize on every frame. The rAF loop only runs while the line is on
+    screen.
+  - *Below lg:* `variant="strip"`, a slim line under the lead where the tangle
+    on the left unwinds into a wave across the screen.
+  - *Morph mechanics:* both shapes have the same number of cubics and are
+    lerped in JS (CSS `d` animation isn't supported everywhere, and its
+    failure mode leaves the tangle forever).
+- **Case-study river** (`case-study/CaseStudyRiver.tsx`, `.river-node`): the
+  Line continued down each case study, in the 56px gutter between the TOC and
+  the content (lg+).
+  - It swings ±20px between sections, with a node at each section's heading,
+    over a faint track of the course still ahead.
+  - It draws itself as you scroll: the tip follows 60% down the viewport, and
+    each node fills orange as the line reaches it.
+  - It re-measures with a ResizeObserver, so opening an accordion reshapes it.
+- **Ripple entrances** (`[data-ripple]`, set in `Reveal.tsx`): inside a
+  revealing section, cards and logos rise in one after another, 70ms apart,
+  left → right, so a row rolls in like a gentle wave.
 - **Reduced motion:** the global reduced-motion rule collapses the
   animations, so the orbs rest at their starting positions as a still glow,
-  and the hero aurora appears already untangled and still.
+  the Line appears as its calm meander (CSS picks `.line-resolved` on first
+  paint), and the case-study river is drawn in full with every node lit.
 - **Glass cards** (`.glass`): a light, translucent cream fill (62%, so cards
   read clearly lighter than the background), backdrop blur, a 1px `white/75` edge with an inset top highlight, and the frame shadow. Inner
   panes inside a glass card use plain `bg-cream/NN` tints, never a nested
@@ -1133,8 +1148,10 @@ Below-the-fold content "grows in" as the user scrolls to it, rather than
 just appearing: every major section on the homepage (except `Hero`, which
 has its own load-in sequence above) and every section of a case-study page
 is wrapped in a shared `<Reveal>` component.
-- Starts `opacity: 0`, `translateY(28px) scale(0.97)`; transitions to
-  `opacity: 1`, `translateY(0) scale(1)` over `700ms ease-out`
+- Starts `opacity: 0`, `translateY(20px)`; swells to `opacity: 1`,
+  `translateY(0)` over `900ms cubic-bezier(0.22,1,0.36,1)`: a soft rise
+  with no scale, in the Line's unhurried rhythm. `[data-ripple]` items
+  inside follow 70ms apart (see Ripple entrances).
 - Driven by a real `IntersectionObserver` (`threshold: 0`,
   `rootMargin: "0px 0px -10% 0px"`), not a scroll listener. The rootMargin is
   what sets the trigger point: the reveal starts when the section's top edge
@@ -1185,72 +1202,6 @@ is wrapped in a shared `<Reveal>` component.
   products and services into experiences that are easier to use and easier
   to build."
 - Entrance stagger: byline 700ms, H1 800ms, lead 980ms, buttons 1160ms.
-
-### Untangling knot (hero headline)
-A hand-drawn string under the word "untangling" in the hero H1, "Your
-partner in untangling complexity." It starts tied in a visible loop and
-pulls itself straight, once, when it scrolls into view. `UntangleLine.tsx`.
-
-- **At headline size it's the H1's accent.** Its SVG is `w-full` of the
-  word and scales uniformly, so under the 40–84px heading it becomes a bold
-  hand-drawn underline, carrying the orange the H1 used to get from
-  "forward.". Because it scales, the hero places it with an em offset
-  (`positionClassName="top-[0.52em]"`, since the word is ~5.1em wide)
-  instead of `top-full`, which dropped it onto the next line. It also
-  waits `delayMs={1300}` so it untangles just after the heading fades in. Same
-  `#FC890C` accent, same `round` caps, and the same thick-stroke-plus-thinner-
-  offset-echo pairing the flourish and the logo signature use to avoid reading
-  as a uniform vector line.
-- **The word itself never animates.** The `<span>` around it exists only to
-  anchor the absolutely-positioned SVG (`top-full`, `w-full`), so the string
-  always spans exactly the word's width and contributes no height. Verified:
-  the paragraph's box and line count are identical with and without it, and
-  stripping every `aria-hidden` node leaves the sentence text unchanged.
-- **Morph, not a crossfade.** Both shapes are built from the *same* command
-  structure — one moveto plus six cubics, 38 numbers — and the numbers are
-  lerped on a rAF loop, so the shape sweeps continuously. The loop's anchors
-  double back on themselves in the knot where the straight version runs
-  steadily rightward; unwinding that reversal is what reads as a pull.
-- **Why JS and not CSS/SMIL:** animating `d` via CSS keyframes isn't supported
-  everywhere, and the failure mode is the bad one — a browser that ignores CSS
-  `d` keeps painting the attribute, leaving the string knotted forever with no
-  animation and no signal that anything is wrong.
-- **Easing: `easeOutSine` over 4500ms, not the obvious `easeOutCubic`.** The
-  loop's *area* shrinks much faster than the interpolation parameter moves, so
-  a steeply front-loaded curve spends its whole motion budget early: with cubic
-  the knot was gone by ~350ms and the remaining second was an imperceptible
-  settle — a snap followed by a wait. With sine the unwind measures 14% at
-  400ms, 28% at 800ms, 55% at 1600ms, 77% at 2400ms and 94% at 3200ms, so it
-  reads as a steady pull that decelerates into rest, finishing around 3.7s
-  with the last sliver of travel too small to see.
-- **The duration has walked 1400ms → 2600ms → 4500ms**, each step because the
-  previous still read as hurried. It is long for a decorative flourish on
-  purpose: the loop's collapse is the whole point of the element and needs
-  room to be watched. If it ever needs to feel slower again, the next lever is
-  the *shape* of the curve rather than more milliseconds — `easeOutSine` is
-  already the gentlest standard ease-out, but its fastest motion is still at
-  the very first frame, and that opening rush is most of what reads as "fast".
-  An ease-in-out would ramp in instead. That would depart from the ease-out
-  the element was specified with, so it is a decision to take deliberately,
-  not a silent tweak.
-- **Trigger:** IntersectionObserver at `threshold: 0.6` (not 0 — the string is
-  only ~16px tall, so "one pixel entered" would play it clipped at the screen
-  edge). Plays once per page visit, guarded by a ref rather than by observer
-  disconnection alone. Verified below the fold: still fully knotted 2.5s after
-  load, animates on scroll-in, and does not replay on leaving and returning.
-  > Testing note: `scroll-behavior: smooth` is global, so a test that "jumps"
-  > the page with `window.scrollTo` actually *animates* there and the element
-  > can sit in the viewport for hundreds of ms on the way — which looks exactly
-  > like the animation firing on page load. Set `scrollBehavior = "auto"`, or
-  > use a viewport short enough that the line starts below the fold.
-- **Reduced motion is handled in CSS, not in the effect.** Both states ship in
-  the markup — `.untangle-animated` (knot) and `.untangle-resolved` (straight)
-  — and a `prefers-reduced-motion` media query picks one. An effect, even a
-  layout effect, only runs once React hydrates, and the server-rendered HTML
-  usually paints before that, so an effect-based swap showed reduced-motion
-  visitors a frame of the knot first (measured). A media query resolves on the
-  first paint: verified 1 distinct path value across 1.8s, every sample already
-  straight.
 
 ### Back to top
 Fixed bottom-right, links to `#page-top`. Ink liquid glass

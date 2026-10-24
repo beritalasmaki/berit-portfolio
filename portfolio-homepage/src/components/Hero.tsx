@@ -1,8 +1,7 @@
 import Image from "next/image";
-import HeroAurora from "./HeroAurora";
+import HeroLine from "./HeroLine";
 import { ArrowRightIcon } from "./icons";
 import LiquidHover from "./LiquidHover";
-import UntangleLine from "./UntangleLine";
 
 export default function Hero() {
   return (
@@ -19,7 +18,7 @@ export default function Hero() {
               globals.css. */}
           {/* Byline: who's talking, before the promise. The photo is small
               on purpose so it reads as a signature, not a second hero
-              image; the glowing hero orb keeps the right-hand column. */}
+              image; the Line keeps the right-hand column. */}
           <div className="flex items-center gap-3 mb-6 fade-up-item" style={{ animationDelay: "700ms" }}>
             <LiquidHover strength={4} className="shrink-0">
               <Image
@@ -42,22 +41,7 @@ export default function Hero() {
           >
             Your partner in
             <br />
-            {/* The span only anchors the decorative string beneath the word:
-                the heading still reads as one continuous phrase.
-                `inline-block` so the string's `top-full`/`w-full` resolve
-                against the word's own box; it's absolutely positioned and
-                adds no height. At this size the string scales up with the
-                word into a bold hand-drawn line, and it waits for the
-                heading's fade-up before it untangles. */}
-            <span className="relative inline-block">
-              untangling
-              {/* `top-[0.52em]`: "untangling" is ~5.1em wide, so the string's
-                  22-unit-tall viewBox renders ~0.94em tall with its resting
-                  line at 9/22 of that (~0.38em). Starting it at 0.52em puts
-                  the line at ~0.9em, just under the baseline. The ratio is
-                  em-based, so it holds across text-hero's clamp(). */}
-              <UntangleLine delayMs={1300} positionClassName="top-[0.52em]" />
-            </span>
+            untangling
             <br />
             complexity.
           </h1>
@@ -68,6 +52,11 @@ export default function Hero() {
             Good design moves you forward. I help teams turn complex products and services into
             experiences that are easier to use and easier to build.
           </p>
+          {/* Below lg the right column is hidden, so the Line tells its
+              story here instead, as a slim strip. */}
+          <div className="lg:hidden mt-8 fade-up-item" style={{ animationDelay: "1060ms" }}>
+            <HeroLine variant="strip" />
+          </div>
           <div className="flex flex-wrap gap-4 mt-10 fade-up-item" style={{ animationDelay: "1160ms" }}>
             {/* Same target and same mechanism as the header's Contact
                 button: a plain `#contact` anchor, with the smooth scroll
@@ -93,13 +82,10 @@ export default function Hero() {
         </div>
 
         <div className="min-w-0 hidden lg:flex flex-col justify-center">
-          {/* Hero aurora: warm aurora light flowing like a river, left to
-              right, fading in as it goes, to say "moving forward" (see
-              HeroAurora.tsx). Hidden below lg: on phones it landed under the
-              buttons and only added scroll, and the background orbs carry
-              the warmth there. */}
-          <div className="fade-up-item" style={{ animationDelay: "650ms" }}>
-            <HeroAurora />
+          {/* The Line: arrives as a tangle and unwinds into a calm,
+              flowing path, the headline acted out (see HeroLine.tsx). */}
+          <div className="fade-up-item w-full max-w-[600px] mx-auto" style={{ animationDelay: "650ms" }}>
+            <HeroLine />
           </div>
         </div>
       </div>
