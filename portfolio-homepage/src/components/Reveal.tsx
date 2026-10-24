@@ -8,7 +8,9 @@ import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "re
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 /**
- * Scroll-triggered "grow in" entrance for a section.
+ * Scroll-triggered "swell" entrance for a section. Items marked
+ * `data-ripple` inside it (cards, logos) follow one after another, left →
+ * right, like a gentle wave rolling through the row.
  *
  * Fully visible by default — the pre-reveal hidden state is only ever
  * applied client-side, after mount, so content never depends on JS to be
@@ -18,7 +20,7 @@ const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffec
  *
  * Once mounted (via a layout effect, so it lands before the browser's
  * first paint — no flash of the *visible* state either), the wrapped
- * section starts very slightly down and scaled down, then grows and fades
+ * section starts slightly down, then rises and fades
  * into place the first time it crosses into the viewport. A real
  * IntersectionObserver drives this, not a scroll listener, and it
  * disconnects after the first reveal — this is a one-time entrance, not a
@@ -39,6 +41,12 @@ export default function Reveal({ children }: { children: ReactNode }) {
   const [visible, setVisible] = useState(false);
 
   useIsomorphicLayoutEffect(() => {
+    // Ripple order: number the section's `[data-ripple]` items in document
+    // order (left → right, row by row), so each rises in a beat after the
+    // one before it (see [data-ripple] in globals.css).
+    ref.current?.querySelectorAll<HTMLElement>("[data-ripple]").forEach((item, i) => {
+      item.style.setProperty("--ripple-i", String(i));
+    });
     setReady(true);
   }, []);
 
@@ -88,8 +96,11 @@ export default function Reveal({ children }: { children: ReactNode }) {
   return (
     <div
       ref={ref}
-      className="transition-[opacity,transform] duration-700 ease-out"
-      style={hidden ? { opacity: 0, transform: "translateY(28px) scale(0.97)" } : undefined}
+      // A soft swell rather than a pop: a short rise, no scale, on a long
+      // gentle ease-out, in the same unhurried rhythm as the Line.
+      className="transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+      style={hidden ? { opacity: 0, transform: "translateY(20px)" } : undefined}
+      data-reveal-hidden={hidden ? "" : undefined}
     >
       {children}
     </div>

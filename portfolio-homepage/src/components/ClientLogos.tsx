@@ -27,7 +27,7 @@ export default function ClientLogos() {
           them, logos sit directly on the page. */}
       <ul className="mt-8 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-11 gap-3 sm:gap-4 list-none p-0 m-0">
         {clientLogos.map((logo) => (
-          <li key={logo.name} className="relative h-20 sm:h-24 lg:h-20">
+          <li key={logo.name} data-ripple className="relative h-20 sm:h-24 lg:h-20">
             <Image
               src={logo.src}
               alt={logo.name}

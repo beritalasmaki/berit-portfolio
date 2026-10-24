@@ -23,6 +23,7 @@ export default function CaseStudyCards() {
           return (
             <article
               key={study.slug}
+              data-ripple
               className={`flex flex-col glass rounded-card overflow-hidden ${isLastOdd ? "md:col-span-2" : ""}`}
             >
               <Link
