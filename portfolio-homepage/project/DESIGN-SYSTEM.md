@@ -102,27 +102,33 @@ introduce new colors, sizes or radii without adding them here first.
     wider than the last. The loop only runs while the canvas is on screen.
     Earlier versions (a morphing line, an aurora, rolling blobs) read as
     amateurish or messy.
-- **Case-study river** (`case-study/CaseStudyRiver.tsx`, `.river-node`): the
-  Line continued down each case study as a shooting star you steer by
-  scrolling, in the 56px gutter between the TOC and the content (lg+).
-  - Nothing ahead of the star: no track. Each section's node grows in
-    (opacity and scale, 400ms) only when the star reaches it.
-  - The river starts 110px above the content and fades in from nothing.
-    The star (150px fading tail) leaves a thin orange line that swings ±20px
-    between sections.
-  - The star follows 60% down the viewport on a critically damped spring
-    (settles in ~250ms, never overshoots), so it glides instead of jumping
-    with the scroll. On page load it glides in from the top of the river
-    on a softer spring (~1.2s).
-  - Gradients are plain vertical ones, because the river only runs down.
-    It re-measures with a ResizeObserver, so opening an accordion reshapes
-    it. The cards beside it have no orange left borders.
+- **Case-study menu star** (`case-study/TableOfContents.tsx`, `.toc-node`):
+  the Line on case studies lives in the "On this page" menu (lg+). It
+  replaced both the menu's per-link left bars and a separate river line in
+  the content gutter, which together were too much.
+  - One thin orange line runs down the links' left edge, drawn by a star
+    that glides through the menu as you read. Between two links it sits in
+    proportion to how far you are between those two sections, so it moves
+    continuously with the page.
+  - Nothing ahead of the star: each link's dot grows in (opacity and scale,
+    400ms) as the star reaches it. The line fades in from just above the
+    first link, and a 64px tail fades out behind the star.
+  - It follows on a critically damped spring (settles in ~250ms, no
+    overshoot) and glides in from the top on page load.
+  - The current section is read from the scroll position every frame: the
+    last section whose top has passed 35% down the viewport, or the last
+    one at the very bottom of the page. So the highlighted link changes
+    exactly when a section arrives. An IntersectionObserver band lagged on
+    tall sections such as the screenshot gallery.
+  - Mobile uses the collapsed "Navigate to..." menu (no star), with the same
+    current section. Reduced motion: the star sits exactly at the reading
+    position, with no glide.
 - **Liquid tabs** (`useLiquidIndicator.ts`): every tab-like control's
   selection marker is one shared shape that flows to the new tab like
   liquid reaching out and joining another drop, instead of jumping. Used by
-  the process "What kind of project?" tabs (orange underline), the
-  homepage question tabs (the dark selected fill) and the case-study TOC
-  (orange left marker, as you click or scroll).
+  the process "What kind of project?" tabs (orange underline) and the
+  homepage question tabs (the dark selected fill). (The case-study menu
+  uses the star instead, see above.)
   - The leading edge reaches first (420ms, slight overshoot), the trailing
     edge lets go 110ms later (480ms), so it stretches across the gap. It
     thins mid-move (cross-axis squeeze, 600ms) and settles with a soft
