@@ -106,39 +106,46 @@
     font-family: var(--font-plex-mono), monospace;
   }
 
-  /* The Line (HeroLine.tsx): a short glint of light runs along the line,
-     downstream, every 8s once it has settled. pathLength=100 with a dash of
-     8 and a gap of 200 means exactly one dash: offset 8 hides it before the
-     start, -100 has carried it past the end. */
-  .hero-line-glint {
-    stroke-dasharray: 8 200;
-    stroke-dashoffset: 8;
-    animation: hero-line-glint 8s cubic-bezier(0.45, 0, 0.55, 1) 4.8s infinite;
+  /* Logo signature draw-in (Logo.tsx): the mark is a filled brush-stroke
+     silhouette, not an open line, so stroking it would only outline its
+     edge. Instead a bar with a feathered right edge slides across an SVG
+     <mask>, revealing the real, unaltered signature left to right, like
+     ink flowing from a pen, at a steady writing pace (a gentle in-out, not
+     an ease-out that finishes early and then sits still). Gentle at the end
+     too, because the hero's star
+     lifts off the end of the stroke as it finishes (PenSpark.tsx), together
+     with the headline (Hero.tsx delays). `both` holds the hidden state
+     through the delay. */
+  .logo-mask-wipe {
+    animation: logo-wipe 1700ms cubic-bezier(0.35, 0, 0.65, 1) 150ms both;
   }
 
-  @keyframes hero-line-glint {
-    0% { stroke-dashoffset: 8; }
-    45%, 100% { stroke-dashoffset: -100; }
+  /* The ball under the signature fades and settles in first (0-450ms), so
+     it's never sitting there empty waiting for its signature; the writing
+     starts while it lands. */
+  .logo-blob-in {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: logo-blob-in 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  /* Logo signature mark draw-in: each path uses pathLength=100, so a fixed
-     dasharray/dashoffset of 100 always maps to "fully drawn" with no runtime
-     length measurement and no pre-hydration flash. Here it drives an SVG
-     <mask> instead of the stroke itself — the mark is a filled brush-stroke silhouette (not a simple
-     open line), so stroking that path directly would render as a thin
-     outline of the silhouette's edge, not "the pen drawing the
-     signature". A wide horizontal bar animates across the mask instead,
-     progressively revealing the real, exact, unaltered signature shape
-     left to right — same technique (dasharray/dashoffset, no runtime
-     measurement, no pre-hydration flash), correct result for a filled
-     asset. See Logo.tsx. */
-  .logo-mask-path {
-    animation: logo-draw 1300ms ease-out forwards;
-  }
-
-  @keyframes logo-draw {
+  @keyframes logo-blob-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
     to {
-      stroke-dashoffset: 0;
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes logo-wipe {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(226px);
     }
   }
 
@@ -184,26 +191,6 @@
     }
   }
 
-  /* The Line (HeroLine.tsx, CaseStudyRiver.tsx) ships its settled state
-     in the markup next to the animated one and lets CSS pick, rather than
-     swapping in an effect. An effect runs only once React hydrates, and the
-     server-rendered HTML has usually painted well before that; a
-     reduced-motion visitor would catch a frame of the tangle first, which is
-     precisely the movement they asked not to be shown. A media query is
-     resolved on the very first paint, so they only ever see the calm path. */
-  .line-resolved {
-    display: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .line-animated {
-      display: none;
-    }
-    .line-resolved {
-      display: inline;
-    }
-  }
-
   /* Ripple entrance (Reveal.tsx): inside a revealing section, each
      `[data-ripple]` item (cards, logos) rises in a little after the one
      before it, left → right, so a row rolls in like a gentle wave instead of
@@ -218,15 +205,20 @@
     transform: translateY(16px);
   }
 
-  /* Case-study river (CaseStudyRiver.tsx): section nodes light up as the
-     line reaches them. */
+  /* Case-study river (CaseStudyRiver.tsx): a section's node stays hidden
+     until the star reaches it, then grows in. */
   .river-node {
-    fill: #fffaf4;
-    transition: fill 400ms ease-out;
+    fill: #fc890c;
+    opacity: 0;
+    transform: scale(0.6);
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: opacity 400ms ease-out, transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .river-node[data-lit] {
-    fill: #fc890c;
+    opacity: 1;
+    transform: none;
   }
 
   /* Frosted-glass surface for cards over the glowing background: a translucent

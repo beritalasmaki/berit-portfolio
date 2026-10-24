@@ -61,27 +61,42 @@ export default function Logo({ animated = false }: {
       >
         {animated && (
           <defs>
+            {/* Feathered edge: solid for most of the bar, fading out over
+                its last ~40 units, so the signature appears like ink
+                flowing from a pen rather than behind a hard curtain. */}
+            <linearGradient id={`${maskId}-ink`} x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="white" />
+              <stop offset="0.85" stopColor="white" />
+              <stop offset="1" stopColor="black" />
+            </linearGradient>
             <mask id={maskId} maskUnits="userSpaceOnUse">
-              {/* A wide bar wiping left-to-right reveals the real signature
-                  shape underneath — see the .logo-mask-path comment in
+              {/* A wide bar sliding left-to-right reveals the real signature
+                  shape underneath — see the .logo-mask-wipe comment in
                   globals.css for why this drives a mask rather than the
                   signature's own stroke. */}
-              <path
-                d="M10 79.5 L230 79.5"
-                stroke="white"
-                strokeWidth={150}
-                strokeLinecap="square"
-                pathLength={100}
-                className="logo-mask-path"
-                style={{ strokeDasharray: 100, strokeDashoffset: 100 }}
+              <rect
+                x={-233}
+                y={0}
+                width={260}
+                height={160}
+                fill={`url(#${maskId}-ink)`}
+                className="logo-mask-wipe"
               />
             </mask>
           </defs>
         )}
-        <path d={BLOB_PATH} fill="#FF890C" transform={BLOB_TRANSFORM} />
+        {/* When animated, the ball fades in first and the signature starts
+            writing over it right away (.logo-blob-in in globals.css). */}
+        <g className={animated ? "logo-blob-in" : undefined}>
+          <path d={BLOB_PATH} fill="#FF890C" transform={BLOB_TRANSFORM} />
+        </g>
         <g mask={animated ? `url(#${maskId})` : undefined}>
           <path d={SIGNATURE_PATH} fill="#000000" transform={SIGNATURE_TRANSFORM} />
         </g>
+        {/* Where the pen leaves the paper: the tip of the final flourish.
+            On the homepage the hero's star lifts off from here
+            (PenSpark.tsx). */}
+        {animated && <circle data-pen-tip cx={208.3} cy={30.1} r={0} />}
       </svg>
 
       <span className="flex min-w-0 flex-col justify-center gap-1 whitespace-nowrap">

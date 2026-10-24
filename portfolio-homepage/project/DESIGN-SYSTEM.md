@@ -68,43 +68,64 @@ introduce new colors, sizes or radii without adding them here first.
     so they never move in sync.
   - It replaced the floral-linen background video (and its `--bg-veil`
     white layer). The page no longer downloads ~2.6–3.8 MB of video.
-- **The Line** (`HeroLine.tsx`, `lib/morph.ts`, `.hero-line-glint`,
-  `.line-animated` / `.line-resolved`): the site's one motion motif. A
-  brand-orange hand-drawn stroke (`#FC890C`, round caps, a thinner echo
-  slightly out of register, like the logo signature) that turns chaos into a
-  smooth path. Every motion on the site follows it; don't add a second visual
-  language. It replaced the hero aurora, rolling blobs and the small string
-  under "untangling", none of which told the headline's story as one idea.
-  - *Hero (lg+, right column):* it arrives as a sharp, erratic tangle
-    (zero-length handles, so every anchor is a corner). From 1.5s it unwinds
-    over 3s (`easeOutSine`) into a calm meander with two soft river bends
-    that leaves toward the lower left, where the buttons are, ending in a dot.
-    While it unwinds, the stroke relaxes from 3 to 2.4 and the echo fades in.
-  - *Ongoing flow:* a travelling wave (±6 units, 9s period) moves along the
-    line left → right, and a pale glint runs downstream every 8s. There are
-    two wide, faint glow strokes instead of a blur filter, which would
-    re-rasterize on every frame. The rAF loop only runs while the line is on
-    screen.
-  - *Below lg:* `variant="strip"`, a slim line under the lead where the tangle
-    on the left unwinds into a wave across the screen.
-  - *Morph mechanics:* both shapes have the same number of cubics and are
-    lerped in JS (CSS `d` animation isn't supported everywhere, and its
-    failure mode leaves the tangle forever).
+- **The Line** (`HeroLine.tsx`, `lib/line.ts`): the site's one motion motif,
+  a brand-orange line drawn by a **shooting star**: a glowing head (soft
+  glow, four fine rays, a bright core) with a tail that tapers and fades out
+  behind it. It turns chaos into a smooth path. Every motion on the site
+  follows it; don't add a second visual language.
+  - *Rule: nothing exists ahead of the star.* The line only appears where
+    the star has been. No faint guide track, no pre-drawn tangle.
+  - *Hero (lg+, right column):* the star is the spark from the logo (see
+    Homepage entrance sequence). It slithers through two loops like a
+    snake, drawing them, and they fade out behind its 300-unit tail (the
+    complexity, untangled). Out of the loops it glides into one river bend
+    and comes to rest at the lower left, pointing at the buttons. It leaves
+    a thin line (1.6, 60% opacity) that fades in over 170 units from where
+    the loops were. The run is 3.4s and ease-out only, carrying the spark's
+    momentum, so the handover has no stop-and-restart.
+  - *Afterwards:* the resting star twinkles gently, and every 9s a softer
+    star runs down the river and brightens it on arrival.
+  - *Below lg:* `variant="strip"`, a slim version under the lead. It starts
+    from rest (ease-in-out) as the signature finishes, with the headline.
+  - *Mechanics:* it's drawn on a canvas, because the tail is a gradient
+    along a curve, which SVG strokes can't do. The curve (Catmull-Rom
+    through anchors) is sampled every 1.5 units, so the star moves at a
+    steady speed, and the tail is many tiny segments, each brighter and
+    wider than the last. The loop only runs while the canvas is on screen.
+    Earlier versions (a morphing line, an aurora, rolling blobs) read as
+    amateurish or messy.
 - **Case-study river** (`case-study/CaseStudyRiver.tsx`, `.river-node`): the
-  Line continued down each case study, in the 56px gutter between the TOC and
-  the content (lg+).
-  - It swings ±20px between sections, with a node at each section's heading,
-    over a faint track of the course still ahead.
-  - It draws itself as you scroll: the tip follows 60% down the viewport, and
-    each node fills orange as the line reaches it.
-  - It re-measures with a ResizeObserver, so opening an accordion reshapes it.
+  Line continued down each case study as a shooting star you steer by
+  scrolling, in the 56px gutter between the TOC and the content (lg+).
+  - Nothing ahead of the star: no track. Each section's node grows in
+    (opacity and scale, 400ms) only when the star reaches it.
+  - The river starts 110px above the content and fades in from nothing.
+    The star (150px fading tail) leaves a thin orange line that swings ±20px
+    between sections.
+  - The star follows 60% down the viewport on a critically damped spring
+    (settles in ~250ms, never overshoots), so it glides instead of jumping
+    with the scroll. On page load it glides in from the top of the river
+    on a softer spring (~1.2s).
+  - Gradients are plain vertical ones, because the river only runs down.
+    It re-measures with a ResizeObserver, so opening an accordion reshapes
+    it. The cards beside it have no orange left borders.
 - **Ripple entrances** (`[data-ripple]`, set in `Reveal.tsx`): inside a
   revealing section, cards and logos rise in one after another, 70ms apart,
   left → right, so a row rolls in like a gentle wave.
+- **Briefing motion changes:** describe them with this template, so they
+  can land right the first time, and ask for a frame strip or recording
+  before merging (motion can't be judged from stills).
+  1. Feeling, in three words (e.g. calm, effortless, precise).
+  2. Story beats in order, with rough timing, and what happens after.
+  3. Must not happen (e.g. no line before the star; nothing crosses text).
+  4. Reference: what to copy from it, and what to ignore.
+  5. Look: colour, thickness, glow, head size; brand constraints.
+  6. Where: desktop, mobile (same or simpler?), reduced motion.
+  7. Done when: how you'll judge it (e.g. "the star never jumps").
 - **Reduced motion:** the global reduced-motion rule collapses the
   animations, so the orbs rest at their starting positions as a still glow,
-  the Line appears as its calm meander (CSS picks `.line-resolved` on first
-  paint), and the case-study river is drawn in full with every node lit.
+  the Line is drawn once as its settled river with the star at rest, and the
+  case-study river is drawn in full with every node lit.
 - **Glass cards** (`.glass`): a light, translucent cream fill (62%, so cards
   read clearly lighter than the background), backdrop blur, a 1px `white/75` edge with an inset top highlight, and the frame shadow. Inner
   panes inside a glass card use plain `bg-cream/NN` tints, never a nested
@@ -671,9 +692,7 @@ process), not a new top-level numbered section.
   squiggle icon + "Click a step to see how I work." Open state: a category
   tag pill (`rounded-pill`, that category's own fill/text color) above the
   stage name, "When I use this" + body copy, "I skip this when…" in a
-  `border-l-4 border-accent` / `bg-soft` callout (same left-border-callout
-  convention as case-study impact cards, just accent instead of the
-  un-colored default). Swapping between two already-open stages re-renders
+  `border-l-4 border-accent` / `bg-soft` callout. Swapping between two already-open stages re-renders
   the same panel in place (no unmount/remount), so there's no flash — only
   a genuine prompt↔detail transition changes which branch renders.
 - **Mobile**: the week ruler + stage rows scroll horizontally within the
@@ -1115,33 +1134,36 @@ code and applies site-wide:
 ```
 
 ### Homepage entrance sequence
-Plays once on load (homepage only — `Header`'s `animateLogo` prop), never on
-scroll or re-render. Every stage is `ease-out`, deliberately unhurried — an
-earlier, snappier pass (600ms logo, 700ms line segments) read as an instant
-snap rather than a calm draw, since ease-out front-loads most of the visible
-motion into the first fraction of the duration. The hero line and text now
-start once the logo is mostly (not fully) drawn — waiting for its complete
-1300ms read as a dead pause before anything else moved — so the whole thing
-settles by ~2.55s, down from ~3.2s. `prefers-reduced-motion: reduce` shows
-every element in its finished state immediately (site-wide kill-switch, see
-the media query in `globals.css`), not just for this sequence.
-1. **Logo signature mark** (`Logo.tsx`, 0–1300ms) — the blob is present from
-   frame one; the black signature strokes in left to right. It's a filled
-   brush-stroke shape, not a simple open line, so stroking it directly would
-   render as a thin outline of the silhouette rather than "the pen writing
-   the signature" — instead a wide horizontal bar, itself drawn with the
-   same `pathLength`/`stroke-dasharray`/`stroke-dashoffset` technique as the
-   hero line below, sweeps across an SVG `<mask>` that progressively reveals
-   the real, unaltered signature path underneath.
-2. **Hero line** (`Hero.tsx`, starts at 650ms, each path 900ms, same
-   relative stagger as before) — overlaps the logo's own tail end (ease-out
-   means it already reads as essentially drawn by 650ms/~60% of its
-   duration) rather than waiting for the logo to fully finish, finishes
-   around 2550ms.
-3. **Headline → subheadline → buttons** (800ms / 980ms / 1160ms) — fade up
-   (~12px, 700ms each), overlapping the hero line's own draw rather than
-   waiting for it to finish. Case-study pages have no hero to lead into, so
-   their header logo, and the footer's everywhere, just render finished.
+Plays once on load (homepage only — `Header`'s `animateLogo` prop). It is
+one continuous gesture, about 7s, unhurried: the ball appears, the
+signature writes itself, and the headline comes out at the moment a spark
+leaves the pen and becomes the star that draws the hero's river.
+`prefers-reduced-motion: reduce` shows every element in its finished state
+immediately (no spark, the river already drawn).
+1. **Ball, then signature** (`Logo.tsx`): the orange ball fades and settles
+   in first (`.logo-blob-in`, 0–450ms, from 90% scale), so it never sits
+   there empty, and the signature starts writing over it right away
+   (`.logo-mask-wipe`, 150–1850ms). The signature is revealed left to right
+   by a bar with a *feathered* right edge sliding across an SVG `<mask>`,
+   like ink flowing from a pen, at a steady pace (`cubic-bezier(0.35, 0, 0.65,
+   1)`; an ease-out finished early and then sat still). (The
+   mark is a filled silhouette, so stroking it would only outline it.)
+2. **Text with the star** (byline 1550ms, H1 1650ms, lead 1830ms, buttons
+   2010ms): the headline comes out exactly as the star lifts off the end of
+   the signature, so title and star arrive together. Keep these delays in
+   step with `.logo-mask-wipe`.
+3. **Spark leaves the pen** (`PenSpark.tsx`, lg+): 200ms before the
+   signature finishes, a spark gathers at the tip of the final flourish
+   (`[data-pen-tip]` in `Logo.tsx`). It flicks up the way the flourish
+   ends, skims above the name, drops through the gap between the name and
+   the nav, and swings past the headline's top-right corner into the hero's
+   right column. The name, nav and headline are measured live, so it stays
+   clear of them at every width (≥37px from the headline at 1024–1920).
+   It lifts off slowly (position ∝ u^n) and its flight time (1.4–2.6s) is
+   picked so it arrives at exactly the speed the hero star sets off with,
+   then fires `line:handoff`. Below lg it doesn't fly (it would cross the
+   text); the strip's star sets off 400ms after the signature finishes.
+4. **The star draws the river** (`HeroLine.tsx`, 3.4s), see The Line.
 
 ### Scroll reveal (`Reveal.tsx`)
 Below-the-fold content "grows in" as the user scrolls to it, rather than

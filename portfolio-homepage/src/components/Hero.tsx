@@ -2,6 +2,7 @@ import Image from "next/image";
 import HeroLine from "./HeroLine";
 import { ArrowRightIcon } from "./icons";
 import LiquidHover from "./LiquidHover";
+import PenSpark from "./PenSpark";
 
 export default function Hero() {
   return (
@@ -9,17 +10,16 @@ export default function Hero() {
       <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-[clamp(32px,6vw,88px)] items-center py-8 lg:py-[clamp(32px,5vw,56px)]">
         <div className="min-w-0">
           {/* Entrance stagger: byline -> headline -> subheadline -> buttons,
-              ~100-180ms apart, starting once the logo's draw is mostly
-              visible (700ms into its 1300ms animation) rather than waiting
-              for it to fully finish -- ease-out front-loads most of a logo's
-              visible motion early, so waiting for the full duration read as
-              a dead pause. Overlaps the hero line's own draw, "while the line
-              draws", per spec. See .fade-up-item / @keyframes fade-up in
-              globals.css. */}
+              ~100-180ms apart. Timed to the logo: the ball fades in, the
+              signature writes itself (150-1850ms), and the headline comes
+              out at 1650ms, the moment the star lifts off the end of the
+              signature (PenSpark.tsx), so the two arrive together. Keep
+              these in step with .logo-mask-wipe in globals.css. See
+              .fade-up-item / @keyframes fade-up there too. */}
           {/* Byline: who's talking, before the promise. The photo is small
               on purpose so it reads as a signature, not a second hero
               image; the Line keeps the right-hand column. */}
-          <div className="flex items-center gap-3 mb-6 fade-up-item" style={{ animationDelay: "700ms" }}>
+          <div className="flex items-center gap-3 mb-6 fade-up-item" style={{ animationDelay: "1550ms" }}>
             <LiquidHover strength={4} className="shrink-0">
               <Image
                 src="/photo.png"
@@ -37,7 +37,7 @@ export default function Hero() {
           <h1
             id="hero-heading"
             className="m-0 text-hero fade-up-item"
-            style={{ animationDelay: "800ms" }}
+            style={{ animationDelay: "1650ms" }}
           >
             Your partner in
             <br />
@@ -47,17 +47,17 @@ export default function Hero() {
           </h1>
           <p
             className="mt-8 max-w-prose text-lead text-body fade-up-item"
-            style={{ animationDelay: "980ms" }}
+            style={{ animationDelay: "1830ms" }}
           >
             Good design moves you forward. I help teams turn complex products and services into
             experiences that are easier to use and easier to build.
           </p>
           {/* Below lg the right column is hidden, so the Line tells its
               story here instead, as a slim strip. */}
-          <div className="lg:hidden mt-8 fade-up-item" style={{ animationDelay: "1060ms" }}>
+          <div className="lg:hidden mt-8 fade-up-item" style={{ animationDelay: "1910ms" }}>
             <HeroLine variant="strip" />
           </div>
-          <div className="flex flex-wrap gap-4 mt-10 fade-up-item" style={{ animationDelay: "1160ms" }}>
+          <div className="flex flex-wrap gap-4 mt-10 fade-up-item" style={{ animationDelay: "2010ms" }}>
             {/* Same target and same mechanism as the header's Contact
                 button: a plain `#contact` anchor, with the smooth scroll
                 coming from `scroll-behavior: smooth` on `html` in
@@ -83,12 +83,15 @@ export default function Hero() {
 
         <div className="min-w-0 hidden lg:flex flex-col justify-center">
           {/* The Line: arrives as a tangle and unwinds into a calm,
-              flowing path, the headline acted out (see HeroLine.tsx). */}
+              flowing path, the headline acted out (see HeroLine.tsx). The
+              star is the spark that lifts off the logo signature
+              (PenSpark.tsx). */}
           <div className="fade-up-item w-full max-w-[600px] mx-auto" style={{ animationDelay: "650ms" }}>
             <HeroLine />
           </div>
         </div>
       </div>
+      <PenSpark />
     </section>
   );
 }
