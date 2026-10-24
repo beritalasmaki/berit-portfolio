@@ -1,6 +1,6 @@
 /**
  * Geometry for "the Line", the site's one motion motif (HeroLine.tsx,
- * CaseStudyRiver.tsx): a smooth curve through a list of anchors, sampled
+ * PenSpark.tsx): a smooth curve through a list of anchors, sampled
  * into evenly spaced points so a "shooting star" can travel along it at a
  * steady speed and its tail can be drawn as a gradient along the curve.
  */

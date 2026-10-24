@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import AccordionSection from "@/components/case-study/AccordionSection";
 import CaseStudyHero from "@/components/case-study/CaseStudyHero";
-import CaseStudyRiver from "@/components/case-study/CaseStudyRiver";
 import ChallengesSection from "@/components/case-study/ChallengesSection";
 import ImpactSection from "@/components/case-study/ImpactSection";
 import OtherCaseStudies from "@/components/case-study/OtherCaseStudies";
@@ -82,10 +81,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <div className="grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] gap-x-14">
           <TableOfContents items={tocItems} />
 
-          <div className="relative min-w-0 flex flex-col gap-[clamp(40px,5vw,72px)]">
-            {/* The Line, continued: a river down the gutter that draws
-                itself as you scroll and connects the sections. */}
-            <CaseStudyRiver />
+          <div className="min-w-0 flex flex-col gap-[clamp(40px,5vw,72px)]">
             <Reveal>{full ? <SneakPeekHero study={study} /> : <CaseStudyHero study={study} />}</Reveal>
 
             {/* Each section is gated on its own field rather than on `full`.

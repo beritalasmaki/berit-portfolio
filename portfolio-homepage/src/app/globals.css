@@ -205,18 +205,15 @@
     transform: translateY(16px);
   }
 
-  /* Case-study river (CaseStudyRiver.tsx): a section's node stays hidden
+  /* Case-study menu star (TableOfContents.tsx): a link's dot stays hidden
      until the star reaches it, then grows in. */
-  .river-node {
-    fill: #fc890c;
+  .toc-node {
     opacity: 0;
     transform: scale(0.6);
-    transform-box: fill-box;
-    transform-origin: center;
     transition: opacity 400ms ease-out, transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .river-node[data-lit] {
+  .toc-node[data-lit] {
     opacity: 1;
     transform: none;
   }
@@ -375,6 +372,15 @@
     margin-top: calc(var(--orb-size) / -2);
     border-radius: 9999px;
     will-change: transform;
+  }
+
+  /* Uneven stretch, like a drop of liquid flowing: uses the individual
+     `scale` property, so it combines with the drift's `transform` (and the
+     scroll sway's `translate`) instead of replacing it. */
+  @keyframes orb-breathe {
+    0% { scale: 1 1; }
+    50% { scale: 1.07 0.94; }
+    100% { scale: 0.95 1.06; }
   }
 
   @keyframes orb-drift-1 {

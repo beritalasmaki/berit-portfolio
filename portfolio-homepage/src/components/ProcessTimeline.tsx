@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useRef, useState, type ReactNode } from "react";
+import { useLiquidIndicator } from "./useLiquidIndicator";
 
 // Imported from Claude Design ("My Process" component, Process Timeline.dc.html)
 // and reimplemented as a real React component — the .dc.html source uses its
@@ -281,6 +282,9 @@ export default function ProcessTimeline() {
   const [tabIndex, setTabIndex] = useState(0);
   const [stageKey, setStageKey] = useState<StageKey | null>(null);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const tablistRef = useRef<HTMLDivElement>(null);
+  // The orange underline flows between tabs like liquid (useLiquidIndicator).
+  const liquid = useLiquidIndicator(tablistRef, tabRefs, tabIndex, { axis: "x", thickness: 3 });
   const baseId = useId();
   const panelId = `${baseId}-panel`;
 
@@ -349,10 +353,16 @@ export default function ProcessTimeline() {
       <p className="font-mono-label text-mono-label uppercase text-ink mt-10 mb-0">What kind of project?</p>
 
       <div
+        ref={tablistRef}
         role="tablist"
         aria-label="Project type"
-        className="flex flex-wrap gap-grid-gap-lg border-b border-rule-strong mt-2"
+        className="relative flex flex-wrap gap-grid-gap-lg border-b border-rule-strong mt-2"
       >
+        <span
+          ref={liquid.indicatorRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute z-[1] rounded-pill bg-accent opacity-0 origin-bottom"
+        />
         {TABS.map((t, i) => {
           const selected = i === tabIndex;
           return (
@@ -371,7 +381,7 @@ export default function ProcessTimeline() {
               onKeyDown={(event) => onTabKeyDown(event, i)}
               className={`group inline-flex items-center gap-2 text-nav whitespace-nowrap bg-transparent border-0 py-3 -mb-px border-b-[3px] transition-[color,border-color] duration-150 ease-out ${
                 selected
-                  ? "font-bold text-ink border-accent"
+                  ? `font-bold text-ink ${liquid.ready ? "border-transparent" : "border-accent"}`
                   : "font-semibold text-muted border-transparent hover:text-ink hover:border-rule-strong focus-visible:text-ink focus-visible:border-rule-strong"
               }`}
             >

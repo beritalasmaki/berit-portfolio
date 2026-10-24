@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
+import { useLiquidIndicator } from "./useLiquidIndicator";
 
 type Tab = {
   question: string;
@@ -56,6 +57,10 @@ export default function MindTabs() {
   const [openMobile, setOpenMobile] = useState<number | null>(null);
   const baseId = useId();
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const tablistRef = useRef<HTMLDivElement>(null);
+  // The dark selected fill flows from question to question like liquid
+  // (useLiquidIndicator) instead of jumping.
+  const liquid = useLiquidIndicator(tablistRef, tabRefs, active, { axis: "y", squeeze: 0.94 });
 
   function focusTab(index: number) {
     const next = (index + tabs.length) % tabs.length;
@@ -103,7 +108,18 @@ export default function MindTabs() {
           two separate markup blocks rather than one responsive layout,
           matching Header.tsx's mobile-nav split. */}
       <div className="relative mt-8 hidden glass glass-clear rounded-card overflow-hidden md:grid md:grid-cols-2 items-stretch">
-        <div role="tablist" aria-orientation="vertical" aria-label="Questions" className="flex flex-col bg-transparent">
+        <div
+          ref={tablistRef}
+          role="tablist"
+          aria-orientation="vertical"
+          aria-label="Questions"
+          className="relative flex flex-col bg-transparent"
+        >
+          <span
+            ref={liquid.indicatorRef}
+            aria-hidden="true"
+            className="pointer-events-none absolute bg-ink opacity-0"
+          />
           {tabs.map((tab, index) => {
             const selected = index === active;
             const tabId = `${baseId}-tab-${index}`;
@@ -122,9 +138,11 @@ export default function MindTabs() {
                 tabIndex={selected ? 0 : -1}
                 onClick={() => setActive(index)}
                 onKeyDown={(event) => onKeyDown(event, index)}
-                className={`group flex flex-1 items-center justify-between gap-4 py-[clamp(16px,2.2vw,24px)] px-[clamp(16px,2.2vw,32px)] text-left border-b border-white/60 last:border-b-0 border-l-4 transition-[background-color,border-color] duration-150 ease-out ${
+                // Text colour waits a beat, so it turns white as the dark
+                // fill arrives rather than before.
+                className={`group relative flex flex-1 items-center justify-between gap-4 py-[clamp(16px,2.2vw,24px)] px-[clamp(16px,2.2vw,32px)] text-left border-b border-white/60 last:border-b-0 border-l-4 transition-[background-color,border-color,color] duration-[150ms,150ms,250ms] delay-[0ms,0ms,120ms] ease-out ${
                   selected
-                    ? "bg-ink text-white border-l-ink focus-visible:outline-white"
+                    ? `${liquid.ready ? "bg-transparent border-l-transparent" : "bg-ink border-l-ink"} text-white focus-visible:outline-white`
                     : "bg-transparent text-ink border-l-transparent hover:bg-cream/60 hover:border-l-accent focus-visible:bg-cream/60 focus-visible:border-l-accent"
                 }`}
               >
