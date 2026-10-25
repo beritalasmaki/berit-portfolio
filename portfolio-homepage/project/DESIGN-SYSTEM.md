@@ -1221,6 +1221,12 @@ immediately (no shapes, the river already drawn).
       fades in under the animation. Pressing it blows the line and route
       away, rebuilds the story (`line:reset` clears HeroLine), brings the
       tangle back and plays the story again after 3s, with no button.
+   - One focus area: everything that moves stays in the middle of the
+     column. The tangle is pulled in toward the centre (`SPREAD` 0.62) and
+     roams at most 90px inside a central box (`FOCUS`, 14–86% × 12–88%);
+     the ball and sorted rows sit just above the centre, clear of the
+     route; and the route itself is scaled in around the centre (0.72).
+     The story text and progress bar stay above the animation.
    - A progress bar sits under the story line once it plays: five short
      segments (map, plan, systems, move, goal), each filling linearly over
      its step's length, the last as the goal settles until "Play again"
