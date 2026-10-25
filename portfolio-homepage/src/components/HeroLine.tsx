@@ -92,8 +92,10 @@ const ECHO_RUN = 3400;
 // so it starts with the headline, as the hero's star does.
 const STRIP_PAUSE = 0;
 // Hero only: start anyway if the chaos layer never hands over (e.g. it
-// failed to load), this long after the signature finished.
-const HANDOFF_FALLBACK = 2600;
+// failed to load), this long after the signature finished. Later than the
+// chaos story's own handover (~5.4s after the signature), so it never cuts
+// in while the shapes are still being organized.
+const HANDOFF_FALLBACK = 6500;
 
 // Lengths, in viewBox units.
 const TAIL = 300;

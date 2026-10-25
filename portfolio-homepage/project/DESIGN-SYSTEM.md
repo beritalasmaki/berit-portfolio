@@ -1166,10 +1166,11 @@ code and applies site-wide:
 
 ### Homepage entrance sequence
 Plays once on load (homepage only — `Header`'s `animateLogo` prop). It is
-one continuous story, about 8s, unhurried: the ball appears, the signature
-writes itself, and with the headline a chaos of shapes appears beside it,
-gathers into one point, and becomes the star that draws the hero's river
-(complexity becoming a clear path: the project that worked).
+one continuous story, about 10s, unhurried: the ball appears, the signature
+writes itself, and with the headline a chaos of shapes appears beside it;
+Berit's logo ball steps in, sorts them into rows, and turns them into one
+line that becomes the star that draws the hero's river (complexity made
+clear: the project that worked).
 `prefers-reduced-motion: reduce` shows every element in its finished state
 immediately (no shapes, the river already drawn).
 1. **Ball, then signature** (`Logo.tsx`): the orange ball fades and settles
@@ -1183,25 +1184,33 @@ immediately (no shapes, the river already drawn).
 2. **Text with the chaos** (byline 1550ms, H1 1650ms, lead 1830ms, buttons
    2010ms): the headline comes out together with the shapes. Keep these
    delays in step with `.logo-mask-wipe` and `T0` in `HeroChaos.tsx`.
-3. **Chaos → gather → star** (`HeroChaos.tsx`, lg+, Anime.js): 14 brand
-   shapes (circles and rounded squares, filled and 3px outlines, in
-   `#FC890C` / `#E8730A` / `#FFB566`) in the hero's right column.
-   - *Appear* (from 1.55s): they fade and grow in, staggered 60ms.
-   - *Chaos:* two slow random drifts and turns each (±70px, ±120°,
-     0.9–1.3s legs, `inOutSine`).
-   - *Gather* (from ~3.5s): every shape flows to the Line's start point,
-     shrinking into a small filled dot, the farthest setting off first, over
-     1.3s (`inOutCubic`).
-   - *Merge* (~4.85s): the dots melt into a soft bloom, and `line:handoff`
-     sets the star off from that point (~5.0s).
+3. **The story: Complexity → Structure → Clarity** (`HeroChaos.tsx`, lg+,
+   Anime.js). It plays in the hero's right column, and a small mono caption
+   names each beat ("01 / Complexity", "02 / Structure", "03 / Clarity"),
+   so the meaning is unmistakable. Times are from the headline (1.55s).
+   - *Complexity* (0–2.3s): 14 bold brand shapes (circles and rounded
+     squares, filled and 3px outlines, `#FC890C` / `#E8730A` / `#FFB566`)
+     pop in (`outBack`) and bustle around: three energetic legs of up to
+     150px, ±220° and a 0.8–1.25 scale wobble each. Moves are clamped to
+     the column, so nothing ever crosses the text.
+   - *Berit steps in* (2.3s): the orange ball from her logo (`BLOB_PATH`)
+     drops in with a gentle overshoot and sends out a calm ripple.
+   - *Structure* (2.65–4.3s): the shapes stop, straighten and settle into
+     neat rows under the ball, sorted by kind (dots, rings, squares,
+     frames), all at one size. This holds long enough to read as order.
+   - *Clarity* (4.3s on): the rows unspool into one straight line of dots
+     while the ball moves to the start of the path. The dots follow it in
+     and merge, nearest first, into a soft bloom, and `line:handoff` sets
+     the shooting star off from there (~5.65s, ~7.2s after load).
    - It's one Anime.js timeline built inside `createScope({ root })` and
-     reverted on unmount. Positions are on the page's clock (CSS delays count
-     from load), not from hydration.
-   - Not `composition: 'blend'`: blended tweens add up, and the gather must
-     override the drifts to land exactly on one point.
+     reverted on unmount. Positions are on the page's clock (CSS delays
+     count from load), not from hydration. The drift legs don't use
+     `composition: 'blend'`: blended tweens add up, so later beats couldn't
+     land shapes exactly in rows or on one point.
    - Below lg (it would sit over the text) and under reduced motion it
      doesn't run. The star then starts on its own: the strip as the
-     signature finishes, the hero 2.6s after (fallback).
+     signature finishes, and the hero 6.5s after it (a fallback that is
+     deliberately later than the story's own handover).
 4. **The star draws the river** (`HeroLine.tsx`, 3.4s), see The Line.
 
 Dependency: `animejs` (v4). It adds ~16 kB to the homepage's First Load JS
