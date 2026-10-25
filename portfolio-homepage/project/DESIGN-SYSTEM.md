@@ -83,14 +83,16 @@ introduce new colors, sizes or radii without adding them here first.
   follows it; don't add a second visual language.
   - *Rule: nothing exists ahead of the star.* The line only appears where
     the star has been. No faint guide track, no pre-drawn tangle.
-  - *Hero (lg+, right column):* the star is the spark from the logo (see
-    Homepage entrance sequence). It slithers through two loops like a
-    snake, drawing them, and they fade out behind its 300-unit tail (the
-    complexity, untangled). Out of the loops it glides into one river bend
-    and comes to rest at the lower left, pointing at the buttons. It leaves
-    a thin line (1.6, 60% opacity) that fades in over 170 units from where
-    the loops were. The run is 3.4s and ease-out only, carrying the spark's
-    momentum, so the handover has no stop-and-restart.
+  - *Hero (lg+, right column):* the star is born where the hero's chaos of
+    shapes merges (see Homepage entrance sequence). It slithers through two
+    loops like a snake, drawing them, and they fade out behind its 300-unit
+    tail (the complexity, untangled). Out of the loops it glides into one
+    river bend and comes to rest at the lower left, pointing at the buttons.
+    The run is 3.4s, `easeInOutSine`, setting off from rest.
+  - *It swells as it travels:* every width is scaled from 55% as it sets
+    off to 100% as it arrives. The tail is up to ~5.5 units wide at the
+    head. It leaves a river 2.8 units wide (was 1.6) at 60% opacity, which
+    fades in over 170 units from where the loops were.
   - *Afterwards:* the resting star twinkles gently, and every 9s a softer
     star runs down the river and brightens it on arrival.
   - *Below lg:* `variant="strip"`, a slim version under the lead. It starts
@@ -1164,11 +1166,12 @@ code and applies site-wide:
 
 ### Homepage entrance sequence
 Plays once on load (homepage only — `Header`'s `animateLogo` prop). It is
-one continuous gesture, about 7s, unhurried: the ball appears, the
-signature writes itself, and the headline comes out at the moment a spark
-leaves the pen and becomes the star that draws the hero's river.
+one continuous story, about 8s, unhurried: the ball appears, the signature
+writes itself, and with the headline a chaos of shapes appears beside it,
+gathers into one point, and becomes the star that draws the hero's river
+(complexity becoming a clear path: the project that worked).
 `prefers-reduced-motion: reduce` shows every element in its finished state
-immediately (no spark, the river already drawn).
+immediately (no shapes, the river already drawn).
 1. **Ball, then signature** (`Logo.tsx`): the orange ball fades and settles
    in first (`.logo-blob-in`, 0–450ms, from 90% scale), so it never sits
    there empty, and the signature starts writing over it right away
@@ -1177,22 +1180,32 @@ immediately (no spark, the river already drawn).
    like ink flowing from a pen, at a steady pace (`cubic-bezier(0.35, 0, 0.65,
    1)`; an ease-out finished early and then sat still). (The
    mark is a filled silhouette, so stroking it would only outline it.)
-2. **Text with the star** (byline 1550ms, H1 1650ms, lead 1830ms, buttons
-   2010ms): the headline comes out exactly as the star lifts off the end of
-   the signature, so title and star arrive together. Keep these delays in
-   step with `.logo-mask-wipe`.
-3. **Spark leaves the pen** (`PenSpark.tsx`, lg+): 200ms before the
-   signature finishes, a spark gathers at the tip of the final flourish
-   (`[data-pen-tip]` in `Logo.tsx`). It flicks up the way the flourish
-   ends, skims above the name, drops through the gap between the name and
-   the nav, and swings past the headline's top-right corner into the hero's
-   right column. The name, nav and headline are measured live, so it stays
-   clear of them at every width (≥37px from the headline at 1024–1920).
-   It lifts off slowly (position ∝ u^n) and its flight time (1.4–2.6s) is
-   picked so it arrives at exactly the speed the hero star sets off with,
-   then fires `line:handoff`. Below lg it doesn't fly (it would cross the
-   text); the strip's star sets off 400ms after the signature finishes.
+2. **Text with the chaos** (byline 1550ms, H1 1650ms, lead 1830ms, buttons
+   2010ms): the headline comes out together with the shapes. Keep these
+   delays in step with `.logo-mask-wipe` and `T0` in `HeroChaos.tsx`.
+3. **Chaos → gather → star** (`HeroChaos.tsx`, lg+, Anime.js): 14 brand
+   shapes (circles and rounded squares, filled and 3px outlines, in
+   `#FC890C` / `#E8730A` / `#FFB566`) in the hero's right column.
+   - *Appear* (from 1.55s): they fade and grow in, staggered 60ms.
+   - *Chaos:* two slow random drifts and turns each (±70px, ±120°,
+     0.9–1.3s legs, `inOutSine`).
+   - *Gather* (from ~3.5s): every shape flows to the Line's start point,
+     shrinking into a small filled dot, the farthest setting off first, over
+     1.3s (`inOutCubic`).
+   - *Merge* (~4.85s): the dots melt into a soft bloom, and `line:handoff`
+     sets the star off from that point (~5.0s).
+   - It's one Anime.js timeline built inside `createScope({ root })` and
+     reverted on unmount. Positions are on the page's clock (CSS delays count
+     from load), not from hydration.
+   - Not `composition: 'blend'`: blended tweens add up, and the gather must
+     override the drifts to land exactly on one point.
+   - Below lg (it would sit over the text) and under reduced motion it
+     doesn't run. The star then starts on its own: the strip as the
+     signature finishes, the hero 2.6s after (fallback).
 4. **The star draws the river** (`HeroLine.tsx`, 3.4s), see The Line.
+
+Dependency: `animejs` (v4). It adds ~16 kB to the homepage's First Load JS
+(137 → 153 kB) and is used only by `HeroChaos.tsx`.
 
 ### Scroll reveal (`Reveal.tsx`)
 Below-the-fold content "grows in" as the user scrolls to it, rather than

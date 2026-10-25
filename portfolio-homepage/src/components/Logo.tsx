@@ -93,10 +93,6 @@ export default function Logo({ animated = false }: {
         <g mask={animated ? `url(#${maskId})` : undefined}>
           <path d={SIGNATURE_PATH} fill="#000000" transform={SIGNATURE_TRANSFORM} />
         </g>
-        {/* Where the pen leaves the paper: the tip of the final flourish.
-            On the homepage the hero's star lifts off from here
-            (PenSpark.tsx). */}
-        {animated && <circle data-pen-tip cx={208.3} cy={30.1} r={0} />}
       </svg>
 
       <span className="flex min-w-0 flex-col justify-center gap-1 whitespace-nowrap">

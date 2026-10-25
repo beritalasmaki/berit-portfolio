@@ -13,14 +13,15 @@ import {
 /**
  * The hero's "Line": the headline acted out as a shooting star.
  *
- * Nothing is drawn until the star arrives. On wide screens it's the spark
- * that lifted off the end of the logo signature (PenSpark.tsx); it flies in,
- * and without stopping becomes this star. It slithers through two loops like
- * a snake, drawing them as it goes, and they fade out behind its tapered
- * tail (the complexity, untangled). Out of the loops it glides into one calm
- * river bend and comes to rest pointing at the buttons, leaving a thin line
- * that fades in from where the loops were. Every so often a softer star runs
- * down the river (moving forward).
+ * Nothing is drawn until the star sets off. On wide screens it's born where
+ * the hero's chaos of shapes gathers and merges into one point
+ * (HeroChaos.tsx). It slithers through two loops like a snake, drawing them
+ * as it goes, and they fade out behind its tapered tail (the complexity,
+ * untangled). Out of the loops it glides into one calm river bend and comes
+ * to rest pointing at the buttons. The line swells as it travels, thin as it
+ * sets off and full width as it arrives, and leaves a river that fades in
+ * from where the loops were. Every so often a softer star runs down the
+ * river (moving forward).
  *
  * Drawn on a canvas, because the tail is a gradient *along a curve* (width
  * and opacity grow toward the head), which SVG strokes can't do. The curve
@@ -29,13 +30,12 @@ import {
  * brighter and wider than the last.
  *
  * - `hero`: the large version in the hero's right column (lg and up). It
- *   starts on the spark's `line:handoff` event and carries the spark's speed
- *   (ease-out only), so there's no stop-and-restart at the handover. It
- *   publishes its start point and starting speed as data attributes for the
- *   spark to aim at.
- * - `strip`: a slim version for phones and tablets, under the lead. No
- *   spark flies over the text there: the star simply sets off from rest
- *   shortly after the signature finishes.
+ *   starts on the chaos layer's `line:handoff` event, from rest at the merge
+ *   point, and publishes that start point as data attributes for the shapes
+ *   to gather at.
+ * - `strip`: a slim version for phones and tablets, under the lead. There's
+ *   no chaos layer there (it would sit over the text): the star simply sets
+ *   off as the signature finishes.
  *
  * The loop only runs while the canvas is on screen. Reduced motion: the
  * settled river and its resting star are drawn once, and nothing moves.
@@ -91,16 +91,18 @@ const ECHO_RUN = 3400;
 // Strip only: when to set off after the signature finishes. Immediately,
 // so it starts with the headline, as the hero's star does.
 const STRIP_PAUSE = 0;
-// Hero only: start anyway if the spark never hands over (e.g. it failed to
-// find the logo), this long after the signature finished.
+// Hero only: start anyway if the chaos layer never hands over (e.g. it
+// failed to load), this long after the signature finished.
 const HANDOFF_FALLBACK = 2600;
 
 // Lengths, in viewBox units.
 const TAIL = 300;
 const ECHO_TAIL = 200;
 const FADE_IN = 170;
-
-const easeOutSine = (t: number) => Math.sin((t * Math.PI) / 2);
+// Widths: the river left behind, and how thin everything starts. The line
+// swells from GROW_FROM to full width over the star's run.
+const RIVER_WIDTH = 2.8;
+const GROW_FROM = 0.55;
 
 type Ctx = CanvasRenderingContext2D;
 
@@ -140,11 +142,12 @@ function strokeRamp(
   ctx.globalAlpha = 1;
 }
 
-/** A shooting star: a tail that tapers and fades out behind the head. */
-function comet(ctx: Ctx, s: Sampled, from: number, head: number, strength: number, k: number) {
+/** A shooting star: a tail that tapers and fades out behind the head.
+ * `g` scales its width (the line swells as it travels, see GROW_FROM). */
+function comet(ctx: Ctx, s: Sampled, from: number, head: number, strength: number, k: number, g = 1) {
   // Glow under the tail, then the tail itself, widest and brightest at the head.
-  strokeRamp(ctx, s, from, head, (u) => [0.12 * strength * u * u, (2 + 9 * u) * k], GLOW);
-  strokeRamp(ctx, s, from, head, (u) => [strength * Math.pow(u, 1.6), (0.4 + 2.8 * u) * k], ORANGE);
+  strokeRamp(ctx, s, from, head, (u) => [0.12 * strength * u * u, (3 + 14 * u) * k * g], GLOW);
+  strokeRamp(ctx, s, from, head, (u) => [strength * Math.pow(u, 1.6), (0.6 + 4.9 * u) * k * g], ORANGE);
 }
 
 export default function HeroLine({ variant = "hero", className = "" }: { variant?: Variant; className?: string }) {
@@ -165,8 +168,6 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
     // Where the loops end and the river begins.
     const M = idx(s.atAnchor[coil.length - 1]);
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // The hero picks up the spark's momentum; the strip starts from rest.
-    const travel = variant === "hero" ? easeOutSine : easeInOutSine;
 
     function fit() {
       const dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -177,11 +178,10 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
         canvas!.width = Math.round(cw * dpr);
         canvas!.height = Math.round(ch * dpr);
       }
-      // For the spark (PenSpark.tsx): where to arrive, and how fast the star
-      // sets off, in CSS px per ms.
+      // For the chaos layer (HeroChaos.tsx): where its shapes gather, so
+      // they merge exactly where the star sets off.
       wrap!.dataset.startX = String(coil[0][0] / w);
       wrap!.dataset.startY = String(coil[0][1] / h);
-      wrap!.dataset.startSpeed = String((s.length * (cw / w) * (Math.PI / 2)) / RUN);
       const z = (cw / w) * dpr;
       ctx!.setTransform(z, 0, 0, z, 0, 0);
       ctx!.clearRect(0, 0, w, h);
@@ -191,22 +191,26 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
     }
 
     // The thin river left behind, fading in from where the loops were.
-    function trail(to: number) {
+    function trail(to: number, g = 1) {
       const fade = Math.min(to, M + Math.round(FADE_IN / s.step));
-      strokeRamp(ctx!, s, M, fade, (u) => [0.6 * u, 1.6 * k], ORANGE);
-      strokeSpan(ctx!, s, fade, to, 1.6 * k, `rgba(${ORANGE}, 0.6)`);
+      const width = RIVER_WIDTH * k * g;
+      strokeRamp(ctx!, s, M, fade, (u) => [0.6 * u, width], ORANGE);
+      strokeSpan(ctx!, s, fade, to, width, `rgba(${ORANGE}, 0.6)`);
     }
 
     function draw(t: number) {
       if (!fit()) return;
       const p = Math.min(1, t / RUN);
-      const head = idx(travel(p) * s.length);
+      const head = idx(easeInOutSine(p) * s.length);
+      // The line swells as it travels: thin as it sets off, full width by
+      // the time it arrives.
+      const g = GROW_FROM + (1 - GROW_FROM) * easeInOutSine(p);
       // Only what the star has drawn exists: the river behind it, and the
       // loops only within its fading tail.
-      if (head > M) trail(head);
+      if (head > M) trail(head, g);
 
       if (p < 1) {
-        comet(ctx!, s, Math.max(0, head - Math.round(TAIL / s.step)), head, 1, k);
+        comet(ctx!, s, Math.max(0, head - Math.round(TAIL / s.step)), head, 1, k, g);
         drawSparkle(ctx!, s.x[head], s.y[head], k);
         return;
       }

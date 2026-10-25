@@ -111,11 +111,9 @@
      edge. Instead a bar with a feathered right edge slides across an SVG
      <mask>, revealing the real, unaltered signature left to right, like
      ink flowing from a pen, at a steady writing pace (a gentle in-out, not
-     an ease-out that finishes early and then sits still). Gentle at the end
-     too, because the hero's star
-     lifts off the end of the stroke as it finishes (PenSpark.tsx), together
-     with the headline (Hero.tsx delays). `both` holds the hidden state
-     through the delay. */
+     an ease-out that finishes early and then sits still). The headline and
+     the hero's chaos of shapes come out as it finishes (Hero.tsx delays,
+     HeroChaos.tsx). `both` holds the hidden state through the delay. */
   .logo-mask-wipe {
     animation: logo-wipe 1700ms cubic-bezier(0.35, 0, 0.65, 1) 150ms both;
   }
