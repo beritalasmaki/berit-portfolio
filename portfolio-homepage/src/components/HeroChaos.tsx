@@ -18,9 +18,9 @@ import { BLOB_PATH } from "./Logo";
  *    and rounded squares, filled and outlined) bustles around: darting,
  *    spinning, overlapping.
  * 2. "First, I map where things stand." Berit steps in, as the orange ball
- *    from her logo. The shapes stop where they are, a scan ripples out from
- *    the ball, and thin lines draw between neighbouring shapes as it passes:
- *    the mess becomes a map.
+ *    from her logo. The shapes stop where they are, a scan ripples out
+ *    through the tangle, and thin lines draw themselves between
+ *    neighbouring shapes as it passes: the mess becomes a map.
  * 3. "Then we plan what's needed, the system and the goal." The map lines
  *    fade and the shapes sort into neat rows by kind (system thinking). The
  *    goal and a dashed planned route appear (`line:plan`, drawn by
@@ -32,9 +32,10 @@ import { BLOB_PATH } from "./Logo";
  *    shooting star (`line:handoff`), which travels the route, lighting the
  *    checkpoints, and corrects its course once along the way.
  * 6. "And we reach the goal, together." The goal fills and pulses. This line
- *    stays, and a quiet "Play again" link appears under the animation: it
- *    clears the route (`line:reset`), brings the tangle back and plays the
- *    story again on its own.
+ *    stays. Then, as the last frame, the route fades out and "Play again"
+ *    appears in its place, inside a soft blurred bubble shaped like Berit's
+ *    ball. It clears the route (`line:reset`), brings the tangle back and
+ *    plays the story again on its own.
  *
  * Animated with Anime.js, inside a scope that's reverted on unmount: an
  * intro timeline on the page's clock (CSS delays count from load, so the
@@ -122,6 +123,7 @@ const PLAN = 5800;
 const METRICS = 11600;
 const MOVE = 17200; // The star sets off…
 const GOAL = MOVE + 5200; // …and arrives (HeroLine's run).
+const AGAIN = GOAL + 2600; // The route fades out and "Play again" appears.
 
 // Sorted rows in "Plan": one row per kind, in this order, all at one size,
 // under the ball, near the middle of the column but just above the route
@@ -166,7 +168,7 @@ export default function HeroChaos() {
   const lineRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const progressRef = useRef<HTMLSpanElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const replayRef = useRef<HTMLButtonElement>(null);
+  const replayRef = useRef<HTMLDivElement>(null);
   const playRef = useRef<(() => void) | null>(null);
   const againRef = useRef<(() => void) | null>(null);
   // Each "Play again" rebuilds the story from scratch (the scope reverts
@@ -181,8 +183,10 @@ export default function HeroChaos() {
     const bloom = bloomRef.current;
     const button = buttonRef.current;
     const replay = replayRef.current;
+    const replayBlob = replay?.firstElementChild as HTMLElement | null;
+    const replayButton = replay?.lastElementChild as HTMLElement | null;
     const progress = progressRef.current;
-    if (!root || !ball || !scan || !map || !bloom || !button || !replay || !progress) return;
+    if (!root || !ball || !scan || !map || !bloom || !button || !replay || !replayBlob || !replayButton || !progress) return;
     const lines = lineRefs.current.filter(Boolean) as HTMLSpanElement[];
     const say = (name: string) => () => {
       if (name === "line:handoff") (window as Window & { __lineHandoff?: boolean }).__lineHandoff = true;
@@ -246,8 +250,16 @@ export default function HeroChaos() {
 
     ball.style.left = `${ballX}px`;
     ball.style.top = `${ballY}px`;
-    scan.style.left = `${ballX}px`;
-    scan.style.top = `${ballY}px`;
+    // The scan ripples out from the middle of the tangle (what's being
+    // mapped), and grows only as far as the column's top edge: it never
+    // reaches the story text, so it needs no clipping.
+    const scanX = 0.5 * w;
+    const scanY = 0.5 * h;
+    const SCAN_FROM = 0.6;
+    const SCAN_RUN = 2200;
+    const scanTo = ((scanY - 8) * 2) / 64;
+    scan.style.left = `${scanX}px`;
+    scan.style.top = `${scanY}px`;
     bloom.style.left = `${sx}px`;
     bloom.style.top = `${sy}px`;
 
@@ -271,19 +283,25 @@ export default function HeroChaos() {
             const key = i < j ? `${i}-${j}` : `${j}-${i}`;
             if (seen.has(key)) return;
             seen.add(key);
-            const b = pts[j];
+            // Each line draws itself from its end nearer the scan's centre,
+            // starting as the ripple reaches that end.
+            const da = Math.hypot(a[0] - scanX, a[1] - scanY);
+            const db = Math.hypot(pts[j][0] - scanX, pts[j][1] - scanY);
+            const [p, q] = da <= db ? [a, pts[j]] : [pts[j], a];
             const el = document.createElementNS(ns, "line");
-            el.setAttribute("x1", String(a[0]));
-            el.setAttribute("y1", String(a[1]));
-            el.setAttribute("x2", String(b[0]));
-            el.setAttribute("y2", String(b[1]));
+            el.setAttribute("x1", String(p[0]));
+            el.setAttribute("y1", String(p[1]));
+            el.setAttribute("x2", String(q[0]));
+            el.setAttribute("y2", String(q[1]));
             el.setAttribute("stroke-dasharray", String(d));
             el.setAttribute("stroke-dashoffset", String(d));
             map!.appendChild(el);
-            // Drawn when the scan reaches it: the farther from the ball,
-            // the later.
-            const far = Math.hypot(a[0] - ballX, a[1] - ballY);
-            animate(el, { strokeDashoffset: [d, 0], duration: 700, delay: far * 2.2, ease: "outCubic" });
+            // When the ripple (an outCubic growth over SCAN_RUN) reaches
+            // that end: solve its easing for the end's distance.
+            const r0 = SCAN_FROM * 32;
+            const f = Math.min(1, Math.max(0, (Math.min(da, db) - r0) / (scanTo * 32 - r0)));
+            const reach = (1 - Math.cbrt(1 - f)) * SCAN_RUN;
+            animate(el, { strokeDashoffset: [d, 0], duration: 1100, delay: reach, ease: "inOutSine" });
           });
       });
     }
@@ -360,8 +378,8 @@ export default function HeroChaos() {
       // 2. Map: Berit's ball lands, the shapes hold still, a scan ripples
       //    out and the map draws itself between them.
       tl.add(ball, { opacity: [0, 1], scale: [0, 1], y: [-12, 0], duration: 900, ease: "outBack" }, MAP + 200);
-      tl.add(scan, { opacity: [0.7, 0], scale: [0.6, 11], duration: 2000, ease: "outCubic" }, MAP + 650);
-      tl.call(drawMap, MAP + 750);
+      tl.add(scan, { opacity: [0.7, 0], scale: [SCAN_FROM, scanTo], duration: SCAN_RUN, ease: "outCubic" }, MAP + 650);
+      tl.call(drawMap, MAP + 650);
 
       // 3. Plan: the map fades, the shapes sort into rows, and the goal and
       //    the planned route appear.
@@ -412,16 +430,20 @@ export default function HeroChaos() {
       // its step, so the visitor sees how long this one lasts and how many
       // are left. The last fills as the goal settles, until "Play again".
       const fills = progress.querySelectorAll<HTMLElement>("[data-fill]");
-      const ends = [...beats.slice(1), GOAL + 1400];
+      const ends = [...beats.slice(1), AGAIN];
       tl.add(progress, { opacity: [0, 1], duration: 500, ease: "outCubic" }, 0);
       beats.forEach((t, j) => tl.add(fills[j], { scaleX: [0, 1], duration: ends[j] - t, ease: "linear" }, t));
 
-      // 6. At the goal: the way to watch it again.
-      tl.call(() => (replay.style.visibility = "visible"), GOAL + 1400);
-      tl.add(replay, { opacity: [0, 1], y: [6, 0], duration: 700, ease: "outCubic" }, GOAL + 1400);
+      // 6. The last frame: once the goal has had its moment, the route
+      // fades away and "Play again" appears in its place, inside a soft,
+      // blurred bubble shaped like Berit's ball.
+      if (line) tl.add(line, { opacity: 0, duration: 900, ease: "inOutSine" }, AGAIN - 900);
+      tl.call(() => (replay.style.visibility = "visible"), AGAIN);
+      tl.add(replayBlob, { opacity: [0, 1], scale: [0.6, 1], duration: 1100, ease: "outCubic" }, AGAIN);
+      tl.add(replayButton, { opacity: [0, 1], scale: [0.9, 1], duration: 700, ease: "outCubic" }, AGAIN + 300);
     });
 
-    // Play again: the ending blows away with the route, then everything is
+    // Play again: the ending blows away with the bubble, then everything is
     // rebuilt and the story runs once more.
     let leaving = false;
     againRef.current = () => {
@@ -429,7 +451,7 @@ export default function HeroChaos() {
       leaving = true;
       createTimeline()
         .add(words(lines.length - 1), lineOut, 0)
-        .add(replay, { opacity: 0, duration: 300, ease: "inQuad" }, 0)
+        .add(replay, { opacity: 0, scale: 0.94, duration: 400, ease: "inQuad" }, 0)
         .add(progress, { opacity: 0, duration: 400, ease: "inQuad" }, 0)
         .add(line ? [line] : [], { opacity: 0, duration: 500, ease: "inQuad" }, 0)
         .call(() => setRun((r) => r + 1), 650);
@@ -452,7 +474,8 @@ export default function HeroChaos() {
       map.replaceChildren();
       button.style.visibility = "";
       replay.style.visibility = "hidden";
-      replay.style.opacity = "0";
+      replay.style.opacity = "";
+      replay.style.transform = "";
       if (line) line.style.opacity = "";
       (window as Window & { __lineHandoff?: boolean }).__lineHandoff = false;
       window.dispatchEvent(new Event("line:reset"));
@@ -466,13 +489,9 @@ export default function HeroChaos() {
       {SHAPES.map((s, i) => (
         <span key={i} aria-hidden="true" data-chaos-shape className="absolute block" style={shapeStyle(s)} />
       ))}
-      {/* Berit: the orange ball from her logo, and its scan ripple. The
-          ripple is clipped at the column's top (and bottom) edge, so it
-          never reaches the story text; sideways it spreads freely
-          (`overflow-y: clip` alone, unlike `hidden`, leaves x visible). */}
-      <div aria-hidden="true" className="absolute inset-0 [overflow-x:visible] [overflow-y:clip]">
-        <span ref={scanRef} aria-hidden="true" className="absolute block h-16 w-16 -ml-8 -mt-8 rounded-full border-2 border-accent opacity-0" />
-      </div>
+      {/* Berit: the orange ball from her logo, and the scan ripple she sends
+          through the tangle. */}
+      <span ref={scanRef} aria-hidden="true" className="absolute block h-16 w-16 -ml-8 -mt-8 rounded-full border-2 border-accent opacity-0" />
       <div ref={ballRef} aria-hidden="true" className="absolute -ml-9 -mt-[34px] opacity-0">
         <svg viewBox="0 0 114 108" width="72" height="68" className="block overflow-visible">
           <path d={BLOB_PATH} fill="#FF890C" />
@@ -503,19 +522,41 @@ export default function HeroChaos() {
           Turn chaos into clarity
         </button>
       </div>
-      {/* After the goal: watch it again. */}
-      <div className="absolute inset-x-0 top-full mt-4 flex justify-center">
+      {/* The last frame: "Play again" inside a soft, blurred bubble shaped
+          like Berit's ball, gently breathing. */}
+      <div
+        ref={replayRef}
+        style={{ visibility: "hidden" }}
+        className="absolute inset-0 z-10 flex items-center justify-center"
+      >
+        <span aria-hidden="true" className="absolute opacity-0">
+          <svg
+            viewBox="0 0 114 108"
+            width="240"
+            height="227"
+            className="block overflow-visible blur-lg"
+            style={{ animation: "orb-breathe 4s ease-in-out infinite alternate" }}
+          >
+            <defs>
+              <linearGradient id="replay-blob" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor="#FFB566" />
+                <stop offset="1" stopColor="#FC890C" />
+              </linearGradient>
+            </defs>
+            <path d={BLOB_PATH} fill="url(#replay-blob)" opacity="0.7" />
+          </svg>
+        </span>
         <button
-          ref={replayRef}
           type="button"
           onClick={() => againRef.current?.()}
-          style={{ visibility: "hidden" }}
-          className="pointer-events-auto inline-flex items-center gap-2 rounded-pill px-4 py-2 text-nav font-semibold text-accent-dark opacity-0 hover:text-ink focus-visible:outline-accent"
+          className="glass-button-ink pointer-events-auto relative inline-flex items-center gap-4 rounded-pill p-2 pr-6 text-nav font-semibold text-white opacity-0 hover:text-white focus-visible:text-white focus-visible:outline-white"
         >
-          <svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14" className="block" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M2.5 8a5.5 5.5 0 1 0 1.6-3.9" />
-            <path d="M2.5 2.5v3h3" />
-          </svg>
+          <span aria-hidden="true" className="grid h-9 w-9 place-items-center rounded-full bg-accent">
+            <svg viewBox="0 0 16 16" width="16" height="16" className="block" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M2.5 8a5.5 5.5 0 1 0 1.6-3.9" />
+              <path d="M2.5 2.5v3h3" />
+            </svg>
+          </span>
           Play again
         </button>
       </div>

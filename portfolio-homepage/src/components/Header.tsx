@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useLiquidIndicator } from "./useLiquidIndicator";
 import Logo from "./Logo";
 import { AboutIcon, ArrowLeftIcon, ArrowRightIcon, CaseStudiesIcon, ProcessIcon } from "./icons";
 import { primaryNav, site } from "@/data/site";
@@ -130,6 +131,21 @@ function useActiveSection(enabled: boolean) {
 export default function Header({ backHref, backLabel = "Back to work", animateLogo = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const activeSection = useActiveSection(!backHref);
+
+  // The page links' highlight: a frosted-glass pill behind the link being
+  // pointed at or focused, otherwise the current section's, flowing like
+  // liquid from link to link (useLiquidIndicator, as the tabs do). It
+  // reaches 16px past each side of the link and 8px above and below, so
+  // the links keep their spacing.
+  const navRef = useRef<HTMLElement>(null);
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const [pointed, setPointed] = useState<number | null>(null);
+  const currentIndex = primaryNav.findIndex((item) => item.href.split("#")[1] === activeSection);
+  const pill = useLiquidIndicator(navRef, linkRefs, pointed ?? (currentIndex < 0 ? null : currentIndex), {
+    axis: "x",
+    squeeze: 0.8,
+    outset: [16, 8],
+  });
   const panelId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -223,9 +239,17 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               with room to spare; see the Logo's `xl:h-20` note for the other
               half of that budget. */}
           <nav
+            ref={navRef}
             aria-label="Primary"
-            className="hidden lg:flex items-center justify-end gap-nav-gap flex-wrap min-w-0"
+            className="relative hidden lg:flex items-center justify-end gap-nav-gap flex-wrap min-w-0"
           >
+            {!backHref && (
+              <span
+                ref={pill.indicatorRef}
+                aria-hidden="true"
+                className="pointer-events-none absolute rounded-pill border border-white/80 bg-white/70 opacity-0 shadow-[0_4px_16px_rgba(34,34,34,0.08)] backdrop-blur-md"
+              />
+            )}
             {backHref ? (
               <Link
                 href={backHref}
@@ -235,18 +259,25 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                 <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{backLabel}</span>
               </Link>
             ) : (
-              primaryNav.map((item) => {
+              primaryNav.map((item, index) => {
                 const NavIcon = NAV_ICONS[item.href];
                 const current = activeSection === item.href.split("#")[1];
                 return (
                   <a
                     key={item.href}
+                    ref={(el) => {
+                      linkRefs.current[index] = el;
+                    }}
                     href={item.href}
                     aria-current={current ? "location" : undefined}
-                    className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
+                    onPointerEnter={() => setPointed(index)}
+                    onPointerLeave={() => setPointed(null)}
+                    onFocus={() => setPointed(index)}
+                    onBlur={() => setPointed(null)}
+                    className="relative inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                   >
                     <NavIcon />
-                    <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">
+                    <span>
                       {"short" in item ? (
                         <>
                           <span className="xl:hidden">{item.short}</span>
