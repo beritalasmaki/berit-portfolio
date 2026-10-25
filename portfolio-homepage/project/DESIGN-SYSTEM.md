@@ -1299,9 +1299,17 @@ immediately (no shapes, the river already drawn).
      `composition: 'blend'`: blended tweens add up, so later beats couldn't
      land shapes exactly in rows or on the checkpoints. The hero star never
      starts on its own.
-   - Below lg there's no story (it would sit over the text). Under reduced
-     motion nothing moves and there's no button: the finished route, lit
-     checkpoints and filled goal are drawn, and only the last line shows.
+   - On phones and tablets (below lg) the story sits under the hero text
+     and buttons, in place of the old slim signature strip, since
+     recruiters often look on a phone. Everything sized in px (shapes,
+     borders, ball, rows, roaming distance, checkpoint dots, the Play again
+     bubble) scales with the column via `--chaos-k` (column width / 600,
+     capped at 1), and the story text is 15px on 24px lines, so the longest
+     line wraps to two. Checked at 360, 390 and 768px: no sideways scroll,
+     no overlap with the buttons, and the shapes stay 60px+ below the
+     progress bar. Under reduced motion nothing moves and there's no
+     button: the finished route, lit checkpoints and filled goal are drawn,
+     and only the last line shows.
 4. **The route and the star** (`HeroLine.tsx`), see The Line.
 
 Dependency: `animejs` (v4). It adds ~16 kB to the homepage's First Load JS

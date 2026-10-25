@@ -52,11 +52,6 @@ export default function Hero() {
             Good design moves you forward. I help teams turn complex products and services into
             experiences that are easier to use and easier to build.
           </p>
-          {/* Below lg the right column is hidden, so the Line tells its
-              story here instead, as a slim strip. */}
-          <div className="lg:hidden mt-8 fade-up-item" style={{ animationDelay: "1910ms" }}>
-            <HeroLine variant="strip" />
-          </div>
           <div className="flex flex-wrap gap-4 mt-12 fade-up-item" style={{ animationDelay: "2010ms" }}>
             {/* Same target and same mechanism as the header's Contact
                 button: a plain `#contact` anchor, with the smooth scroll
@@ -81,8 +76,9 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="min-w-0 hidden lg:flex flex-col justify-center">
-          {/* The story of how Berit works, told beside the headline: from a
+        <div className="min-w-0 flex flex-col justify-center">
+          {/* The story of how Berit works, told beside the headline (under
+              the hero text below lg, so phones get it too): from a
               tangle, through mapping, planning and setting up systems and
               metrics, to moving and adjusting until the goal is reached
               (HeroChaos.tsx tells the first half, HeroLine.tsx the second).

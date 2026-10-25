@@ -48,9 +48,11 @@ import { BLOB_PATH } from "./Logo";
  * line is fully on screen for 3.5s or more, long enough to read and take
  * in, and the star's run takes 5.2s; about 22s from the click to the goal.
  *
- * Wide screens only (on narrow ones it would sit over the text). Under
- * reduced motion nothing moves: HeroLine draws the finished route and goal,
- * and only the last line of the story shows.
+ * On every screen: beside the headline from lg, under the hero text on
+ * phones and tablets, where everything sized in px scales down with the
+ * column (`--chaos-k`) and the story text is set smaller. Under reduced
+ * motion nothing moves: HeroLine draws the finished route and goal, and
+ * only the last line of the story shows.
  */
 
 type Kind = "dot" | "ring" | "square" | "frame";
@@ -141,19 +143,23 @@ const CHECKPOINTS = [
   [0.798, 0.248],
 ];
 
+// Sizes in px at the full 600px column, scaled to a narrower one (phones)
+// by `--chaos-k`, which the effect sets from the column's width.
+const fitted = (px: number) => `calc(${px}px * var(--chaos-k, 1))`;
+
 function shapeStyle(s: Shape): React.CSSProperties {
   const filled = s.kind === "dot" || s.kind === "square";
   const round = s.kind === "dot" || s.kind === "ring";
   return {
     left: `${50 + (s.x - 50) * SPREAD}%`,
     top: `${50 + (s.y - 50) * SPREAD}%`,
-    width: s.size * SCALE,
-    height: s.size * SCALE,
-    marginLeft: (-s.size * SCALE) / 2,
-    marginTop: (-s.size * SCALE) / 2,
+    width: fitted(s.size * SCALE),
+    height: fitted(s.size * SCALE),
+    marginLeft: fitted((-s.size * SCALE) / 2),
+    marginTop: fitted((-s.size * SCALE) / 2),
     borderRadius: round ? "50%" : "22%",
     background: filled ? s.color : "transparent",
-    border: filled ? "none" : `3px solid ${s.color}`,
+    border: filled ? "none" : `max(2px, ${fitted(3)}) solid ${s.color}`,
     transform: `rotate(${s.tilt}deg)`,
     opacity: 0,
   };
@@ -192,7 +198,6 @@ export default function HeroChaos() {
       if (name === "line:handoff") (window as Window & { __lineHandoff?: boolean }).__lineHandoff = true;
       window.dispatchEvent(new Event(name));
     };
-    if (!window.matchMedia("(min-width: 1024px)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       // Nothing moves: only the story's ending shows, under the finished
       // route that HeroLine draws.
@@ -204,6 +209,10 @@ export default function HeroChaos() {
 
     const w = root.clientWidth;
     const h = root.clientHeight;
+    // Everything sized in px is designed for the full 600px column; on a
+    // phone it scales down with the column.
+    const fit = Math.min(1, w / 600);
+    root.style.setProperty("--chaos-k", String(fit));
     const line = root.parentElement?.querySelector<HTMLElement>('[data-hero-line="hero"]');
     const sx = Number(line?.dataset.startX ?? START[0]) * w;
     const sy = Number(line?.dataset.startY ?? START[1]) * h;
@@ -215,7 +224,7 @@ export default function HeroChaos() {
     const centres = SHAPES.map(
       (s) => [((50 + (s.x - 50) * SPREAD) / 100) * w, ((50 + (s.y - 50) * SPREAD) / 100) * h] as const
     );
-    const sizes = SHAPES.map((s) => s.size * SCALE);
+    const sizes = SHAPES.map((s) => s.size * SCALE * fit);
 
     // Tangle moves stay inside the focus area (up to ROAM px, never past
     // its edges, so never over the headline).
@@ -226,21 +235,23 @@ export default function HeroChaos() {
       // Room for the shape at its largest: wandering scales it up to 1.25×
       // and a tilted square reaches further than its side.
       const half = sizes[i] * 0.8;
-      return utils.random(Math.round(Math.max(-ROAM, lo + half - c)), Math.round(Math.min(ROAM, hi - half - c)));
+      const roam = ROAM * fit;
+      return utils.random(Math.round(Math.max(-roam, lo + half - c)), Math.round(Math.min(roam, hi - half - c)));
     };
 
     // The ball, and the rows under it, in the middle of the column, above
     // the route.
     const ballX = 0.4 * w;
-    // The ball (68px tall) never rises above the column's top edge, even as
-    // it drops in, so it keeps the 32px of air under the story text.
-    const ballY = Math.max(0.15 * h, 48);
+    // The ball (68px tall at full size) never rises above the column's top
+    // edge, even as it drops in, so it keeps the 32px of air under the
+    // story text.
+    const ballY = Math.max(0.15 * h, 48 * fit);
     const rowsTop = ballY + 0.12 * h;
     const rowSpot = SHAPES.map((s, i) => {
       const row = ROW_ORDER.indexOf(s.kind);
       const peers = SHAPES.map((p, j) => [p, j] as const).filter(([p]) => p.kind === s.kind);
       const k = peers.findIndex(([, j]) => j === i);
-      return [ballX + (k - (peers.length - 1) / 2) * ROW_GAP, rowsTop + row * ROW_GAP] as const;
+      return [ballX + (k - (peers.length - 1) / 2) * ROW_GAP * fit, rowsTop + row * ROW_GAP * fit] as const;
     });
     // Each shape's checkpoint: the rows deal out onto the route in order.
     const order = SHAPES.map((_, i) => i).sort(
@@ -377,7 +388,7 @@ export default function HeroChaos() {
 
       // 2. Map: Berit's ball lands, the shapes hold still, a scan ripples
       //    out and the map draws itself between them.
-      tl.add(ball, { opacity: [0, 1], scale: [0, 1], y: [-12, 0], duration: 900, ease: "outBack" }, MAP + 200);
+      tl.add(ball, { opacity: [0, 1], scale: [0, 1], y: [-12 * fit, 0], duration: 900, ease: "outBack" }, MAP + 200);
       tl.add(scan, { opacity: [0.7, 0], scale: [SCAN_FROM, scanTo], duration: SCAN_RUN, ease: "outCubic" }, MAP + 650);
       tl.call(drawMap, MAP + 650);
 
@@ -388,7 +399,7 @@ export default function HeroChaos() {
         x: (_el: unknown, i = 0) => rowSpot[i][0] - centres[i][0],
         y: (_el: unknown, i = 0) => rowSpot[i][1] - centres[i][1],
         rotate: 0,
-        scale: (_el: unknown, i = 0) => ROW_SIZE / sizes[i],
+        scale: (_el: unknown, i = 0) => (ROW_SIZE * fit) / sizes[i],
         duration: 1200,
         delay: stagger(45),
         ease: "inOutCubic",
@@ -400,7 +411,7 @@ export default function HeroChaos() {
       tl.add(els, {
         x: (_el: unknown, i = 0) => spot[i][0] - centres[i][0],
         y: (_el: unknown, i = 0) => spot[i][1] - centres[i][1],
-        scale: (_el: unknown, i = 0) => 10 / sizes[i],
+        scale: (_el: unknown, i = 0) => (10 * Math.max(fit, 0.7)) / sizes[i],
         borderRadius: "50%",
         backgroundColor: ORANGE,
         borderColor: ORANGE,
@@ -492,8 +503,13 @@ export default function HeroChaos() {
       {/* Berit: the orange ball from her logo, and the scan ripple she sends
           through the tangle. */}
       <span ref={scanRef} aria-hidden="true" className="absolute block h-16 w-16 -ml-8 -mt-8 rounded-full border-2 border-accent opacity-0" />
-      <div ref={ballRef} aria-hidden="true" className="absolute -ml-9 -mt-[34px] opacity-0">
-        <svg viewBox="0 0 114 108" width="72" height="68" className="block overflow-visible">
+      <div
+        ref={ballRef}
+        aria-hidden="true"
+        className="absolute opacity-0"
+        style={{ marginLeft: fitted(-36), marginTop: fitted(-34) }}
+      >
+        <svg viewBox="0 0 114 108" className="block overflow-visible" style={{ width: fitted(72), height: fitted(68) }}>
           <path d={BLOB_PATH} fill="#FF890C" />
         </svg>
       </div>
@@ -532,10 +548,8 @@ export default function HeroChaos() {
         <span aria-hidden="true" className="absolute opacity-0">
           <svg
             viewBox="0 0 114 108"
-            width="240"
-            height="227"
-            className="block overflow-visible blur-lg"
-            style={{ animation: "orb-breathe 4s ease-in-out infinite alternate" }}
+            className="block h-auto overflow-visible blur-lg"
+            style={{ width: `max(160px, ${fitted(240)})`, animation: "orb-breathe 4s ease-in-out infinite alternate" }}
           >
             <defs>
               <linearGradient id="replay-blob" x1="0" y1="0" x2="1" y2="1">
@@ -569,14 +583,14 @@ export default function HeroChaos() {
           once the story plays), then 32px of air before the animation: the
           column's top edge, which nothing in the animation crosses. */}
       <span aria-hidden="true" className="absolute inset-x-0 bottom-full mb-8 flex flex-col items-center gap-4">
-        <span className="relative block h-8 w-full">
+        <span className="relative block h-6 w-full lg:h-8">
           {STORY.map((text, k) => (
             <span
               key={text}
               ref={(el) => {
                 lineRefs.current[k] = el;
               }}
-              className="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-center text-center text-[clamp(17px,1.35vw,20px)] font-semibold leading-8 tracking-[-0.01em] text-ink"
+              className="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-center text-center text-[15px] font-semibold leading-6 tracking-[-0.01em] text-ink lg:text-[clamp(17px,1.35vw,20px)] lg:leading-8"
             >
               <span
                 data-word
