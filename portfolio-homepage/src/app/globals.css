@@ -239,8 +239,11 @@
      bobs in (about), steps light up and their links draw (process). Each
      piece starts light peach and deepens to the brand orange as it
      settles (the colour runs longer than the motion, so the last frames
-     are the darkest). `--i` staggers the pieces. Leaving, it all eases back
-     quickly, without delay. */
+     are the darkest). `--i` staggers the pieces. It's a calm crossfade:
+     the outline stays until the pieces have mostly arrived, so the icon
+     never blanks or flashes, and the pieces grow from part size with only
+     a slight overshoot, since the nav's glass pill arrives at the same
+     time. Leaving, it all eases back quickly, without delay. */
   .nav-icon {
     overflow: visible;
   }
@@ -249,7 +252,7 @@
   }
   .nav-icon .ni-p {
     opacity: 0;
-    fill: #ffd8ab;
+    fill: #ffc98f;
     transform-box: fill-box;
     transform-origin: center;
     transition:
@@ -260,24 +263,25 @@
       stroke-dashoffset 260ms ease-in;
   }
   .nav-icon .ni-pop {
-    transform: scale(0.25);
+    transform: scale(0.6);
   }
   .nav-icon .ni-rise {
     transform-origin: 50% 100%;
-    transform: scaleY(0.1);
+    transform: scaleY(0.45);
   }
   .nav-icon .ni-drop {
-    transform: translateY(-5px) scale(0.5);
+    transform: translateY(-3px) scale(0.75);
   }
   .nav-icon .ni-draw {
     fill: none;
-    stroke: #ffd8ab;
+    stroke: #ffc98f;
     stroke-width: 1.6;
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
   }
   :is(a:hover, a:focus-visible, a[aria-current]) > .nav-icon .ni-line {
     opacity: 0;
+    transition: opacity 700ms ease-in-out 250ms;
   }
   :is(a:hover, a:focus-visible, a[aria-current]) > .nav-icon .ni-p {
     opacity: 1;
@@ -285,8 +289,8 @@
     fill: #fc890c;
     stroke-dashoffset: 0;
     transition:
-      opacity 360ms ease-out calc(var(--i, 0) * 150ms),
-      transform 900ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--i, 0) * 150ms),
+      opacity 600ms ease-out calc(var(--i, 0) * 150ms),
+      transform 900ms cubic-bezier(0.34, 1.25, 0.64, 1) calc(var(--i, 0) * 150ms),
       fill 1200ms ease-in-out calc(var(--i, 0) * 150ms),
       stroke 1200ms ease-in-out calc(var(--i, 0) * 150ms),
       stroke-dashoffset 700ms ease-out calc(var(--i, 0) * 150ms);

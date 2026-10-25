@@ -1091,11 +1091,14 @@ Single row, one hairline below:
     top.
   - **My Process:** the steps light up in order and the links between them
     draw on.
-  The pieces spring in unhurried (900ms, a slight overshoot, 150ms apart;
-  about 1.5s in all), and each deepens from light peach (`#FFD8AB`) to the
-  brand orange over 1.2s, so the first frames are light and the last the
-  darkest. The filled tiles are 5.4px with a clear 1.6px gap, so they never
-  read as touching. Leaving, it all eases back quickly, without delay.
+  It's a calm crossfade, not a pop, because the glass pill arrives at
+  the same moment. The outline stays until the pieces have mostly arrived
+  (it fades over 700ms after 250ms), so the icon never blanks or flashes.
+  The pieces grow from part size (tiles from 60%, shoulders from 45%) with
+  only a slight overshoot (900ms, 150ms apart, about 1.5s in all), and each
+  deepens from light peach (`#FFC98F`) to the brand orange over 1.2s. The
+  filled tiles are 5.4px with a clear 1.6px gap, so they never read as
+  touching. Leaving, it all eases back quickly, without delay.
   Reduced motion shows the filled state at once.
 - No underline. The link being pointed at or focused, or otherwise the
   current section's, sits on a frosted-glass pill (white/70, a hairline
