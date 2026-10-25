@@ -1171,9 +1171,9 @@ code and applies site-wide:
 
 ### Homepage entrance sequence
 Plays once on load (homepage only — `Header`'s `animateLogo` prop). It is
-one continuous story, about 13s, unhurried: the ball appears, the signature
-writes itself, and with the headline the story of how Berit works plays
-beside it, from a tangle to a reached goal.
+one continuous opening: the ball appears, the signature writes itself, and
+with the headline a tangle of shapes appears beside it, with a button that
+plays the story of how Berit works, from the tangle to a reached goal.
 `prefers-reduced-motion: reduce` shows every element in its finished state
 immediately (no shapes, the river already drawn).
 1. **Ball, then signature** (`Logo.tsx`): the orange ball fades and settles
@@ -1188,36 +1188,46 @@ immediately (no shapes, the river already drawn).
    2010ms): the headline comes out together with the shapes. Keep these
    delays in step with `.logo-mask-wipe` and `T0` in `HeroChaos.tsx`.
 3. **The story: how Berit works** (`HeroChaos.tsx` + `HeroLine.tsx`, lg+,
-   Anime.js). Six beats in the hero's right column, each with one line of
-   text centred under the animation (body font, `aria-hidden`; the last
-   line stays). Times are from the headline (1.55s).
-   1. "Every project starts in a tangle." (0s) 14 bold brand shapes pop in
-      and bustle: three energetic legs of up to 150px, ±220°, a scale
-      wobble, clamped to the column so they never cross the text.
-   2. "First, I map where things stand." (2.0s) Berit's logo ball drops in,
-      the shapes hold still, a scan ripples out, and thin lines draw between
-      each shape and its two nearest neighbours as the scan reaches them:
-      the mess becomes a map.
-   3. "Then we plan what's needed, the system and the goal." (3.6s) The map
-      fades, the shapes sort into rows by kind under the ball (top left,
-      clear of the route), and `line:plan` brings in the goal and the dashed
-      planned route.
-   4. "We set up the systems and how we'll measure progress." (5.4s) The
+   Anime.js). Six beats in the hero's right column. **The visitor chooses
+   to play it:** on load only the first beat shows, and keeps going (the
+   tangle wanders on endlessly, its line above it), with a play button in
+   the middle of the tangle, "Turn chaos into clarity" (ink pill, orange
+   play disc, a soft ring breathing out from it, `.hero-play`). Pressing it
+   (mouse or keyboard) plays the rest from wherever the tangle is.
+   - *The story's text* sits above the animation, where it's seen first:
+     a glowing orange dot (like the star), then the line in the body font
+     (semibold, 17–20px), its key word in `accent-dark`. Lines arrive word
+     by word out of a soft blur, drifting in like a breath of wind, and
+     blow away onward the same way when the next one comes; the last one
+     stays. Long lines wrap upward, never into the animation.
+   1. "Every project starts in a *tangle.*" (on load, with the headline)
+      14 bold brand shapes pop in and wander restlessly (up to 150px, ±200°,
+      a scale wobble, 1.6–2.4s per move, clamped to the column).
+   2. "First, I *map* where things stand." (on play) Berit's logo ball drops
+      in, the shapes hold still, a scan ripples out, and thin lines draw
+      between each shape and its two nearest neighbours as the scan reaches
+      them: the mess becomes a map.
+   3. "Then we *plan* what's needed, the system and the goal." (+2.4s) The
+      map fades, the shapes sort into rows by kind under the ball, and
+      `line:plan` brings in the goal and the dashed planned route.
+   4. "We set up the *systems* and how we'll measure progress." (+4.8s) The
       rows deal out onto the route as small dots, which become its
       checkpoints (`line:metrics`); the ball moves to the start.
-   5. "We move, learning and adjusting as we go." (7.0s) The ball blooms
-      into the shooting star (`line:handoff`), which travels the route and
-      corrects its course once.
-   6. "And we reach the goal, together." (11.2s) The goal fills and pulses.
-   - One Anime.js timeline built inside `createScope({ root })` and reverted
-     on unmount, positioned on the page's clock (CSS delays count from
-     load), not from hydration. No `composition: 'blend'`: blended tweens
-     add up, so later beats couldn't land shapes exactly in rows or on the
-     checkpoints.
+   5. "We *move,* learning and adjusting as we go." (+7.0s) The ball blooms
+      into the shooting star (`line:handoff`), which travels the route
+      (5.2s) and corrects its course once.
+   6. "And we reach the *goal,* together." (+12.2s) The goal fills and
+      pulses.
+   - Built with Anime.js inside `createScope({ root })`, reverted on
+     unmount: an intro timeline on the page's clock (so the tangle arrives
+     with the headline whenever hydration finishes), endless wandering
+     moves, and the story as a scope method run from the click. No
+     `composition: 'blend'`: blended tweens add up, so later beats couldn't
+     land shapes exactly in rows or on the checkpoints. The hero star never
+     starts on its own.
    - Below lg there's no story (it would sit over the text). Under reduced
-     motion nothing moves: the finished route, lit checkpoints and filled
-     goal are drawn, and only the last line shows. The hero star's own
-     fallback start (7.5s after the signature) never cuts in mid-story.
+     motion nothing moves and there's no button: the finished route, lit
+     checkpoints and filled goal are drawn, and only the last line shows.
 4. **The route and the star** (`HeroLine.tsx`), see The Line.
 
 Dependency: `animejs` (v4). It adds ~16 kB to the homepage's First Load JS

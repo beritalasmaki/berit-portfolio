@@ -6,7 +6,13 @@ import { BLOB_PATH } from "./Logo";
 
 /**
  * The hero's story: how Berit works, told beside the headline in six beats,
- * each with one line of text under the animation.
+ * each with one line of text above the animation.
+ *
+ * The visitor decides whether to watch it. On load the hero shows only the
+ * first beat, which keeps going: the tangle wanders on, with its line of
+ * text, and a play button sits in the middle of it, "Turn chaos into
+ * clarity". Pressing it plays the rest of the story from where the tangle
+ * is.
  *
  * 1. "Every project starts in a tangle." A crowd of brand shapes (circles
  *    and rounded squares, filled and outlined) bustles around: darting,
@@ -28,10 +34,16 @@ import { BLOB_PATH } from "./Logo";
  * 6. "And we reach the goal, together." The goal fills and pulses. This line
  *    stays.
  *
- * Animated with Anime.js: one timeline, built inside a scope that's reverted
- * on unmount. Its positions run on the page's clock (CSS delays count from
- * load), so it starts with the headline whenever hydration finishes. Every
- * chaos move is clamped to the column, so nothing crosses the text.
+ * Animated with Anime.js, inside a scope that's reverted on unmount: an
+ * intro timeline on the page's clock (CSS delays count from load, so the
+ * tangle arrives with the headline whenever hydration finishes), endless
+ * wandering moves, and the story timeline as a scope method (`play`), run
+ * from the click. Every tangle move is clamped to the column, so nothing
+ * crosses the text.
+ *
+ * Story timing is unhurried on purpose: each beat holds long enough to
+ * read its line and watch it happen (~2.2–2.4s), and the star's run takes
+ * 5.2s; about 12s from the click to the goal.
  *
  * Wide screens only (on narrow ones it would sit over the text). Under
  * reduced motion nothing moves: HeroLine draws the finished route and goal,
@@ -76,24 +88,29 @@ const SHAPES: Shape[] = [
 ];
 
 // The story, one line per beat.
+// The story, one line per beat. The *starred* word is the beat's key word,
+// set in the brand orange.
 const STORY = [
-  "Every project starts in a tangle.",
-  "First, I map where things stand.",
-  "Then we plan what’s needed, the system and the goal.",
-  "We set up the systems and how we’ll measure progress.",
-  "We move, learning and adjusting as we go.",
-  "And we reach the goal, together.",
+  "Every project starts in a *tangle.*",
+  "First, I *map* where things stand.",
+  "Then we *plan* what’s needed, the system and the goal.",
+  "We set up the *systems* and how we’ll measure progress.",
+  "We *move,* learning and adjusting as we go.",
+  "And we reach the *goal,* together.",
 ];
 
-// Beat times (ms), from T0. The story starts with the headline (Hero.tsx
-// delays: H1 at 1650ms, timed to the logo's signature).
+// The tangle (and the play button) come in with the headline: T0 is on the
+// page's clock (Hero.tsx delays: H1 at 1650ms, timed to the logo's
+// signature).
 const T0 = 1550;
 const TANGLE = 0;
-const MAP = 2000;
-const PLAN = 3600;
-const METRICS = 5400;
+// The story's beats (ms) once the visitor presses play. Unhurried on
+// purpose: each holds long enough to read its line and watch it happen.
+const MAP = 0;
+const PLAN = 2400;
+const METRICS = 4800;
 const MOVE = 7000; // The star sets off…
-const GOAL = MOVE + 4200; // …and arrives (HeroLine's run).
+const GOAL = MOVE + 5200; // …and arrives (HeroLine's run).
 
 // Sorted rows in "Plan": one row per kind, in this order, all at one size,
 // up in the free top-left of the column (the route runs bottom-left to
@@ -136,6 +153,8 @@ export default function HeroChaos() {
   const mapRef = useRef<SVGSVGElement>(null);
   const bloomRef = useRef<HTMLSpanElement>(null);
   const lineRefs = useRef<Array<HTMLSpanElement | null>>([]);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const playRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -143,7 +162,8 @@ export default function HeroChaos() {
     const scan = scanRef.current;
     const map = mapRef.current;
     const bloom = bloomRef.current;
-    if (!root || !ball || !scan || !map || !bloom) return;
+    const button = buttonRef.current;
+    if (!root || !ball || !scan || !map || !bloom || !button) return;
     const lines = lineRefs.current.filter(Boolean) as HTMLSpanElement[];
     const say = (name: string) => () => {
       if (name === "line:handoff") (window as Window & { __lineHandoff?: boolean }).__lineHandoff = true;
@@ -153,7 +173,9 @@ export default function HeroChaos() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       // Nothing moves: only the story's ending shows, under the finished
       // route that HeroLine draws.
-      lines[lines.length - 1].style.opacity = "1";
+      lines[lines.length - 1]
+        .querySelectorAll<HTMLElement>("[data-word]")
+        .forEach((word) => (word.style.opacity = "1"));
       return;
     }
 
@@ -234,48 +256,90 @@ export default function HeroChaos() {
             // Drawn when the scan reaches it: the farther from the ball,
             // the later.
             const far = Math.hypot(a[0] - ballX, a[1] - ballY);
-            animate(el, { strokeDashoffset: [d, 0], duration: 500, delay: far * 1.6, ease: "outCubic" });
+            animate(el, { strokeDashoffset: [d, 0], duration: 700, delay: far * 2.2, ease: "outCubic" });
           });
       });
     }
 
-    const at = (ms: number) => Math.max(0, T0 + ms - performance.now());
+    // A story line drifts in word by word out of a soft blur, like a breath
+    // of wind, and blows away the same way, onward, when the next arrives.
+    const words = (k: number) => lines[k].querySelectorAll<HTMLElement>("[data-word]");
+    const lineIn = () => ({
+      opacity: [0, 1],
+      filter: ["blur(10px)", "blur(0px)"],
+      x: [-16, 0],
+      duration: 900,
+      delay: stagger(60),
+      ease: "outCubic",
+    });
+    const lineOut = {
+      opacity: 0,
+      filter: "blur(10px)",
+      x: 18,
+      y: -6,
+      duration: 650,
+      delay: stagger(35),
+      ease: "inQuad",
+    };
+
+    // The tangle keeps wandering until the visitor chooses to play: each
+    // shape drifts to a new random spot, then the next, and so on.
+    let playing = false;
+    const wanders: Array<{ pause: () => unknown } | undefined> = [];
+    function wander(el: HTMLElement, i: number) {
+      if (playing) return;
+      wanders[i] = animate(el, {
+        x: roam(i, 0),
+        y: roam(i, 1),
+        rotate: utils.random(-200, 200),
+        scale: utils.random(80, 125) / 100,
+        duration: utils.random(1600, 2400),
+        ease: "inOutSine",
+        onComplete: () => wander(el, i),
+      });
+    }
+
+    const fromLoad = (ms: number) => Math.max(0, T0 + ms - performance.now());
 
     const scope = createScope({ root }).add(() => {
+      // On load, with the headline (on the page's clock): the shapes pop in
+      // and start wandering, the first line of the story drifts in, and the
+      // play button appears in the middle of the tangle.
+      createTimeline()
+        .add(els, { opacity: [0, 1], scale: [0.3, 1], duration: 650, delay: stagger(50), ease: "outBack" }, fromLoad(TANGLE))
+        .call(() => els.forEach((el, i) => wander(el, i)), fromLoad(TANGLE + 500))
+        .add(words(0), lineIn(), fromLoad(TANGLE + 150))
+        .add(button, { opacity: [0, 1], scale: [0.9, 1], duration: 700, ease: "outCubic" }, fromLoad(TANGLE + 1000));
+    });
+
+    // The story, from the moment the visitor presses play. Times (ms) are
+    // from the click.
+    scope.add("play", () => {
       const tl = createTimeline();
 
-      // 1. A tangle: the shapes pop in and bustle about.
-      tl.add(els, { opacity: [0, 1], scale: [0.3, 1], duration: 500, delay: stagger(40), ease: "outBack" }, at(TANGLE));
-      [150, 750, 1350].forEach((t) => {
-        tl.add(els, {
-          x: (_el: unknown, i = 0) => roam(i, 0),
-          y: (_el: unknown, i = 0) => roam(i, 1),
-          rotate: () => utils.random(-220, 220),
-          scale: () => utils.random(80, 125) / 100,
-          duration: () => utils.random(560, 680),
-          ease: "inOutQuad",
-        }, at(TANGLE + t));
-      });
+      // The button gives way.
+      tl.add(button, { opacity: 0, scale: 0.92, duration: 400, ease: "inCubic" }, 0);
+      tl.call(() => (button.style.visibility = "hidden"), 420);
 
       // 2. Map: Berit's ball lands, the shapes hold still, a scan ripples
       //    out and the map draws itself between them.
-      tl.add(ball, { opacity: [0, 1], scale: [0, 1], y: [-40, 0], duration: 650, ease: "outBack" }, at(MAP));
-      tl.add(scan, { opacity: [0.7, 0], scale: [0.6, 11], duration: 1500, ease: "outCubic" }, at(MAP + 350));
-      tl.call(drawMap, at(MAP + 400));
+      tl.add(ball, { opacity: [0, 1], scale: [0, 1], y: [-40, 0], duration: 900, ease: "outBack" }, MAP + 200);
+      tl.add(scan, { opacity: [0.7, 0], scale: [0.6, 11], duration: 2000, ease: "outCubic" }, MAP + 650);
+      tl.call(drawMap, MAP + 750);
 
       // 3. Plan: the map fades, the shapes sort into rows, and the goal and
       //    the planned route appear.
-      tl.add(map, { opacity: [1, 0], duration: 400, ease: "inOutSine" }, at(PLAN));
+      tl.add(map, { opacity: [1, 0], duration: 600, ease: "inOutSine" }, PLAN);
       tl.add(els, {
         x: (_el: unknown, i = 0) => rowSpot[i][0] - centres[i][0],
         y: (_el: unknown, i = 0) => rowSpot[i][1] - centres[i][1],
         rotate: 0,
         scale: (_el: unknown, i = 0) => ROW_SIZE / sizes[i],
-        duration: 900,
-        delay: stagger(35),
+        duration: 1200,
+        delay: stagger(45),
         ease: "inOutCubic",
-      }, at(PLAN + 50));
-      tl.call(say("line:plan"), at(PLAN + 300));
+      }, PLAN + 100);
+      tl.call(say("line:plan"), PLAN + 400);
 
       // 4. Systems and metrics: the rows deal out onto the route as small
       //    dots, becoming its checkpoints; the ball moves to the start.
@@ -286,68 +350,115 @@ export default function HeroChaos() {
         borderRadius: "50%",
         backgroundColor: ORANGE,
         borderColor: ORANGE,
-        duration: 1000,
-        delay: (_el: unknown, i = 0) => order.indexOf(i) * 40,
+        duration: 1300,
+        delay: (_el: unknown, i = 0) => order.indexOf(i) * 55,
         ease: "inOutCubic",
-      }, at(METRICS));
-      tl.call(say("line:metrics"), at(METRICS + 1250));
-      tl.add(els, { opacity: 0, duration: 300, ease: "inSine" }, at(METRICS + 1300));
-      tl.add(ball, { x: sx - ballX, y: sy - ballY, scale: 0.45, duration: 1000, ease: "inOutCubic" }, at(METRICS + 300));
+      }, METRICS);
+      tl.call(say("line:metrics"), METRICS + 1650);
+      tl.add(els, { opacity: 0, duration: 400, ease: "inSine" }, METRICS + 1700);
+      tl.add(ball, { x: sx - ballX, y: sy - ballY, scale: 0.45, duration: 1300, ease: "inOutCubic" }, METRICS + 400);
 
       // 5. Move: the ball blooms into the shooting star.
-      tl.add(ball, { opacity: 0, scale: 0.15, duration: 400, ease: "inCubic" }, at(MOVE - 300));
-      tl.add(bloom, { opacity: [0, 1, 0], scale: [0.3, 1.5, 1.9], duration: 900, ease: "outSine" }, at(MOVE - 300));
-      tl.call(say("line:handoff"), at(MOVE));
+      tl.add(ball, { opacity: 0, scale: 0.15, duration: 500, ease: "inCubic" }, MOVE - 400);
+      tl.add(bloom, { opacity: [0, 1, 0], scale: [0.3, 1.5, 1.9], duration: 1100, ease: "outSine" }, MOVE - 400);
+      tl.call(say("line:handoff"), MOVE);
 
-      // The story's lines, one per beat; the last one stays.
-      const beats = [TANGLE, MAP, PLAN, METRICS, MOVE, GOAL];
-      beats.forEach((t, k) => {
-        tl.add(lines[k], { opacity: [0, 1], y: [6, 0], duration: 450, ease: "outCubic" }, at(t + 100));
-        if (k < beats.length - 1) {
-          tl.add(lines[k], { opacity: 0, y: -6, duration: 300, ease: "inCubic" }, at(beats[k + 1] - 200));
-        }
+      // The story's lines move on with the beats; the last one stays.
+      const beats = [MAP, PLAN, METRICS, MOVE, GOAL];
+      tl.add(words(0), lineOut, 0);
+      beats.forEach((t, j) => {
+        const k = j + 1;
+        tl.add(words(k), lineIn(), t + 450);
+        if (j < beats.length - 1) tl.add(words(k), lineOut, beats[j + 1] - 550);
       });
     });
 
+    playRef.current = () => {
+      if (playing) return;
+      playing = true;
+      // The tangle stops where it is; the story takes it from there.
+      wanders.forEach((a) => a?.pause());
+      scope.methods.play();
+    };
+
     return () => {
+      playing = true;
+      wanders.forEach((a) => a?.pause());
+      playRef.current = null;
       scope.revert();
       map.replaceChildren();
     };
   }, []);
 
   return (
-    <div ref={rootRef} aria-hidden="true" className="pointer-events-none absolute inset-0">
+    <div ref={rootRef} className="pointer-events-none absolute inset-0">
       {/* The map drawn in beat 2. */}
-      <svg ref={mapRef} className="absolute inset-0 h-full w-full overflow-visible" fill="none" stroke={AMBER} strokeOpacity={0.55} strokeWidth={1.5} />
+      <svg ref={mapRef} aria-hidden="true" className="absolute inset-0 h-full w-full overflow-visible" fill="none" stroke={AMBER} strokeOpacity={0.55} strokeWidth={1.5} />
       {SHAPES.map((s, i) => (
-        <span key={i} data-chaos-shape className="absolute block" style={shapeStyle(s)} />
+        <span key={i} aria-hidden="true" data-chaos-shape className="absolute block" style={shapeStyle(s)} />
       ))}
       {/* Berit: the orange ball from her logo, and its scan ripple. */}
-      <span ref={scanRef} className="absolute block h-16 w-16 -ml-8 -mt-8 rounded-full border-2 border-accent opacity-0" />
-      <div ref={ballRef} className="absolute -ml-9 -mt-[34px] opacity-0">
+      <span ref={scanRef} aria-hidden="true" className="absolute block h-16 w-16 -ml-8 -mt-8 rounded-full border-2 border-accent opacity-0" />
+      <div ref={ballRef} aria-hidden="true" className="absolute -ml-9 -mt-[34px] opacity-0">
         <svg viewBox="0 0 114 108" width="72" height="68" className="block overflow-visible">
           <path d={BLOB_PATH} fill="#FF890C" />
         </svg>
       </div>
       <span
         ref={bloomRef}
+        aria-hidden="true"
         className="absolute block h-12 w-12 -ml-6 -mt-6 rounded-full opacity-0"
         style={{
           background:
             "radial-gradient(circle, rgba(255,181,102,0.9) 0%, rgba(252,137,12,0.35) 40%, rgba(252,137,12,0) 70%)",
         }}
       />
-      {/* The story, one line at a time, under the animation. */}
-      <span className="absolute inset-x-0 top-full mt-4 block h-7">
+      {/* The visitor chooses whether to watch: the story plays from here. */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center">
+        <button
+          ref={buttonRef}
+          type="button"
+          onClick={() => playRef.current?.()}
+          className="hero-play glass-button-ink pointer-events-auto relative inline-flex items-center gap-3 rounded-pill py-2.5 pl-2.5 pr-6 text-nav font-semibold text-white opacity-0 hover:text-white focus-visible:text-white focus-visible:outline-white"
+        >
+          <span aria-hidden="true" className="grid h-9 w-9 place-items-center rounded-full bg-accent">
+            <svg viewBox="0 0 16 16" width="14" height="14" className="ml-0.5 block">
+              <path d="M4 2.5v11l9.5-5.5z" fill="white" />
+            </svg>
+          </span>
+          Turn chaos into clarity
+        </button>
+      </div>
+      {/* The story, one line at a time, above the animation where it's
+          seen first: a glowing dot like the star, then the line, its key
+          word in the brand orange. Lines anchor at the bottom, so on a
+          narrower column a long one wraps upward, never into the animation.
+          Every piece animates on its own (see the timeline above). */}
+      <span aria-hidden="true" className="absolute inset-x-0 bottom-full mb-6 block h-8">
         {STORY.map((text, k) => (
           <span
             key={text}
             ref={(el) => {
               lineRefs.current[k] = el;
             }}
-            className="absolute inset-x-0 top-0 text-center text-body-lg font-medium text-ink opacity-0"
+            className="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-center text-center text-[clamp(17px,1.35vw,20px)] font-semibold leading-8 tracking-[-0.01em] text-ink"
           >
-            {text}
+            <span
+              data-word
+              className="mr-3 inline-block h-2.5 w-2.5 shrink-0 rounded-full bg-accent opacity-0 shadow-[0_0_12px_3px_rgba(252,137,12,0.45)]"
+            />
+            {text.split(" ").map((word, j) => {
+              const key = word.startsWith("*");
+              return (
+                <span
+                  key={j}
+                  data-word
+                  className={`mr-[0.28em] inline-block opacity-0 last:mr-0 ${key ? "text-accent-dark" : ""}`}
+                >
+                  {word.replace(/\*/g, "")}
+                </span>
+              );
+            })}
           </span>
         ))}
       </span>

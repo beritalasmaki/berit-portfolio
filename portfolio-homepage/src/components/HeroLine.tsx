@@ -93,7 +93,7 @@ const SHAPES: Record<
     checkpoints: [2, 3, 7, 9],
     goal: true,
     scale: 1,
-    run: 4200,
+    run: 5200,
   },
   strip: {
     w: 600,
@@ -115,18 +115,14 @@ const ORANGE = "252, 137, 12";
 const GLOW = "255, 181, 102";
 
 // Timing (ms).
-const PLAN_DRAW = 900; // The dashed plan draws itself.
-const TICKS_IN = 400; // Checkpoints fade in.
+const PLAN_DRAW = 1200; // The dashed plan draws itself.
+const TICKS_IN = 500; // Checkpoints fade in.
 const SETTLE = 700; // After arriving, the tail draws in.
 const PULSE = 1100; // The goal's arrival pulse.
 const CYCLE = 9000; // A softer star runs the path again every CYCLE.
 const ECHO_RUN = 3400;
 // Strip only: when to set off after the signature finishes.
 const STRIP_PAUSE = 0;
-// Hero only: start anyway if the story never hands over (e.g. it failed to
-// load), this long after the signature finished. Later than the story's
-// own handover, so it never cuts in mid-story.
-const HANDOFF_FALLBACK = 7500;
 
 // Lengths and widths, in viewBox units.
 const TAIL = 300;
@@ -408,7 +404,8 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       window.addEventListener("line:plan", onPlan);
       window.addEventListener("line:metrics", onMetrics);
       window.addEventListener("line:handoff", start);
-      onSignatureDone(() => timers.push(window.setTimeout(start, HANDOFF_FALLBACK)));
+      // No start of its own: the hero's story plays only when the visitor
+      // presses its play button (HeroChaos.tsx).
     } else {
       onSignatureDone(() => timers.push(window.setTimeout(start, STRIP_PAUSE)));
     }
