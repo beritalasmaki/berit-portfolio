@@ -75,20 +75,21 @@ const SHAPES: Record<
     run: number;
   }
 > = {
-  // A calm, rising route to the goal. The real path follows the plan except
-  // between "270,284" and "395,224", where it dips off course and comes
-  // back: learning and adjusting as we go.
+  // A calm, rising route to the goal, kept to the middle of the column (the
+  // story's focus area). The real path follows the plan except between
+  // "278,261" and "368,218", where it dips off course and comes back: learning
+  // and adjusting as we go.
   hero: {
     w: 600,
     h: 420,
     path: [
-      [50, 340], [130, 332], [200, 304], [270, 284], [318, 300], [366, 268],
-      [395, 224], [440, 176], [496, 152], [522, 110], [548, 66],
+      [120, 302], [178, 296], [228, 276], [278, 261], [313, 273], [348, 250],
+      [368, 218], [401, 184], [441, 166], [460, 136], [479, 104],
     ],
     riverFrom: 0,
     plan: [
-      [50, 340], [130, 332], [200, 304], [270, 284], [330, 244], [395, 224],
-      [440, 176], [496, 152], [522, 110], [548, 66],
+      [120, 302], [178, 296], [228, 276], [278, 261], [322, 233], [368, 218],
+      [401, 184], [441, 166], [460, 136], [479, 104],
     ],
     checkpoints: [2, 3, 7, 9],
     goal: true,

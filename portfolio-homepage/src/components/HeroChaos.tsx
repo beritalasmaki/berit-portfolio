@@ -68,6 +68,13 @@ type Shape = {
 // Shape sizes below are multiplied by this (bold, like the reference).
 const SCALE = 1.5;
 
+// Everything that moves stays in the middle of the column, one clear focus
+// area: shape positions below are pulled in toward the centre by SPREAD,
+// and the tangle's moves are kept inside FOCUS (fractions of the column).
+const SPREAD = 0.62;
+const FOCUS = { x: [0.14, 0.86], y: [0.12, 0.88] } as const;
+const ROAM = 90;
+
 const ORANGE = "#FC890C";
 const AMBER = "#E8730A";
 const PEACH = "#FFB566";
@@ -117,27 +124,27 @@ const MOVE = 17200; // The star sets off…
 const GOAL = MOVE + 5200; // …and arrives (HeroLine's run).
 
 // Sorted rows in "Plan": one row per kind, in this order, all at one size,
-// up in the free top-left of the column (the route runs bottom-left to
-// top-right), under the ball.
+// under the ball, near the middle of the column but just above the route
+// (which rises through it from lower left to upper right).
 const ROW_ORDER: Kind[] = ["dot", "ring", "square", "frame"];
-const ROW_SIZE = 28;
-const ROW_GAP = 44;
+const ROW_SIZE = 24;
+const ROW_GAP = 36;
 
 // Fallbacks for what HeroLine publishes as data attributes.
-const START = [0.083, 0.81];
+const START = [0.200, 0.719];
 const CHECKPOINTS = [
-  [0.333, 0.724],
-  [0.45, 0.676],
-  [0.733, 0.419],
-  [0.87, 0.262],
+  [0.380, 0.657],
+  [0.463, 0.621],
+  [0.735, 0.395],
+  [0.798, 0.248],
 ];
 
 function shapeStyle(s: Shape): React.CSSProperties {
   const filled = s.kind === "dot" || s.kind === "square";
   const round = s.kind === "dot" || s.kind === "ring";
   return {
-    left: `${s.x}%`,
-    top: `${s.y}%`,
+    left: `${50 + (s.x - 50) * SPREAD}%`,
+    top: `${50 + (s.y - 50) * SPREAD}%`,
     width: s.size * SCALE,
     height: s.size * SCALE,
     marginLeft: (-s.size * SCALE) / 2,
@@ -201,22 +208,26 @@ export default function HeroChaos() {
     );
 
     const els = Array.from(root.querySelectorAll<HTMLElement>("[data-chaos-shape]"));
-    const centres = SHAPES.map((s) => [(s.x / 100) * w, (s.y / 100) * h] as const);
+    const centres = SHAPES.map(
+      (s) => [((50 + (s.x - 50) * SPREAD) / 100) * w, ((50 + (s.y - 50) * SPREAD) / 100) * h] as const
+    );
     const sizes = SHAPES.map((s) => s.size * SCALE);
 
-    // Tangle moves stay inside the column (up to 150px, never past its
-    // edges, so never over the headline).
+    // Tangle moves stay inside the focus area (up to ROAM px, never past
+    // its edges, so never over the headline).
     const roam = (i: number, axis: 0 | 1) => {
       const c = centres[i][axis];
-      const max = axis === 0 ? w : h;
-      const half = sizes[i] / 2 + 6;
-      return utils.random(Math.round(Math.max(-150, half - c)), Math.round(Math.min(150, max - half - c)));
+      const size = axis === 0 ? w : h;
+      const [lo, hi] = (axis === 0 ? FOCUS.x : FOCUS.y).map((f) => f * size);
+      const half = sizes[i] / 2;
+      return utils.random(Math.round(Math.max(-ROAM, lo + half - c)), Math.round(Math.min(ROAM, hi - half - c)));
     };
 
-    // The ball, and the rows under it.
-    const ballX = 0.24 * w;
-    const ballY = 0.1 * h;
-    const rowsTop = 0.24 * h;
+    // The ball, and the rows under it, in the middle of the column, above
+    // the route.
+    const ballX = 0.4 * w;
+    const ballY = 0.15 * h;
+    const rowsTop = 0.27 * h;
     const rowSpot = SHAPES.map((s, i) => {
       const row = ROW_ORDER.indexOf(s.kind);
       const peers = SHAPES.map((p, j) => [p, j] as const).filter(([p]) => p.kind === s.kind);
