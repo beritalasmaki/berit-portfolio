@@ -11,36 +11,36 @@ import {
 } from "@/lib/line";
 
 /**
- * The hero's "Line": the headline acted out as a shooting star.
+ * The hero's "Line": the second half of the hero's story (HeroChaos.tsx
+ * tells the first half and drives this one with events).
  *
- * Nothing is drawn until the star sets off. On wide screens it's born where
- * the hero's story reaches clarity: its shapes, organized, merge into one
- * point (HeroChaos.tsx). Then the work heads for the goal: the star climbs a
- * calm, rising path past four milestones that light up as it reaches them,
- * each with a small label (Standards, System, DesignOps & DevOps, Vision),
- * to a target ring that's been waiting at the end (a clear goal), which
- * fills and pulses when it arrives. The line swells as it travels, thin as
- * it sets off and full width as it arrives. Every so often a softer star
- * runs the path again (moving forward).
+ * - `line:plan` ("Then we plan…"): a goal ring fades in at the top right and
+ *   a faint dashed route, the plan, draws itself from the start to the goal.
+ * - `line:metrics` ("We set up the systems and how we'll measure
+ *   progress"): checkpoints appear along the route, where the story's dots
+ *   land.
+ * - `line:handoff` ("We move, learning and adjusting as we go"): a shooting
+ *   star sets off along the route, lighting each checkpoint as it passes.
+ *   Partway along, the real path bends away from the dashed plan and back
+ *   onto it: a visible course correction. The line swells as it travels.
+ * - Arrival ("And we reach the goal, together"): the goal ring fills and
+ *   pulses, and the star rests in it, twinkling. Every so often a softer
+ *   star runs the path again.
  *
  * Drawn on a canvas, because the tail is a gradient *along a curve* (width
- * and opacity grow toward the head), which SVG strokes can't do. The curve
- * is sampled into evenly spaced points (lib/line.ts), so the star moves at a
- * steady speed, and the tail is drawn as many tiny segments, each a little
- * brighter and wider than the last.
+ * and opacity grow toward the head), which SVG strokes can't do. Curves are
+ * sampled into evenly spaced points (lib/line.ts), so the star moves at a
+ * steady speed and its tail is many tiny segments, each a little brighter
+ * and wider than the last.
  *
- * - `hero`: the large version in the hero's right column (lg and up). It
- *   starts on the chaos layer's `line:handoff` event, from rest at the merge
- *   point, and publishes that start point as data attributes for the shapes
- *   to gather at.
- * - `strip`: a slim version for phones and tablets, under the lead. There's
- *   no chaos layer there (it would sit over the text), so this one tells
- *   the short version: the star slithers through two loops (they fade out
- *   behind its tail, untangled) into a calm wave, setting off as the
- *   signature finishes.
+ * - `hero`: the large version in the hero's right column (lg and up).
+ * - `strip`: a slim version for phones and tablets, under the lead, with no
+ *   story layer: the star slithers through two loops (they fade out behind
+ *   its tail, untangled) into a calm wave, setting off as the signature
+ *   finishes.
  *
  * The loop only runs while the canvas is on screen. Reduced motion: the
- * settled river and its resting star are drawn once, and nothing moves.
+ * final state is drawn once (plan, path, lit checkpoints, filled goal).
  */
 
 type Variant = "hero" | "strip";
@@ -55,43 +55,42 @@ function coils(x0: number, y0: number, a: number, b: number): Point[] {
   return out;
 }
 
-/** A milestone on the hero's path: the anchor it sits on, and its label. */
-type Milestone = { anchor: number; label: string; /** Label to the left of the dot. */ left?: boolean };
-
 const SHAPES: Record<
   Variant,
   {
     w: number;
     h: number;
-    /** Anchors of the whole path. */
+    /** Anchors of the path the star actually takes. */
     path: Point[];
-    /** Anchor where the drawn river begins (anything before it is loops,
+    /** Anchor where the drawn line begins (anything before it is loops,
      * drawn only inside the star's fading tail). */
     riverFrom: number;
-    milestones: Milestone[];
-    /** A target ring at the end of the path, lit when the star arrives. */
+    /** The planned route, drawn dashed (hero only). */
+    plan: Point[] | null;
+    /** Anchors of `path` that are checkpoints (on the plan too). */
+    checkpoints: number[];
+    /** A target ring at the end, lit when the star arrives. */
     goal: boolean;
     scale: number;
     run: number;
   }
 > = {
-  // After the hero's story reaches clarity, the work heads for the goal: a
-  // calm, rising path past the things that make it possible, ending at a
-  // target. No loops here; after "Clarity" they read as a new tangle.
+  // A calm, rising route to the goal. The real path follows the plan except
+  // between "270,284" and "395,224", where it dips off course and comes
+  // back: learning and adjusting as we go.
   hero: {
     w: 600,
     h: 420,
     path: [
+      [50, 340], [130, 332], [200, 304], [270, 284], [318, 300], [366, 268],
+      [395, 224], [440, 176], [496, 152], [522, 110], [548, 66],
+    ],
+    riverFrom: 0,
+    plan: [
       [50, 340], [130, 332], [200, 304], [270, 284], [330, 244], [395, 224],
       [440, 176], [496, 152], [522, 110], [548, 66],
     ],
-    riverFrom: 0,
-    milestones: [
-      { anchor: 2, label: "Standards" },
-      { anchor: 4, label: "System" },
-      { anchor: 6, label: "DesignOps & DevOps" },
-      { anchor: 8, label: "Vision", left: true },
-    ],
+    checkpoints: [2, 3, 7, 9],
     goal: true,
     scale: 1,
     run: 4200,
@@ -104,42 +103,39 @@ const SHAPES: Record<
       [215, 80], [280, 52], [350, 38], [420, 58], [490, 82], [550, 72], [586, 56],
     ],
     riverFrom: 16,
-    milestones: [],
+    plan: null,
+    checkpoints: [],
     goal: false,
     scale: 0.7,
     run: 3600,
   },
 };
 
-// The goal ring's radius, and how long its arrival pulse runs (ms).
-const GOAL_R = 13;
-const PULSE = 1100;
-
 const ORANGE = "252, 137, 12";
 const GLOW = "255, 181, 102";
 
-// Timing (ms), from the moment the star sets off.
-const SETTLE = 700;
-// After arriving, a softer star runs down the river every CYCLE.
-const CYCLE = 9000;
+// Timing (ms).
+const PLAN_DRAW = 900; // The dashed plan draws itself.
+const TICKS_IN = 400; // Checkpoints fade in.
+const SETTLE = 700; // After arriving, the tail draws in.
+const PULSE = 1100; // The goal's arrival pulse.
+const CYCLE = 9000; // A softer star runs the path again every CYCLE.
 const ECHO_RUN = 3400;
-// Strip only: when to set off after the signature finishes. Immediately,
-// so it starts with the headline, as the hero's star does.
+// Strip only: when to set off after the signature finishes.
 const STRIP_PAUSE = 0;
-// Hero only: start anyway if the chaos layer never hands over (e.g. it
-// failed to load), this long after the signature finished. Later than the
-// chaos story's own handover (~5.4s after the signature), so it never cuts
-// in while the shapes are still being organized.
-const HANDOFF_FALLBACK = 6500;
+// Hero only: start anyway if the story never hands over (e.g. it failed to
+// load), this long after the signature finished. Later than the story's
+// own handover, so it never cuts in mid-story.
+const HANDOFF_FALLBACK = 7500;
 
-// Lengths, in viewBox units.
+// Lengths and widths, in viewBox units.
 const TAIL = 300;
 const ECHO_TAIL = 200;
 const FADE_IN = 170;
-// Widths: the river left behind, and how thin everything starts. The line
-// swells from GROW_FROM to full width over the star's run.
 const RIVER_WIDTH = 2.8;
+// The line swells from GROW_FROM to full width over the star's run.
 const GROW_FROM = 0.55;
+const GOAL_R = 13;
 
 type Ctx = CanvasRenderingContext2D;
 
@@ -182,7 +178,6 @@ function strokeRamp(
 /** A shooting star: a tail that tapers and fades out behind the head.
  * `g` scales its width (the line swells as it travels, see GROW_FROM). */
 function comet(ctx: Ctx, s: Sampled, from: number, head: number, strength: number, k: number, g = 1) {
-  // Glow under the tail, then the tail itself, widest and brightest at the head.
   strokeRamp(ctx, s, from, head, (u) => [0.12 * strength * u * u, (3 + 14 * u) * k * g], GLOW);
   strokeRamp(ctx, s, from, head, (u) => [strength * Math.pow(u, 1.6), (0.6 + 4.9 * u) * k * g], ORANGE);
 }
@@ -198,16 +193,20 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
     const ctx = canvas?.getContext("2d");
     if (!wrap || !canvas || !ctx) return;
 
-    const { w, h, path, riverFrom, milestones, goal, scale: k, run: RUN } = SHAPES[variant];
+    const { w, h, path, riverFrom, plan, checkpoints, goal, scale: k, run: RUN } = SHAPES[variant];
     const s = sampleCurve(path);
+    const ps = plan ? sampleCurve(plan) : null;
     const idx = (len: number) => Math.max(0, Math.min(s.x.length - 1, Math.round(len / s.step)));
     const last = s.x.length - 1;
-    // Where the drawn river begins (after any loops).
     const M = idx(s.atAnchor[riverFrom]);
-    // Each milestone's position along the path.
-    const stones = milestones.map((m) => idx(s.atAnchor[m.anchor]));
-    const labels = Array.from(wrap.querySelectorAll<HTMLElement>("[data-milestone]"));
+    const ticks = checkpoints.map((a) => idx(s.atAnchor[a]));
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // For the story (HeroChaos.tsx): where the star starts, and where the
+    // checkpoints are, so its pieces land exactly on them.
+    wrap.dataset.startX = String(path[0][0] / w);
+    wrap.dataset.startY = String(path[0][1] / h);
+    wrap.dataset.checkpoints = checkpoints.map((a) => `${path[a][0] / w},${path[a][1] / h}`).join(";");
 
     function fit() {
       const dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -218,10 +217,6 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
         canvas!.width = Math.round(cw * dpr);
         canvas!.height = Math.round(ch * dpr);
       }
-      // For the chaos layer (HeroChaos.tsx): where its shapes gather, so
-      // they merge exactly where the star sets off.
-      wrap!.dataset.startX = String(path[0][0] / w);
-      wrap!.dataset.startY = String(path[0][1] / h);
       const z = (cw / w) * dpr;
       ctx!.setTransform(z, 0, 0, z, 0, 0);
       ctx!.clearRect(0, 0, w, h);
@@ -230,7 +225,17 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       return true;
     }
 
-    // The thin river left behind, fading in from where the loops were.
+    // The plan: a faint dashed route, drawn up to fraction `u`.
+    function planned(u: number) {
+      if (!ps || u <= 0) return;
+      const end = Math.round(u * (ps.x.length - 1));
+      ctx!.save();
+      ctx!.setLineDash([5 * k, 7 * k]);
+      strokeSpan(ctx!, ps, 0, end, 1.6 * k, `rgba(${ORANGE}, 0.55)`);
+      ctx!.restore();
+    }
+
+    // The line left behind, fading in from its start.
     function trail(to: number, g = 1) {
       const fade = Math.min(to, M + Math.round(FADE_IN / s.step));
       const width = RIVER_WIDTH * k * g;
@@ -238,32 +243,39 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       strokeSpan(ctx!, s, fade, to, width, `rgba(${ORANGE}, 0.6)`);
     }
 
-    // Milestones the star has reached: a lit dot, and its label fades in.
-    function marks(head: number) {
-      stones.forEach((at, i) => {
-        if (head < at) {
-          labels[i]?.removeAttribute("data-lit");
-          return;
-        }
-        labels[i]?.setAttribute("data-lit", "");
-        ctx!.fillStyle = `rgb(${ORANGE})`;
+    // Checkpoints: hollow until the star reaches them, then filled.
+    function checks(alpha: number, head: number) {
+      if (alpha <= 0) return;
+      ticks.forEach((at) => {
+        const lit = head >= at;
+        ctx!.globalAlpha = alpha;
         ctx!.beginPath();
         ctx!.arc(s.x[at], s.y[at], 4.5 * k, 0, Math.PI * 2);
-        ctx!.fill();
-        ctx!.fillStyle = "#FFF4E6";
-        ctx!.beginPath();
-        ctx!.arc(s.x[at], s.y[at], 1.8 * k, 0, Math.PI * 2);
-        ctx!.fill();
+        if (lit) {
+          ctx!.fillStyle = `rgb(${ORANGE})`;
+          ctx!.fill();
+          ctx!.fillStyle = "#FFF4E6";
+          ctx!.beginPath();
+          ctx!.arc(s.x[at], s.y[at], 1.8 * k, 0, Math.PI * 2);
+          ctx!.fill();
+        } else {
+          ctx!.fillStyle = "#FFFAF4";
+          ctx!.fill();
+          ctx!.strokeStyle = `rgb(${ORANGE})`;
+          ctx!.lineWidth = 1.6 * k;
+          ctx!.stroke();
+        }
+        ctx!.globalAlpha = 1;
       });
     }
 
-    // The goal: an outlined target waiting at the end of the path (a clear
-    // goal is part of the story, so it's visible ahead of the star), which
-    // fills and pulses when the star arrives (`hit`: ms since arrival).
-    function target(hit: number | null) {
-      if (!goal) return;
+    // The goal: an outlined ring at the end of the route, which fills and
+    // pulses when the star arrives (`hit`: ms since arrival).
+    function target(alpha: number, hit: number | null) {
+      if (!goal || alpha <= 0) return;
       const x = s.x[last];
       const y = s.y[last];
+      ctx!.globalAlpha = alpha;
       if (hit !== null) {
         ctx!.fillStyle = `rgba(${GLOW}, 0.45)`;
         ctx!.beginPath();
@@ -278,25 +290,38 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
           ctx!.stroke();
         }
       }
-      ctx!.strokeStyle = `rgba(${ORANGE}, ${hit === null ? 0.45 : 1})`;
+      ctx!.strokeStyle = `rgba(${ORANGE}, ${hit === null ? 0.55 : 1})`;
       ctx!.lineWidth = (hit === null ? 2 : 3) * k;
       ctx!.beginPath();
       ctx!.arc(x, y, GOAL_R * k, 0, Math.PI * 2);
       ctx!.stroke();
+      ctx!.globalAlpha = 1;
     }
 
-    function draw(t: number) {
+    // Stage start times (performance.now()), set by the story's events.
+    let planAt: number | null = null;
+    let metricsAt: number | null = null;
+    let runAt: number | null = null;
+
+    function draw(now: number) {
       if (!fit()) return;
+      const pu = planAt === null ? 0 : Math.min(1, (now - planAt) / PLAN_DRAW);
+      planned(pu);
+      const ta = metricsAt === null ? 0 : Math.min(1, (now - metricsAt) / TICKS_IN);
+
+      if (runAt === null) {
+        target(pu, null);
+        checks(ta, -1);
+        return;
+      }
+
+      const t = now - runAt;
       const p = Math.min(1, t / RUN);
       const head = idx(easeInOutSine(p) * s.length);
-      target(p < 1 ? null : t - RUN);
-      marks(head);
-      // The line swells as it travels: thin as it sets off, full width by
-      // the time it arrives.
       const g = GROW_FROM + (1 - GROW_FROM) * easeInOutSine(p);
-      // Only what the star has drawn exists: the river behind it, and the
-      // loops only within its fading tail.
+      target(goal ? Math.max(pu, Math.min(1, t / 400)) : 0, p < 1 ? null : t - RUN);
       if (head > M) trail(head, g);
+      checks(Math.max(ta, Math.min(1, t / 400)), head);
 
       if (p < 1) {
         comet(ctx!, s, Math.max(0, head - Math.round(TAIL / s.step)), head, 1, k, g);
@@ -312,7 +337,7 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
         comet(ctx!, s, from, last, 1 - settle, k);
       }
 
-      // Every CYCLE, a softer star runs down the river.
+      // Every CYCLE, a softer star runs the path again.
       const phase = (since - SETTLE * 2) % CYCLE;
       let flare = 0;
       if (since > SETTLE * 2 && phase < ECHO_RUN) {
@@ -329,9 +354,10 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
     if (reduced) {
       const still = () => {
         if (!fit()) return;
-        target(PULSE);
+        planned(1);
+        target(1, PULSE);
         trail(last);
-        marks(last);
+        checks(1, last);
         drawSparkle(ctx!, s.x[last], s.y[last], 0.9 * k);
       };
       still();
@@ -341,20 +367,27 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
     }
 
     fit();
-    let t0: number | null = null;
     let frame: number | null = null;
     let visible = false;
     const tick = (now: number) => {
-      draw(now - t0!);
+      draw(now);
       frame = requestAnimationFrame(tick);
     };
     const play = () => {
-      if (visible && t0 !== null && frame === null) frame = requestAnimationFrame(tick);
+      if (visible && planAt !== null && frame === null) frame = requestAnimationFrame(tick);
+    };
+    const onPlan = () => {
+      if (planAt !== null) return;
+      planAt = performance.now();
+      play();
+    };
+    const onMetrics = () => {
+      onPlan();
+      if (metricsAt === null) metricsAt = performance.now();
     };
     const start = () => {
-      if (t0 !== null) return;
-      t0 = performance.now();
-      play();
+      onMetrics();
+      if (runAt === null) runAt = performance.now();
     };
 
     // Only animate while visible.
@@ -369,10 +402,12 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
     io.observe(wrap);
 
     const timers: number[] = [];
-    const onHandoff = () => start();
     if (variant === "hero") {
-      if ((window as Window & { __lineHandoff?: boolean }).__lineHandoff) start();
-      window.addEventListener("line:handoff", onHandoff);
+      const flags = window as Window & { __lineHandoff?: boolean };
+      if (flags.__lineHandoff) start();
+      window.addEventListener("line:plan", onPlan);
+      window.addEventListener("line:metrics", onMetrics);
+      window.addEventListener("line:handoff", start);
       onSignatureDone(() => timers.push(window.setTimeout(start, HANDOFF_FALLBACK)));
     } else {
       onSignatureDone(() => timers.push(window.setTimeout(start, STRIP_PAUSE)));
@@ -380,7 +415,9 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
 
     return () => {
       io.disconnect();
-      window.removeEventListener("line:handoff", onHandoff);
+      window.removeEventListener("line:plan", onPlan);
+      window.removeEventListener("line:metrics", onMetrics);
+      window.removeEventListener("line:handoff", start);
       timers.forEach((id) => window.clearTimeout(id));
       if (frame !== null) cancelAnimationFrame(frame);
     };
@@ -395,24 +432,6 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       style={{ aspectRatio: `${shape.w} / ${shape.h}` }}
     >
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-      {/* Milestone labels, faded in as the star reaches each one. */}
-      {shape.milestones.map((m) => {
-        const [x, y] = shape.path[m.anchor];
-        return (
-          <span
-            key={m.label}
-            data-milestone
-            className="hero-milestone pointer-events-none absolute whitespace-nowrap font-mono-label text-mono-label uppercase text-muted"
-            style={{
-              left: `${(x / shape.w) * 100}%`,
-              top: `${(y / shape.h) * 100}%`,
-              translate: m.left ? "calc(-100% - 14px) -50%" : "14px 4px",
-            }}
-          >
-            {m.label}
-          </span>
-        );
-      })}
     </div>
   );
 }

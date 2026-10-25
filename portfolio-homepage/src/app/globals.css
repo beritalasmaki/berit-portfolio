@@ -203,17 +203,6 @@
     transform: translateY(16px);
   }
 
-  /* Hero milestones (HeroLine.tsx): each label fades in as the star
-     reaches it. */
-  .hero-milestone {
-    opacity: 0;
-    transition: opacity 500ms ease-out;
-  }
-
-  .hero-milestone[data-lit] {
-    opacity: 1;
-  }
-
   /* Case-study menu star (TableOfContents.tsx): a link's dot stays hidden
      until the star reaches it, then grows in. */
   .toc-node {

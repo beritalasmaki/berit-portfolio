@@ -82,11 +82,13 @@ export default function Hero() {
         </div>
 
         <div className="min-w-0 hidden lg:flex flex-col justify-center">
-          {/* The headline acted out: a chaos of shapes gathers into one
-              point (HeroChaos.tsx), and the Line's shooting star is born
-              there and draws a calm river (HeroLine.tsx). Both start
-              empty, so this needs no fade-in of its own. */}
-          <div className="relative w-full max-w-[600px] mx-auto">
+          {/* The story of how Berit works, told beside the headline: from a
+              tangle, through mapping, planning and setting up systems and
+              metrics, to moving and adjusting until the goal is reached
+              (HeroChaos.tsx tells the first half, HeroLine.tsx the second).
+              Both start empty, so this needs no fade-in of its own. The
+              bottom margin leaves room for the story's line of text. */}
+          <div className="relative w-full max-w-[600px] mx-auto mb-12">
             <HeroLine />
             <HeroChaos />
           </div>

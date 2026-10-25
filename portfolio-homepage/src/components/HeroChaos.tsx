@@ -1,35 +1,41 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { createScope, createTimeline, stagger, utils } from "animejs";
+import { animate, createScope, createTimeline, stagger, utils } from "animejs";
 import { BLOB_PATH } from "./Logo";
 
 /**
- * The hero's opening story, told in four beats beside the headline, with a
- * small caption naming each one:
+ * The hero's story: how Berit works, told beside the headline in six beats,
+ * each with one line of text under the animation.
  *
- * 1. "Complexity": a crowd of brand shapes (circles and rounded squares,
- *    filled and outlined) bustles around the right column, clearly restless:
- *    darting, spinning, bumping past each other.
- * 2. "Structure": Berit steps in, as the orange ball from her logo. It lands
- *    with a calm ripple, and the shapes stop and settle into neat rows,
- *    sorted by kind, with the ball above them.
- * 3. "Clarity": the rows flow into one straight line of dots, the ball leads
- *    the way to the start of the path, the dots follow it in and merge, and
- *    the Line's shooting star is born there.
- * 4. "Goal": with standards, a system, DesignOps & DevOps and a vision in
- *    place, the work heads for the goal with less weight on its shoulders:
- *    the star climbs a calm path past those milestones to a target that
- *    lights up when it arrives (HeroLine.tsx).
+ * 1. "Every project starts in a tangle." A crowd of brand shapes (circles
+ *    and rounded squares, filled and outlined) bustles around: darting,
+ *    spinning, overlapping.
+ * 2. "First, I map where things stand." Berit steps in, as the orange ball
+ *    from her logo. The shapes stop where they are, a scan ripples out from
+ *    the ball, and thin lines draw between neighbouring shapes as it passes:
+ *    the mess becomes a map.
+ * 3. "Then we plan what's needed, the system and the goal." The map lines
+ *    fade and the shapes sort into neat rows by kind (system thinking). The
+ *    goal and a dashed planned route appear (`line:plan`, drawn by
+ *    HeroLine.tsx).
+ * 4. "We set up the systems and how we'll measure progress." The shapes
+ *    become small dots and fly onto the route, where they become its
+ *    checkpoints (`line:metrics`). The ball moves to the start.
+ * 5. "We move, learning and adjusting as we go." The ball blooms into the
+ *    shooting star (`line:handoff`), which travels the route, lighting the
+ *    checkpoints, and corrects its course once along the way.
+ * 6. "And we reach the goal, together." The goal fills and pulses. This line
+ *    stays.
  *
  * Animated with Anime.js: one timeline, built inside a scope that's reverted
  * on unmount. Its positions run on the page's clock (CSS delays count from
  * load), so it starts with the headline whenever hydration finishes. Every
- * shape's chaos moves are clamped to the column, so nothing crosses the text.
+ * chaos move is clamped to the column, so nothing crosses the text.
  *
- * Wide screens only (on narrow ones it would sit over the text), and never
- * under reduced motion; in both cases nothing shows, and the star starts on
- * its own fallback.
+ * Wide screens only (on narrow ones it would sit over the text). Under
+ * reduced motion nothing moves: HeroLine draws the finished route and goal,
+ * and only the last line of the story shows.
  */
 
 type Kind = "dot" | "ring" | "square" | "frame";
@@ -69,28 +75,41 @@ const SHAPES: Shape[] = [
   { x: 16, y: 88, size: 10, kind: "dot", color: PEACH, tilt: 0 },
 ];
 
-// Sorted rows in "Structure": one row per kind, in this order.
-const ROW_ORDER: Kind[] = ["dot", "ring", "square", "frame"];
-// In rows every shape is shown at this size (px), so order reads as order.
-const ROW_SIZE = 30;
-const ROW_GAP = 50;
+// The story, one line per beat.
+const STORY = [
+  "Every project starts in a tangle.",
+  "First, I map where things stand.",
+  "Then we plan what’s needed, the system and the goal.",
+  "We set up the systems and how we’ll measure progress.",
+  "We move, learning and adjusting as we go.",
+  "And we reach the goal, together.",
+];
 
-// The story starts with the headline (Hero.tsx delays: H1 at 1650ms, timed
-// to the logo's signature). Beat times below are relative to this.
+// Beat times (ms), from T0. The story starts with the headline (Hero.tsx
+// delays: H1 at 1650ms, timed to the logo's signature).
 const T0 = 1550;
-const CHAOS = 0; // Complexity: shapes appear and bustle.
-const ENTER = 2300; // Berit's ball lands with a ripple.
-const ARRANGE = 2650; // Structure: shapes settle into sorted rows.
-const LINE = 4300; // Clarity: rows flow into one line of dots…
-const MERGE = 5150; // …which follow the ball into the start point.
-const HANDOFF = 5650; // The shooting star sets off.
+const TANGLE = 0;
+const MAP = 2000;
+const PLAN = 3600;
+const METRICS = 5400;
+const MOVE = 7000; // The star sets off…
+const GOAL = MOVE + 4200; // …and arrives (HeroLine's run).
 
-// Where the star sets off, as a fraction of the box: HeroLine publishes it
-// as data attributes; these are its current values, as a fallback.
-const START_X = 0.14;
-const START_Y = 0.5;
+// Sorted rows in "Plan": one row per kind, in this order, all at one size,
+// up in the free top-left of the column (the route runs bottom-left to
+// top-right), under the ball.
+const ROW_ORDER: Kind[] = ["dot", "ring", "square", "frame"];
+const ROW_SIZE = 28;
+const ROW_GAP = 44;
 
-const CAPTIONS = ["Complexity", "Structure", "Clarity", "Goal"];
+// Fallbacks for what HeroLine publishes as data attributes.
+const START = [0.083, 0.81];
+const CHECKPOINTS = [
+  [0.333, 0.724],
+  [0.45, 0.676],
+  [0.733, 0.419],
+  [0.87, 0.262],
+];
 
 function shapeStyle(s: Shape): React.CSSProperties {
   const filled = s.kind === "dot" || s.kind === "square";
@@ -113,40 +132,46 @@ function shapeStyle(s: Shape): React.CSSProperties {
 export default function HeroChaos() {
   const rootRef = useRef<HTMLDivElement>(null);
   const ballRef = useRef<HTMLDivElement>(null);
-  const rippleRef = useRef<HTMLSpanElement>(null);
+  const scanRef = useRef<HTMLSpanElement>(null);
+  const mapRef = useRef<SVGSVGElement>(null);
   const bloomRef = useRef<HTMLSpanElement>(null);
-  const captionRefs = useRef<Array<HTMLSpanElement | null>>([]);
+  const lineRefs = useRef<Array<HTMLSpanElement | null>>([]);
 
   useEffect(() => {
     const root = rootRef.current;
     const ball = ballRef.current;
-    const ripple = rippleRef.current;
+    const scan = scanRef.current;
+    const map = mapRef.current;
     const bloom = bloomRef.current;
-    if (!root || !ball || !ripple || !bloom) return;
-    const handOff = () => {
-      (window as Window & { __lineHandoff?: boolean }).__lineHandoff = true;
-      window.dispatchEvent(new Event("line:handoff"));
+    if (!root || !ball || !scan || !map || !bloom) return;
+    const lines = lineRefs.current.filter(Boolean) as HTMLSpanElement[];
+    const say = (name: string) => () => {
+      if (name === "line:handoff") (window as Window & { __lineHandoff?: boolean }).__lineHandoff = true;
+      window.dispatchEvent(new Event(name));
     };
-    if (
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-      !window.matchMedia("(min-width: 1024px)").matches
-    ) {
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // Nothing moves: only the story's ending shows, under the finished
+      // route that HeroLine draws.
+      lines[lines.length - 1].style.opacity = "1";
       return;
     }
 
     const w = root.clientWidth;
     const h = root.clientHeight;
-    // The start of the path, where everything ends up (px in the box).
     const line = root.parentElement?.querySelector<HTMLElement>('[data-hero-line="hero"]');
-    const sx = Number(line?.dataset.startX ?? START_X) * w;
-    const sy = Number(line?.dataset.startY ?? START_Y) * h;
+    const sx = Number(line?.dataset.startX ?? START[0]) * w;
+    const sy = Number(line?.dataset.startY ?? START[1]) * h;
+    const checkpoints = (line?.dataset.checkpoints?.split(";").map((p) => p.split(",").map(Number)) ?? CHECKPOINTS).map(
+      ([x, y]) => [x * w, y * h] as const
+    );
 
     const els = Array.from(root.querySelectorAll<HTMLElement>("[data-chaos-shape]"));
     const centres = SHAPES.map((s) => [(s.x / 100) * w, (s.y / 100) * h] as const);
     const sizes = SHAPES.map((s) => s.size * SCALE);
 
-    // Chaos moves stay inside the column: each shape may roam up to 150px,
-    // but never past the box's edges (so never over the headline).
+    // Tangle moves stay inside the column (up to 150px, never past its
+    // edges, so never over the headline).
     const roam = (i: number, axis: 0 | 1) => {
       const c = centres[i][axis];
       const max = axis === 0 ? w : h;
@@ -154,77 +179,93 @@ export default function HeroChaos() {
       return utils.random(Math.round(Math.max(-150, half - c)), Math.round(Math.min(150, max - half - c)));
     };
 
-    // Sorted rows: one per kind, centred under the ball.
-    const rowsTop = 0.36 * h;
-    const rowCentreX = 0.55 * w;
+    // The ball, and the rows under it.
+    const ballX = 0.24 * w;
+    const ballY = 0.1 * h;
+    const rowsTop = 0.24 * h;
     const rowSpot = SHAPES.map((s, i) => {
       const row = ROW_ORDER.indexOf(s.kind);
       const peers = SHAPES.map((p, j) => [p, j] as const).filter(([p]) => p.kind === s.kind);
       const k = peers.findIndex(([, j]) => j === i);
-      const x = rowCentreX + (k - (peers.length - 1) / 2) * ROW_GAP;
-      const y = rowsTop + row * ROW_GAP;
-      return [x, y] as const;
+      return [ballX + (k - (peers.length - 1) / 2) * ROW_GAP, rowsTop + row * ROW_GAP] as const;
     });
-    const ballX = rowCentreX;
-    const ballY = 0.17 * h;
-
-    // One straight line of dots, running right from the start of the path,
-    // in row order (so the rows visibly unspool into the line).
+    // Each shape's checkpoint: the rows deal out onto the route in order.
     const order = SHAPES.map((_, i) => i).sort(
       (a, b) => ROW_ORDER.indexOf(SHAPES[a].kind) - ROW_ORDER.indexOf(SHAPES[b].kind) || a - b
     );
-    const lineGap = Math.min(30, (w - sx - 40) / SHAPES.length);
-    const lineSpot = SHAPES.map((_, i) => [sx + 46 + order.indexOf(i) * lineGap, sy] as const);
+    const spot = SHAPES.map((_, i) => checkpoints[order.indexOf(i) % checkpoints.length]);
 
-    // Place the ball, ripple and bloom by their centres.
     ball.style.left = `${ballX}px`;
     ball.style.top = `${ballY}px`;
-    ripple.style.left = `${ballX}px`;
-    ripple.style.top = `${ballY}px`;
+    scan.style.left = `${ballX}px`;
+    scan.style.top = `${ballY}px`;
     bloom.style.left = `${sx}px`;
     bloom.style.top = `${sy}px`;
 
+    // The map: thin lines between each shape and its two nearest
+    // neighbours, wherever the tangle left them, drawn as the scan passes.
+    function drawMap() {
+      const r = root!.getBoundingClientRect();
+      const pts = els.map((el) => {
+        const b = el.getBoundingClientRect();
+        return [b.left + b.width / 2 - r.left, b.top + b.height / 2 - r.top] as const;
+      });
+      const seen = new Set<string>();
+      const ns = "http://www.w3.org/2000/svg";
+      pts.forEach((a, i) => {
+        pts
+          .map((b, j) => [j, Math.hypot(b[0] - a[0], b[1] - a[1])] as const)
+          .filter(([j]) => j !== i)
+          .sort((x, y) => x[1] - y[1])
+          .slice(0, 2)
+          .forEach(([j, d]) => {
+            const key = i < j ? `${i}-${j}` : `${j}-${i}`;
+            if (seen.has(key)) return;
+            seen.add(key);
+            const b = pts[j];
+            const el = document.createElementNS(ns, "line");
+            el.setAttribute("x1", String(a[0]));
+            el.setAttribute("y1", String(a[1]));
+            el.setAttribute("x2", String(b[0]));
+            el.setAttribute("y2", String(b[1]));
+            el.setAttribute("stroke-dasharray", String(d));
+            el.setAttribute("stroke-dashoffset", String(d));
+            map!.appendChild(el);
+            // Drawn when the scan reaches it: the farther from the ball,
+            // the later.
+            const far = Math.hypot(a[0] - ballX, a[1] - ballY);
+            animate(el, { strokeDashoffset: [d, 0], duration: 500, delay: far * 1.6, ease: "outCubic" });
+          });
+      });
+    }
+
     const at = (ms: number) => Math.max(0, T0 + ms - performance.now());
-    const captions = captionRefs.current.filter(Boolean) as HTMLSpanElement[];
 
     const scope = createScope({ root }).add(() => {
       const tl = createTimeline();
 
-      // 1. Complexity: the shapes pop in and bustle about, clearly restless.
-      tl.add(els, {
-        opacity: [0, 1],
-        scale: [0.3, 1],
-        duration: 500,
-        delay: stagger(40),
-        ease: "outBack",
-      }, at(CHAOS));
-      [150, 850, 1550].forEach((t) => {
+      // 1. A tangle: the shapes pop in and bustle about.
+      tl.add(els, { opacity: [0, 1], scale: [0.3, 1], duration: 500, delay: stagger(40), ease: "outBack" }, at(TANGLE));
+      [150, 750, 1350].forEach((t) => {
         tl.add(els, {
           x: (_el: unknown, i = 0) => roam(i, 0),
           y: (_el: unknown, i = 0) => roam(i, 1),
           rotate: () => utils.random(-220, 220),
           scale: () => utils.random(80, 125) / 100,
-          duration: () => utils.random(620, 760),
+          duration: () => utils.random(560, 680),
           ease: "inOutQuad",
-        }, at(CHAOS + t));
+        }, at(TANGLE + t));
       });
 
-      // 2. Berit steps in: her logo ball lands with a calm ripple…
-      tl.add(ball, {
-        opacity: [0, 1],
-        scale: [0, 1],
-        y: [-40, 0],
-        duration: 650,
-        ease: "outBack",
-      }, at(ENTER));
-      tl.add(ripple, {
-        opacity: [0.7, 0],
-        scale: [0.6, 7],
-        duration: 1100,
-        ease: "outCubic",
-      }, at(ENTER + 300));
+      // 2. Map: Berit's ball lands, the shapes hold still, a scan ripples
+      //    out and the map draws itself between them.
+      tl.add(ball, { opacity: [0, 1], scale: [0, 1], y: [-40, 0], duration: 650, ease: "outBack" }, at(MAP));
+      tl.add(scan, { opacity: [0.7, 0], scale: [0.6, 11], duration: 1500, ease: "outCubic" }, at(MAP + 350));
+      tl.call(drawMap, at(MAP + 400));
 
-      // …and the shapes stop and settle into neat rows, sorted by kind.
+      // 3. Plan: the map fades, the shapes sort into rows, and the goal and
+      //    the planned route appear.
+      tl.add(map, { opacity: [1, 0], duration: 400, ease: "inOutSine" }, at(PLAN));
       tl.add(els, {
         x: (_el: unknown, i = 0) => rowSpot[i][0] - centres[i][0],
         y: (_el: unknown, i = 0) => rowSpot[i][1] - centres[i][1],
@@ -233,65 +274,56 @@ export default function HeroChaos() {
         duration: 900,
         delay: stagger(35),
         ease: "inOutCubic",
-      }, at(ARRANGE));
+      }, at(PLAN + 50));
+      tl.call(say("line:plan"), at(PLAN + 300));
 
-      // 3. Clarity: the rows unspool into one straight line of dots, and the
-      //    ball moves to lead it from the start of the path…
+      // 4. Systems and metrics: the rows deal out onto the route as small
+      //    dots, becoming its checkpoints; the ball moves to the start.
       tl.add(els, {
-        x: (_el: unknown, i = 0) => lineSpot[i][0] - centres[i][0],
-        y: (_el: unknown, i = 0) => lineSpot[i][1] - centres[i][1],
+        x: (_el: unknown, i = 0) => spot[i][0] - centres[i][0],
+        y: (_el: unknown, i = 0) => spot[i][1] - centres[i][1],
         scale: (_el: unknown, i = 0) => 10 / sizes[i],
         borderRadius: "50%",
         backgroundColor: ORANGE,
         borderColor: ORANGE,
-        duration: 800,
-        delay: stagger(30),
+        duration: 1000,
+        delay: (_el: unknown, i = 0) => order.indexOf(i) * 40,
         ease: "inOutCubic",
-      }, at(LINE));
-      tl.add(ball, {
-        x: sx - ballX,
-        y: sy - ballY,
-        scale: 0.45,
-        duration: 900,
-        ease: "inOutCubic",
-      }, at(LINE));
+      }, at(METRICS));
+      tl.call(say("line:metrics"), at(METRICS + 1250));
+      tl.add(els, { opacity: 0, duration: 300, ease: "inSine" }, at(METRICS + 1300));
+      tl.add(ball, { x: sx - ballX, y: sy - ballY, scale: 0.45, duration: 1000, ease: "inOutCubic" }, at(METRICS + 300));
 
-      // …the dots follow it in and merge, nearest first, and the star is born.
-      tl.add(els, {
-        x: (_el: unknown, i = 0) => sx - centres[i][0],
-        opacity: 0,
-        duration: 480,
-        delay: (_el: unknown, i = 0) => order.indexOf(i) * 28,
-        ease: "inCubic",
-      }, at(MERGE));
-      tl.add(ball, { opacity: 0, scale: 0.15, duration: 450, ease: "inCubic" }, at(MERGE + 200));
-      tl.add(bloom, { opacity: [0, 1, 0], scale: [0.3, 1.5, 1.9], duration: 900, ease: "outSine" }, at(HANDOFF - 250));
-      tl.call(handOff, at(HANDOFF));
+      // 5. Move: the ball blooms into the shooting star.
+      tl.add(ball, { opacity: 0, scale: 0.15, duration: 400, ease: "inCubic" }, at(MOVE - 300));
+      tl.add(bloom, { opacity: [0, 1, 0], scale: [0.3, 1.5, 1.9], duration: 900, ease: "outSine" }, at(MOVE - 300));
+      tl.call(say("line:handoff"), at(MOVE));
 
-      // The caption names each beat as it happens; the last one, "Goal",
-      // stays as the star heads there.
-      const beats = [CHAOS, ARRANGE, LINE, HANDOFF];
+      // The story's lines, one per beat; the last one stays.
+      const beats = [TANGLE, MAP, PLAN, METRICS, MOVE, GOAL];
       beats.forEach((t, k) => {
-        tl.add(captions[k], { opacity: [0, 1], y: [6, 0], duration: 400, ease: "outCubic" }, at(t + 100));
+        tl.add(lines[k], { opacity: [0, 1], y: [6, 0], duration: 450, ease: "outCubic" }, at(t + 100));
         if (k < beats.length - 1) {
-          tl.add(captions[k], { opacity: 0, y: -6, duration: 300, ease: "inCubic" }, at(beats[k + 1] - 200));
+          tl.add(lines[k], { opacity: 0, y: -6, duration: 300, ease: "inCubic" }, at(beats[k + 1] - 200));
         }
       });
     });
 
-    return () => scope.revert();
+    return () => {
+      scope.revert();
+      map.replaceChildren();
+    };
   }, []);
 
   return (
     <div ref={rootRef} aria-hidden="true" className="pointer-events-none absolute inset-0">
+      {/* The map drawn in beat 2. */}
+      <svg ref={mapRef} className="absolute inset-0 h-full w-full overflow-visible" fill="none" stroke={AMBER} strokeOpacity={0.55} strokeWidth={1.5} />
       {SHAPES.map((s, i) => (
         <span key={i} data-chaos-shape className="absolute block" style={shapeStyle(s)} />
       ))}
-      {/* Berit: the orange ball from her logo. */}
-      <span
-        ref={rippleRef}
-        className="absolute block h-16 w-16 -ml-8 -mt-8 rounded-full border-2 border-accent opacity-0"
-      />
+      {/* Berit: the orange ball from her logo, and its scan ripple. */}
+      <span ref={scanRef} className="absolute block h-16 w-16 -ml-8 -mt-8 rounded-full border-2 border-accent opacity-0" />
       <div ref={ballRef} className="absolute -ml-9 -mt-[34px] opacity-0">
         <svg viewBox="0 0 114 108" width="72" height="68" className="block overflow-visible">
           <path d={BLOB_PATH} fill="#FF890C" />
@@ -305,18 +337,17 @@ export default function HeroChaos() {
             "radial-gradient(circle, rgba(255,181,102,0.9) 0%, rgba(252,137,12,0.35) 40%, rgba(252,137,12,0) 70%)",
         }}
       />
-      {/* The beat names, one at a time. */}
-      <span className="absolute left-0 top-0 block h-5">
-        {CAPTIONS.map((c, k) => (
+      {/* The story, one line at a time, under the animation. */}
+      <span className="absolute inset-x-0 top-full mt-4 block h-7">
+        {STORY.map((text, k) => (
           <span
-            key={c}
+            key={text}
             ref={(el) => {
-              captionRefs.current[k] = el;
+              lineRefs.current[k] = el;
             }}
-            className="absolute left-0 top-0 flex items-center gap-2 whitespace-nowrap font-mono-label text-mono-label uppercase text-muted opacity-0"
+            className="absolute inset-x-0 top-0 text-center text-body-lg font-medium text-ink opacity-0"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-            {`0${k + 1} / ${c}`}
+            {text}
           </span>
         ))}
       </span>
