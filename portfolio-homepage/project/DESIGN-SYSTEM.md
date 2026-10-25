@@ -83,20 +83,26 @@ introduce new colors, sizes or radii without adding them here first.
   follows it; don't add a second visual language.
   - *Rule: nothing exists ahead of the star.* The line only appears where
     the star has been. No faint guide track, no pre-drawn tangle.
-  - *Hero (lg+, right column):* the star is born where the hero's chaos of
-    shapes merges (see Homepage entrance sequence). It slithers through two
-    loops like a snake, drawing them, and they fade out behind its 300-unit
-    tail (the complexity, untangled). Out of the loops it glides into one
-    river bend and comes to rest at the lower left, pointing at the buttons.
-    The run is 3.4s, `easeInOutSine`, setting off from rest.
+  - *Hero (lg+, right column):* the star is born where the hero's story
+    reaches clarity (see Homepage entrance sequence). Then the work heads
+    for the goal: a calm, rising path (no loops; after "Clarity" they read
+    as a new tangle) past four milestones, Standards, System, DesignOps &
+    DevOps and Vision. Each milestone's dot lights up and its small mono
+    label fades in (`.hero-milestone`) as the star reaches it. The path ends
+    at a target ring (r 13) that's visible from the moment the star sets
+    off, because a clear goal is part of the story. It fills and sends out
+    a pulse when the star arrives, and the star rests in it. The run is
+    4.2s, `easeInOutSine`, from rest.
   - *It swells as it travels:* every width is scaled from 55% as it sets
     off to 100% as it arrives. The tail is up to ~5.5 units wide at the
-    head. It leaves a river 2.8 units wide (was 1.6) at 60% opacity, which
-    fades in over 170 units from where the loops were.
+    head. It leaves a line 2.8 units wide at 60% opacity, which fades in
+    over 170 units from its start.
   - *Afterwards:* the resting star twinkles gently, and every 9s a softer
     star runs down the river and brightens it on arrival.
-  - *Below lg:* `variant="strip"`, a slim version under the lead. It starts
-    from rest (ease-in-out) as the signature finishes, with the headline.
+  - *Below lg:* `variant="strip"`, a slim version under the lead, telling
+    the short version: the star slithers through two loops (they fade out
+    behind its tail) into a calm wave. It starts from rest as the
+    signature finishes, with the headline.
   - *Mechanics:* it's drawn on a canvas, because the tail is a gradient
     along a curve, which SVG strokes can't do. The curve (Catmull-Rom
     through anchors) is sampled every 1.5 units, so the star moves at a
@@ -1184,10 +1190,11 @@ immediately (no shapes, the river already drawn).
 2. **Text with the chaos** (byline 1550ms, H1 1650ms, lead 1830ms, buttons
    2010ms): the headline comes out together with the shapes. Keep these
    delays in step with `.logo-mask-wipe` and `T0` in `HeroChaos.tsx`.
-3. **The story: Complexity → Structure → Clarity** (`HeroChaos.tsx`, lg+,
-   Anime.js). It plays in the hero's right column, and a small mono caption
-   names each beat ("01 / Complexity", "02 / Structure", "03 / Clarity"),
-   so the meaning is unmistakable. Times are from the headline (1.55s).
+3. **The story: Complexity → Structure → Clarity → Goal** (`HeroChaos.tsx`,
+   lg+, Anime.js). It plays in the hero's right column, and a small mono
+   caption names each beat ("01 / Complexity", "02 / Structure",
+   "03 / Clarity", "04 / Goal"; the last one stays), so the meaning is
+   unmistakable. Times are from the headline (1.55s).
    - *Complexity* (0–2.3s): 14 bold brand shapes (circles and rounded
      squares, filled and 3px outlines, `#FC890C` / `#E8730A` / `#FFB566`)
      pop in (`outBack`) and bustle around: three energetic legs of up to
@@ -1202,6 +1209,10 @@ immediately (no shapes, the river already drawn).
      while the ball moves to the start of the path. The dots follow it in
      and merge, nearest first, into a soft bloom, and `line:handoff` sets
      the shooting star off from there (~5.65s, ~7.2s after load).
+   - *Goal:* with standards, a system, DesignOps & DevOps and a vision in
+     place, the work heads for the goal with less weight on its shoulders:
+     the star climbs past those milestones to the target, which lights up
+     on arrival (~11.5s after load). See The Line.
    - It's one Anime.js timeline built inside `createScope({ root })` and
      reverted on unmount. Positions are on the page's clock (CSS delays
      count from load), not from hydration. The drift legs don't use
@@ -1211,7 +1222,7 @@ immediately (no shapes, the river already drawn).
      doesn't run. The star then starts on its own: the strip as the
      signature finishes, and the hero 6.5s after it (a fallback that is
      deliberately later than the story's own handover).
-4. **The star draws the river** (`HeroLine.tsx`, 3.4s), see The Line.
+4. **The star heads for the goal** (`HeroLine.tsx`, 4.2s), see The Line.
 
 Dependency: `animejs` (v4). It adds ~16 kB to the homepage's First Load JS
 (137 → 153 kB) and is used only by `HeroChaos.tsx`.

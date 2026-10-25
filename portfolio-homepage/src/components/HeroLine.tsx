@@ -14,14 +14,14 @@ import {
  * The hero's "Line": the headline acted out as a shooting star.
  *
  * Nothing is drawn until the star sets off. On wide screens it's born where
- * the hero's chaos of shapes gathers and merges into one point
- * (HeroChaos.tsx). It slithers through two loops like a snake, drawing them
- * as it goes, and they fade out behind its tapered tail (the complexity,
- * untangled). Out of the loops it glides into one calm river bend and comes
- * to rest pointing at the buttons. The line swells as it travels, thin as it
- * sets off and full width as it arrives, and leaves a river that fades in
- * from where the loops were. Every so often a softer star runs down the
- * river (moving forward).
+ * the hero's story reaches clarity: its shapes, organized, merge into one
+ * point (HeroChaos.tsx). Then the work heads for the goal: the star climbs a
+ * calm, rising path past four milestones that light up as it reaches them,
+ * each with a small label (Standards, System, DesignOps & DevOps, Vision),
+ * to a target ring that's been waiting at the end (a clear goal), which
+ * fills and pulses when it arrives. The line swells as it travels, thin as
+ * it sets off and full width as it arrives. Every so often a softer star
+ * runs the path again (moving forward).
  *
  * Drawn on a canvas, because the tail is a gradient *along a curve* (width
  * and opacity grow toward the head), which SVG strokes can't do. The curve
@@ -34,8 +34,10 @@ import {
  *   point, and publishes that start point as data attributes for the shapes
  *   to gather at.
  * - `strip`: a slim version for phones and tablets, under the lead. There's
- *   no chaos layer there (it would sit over the text): the star simply sets
- *   off as the signature finishes.
+ *   no chaos layer there (it would sit over the text), so this one tells
+ *   the short version: the star slithers through two loops (they fade out
+ *   behind its tail, untangled) into a calm wave, setting off as the
+ *   signature finishes.
  *
  * The loop only runs while the canvas is on screen. Reduced motion: the
  * settled river and its resting star are drawn once, and nothing moves.
@@ -53,32 +55,65 @@ function coils(x0: number, y0: number, a: number, b: number): Point[] {
   return out;
 }
 
+/** A milestone on the hero's path: the anchor it sits on, and its label. */
+type Milestone = { anchor: number; label: string; /** Label to the left of the dot. */ left?: boolean };
+
 const SHAPES: Record<
   Variant,
-  { w: number; h: number; coil: Point[]; river: Point[]; scale: number; run: number }
+  {
+    w: number;
+    h: number;
+    /** Anchors of the whole path. */
+    path: Point[];
+    /** Anchor where the drawn river begins (anything before it is loops,
+     * drawn only inside the star's fading tail). */
+    riverFrom: number;
+    milestones: Milestone[];
+    /** A target ring at the end of the path, lit when the star arrives. */
+    goal: boolean;
+    scale: number;
+    run: number;
+  }
 > = {
+  // After the hero's story reaches clarity, the work heads for the goal: a
+  // calm, rising path past the things that make it possible, ending at a
+  // target. No loops here; after "Clarity" they read as a new tangle.
   hero: {
     w: 600,
     h: 420,
-    coil: coils(40, 170, 14, 40),
-    // One bend out to the right, then back toward the lower left (the
-    // buttons).
-    river: [
-      [340, 192], [430, 150], [520, 148], [562, 200], [515, 258], [400, 280],
-      [280, 298], [170, 328], [82, 362], [28, 392],
+    path: [
+      [50, 340], [130, 332], [200, 304], [270, 284], [330, 244], [395, 224],
+      [440, 176], [496, 152], [522, 110], [548, 66],
     ],
+    riverFrom: 0,
+    milestones: [
+      { anchor: 2, label: "Standards" },
+      { anchor: 4, label: "System" },
+      { anchor: 6, label: "DesignOps & DevOps" },
+      { anchor: 8, label: "Vision", left: true },
+    ],
+    goal: true,
     scale: 1,
-    run: 3400,
+    run: 4200,
   },
   strip: {
     w: 600,
     h: 120,
-    coil: coils(14, 60, 9, 26),
-    river: [[215, 80], [280, 52], [350, 38], [420, 58], [490, 82], [550, 72], [586, 56]],
+    path: [
+      ...coils(14, 60, 9, 26),
+      [215, 80], [280, 52], [350, 38], [420, 58], [490, 82], [550, 72], [586, 56],
+    ],
+    riverFrom: 16,
+    milestones: [],
+    goal: false,
     scale: 0.7,
     run: 3600,
   },
 };
+
+// The goal ring's radius, and how long its arrival pulse runs (ms).
+const GOAL_R = 13;
+const PULSE = 1100;
 
 const ORANGE = "252, 137, 12";
 const GLOW = "255, 181, 102";
@@ -163,12 +198,15 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
     const ctx = canvas?.getContext("2d");
     if (!wrap || !canvas || !ctx) return;
 
-    const { w, h, coil, river, scale: k, run: RUN } = SHAPES[variant];
-    const s = sampleCurve([...coil, ...river]);
+    const { w, h, path, riverFrom, milestones, goal, scale: k, run: RUN } = SHAPES[variant];
+    const s = sampleCurve(path);
     const idx = (len: number) => Math.max(0, Math.min(s.x.length - 1, Math.round(len / s.step)));
     const last = s.x.length - 1;
-    // Where the loops end and the river begins.
-    const M = idx(s.atAnchor[coil.length - 1]);
+    // Where the drawn river begins (after any loops).
+    const M = idx(s.atAnchor[riverFrom]);
+    // Each milestone's position along the path.
+    const stones = milestones.map((m) => idx(s.atAnchor[m.anchor]));
+    const labels = Array.from(wrap.querySelectorAll<HTMLElement>("[data-milestone]"));
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function fit() {
@@ -182,8 +220,8 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       }
       // For the chaos layer (HeroChaos.tsx): where its shapes gather, so
       // they merge exactly where the star sets off.
-      wrap!.dataset.startX = String(coil[0][0] / w);
-      wrap!.dataset.startY = String(coil[0][1] / h);
+      wrap!.dataset.startX = String(path[0][0] / w);
+      wrap!.dataset.startY = String(path[0][1] / h);
       const z = (cw / w) * dpr;
       ctx!.setTransform(z, 0, 0, z, 0, 0);
       ctx!.clearRect(0, 0, w, h);
@@ -200,10 +238,59 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       strokeSpan(ctx!, s, fade, to, width, `rgba(${ORANGE}, 0.6)`);
     }
 
+    // Milestones the star has reached: a lit dot, and its label fades in.
+    function marks(head: number) {
+      stones.forEach((at, i) => {
+        if (head < at) {
+          labels[i]?.removeAttribute("data-lit");
+          return;
+        }
+        labels[i]?.setAttribute("data-lit", "");
+        ctx!.fillStyle = `rgb(${ORANGE})`;
+        ctx!.beginPath();
+        ctx!.arc(s.x[at], s.y[at], 4.5 * k, 0, Math.PI * 2);
+        ctx!.fill();
+        ctx!.fillStyle = "#FFF4E6";
+        ctx!.beginPath();
+        ctx!.arc(s.x[at], s.y[at], 1.8 * k, 0, Math.PI * 2);
+        ctx!.fill();
+      });
+    }
+
+    // The goal: an outlined target waiting at the end of the path (a clear
+    // goal is part of the story, so it's visible ahead of the star), which
+    // fills and pulses when the star arrives (`hit`: ms since arrival).
+    function target(hit: number | null) {
+      if (!goal) return;
+      const x = s.x[last];
+      const y = s.y[last];
+      if (hit !== null) {
+        ctx!.fillStyle = `rgba(${GLOW}, 0.45)`;
+        ctx!.beginPath();
+        ctx!.arc(x, y, GOAL_R * k, 0, Math.PI * 2);
+        ctx!.fill();
+        if (hit < PULSE) {
+          const u = hit / PULSE;
+          ctx!.strokeStyle = `rgba(${ORANGE}, ${(0.6 * (1 - u)).toFixed(3)})`;
+          ctx!.lineWidth = 2 * k;
+          ctx!.beginPath();
+          ctx!.arc(x, y, (GOAL_R + 34 * Math.sin((u * Math.PI) / 2)) * k, 0, Math.PI * 2);
+          ctx!.stroke();
+        }
+      }
+      ctx!.strokeStyle = `rgba(${ORANGE}, ${hit === null ? 0.45 : 1})`;
+      ctx!.lineWidth = (hit === null ? 2 : 3) * k;
+      ctx!.beginPath();
+      ctx!.arc(x, y, GOAL_R * k, 0, Math.PI * 2);
+      ctx!.stroke();
+    }
+
     function draw(t: number) {
       if (!fit()) return;
       const p = Math.min(1, t / RUN);
       const head = idx(easeInOutSine(p) * s.length);
+      target(p < 1 ? null : t - RUN);
+      marks(head);
       // The line swells as it travels: thin as it sets off, full width by
       // the time it arrives.
       const g = GROW_FROM + (1 - GROW_FROM) * easeInOutSine(p);
@@ -221,7 +308,7 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       const since = t - RUN;
       const settle = Math.min(1, since / SETTLE);
       if (settle < 1) {
-        const from = Math.max(0, last - Math.round(((1 - settle) * TAIL) / s.step));
+        const from = Math.max(M, last - Math.round(((1 - settle) * TAIL) / s.step));
         comet(ctx!, s, from, last, 1 - settle, k);
       }
 
@@ -242,7 +329,9 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
     if (reduced) {
       const still = () => {
         if (!fit()) return;
+        target(PULSE);
         trail(last);
+        marks(last);
         drawSparkle(ctx!, s.x[last], s.y[last], 0.9 * k);
       };
       still();
@@ -306,6 +395,24 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       style={{ aspectRatio: `${shape.w} / ${shape.h}` }}
     >
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      {/* Milestone labels, faded in as the star reaches each one. */}
+      {shape.milestones.map((m) => {
+        const [x, y] = shape.path[m.anchor];
+        return (
+          <span
+            key={m.label}
+            data-milestone
+            className="hero-milestone pointer-events-none absolute whitespace-nowrap font-mono-label text-mono-label uppercase text-muted"
+            style={{
+              left: `${(x / shape.w) * 100}%`,
+              top: `${(y / shape.h) * 100}%`,
+              translate: m.left ? "calc(-100% - 14px) -50%" : "14px 4px",
+            }}
+          >
+            {m.label}
+          </span>
+        );
+      })}
     </div>
   );
 }

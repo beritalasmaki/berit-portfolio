@@ -5,7 +5,7 @@ import { createScope, createTimeline, stagger, utils } from "animejs";
 import { BLOB_PATH } from "./Logo";
 
 /**
- * The hero's opening story, told in three beats beside the headline, with a
+ * The hero's opening story, told in four beats beside the headline, with a
  * small caption naming each one:
  *
  * 1. "Complexity": a crowd of brand shapes (circles and rounded squares,
@@ -16,8 +16,11 @@ import { BLOB_PATH } from "./Logo";
  *    sorted by kind, with the ball above them.
  * 3. "Clarity": the rows flow into one straight line of dots, the ball leads
  *    the way to the start of the path, the dots follow it in and merge, and
- *    the Line's shooting star is born there and draws the river
- *    (HeroLine.tsx). Complexity made clear: the project that worked.
+ *    the Line's shooting star is born there.
+ * 4. "Goal": with standards, a system, DesignOps & DevOps and a vision in
+ *    place, the work heads for the goal with less weight on its shoulders:
+ *    the star climbs a calm path past those milestones to a target that
+ *    lights up when it arrives (HeroLine.tsx).
  *
  * Animated with Anime.js: one timeline, built inside a scope that's reverted
  * on unmount. Its positions run on the page's clock (CSS delays count from
@@ -87,7 +90,7 @@ const HANDOFF = 5650; // The shooting star sets off.
 const START_X = 0.14;
 const START_Y = 0.5;
 
-const CAPTIONS = ["Complexity", "Structure", "Clarity"];
+const CAPTIONS = ["Complexity", "Structure", "Clarity", "Goal"];
 
 function shapeStyle(s: Shape): React.CSSProperties {
   const filled = s.kind === "dot" || s.kind === "square";
@@ -265,14 +268,15 @@ export default function HeroChaos() {
       tl.add(bloom, { opacity: [0, 1, 0], scale: [0.3, 1.5, 1.9], duration: 900, ease: "outSine" }, at(HANDOFF - 250));
       tl.call(handOff, at(HANDOFF));
 
-      // The caption names each beat as it happens.
-      [CHAOS, ARRANGE, LINE].forEach((t, k) => {
+      // The caption names each beat as it happens; the last one, "Goal",
+      // stays as the star heads there.
+      const beats = [CHAOS, ARRANGE, LINE, HANDOFF];
+      beats.forEach((t, k) => {
         tl.add(captions[k], { opacity: [0, 1], y: [6, 0], duration: 400, ease: "outCubic" }, at(t + 100));
-        if (k < captions.length - 1) {
-          tl.add(captions[k], { opacity: 0, y: -6, duration: 300, ease: "inCubic" }, at([ARRANGE, LINE][k] - 200));
+        if (k < beats.length - 1) {
+          tl.add(captions[k], { opacity: 0, y: -6, duration: 300, ease: "inCubic" }, at(beats[k + 1] - 200));
         }
       });
-      tl.add(captions[captions.length - 1], { opacity: 0, duration: 600, ease: "inOutSine" }, at(HANDOFF + 2200));
     });
 
     return () => scope.revert();
