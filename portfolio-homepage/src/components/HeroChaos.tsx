@@ -219,15 +219,19 @@ export default function HeroChaos() {
       const c = centres[i][axis];
       const size = axis === 0 ? w : h;
       const [lo, hi] = (axis === 0 ? FOCUS.x : FOCUS.y).map((f) => f * size);
-      const half = sizes[i] / 2;
+      // Room for the shape at its largest: wandering scales it up to 1.25×
+      // and a tilted square reaches further than its side.
+      const half = sizes[i] * 0.8;
       return utils.random(Math.round(Math.max(-ROAM, lo + half - c)), Math.round(Math.min(ROAM, hi - half - c)));
     };
 
     // The ball, and the rows under it, in the middle of the column, above
     // the route.
     const ballX = 0.4 * w;
-    const ballY = 0.15 * h;
-    const rowsTop = 0.27 * h;
+    // The ball (68px tall) never rises above the column's top edge, even as
+    // it drops in, so it keeps the 32px of air under the story text.
+    const ballY = Math.max(0.15 * h, 48);
+    const rowsTop = ballY + 0.12 * h;
     const rowSpot = SHAPES.map((s, i) => {
       const row = ROW_ORDER.indexOf(s.kind);
       const peers = SHAPES.map((p, j) => [p, j] as const).filter(([p]) => p.kind === s.kind);
@@ -355,7 +359,7 @@ export default function HeroChaos() {
 
       // 2. Map: Berit's ball lands, the shapes hold still, a scan ripples
       //    out and the map draws itself between them.
-      tl.add(ball, { opacity: [0, 1], scale: [0, 1], y: [-40, 0], duration: 900, ease: "outBack" }, MAP + 200);
+      tl.add(ball, { opacity: [0, 1], scale: [0, 1], y: [-12, 0], duration: 900, ease: "outBack" }, MAP + 200);
       tl.add(scan, { opacity: [0.7, 0], scale: [0.6, 11], duration: 2000, ease: "outCubic" }, MAP + 650);
       tl.call(drawMap, MAP + 750);
 
@@ -462,8 +466,13 @@ export default function HeroChaos() {
       {SHAPES.map((s, i) => (
         <span key={i} aria-hidden="true" data-chaos-shape className="absolute block" style={shapeStyle(s)} />
       ))}
-      {/* Berit: the orange ball from her logo, and its scan ripple. */}
-      <span ref={scanRef} aria-hidden="true" className="absolute block h-16 w-16 -ml-8 -mt-8 rounded-full border-2 border-accent opacity-0" />
+      {/* Berit: the orange ball from her logo, and its scan ripple. The
+          ripple is clipped at the column's top (and bottom) edge, so it
+          never reaches the story text; sideways it spreads freely
+          (`overflow-y: clip` alone, unlike `hidden`, leaves x visible). */}
+      <div aria-hidden="true" className="absolute inset-0 [overflow-x:visible] [overflow-y:clip]">
+        <span ref={scanRef} aria-hidden="true" className="absolute block h-16 w-16 -ml-8 -mt-8 rounded-full border-2 border-accent opacity-0" />
+      </div>
       <div ref={ballRef} aria-hidden="true" className="absolute -ml-9 -mt-[34px] opacity-0">
         <svg viewBox="0 0 114 108" width="72" height="68" className="block overflow-visible">
           <path d={BLOB_PATH} fill="#FF890C" />
@@ -514,47 +523,46 @@ export default function HeroChaos() {
           seen first: a glowing dot like the star, then the line, its key
           word in the brand orange. Lines anchor at the bottom, so on a
           narrower column a long one wraps upward, never into the animation.
-          Every piece animates on its own (see the timeline above). */}
-      {/* How far along the story is: a segment per step (map, plan,
-          systems, move, goal), shown once it plays. */}
-      <span
-        ref={progressRef}
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-full mx-auto mb-2 flex w-full max-w-[260px] gap-2 opacity-0"
-      >
-        {STORY.slice(1).map((text) => (
-          <span key={text} className="h-[3px] flex-1 overflow-hidden rounded-full bg-ink/10">
-            <span data-fill className="block h-full origin-left scale-x-0 rounded-full bg-accent" />
-          </span>
-        ))}
-      </span>
-      <span aria-hidden="true" className="absolute inset-x-0 bottom-full mb-8 block h-8">
-        {STORY.map((text, k) => (
-          <span
-            key={text}
-            ref={(el) => {
-              lineRefs.current[k] = el;
-            }}
-            className="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-center text-center text-[clamp(17px,1.35vw,20px)] font-semibold leading-8 tracking-[-0.01em] text-ink"
-          >
+          Every piece animates on its own (see the timeline above). Under
+          the text, 16px down, the progress bar (a segment per step, shown
+          once the story plays), then 32px of air before the animation: the
+          column's top edge, which nothing in the animation crosses. */}
+      <span aria-hidden="true" className="absolute inset-x-0 bottom-full mb-8 flex flex-col items-center gap-4">
+        <span className="relative block h-8 w-full">
+          {STORY.map((text, k) => (
             <span
-              data-word
-              className="mr-2 inline-block h-2.5 w-2.5 shrink-0 rounded-full bg-accent opacity-0 shadow-[0_0_12px_3px_rgba(252,137,12,0.45)]"
-            />
-            {text.split(" ").map((word, j) => {
-              const key = word.startsWith("*");
-              return (
-                <span
-                  key={j}
-                  data-word
-                  className={`mr-[0.28em] inline-block opacity-0 last:mr-0 ${key ? "text-accent-dark" : ""}`}
-                >
-                  {word.replace(/\*/g, "")}
-                </span>
-              );
-            })}
-          </span>
-        ))}
+              key={text}
+              ref={(el) => {
+                lineRefs.current[k] = el;
+              }}
+              className="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-center text-center text-[clamp(17px,1.35vw,20px)] font-semibold leading-8 tracking-[-0.01em] text-ink"
+            >
+              <span
+                data-word
+                className="mr-2 inline-block h-2.5 w-2.5 shrink-0 rounded-full bg-accent opacity-0 shadow-[0_0_12px_3px_rgba(252,137,12,0.45)]"
+              />
+              {text.split(" ").map((word, j) => {
+                const key = word.startsWith("*");
+                return (
+                  <span
+                    key={j}
+                    data-word
+                    className={`mr-[0.28em] inline-block opacity-0 last:mr-0 ${key ? "text-accent-dark" : ""}`}
+                  >
+                    {word.replace(/\*/g, "")}
+                  </span>
+                );
+              })}
+            </span>
+          ))}
+        </span>
+        <span ref={progressRef} className="flex w-full max-w-[260px] gap-2 opacity-0">
+          {STORY.slice(1).map((text) => (
+            <span key={text} className="h-[3px] flex-1 overflow-hidden rounded-full bg-ink/10">
+              <span data-fill className="block h-full origin-left scale-x-0 rounded-full bg-accent" />
+            </span>
+          ))}
+        </span>
       </span>
     </div>
   );

@@ -1091,8 +1091,12 @@ Single row, one hairline below:
     top.
   - **My Process:** the steps light up in order and the links between them
     draw on.
-  The pieces spring in (520ms, a slight overshoot, 70ms apart) and ease back
-  without delay. Reduced motion shows the filled state at once.
+  The pieces spring in unhurried (900ms, a slight overshoot, 150ms apart;
+  about 1.5s in all), and each deepens from light peach (`#FFD8AB`) to the
+  brand orange over 1.2s, so the first frames are light and the last the
+  darkest. The filled tiles are 5.4px with a clear 1.6px gap, so they never
+  read as touching. Leaving, it all eases back quickly, without delay.
+  Reduced motion shows the filled state at once.
 - The current section's link (`aria-current="location"`) stays filled, its
   label in `accent-dark`. "Current" is the last nav section whose top has
   passed a line 35% down the viewport while its bottom hasn't. Over the
@@ -1255,6 +1259,12 @@ immediately (no shapes, the river already drawn).
       fades in under the animation. Pressing it blows the line and route
       away, rebuilds the story (`line:reset` clears HeroLine), brings the
       tangle back and plays the story again after 3s, with no button.
+   - The story text and its progress bar sit 16px apart, and the bar sits
+     32px above the animation's top edge, which nothing crosses: the ball
+     (centre at least 48px down, dropping in only 12px), the tangle (its
+     moves allow for the shapes at full scale and tilt), and the scan
+     ripple (clipped at the top edge with `overflow-y: clip`, so it still
+     spreads freely sideways). Measured: at least 44px of air at 1024px.
    - One focus area: everything that moves stays in the middle of the
      column. The tangle is pulled in toward the centre (`SPREAD` 0.62) and
      roams at most 90px inside a central box (`FOCUS`, 14–86% × 12–88%);

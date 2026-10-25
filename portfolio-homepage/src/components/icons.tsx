@@ -39,9 +39,9 @@ export function ArrowLeftIcon({ className = "" }: IconProps) {
 }
 
 // The nav's icons are animated: each has its outline (`.ni-line`) and a
-// filled version in the brand orange (`.ni-fill`), whose pieces (`.ni-p`)
-// arrive with a motion that fits the icon when the link is hovered,
-// focused or current (`aria-current`, the section in view). Styles in
+// filled version (`.ni-fill`), whose pieces (`.ni-p`)
+// arrive with a motion that fits the icon, deepening from light peach to
+// the brand orange, when the link is hovered, focused or current (`aria-current`, the section in view). Styles in
 // globals.css ("Nav icons"); `--i` staggers the pieces.
 
 /** "Selected case studies": a grid of work. Filling, the tiles pop in one
@@ -60,17 +60,18 @@ export function CaseStudiesIcon({ className = "" }: IconProps) {
           <rect key={`${x}${y}`} x={x} y={y} width="5" height="5" rx="1.2" />
         ))}
       </g>
-      <g className="ni-fill" fill="#FC890C" stroke="none">
+      <g className="ni-fill" stroke="none">
+        {/* 5.4px tiles keep a clear 1.6px gap between them. */}
         {tiles.map(([x, y], i) => (
           <rect
             key={`${x}${y}`}
             className="ni-p ni-pop"
             style={{ "--i": i } as React.CSSProperties}
-            x={x - 0.8}
-            y={y - 0.8}
-            width="6.6"
-            height="6.6"
-            rx="1.8"
+            x={x - 0.2}
+            y={y - 0.2}
+            width="5.4"
+            height="5.4"
+            rx="1.4"
           />
         ))}
       </g>
@@ -87,7 +88,7 @@ export function AboutIcon({ className = "" }: IconProps) {
         <circle cx="8" cy="5.5" r="2.75" />
         <path d="M2.75 14c.6-2.6 2.7-4.25 5.25-4.25S12.65 11.4 13.25 14" />
       </g>
-      <g className="ni-fill" fill="#FC890C" stroke="none">
+      <g className="ni-fill" stroke="none">
         <path
           className="ni-p ni-rise"
           d="M2 14.6c.5-3.2 3-5.5 6-5.5s5.5 2.3 6 5.5c.05.4-.25.7-.65.7H2.65c-.4 0-.7-.3-.65-.7z"
@@ -110,8 +111,8 @@ export function ProcessIcon({ className = "" }: IconProps) {
         <path d="M5.2 4.6l5.6 2.6M10.8 8.8l-5.6 2.6" />
       </g>
       <g className="ni-fill">
-        <path className="ni-p ni-draw" style={{ "--i": 1 } as React.CSSProperties} pathLength={1} stroke="#FC890C" d="M5.2 4.6l5.6 2.6" />
-        <path className="ni-p ni-draw" style={{ "--i": 3 } as React.CSSProperties} pathLength={1} stroke="#FC890C" d="M10.8 8.8l-5.6 2.6" />
+        <path className="ni-p ni-draw" style={{ "--i": 1 } as React.CSSProperties} pathLength={1} d="M5.2 4.6l5.6 2.6" />
+        <path className="ni-p ni-draw" style={{ "--i": 3 } as React.CSSProperties} pathLength={1} d="M10.8 8.8l-5.6 2.6" />
         {[
           [3.5, 4],
           [12.5, 8],
@@ -124,7 +125,6 @@ export function ProcessIcon({ className = "" }: IconProps) {
             cx={cx}
             cy={cy}
             r="2.4"
-            fill="#FC890C"
             stroke="none"
           />
         ))}

@@ -234,24 +234,30 @@
   }
 
   /* Nav icons (icons.tsx): on hover, focus or as the current section, the
-     outline gives way to a filled orange icon whose pieces arrive with a
-     motion that fits it: tiles pop (case studies), shoulders rise and the
-     head bobs in (about), steps light up and their links draw (process).
-     `--i` staggers the pieces. Leaving, it all eases back without delay. */
+     outline gives way to a filled icon whose pieces arrive with a motion
+     that fits it: tiles pop (case studies), shoulders rise and the head
+     bobs in (about), steps light up and their links draw (process). Each
+     piece starts light peach and deepens to the brand orange as it
+     settles (the colour runs longer than the motion, so the last frames
+     are the darkest). `--i` staggers the pieces. Leaving, it all eases back
+     quickly, without delay. */
   .nav-icon {
     overflow: visible;
   }
   .nav-icon .ni-line {
-    transition: opacity 200ms ease-out;
+    transition: opacity 300ms ease-out;
   }
   .nav-icon .ni-p {
     opacity: 0;
+    fill: #ffd8ab;
     transform-box: fill-box;
     transform-origin: center;
     transition:
-      opacity 160ms ease-out,
-      transform 200ms ease-in,
-      stroke-dashoffset 200ms ease-in;
+      opacity 200ms ease-out,
+      transform 260ms ease-in,
+      fill 260ms ease-in,
+      stroke 260ms ease-in,
+      stroke-dashoffset 260ms ease-in;
   }
   .nav-icon .ni-pop {
     transform: scale(0.25);
@@ -265,6 +271,7 @@
   }
   .nav-icon .ni-draw {
     fill: none;
+    stroke: #ffd8ab;
     stroke-width: 1.6;
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
@@ -275,11 +282,18 @@
   :is(a:hover, a:focus-visible, a[aria-current]) > .nav-icon .ni-p {
     opacity: 1;
     transform: none;
+    fill: #fc890c;
     stroke-dashoffset: 0;
     transition:
-      opacity 180ms ease-out calc(var(--i, 0) * 70ms),
-      transform 520ms cubic-bezier(0.34, 1.7, 0.64, 1) calc(var(--i, 0) * 70ms),
-      stroke-dashoffset 320ms ease-out calc(var(--i, 0) * 70ms);
+      opacity 360ms ease-out calc(var(--i, 0) * 150ms),
+      transform 900ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--i, 0) * 150ms),
+      fill 1200ms ease-in-out calc(var(--i, 0) * 150ms),
+      stroke 1200ms ease-in-out calc(var(--i, 0) * 150ms),
+      stroke-dashoffset 700ms ease-out calc(var(--i, 0) * 150ms);
+  }
+  :is(a:hover, a:focus-visible, a[aria-current]) > .nav-icon .ni-draw {
+    fill: none;
+    stroke: #fc890c;
   }
   @media (prefers-reduced-motion: reduce) {
     :is(a:hover, a:focus-visible, a[aria-current]) > .nav-icon .ni-p {

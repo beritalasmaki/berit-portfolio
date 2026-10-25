@@ -88,7 +88,7 @@ export default function Hero() {
               (HeroChaos.tsx tells the first half, HeroLine.tsx the second).
               Both start empty, so this needs no fade-in of its own. The
               top margin leaves room for the story's line of text. */}
-          <div className="relative w-full max-w-[600px] mx-auto mt-16">
+          <div className="relative w-full max-w-[600px] mx-auto mt-24">
             <HeroLine />
             <HeroChaos />
           </div>
