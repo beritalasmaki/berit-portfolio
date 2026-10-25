@@ -484,7 +484,7 @@ export default function HeroChaos() {
           ref={buttonRef}
           type="button"
           onClick={() => playRef.current?.()}
-          className="hero-play glass-button-ink pointer-events-auto relative inline-flex items-center gap-3 rounded-pill py-2.5 pl-2.5 pr-6 text-nav font-semibold text-white opacity-0 hover:text-white focus-visible:text-white focus-visible:outline-white"
+          className="hero-play glass-button-ink pointer-events-auto relative inline-flex items-center gap-4 rounded-pill p-2 pr-6 text-nav font-semibold text-white opacity-0 hover:text-white focus-visible:text-white focus-visible:outline-white"
         >
           <span aria-hidden="true" className="grid h-9 w-9 place-items-center rounded-full bg-accent">
             <svg viewBox="0 0 16 16" width="14" height="14" className="ml-0.5 block">
@@ -501,7 +501,7 @@ export default function HeroChaos() {
           type="button"
           onClick={() => againRef.current?.()}
           style={{ visibility: "hidden" }}
-          className="pointer-events-auto inline-flex items-center gap-2 rounded-pill px-3 py-1.5 text-nav font-semibold text-accent-dark opacity-0 hover:text-ink focus-visible:outline-accent"
+          className="pointer-events-auto inline-flex items-center gap-2 rounded-pill px-4 py-2 text-nav font-semibold text-accent-dark opacity-0 hover:text-ink focus-visible:outline-accent"
         >
           <svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14" className="block" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M2.5 8a5.5 5.5 0 1 0 1.6-3.9" />
@@ -520,7 +520,7 @@ export default function HeroChaos() {
       <span
         ref={progressRef}
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-full mx-auto mb-2 flex w-full max-w-[260px] gap-1.5 opacity-0"
+        className="absolute inset-x-0 bottom-full mx-auto mb-2 flex w-full max-w-[260px] gap-2 opacity-0"
       >
         {STORY.slice(1).map((text) => (
           <span key={text} className="h-[3px] flex-1 overflow-hidden rounded-full bg-ink/10">
@@ -528,7 +528,7 @@ export default function HeroChaos() {
           </span>
         ))}
       </span>
-      <span aria-hidden="true" className="absolute inset-x-0 bottom-full mb-7 block h-8">
+      <span aria-hidden="true" className="absolute inset-x-0 bottom-full mb-8 block h-8">
         {STORY.map((text, k) => (
           <span
             key={text}
@@ -539,7 +539,7 @@ export default function HeroChaos() {
           >
             <span
               data-word
-              className="mr-3 inline-block h-2.5 w-2.5 shrink-0 rounded-full bg-accent opacity-0 shadow-[0_0_12px_3px_rgba(252,137,12,0.45)]"
+              className="mr-2 inline-block h-2.5 w-2.5 shrink-0 rounded-full bg-accent opacity-0 shadow-[0_0_12px_3px_rgba(252,137,12,0.45)]"
             />
             {text.split(" ").map((word, j) => {
               const key = word.startsWith("*");

@@ -77,7 +77,7 @@ function IconLink({
       </a>
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-full z-30 mt-2 -translate-x-1/2 whitespace-nowrap rounded-chrome bg-ink px-3 py-1.5 text-[12px] font-medium text-white opacity-0 transition-opacity duration-150 ease-out group-hover/tip:opacity-100 group-focus-within/tip:opacity-100"
+        className="pointer-events-none absolute left-1/2 top-full z-30 mt-2 -translate-x-1/2 whitespace-nowrap rounded-chrome bg-ink px-2 py-1 text-[12px] font-medium text-white opacity-0 transition-opacity duration-150 ease-out group-hover/tip:opacity-100 group-focus-within/tip:opacity-100"
       >
         {tooltip}
       </span>
@@ -92,8 +92,44 @@ const NAV_ICONS: Record<(typeof primaryNav)[number]["href"], typeof AboutIcon> =
   "/#process": ProcessIcon,
 };
 
+// The section in view, for the nav's current-link state: the last of the
+// nav's sections whose top has passed a line 35% down the viewport, as long
+// as its bottom hasn't (so nothing is current over the hero or the contact
+// block).
+function useActiveSection(enabled: boolean) {
+  const [active, setActive] = useState<string | null>(null);
+  useEffect(() => {
+    if (!enabled) return;
+    const ids = primaryNav.map((item) => item.href.split("#")[1]);
+    let frame = 0;
+    function update() {
+      frame = 0;
+      const line = window.innerHeight * 0.35;
+      let current: string | null = null;
+      for (const id of ids) {
+        const rect = document.getElementById(id)?.getBoundingClientRect();
+        if (rect && rect.top <= line && rect.bottom > line) current = id;
+      }
+      setActive(current);
+    }
+    function onScroll() {
+      if (!frame) frame = requestAnimationFrame(update);
+    }
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, [enabled]);
+  return active;
+}
+
 export default function Header({ backHref, backLabel = "Back to work", animateLogo = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
+  const activeSection = useActiveSection(!backHref);
   const panelId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -159,12 +195,13 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
         ref={headerRef}
         className="site-header glass-bar fixed inset-x-0 top-0 z-40 border-b border-white/70 px-gutter"
       >
-        {/* gap-3 below lg: this is a `justify-between` row, so the gap only
+        {/* gap-2 below lg: this is a `justify-between` row, so the gap only
             ever acts as a minimum separation — but at 360px the logo lockup
             and the menu button together leave under 20px of slack, and a
             32px minimum was enough on its own to push the button past the
-            right gutter. Full gap-8 returns at lg, with the desktop nav. */}
-        <div className="site-header-row flex items-center justify-between gap-3 lg:gap-8">
+            right gutter. From lg, with the desktop nav, it is 24px (the nav only
+            just fits at 1024px), and 32px from xl. */}
+        <div className="site-header-row flex items-center justify-between gap-2 lg:gap-6 xl:gap-8">
           {/* `min-w-0`, not `shrink-0`: when the row runs out of room the logo
               must give way, never the menu button. Android's text scaling
               (common on Samsung phones) or display zoom widens the
@@ -192,7 +229,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             {backHref ? (
               <Link
                 href={backHref}
-                className="group inline-flex items-center gap-1.5 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
+                className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
               >
                 <ArrowLeftIcon />
                 <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{backLabel}</span>
@@ -200,16 +237,25 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             ) : (
               primaryNav.map((item) => {
                 const NavIcon = NAV_ICONS[item.href];
+                const current = activeSection === item.href.split("#")[1];
                 return (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="group inline-flex items-center gap-1.5 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
+                    aria-current={current ? "location" : undefined}
+                    className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                   >
-                    {/* From xl only: at lg (1024px) the three icons push the one-line
-                        nav onto a second row. */}
-                    <NavIcon className="hidden xl:block" />
-                    <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{item.label}</span>
+                    <NavIcon />
+                    <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">
+                      {"short" in item ? (
+                        <>
+                          <span className="xl:hidden">{item.short}</span>
+                          <span className="hidden xl:inline">{item.label}</span>
+                        </>
+                      ) : (
+                        item.label
+                      )}
+                    </span>
                   </a>
                 );
               })
@@ -230,7 +276,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               <IconLink href={site.githubUrl} label="Visit my GitHub" tooltip="Visit my GitHub" icon={<GithubIcon />} />
               <a
                 href="#contact"
-                className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-white rounded-pill py-3 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
+                className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
               >
                 Contact
                 <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
@@ -280,7 +326,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             {backHref ? (
               <Link
                 href={backHref}
-                className="group inline-flex items-center gap-1.5 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
+                className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
               >
                 <ArrowLeftIcon />
                 <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{backLabel}</span>
@@ -288,11 +334,13 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             ) : (
               primaryNav.map((item) => {
                 const NavIcon = NAV_ICONS[item.href];
+                const current = activeSection === item.href.split("#")[1];
                 return (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="group inline-flex items-center gap-1.5 text-nav font-semibold whitespace-nowrap transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
+                    aria-current={current ? "location" : undefined}
+                    className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                     onClick={() => setOpen(false)}
                   >
                     <NavIcon />
@@ -305,7 +353,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               href={site.linkedinUrl}
               target="_blank"
               rel="noreferrer"
-              className="glass-button inline-flex items-center gap-1.5 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill py-3 px-5 hover:text-ink focus-visible:text-ink"
+              className="glass-button inline-flex items-center gap-2 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill h-11 px-6 hover:text-ink focus-visible:text-ink"
             >
               <LinkedInIcon />
               LinkedIn
@@ -314,7 +362,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               href={site.githubUrl}
               target="_blank"
               rel="noreferrer"
-              className="glass-button inline-flex items-center gap-1.5 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill py-3 px-5 hover:text-ink focus-visible:text-ink"
+              className="glass-button inline-flex items-center gap-2 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill h-11 px-6 hover:text-ink focus-visible:text-ink"
             >
               <GithubIcon />
               GitHub
@@ -322,7 +370,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold text-white rounded-pill py-3 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
+              className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
             >
               Contact
               <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />

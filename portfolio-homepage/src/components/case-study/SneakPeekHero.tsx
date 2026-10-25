@@ -56,7 +56,7 @@ export default function SneakPeekHero({ study }: { study: CaseStudy & CaseStudyF
   const readMinutes = estimateReadMinutes(study);
 
   return (
-    <section aria-labelledby="case-study-title" className="border-t border-rule pt-[clamp(32px,4vw,56px)]">
+    <section aria-labelledby="case-study-title" className="border-t border-rule pt-[clamp(32px,4vw,48px)]">
       <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-grid-gap-lg items-center">
         <div className="min-w-0 flex flex-col gap-6">
           <p className="font-mono-label text-mono-label uppercase text-muted m-0">Case study</p>

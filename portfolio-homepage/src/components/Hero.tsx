@@ -6,8 +6,8 @@ import LiquidHover from "./LiquidHover";
 
 export default function Hero() {
   return (
-    <section aria-labelledby="hero-heading" className="pb-[clamp(48px,7vw,88px)]">
-      <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-[clamp(32px,6vw,88px)] items-center py-8 lg:py-[clamp(32px,5vw,56px)]">
+    <section aria-labelledby="hero-heading" className="pb-[clamp(48px,7vw,96px)]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-[clamp(32px,6vw,96px)] items-center py-8 lg:py-[clamp(32px,5vw,48px)]">
         <div className="min-w-0">
           {/* Entrance stagger: byline -> headline -> subheadline -> buttons,
               ~100-180ms apart. Timed to the logo: the ball fades in, the
@@ -19,7 +19,7 @@ export default function Hero() {
           {/* Byline: who's talking, before the promise. The photo is small
               on purpose so it reads as a signature, not a second hero
               image; the Line keeps the right-hand column. */}
-          <div className="flex items-center gap-3 mb-6 fade-up-item" style={{ animationDelay: "1550ms" }}>
+          <div className="flex items-center gap-4 mb-6 fade-up-item" style={{ animationDelay: "1550ms" }}>
             <LiquidHover strength={4} className="shrink-0">
               <Image
                 src="/photo.png"
@@ -57,7 +57,7 @@ export default function Hero() {
           <div className="lg:hidden mt-8 fade-up-item" style={{ animationDelay: "1910ms" }}>
             <HeroLine variant="strip" />
           </div>
-          <div className="flex flex-wrap gap-4 mt-10 fade-up-item" style={{ animationDelay: "2010ms" }}>
+          <div className="flex flex-wrap gap-4 mt-12 fade-up-item" style={{ animationDelay: "2010ms" }}>
             {/* Same target and same mechanism as the header's Contact
                 button: a plain `#contact` anchor, with the smooth scroll
                 coming from `scroll-behavior: smooth` on `html` in

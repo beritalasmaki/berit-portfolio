@@ -335,32 +335,45 @@ Mono label (emphasis) row above — preceded by a 24×2px accent rule.
 
 ## 3. Spacing
 
-8px base scale. Every padding, margin and gap is a multiple of 8.
+One scale. Every padding, margin and gap is one of these values:
 
 ```
-8 · 16 · 24 · 32 · 40 · 48 · 56 · 64 · 72 · 80 · 96 · 120
+8 · 16 · 24 · 32 · 48        (everyday spacing)
+4                            (fine icon-to-label nudges only)
+64 · 96                      (large section spacing only)
 ```
+
+In Tailwind units: `1, 2, 4, 6, 8, 12, 16, 24`. Nothing else: no 12px
+(`-3`), 20px (`-5`), 40px (`-10`) or 56/72/88/120px. Fluid values
+(`clamp()`) run between two values on the scale, at both ends. Pill buttons
+that sit beside 44px icon buttons take a fixed `h-11` (44px, the touch
+target) with `px-6`, rather than 12px vertical padding.
+
+Not spacing, so not on the scale: centring offsets equal to half an
+element's size (`-ml-[22px]` on a 44px ring), optical nudges of an icon
+inside its disc, and word spacing in `em`.
 
 ### Standard values
 
 | Purpose | Value |
 |---|---|
-| Page gutter | `clamp(24px, 5vw, 72px)` |
-| Section rhythm (between sections) | `clamp(64px, 9vw, 120px)` |
+| Page gutter | `clamp(24px, 5vw, 64px)` |
+| Section rhythm (between sections) | `clamp(64px, 9vw, 96px)` |
 | Card padding | `clamp(24px, 2.6vw, 32px)` |
-| Pane padding (large) | `clamp(24px, 3vw, 40px)` |
+| Pane padding (large) | `clamp(24px, 3vw, 32px)` |
 | Card footer padding | `clamp(16px, 2vw, 24px) clamp(24px, 2.6vw, 32px)` |
 | Grid gap (cards) | `clamp(16px, 2vw, 32px)` |
 | Grid gap (columns) | `clamp(24px, 4vw, 64px)` |
 | Stack gap (in-card) | `16px` |
 | Stack gap (label → value) | `8px` |
-| Header / nav gap | `clamp(16px, 2.2vw, 32px)` |
-| Contact block padding | `clamp(48px, 7vw, 96px) clamp(24px, 5vw, 72px)` |
+| Header page-link gap | `clamp(24px, 2.2vw, 32px)` |
+| Icon → label (nav links, buttons) | `8px` |
+| Contact block padding | `clamp(48px, 7vw, 96px) clamp(24px, 5vw, 64px)` |
 
 ### Section rhythm is uniform — every break, no exceptions
 Every top-level section on the homepage carries `mt-rhythm`, so all five
 section breaks measure identically at a given width (verified 64px at
-360/390/414, 92px at 1024, 120px at 1440). `ClientLogos` was the one
+360/390/414, 92px at 1024, 96px at 1440). `ClientLogos` was the one
 offender: it opened with `border-t` + `pt-8` and no top margin, seating its
 divider rule flush against the hero — a 0px break where every other section
 got the full rhythm. It now takes `mt-rhythm` as well, with `pt-8` kept as
@@ -1067,6 +1080,27 @@ Single row, one hairline below:
 ```
 [logo 80px]  ————————  [page links]  |  [LinkedIn icon]  [GitHub icon]  [Contact button]
 ```
+- Page links carry animated icons (`icons.tsx`, styles under "Nav icons"
+  in globals.css), inspired by a tab bar where each icon fills in its own
+  way. At rest an icon is a 16px outline; on hover, focus, or while its
+  section is in view, the outline gives way to a filled brand-orange icon
+  whose pieces arrive with a motion that fits it:
+  - **Case studies:** the four tiles pop in one after another, from dots to
+    full tiles.
+  - **About:** the shoulders rise from the bottom and the head bobs in on
+    top.
+  - **My Process:** the steps light up in order and the links between them
+    draw on.
+  The pieces spring in (520ms, a slight overshoot, 70ms apart) and ease back
+  without delay. Reduced motion shows the filled state at once.
+- The current section's link (`aria-current="location"`) stays filled, its
+  label in `accent-dark`. "Current" is the last nav section whose top has
+  passed a line 35% down the viewport while its bottom hasn't. Over the
+  hero or the contact block, no link is current.
+- Spacing: 8px from icon to label, `nav-gap` (24px, growing to 32px)
+  between links. Below xl the first link reads "Case studies" instead of
+  "Selected case studies", so the row, now with icons, still fits on one
+  line at 1024px. The logo-to-nav minimum is 24px at lg and 32px from xl.
 - Logo: real vector mark (blob + signature paths, exact 1:1-scale overlay
   measured against the original `berit-logo.png`) + real text ("Berit
   Alasmäki" / "UX & Product Designer"), not a flat image — `height: 32px`

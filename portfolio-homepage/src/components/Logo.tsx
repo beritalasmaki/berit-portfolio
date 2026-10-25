@@ -30,7 +30,7 @@ export default function Logo({ animated = false }: {
   const maskId = useId();
 
   return (
-    <span className="inline-flex max-w-full min-w-0 items-center gap-2 sm:gap-3">
+    <span className="inline-flex max-w-full min-w-0 items-center gap-2 xl:gap-4">
       {/* h-8 (32px) on the narrowest phones, h-16 (64px) from sm, h-20
           (80px) at xl+ — a fixed mark plus the wordmark next to it doesn't
           fit a narrow mobile header without pushing into the menu button
