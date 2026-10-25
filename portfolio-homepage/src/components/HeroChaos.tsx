@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animate, createScope, createTimeline, stagger, utils } from "animejs";
 import { BLOB_PATH } from "./Logo";
 
@@ -32,7 +32,9 @@ import { BLOB_PATH } from "./Logo";
  *    shooting star (`line:handoff`), which travels the route, lighting the
  *    checkpoints, and corrects its course once along the way.
  * 6. "And we reach the goal, together." The goal fills and pulses. This line
- *    stays.
+ *    stays, and a quiet "Play again" link appears under the animation: it
+ *    clears the route (`line:reset`), brings the tangle back and plays the
+ *    story again on its own.
  *
  * Animated with Anime.js, inside a scope that's reverted on unmount: an
  * intro timeline on the page's clock (CSS delays count from load, so the
@@ -154,7 +156,12 @@ export default function HeroChaos() {
   const bloomRef = useRef<HTMLSpanElement>(null);
   const lineRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const replayRef = useRef<HTMLButtonElement>(null);
   const playRef = useRef<(() => void) | null>(null);
+  const againRef = useRef<(() => void) | null>(null);
+  // Each "Play again" rebuilds the story from scratch (the scope reverts
+  // everything it animated), then plays it without waiting for the button.
+  const [run, setRun] = useState(0);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -163,7 +170,8 @@ export default function HeroChaos() {
     const map = mapRef.current;
     const bloom = bloomRef.current;
     const button = buttonRef.current;
-    if (!root || !ball || !scan || !map || !bloom || !button) return;
+    const replay = replayRef.current;
+    if (!root || !ball || !scan || !map || !bloom || !button || !replay) return;
     const lines = lineRefs.current.filter(Boolean) as HTMLSpanElement[];
     const say = (name: string) => () => {
       if (name === "line:handoff") (window as Window & { __lineHandoff?: boolean }).__lineHandoff = true;
@@ -299,7 +307,9 @@ export default function HeroChaos() {
       });
     }
 
-    const fromLoad = (ms: number) => Math.max(0, T0 + ms - performance.now());
+    // The first time, on the page's clock; on a replay, from now.
+    const t0 = run === 0 ? T0 : performance.now();
+    const fromLoad = (ms: number) => Math.max(0, t0 + ms - performance.now());
 
     const scope = createScope({ root }).add(() => {
       // On load, with the headline (on the page's clock): the shapes pop in
@@ -308,8 +318,15 @@ export default function HeroChaos() {
       createTimeline()
         .add(els, { opacity: [0, 1], scale: [0.3, 1], duration: 650, delay: stagger(50), ease: "outBack" }, fromLoad(TANGLE))
         .call(() => els.forEach((el, i) => wander(el, i)), fromLoad(TANGLE + 500))
-        .add(words(0), lineIn(), fromLoad(TANGLE + 150))
-        .add(button, { opacity: [0, 1], scale: [0.9, 1], duration: 700, ease: "outCubic" }, fromLoad(TANGLE + 1000));
+        .add(words(0), lineIn(), fromLoad(TANGLE + 150));
+      // The first time the visitor chooses; on a replay the tangle has a
+      // moment, then the story plays.
+      if (run === 0) {
+        createTimeline().add(button, { opacity: [0, 1], scale: [0.9, 1], duration: 700, ease: "outCubic" }, fromLoad(TANGLE + 1000));
+      } else {
+        button.style.visibility = "hidden";
+        createTimeline().call(() => playRef.current?.(), fromLoad(TANGLE + 1800));
+      }
     });
 
     // The story, from the moment the visitor presses play. Times (ms) are
@@ -371,7 +388,24 @@ export default function HeroChaos() {
         tl.add(words(k), lineIn(), t + 450);
         if (j < beats.length - 1) tl.add(words(k), lineOut, beats[j + 1] - 550);
       });
+
+      // 6. At the goal: the way to watch it again.
+      tl.call(() => (replay.style.visibility = "visible"), GOAL + 1400);
+      tl.add(replay, { opacity: [0, 1], y: [6, 0], duration: 700, ease: "outCubic" }, GOAL + 1400);
     });
+
+    // Play again: the ending blows away with the route, then everything is
+    // rebuilt and the story runs once more.
+    let leaving = false;
+    againRef.current = () => {
+      if (leaving) return;
+      leaving = true;
+      createTimeline()
+        .add(words(lines.length - 1), lineOut, 0)
+        .add(replay, { opacity: 0, duration: 300, ease: "inQuad" }, 0)
+        .add(line ? [line] : [], { opacity: 0, duration: 500, ease: "inQuad" }, 0)
+        .call(() => setRun((r) => r + 1), 650);
+    };
 
     playRef.current = () => {
       if (playing) return;
@@ -385,10 +419,17 @@ export default function HeroChaos() {
       playing = true;
       wanders.forEach((a) => a?.pause());
       playRef.current = null;
+      againRef.current = null;
       scope.revert();
       map.replaceChildren();
+      button.style.visibility = "";
+      replay.style.visibility = "hidden";
+      replay.style.opacity = "0";
+      if (line) line.style.opacity = "";
+      (window as Window & { __lineHandoff?: boolean }).__lineHandoff = false;
+      window.dispatchEvent(new Event("line:reset"));
     };
-  }, []);
+  }, [run]);
 
   return (
     <div ref={rootRef} className="pointer-events-none absolute inset-0">
@@ -427,6 +468,22 @@ export default function HeroChaos() {
             </svg>
           </span>
           Turn chaos into clarity
+        </button>
+      </div>
+      {/* After the goal: watch it again. */}
+      <div className="absolute inset-x-0 top-full mt-4 flex justify-center">
+        <button
+          ref={replayRef}
+          type="button"
+          onClick={() => againRef.current?.()}
+          style={{ visibility: "hidden" }}
+          className="pointer-events-auto inline-flex items-center gap-2 rounded-pill px-3 py-1.5 text-nav font-semibold text-accent-dark opacity-0 hover:text-ink focus-visible:outline-accent"
+        >
+          <svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14" className="block" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M2.5 8a5.5 5.5 0 1 0 1.6-3.9" />
+            <path d="M2.5 2.5v3h3" />
+          </svg>
+          Play again
         </button>
       </div>
       {/* The story, one line at a time, above the animation where it's

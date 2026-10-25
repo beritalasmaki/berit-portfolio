@@ -1217,7 +1217,10 @@ immediately (no shapes, the river already drawn).
       into the shooting star (`line:handoff`), which travels the route
       (5.2s) and corrects its course once.
    6. "And we reach the *goal,* together." (+12.2s) The goal fills and
-      pulses.
+      pulses. The line stays, and 1.4s later a quiet "Play again" link
+      fades in under the animation. Pressing it blows the line and route
+      away, rebuilds the story (`line:reset` clears HeroLine), brings the
+      tangle back and plays the story again after 1.8s, with no button.
    - Built with Anime.js inside `createScope({ root })`, reverted on
      unmount: an intro timeline on the page's clock (so the tangle arrives
      with the headline whenever hydration finishes), endless wandering

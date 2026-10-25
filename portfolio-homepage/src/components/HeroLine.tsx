@@ -385,6 +385,13 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       onMetrics();
       if (runAt === null) runAt = performance.now();
     };
+    // "Play again": back to before the story, an empty canvas.
+    const reset = () => {
+      planAt = metricsAt = runAt = null;
+      if (frame !== null) cancelAnimationFrame(frame);
+      frame = null;
+      fit();
+    };
 
     // Only animate while visible.
     const io = new IntersectionObserver(([entry]) => {
@@ -404,6 +411,7 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       window.addEventListener("line:plan", onPlan);
       window.addEventListener("line:metrics", onMetrics);
       window.addEventListener("line:handoff", start);
+      window.addEventListener("line:reset", reset);
       // No start of its own: the hero's story plays only when the visitor
       // presses its play button (HeroChaos.tsx).
     } else {
@@ -415,6 +423,7 @@ export default function HeroLine({ variant = "hero", className = "" }: { variant
       window.removeEventListener("line:plan", onPlan);
       window.removeEventListener("line:metrics", onMetrics);
       window.removeEventListener("line:handoff", start);
+      window.removeEventListener("line:reset", reset);
       timers.forEach((id) => window.clearTimeout(id));
       if (frame !== null) cancelAnimationFrame(frame);
     };
