@@ -157,6 +157,7 @@ export default function HeroChaos() {
   const mapRef = useRef<SVGSVGElement>(null);
   const bloomRef = useRef<HTMLSpanElement>(null);
   const lineRefs = useRef<Array<HTMLSpanElement | null>>([]);
+  const progressRef = useRef<HTMLSpanElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const replayRef = useRef<HTMLButtonElement>(null);
   const playRef = useRef<(() => void) | null>(null);
@@ -173,7 +174,8 @@ export default function HeroChaos() {
     const bloom = bloomRef.current;
     const button = buttonRef.current;
     const replay = replayRef.current;
-    if (!root || !ball || !scan || !map || !bloom || !button || !replay) return;
+    const progress = progressRef.current;
+    if (!root || !ball || !scan || !map || !bloom || !button || !replay || !progress) return;
     const lines = lineRefs.current.filter(Boolean) as HTMLSpanElement[];
     const say = (name: string) => () => {
       if (name === "line:handoff") (window as Window & { __lineHandoff?: boolean }).__lineHandoff = true;
@@ -391,6 +393,14 @@ export default function HeroChaos() {
         if (j < beats.length - 1) tl.add(words(k), lineOut, beats[j + 1] - 600);
       });
 
+      // The progress bar: one segment per step, each filling at the pace of
+      // its step, so the visitor sees how long this one lasts and how many
+      // are left. The last fills as the goal settles, until "Play again".
+      const fills = progress.querySelectorAll<HTMLElement>("[data-fill]");
+      const ends = [...beats.slice(1), GOAL + 1400];
+      tl.add(progress, { opacity: [0, 1], duration: 500, ease: "outCubic" }, 0);
+      beats.forEach((t, j) => tl.add(fills[j], { scaleX: [0, 1], duration: ends[j] - t, ease: "linear" }, t));
+
       // 6. At the goal: the way to watch it again.
       tl.call(() => (replay.style.visibility = "visible"), GOAL + 1400);
       tl.add(replay, { opacity: [0, 1], y: [6, 0], duration: 700, ease: "outCubic" }, GOAL + 1400);
@@ -405,6 +415,7 @@ export default function HeroChaos() {
       createTimeline()
         .add(words(lines.length - 1), lineOut, 0)
         .add(replay, { opacity: 0, duration: 300, ease: "inQuad" }, 0)
+        .add(progress, { opacity: 0, duration: 400, ease: "inQuad" }, 0)
         .add(line ? [line] : [], { opacity: 0, duration: 500, ease: "inQuad" }, 0)
         .call(() => setRun((r) => r + 1), 650);
     };
@@ -493,7 +504,20 @@ export default function HeroChaos() {
           word in the brand orange. Lines anchor at the bottom, so on a
           narrower column a long one wraps upward, never into the animation.
           Every piece animates on its own (see the timeline above). */}
-      <span aria-hidden="true" className="absolute inset-x-0 bottom-full mb-6 block h-8">
+      {/* How far along the story is: a segment per step (map, plan,
+          systems, move, goal), shown once it plays. */}
+      <span
+        ref={progressRef}
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-full mx-auto mb-2 flex w-full max-w-[260px] gap-1.5 opacity-0"
+      >
+        {STORY.slice(1).map((text) => (
+          <span key={text} className="h-[3px] flex-1 overflow-hidden rounded-full bg-ink/10">
+            <span data-fill className="block h-full origin-left scale-x-0 rounded-full bg-accent" />
+          </span>
+        ))}
+      </span>
+      <span aria-hidden="true" className="absolute inset-x-0 bottom-full mb-7 block h-8">
         {STORY.map((text, k) => (
           <span
             key={text}

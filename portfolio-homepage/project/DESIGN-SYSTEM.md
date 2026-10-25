@@ -1221,6 +1221,11 @@ immediately (no shapes, the river already drawn).
       fades in under the animation. Pressing it blows the line and route
       away, rebuilds the story (`line:reset` clears HeroLine), brings the
       tangle back and plays the story again after 3s, with no button.
+   - A progress bar sits under the story line once it plays: five short
+     segments (map, plan, systems, move, goal), each filling linearly over
+     its step's length, the last as the goal settles until "Play again"
+     appears. It tells the visitor how long each step lasts and how many
+     are left. Decorative (`aria-hidden`); hidden under reduced motion.
    - Built with Anime.js inside `createScope({ root })`, reverted on
      unmount: an intro timeline on the page's clock (so the tangle arrives
      with the headline whenever hydration finishes), endless wandering
