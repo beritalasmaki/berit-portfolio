@@ -1207,20 +1207,20 @@ immediately (no shapes, the river already drawn).
       in, the shapes hold still, a scan ripples out, and thin lines draw
       between each shape and its two nearest neighbours as the scan reaches
       them: the mess becomes a map.
-   3. "Then we *plan* what's needed, the system and the goal." (+2.4s) The
+   3. "Then we *plan* what's needed, the system and the goal." (+5.8s) The
       map fades, the shapes sort into rows by kind under the ball, and
       `line:plan` brings in the goal and the dashed planned route.
-   4. "We set up the *systems* and how we'll measure progress." (+4.8s) The
+   4. "We set up the *systems* and how we'll measure progress." (+11.6s) The
       rows deal out onto the route as small dots, which become its
       checkpoints (`line:metrics`); the ball moves to the start.
-   5. "We *move,* learning and adjusting as we go." (+7.0s) The ball blooms
+   5. "We *move,* learning and adjusting as we go." (+17.2s) The ball blooms
       into the shooting star (`line:handoff`), which travels the route
       (5.2s) and corrects its course once.
-   6. "And we reach the *goal,* together." (+12.2s) The goal fills and
+   6. "And we reach the *goal,* together." (+22.4s) The goal fills and
       pulses. The line stays, and 1.4s later a quiet "Play again" link
       fades in under the animation. Pressing it blows the line and route
       away, rebuilds the story (`line:reset` clears HeroLine), brings the
-      tangle back and plays the story again after 1.8s, with no button.
+      tangle back and plays the story again after 3s, with no button.
    - Built with Anime.js inside `createScope({ root })`, reverted on
      unmount: an intro timeline on the page's clock (so the tangle arrives
      with the headline whenever hydration finishes), endless wandering

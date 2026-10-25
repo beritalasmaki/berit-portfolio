@@ -43,9 +43,9 @@ import { BLOB_PATH } from "./Logo";
  * from the click. Every tangle move is clamped to the column, so nothing
  * crosses the text.
  *
- * Story timing is unhurried on purpose: each beat holds long enough to
- * read its line and watch it happen (~2.2–2.4s), and the star's run takes
- * 5.2s; about 12s from the click to the goal.
+ * Story timing is unhurried on purpose: each beat holds 5.6–5.8s, so its
+ * line is fully on screen for 3.5s or more, long enough to read and take
+ * in, and the star's run takes 5.2s; about 22s from the click to the goal.
  *
  * Wide screens only (on narrow ones it would sit over the text). Under
  * reduced motion nothing moves: HeroLine draws the finished route and goal,
@@ -107,11 +107,13 @@ const STORY = [
 const T0 = 1550;
 const TANGLE = 0;
 // The story's beats (ms) once the visitor presses play. Unhurried on
-// purpose: each holds long enough to read its line and watch it happen.
+// purpose: each line is on screen, fully in, for 3.5s+ before the next
+// (time to read it and take it in), and each beat's picture plays out while
+// it's read.
 const MAP = 0;
-const PLAN = 2400;
-const METRICS = 4800;
-const MOVE = 7000; // The star sets off…
+const PLAN = 5800;
+const METRICS = 11600;
+const MOVE = 17200; // The star sets off…
 const GOAL = MOVE + 5200; // …and arrives (HeroLine's run).
 
 // Sorted rows in "Plan": one row per kind, in this order, all at one size,
@@ -276,8 +278,8 @@ export default function HeroChaos() {
       opacity: [0, 1],
       filter: ["blur(10px)", "blur(0px)"],
       x: [-16, 0],
-      duration: 900,
-      delay: stagger(60),
+      duration: 800,
+      delay: stagger(40),
       ease: "outCubic",
     });
     const lineOut = {
@@ -325,7 +327,7 @@ export default function HeroChaos() {
         createTimeline().add(button, { opacity: [0, 1], scale: [0.9, 1], duration: 700, ease: "outCubic" }, fromLoad(TANGLE + 1000));
       } else {
         button.style.visibility = "hidden";
-        createTimeline().call(() => playRef.current?.(), fromLoad(TANGLE + 1800));
+        createTimeline().call(() => playRef.current?.(), fromLoad(TANGLE + 3000));
       }
     });
 
@@ -373,7 +375,7 @@ export default function HeroChaos() {
       }, METRICS);
       tl.call(say("line:metrics"), METRICS + 1650);
       tl.add(els, { opacity: 0, duration: 400, ease: "inSine" }, METRICS + 1700);
-      tl.add(ball, { x: sx - ballX, y: sy - ballY, scale: 0.45, duration: 1300, ease: "inOutCubic" }, METRICS + 400);
+      tl.add(ball, { x: sx - ballX, y: sy - ballY, scale: 0.45, duration: 1300, ease: "inOutCubic" }, METRICS + 2600);
 
       // 5. Move: the ball blooms into the shooting star.
       tl.add(ball, { opacity: 0, scale: 0.15, duration: 500, ease: "inCubic" }, MOVE - 400);
@@ -385,8 +387,8 @@ export default function HeroChaos() {
       tl.add(words(0), lineOut, 0);
       beats.forEach((t, j) => {
         const k = j + 1;
-        tl.add(words(k), lineIn(), t + 450);
-        if (j < beats.length - 1) tl.add(words(k), lineOut, beats[j + 1] - 550);
+        tl.add(words(k), lineIn(), t + 250);
+        if (j < beats.length - 1) tl.add(words(k), lineOut, beats[j + 1] - 600);
       });
 
       // 6. At the goal: the way to watch it again.
