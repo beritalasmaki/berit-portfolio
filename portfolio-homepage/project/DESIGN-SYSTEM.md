@@ -83,18 +83,25 @@ introduce new colors, sizes or radii without adding them here first.
   follows it; don't add a second visual language.
   - *Rule: nothing exists ahead of the star.* The line only appears where
     the star has been. No faint guide track, no pre-drawn tangle.
-  - *Hero (lg+, right column):* the star is the spark from the logo (see
-    Homepage entrance sequence). It slithers through two loops like a
-    snake, drawing them, and they fade out behind its 300-unit tail (the
-    complexity, untangled). Out of the loops it glides into one river bend
-    and comes to rest at the lower left, pointing at the buttons. It leaves
-    a thin line (1.6, 60% opacity) that fades in over 170 units from where
-    the loops were. The run is 3.4s and ease-out only, carrying the spark's
-    momentum, so the handover has no stop-and-restart.
+  - *Hero (lg+, right column):* the second half of the hero's story (see
+    Homepage entrance sequence), driven by its events. `line:plan`: a goal
+    ring fades in at the top right and a faint dashed route (the plan)
+    draws itself to it. `line:metrics`: hollow checkpoints appear along the
+    route. `line:handoff`: the star travels the route (4.2s,
+    `easeInOutSine`), filling each checkpoint as it passes. Partway along,
+    the real path dips off the dashed plan and back onto it: a visible
+    course correction. On arrival the goal fills and pulses, and the star
+    rests in it.
+  - *It swells as it travels:* every width is scaled from 55% as it sets
+    off to 100% as it arrives. The tail is up to ~5.5 units wide at the
+    head. It leaves a line 2.8 units wide at 60% opacity, which fades in
+    over 170 units from its start.
   - *Afterwards:* the resting star twinkles gently, and every 9s a softer
     star runs down the river and brightens it on arrival.
-  - *Below lg:* `variant="strip"`, a slim version under the lead. It starts
-    from rest (ease-in-out) as the signature finishes, with the headline.
+  - *Below lg:* `variant="strip"`, a slim version under the lead, telling
+    the short version: the star slithers through two loops (they fade out
+    behind its tail) into a calm wave. It starts from rest as the
+    signature finishes, with the headline.
   - *Mechanics:* it's drawn on a canvas, because the tail is a gradient
     along a curve, which SVG strokes can't do. The curve (Catmull-Rom
     through anchors) is sampled every 1.5 units, so the star moves at a
@@ -1164,11 +1171,11 @@ code and applies site-wide:
 
 ### Homepage entrance sequence
 Plays once on load (homepage only — `Header`'s `animateLogo` prop). It is
-one continuous gesture, about 7s, unhurried: the ball appears, the
-signature writes itself, and the headline comes out at the moment a spark
-leaves the pen and becomes the star that draws the hero's river.
+one continuous opening: the ball appears, the signature writes itself, and
+with the headline a tangle of shapes appears beside it, with a button that
+plays the story of how Berit works, from the tangle to a reached goal.
 `prefers-reduced-motion: reduce` shows every element in its finished state
-immediately (no spark, the river already drawn).
+immediately (no shapes, the river already drawn).
 1. **Ball, then signature** (`Logo.tsx`): the orange ball fades and settles
    in first (`.logo-blob-in`, 0–450ms, from 90% scale), so it never sits
    there empty, and the signature starts writing over it right away
@@ -1177,22 +1184,62 @@ immediately (no spark, the river already drawn).
    like ink flowing from a pen, at a steady pace (`cubic-bezier(0.35, 0, 0.65,
    1)`; an ease-out finished early and then sat still). (The
    mark is a filled silhouette, so stroking it would only outline it.)
-2. **Text with the star** (byline 1550ms, H1 1650ms, lead 1830ms, buttons
-   2010ms): the headline comes out exactly as the star lifts off the end of
-   the signature, so title and star arrive together. Keep these delays in
-   step with `.logo-mask-wipe`.
-3. **Spark leaves the pen** (`PenSpark.tsx`, lg+): 200ms before the
-   signature finishes, a spark gathers at the tip of the final flourish
-   (`[data-pen-tip]` in `Logo.tsx`). It flicks up the way the flourish
-   ends, skims above the name, drops through the gap between the name and
-   the nav, and swings past the headline's top-right corner into the hero's
-   right column. The name, nav and headline are measured live, so it stays
-   clear of them at every width (≥37px from the headline at 1024–1920).
-   It lifts off slowly (position ∝ u^n) and its flight time (1.4–2.6s) is
-   picked so it arrives at exactly the speed the hero star sets off with,
-   then fires `line:handoff`. Below lg it doesn't fly (it would cross the
-   text); the strip's star sets off 400ms after the signature finishes.
-4. **The star draws the river** (`HeroLine.tsx`, 3.4s), see The Line.
+2. **Text with the chaos** (byline 1550ms, H1 1650ms, lead 1830ms, buttons
+   2010ms): the headline comes out together with the shapes. Keep these
+   delays in step with `.logo-mask-wipe` and `T0` in `HeroChaos.tsx`.
+3. **The story: how Berit works** (`HeroChaos.tsx` + `HeroLine.tsx`, lg+,
+   Anime.js). Six beats in the hero's right column. **The visitor chooses
+   to play it:** on load only the first beat shows, and keeps going (the
+   tangle wanders on endlessly, its line above it), with a play button in
+   the middle of the tangle, "Turn chaos into clarity" (ink pill, orange
+   play disc, a soft ring breathing out from it, `.hero-play`). Pressing it
+   (mouse or keyboard) plays the rest from wherever the tangle is.
+   - *The story's text* sits above the animation, where it's seen first:
+     a glowing orange dot (like the star), then the line in the body font
+     (semibold, 17–20px), its key word in `accent-dark`. Lines arrive word
+     by word out of a soft blur, drifting in like a breath of wind, and
+     blow away onward the same way when the next one comes; the last one
+     stays. Long lines wrap upward, never into the animation.
+   1. "Every project starts in a *tangle.*" (on load, with the headline)
+      14 bold brand shapes pop in and wander restlessly (up to 150px, ±200°,
+      a scale wobble, 1.6–2.4s per move, clamped to the column).
+   2. "First, I *map* where things stand." (on play) Berit's logo ball drops
+      in, the shapes hold still, a scan ripples out, and thin lines draw
+      between each shape and its two nearest neighbours as the scan reaches
+      them: the mess becomes a map.
+   3. "Then we *plan* what's needed, the system and the goal." (+5.8s) The
+      map fades, the shapes sort into rows by kind under the ball, and
+      `line:plan` brings in the goal and the dashed planned route.
+   4. "We set up the *systems* and how we'll measure progress." (+11.6s) The
+      rows deal out onto the route as small dots, which become its
+      checkpoints (`line:metrics`); the ball moves to the start.
+   5. "We *move,* learning and adjusting as we go." (+17.2s) The ball blooms
+      into the shooting star (`line:handoff`), which travels the route
+      (5.2s) and corrects its course once.
+   6. "And we reach the *goal,* together." (+22.4s) The goal fills and
+      pulses. The line stays, and 1.4s later a quiet "Play again" link
+      fades in under the animation. Pressing it blows the line and route
+      away, rebuilds the story (`line:reset` clears HeroLine), brings the
+      tangle back and plays the story again after 3s, with no button.
+   - A progress bar sits under the story line once it plays: five short
+     segments (map, plan, systems, move, goal), each filling linearly over
+     its step's length, the last as the goal settles until "Play again"
+     appears. It tells the visitor how long each step lasts and how many
+     are left. Decorative (`aria-hidden`); hidden under reduced motion.
+   - Built with Anime.js inside `createScope({ root })`, reverted on
+     unmount: an intro timeline on the page's clock (so the tangle arrives
+     with the headline whenever hydration finishes), endless wandering
+     moves, and the story as a scope method run from the click. No
+     `composition: 'blend'`: blended tweens add up, so later beats couldn't
+     land shapes exactly in rows or on the checkpoints. The hero star never
+     starts on its own.
+   - Below lg there's no story (it would sit over the text). Under reduced
+     motion nothing moves and there's no button: the finished route, lit
+     checkpoints and filled goal are drawn, and only the last line shows.
+4. **The route and the star** (`HeroLine.tsx`), see The Line.
+
+Dependency: `animejs` (v4). It adds ~16 kB to the homepage's First Load JS
+(137 → 153 kB) and is used only by `HeroChaos.tsx`.
 
 ### Scroll reveal (`Reveal.tsx`)
 Below-the-fold content "grows in" as the user scrolls to it, rather than

@@ -1,8 +1,8 @@
 import Image from "next/image";
+import HeroChaos from "./HeroChaos";
 import HeroLine from "./HeroLine";
 import { ArrowRightIcon } from "./icons";
 import LiquidHover from "./LiquidHover";
-import PenSpark from "./PenSpark";
 
 export default function Hero() {
   return (
@@ -12,10 +12,10 @@ export default function Hero() {
           {/* Entrance stagger: byline -> headline -> subheadline -> buttons,
               ~100-180ms apart. Timed to the logo: the ball fades in, the
               signature writes itself (150-1850ms), and the headline comes
-              out at 1650ms, the moment the star lifts off the end of the
-              signature (PenSpark.tsx), so the two arrive together. Keep
-              these in step with .logo-mask-wipe in globals.css. See
-              .fade-up-item / @keyframes fade-up there too. */}
+              out at 1650ms, together with the chaos of shapes in the right
+              column (HeroChaos.tsx). Keep these in step with
+              .logo-mask-wipe in globals.css and HeroChaos's T0. See
+              .fade-up-item / @keyframes fade-up in globals.css too. */}
           {/* Byline: who's talking, before the promise. The photo is small
               on purpose so it reads as a signature, not a second hero
               image; the Line keeps the right-hand column. */}
@@ -82,16 +82,18 @@ export default function Hero() {
         </div>
 
         <div className="min-w-0 hidden lg:flex flex-col justify-center">
-          {/* The Line: arrives as a tangle and unwinds into a calm,
-              flowing path, the headline acted out (see HeroLine.tsx). The
-              star is the spark that lifts off the logo signature
-              (PenSpark.tsx). */}
-          <div className="fade-up-item w-full max-w-[600px] mx-auto" style={{ animationDelay: "650ms" }}>
+          {/* The story of how Berit works, told beside the headline: from a
+              tangle, through mapping, planning and setting up systems and
+              metrics, to moving and adjusting until the goal is reached
+              (HeroChaos.tsx tells the first half, HeroLine.tsx the second).
+              Both start empty, so this needs no fade-in of its own. The
+              top margin leaves room for the story's line of text. */}
+          <div className="relative w-full max-w-[600px] mx-auto mt-16">
             <HeroLine />
+            <HeroChaos />
           </div>
         </div>
       </div>
-      <PenSpark />
     </section>
   );
 }

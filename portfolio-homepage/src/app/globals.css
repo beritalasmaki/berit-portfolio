@@ -111,11 +111,9 @@
      edge. Instead a bar with a feathered right edge slides across an SVG
      <mask>, revealing the real, unaltered signature left to right, like
      ink flowing from a pen, at a steady writing pace (a gentle in-out, not
-     an ease-out that finishes early and then sits still). Gentle at the end
-     too, because the hero's star
-     lifts off the end of the stroke as it finishes (PenSpark.tsx), together
-     with the headline (Hero.tsx delays). `both` holds the hidden state
-     through the delay. */
+     an ease-out that finishes early and then sits still). The headline and
+     the hero's chaos of shapes come out as it finishes (Hero.tsx delays,
+     HeroChaos.tsx). `both` holds the hidden state through the delay. */
   .logo-mask-wipe {
     animation: logo-wipe 1700ms cubic-bezier(0.35, 0, 0.65, 1) 150ms both;
   }
@@ -203,6 +201,23 @@
   [data-reveal-hidden] [data-ripple] {
     opacity: 0;
     transform: translateY(16px);
+  }
+
+  /* Hero story play button (HeroChaos.tsx): a soft ring breathes out from
+     it, inviting a click without shouting. */
+  .hero-play::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 9999px;
+    border: 2px solid rgba(252, 137, 12, 0.55);
+    animation: hero-play-ring 2400ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    pointer-events: none;
+  }
+
+  @keyframes hero-play-ring {
+    0% { transform: scale(1); opacity: 0.8; }
+    70%, 100% { transform: scale(1.18, 1.45); opacity: 0; }
   }
 
   /* Case-study menu star (TableOfContents.tsx): a link's dot stays hidden
