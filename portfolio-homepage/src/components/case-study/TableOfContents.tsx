@@ -255,7 +255,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
     // `align-items: stretch` only applies at `lg:` anyway, where TOC and
     // the main content share a grid row — below `lg:` they're separate
     // stacked rows (`grid-cols-1`), so mobile is unaffected either way.
-    <div className="mb-10 lg:mb-0">
+    <div className="mb-12 lg:mb-0">
       {/* Desktop / tablet: fully expanded, sticky sidebar. */}
       <nav
         ref={navRef}
@@ -322,7 +322,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
         open={mobileOpen}
         onToggle={(event) => setMobileOpen(event.currentTarget.open)}
       >
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-6 font-mono-label text-mono-label uppercase text-muted marker:content-none [&::-webkit-details-marker]:hidden">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-mono-label text-mono-label uppercase text-muted marker:content-none [&::-webkit-details-marker]:hidden">
           Navigate to...
           <span
             aria-hidden="true"

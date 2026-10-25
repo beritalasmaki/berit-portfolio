@@ -44,7 +44,7 @@ export default function WhatIDo() {
           rather than as four distinct blocks. */}
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-grid-gap gap-y-8 list-none p-0 m-0">
         {groups.map((group) => (
-          <li key={group.title} className="flex flex-col gap-3">
+          <li key={group.title} className="flex flex-col gap-4">
             <span aria-hidden="true" className="block w-6 h-0.5 rounded-pill bg-accent" />
             <h4 className="m-0 text-sub-h4 text-ink text-pretty">{group.title}</h4>
             <p className="m-0 max-w-prose text-body-lg text-body">{group.body}</p>

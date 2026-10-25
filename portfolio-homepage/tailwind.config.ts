@@ -83,19 +83,19 @@ const config: Config = {
         "mono-label-em": ["12px", { letterSpacing: "0.14em" }],
       },
       spacing: {
-        "18": "72px",
-        "30": "120px",
-        gutter: "clamp(24px, 5vw, 72px)",
-        rhythm: "clamp(64px, 9vw, 120px)",
+        // Spacing follows one scale: 8, 16, 24, 32, 48 px, plus 4px for
+        // fine icon-to-label nudges and 64/96 for big section spacing (in
+        // Tailwind units: 1, 2, 4, 6, 8, 12, 16, 24). Fluid tokens below
+        // run between two values on that scale.
+        gutter: "clamp(24px, 5vw, 64px)",
+        rhythm: "clamp(64px, 9vw, 96px)",
         "card-pad": "clamp(24px, 2.6vw, 32px)",
-        "pane-pad": "clamp(24px, 3vw, 40px)",
+        "pane-pad": "clamp(24px, 3vw, 32px)",
         "grid-gap": "clamp(16px, 2vw, 32px)",
         "grid-gap-lg": "clamp(24px, 4vw, 64px)",
-        // Slightly tighter min bound than most fluid gaps on the site —
-        // the header nav now carries 3 links + a divider + 2 icon buttons
-        // + Contact, and this is what keeps all of it on one line down to
-        // fairly narrow desktop widths instead of wrapping to a second row.
-        "nav-gap": "clamp(10px, 1.8vw, 32px)",
+        // Between the header's page links: 24px at narrow desktop widths
+        // (enough air between three links that now carry icons), 32px wide.
+        "nav-gap": "clamp(24px, 2.2vw, 32px)",
         "contact-y": "clamp(48px, 7vw, 96px)",
       },
       borderRadius: {

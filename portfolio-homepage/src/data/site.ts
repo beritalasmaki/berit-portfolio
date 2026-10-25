@@ -10,7 +10,9 @@ export const site = {
 } as const;
 
 export const primaryNav = [
-  { label: "Selected case studies", href: "/#case-studies" },
+  // `short` is shown in the desktop nav below xl (1280px), where the full
+  // label, with the icons and 24px gaps, would push the nav onto two lines.
+  { label: "Selected case studies", short: "Case studies", href: "/#case-studies" },
   { label: "About", href: "/#about" },
   { label: "My Process", href: "/#process" },
 ] as const;

@@ -335,32 +335,45 @@ Mono label (emphasis) row above — preceded by a 24×2px accent rule.
 
 ## 3. Spacing
 
-8px base scale. Every padding, margin and gap is a multiple of 8.
+One scale. Every padding, margin and gap is one of these values:
 
 ```
-8 · 16 · 24 · 32 · 40 · 48 · 56 · 64 · 72 · 80 · 96 · 120
+8 · 16 · 24 · 32 · 48        (everyday spacing)
+4                            (fine icon-to-label nudges only)
+64 · 96                      (large section spacing only)
 ```
+
+In Tailwind units: `1, 2, 4, 6, 8, 12, 16, 24`. Nothing else: no 12px
+(`-3`), 20px (`-5`), 40px (`-10`) or 56/72/88/120px. Fluid values
+(`clamp()`) run between two values on the scale, at both ends. Pill buttons
+that sit beside 44px icon buttons take a fixed `h-11` (44px, the touch
+target) with `px-6`, rather than 12px vertical padding.
+
+Not spacing, so not on the scale: centring offsets equal to half an
+element's size (`-ml-[22px]` on a 44px ring), optical nudges of an icon
+inside its disc, and word spacing in `em`.
 
 ### Standard values
 
 | Purpose | Value |
 |---|---|
-| Page gutter | `clamp(24px, 5vw, 72px)` |
-| Section rhythm (between sections) | `clamp(64px, 9vw, 120px)` |
+| Page gutter | `clamp(24px, 5vw, 64px)` |
+| Section rhythm (between sections) | `clamp(64px, 9vw, 96px)` |
 | Card padding | `clamp(24px, 2.6vw, 32px)` |
-| Pane padding (large) | `clamp(24px, 3vw, 40px)` |
+| Pane padding (large) | `clamp(24px, 3vw, 32px)` |
 | Card footer padding | `clamp(16px, 2vw, 24px) clamp(24px, 2.6vw, 32px)` |
 | Grid gap (cards) | `clamp(16px, 2vw, 32px)` |
 | Grid gap (columns) | `clamp(24px, 4vw, 64px)` |
 | Stack gap (in-card) | `16px` |
 | Stack gap (label → value) | `8px` |
-| Header / nav gap | `clamp(16px, 2.2vw, 32px)` |
-| Contact block padding | `clamp(48px, 7vw, 96px) clamp(24px, 5vw, 72px)` |
+| Header page-link gap | `clamp(24px, 2.2vw, 32px)` |
+| Icon → label (nav links, buttons) | `8px` |
+| Contact block padding | `clamp(48px, 7vw, 96px) clamp(24px, 5vw, 64px)` |
 
 ### Section rhythm is uniform — every break, no exceptions
 Every top-level section on the homepage carries `mt-rhythm`, so all five
 section breaks measure identically at a given width (verified 64px at
-360/390/414, 92px at 1024, 120px at 1440). `ClientLogos` was the one
+360/390/414, 92px at 1024, 96px at 1440). `ClientLogos` was the one
 offender: it opened with `border-t` + `pt-8` and no top margin, seating its
 divider rule flush against the hero — a 0px break where every other section
 got the full rhythm. It now takes `mt-rhythm` as well, with `pt-8` kept as
@@ -1067,6 +1080,42 @@ Single row, one hairline below:
 ```
 [logo 80px]  ————————  [page links]  |  [LinkedIn icon]  [GitHub icon]  [Contact button]
 ```
+- Page links carry animated icons (`icons.tsx`, styles under "Nav icons"
+  in globals.css), inspired by a tab bar where each icon fills in its own
+  way. At rest an icon is a 16px outline; on hover, focus, or while its
+  section is in view, the outline gives way to a filled brand-orange icon
+  whose pieces arrive with a motion that fits it:
+  - **Case studies:** the four tiles pop in one after another, from dots to
+    full tiles.
+  - **About:** the shoulders rise from the bottom and the head bobs in on
+    top.
+  - **My Process:** the steps light up in order and the links between them
+    draw on.
+  It's a calm crossfade, not a pop, because the glass pill arrives at
+  the same moment. The outline stays until the pieces have mostly arrived
+  (it fades over 700ms after 250ms), so the icon never blanks or flashes.
+  The pieces grow from part size (tiles from 60%, shoulders from 45%) with
+  only a slight overshoot (900ms, 150ms apart, about 1.5s in all), and each
+  deepens from light peach (`#FFC98F`) to the brand orange over 1.2s. The
+  filled tiles are 5.4px with a clear 1.6px gap, so they never read as
+  touching. Leaving, it all eases back quickly, without delay.
+  Reduced motion shows the filled state at once.
+- No underline. The link being pointed at or focused, or otherwise the
+  current section's, sits on a frosted-glass pill (white/70, a hairline
+  white edge, a soft shadow, backdrop blur) that flows like liquid from
+  link to link (`useLiquidIndicator`, as in the tabs, squeeze 0.8). The
+  pill reaches 16px past each side of the link and 8px above and below
+  (`outset`), so it never changes the links' spacing. Moving away, it
+  flows back to the current section, or fades out if there is none.
+  Keyboard focus keeps its focus ring as well.
+- The current section's link (`aria-current="location"`) stays filled, its
+  label in `accent-dark`. "Current" is the last nav section whose top has
+  passed a line 35% down the viewport while its bottom hasn't. Over the
+  hero or the contact block, no link is current.
+- Spacing: 8px from icon to label, `nav-gap` (24px, growing to 32px)
+  between links. Below xl the first link reads "Case studies" instead of
+  "Selected case studies", so the row, now with icons, still fits on one
+  line at 1024px. The logo-to-nav minimum is 24px at lg and 32px from xl.
 - Logo: real vector mark (blob + signature paths, exact 1:1-scale overlay
   measured against the original `berit-logo.png`) + real text ("Berit
   Alasmäki" / "UX & Product Designer"), not a flat image — `height: 32px`
@@ -1204,9 +1253,12 @@ immediately (no shapes, the river already drawn).
       14 bold brand shapes pop in and wander restlessly (up to 150px, ±200°,
       a scale wobble, 1.6–2.4s per move, clamped to the column).
    2. "First, I *map* where things stand." (on play) Berit's logo ball drops
-      in, the shapes hold still, a scan ripples out, and thin lines draw
-      between each shape and its two nearest neighbours as the scan reaches
-      them: the mess becomes a map.
+      in, the shapes hold still, and a scan ripples out from the middle of
+      the tangle (growing only as far as the column's top edge, 2.2s).
+      Thin lines between each shape and its two nearest neighbours draw
+      themselves on (1.1s each), from the end nearer the centre, starting
+      as the ripple reaches them: the mess becomes a map, in a visible
+      wave.
    3. "Then we *plan* what's needed, the system and the goal." (+5.8s) The
       map fades, the shapes sort into rows by kind under the ball, and
       `line:plan` brings in the goal and the dashed planned route.
@@ -1217,10 +1269,19 @@ immediately (no shapes, the river already drawn).
       into the shooting star (`line:handoff`), which travels the route
       (5.2s) and corrects its course once.
    6. "And we reach the *goal,* together." (+22.4s) The goal fills and
-      pulses. The line stays, and 1.4s later a quiet "Play again" link
-      fades in under the animation. Pressing it blows the line and route
-      away, rebuilds the story (`line:reset` clears HeroLine), brings the
-      tangle back and plays the story again after 3s, with no button.
+      pulses. The line stays. The last frame (+25s): the route fades out
+      and "Play again" (the same dark pill as the play button, with a
+      replay icon) appears in its place, inside a soft blurred bubble
+      shaped like Berit's ball (peach to orange, `blur-lg`, breathing).
+      Pressing it blows the line and bubble away, rebuilds the story
+      (`line:reset` clears HeroLine), brings the tangle back and plays the
+      story again after 3s, with no button.
+   - The story text and its progress bar sit 16px apart, and the bar sits
+     32px above the animation's top edge, which nothing crosses: the ball
+     (centre at least 48px down, dropping in only 12px), the tangle (its
+     moves allow for the shapes at full scale and tilt), and the scan
+     ripple (centred on the tangle and sized to stop 8px inside the top
+     edge). Measured: at least 44px of air at 1024px.
    - One focus area: everything that moves stays in the middle of the
      column. The tangle is pulled in toward the centre (`SPREAD` 0.62) and
      roams at most 90px inside a central box (`FOCUS`, 14–86% × 12–88%);
@@ -1229,8 +1290,7 @@ immediately (no shapes, the river already drawn).
      The story text and progress bar stay above the animation.
    - A progress bar sits under the story line once it plays: five short
      segments (map, plan, systems, move, goal), each filling linearly over
-     its step's length, the last as the goal settles until "Play again"
-     appears. It tells the visitor how long each step lasts and how many
+     its step's length, the last until "Play again" appears. It tells the visitor how long each step lasts and how many
      are left. Decorative (`aria-hidden`); hidden under reduced motion.
    - Built with Anime.js inside `createScope({ root })`, reverted on
      unmount: an intro timeline on the page's clock (so the tangle arrives

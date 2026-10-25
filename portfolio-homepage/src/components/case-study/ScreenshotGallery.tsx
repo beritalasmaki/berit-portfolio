@@ -178,7 +178,7 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
 
       {isOpen && current && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-[clamp(16px,4vw,56px)] cursor-zoom-out"
+          className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-[clamp(16px,4vw,48px)] cursor-zoom-out"
           style={{ background: "rgba(34, 34, 34, 0.8)" }}
           onClick={close}
         >
@@ -190,11 +190,11 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
             className="relative flex max-w-[92vw] max-h-[92vh] flex-col gap-4 cursor-auto"
             onClick={(event) => event.stopPropagation()}
           >
-            {/* gap-3 on mobile, and the caption truncates rather than
+            {/* gap-2 on mobile, and the caption truncates rather than
                 running `whitespace-nowrap` past the edge: at 390px a long
                 caption plus the counter plus the controls overflowed the
                 toolbar and cut the Close button in half. */}
-            <div className="shrink-0 flex items-center justify-between gap-3 sm:gap-6 rounded-chrome bg-ink px-4 py-3">
+            <div className="shrink-0 flex items-center justify-between gap-2 sm:gap-6 rounded-chrome bg-ink px-4 py-2">
               <p className="font-mono-label text-mono-label uppercase text-white m-0 min-w-0 truncate">
                 {current.caption}
                 {images.length > 1 && (
@@ -216,7 +216,7 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
                       type="button"
                       onClick={() => step(-1)}
                       aria-label="Previous screenshot"
-                      className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-3 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
+                      className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
                     >
                       ‹
                     </button>
@@ -224,7 +224,7 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
                       type="button"
                       onClick={() => step(1)}
                       aria-label="Next screenshot"
-                      className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-3 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
+                      className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
                     >
                       ›
                     </button>

@@ -35,6 +35,7 @@ export function useLiquidIndicator(
     axis,
     squeeze = 0.55,
     thickness,
+    outset = [0, 0],
   }: {
     /** "x": travels horizontally (tabs in a row); "y": vertically (a list). */
     axis: "x" | "y";
@@ -43,6 +44,9 @@ export function useLiquidIndicator(
     /** For a bar: its thickness in px, placed along the item's bottom edge
      * (x) or left edge (y). Omit for a block that fills the item. */
     thickness?: number;
+    /** For a block: how far it reaches past the item's box, [x, y] px (a
+     * pill with room around a link, without padding the link itself). */
+    outset?: [number, number];
   }
 ) {
   const indicatorRef = useRef<HTMLSpanElement>(null);
@@ -60,6 +64,8 @@ export function useLiquidIndicator(
     const item = activeIndex === null ? null : itemRefs.current?.[activeIndex] ?? null;
     if (!el || !box) return;
     if (!item) {
+      // Nothing selected (a nav with no current link): fade out.
+      el.style.transition = "opacity 200ms ease-out";
       el.style.opacity = "0";
       last.current = null;
       return;
@@ -100,16 +106,20 @@ export function useLiquidIndicator(
         ],
         { duration: 600, easing: "ease-in-out" }
       );
+    } else if (animate && !prev) {
+      // Reappearing after nothing was selected: jump into place unseen and
+      // fade in, rather than flowing in from wherever it was last.
+      el.style.transition = "opacity 200ms ease-out";
     } else {
       el.style.transition = "none";
     }
 
     if (thickness === undefined) {
-      // A block filling the item.
-      el.style.left = `${left}px`;
-      el.style.right = `${right}px`;
-      el.style.top = `${top}px`;
-      el.style.bottom = `${bottom}px`;
+      // A block filling the item (and its outset).
+      el.style.left = `${left - outset[0]}px`;
+      el.style.right = `${right - outset[0]}px`;
+      el.style.top = `${top - outset[1]}px`;
+      el.style.bottom = `${bottom - outset[1]}px`;
     } else if (axis === "x") {
       // A bar along the item's bottom edge.
       el.style.left = `${left}px`;

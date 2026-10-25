@@ -195,7 +195,7 @@ function WorkingWithMeRow({
         {/* `min-w-0` matters: without it this flex child refuses to shrink
             below its own content width, and the nowrap hint beside it spilled
             past the card's right edge instead of giving way. */}
-        <span className="flex-1 min-w-0 flex flex-col gap-1.5">
+        <span className="flex-1 min-w-0 flex flex-col gap-2">
           <span className="text-body-em font-semibold text-ink text-pretty">{item.statement}</span>
           {/* Below xl the hint drops onto its own line under the statement.
               Side by side, its ~130px of nowrap mono left roughly 85px for
@@ -261,7 +261,7 @@ function WorkingWithMe() {
   return (
     <div className="flex flex-col gap-6 glass rounded-card p-card-pad">
       <h3 className="m-0 text-card-h3 text-ink">Working with me</h3>
-      <ul className="flex flex-col gap-3 list-none p-0 m-0">
+      <ul className="flex flex-col gap-4 list-none p-0 m-0">
         {items.map((item, index) => (
           <WorkingWithMeRow
             key={item.statement}
@@ -316,7 +316,7 @@ export default function AboutMe() {
           href={site.linkedinUrl}
           target="_blank"
           rel="noreferrer"
-          className="glass-button-ink group inline-flex items-center gap-2 text-white text-nav font-semibold py-3 px-6 rounded-pill self-start whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
+          className="glass-button-ink group inline-flex items-center gap-2 text-white text-nav font-semibold h-11 px-6 rounded-pill self-start whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
         >
           <LinkedInIcon />
           Connect on LinkedIn
@@ -333,7 +333,7 @@ export default function AboutMe() {
             the fold. The share-tracking `si` parameter from the copied embed
             code is dropped: it identifies the share event that produced the
             snippet and the player works without it. */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           <p className="m-0 font-mono-label text-mono-label uppercase text-muted">
             Music I keep listening to
           </p>
