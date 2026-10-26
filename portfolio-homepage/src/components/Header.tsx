@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { useLiquidIndicator } from "./useLiquidIndicator";
 import Logo from "./Logo";
@@ -93,6 +94,31 @@ const NAV_ICONS: Record<(typeof primaryNav)[number]["href"], typeof AboutIcon> =
   "/#process": ProcessIcon,
 };
 
+// From another page, the logo fades the page out, goes home under the veil
+// and fades the homepage in, again along the sound's swell and tail.
+function fadeHome(go: () => void) {
+  const out = veil([{ opacity: 0 }, { opacity: 1 }], {
+    duration: 600,
+    easing: "cubic-bezier(0.4, 0, 0.6, 1)",
+    fill: "forwards",
+  });
+  if (!out) return go();
+  out.onfinish = () => {
+    go();
+    // Fade back in once home has rendered (or after a few seconds anyway,
+    // so a slow or failed navigation never leaves the page veiled).
+    const started = performance.now();
+    function lift() {
+      if (window.location.pathname !== "/" && performance.now() - started < 3000) {
+        requestAnimationFrame(lift);
+        return;
+      }
+      veil([{ opacity: 1 }, { opacity: 0 }], { duration: 1200, easing: "cubic-bezier(0.3, 0, 0.2, 1)" });
+    }
+    requestAnimationFrame(lift);
+  };
+}
+
 // The section in view, for the nav's current-link state: the last of the
 // nav's sections whose top has passed a line 35% down the viewport, as long
 // as its bottom hasn't (so nothing is current over the hero or the contact
@@ -128,6 +154,21 @@ function useActiveSection(enabled: boolean) {
   return active;
 }
 
+// The logo's fade: the page washes out to its own cream ground and back,
+// timed to the logo's sound (sounds/home.mp3), which swells for about 0.7s
+// and dies away by about 1.8s. The veil is #page-fade in layout.tsx, so it
+// outlives a page change.
+let veilFade: Animation | null = null;
+function veil(keyframes: Keyframe[], options: KeyframeAnimationOptions) {
+  const el = document.getElementById("page-fade");
+  if (!el) return null;
+  const previous = veilFade;
+  veilFade = el.animate(keyframes, options);
+  // Started from where the last one left off, so it can be let go now.
+  previous?.cancel();
+  return veilFade;
+}
+
 // The logo on the homepage: back to the top with a whoosh rather than the
 // page's usual even glide. It gathers speed, rushes through the middle and
 // eases into place at the hero, and the longer the way up, the longer it
@@ -137,6 +178,16 @@ function whooshToTop() {
   const html = document.documentElement;
   const from = window.scrollY;
   if (from <= 0) return;
+  // Up with the sound's swell, peaking as the page rushes past, then away
+  // with its tail as the hero settles into view.
+  veil(
+    [
+      { opacity: 0, easing: "cubic-bezier(0.4, 0, 0.6, 1)" },
+      { opacity: 0.85, offset: 0.38, easing: "cubic-bezier(0.3, 0, 0.2, 1)" },
+      { opacity: 0 },
+    ],
+    { duration: 1800 }
+  );
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     window.scrollTo({ top: 0, behavior: "instant" });
     return;
@@ -169,6 +220,7 @@ function whooshToTop() {
 
 export default function Header({ backHref, backLabel = "Back to work", animateLogo = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
   const activeSection = useActiveSection(!backHref);
 
   // The page links' highlight: a frosted-glass pill behind the link being
@@ -269,10 +321,13 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             href="/"
             data-sound="home"
             onClick={(event) => {
+              // A new tab or window (modifier keys) is left to the browser.
+              if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+              event.preventDefault();
+              // Elsewhere: fade out, go home, fade in.
+              if (window.location.pathname !== "/") return fadeHome(() => router.push("/"));
               // Already home: whoosh up to the hero instead of reloading it.
               // The hash goes too, so the address matches the view.
-              if (window.location.pathname !== "/") return;
-              event.preventDefault();
               if (window.location.hash) history.replaceState(null, "", "/");
               whooshToTop();
             }}

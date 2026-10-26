@@ -32,6 +32,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <UiSounds />
         <div id="page-top" />
         {children}
+        {/* The logo's fade veil (Header.tsx): the page's own cream ground,
+            above everything, invisible until the logo is clicked. */}
+        <div
+          id="page-fade"
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-[100] bg-[#fffaf4] opacity-0"
+        />
       </body>
     </html>
   );
