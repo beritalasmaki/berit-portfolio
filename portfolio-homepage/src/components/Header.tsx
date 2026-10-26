@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { useLiquidIndicator } from "./useLiquidIndicator";
 import Logo from "./Logo";
@@ -69,6 +70,7 @@ function IconLink({
     <span className="relative group/tip">
       <a
         href={href}
+        data-sound="social"
         target="_blank"
         rel="noreferrer"
         aria-label={label}
@@ -92,6 +94,31 @@ const NAV_ICONS: Record<(typeof primaryNav)[number]["href"], typeof AboutIcon> =
   "/#about": AboutIcon,
   "/#process": ProcessIcon,
 };
+
+// From another page, the logo fades the page out, goes home under the veil
+// and fades the homepage in, again along the sound's swell and tail.
+function fadeHome(go: () => void) {
+  const out = veil([{ opacity: 0 }, { opacity: 1 }], {
+    duration: 600,
+    easing: "cubic-bezier(0.4, 0, 0.6, 1)",
+    fill: "forwards",
+  });
+  if (!out) return go();
+  out.onfinish = () => {
+    go();
+    // Fade back in once home has rendered (or after a few seconds anyway,
+    // so a slow or failed navigation never leaves the page veiled).
+    const started = performance.now();
+    function lift() {
+      if (window.location.pathname !== "/" && performance.now() - started < 3000) {
+        requestAnimationFrame(lift);
+        return;
+      }
+      veil([{ opacity: 1 }, { opacity: 0 }], { duration: 1200, easing: "cubic-bezier(0.3, 0, 0.2, 1)" });
+    }
+    requestAnimationFrame(lift);
+  };
+}
 
 // The section in view, for the nav's current-link state: the last of the
 // nav's sections whose top has passed a line 35% down the viewport, as long
@@ -128,23 +155,114 @@ function useActiveSection(enabled: boolean) {
   return active;
 }
 
+// The logo's fade: the page washes out to its own cream ground and back,
+// timed to the logo's sound (sounds/home.mp3), which swells for about 0.7s
+// and dies away by about 1.8s. The veil is #page-fade in layout.tsx, so it
+// outlives a page change.
+let veilFade: Animation | null = null;
+function veil(keyframes: Keyframe[], options: KeyframeAnimationOptions) {
+  const el = document.getElementById("page-fade");
+  if (!el) return null;
+  const previous = veilFade;
+  veilFade = el.animate(keyframes, options);
+  // Started from where the last one left off, so it can be let go now.
+  previous?.cancel();
+  return veilFade;
+}
+
+// The logo on the homepage: back to the top with a whoosh rather than the
+// page's usual even glide. It gathers speed, rushes through the middle and
+// eases into place at the hero, and the longer the way up, the longer it
+// takes (within limits, so it never drags). Any wheel, touch or key from the
+// visitor hands control straight back. With reduced motion it simply jumps.
+function whooshToTop() {
+  const html = document.documentElement;
+  const from = window.scrollY;
+  if (from <= 0) return;
+  // Up with the sound's swell, peaking as the page rushes past, then away
+  // with its tail as the hero settles into view.
+  veil(
+    [
+      { opacity: 0, easing: "cubic-bezier(0.4, 0, 0.6, 1)" },
+      { opacity: 0.85, offset: 0.38, easing: "cubic-bezier(0.3, 0, 0.2, 1)" },
+      { opacity: 0 },
+    ],
+    { duration: 1800 }
+  );
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    return;
+  }
+  const duration = Math.min(1200, 550 + from * 0.12);
+  const ease = (t: number) => (t < 0.5 ? 16 * t ** 5 : 1 - (-2 * t + 2) ** 5 / 2);
+  // `scroll-behavior: smooth` on html would smooth every frame's step all
+  // over again; this curve does its own easing.
+  html.style.scrollBehavior = "auto";
+  let frame = 0;
+  const start = performance.now();
+  function stop() {
+    cancelAnimationFrame(frame);
+    html.style.scrollBehavior = "";
+    window.removeEventListener("wheel", stop);
+    window.removeEventListener("touchstart", stop);
+    window.removeEventListener("keydown", stop);
+  }
+  function step(now: number) {
+    const t = Math.min((now - start) / duration, 1);
+    window.scrollTo(0, from * (1 - ease(t)));
+    if (t < 1) frame = requestAnimationFrame(step);
+    else stop();
+  }
+  window.addEventListener("wheel", stop, { passive: true });
+  window.addEventListener("touchstart", stop, { passive: true });
+  window.addEventListener("keydown", stop);
+  frame = requestAnimationFrame(step);
+}
+
 export default function Header({ backHref, backLabel = "Back to work", animateLogo = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
   const activeSection = useActiveSection(!backHref);
 
   // The page links' highlight: a frosted-glass pill behind the link being
-  // pointed at or focused, otherwise the current section's, flowing like
-  // liquid from link to link (useLiquidIndicator, as the tabs do). It
-  // reaches 16px past each side of the link and 8px above and below, so
-  // the links keep their spacing.
+  // pointed at or focused, otherwise the current section's. It pops up on
+  // each link rather than flowing between them like the tabs do: the links
+  // click with a pop sound, and a pop is what matches it. It reaches 16px
+  // past each side of the link and 8px above and below, so the links keep
+  // their spacing. No backdrop blur of its own: it sits in the
+  // already-frosted header, where a second blur showed next to nothing but
+  // had to be repainted on every frame it moved.
   const navRef = useRef<HTMLElement>(null);
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [pointed, setPointed] = useState<number | null>(null);
+  // The link just clicked, held until the page has scrolled there. Without
+  // it, once the pointer left the nav the pill followed the current section
+  // all the way, popping up on every section passed on the way (Case
+  // studies, then About, then Process) instead of staying on the one chosen.
+  const [jumpedTo, setJumpedTo] = useState<number | null>(null);
+  useEffect(() => {
+    if (jumpedTo === null) return;
+    const release = () => setJumpedTo(null);
+    // The smooth scroll ends (or the visitor takes over); a timeout covers
+    // browsers without `scrollend`, and a click that needed no scroll.
+    const timer = window.setTimeout(release, 2000);
+    window.addEventListener("scrollend", release);
+    window.addEventListener("wheel", release, { passive: true });
+    window.addEventListener("touchstart", release, { passive: true });
+    window.addEventListener("keydown", release);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("scrollend", release);
+      window.removeEventListener("wheel", release);
+      window.removeEventListener("touchstart", release);
+      window.removeEventListener("keydown", release);
+    };
+  }, [jumpedTo]);
   const currentIndex = primaryNav.findIndex((item) => item.href.split("#")[1] === activeSection);
-  const pill = useLiquidIndicator(navRef, linkRefs, pointed ?? (currentIndex < 0 ? null : currentIndex), {
+  const pill = useLiquidIndicator(navRef, linkRefs, pointed ?? jumpedTo ?? (currentIndex < 0 ? null : currentIndex), {
     axis: "x",
-    squeeze: 0.8,
     outset: [16, 8],
+    pop: true,
   });
   const panelId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -224,7 +342,23 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               non-wrapping wordmark, and as a fixed `shrink-0` item it pushed
               the toggle past the right edge, where a fixed header can't be
               scrolled to. Now the wordmark truncates instead (see Logo.tsx). */}
-          <Link href="/" className="block min-w-0" aria-label={`${site.name} — home`}>
+          <Link
+            href="/"
+            data-sound="home"
+            onClick={(event) => {
+              // A new tab or window (modifier keys) is left to the browser.
+              if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+              event.preventDefault();
+              // Elsewhere: fade out, go home, fade in.
+              if (window.location.pathname !== "/") return fadeHome(() => router.push("/"));
+              // Already home: whoosh up to the hero instead of reloading it.
+              // The hash goes too, so the address matches the view.
+              if (window.location.hash) history.replaceState(null, "", "/");
+              whooshToTop();
+            }}
+            className="block min-w-0"
+            aria-label={`${site.name} — home`}
+          >
             <Logo animated={animateLogo} />
           </Link>
 
@@ -238,21 +372,31 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               this) cover everything below. At 1024 it now fits on one line
               with room to spare; see the Logo's `xl:h-20` note for the other
               half of that budget. */}
+          {/* The pointer and focus are let go on the nav as a whole, not on
+              each link: leaving a link for the gap before the next one used
+              to drop the pill (fading it out, or sending it back towards the
+              current section) only to catch it again a moment later, so it
+              blinked between links instead of going straight to the next. */}
           <nav
             ref={navRef}
             aria-label="Primary"
+            onPointerLeave={() => setPointed(null)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPointed(null);
+            }}
             className="relative hidden lg:flex items-center justify-end gap-nav-gap flex-wrap min-w-0"
           >
             {!backHref && (
               <span
                 ref={pill.indicatorRef}
                 aria-hidden="true"
-                className="pointer-events-none absolute rounded-pill border border-white/80 bg-white/70 opacity-0 shadow-[0_4px_16px_rgba(34,34,34,0.08)] backdrop-blur-md"
+                className="pointer-events-none absolute rounded-pill border border-white/80 bg-white/75 opacity-0 shadow-[0_4px_16px_rgba(34,34,34,0.08)]"
               />
             )}
             {backHref ? (
               <Link
                 href={backHref}
+                data-sound="back"
                 className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
               >
                 <ArrowLeftIcon />
@@ -269,11 +413,11 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                       linkRefs.current[index] = el;
                     }}
                     href={item.href}
+                    data-sound="pop"
                     aria-current={current ? "location" : undefined}
                     onPointerEnter={() => setPointed(index)}
-                    onPointerLeave={() => setPointed(null)}
                     onFocus={() => setPointed(index)}
-                    onBlur={() => setPointed(null)}
+                    onClick={() => setJumpedTo(index)}
                     className="relative inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                   >
                     <NavIcon />
@@ -307,6 +451,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               <IconLink href={site.githubUrl} label="Visit my GitHub" tooltip="Visit my GitHub" icon={<GithubIcon />} />
               <a
                 href="#contact"
+                data-sound="pop"
                 className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
               >
                 Contact
@@ -357,6 +502,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             {backHref ? (
               <Link
                 href={backHref}
+                data-sound="back"
                 className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
               >
                 <ArrowLeftIcon />
@@ -370,6 +516,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                   <a
                     key={item.href}
                     href={item.href}
+                    data-sound="pop"
                     aria-current={current ? "location" : undefined}
                     className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                     onClick={() => setOpen(false)}
@@ -382,6 +529,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             )}
             <a
               href={site.linkedinUrl}
+              data-sound="social"
               target="_blank"
               rel="noreferrer"
               className="glass-button inline-flex items-center gap-2 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill h-11 px-6 hover:text-ink focus-visible:text-ink"
@@ -391,6 +539,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             </a>
             <a
               href={site.githubUrl}
+              data-sound="social"
               target="_blank"
               rel="noreferrer"
               className="glass-button inline-flex items-center gap-2 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill h-11 px-6 hover:text-ink focus-visible:text-ink"

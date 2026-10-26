@@ -25,7 +25,11 @@ const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffec
  * been placed, so the caller can keep a static selected style until then
  * (no flash before hydration, and still a visible selection without JS).
  *
- * Reduced motion: it simply moves, with no stretch or squeeze.
+ * `pop`: instead of flowing, it pops up at the new item (a quick fade
+ * and overshooting scale, like a bubble), for places where a click sound
+ * goes with it and a pop matches it better than a flow.
+ *
+ * Reduced motion: it simply moves, with no stretch, squeeze or pop.
  */
 export function useLiquidIndicator(
   containerRef: RefObject<HTMLElement | null>,
@@ -36,6 +40,7 @@ export function useLiquidIndicator(
     squeeze = 0.55,
     thickness,
     outset = [0, 0],
+    pop = false,
   }: {
     /** "x": travels horizontally (tabs in a row); "y": vertically (a list). */
     axis: "x" | "y";
@@ -47,11 +52,14 @@ export function useLiquidIndicator(
     /** For a block: how far it reaches past the item's box, [x, y] px (a
      * pill with room around a link, without padding the link itself). */
     outset?: [number, number];
+    /** Pop up at the new item instead of flowing to it. */
+    pop?: boolean;
   }
 ) {
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const [ready, setReady] = useState(false);
   const last = useRef<{ start: number } | null>(null);
+  const squeezing = useRef<Animation | null>(null);
 
   // While a flow is running, until this time (ms).
   const flowingUntil = useRef(0);
@@ -85,6 +93,19 @@ export function useLiquidIndicator(
 
     if (animate === "keep" || (animate && prev && prev.start === start)) {
       // A re-render or resize mid-flow: leave the flow running.
+    } else if (animate && pop && !reduced) {
+      // Straight to the new item, popping up there: in from a little
+      // smaller and see-through, a touch past full size, then settled.
+      el.style.transition = "none";
+      squeezing.current?.cancel();
+      squeezing.current = el.animate(
+        [
+          { transform: "scale(0.82)", opacity: 0 },
+          { transform: "scale(1.05)", opacity: 1, offset: 0.6 },
+          { transform: "none", opacity: 1 },
+        ],
+        { duration: 280, easing: "cubic-bezier(0.3, 0, 0.2, 1)" }
+      );
     } else if (animate && prev && !reduced) {
       flowingUntil.current = performance.now() + 700;
       const forward = start > prev.start;
@@ -98,7 +119,10 @@ export function useLiquidIndicator(
         `${cross} 420ms cubic-bezier(0.3, 1, 0.5, 1)`,
         "opacity 200ms ease-out",
       ].join(", ");
-      el.animate(
+      // A new flow mid-flow takes over the squeeze rather than stacking a
+      // second one on top of it.
+      squeezing.current?.cancel();
+      squeezing.current = el.animate(
         [
           { transform: "none" },
           { transform: axis === "x" ? `scaleY(${squeeze})` : `scaleX(${squeeze})`, offset: 0.45 },

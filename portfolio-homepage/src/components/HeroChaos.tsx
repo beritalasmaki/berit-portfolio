@@ -528,6 +528,7 @@ export default function HeroChaos() {
           ref={buttonRef}
           type="button"
           onClick={() => playRef.current?.()}
+          data-sound="play"
           className="hero-play glass-button-ink pointer-events-auto relative inline-flex items-center gap-4 rounded-pill p-2 pr-6 text-nav font-semibold text-white opacity-0 hover:text-white focus-visible:text-white focus-visible:outline-white"
         >
           <span aria-hidden="true" className="grid h-9 w-9 place-items-center rounded-full bg-accent">
@@ -563,6 +564,7 @@ export default function HeroChaos() {
         <button
           type="button"
           onClick={() => againRef.current?.()}
+          data-sound="play-again"
           className="glass-button-ink pointer-events-auto relative inline-flex items-center gap-4 rounded-pill p-2 pr-6 text-nav font-semibold text-white opacity-0 hover:text-white focus-visible:text-white focus-visible:outline-white"
         >
           <span aria-hidden="true" className="grid h-9 w-9 place-items-center rounded-full bg-accent">
