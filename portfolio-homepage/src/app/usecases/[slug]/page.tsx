@@ -30,7 +30,7 @@ export async function generateMetadata({
   const study = getCaseStudy(slug as CaseStudySlug);
   if (!study) return {};
   return {
-    title: `${study.title} | By Berit Alasmäki`,
+    title: `${study.tabTitle ?? study.title} | By Berit Alasmäki`,
     description: study.description,
   };
 }

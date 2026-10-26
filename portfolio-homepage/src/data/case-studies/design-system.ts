@@ -3,6 +3,7 @@ import type { CaseStudy } from "./types";
 export const designSystem: CaseStudy = {
   slug: "design-system",
   title: "DS by Berit",
+  tabTitle: "Design System",
   label: "PERSONAL DESIGN SYSTEM · 2025–PRESENT",
   headline: "A design system I design,\nbuild and run myself.",
   description:

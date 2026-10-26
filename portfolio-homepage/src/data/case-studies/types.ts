@@ -20,6 +20,9 @@ export type CaseStudySummary = {
   slug: CaseStudySlug;
   /** Full project title, used as the detail page's <h1>. */
   title: string;
+  /** Browser tab title, when `title` doesn't read well before
+   * "| By Berit Alasmäki". Defaults to `title`. */
+  tabTitle?: string;
   /** Mono eyebrow label, e.g. "INDUSTRIAL DATA TOOLS · 2020–2023". */
   label: string;
   /** Homepage card headline. Use "\n" for an intentional line break. */
