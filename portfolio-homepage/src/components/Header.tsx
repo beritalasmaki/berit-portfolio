@@ -175,7 +175,9 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
   // pointed at or focused, otherwise the current section's, flowing like
   // liquid from link to link (useLiquidIndicator, as the tabs do). It
   // reaches 16px past each side of the link and 8px above and below, so
-  // the links keep their spacing.
+  // the links keep their spacing. No backdrop blur of its own: it sits in
+  // the already-frosted header, where a second blur showed next to nothing
+  // but had to be repainted on every frame of the flow.
   const navRef = useRef<HTMLElement>(null);
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [pointed, setPointed] = useState<number | null>(null);
@@ -290,16 +292,25 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               this) cover everything below. At 1024 it now fits on one line
               with room to spare; see the Logo's `xl:h-20` note for the other
               half of that budget. */}
+          {/* The pointer and focus are let go on the nav as a whole, not on
+              each link: leaving a link for the gap before the next one used
+              to drop the pill (fading it out, or sending it back towards the
+              current section) only to catch it again a moment later, so it
+              jumped or stuttered instead of flowing across. */}
           <nav
             ref={navRef}
             aria-label="Primary"
+            onPointerLeave={() => setPointed(null)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPointed(null);
+            }}
             className="relative hidden lg:flex items-center justify-end gap-nav-gap flex-wrap min-w-0"
           >
             {!backHref && (
               <span
                 ref={pill.indicatorRef}
                 aria-hidden="true"
-                className="pointer-events-none absolute rounded-pill border border-white/80 bg-white/70 opacity-0 shadow-[0_4px_16px_rgba(34,34,34,0.08)] backdrop-blur-md"
+                className="pointer-events-none absolute rounded-pill border border-white/80 bg-white/75 opacity-0 shadow-[0_4px_16px_rgba(34,34,34,0.08)]"
               />
             )}
             {backHref ? (
@@ -324,9 +335,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                     data-sound="pop"
                     aria-current={current ? "location" : undefined}
                     onPointerEnter={() => setPointed(index)}
-                    onPointerLeave={() => setPointed(null)}
                     onFocus={() => setPointed(index)}
-                    onBlur={() => setPointed(null)}
                     className="relative inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                   >
                     <NavIcon />

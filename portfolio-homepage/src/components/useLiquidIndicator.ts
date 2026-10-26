@@ -52,6 +52,7 @@ export function useLiquidIndicator(
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const [ready, setReady] = useState(false);
   const last = useRef<{ start: number } | null>(null);
+  const squeezing = useRef<Animation | null>(null);
 
   // While a flow is running, until this time (ms).
   const flowingUntil = useRef(0);
@@ -98,7 +99,10 @@ export function useLiquidIndicator(
         `${cross} 420ms cubic-bezier(0.3, 1, 0.5, 1)`,
         "opacity 200ms ease-out",
       ].join(", ");
-      el.animate(
+      // A new flow mid-flow takes over the squeeze rather than stacking a
+      // second one on top of it.
+      squeezing.current?.cancel();
+      squeezing.current = el.animate(
         [
           { transform: "none" },
           { transform: axis === "x" ? `scaleY(${squeeze})` : `scaleX(${squeeze})`, offset: 0.45 },
