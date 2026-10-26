@@ -204,6 +204,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
               : undefined
           }
           href={`#${item.id}`}
+          data-sound="pop"
           aria-current={isActive ? "location" : undefined}
           onClick={() => {
             // Opens the matching accordion section if it is one — harmless

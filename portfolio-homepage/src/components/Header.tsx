@@ -269,6 +269,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                       linkRefs.current[index] = el;
                     }}
                     href={item.href}
+                    data-sound="pop"
                     aria-current={current ? "location" : undefined}
                     onPointerEnter={() => setPointed(index)}
                     onPointerLeave={() => setPointed(null)}
@@ -307,6 +308,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               <IconLink href={site.githubUrl} label="Visit my GitHub" tooltip="Visit my GitHub" icon={<GithubIcon />} />
               <a
                 href="#contact"
+                data-sound="pop"
                 className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
               >
                 Contact
@@ -370,6 +372,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                   <a
                     key={item.href}
                     href={item.href}
+                    data-sound="pop"
                     aria-current={current ? "location" : undefined}
                     className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                     onClick={() => setOpen(false)}
