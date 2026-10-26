@@ -128,6 +128,45 @@ function useActiveSection(enabled: boolean) {
   return active;
 }
 
+// The logo on the homepage: back to the top with a whoosh rather than the
+// page's usual even glide. It gathers speed, rushes through the middle and
+// eases into place at the hero, and the longer the way up, the longer it
+// takes (within limits, so it never drags). Any wheel, touch or key from the
+// visitor hands control straight back. With reduced motion it simply jumps.
+function whooshToTop() {
+  const html = document.documentElement;
+  const from = window.scrollY;
+  if (from <= 0) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    return;
+  }
+  const duration = Math.min(1200, 550 + from * 0.12);
+  const ease = (t: number) => (t < 0.5 ? 16 * t ** 5 : 1 - (-2 * t + 2) ** 5 / 2);
+  // `scroll-behavior: smooth` on html would smooth every frame's step all
+  // over again; this curve does its own easing.
+  html.style.scrollBehavior = "auto";
+  let frame = 0;
+  const start = performance.now();
+  function stop() {
+    cancelAnimationFrame(frame);
+    html.style.scrollBehavior = "";
+    window.removeEventListener("wheel", stop);
+    window.removeEventListener("touchstart", stop);
+    window.removeEventListener("keydown", stop);
+  }
+  function step(now: number) {
+    const t = Math.min((now - start) / duration, 1);
+    window.scrollTo(0, from * (1 - ease(t)));
+    if (t < 1) frame = requestAnimationFrame(step);
+    else stop();
+  }
+  window.addEventListener("wheel", stop, { passive: true });
+  window.addEventListener("touchstart", stop, { passive: true });
+  window.addEventListener("keydown", stop);
+  frame = requestAnimationFrame(step);
+}
+
 export default function Header({ backHref, backLabel = "Back to work", animateLogo = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const activeSection = useActiveSection(!backHref);
@@ -224,7 +263,20 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               non-wrapping wordmark, and as a fixed `shrink-0` item it pushed
               the toggle past the right edge, where a fixed header can't be
               scrolled to. Now the wordmark truncates instead (see Logo.tsx). */}
-          <Link href="/" className="block min-w-0" aria-label={`${site.name} — home`}>
+          <Link
+            href="/"
+            data-sound="home"
+            onClick={(event) => {
+              // Already home: whoosh up to the hero instead of reloading it.
+              // The hash goes too, so the address matches the view.
+              if (window.location.pathname !== "/") return;
+              event.preventDefault();
+              if (window.location.hash) history.replaceState(null, "", "/");
+              whooshToTop();
+            }}
+            className="block min-w-0"
+            aria-label={`${site.name} — home`}
+          >
             <Logo animated={animateLogo} />
           </Link>
 

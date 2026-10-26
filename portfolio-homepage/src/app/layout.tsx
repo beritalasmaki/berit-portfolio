@@ -19,7 +19,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Berit Alasmäki — UX & Product Designer",
+  title: "Berit Alasmäki | Senior UX & Product Designer",
   description:
     "Senior UX & product designer based in Finland. Selected case studies in expert tools, service design and design systems.",
 };
