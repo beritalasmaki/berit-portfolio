@@ -234,8 +234,31 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
   const navRef = useRef<HTMLElement>(null);
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [pointed, setPointed] = useState<number | null>(null);
+  // The link just clicked, held until the page has scrolled there. Without
+  // it, once the pointer left the nav the pill followed the current section
+  // all the way, popping up on every section passed on the way (Case
+  // studies, then About, then Process) instead of staying on the one chosen.
+  const [jumpedTo, setJumpedTo] = useState<number | null>(null);
+  useEffect(() => {
+    if (jumpedTo === null) return;
+    const release = () => setJumpedTo(null);
+    // The smooth scroll ends (or the visitor takes over); a timeout covers
+    // browsers without `scrollend`, and a click that needed no scroll.
+    const timer = window.setTimeout(release, 2000);
+    window.addEventListener("scrollend", release);
+    window.addEventListener("wheel", release, { passive: true });
+    window.addEventListener("touchstart", release, { passive: true });
+    window.addEventListener("keydown", release);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("scrollend", release);
+      window.removeEventListener("wheel", release);
+      window.removeEventListener("touchstart", release);
+      window.removeEventListener("keydown", release);
+    };
+  }, [jumpedTo]);
   const currentIndex = primaryNav.findIndex((item) => item.href.split("#")[1] === activeSection);
-  const pill = useLiquidIndicator(navRef, linkRefs, pointed ?? (currentIndex < 0 ? null : currentIndex), {
+  const pill = useLiquidIndicator(navRef, linkRefs, pointed ?? jumpedTo ?? (currentIndex < 0 ? null : currentIndex), {
     axis: "x",
     outset: [16, 8],
     pop: true,
@@ -393,6 +416,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                     aria-current={current ? "location" : undefined}
                     onPointerEnter={() => setPointed(index)}
                     onFocus={() => setPointed(index)}
+                    onClick={() => setJumpedTo(index)}
                     className="relative inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                   >
                     <NavIcon />

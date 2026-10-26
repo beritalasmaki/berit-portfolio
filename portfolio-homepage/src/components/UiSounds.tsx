@@ -7,7 +7,9 @@ import { useEffect } from "react";
  *
  * Any element with `data-sound="<name>"` plays that sound when clicked, so
  * server components (the case study cards) can opt in with an attribute
- * instead of becoming client components for an onClick. One listener on
+ * instead of becoming client components for an onClick. Every other button
+ * (a real <button>, or a link styled as one: Back to top, the hero's
+ * calls to action, the social icons) pops, like the nav links. One listener on
  * the document handles them all; it is mounted once, in the root layout.
  *
  * The clips are short and kept quiet: they confirm an action, they don't
@@ -16,7 +18,7 @@ import { useEffect } from "react";
  *
  * - play: the hero's "Turn chaos into clarity" button starts the story.
  * - play-again: "Play again" restarts it.
- * - pop: jumping to a section from the nav.
+ * - pop: jumping to a section from the nav, and every other button.
  * - open: opening a case study.
  * - back: from a case study, back to the main page.
  * - home: the logo, which whooshes the page back to the top.
@@ -44,7 +46,8 @@ export default function UiSounds() {
 
     function onClick(event: MouseEvent) {
       const target = event.target as Element | null;
-      const name = target?.closest<HTMLElement>("[data-sound]")?.dataset.sound as SoundName | undefined;
+      const el = target?.closest<HTMLElement>("[data-sound], button, a.glass-button, a.glass-button-ink");
+      const name = (el?.dataset.sound ?? (el ? "pop" : undefined)) as SoundName | undefined;
       const audio = name && clips.get(name);
       if (!audio) return;
       // Restart rather than queue, so a quick second click still sounds.
