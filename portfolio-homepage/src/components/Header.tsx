@@ -70,6 +70,7 @@ function IconLink({
     <span className="relative group/tip">
       <a
         href={href}
+        data-sound="social"
         target="_blank"
         rel="noreferrer"
         aria-label={label}
@@ -528,6 +529,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             )}
             <a
               href={site.linkedinUrl}
+              data-sound="social"
               target="_blank"
               rel="noreferrer"
               className="glass-button inline-flex items-center gap-2 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill h-11 px-6 hover:text-ink focus-visible:text-ink"
@@ -537,6 +539,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             </a>
             <a
               href={site.githubUrl}
+              data-sound="social"
               target="_blank"
               rel="noreferrer"
               className="glass-button inline-flex items-center gap-2 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill h-11 px-6 hover:text-ink focus-visible:text-ink"

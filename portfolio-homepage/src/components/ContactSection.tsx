@@ -33,6 +33,7 @@ export default function ContactSection() {
           </a>
           <a
             href={site.linkedinUrl}
+            data-sound="social"
             target="_blank"
             rel="noreferrer"
             className="text-nav font-bold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-transform duration-150 ease-out hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"

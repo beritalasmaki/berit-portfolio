@@ -314,6 +314,7 @@ export default function AboutMe() {
         </div>
         <a
           href={site.linkedinUrl}
+          data-sound="social"
           target="_blank"
           rel="noreferrer"
           className="glass-button-ink group inline-flex items-center gap-2 text-white text-nav font-semibold h-11 px-6 rounded-pill self-start whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
