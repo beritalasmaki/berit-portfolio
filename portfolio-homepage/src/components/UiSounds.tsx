@@ -16,13 +16,17 @@ import { useEffect } from "react";
  *
  * - play: the hero's "Turn chaos into clarity" button starts the story.
  * - play-again: "Play again" restarts it.
- * - pop: opening a case study, or jumping to a section from the nav.
+ * - pop: jumping to a section from the nav.
+ * - open: opening a case study.
+ * - back: from a case study, back to the main page.
  * - home: the logo, which whooshes the page back to the top.
  */
 const SOUNDS = {
   play: { src: "/sounds/play.mp3", volume: 0.35 },
   "play-again": { src: "/sounds/play-again.mp3", volume: 0.35 },
   pop: { src: "/sounds/pop-click.mp3", volume: 0.5 },
+  open: { src: "/sounds/open.mp3", volume: 0.3 },
+  back: { src: "/sounds/back.mp3", volume: 0.35 },
   home: { src: "/sounds/home.mp3", volume: 0.3 },
 } as const;
 

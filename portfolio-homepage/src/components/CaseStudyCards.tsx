@@ -28,7 +28,7 @@ export default function CaseStudyCards() {
             >
               <Link
                 href={`/usecases/${study.slug}`}
-                data-sound="pop"
+                data-sound="open"
                 className={`group rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-[-2px] ${
                   isLastOdd ? "flex flex-col md:flex-row md:items-stretch" : "block"
                 }`}

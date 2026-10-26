@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { OPEN_SECTION_EVENT } from "./AccordionSection";
 
@@ -231,15 +232,17 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
     return items
       .filter((item) => item.href)
       .map((item) => (
-        <a
+        // A client-side navigation, so its sound isn't cut off by a reload.
+        <Link
           key={item.id}
-          href={item.href}
+          href={item.href!}
+          data-sound="back"
           onClick={onNavigate}
           className="flex items-center gap-2 mt-2 pt-4 border-t border-rule text-nav font-bold text-ink transition-colors duration-150 ease-out hover:text-accent-dark focus-visible:text-accent-dark"
         >
           <span aria-hidden="true">←</span>
           {item.label}
-        </a>
+        </Link>
       ));
   }
 

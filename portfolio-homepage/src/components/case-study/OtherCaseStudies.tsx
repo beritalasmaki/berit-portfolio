@@ -30,7 +30,7 @@ export default function OtherCaseStudies({ currentSlug }: { currentSlug: CaseStu
             >
               <Link
                 href={`/usecases/${study.slug}`}
-                data-sound="pop"
+                data-sound="open"
                 className={`flex flex-1 flex-col group rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-[-2px] ${
                   isIsolatedLast ? "lg:flex-row lg:items-stretch" : ""
                 }`}

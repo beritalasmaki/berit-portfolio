@@ -371,6 +371,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             {backHref ? (
               <Link
                 href={backHref}
+                data-sound="back"
                 className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
               >
                 <ArrowLeftIcon />
@@ -475,6 +476,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             {backHref ? (
               <Link
                 href={backHref}
+                data-sound="back"
                 className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
               >
                 <ArrowLeftIcon />
