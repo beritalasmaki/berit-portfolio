@@ -224,20 +224,21 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
   const activeSection = useActiveSection(!backHref);
 
   // The page links' highlight: a frosted-glass pill behind the link being
-  // pointed at or focused, otherwise the current section's, flowing like
-  // liquid from link to link (useLiquidIndicator, as the tabs do). It
-  // reaches 16px past each side of the link and 8px above and below, so
-  // the links keep their spacing. No backdrop blur of its own: it sits in
-  // the already-frosted header, where a second blur showed next to nothing
-  // but had to be repainted on every frame of the flow.
+  // pointed at or focused, otherwise the current section's. It pops up on
+  // each link rather than flowing between them like the tabs do: the links
+  // click with a pop sound, and a pop is what matches it. It reaches 16px
+  // past each side of the link and 8px above and below, so the links keep
+  // their spacing. No backdrop blur of its own: it sits in the
+  // already-frosted header, where a second blur showed next to nothing but
+  // had to be repainted on every frame it moved.
   const navRef = useRef<HTMLElement>(null);
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [pointed, setPointed] = useState<number | null>(null);
   const currentIndex = primaryNav.findIndex((item) => item.href.split("#")[1] === activeSection);
   const pill = useLiquidIndicator(navRef, linkRefs, pointed ?? (currentIndex < 0 ? null : currentIndex), {
     axis: "x",
-    squeeze: 0.8,
     outset: [16, 8],
+    pop: true,
   });
   const panelId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -351,7 +352,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               each link: leaving a link for the gap before the next one used
               to drop the pill (fading it out, or sending it back towards the
               current section) only to catch it again a moment later, so it
-              jumped or stuttered instead of flowing across. */}
+              blinked between links instead of going straight to the next. */}
           <nav
             ref={navRef}
             aria-label="Primary"
