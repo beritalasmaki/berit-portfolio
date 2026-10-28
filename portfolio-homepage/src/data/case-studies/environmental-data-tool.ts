@@ -9,7 +9,7 @@ export const environmentalDataTool: CaseStudy = {
     "Monitoring and reporting tools for environmental data, built so specialists can find, compare and publish results without fighting the interface.",
   thumbnail: "/case/syke-new-card.png",
   thumbnailAlt: "Environmental data systems",
-  tag: "Customer project",
+  industry: "Environmental research",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:
     "Transformed outdated systems into modern, efficient tools that help environmental researchers manage and analyze critical data.",

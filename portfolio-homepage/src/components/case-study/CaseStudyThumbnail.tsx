@@ -6,9 +6,9 @@ import type { CaseStudy } from "@/data/case-studies";
  * "Other case studies" cross-links). Handles two overlay-able extras a plain
  * `<Image>` doesn't: a placeholder box + label for a project with no
  * screenshot yet (`placeholderLabel`), and a small pill tag in the corner
- * (`tag`: "Customer project" or "Personal project", on every study). The
- * placeholder is optional and independent of the tag — a finished project
- * carries a tag too.
+ * (`industry`, on every study: e.g. "Higher education"). The
+ * placeholder is optional and independent of the industry pill — a finished
+ * project carries one too.
  *
  * Expects to be rendered inside a `group`-classed ancestor (the card's
  * wrapping `<Link>`) so hover/focus zoom the image together with the rest
@@ -39,7 +39,7 @@ export default function CaseStudyThumbnail({ study, sizes }: { study: CaseStudy;
         />
       )}
       <span className="absolute top-4 left-4 font-mono-label text-mono-label uppercase text-white bg-ink rounded-pill py-2 px-4 whitespace-nowrap ring-1 ring-white/70 shadow-[0_2px_8px_rgba(34,34,34,0.12)]">
-        {study.tag}
+        {study.industry}
       </span>
     </div>
   );

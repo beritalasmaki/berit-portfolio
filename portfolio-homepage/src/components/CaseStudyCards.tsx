@@ -10,49 +10,36 @@ export default function CaseStudyCards() {
         A closer look at the work.
       </h2>
 
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-grid-gap items-stretch">
-        {caseStudies.map((study, index) => {
-          // An odd card count leaves the last card alone in a 2-column grid
-          // row, half-empty next to it. Rather than leave that gap, the
-          // last odd-one-out spans both columns and switches to a
-          // horizontal layout — the thumbnail keeps its normal proportions
-          // (its aspect ratio is relative to its own, now-narrower width,
-          // not the full card), so it reads as a deliberate "featured" row
-          // rather than a stretched-out version of the regular card.
-          const isLastOdd = caseStudies.length % 2 === 1 && index === caseStudies.length - 1;
-          return (
-            <article
-              key={study.slug}
-              data-ripple
-              className={`flex flex-col glass rounded-card overflow-hidden ${isLastOdd ? "md:col-span-2" : ""}`}
+      {/* The four case studies sit in one row from xl (1280px): 4 across.
+          Below that they stay 2 × 2 (tablet), then stack (phone). A fifth
+          study would wrap onto a second row. */}
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-grid-gap items-stretch">
+        {caseStudies.map((study) => (
+          <article key={study.slug} data-ripple className="flex flex-col glass rounded-card overflow-hidden">
+            <Link
+              href={`/usecases/${study.slug}`}
+              data-sound="open"
+              className="group flex flex-1 flex-col rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-[-2px]"
             >
-              <Link
-                href={`/usecases/${study.slug}`}
-                data-sound="open"
-                className={`group rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-[-2px] ${
-                  isLastOdd ? "flex flex-col md:flex-row md:items-stretch" : "block"
-                }`}
-              >
-                <div className={isLastOdd ? "md:w-2/5 md:shrink-0" : ""}>
-                  <CaseStudyThumbnail
-                    study={study}
-                    sizes={isLastOdd ? "(min-width: 768px) 40vw, 100vw" : "(min-width: 768px) 50vw, 100vw"}
-                  />
-                </div>
-                <div className={`flex flex-col gap-4 p-card-pad ${isLastOdd ? "md:justify-center" : ""}`}>
-                  <p className="font-mono-label text-mono-label uppercase text-muted m-0">{study.label}</p>
-                  <h3 className="m-0 text-card-h3 text-ink whitespace-pre-line group-hover:underline group-focus-visible:underline decoration-accent underline-offset-4">
-                    {study.headline}
-                  </h3>
-                  <p className="m-0 text-body-lg text-body max-w-prose">{study.description}</p>
-                  <span className="text-nav font-semibold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-[border-color] duration-150 ease-out group-hover:border-accent-dark group-focus-visible:border-accent-dark">
-                    {study.ctaLabel}
-                  </span>
-                </div>
-              </Link>
-            </article>
-          );
-        })}
+              <CaseStudyThumbnail
+                study={study}
+                sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
+              />
+              <div className="flex flex-1 flex-col gap-4 p-card-pad">
+                {/* xl:min-h-12 reserves three lines (48px) in the 4-across row, so
+                    the longest label doesn't push its headline below the rest. */}
+                <p className="font-mono-label text-mono-label uppercase text-muted m-0 xl:min-h-12">{study.label}</p>
+                <h3 className="m-0 text-card-h3 xl:text-sub-h4 text-ink whitespace-pre-line group-hover:underline group-focus-visible:underline decoration-accent underline-offset-4">
+                  {study.headline}
+                </h3>
+                <p className="m-0 text-body-lg xl:text-body-sm text-body max-w-prose">{study.description}</p>
+                <span className="mt-auto text-nav font-semibold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-[border-color] duration-150 ease-out group-hover:border-accent-dark group-focus-visible:border-accent-dark">
+                  {study.ctaLabel}
+                </span>
+              </div>
+            </Link>
+          </article>
+        ))}
       </div>
     </section>
   );

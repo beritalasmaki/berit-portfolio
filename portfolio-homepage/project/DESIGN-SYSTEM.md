@@ -316,8 +316,6 @@ something the heading doesn't** — a short kicker naming what the section is
 | `The hard parts` | Challenges & Problem-Solving |
 | `In hindsight` | What I would do differently |
 | `Keep reading` | Other case studies |
-| `The response` | How I started fixing it *(DS by Berit)* |
-| `What I took from it` | Rules are not enough… *(DS by Berit)* |
 
 Each of these was previously set to its own section's title, so the page read
 "WHAT I WOULD DO DIFFERENTLY / What I would do differently" — a line of
@@ -469,39 +467,42 @@ display: flex; flex-direction: column;      /* stretch in a grid row */
 - Case-study cards: the image sits flush at the top with **no gap** — image and text
   form one seamless card (image `border-radius: 0`, card clips it via `overflow: hidden`)
 - Cards in the same grid row are always equal height (`align-items: stretch`)
-- **In-progress case study (no screenshot yet):** the thumbnail area renders a
-  dashed-border placeholder box (`border: 1px dashed` rule-strong, inset ~16px
-  from the image edges) with a centered mono label (e.g. "Currently in
-  process") instead of an `<Image>`. A small solid pill (`bg-ink`, white mono
-  label, with a 1px white/70 ring and a soft shadow so its edge stays
-  crisp where it overlaps a dark screenshot header) sits absolute top-left of the thumbnail area, independent of the
-  placeholder. Every case study carries one, saying what kind of project
-  it is: "Customer project" (client work: the four studies with real
-  screenshots) or "Personal project" (the design system, over its
-  placeholder). Both are data-driven (`placeholderLabel` and a required
-  `tag` on the case study), and shared by the homepage grid and the "Other
-  case studies" cross-links via one `CaseStudyThumbnail` component so the two
-  don't drift. A case study can also carry a `liveUrl`; when set, the hero
-  renders a "Visit live project ↗" secondary-pill link (`target="_blank"
-  rel="noopener noreferrer"`) under the description, whether or not the case
-  study has full content yet.
-- **Isolated last card in a multi-column grid:** both card grids that pull
-  from the full case-study registry (`CaseStudyCards` on the homepage,
-  `OtherCaseStudies` at the bottom of a case-study page) can end up with a
-  count that doesn't divide evenly into the grid's column count at its
-  widest breakpoint — currently always true (5 total case studies ÷ 2
-  columns on the homepage; 4 "other" studies ÷ 3 columns on a case-study
-  page), leaving the last card alone in its row with one or two empty
-  card-widths of gap next to it. Rather than leave that gap, that last card
-  spans every column in the row and switches to a horizontal layout
-  (thumbnail on the left at a fraction of the row's width, text centered on
-  the right) instead of stretching its normal stacked layout across the
-  full width — the thumbnail's `aspect-[16/13]` box is relative to its own
-  (now much narrower) width, so it keeps normal proportions instead of
-  becoming a huge stretched image. Computed per-render from the actual
-  array length (`items.length % columns === 1`, applied to `index ===
-  items.length - 1`), not hardcoded, so it stays correct as case studies
-  are added.
+- **Industry pill:** a small solid pill (`bg-ink`, white mono label, with a
+  1px white/70 ring and a soft shadow so its edge stays crisp where it
+  overlaps a dark screenshot header) sits absolute top-left of every
+  case-study thumbnail, naming the industry the project was for in one to
+  three words: Industrial, Higher education, Public education,
+  Environmental research. It's the `industry` field on the case study
+  (required; not the same as `categoryTag`, which names the kind of product
+  on the detail page), and is shared by the homepage grid and the "Other
+  case studies" cross-links via one `CaseStudyThumbnail` component so the
+  two don't drift. There is no "Customer project" tag: every study is
+  client work, so it would say nothing.
+- **In-progress case study (no screenshot yet):** the thumbnail area can
+  render a dashed-border placeholder box (`border: 1px dashed` rule-strong,
+  inset ~16px from the image edges) with a centered mono label (e.g.
+  "Currently in process") instead of an `<Image>`, set by `placeholderLabel`
+  (none uses it right now). A case study can also carry a `liveUrl`; when
+  set, the hero renders a "Visit live project ↗" secondary-pill link
+  (`target="_blank" rel="noopener noreferrer"`) under the description,
+  whether or not the case study has full content yet.
+- **Homepage case-study grid: one row from xl.** The four studies sit 4
+  across from 1280px (`xl:grid-cols-4`), 2 × 2 from 768px, stacked below.
+  In the narrow 4-across cards the headline drops to `sub-h4` and the
+  description to `body-sm`, and the label reserves three lines
+  (`xl:min-h-12`) so all four headlines start at the same height. A fifth
+  study would wrap onto a second row.
+- **Isolated last card in "Other case studies"** (`OtherCaseStudies`, the
+  row at the bottom of a case-study page; each page shows the other three).
+  The last card can end up alone in its row, so it is handled where it
+  happens: at `sm:` (2 columns) an odd count leaves it beside nothing, so it
+  spans both columns and goes horizontal, thumbnail on the left at 40% and
+  text centered on the right, back to a normal third-width card at `lg:`
+  (3 columns, one row). At `lg:` a count that leaves one over (4 others)
+  spans all three columns, horizontal. The thumbnail's `aspect-[16/13]` box
+  is relative to its own, narrower width, so it keeps normal proportions
+  instead of stretching. Computed per-render from the actual array length,
+  not hardcoded, so it stays correct as case studies are added.
 
 ### Tabs (homepage "your next move")
 - Single joined block, `border-radius: 20px; overflow: hidden`, no gap between column
@@ -949,12 +950,12 @@ The route was previously a binary: a study either had everything (hero,
 Starting Point, gallery, Impact, three accordions) or it got the minimal
 hero-plus-cross-links template.
 
-That binary made a half-written case study impossible: **design-system** has an
-intro and a "How it started" but no gallery yet, and under the old gate showed
-neither. It now renders exactly those sections, keeps the minimal
-`CaseStudyHero` (with its "Visit live project" outline-pill link), and the four
-fully-written studies are untouched — verified identical section lists and TOCs
-before and after.
+That binary made a half-written case study impossible: the then in-progress
+design-system study (since removed) had an intro and a "How it started" but no
+gallery yet, and under the old gate showed neither. A study like that now
+renders exactly the sections it has, keeps the minimal `CaseStudyHero` (with
+its "Visit live project" outline-pill link), and the fully-written studies
+are untouched — verified identical section lists and TOCs before and after.
 
 The TOC is built from the same presence checks, so it can never offer a link to
 a section that isn't on the page. The JSX gates on the fields inline
@@ -970,8 +971,8 @@ type-guards on its presence), only where it's displayed: previously
 inline in the old hero right under the `<h1>`, now its own card.
 
 `intro` is `string[]`, one paragraph per entry, matching `heroIntro` and
-`howItStarted`. It was a bare `string` until a second paragraph was needed on
-design-system; widening the field beat both alternatives (a `\n` inside one
+`howItStarted`. It was a bare `string` until a second paragraph was needed on a
+study (since removed); widening the field beat both alternatives (a `\n` inside one
 string, which `ParagraphList` would have printed as a single run-on paragraph,
 and a second field for the overflow). The four prose studies each wrap their
 one existing paragraph in an array and render identically.
@@ -980,15 +981,13 @@ one existing paragraph in an array and render identically.
 A case study's detail-page hero shows `heroIntro` (one paragraph per entry,
 `gap-4` between them) when the field is set, and falls back to `description`
 when it isn't. A homepage card has room for one tight paragraph; the page it
-links to can afford two and a line that sets up what follows. Only
-design-system sets it so far — everywhere else the hero still prints the card
-copy, unchanged.
+links to can afford two and a line that sets up what follows. No study
+sets it right now — the hero prints the card copy.
 
 ### Findings list (`FindingsList`)
 A numbered, scannable set inside a section body — a bold body-size lead-in per
-item, then the explanation. Used on design-system by "How it started" (four
-findings) and "Rules are not enough…" (three levels), where the section builds
-to a specific set rather than running as prose.
+item, then the explanation. Built for sections that build to a specific set
+rather than running as prose (no study uses it right now).
 
 Deliberately lighter than `ChallengesSection`, which renders the same
 `{title, body}` shape: that one gives each item a `card-h3` heading and its own
@@ -1024,8 +1023,9 @@ order cannot drift apart. Clicking one scrolls to it *and* expands it: it is an
 `AccordionSection` like any other, so the existing `cs:open-section` event
 already covers it.
 
-`navLabel` exists because the sidebar is 280px: "Rules are not enough: what an
-AI-ready design system actually needs" is listed as "Rules are not enough" and
+`navLabel` exists because the sidebar is 280px: a long heading such as "Rules
+are not enough: what an AI-ready design system actually needs" (from the
+since-removed design-system study) is listed as "Rules are not enough" and
 prints in full as the section's own `<h2>`. It falls back to `heading`.
 
 Optional inside `CaseStudyFullContent` for the same `hasFullContent` reason as
@@ -1553,11 +1553,10 @@ case/edu-*.png               Education platform case screenshots
 case/syke-*.png               Environmental data case screenshots
 ```
 
-Four of the five case studies have full detail content (`hasFullContent()` is
-true for them). **design-system** is the partial one: an intro, a "How it
-started" and two content-defined sections but no gallery yet, so it keeps the
-minimal hero and renders only the sections it has — see "Case-study sections
-render per field" above. Industrial Data's gallery
+All four case studies have full detail content (`hasFullContent()` is true
+for each). A study without a gallery would keep the minimal hero and render
+only the sections it has — see "Case-study sections render per field" above.
+Industrial Data's gallery
 (`kem-*.png`) came from original, full-resolution source screenshots; the other
 three case studies' galleries (`uni-*`, `edu-*`, `syke-*`) were cropped from the
 screenshots embedded in the case-study PDFs the client provided, since no separate
