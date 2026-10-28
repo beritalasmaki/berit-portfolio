@@ -45,13 +45,30 @@ export default function Hero() {
             <br />
             complexity.
           </h1>
-          <p
-            className="mt-8 max-w-prose text-lead text-body fade-up-item"
-            style={{ animationDelay: "1830ms" }}
-          >
-            Good design moves you forward. I help teams turn complex products and services into
-            experiences that are easier to use and easier to build.
-          </p>
+          {/* Proof first, then the promise: a stat line (numbers in
+              accent-dark, the AA-safe orange for text; the dots are
+              decorative, so the raw accent) and the lead sentence. The
+              items wrap between each other, never mid-item. The commas
+              are for screen readers only, so it reads as one sentence. */}
+          <div className="mt-8 max-w-prose fade-up-item" style={{ animationDelay: "1830ms" }}>
+            <p className="m-0 flex flex-wrap items-center gap-x-2 gap-y-2 text-body-em font-semibold text-ink">
+              <span className="whitespace-nowrap">
+                <span className="text-accent-dark">10+</span> years<span className="sr-only">,</span>
+              </span>
+              <span aria-hidden="true" className="h-1 w-1 rounded-full bg-accent" />
+              <span className="whitespace-nowrap">
+                <span className="text-accent-dark">25+</span> projects<span className="sr-only">,</span>
+              </span>
+              <span aria-hidden="true" className="h-1 w-1 rounded-full bg-accent" />
+              <span className="whitespace-nowrap">
+                <span className="text-accent-dark">10+</span> clients<span className="sr-only">.</span>
+              </span>
+            </p>
+            <p className="mt-4 m-0 text-lead text-body">
+              I help teams turn complex products and services into experiences that are easier to
+              use and easier to build.
+            </p>
+          </div>
           <div className="flex flex-wrap gap-4 mt-12 fade-up-item" style={{ animationDelay: "2010ms" }}>
             {/* Same target and same mechanism as the header's Contact
                 button: a plain `#contact` anchor, with the smooth scroll

@@ -39,10 +39,11 @@ export type CaseStudySummary = {
    */
   otherCaseStudyDescription: string;
   /**
-   * Short pill label overlaid on the thumbnail's top-left corner, e.g.
-   * "Personal project". Omit for client work.
+   * Short pill label overlaid on the thumbnail's top-left corner: whether
+   * this is client work ("Customer project") or one of Berit's own
+   * ("Personal project"). Every case study carries one.
    */
-  tag?: string;
+  tag: "Customer project" | "Personal project";
   /**
    * When set, the thumbnail area renders this text in a dashed placeholder
    * box instead of the `thumbnail` image — for a project still in progress
