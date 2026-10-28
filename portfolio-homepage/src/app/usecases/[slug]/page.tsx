@@ -43,8 +43,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   // `full` still decides the *hero* — a sneak-peek needs a gallery to peek
   // at — but every section below renders on its own data being present
   // rather than on this one flag. That lets a study be written in pieces:
-  // design-system has an intro and a "How it started" but no gallery yet,
-  // and gets exactly those two sections instead of all-or-nothing.
+  // one with an intro and a "How it started" but no gallery yet gets exactly
+  // those two sections instead of all-or-nothing.
   const full = hasFullContent(study);
   const hasIntro = study.intro !== undefined && study.intro.length > 0;
   const hasGallery = study.gallery !== undefined && study.gallery.length > 0;

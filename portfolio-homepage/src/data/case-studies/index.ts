@@ -2,7 +2,6 @@ import { industrialTool } from "./industrial-tool";
 import { universityAiTool } from "./university-ai-tool";
 import { educationPlatform } from "./education-platform";
 import { environmentalDataTool } from "./environmental-data-tool";
-import { designSystem } from "./design-system";
 import type { CaseStudy, CaseStudySlug } from "./types";
 
 export type {
@@ -24,7 +23,6 @@ export const caseStudies: CaseStudy[] = [
   universityAiTool,
   educationPlatform,
   environmentalDataTool,
-  designSystem,
 ];
 
 export function getCaseStudy(slug: CaseStudySlug): CaseStudy | undefined {

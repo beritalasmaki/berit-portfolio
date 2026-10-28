@@ -4,16 +4,14 @@
 //
 // Only the Summary fields are required. A case study with nothing more than
 // that renders the minimal /usecases/[slug] template (hero + "other case
-// studies") instead of 404ing — see design-system.ts (in progress, no full
-// content yet) vs. any of the other four for the minimal vs. full shape in
-// practice.
+// studies") instead of 404ing — handy for a project still in progress. All
+// four current case studies have full content.
 
 export type CaseStudySlug =
   | "industrial-tool"
   | "university-ai-tool"
   | "education-platform"
-  | "environmental-data-tool"
-  | "design-system";
+  | "environmental-data-tool";
 
 /** The subset of a case study's content used by homepage/summary cards. */
 export type CaseStudySummary = {
@@ -25,6 +23,12 @@ export type CaseStudySummary = {
   tabTitle?: string;
   /** Mono eyebrow label, e.g. "INDUSTRIAL DATA TOOLS · 2020–2023". */
   label: string;
+  /**
+   * How many projects the engagement covered, as text so it can say "5+".
+   * The homepage card appends it to the label: "… · 2 PROJECTS" ("1 PROJECT"
+   * when exactly "1").
+   */
+  projectCount: string;
   /** Homepage card headline. Use "\n" for an intentional line break. */
   headline: string;
   /** Homepage card body copy. */
@@ -39,11 +43,12 @@ export type CaseStudySummary = {
    */
   otherCaseStudyDescription: string;
   /**
-   * Short pill label overlaid on the thumbnail's top-left corner: whether
-   * this is client work ("Customer project") or one of Berit's own
-   * ("Personal project"). Every case study carries one.
+   * Short pill label overlaid on the thumbnail's top-left corner: the
+   * industry the project was for, in one to three words (e.g. "Higher
+   * education"). Every case study carries one. Not the same as
+   * `categoryTag`, which names the kind of product on the detail page.
    */
-  tag: "Customer project" | "Personal project";
+  industry: string;
   /**
    * When set, the thumbnail area renders this text in a dashed placeholder
    * box instead of the `thumbnail` image — for a project still in progress
