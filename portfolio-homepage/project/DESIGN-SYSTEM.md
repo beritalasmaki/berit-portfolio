@@ -473,9 +473,12 @@ display: flex; flex-direction: column;      /* stretch in a grid row */
   dashed-border placeholder box (`border: 1px dashed` rule-strong, inset ~16px
   from the image edges) with a centered mono label (e.g. "Currently in
   process") instead of an `<Image>`. A small solid pill (`bg-ink`, white mono
-  label, e.g. "Personal project") sits absolute top-left of the thumbnail
-  area, independent of the placeholder — a finished project can carry the
-  same tag over a real screenshot. Both are data-driven (`placeholderLabel`,
+  label, with a 1px white/70 ring and a soft shadow so its edge stays
+  crisp where it overlaps a dark screenshot header) sits absolute top-left of the thumbnail area, independent of the
+  placeholder. Every case study carries one, saying what kind of project
+  it is: "Customer project" (client work: the four studies with real
+  screenshots) or "Personal project" (the design system, over its
+  placeholder). Both are data-driven (`placeholderLabel` and a required
   `tag` on the case study), and shared by the homepage grid and the "Other
   case studies" cross-links via one `CaseStudyThumbnail` component so the two
   don't drift. A case study can also carry a `liveUrl`; when set, the hero
