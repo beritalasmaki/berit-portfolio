@@ -1371,11 +1371,20 @@ is wrapped in a shared `<Reveal>` component.
   Senior UX & Product Designer" (`text-body-em`, the role in `text-body`).
   The photo is small so it reads as a signature, not a second hero image.
 - **H1** (`text-hero`): "Your partner in / untangling / complexity.", three
-  lines at every width (360–1440px). It replaced "Good design moves you
-  forward.", which now opens the lead.
-- **Lead**: "Good design moves you forward. I help teams turn complex
-  products and services into experiences that are easier to use and easier
-  to build."
+  lines at every width (360–1440px).
+- **Stat line + lead** (one block, 32px under the H1, one fade-up): proof
+  first, then the promise. A stat line, "10+ years · 25+ projects · 10+
+  clients" (`text-body-em`, semibold, `text-ink`), with the numbers in
+  `accent-dark` (the AA-safe orange for text) and 4px `bg-accent` dots
+  between the items (decorative, `aria-hidden`; screen readers get
+  visually hidden commas instead, so it reads "10+ years, 25+ projects,
+  10+ clients."). Each item is `whitespace-nowrap`, so on a narrow phone
+  the line breaks between items, never mid-item. Below it, 16px down, the
+  lead in `text-lead text-body`: "I help teams turn complex products and
+  services into experiences that are easier to use and easier to build."
+  The numbers match the site: About Me says "more than 25 projects", and
+  the client-logo strip shows 11 logos. This block replaced the old lead,
+  "Good design moves you forward. I help teams turn…".
 - Entrance stagger: byline 700ms, H1 800ms, lead 980ms, buttons 1160ms.
 
 ### Back to top
