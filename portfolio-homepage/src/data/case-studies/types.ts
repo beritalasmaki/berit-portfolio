@@ -23,6 +23,12 @@ export type CaseStudySummary = {
   tabTitle?: string;
   /** Mono eyebrow label, e.g. "INDUSTRIAL DATA TOOLS · 2020–2023". */
   label: string;
+  /**
+   * How many projects the engagement covered, as text so it can say "5+".
+   * The homepage card appends it to the label: "… · 2 PROJECTS" ("1 PROJECT"
+   * when exactly "1").
+   */
+  projectCount: string;
   /** Homepage card headline. Use "\n" for an intentional line break. */
   headline: string;
   /** Homepage card body copy. */

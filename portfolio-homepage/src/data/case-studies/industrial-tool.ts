@@ -9,6 +9,7 @@ export const industrialTool: CaseStudy = {
     "A platform for monitoring, calculation, reporting and statistical analysis, used by specialists both internally and by customers. I redesigned the full expert experience, from dashboards to data views.",
   thumbnail: "/case/kemira-card.png",
   thumbnailAlt: "Kemira data tools",
+  projectCount: "2",
   industry: "Industrial",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:

@@ -9,6 +9,7 @@ export const educationPlatform: CaseStudy = {
     "A shared, standardised design foundation for complex municipal education systems, unifying usability and logic across several platforms.",
   thumbnail: "/case/education-new-card.png",
   thumbnailAlt: "Education platform",
+  projectCount: "1",
   industry: "Public education",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:

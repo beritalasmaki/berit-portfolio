@@ -9,6 +9,7 @@ export const universityAiTool: CaseStudy = {
     "An AI-powered search and service hub that lowers support pressure and helps students find what they need on their own.",
   thumbnail: "/case/university-new-card.png",
   thumbnailAlt: "University CX and AI tools",
+  projectCount: "1",
   industry: "Higher education",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:

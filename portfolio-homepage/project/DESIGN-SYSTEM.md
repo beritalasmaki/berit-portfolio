@@ -486,12 +486,17 @@ display: flex; flex-direction: column;      /* stretch in a grid row */
   set, the hero renders a "Visit live project ↗" secondary-pill link
   (`target="_blank" rel="noopener noreferrer"`) under the description,
   whether or not the case study has full content yet.
-- **Homepage case-study grid: one row from xl.** The four studies sit 4
-  across from 1280px (`xl:grid-cols-4`), 2 × 2 from 768px, stacked below.
-  In the narrow 4-across cards the headline drops to `sub-h4` and the
-  description to `body-sm`, and the label reserves three lines
-  (`xl:min-h-12`) so all four headlines start at the same height. A fifth
-  study would wrap onto a second row.
+- **Homepage case studies: one row each, under each other.** Each study is
+  one glass card laid out as a row: the thumbnail on the left (a third of the
+  row from `lg`, 40% at `md`) and the text beside it, vertically centered:
+  the mono label, the headline, the description and the link. Below `md` the
+  thumbnail sits above the text. The thumbnail keeps its own `aspect-[16/13]`
+  proportions rather than stretching to the text's height. The mono label
+  carries the engagement's project count after the years, from the
+  `projectCount` field ("INDUSTRIAL DATA TOOLS · 2020–2023 · 2 PROJECTS";
+  "1 PROJECT" when exactly "1"; "5+" when it was five or more); the count
+  never splits across lines. Previously the four sat 4 across from 1280px;
+  the stacked rows give the screenshots room to be read.
 - **Isolated last card in "Other case studies"** (`OtherCaseStudies`, the
   row at the bottom of a case-study page; each page shows the other three).
   The last card can end up alone in its row, so it is handled where it
