@@ -99,6 +99,38 @@ export function AboutIcon({ className = "" }: IconProps) {
   );
 }
 
+/** "Blog": a page of writing. Filling, the sheet rises into place and its
+ * lines are written on one after another. */
+export function BlogIcon({ className = "" }: IconProps) {
+  const lines = [
+    [5, 6, 11],
+    [5, 8.5, 11],
+    [5, 11, 9],
+  ];
+  return (
+    <Icon className={`nav-icon ${className}`}>
+      <g className="ni-line">
+        <rect x="2.75" y="2" width="10.5" height="12" rx="1.8" />
+        {lines.map(([x1, y, x2]) => (
+          <path key={y} d={`M${x1} ${y}h${x2 - x1}`} />
+        ))}
+      </g>
+      <g className="ni-fill">
+        <rect className="ni-p ni-rise" x="2" y="1.25" width="12" height="13.5" rx="2.2" stroke="none" />
+        {lines.map(([x1, y, x2], i) => (
+          <path
+            key={y}
+            className="ni-p ni-draw"
+            style={{ "--i": i + 1, stroke: "#fff8ef" } as React.CSSProperties}
+            pathLength={1}
+            d={`M${x1} ${y}h${x2 - x1}`}
+          />
+        ))}
+      </g>
+    </Icon>
+  );
+}
+
 /** "My Process": connected steps. Filling, the steps light up one by one
  * and the links between them draw on. */
 export function ProcessIcon({ className = "" }: IconProps) {
