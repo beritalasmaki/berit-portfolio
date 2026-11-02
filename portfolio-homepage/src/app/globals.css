@@ -102,6 +102,33 @@
 }
 
 @layer utilities {
+  /* Client-logo carousel: the list is rendered twice back to back and the
+     track slides left by exactly one copy (-50%), so the loop is seamless.
+     Edges fade out with a mask (the page background is a glow, not a flat
+     colour, so overlay gradients would show). Pauses on hover/focus. */
+  @keyframes logo-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .logo-marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  }
+  .logo-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: logo-marquee 45s linear infinite;
+  }
+  .logo-marquee:hover .logo-marquee-track,
+  .logo-marquee:focus-within .logo-marquee-track {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-marquee { overflow-x: auto; }
+    .logo-marquee-track { animation: none; }
+  }
+
   .font-mono-label {
     font-family: var(--font-plex-mono), monospace;
   }
