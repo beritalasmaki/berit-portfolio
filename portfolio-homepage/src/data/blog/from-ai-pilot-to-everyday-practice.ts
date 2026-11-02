@@ -46,7 +46,7 @@ export const aiPilotToEverydayPractice: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "The same thinking applies to software development. A defined approach to AI-assisted development, such as the CollabAI model, helps teams work consistently and measure the results.",
+      text: "The same thinking applies to software development. A defined approach to AI-assisted development helps teams work consistently and measure the results.",
     },
 
     {
