@@ -18,10 +18,12 @@ import { useEffect } from "react";
  *
  * - play: the hero's "Turn chaos into clarity" button starts the story.
  * - play-again: "Play again" restarts it.
- * - pop: jumping to a section from the nav, and every other button.
+ * The rule: staying on the page pops; changing page sounds different.
+ *
+ * - pop: jumping to a section on the same page, and every other button.
  * - social: LinkedIn and GitHub links.
- * - open: opening a case study.
- * - back: from a case study, back to the main page.
+ * - open: going to another page: a case study, the blog, a blog post.
+ * - back: back to a page you came from (the main page, the blog index).
  * - home: the logo, which whooshes the page back to the top.
  */
 const SOUNDS = {

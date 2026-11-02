@@ -9,12 +9,27 @@ export const site = {
   githubUrl: "https://github.com/beritalasmaki/portfolio",
 } as const;
 
+/**
+ * The site's public origin, for absolute links (canonical URLs, Open Graph).
+ * Set `NEXT_PUBLIC_SITE_URL` (e.g. https://example.com) in the deployment;
+ * on Vercel the production domain is picked up automatically.
+ */
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000")
+).replace(/\/$/, "");
+
 export const primaryNav = [
   // `short` is shown in the desktop nav below xl (1280px), where the full
   // label, with the icons and 24px gaps, would push the nav onto two lines.
   { label: "Selected case studies", short: "Case studies", href: "/#case-studies" },
   { label: "About", href: "/#about" },
   { label: "My Process", href: "/#process" },
+  // A page of its own, not a homepage section: no `#`, so the header marks
+  // it current by pathname rather than by scroll position.
+  { label: "Blog", href: "/blog" },
 ] as const;
 
 export type ClientLogo = {

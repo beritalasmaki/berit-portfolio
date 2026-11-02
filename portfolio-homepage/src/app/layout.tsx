@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, IBM_Plex_Mono } from "next/font/google";
 import GlowOrbs from "@/components/GlowOrbs";
 import UiSounds from "@/components/UiSounds";
+import { siteUrl } from "@/data/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
   title: "Berit Alasmäki | Senior UX & Product Designer",
   description:
     "Senior UX & product designer based in Finland. Selected case studies in expert tools, service design and design systems.",
+  metadataBase: new URL(siteUrl),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

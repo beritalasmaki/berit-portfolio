@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { useLiquidIndicator } from "./useLiquidIndicator";
 import Logo from "./Logo";
-import { AboutIcon, ArrowLeftIcon, ArrowRightIcon, CaseStudiesIcon, ProcessIcon } from "./icons";
+import { AboutIcon, ArrowLeftIcon, ArrowRightIcon, BlogIcon, CaseStudiesIcon, ProcessIcon } from "./icons";
 import { primaryNav, site } from "@/data/site";
 
 type HeaderProps = {
@@ -93,7 +93,14 @@ const NAV_ICONS: Record<(typeof primaryNav)[number]["href"], typeof AboutIcon> =
   "/#case-studies": CaseStudiesIcon,
   "/#about": AboutIcon,
   "/#process": ProcessIcon,
+  "/blog": BlogIcon,
 };
+
+// The homepage-section links ("/#about") are current by scroll position;
+// a page link ("/blog") by being on that page or below it.
+function sectionId(href: string): string | null {
+  return href.split("#")[1] ?? null;
+}
 
 // From another page, the logo fades the page out, goes home under the veil
 // and fades the homepage in, again along the sound's swell and tail.
@@ -128,7 +135,7 @@ function useActiveSection(enabled: boolean) {
   const [active, setActive] = useState<string | null>(null);
   useEffect(() => {
     if (!enabled) return;
-    const ids = primaryNav.map((item) => item.href.split("#")[1]);
+    const ids = primaryNav.map((item) => sectionId(item.href)).filter((id): id is string => id !== null);
     let frame = 0;
     function update() {
       frame = 0;
@@ -222,7 +229,23 @@ function whooshToTop() {
 export default function Header({ backHref, backLabel = "Back to work", animateLogo = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const activeSection = useActiveSection(!backHref);
+  const pathname = usePathname();
+  // Section tracking only on the homepage, where those sections live.
+  const activeSection = useActiveSection(!backHref && pathname === "/");
+  function isCurrent(href: string): boolean {
+    const id = sectionId(href);
+    if (id !== null) return pathname === "/" && activeSection === id;
+    return pathname === href || pathname.startsWith(`${href}/`);
+  }
+  // Sounds follow one rule: staying on the page pops; changing page doesn't.
+  // A homepage-section link pops on the homepage, but from any other page it
+  // takes you back there ("back"); a page link opens its page ("open"),
+  // unless you're already on it.
+  function navSound(href: string): "pop" | "open" | "back" {
+    if (sectionId(href) !== null) return pathname === "/" ? "pop" : "back";
+    return pathname === href ? "pop" : "open";
+  }
+  const contactSound = pathname === "/" ? "pop" : "back";
 
   // The page links' highlight: a frosted-glass pill behind the link being
   // pointed at or focused, otherwise the current section's. It pops up on
@@ -258,7 +281,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
       window.removeEventListener("keydown", release);
     };
   }, [jumpedTo]);
-  const currentIndex = primaryNav.findIndex((item) => item.href.split("#")[1] === activeSection);
+  const currentIndex = primaryNav.findIndex((item) => isCurrent(item.href));
   const pill = useLiquidIndicator(navRef, linkRefs, pointed ?? jumpedTo ?? (currentIndex < 0 ? null : currentIndex), {
     axis: "x",
     outset: [16, 8],
@@ -405,16 +428,19 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             ) : (
               primaryNav.map((item, index) => {
                 const NavIcon = NAV_ICONS[item.href];
-                const current = activeSection === item.href.split("#")[1];
+                const current = isCurrent(item.href);
+                // A page link goes through the router; a homepage-section
+                // anchor stays a plain link so the browser scrolls to it.
+                const NavLink = sectionId(item.href) === null ? Link : "a";
                 return (
-                  <a
+                  <NavLink
                     key={item.href}
-                    ref={(el) => {
+                    ref={(el: HTMLAnchorElement | null) => {
                       linkRefs.current[index] = el;
                     }}
                     href={item.href}
-                    data-sound="pop"
-                    aria-current={current ? "location" : undefined}
+                    data-sound={navSound(item.href)}
+                    aria-current={current ? (sectionId(item.href) === null ? "page" : "location") : undefined}
                     onPointerEnter={() => setPointed(index)}
                     onFocus={() => setPointed(index)}
                     onClick={() => setJumpedTo(index)}
@@ -431,7 +457,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                         item.label
                       )}
                     </span>
-                  </a>
+                  </NavLink>
                 );
               })
             )}
@@ -450,8 +476,8 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               />
               <IconLink href={site.githubUrl} label="Visit my GitHub" tooltip="Visit my GitHub" icon={<GithubIcon />} />
               <a
-                href="#contact"
-                data-sound="pop"
+                href={pathname === "/" ? "#contact" : "/#contact"}
+                data-sound={contactSound}
                 className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
               >
                 Contact
@@ -511,19 +537,20 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             ) : (
               primaryNav.map((item) => {
                 const NavIcon = NAV_ICONS[item.href];
-                const current = activeSection === item.href.split("#")[1];
+                const current = isCurrent(item.href);
+                const NavLink = sectionId(item.href) === null ? Link : "a";
                 return (
-                  <a
+                  <NavLink
                     key={item.href}
                     href={item.href}
-                    data-sound="pop"
-                    aria-current={current ? "location" : undefined}
+                    data-sound={navSound(item.href)}
+                    aria-current={current ? (sectionId(item.href) === null ? "page" : "location") : undefined}
                     className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                     onClick={() => setOpen(false)}
                   >
                     <NavIcon />
                     <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{item.label}</span>
-                  </a>
+                  </NavLink>
                 );
               })
             )}
@@ -548,7 +575,8 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               GitHub
             </a>
             <a
-              href="#contact"
+              href={pathname === "/" ? "#contact" : "/#contact"}
+              data-sound={contactSound}
               onClick={() => setOpen(false)}
               className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
             >
