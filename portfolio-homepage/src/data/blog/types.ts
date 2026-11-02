@@ -1,6 +1,7 @@
 // Shared blog post content shape. A new post is a new file in this folder
 // that satisfies `BlogPost`, plus one line added to `index.ts` — a content
 // task, not a layout task (same pattern as `data/case-studies/`).
+// Writing and adding a post, step by step: BLOG-GUIDE.md in the project root.
 
 import type { Finding } from "@/data/case-studies";
 
