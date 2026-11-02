@@ -118,7 +118,7 @@
   .logo-marquee-track {
     display: flex;
     width: max-content;
-    animation: logo-marquee 45s linear infinite;
+    animation: logo-marquee 65s linear infinite;
   }
   .logo-marquee:hover .logo-marquee-track,
   .logo-marquee:focus-within .logo-marquee-track {

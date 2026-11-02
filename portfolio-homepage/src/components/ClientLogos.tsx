@@ -32,13 +32,13 @@ export default function ClientLogos() {
               <li
                 key={`${copy}-${logo.name}`}
                 aria-hidden={copy === 1 ? true : undefined}
-                className="relative h-20 w-36 sm:h-24 sm:w-44 shrink-0"
+                className="relative h-16 w-28 sm:h-20 sm:w-36 shrink-0"
               >
                 <Image
                   src={logo.src}
                   alt={copy === 1 ? "" : logo.name}
                   fill
-                  sizes="176px"
+                  sizes="144px"
                   className="object-contain p-4"
                 />
               </li>
