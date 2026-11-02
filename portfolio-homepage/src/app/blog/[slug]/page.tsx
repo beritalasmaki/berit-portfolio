@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <Reveal>
                 <header id="post-intro" className="border-t border-rule pt-[clamp(32px,4vw,48px)] flex flex-col gap-6">
                   <p className="font-mono-label text-mono-label uppercase text-muted m-0">
-                    <Link href="/blog" className="hover:text-ink focus-visible:text-ink">
+                    <Link href="/blog" data-sound="back" className="hover:text-ink focus-visible:text-ink">
                       Blog
                     </Link>
                     {post.series && (

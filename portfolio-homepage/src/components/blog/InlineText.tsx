@@ -27,7 +27,7 @@ export default function InlineText({ text }: { text: string }) {
       // Site-internal links go through the router; anything else opens in
       // a new tab, like the rest of the site's external links.
       return href.startsWith("/") ? (
-        <Link key={i} href={href} className={linkClass}>
+        <Link key={i} href={href} data-sound="open" className={linkClass}>
           {label}
         </Link>
       ) : (

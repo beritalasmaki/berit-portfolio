@@ -55,6 +55,7 @@ Final paragraph, linking the next part: [Part 2](/blog/next-post-slug).
 
 Notes:
 - Link other posts with their real path (`/blog/<slug>`), not `#`. Links to other sites are fine and open in a new tab.
+- Click sounds follow one rule: staying on the page pops, changing page plays a different sound. Links to other posts written in the text get the "open" sound automatically. If you add a new link or button in code, give it `data-sound="open"` (or `"back"`) when it goes to another page; see `src/components/UiSounds.tsx`.
 - If the draft has a diagram or chart image, see [§6](#6-visuals): it's rebuilt as a component, not pasted in.
 
 ---

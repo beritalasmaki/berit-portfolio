@@ -5,7 +5,7 @@ export const aiAdoptionStrategy: BlogPost = {
   title: "AI adoption starts with strategy",
   excerpt:
     "Organizations that benefit from AI usually begin by defining the problem they want to solve, test their ideas in small experiments and involve their employees early. This article goes through these three phases. Part 2 looks at how to make the change last.",
-  date: "2026-10-31",
+  date: "2026-10-24",
   tags: ["AI adoption", "Strategy", "Change management"],
   series: {
     name: "AI adoption",

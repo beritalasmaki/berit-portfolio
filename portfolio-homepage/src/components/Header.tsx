@@ -237,6 +237,15 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
     if (id !== null) return pathname === "/" && activeSection === id;
     return pathname === href || pathname.startsWith(`${href}/`);
   }
+  // Sounds follow one rule: staying on the page pops; changing page doesn't.
+  // A homepage-section link pops on the homepage, but from any other page it
+  // takes you back there ("back"); a page link opens its page ("open"),
+  // unless you're already on it.
+  function navSound(href: string): "pop" | "open" | "back" {
+    if (sectionId(href) !== null) return pathname === "/" ? "pop" : "back";
+    return pathname === href ? "pop" : "open";
+  }
+  const contactSound = pathname === "/" ? "pop" : "back";
 
   // The page links' highlight: a frosted-glass pill behind the link being
   // pointed at or focused, otherwise the current section's. It pops up on
@@ -430,7 +439,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                       linkRefs.current[index] = el;
                     }}
                     href={item.href}
-                    data-sound="pop"
+                    data-sound={navSound(item.href)}
                     aria-current={current ? (sectionId(item.href) === null ? "page" : "location") : undefined}
                     onPointerEnter={() => setPointed(index)}
                     onFocus={() => setPointed(index)}
@@ -468,7 +477,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               <IconLink href={site.githubUrl} label="Visit my GitHub" tooltip="Visit my GitHub" icon={<GithubIcon />} />
               <a
                 href={pathname === "/" ? "#contact" : "/#contact"}
-                data-sound="pop"
+                data-sound={contactSound}
                 className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
               >
                 Contact
@@ -534,7 +543,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                   <NavLink
                     key={item.href}
                     href={item.href}
-                    data-sound="pop"
+                    data-sound={navSound(item.href)}
                     aria-current={current ? (sectionId(item.href) === null ? "page" : "location") : undefined}
                     className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                     onClick={() => setOpen(false)}
@@ -567,6 +576,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             </a>
             <a
               href={pathname === "/" ? "#contact" : "/#contact"}
+              data-sound={contactSound}
               onClick={() => setOpen(false)}
               className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
             >
