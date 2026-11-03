@@ -146,7 +146,7 @@ export const fi: Dictionary = {
     heading: "Minusta",
     aside: "Ihminen pikselien takana.",
     closing: "Sovimme yhdessä, miltä onnistuminen näyttää, ennen kuin työ alkaa.",
-    greeting: "Hei, kiva kun tulit käymään! ♥",
+    greeting: "Moi! Mukava että poikkesit sivuillani. ♥",
     photoAlt: "Berit Alasmäki",
     paragraphs: [
       "Tulen alun perin pieneltä paikkakunnalta Satakunnasta enkä koskaan ajatellut päätyväni teknologia-alalle, saati suunnittelijaksi. Opiskelin aikoinaan tietojenkäsittelyä ja sovelluskehitystä, mutta polkuni alalle alkoi lukioaikana, kun eräs kaverini pyysi mukaan hänen startup-yritykseensä. Olin mukana nelisen vuotta, minkä aikana sain vankan kokemuksen sekä koodaus- että suunnittelutyökaluista. Siitä lähtien muotoilu ja koodaus ovat pitäneet otteessaan.",
