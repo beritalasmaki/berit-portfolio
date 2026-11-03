@@ -76,7 +76,8 @@ export const fi: Dictionary = {
 
   hero: {
     photoAlt: "Berit Alasmäki",
-    greeting: "Moi, olen Berit",
+    greeting: "Moikka! Olen Berit. 🙂",
+    greetingSeparator: "",
     title: "Senior UX- ja tuotesuunnittelija",
     headline: ["Kumppanisi", "vyyhtien", "selvittämiseen."],
     stats: [
@@ -101,12 +102,11 @@ export const fi: Dictionary = {
 
   clients: {
     eyebrowNumber: "01 / ",
-    heading: "Kokemusta tunnetuista organisaatioista",
+    heading: "Asiakkaat, joiden kanssa olen työskennellyt",
   },
 
   mindTabs: {
-    eyebrow: "02 / seuraava siirtosi",
-    heading: "Kysymykset ansioluettelon takana",
+    heading: "Kysymyksiä ansioluettelon takaa",
     aside: "Hyvä yhteistyö alkaa paremmasta kysymyksestä.",
     tablistLabel: "Kysymykset",
     tabs: [
@@ -125,14 +125,6 @@ export const fi: Dictionary = {
           "Vanhojen ympäristödatajärjestelmien uudistaminen tarkoitti työtä välineillä, joita tutkijat olivat käyttäneet vuosia ilman selkeää rakennetta. Sen sijaan, että olisin odottanut täydellistä ratkaisua, keskityin julkaisemaan nopeasti jotain hyödyllistä ja parantamaan sitä sen mukaan, mitä opimme.",
         linkLabel: "Lue tapaustutkimus: ympäristödatajärjestelmät →",
         study: "environmental-data-tool",
-      },
-      {
-        question: "Kestääkö hänen työnsä, kun kehittäjät alkavat rakentaa sitä?",
-        body: "Ennen kuin luovutan suunnitelman eteenpäin, käyn sen läpi kehittäjien kanssa ja kerron jokaisen ratkaisun perustelut, en pelkästään sitä, mitä pitää rakentaa.",
-        highlight:
-          "Siirsin suunnittelujärjestelmän Sketchistä Figmaan kesken käynnissä olevan projektin ja rakensin komponentit kunnolla uudelleen sen sijaan, että olisin kopioinut ne sellaisinaan. Sekä kehittäjät että projektipäällikkö kertoivat, kuinka paljon sujuvammaksi heidän työnsä tämän ansiosta muuttui.",
-        linkLabel: "Lue tapaustutkimus: teollisuuden data →",
-        study: "industrial-tool",
       },
       {
         question: "Mistä hän tietää, että jokin on valmis julkaistavaksi?",
@@ -160,9 +152,9 @@ export const fi: Dictionary = {
     greeting: "Hei, kiva kun tulit käymään! ♥",
     photoAlt: "Berit Alasmäki",
     paragraphs: [
-      "Kasvoin pienessä kaupungissa Suomessa enkä koskaan kuvitellut päätyväni teknologia-alalle, saati suunnittelijaksi. Opiskelin tietotekniikkaa ja web-kehitystä, mutta varsinainen alkuni suunnittelussa oli lähes sattumaa: ystäväni otti minut mukaan startup-yritykseensä jo lukioaikana, ja siellä pääsin ensimmäistä kertaa käytännössä tekemään töitä sekä suunnittelutyökaluilla että koodilla. Molemmat ovat kiinnostaneet minua siitä lähtien.",
-      "Kymmenen vuotta suunnittelun parissa, yhdeksän niistä konsulttina, on opettanut minut liikkumaan hyvin erilaisten maailmojen välillä: julkisen sektorin alustoissa, teollisuuden työkaluissa ja ympäristödatajärjestelmissä, usein ainoana suunnittelijana pöydässä. UX-suunnittelijana olen työskennellyt yli 25 projektissa, ja jokainen niistä on muokannut tapaani tehdä töitä. Tällainen työ pakottaa välittämään ammattitaidostaan, koska kukaan muu ei välttämättä ehdi huomata sitä, mitä itse jättää huomaamatta.",
-      "Arvostan laadukasta työtä, selkeää fokusta ja toimivaa yhteistyötä. Sen sijaan, että murehtisin sitä, miten tekoäly muuttaa suunnittelua, suhtaudun asiaan käytännönläheisesti: käytän työkaluja, joissa on järkeä, kehitän työtapojani jatkuvasti ja rakennan edelleen toimivia tuotekokemuksia.",
+      "Kasvoin pienessä kaupungissa Satakunnassa enkä koskaan kuvitellut päätyväni teknologia-alalle, saati suunnittelijaksi. Opiskelin tietotekniikkaa ja web-kehitystä, mutta varsinainen alkuni suunnittelussa oli lähes sattumaa: ystäväni otti minut mukaan startup-yritykseensä jo lukioaikana, ja siellä pääsin ensimmäistä kertaa käytännössä tekemään töitä sekä suunnittelutyökaluilla että koodilla. Molemmat ovat kiinnostaneet minua siitä lähtien.",
+      "Olen työskennellyt suunnittelijana kymmenen vuotta, joista yhdeksän konsulttina. Taustani julkisen sektorin alustoista, teollisuuden työkaluista ja ympäristödatasta on opettanut mutkattomaan liikkumiseen eri toimialojen välillä. Yli 25 projektia on opettanut ottamaan työn jäljestä täyden vastuun, tein töitä sitten yksin tai tiimissä.",
+      "Minulle on tärkeää, että töissä on selkeä suunta, tiimissä hyvä henki ja että hommat tehdään kunnolla ja huolella.",
     ],
     linkedin: "Ota yhteyttä LinkedInissä",
     musicLabel: "Musiikkia, jota kuuntelen yhä uudestaan",
@@ -270,8 +262,8 @@ export const fi: Dictionary = {
         skip: "Kyseessä on yksinkertainen työkalu, jossa on käytännössä vain yksi tapa edetä.",
       },
       wireframes: {
-        name: "Rautalankamallit",
-        block: "Rautalanka",
+        name: "Wireframet",
+        block: "Wireframet",
         when: "Kun haluan testata, onko rakenne järkevä, ennen kuin teen siitä kauniin.",
         skip: "Suunta on jo selvä tai on nopeampaa vain rakentaa se.",
       },

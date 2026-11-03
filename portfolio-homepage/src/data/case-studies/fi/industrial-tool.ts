@@ -8,7 +8,7 @@ export const industrialToolFi: CaseStudy = {
   label: "TEOLLISUUDEN DATATYÖKALUT · 2020–2023",
   headline: "Seuranta, laskenta ja raportointi yhdessä paikassa.",
   description:
-    "Alusta seurantaan, laskentaan, raportointiin ja tilastolliseen analyysiin, jota käyttävät sekä yrityksen omat asiantuntijat että sen asiakkaat. Uudistin koko asiantuntijakokemuksen kojelaudoista datanäkymiin.",
+    "Alusta seurantaan, laskentaan, raportointiin ja tilastolliseen analyysiin, jota käyttävät sekä yrityksen omat asiantuntijat että sen asiakkaat. Uudistin koko asiantuntijakokemuksen dashboardeista datanäkymiin.",
   thumbnail: "/case/kemira-card.png",
   thumbnailAlt: "Kemiran datatyökalut",
   projectCount: "2",
@@ -26,7 +26,7 @@ export const industrialToolFi: CaseStudy = {
   skillTags: [
     {
       label: "UX- ja käyttöliittymäsuunnittelu",
-      description: "Muutin tiheän datan yhdellä silmäyksellä luettaviksi kojelaudoiksi",
+      description: "Muutin tiheän datan yhdellä silmäyksellä luettaviksi dashboardeiksi",
     },
     {
       label: "Suunnittelujärjestelmän siirto",
@@ -51,9 +51,9 @@ export const industrialToolFi: CaseStudy = {
   ],
 
   gallery: localizeGallery(en.gallery, [
-    { alt: "Kojelauta", caption: "Kojelauta" },
-    { alt: "Kojelaudan muokkaus", caption: "Kojelaudan muokkaus" },
-    { alt: "Widgetvalikko", caption: "Widgetvalikko" },
+    { alt: "Dashboard", caption: "Dashboard" },
+    { alt: "Dashboardin muokkaus", caption: "Dashboardin muokkaus" },
+    { alt: "Widget-valikko", caption: "Widget-valikko" },
     { alt: "Säiliön tiedot", caption: "Säiliön tiedot" },
     { alt: "Datapisteet", caption: "Datapisteet" },
     { alt: "Mobiililista", caption: "Mobiililista" },
@@ -67,7 +67,7 @@ export const industrialToolFi: CaseStudy = {
     {
       number: "01",
       title: "Data nopeammin ja selkeämmin yhdellä silmäyksellä",
-      body: "Kun kojelaudan datapaneelit muutettiin visuaalisiksi korteiksi, asiantuntijoiden ei enää tarvinnut lukea pitkiä tekstilistoja löytääkseen tarvitsemansa. Tieto, jonka hahmottaminen vaati ennen selaamista ja tulkintaa, oli nyt ymmärrettävissä sekunneissa, mikä nopeutti suoraan päivittäistä seuranta- ja raportointityötä.",
+      body: "Kun dashboardin datapaneelit muutettiin visuaalisiksi korteiksi, asiantuntijoiden ei enää tarvinnut lukea pitkiä tekstilistoja löytääkseen tarvitsemansa. Tieto, jonka hahmottaminen vaati ennen selaamista ja tulkintaa, oli nyt ymmärrettävissä sekunneissa, mikä nopeutti suoraan päivittäistä seuranta- ja raportointityötä.",
     },
     {
       number: "02",
@@ -87,7 +87,7 @@ export const industrialToolFi: CaseStudy = {
   ],
 
   howItStarted: [
-    "Astuin keskeneräiseen projektiin ja jatkoin edellisen suunnittelijan työtä. Ensimmäisiä painopisteitäni olivat käyttöliittymän visuaaliset parannukset, esimerkiksi kojelaudan pienten paneelien muuttaminen pelkistä tekstilistoista visuaalisiksi korteiksi, mikä teki niistä paljon helpommin hahmotettavia yhdellä silmäyksellä. Tämän jälkeen suunnittelimme automaattisen tallennuksen data- ja raporttinäkymiin sekä paransimme raporttien rakennetta ja sisältöä.",
+    "Astuin keskeneräiseen projektiin ja jatkoin edellisen suunnittelijan työtä. Ensimmäisiä painopisteitäni olivat käyttöliittymän visuaaliset parannukset, esimerkiksi dashboardin pienten paneelien muuttaminen pelkistä tekstilistoista visuaalisiksi korteiksi, mikä teki niistä paljon helpommin hahmotettavia yhdellä silmäyksellä. Tämän jälkeen suunnittelimme automaattisen tallennuksen data- ja raporttinäkymiin sekä paransimme raporttien rakennetta ja sisältöä.",
   ],
 
   challenges: [

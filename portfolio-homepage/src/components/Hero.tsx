@@ -32,7 +32,12 @@ export default function Hero({ copy }: { copy: Dictionary["hero"] }) {
               />
             </LiquidHover>
             <p className="m-0 text-body-em font-semibold text-ink">
-              {copy.greeting} <span aria-hidden="true">·</span>{" "}
+              {copy.greeting}{" "}
+              {copy.greetingSeparator && (
+                <>
+                  <span aria-hidden="true">{copy.greetingSeparator}</span>{" "}
+                </>
+              )}
               <span className="font-medium text-body">{copy.title}</span>
             </p>
           </div>

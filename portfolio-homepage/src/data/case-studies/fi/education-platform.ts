@@ -18,9 +18,9 @@ export const educationPlatformFi: CaseStudy = {
     "Toin rakennetta valtavaan julkisen sektorin alustaan yhdistämällä monimutkaiset kuntien koulutyönkulut selkeäksi ja saavutettavaksi työkaluksi opettajille ja hallintohenkilöstölle.",
 
   intro: [
-    "Julkisen sektorin organisaatioiden konsortio tarvitsi korvaajan perusopetuksessa ja lukiokoulutuksessa käytetyille vanhentuneille järjestelmille, ja palveltavana oli monta kuntaa erilaisine tarpeineen. Tulin mukaan UX- ja tuotesuunnittelijaksi, ja kolmen vuoden aikana minusta tuli johtava suunnittelija.",
+    "Julkisen sektorin organisaatioiden konsortio tarvitsi korvaajan perusopetuksessa ja lukiokoulutuksessa käytetyille vanhentuneille järjestelmille, ja palveltavana oli monta kuntaa erilaisine tarpeineen. Tulin mukaan UX- ja tuotesuunnittelijaksi, ja kolmen vuoden aikana minusta tuli Lead Designer.",
   ],
-  roleLabel: "UX- ja tuotesuunnittelija, myöhemmin johtava suunnittelija, kolmen vuoden ajan",
+  roleLabel: "UX- ja tuotesuunnittelija, myöhemmin Lead Designer, kolmen vuoden ajan",
   focusLabel:
     "Palvelumuotoilu, suunnittelujärjestelmät ja suunnittelun yhtenäisyys tiimien välillä usean toimittajan julkisen sektorin alustalla",
   categoryTag: "Julkisen sektorin alusta",
@@ -52,8 +52,8 @@ export const educationPlatformFi: CaseStudy = {
   ],
 
   gallery: localizeGallery(en.gallery, [
-    { alt: "Opettajan etusivu", caption: "Opettajan kojelauta" },
-    { alt: "Opettajan etusivu, mobiili", caption: "Mobiilikojelauta" },
+    { alt: "Opettajan etusivu", caption: "Opettajan dashboard" },
+    { alt: "Opettajan etusivu, mobiili", caption: "Dashboard mobiilissa" },
     { alt: "Oppilashallinnon tarkempi näkymä", caption: "Oppilaan tiedot" },
     { alt: "Lukujärjestys ja kurssitarjonta", caption: "Lukujärjestys" },
     { alt: "Lukujärjestys ja kurssitarjonta, valintojen muokkaus", caption: "Valintojen muokkaus" },
@@ -96,7 +96,7 @@ export const educationPlatformFi: CaseStudy = {
     {
       number: "02",
       title: "Suunnittelusta oikeaksi tuotteeksi",
-      body: "Tein tiivistä yhteistyötä kehitystiimien kanssa varmistaakseni, että suunnitelmamme todella rakennettiin tarkoitetulla tavalla. Projektin viimeisenä vuotena johtavana suunnittelijana vastasin siitä, että kaikki näytti ja toimi yhdenmukaisesti koko alustalla, myös ulkopuolisten yritysten rakentamissa osissa, joiden mukauttaminen osoittautui odotettua vaikeammaksi.",
+      body: "Tein tiivistä yhteistyötä kehitystiimien kanssa varmistaakseni, että suunnitelmamme todella rakennettiin tarkoitetulla tavalla. Projektin viimeisenä vuotena Lead Designerina vastasin siitä, että kaikki näytti ja toimi yhdenmukaisesti koko alustalla, myös ulkopuolisten yritysten rakentamissa osissa, joiden mukauttaminen osoittautui odotettua vaikeammaksi.",
     },
     {
       number: "03",

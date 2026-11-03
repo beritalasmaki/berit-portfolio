@@ -55,8 +55,7 @@ export default function MindTabs({ locale, copy }: { locale: Locale; copy: Dicti
 
   return (
     <section id="key-skills" aria-labelledby="mind-heading" className="mt-rhythm">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.eyebrow}</p>
-      <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap mt-4">
+      <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap">
         <h2 id="mind-heading" className="m-0 text-section-h2 text-ink">
           {copy.heading}
         </h2>

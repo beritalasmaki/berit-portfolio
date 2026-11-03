@@ -76,6 +76,7 @@ export const en = {
   hero: {
     photoAlt: "Berit Alasmäki",
     greeting: "Hi, I'm Berit",
+    greetingSeparator: "·",
     title: "Senior UX & Product Designer",
     headline: ["Your partner in", "untangling", "complexity."],
     stats: [
@@ -104,7 +105,6 @@ export const en = {
   },
 
   mindTabs: {
-    eyebrow: "02 / your next move",
     heading: "The questions behind the résumé",
     aside: "A good collaboration starts with a better question.",
     tablistLabel: "Questions",
@@ -124,14 +124,6 @@ export const en = {
           "Modernizing old environmental data systems meant working with tools researchers had used for years without a clear structure. Instead of waiting for a perfect solution, I focused on releasing something useful quickly, and then improving it based on what we learned.",
         linkLabel: "See the Environmental Data Systems case study →",
         study: "environmental-data-tool",
-      },
-      {
-        question: "Does her work survive when developers start building it?",
-        body: "Before I hand a design over, I walk the developers through it and explain the reasoning behind each decision, not only what to build.",
-        highlight:
-          "I moved a design system from Sketch to Figma during an active project, rebuilding the components properly instead of copying them as they were. Both the developers and the project manager told me how much smoother their work became because of this.",
-        linkLabel: "See the Industrial Data case study →",
-        study: "industrial-tool",
       },
       {
         question: "How does she know when something is ready to ship?",
