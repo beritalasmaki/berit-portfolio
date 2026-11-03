@@ -8,17 +8,17 @@ export const environmentalDataToolFi: CaseStudy = {
   label: "YMPÄRISTÖDATAJÄRJESTELMÄT · 2020–2024",
   headline: "Vanhentuneet järjestelmät.\nNyt jotain, mihin tutkijat todella luottavat.",
   description:
-    "Ympäristödatan seuranta- ja raportointityökalut, jotka on rakennettu niin, että asiantuntijat voivat löytää, vertailla ja julkaista tuloksia taistelematta käyttöliittymää vastaan.",
+    "Ympäristödatan seuranta- ja raportointityökalut, joilla asiantuntijat löytävät, vertailevat ja julkaisevat tuloksia ilman, että käyttöliittymä on jatkuvasti tiellä.",
   thumbnail: "/case/syke-new-card.png",
   thumbnailAlt: "Ympäristödatajärjestelmät",
   projectCount: "5+",
   industry: "Ympäristötutkimus",
-  ctaLabel: "Tutustu koko tapaustutkimukseen",
+  ctaLabel: "Tutustu koko asiakasprojektiin",
   otherCaseStudyDescription:
     "Muutin vanhentuneet järjestelmät nykyaikaisiksi, tehokkaiksi työkaluiksi, jotka auttavat ympäristötutkijoita hallitsemaan ja analysoimaan kriittistä dataa.",
 
   intro: [
-    "Ympäristötutkimuslaitos käytti vanhentuneita työkaluja kriittisen datan hallintaan ja analysointiin ja turvautui usein Exceliin pelkästään saadakseen datasta selvää. Useissa projekteissa vuosina 2020–2023 tulin mukaan laitoksen ainoaksi UX-suunnittelijaksi uudistamaan näitä työkaluja.",
+    "Ympäristötutkimuslaitos hallitsi ja analysoi kriittistä dataansa vanhentuneilla työkaluilla ja turvautui usein Exceliin, jotta datasta sai edes jotain selvää. Vuosina 2020–2023 tein laitokselle useita projekteja ainoana UX-suunnittelijana ja uudistin näitä työkaluja.",
   ],
   roleLabel: "UI/UX-suunnittelija (ainoa suunnittelija, pitkäaikainen asiakassuhde)",
   focusLabel:
@@ -64,13 +64,13 @@ export const environmentalDataToolFi: CaseStudy = {
   impactCards: [
     {
       number: "01",
-      title: "Vanhoista työkaluista työtapoja vastaaviin välineisiin",
-      body: "Emme vain uudistaneet vanhojen järjestelmien ulkoasua, vaan rakensimme useita niistä uudelleen sen mukaan, miten tutkijat nykyään oikeasti työskentelevät, mukaan lukien se, miten he yhdistävät kartta- ja taulukkodataa ja miten he lisäävät uusia tuloksia työn edetessä.",
+      title: "Vanhoista työkaluista tutkijoiden työtä tukeviin välineisiin",
+      body: "Emme vain uudistaneet vanhojen järjestelmien ulkoasua, vaan rakensimme useita niistä uudelleen sen mukaan, miten tutkijat nykyään oikeasti työskentelevät: miten he yhdistävät kartta- ja taulukkodataa ja miten he lisäävät uusia tuloksia työn edetessä.",
     },
     {
       number: "02",
-      title: "Rikkaampia oivalluksia oikean datavisualisoinnin avulla",
-      body: "Näistä projekteista suurimmassa tutkijat olivat aiemmin tukeutuneet vahvasti Exceliin saadakseen datastaan selvää. Rakensimme sen sijaan kunnolliset analytiikkanäkymät suoraan järjestelmään, mikä antoi heille paljon selkeämmän ja nopeamman tavan havaita kuvioita ja ymmärtää dataansa ilman, että sitä piti ensin viedä muualle.",
+      title: "Parempia oivalluksia oikean datavisualisoinnin avulla",
+      body: "Näistä projekteista suurimmassa tutkijat olivat aiemmin turvautuneet paljon Exceliin ymmärtääkseen dataansa. Rakensimme järjestelmään kunnolliset analytiikkanäkymät, joiden avulla kuviot ja poikkeamat huomaa selvästi nopeammin ilman, että dataa tarvitsee ensin viedä muualle.",
     },
     {
       number: "03",
@@ -80,35 +80,35 @@ export const environmentalDataToolFi: CaseStudy = {
   ],
 
   howItStarted: [
-    "Jokainen järjestelmä, jonka parissa työskentelin, oli vanhentunut ja piti rakentaa uudelleen, mutta harvoin täsmälleen vanhan kopiona. Useimmiten emme voineet vain luoda vanhaa järjestelmää uudelleen uudella käyttöliittymällä. Meidän piti miettiä uudelleen, miten datan ja työnkulkujen pitäisi oikeasti toimia, ja rakentaa sen päälle jotain uutta. Parissa projektissa tämä tarkoitti sitä, että aloitin itse lyhyellä tutkimuskierroksella, lähellä sitä, mitä kutsutaan Lean Designiksi: kerätään juuri sen verran, että pääsee alkuun, ja opitaan loput rakentamalla. Tein tämän suoraan järjestelmän asiantuntijoiden kanssa kerätäkseni tarvittavan aineiston, ennen kuin pääsin varsinaisen käyttöliittymän kimppuun.",
+    "Jokainen järjestelmä, jonka parissa työskentelin, oli vanhentunut ja piti rakentaa uudelleen, mutta harvoin täsmälleen vanhan kopiona. Useimmiten vanhaa järjestelmää ei voinut vain pukea uuteen käyttöliittymään. Piti miettiä uudelleen, miten datan ja työnkulkujen oikeasti kuuluisi toimia, ja rakentaa uusi järjestelmä sen pohjalta. Parissa projektissa aloitin itse lyhyellä tutkimuskierroksella, joka oli lähellä niin sanottua Lean Designia: kerätään vain sen verran, että pääsee liikkeelle, ja opitaan loput rakentamalla. Tein sen suoraan järjestelmän asiantuntijoiden kanssa, jotta sain tarvittavan aineiston ennen kuin pääsin varsinaisen käyttöliittymän kimppuun.",
   ],
 
   challenges: [
     {
       number: "01",
       title: "Karttojen ja taulukoiden yhdistäminen",
-      body: "Useissa näistä järjestelmistä toistuva haaste oli karttanäkymien ja taulukkonäkymien yhdistäminen yhdeksi johdonmukaiseksi kokemukseksi. Minun piti selvittää, kuinka monta saraketta taulukossa voi järkevästi olla, ennen kuin sitä on vaikea käyttää, ja miten karttanäkymälle saadaan oikeat ominaisuudet, jotta se esittää eri tyyppiset datapisteet selkeästi ylikuormittamatta käyttäjää.",
+      body: "Useissa näistä järjestelmistä toistuva haaste oli karttanäkymien ja taulukkonäkymien yhdistäminen yhdeksi johdonmukaiseksi kokonaisuudeksi. Minun piti selvittää, kuinka monta saraketta taulukossa voi olla, ennen kuin sitä on vaikea käyttää, ja mitä ominaisuuksia karttanäkymä tarvitsee, jotta eri tyyppiset datapisteet erottuvat selvästi ilman, että käyttäjä hukkuu informaatioon.",
     },
     {
       number: "02",
       title: "Suunnittelu kasvavalle, reaaliaikaiselle datalle",
-      body: "Nämä eivät olleet staattisia järjestelmiä. Käyttäjien piti pystyä lisäämään uusia näytteenottotuloksia suoraan järjestelmään, mikä tarkoitti, että data itse kasvoi ja muuttui koko ajan. Tein tiivistä yhteistyötä asiantuntijoiden kanssa, jotka käyttivät näitä järjestelmiä päivittäin, jotta suunnittelu kestäisi uuden datan lisäämisen rikkomatta rakentamaamme rakennetta.",
+      body: "Nämä eivät olleet staattisia järjestelmiä. Käyttäjien piti pystyä lisäämään uusia näytteenottotuloksia suoraan järjestelmään, joten data kasvoi ja muuttui jatkuvasti. Tein tiivistä yhteistyötä järjestelmiä päivittäin käyttävien asiantuntijoiden kanssa, jotta suunnittelu kestäisi uuden datan lisäämisen rikkoutumatta.",
     },
     {
       number: "03",
-      title: "Todellisen projektirakenteen hyödyntäminen, kun sellainen oli",
-      body: "Kaikissa projekteissa ei ollut samaa rakenteen tasoa. Yhdessä projektissa oli erityisesti oma projektipäällikkö, joka piti työn raiteillaan ja varmisti, että ratkaisimme oikeita ongelmia, ja tuin tätä työtä suunnittelun puolelta. Muut projektit olivat pienempiä ja löyhempiä, lähempänä epävirallista, jatkuvaa yhteistyötä asiantuntijoiden kanssa.",
+      title: "Projektirakenne vaihteli, hyödynsin sitä silloin kun sellainen oli",
+      body: "Kaikissa projekteissa ei ollut yhtä paljon rakennetta. Yhdessä projektissa oli oma projektipäällikkö, joka piti työn raiteillaan ja varmisti, että ratkaisimme oikeita ongelmia, ja tuin häntä suunnittelun puolelta. Muut projektit olivat pienempiä ja väljempiä, lähempänä epävirallista jatkuvaa yhteistyötä asiantuntijoiden kanssa.",
     },
     {
       number: "04",
       title: "Kunnollisten data-analytiikkanäkymien rakentaminen",
-      body: "Yhdessä isommista projekteista menimme perusliittymiä pidemmälle ja rakensimme kunnolliset data-analytiikkanäkymät, kuten pylväs- ja hajontakaaviot sekä muita visualisointeja. Ne antoivat tutkijoille paljon rikkaamman tavan tutkia ja ymmärtää dataansa kuin vanhat järjestelmät koskaan. Kaikissa näissä projekteissa ratkaisevaa oli pysyä lähellä asiantuntijoita, jotka käyttivät työkaluja päivittäin. Työ oli vaativaa, mutta heidän kanssaan rinnakkain suunnitteleminen teki siitä aidosti nautittavaa, ei pelkästään tehokasta.",
+      body: "Yhdessä isoimmista projekteista menimme perusnäkymiä pidemmälle ja rakensimme kunnolliset analytiikkanäkymät, kuten pylväs- ja hajontakaaviot sekä muita visualisointeja. Ne antoivat tutkijoille paljon monipuolisemmat keinot tutkia ja ymmärtää dataansa kuin vanhat järjestelmät koskaan. Kaikissa näissä projekteissa ratkaisevaa oli pysyä lähellä päivittäin työkalua käyttäviä asiantuntijoita. Työ oli vaativaa, mutta rinta rinnan heidän kanssaan suunnittelu teki siitä myös aidosti hauskaa, ei pelkästään tehokasta.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "Jos voisin palata ajassa taaksepäin, ajaisin kovemmin suunnittelujärjestelmätyön aloittamista aiemmin. Organisaatiolla oli suunnitelmia aloittaa sellainen jossain vaiheessa, mutta kun hyvin pieni kehitystiimi oli jo venytetty ylläpitämään yli 200:aa eri järjestelmää, priorisointi oli vaikeaa. Lisäksi sisäisesti oli vielä paljon epäselvää, muun muassa se, millä tasolla suunnittelujärjestelmä pitäisi edes rakentaa organisaatiolle, jolla on niin monta järjestelmää ja niin vähän resursseja.",
-    "Se on hyvä muistutus siitä, ettei suunnittelujärjestelmä ole vain suunnittelupäätös, vaan se edellyttää myös, että organisaatiolla on kapasiteettia ja selkeyttä tukea sitä. Ajaisin sitä edelleen aiemmin ensi kerralla, mutta tulisin mukaan realistisemmalla lähtökohdalla: jollain pienellä ja riittävän hyödyllisellä, joka todistaa arvonsa nopeasti, sen sijaan että odottaisin ihanteellisia olosuhteita, joita ei ehkä koskaan tule.",
+    "Jos voisin palata ajassa taaksepäin, ajaisin suunnittelujärjestelmän aloittamista aiemmin. Organisaatiolla oli suunnitelmia aloittaa sellainen jossain vaiheessa, mutta kun hyvin pieni kehitystiimi ylläpiti jo yli 200:aa eri järjestelmää, priorisointi oli vaikeaa. Lisäksi sisäisesti oli vielä paljon epäselvää, esimerkiksi se, millä tasolla suunnittelujärjestelmä kannattaisi rakentaa organisaatiolle, jolla on niin monta järjestelmää ja niin vähän resursseja.",
+    "Tämä on hyvä muistutus siitä, ettei suunnittelujärjestelmä ole pelkkä suunnittelupäätös. Organisaatiolla pitää olla myös kapasiteettia ja selkeyttä sen tukemiseen. Ajaisin sitä edelleen aiemmin ensi kerralla, mutta lähtisin liikkeelle realistisemmin: pienellä ja riittävän hyödyllisellä kokonaisuudella, joka osoittaa arvonsa nopeasti, sen sijaan että odottaisin ihanteellisia olosuhteita, joita ei ehkä koskaan tule.",
   ],
 
   methods: ["Kevyt kartoitus", "Yhteissuunnittelun työpajat", "Käytettävyystestaus", "Lean-suunnittelu"],

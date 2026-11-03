@@ -18,7 +18,6 @@ export default function ClientLogos({ copy }: { copy: Dictionary["clients"] }) {
           the page is a plain `<p>` sitting beside its own `<h2>`, so the
           number is free to be read there. */}
       <h2 id="clients-heading" className="font-mono-label text-mono-label uppercase text-muted m-0">
-        <span aria-hidden="true">{copy.eyebrowNumber}</span>
         {copy.heading}
       </h2>
       {/* Infinite carousel: the logo list is rendered twice inside one flex

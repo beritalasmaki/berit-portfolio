@@ -265,8 +265,7 @@ export default function ProcessTimeline({ copy }: { copy: Dictionary["process"] 
 
   return (
     <section id="process" aria-labelledby="process-heading" className="mt-rhythm">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.eyebrow}</p>
-      <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap mt-4">
+      <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap">
         <h2 id="process-heading" className="m-0 text-section-h2 text-ink">
           {copy.headingLines[0]}
           <br />

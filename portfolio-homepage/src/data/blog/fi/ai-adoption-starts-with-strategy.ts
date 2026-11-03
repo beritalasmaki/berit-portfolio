@@ -41,7 +41,7 @@ export const aiAdoptionStrategyFi: BlogPost = {
     { type: "subheading", text: "Missä olemme nyt?" },
     {
       type: "paragraph",
-      text: "Kuinka hyvää dataamme on, mitä alustoja meillä on ja millaista osaamista ihmisillämme on? Joillakin organisaatioilla on jo hyvin toimiva data-alusta, ja ne voivat keskittyä sen hyödyntämiseen. Toisten täytyy korjata datansa ensin, eikä sitä työtä voi ohittaa.",
+      text: "Kuinka hyvälaatuista datamme on, mitä alustoja meillä on ja millaista osaamista ihmisillämme on? Joillakin organisaatioilla on jo hyvin toimiva data-alusta, ja ne voivat keskittyä sen hyödyntämiseen. Toisten täytyy korjata datansa ensin, eikä sitä työtä voi ohittaa.",
     },
     { type: "subheading", text: "Missä haluamme olla kolmen–viiden vuoden kuluttua?" },
     {
@@ -90,7 +90,7 @@ export const aiAdoptionStrategyFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "OKR-tavoitteet asetetaan yleensä yhdeksi neljännekseksi kerrallaan ja jaetaan avoimesti koko organisaatiolle. Ne pidetään tavallisesti erillään bonuksista, jotta ihmiset uskaltavat asettaa kunnianhimoisia tavoitteita. Ne eroavat myös KPI-mittareista: KPI:t seuraavat jatkuvaa suorituskykyä, kun taas OKR-malliin turvaudutaan tietyn muutoksen ohjaamisessa.",
+      text: "OKR-tavoitteet asetetaan yleensä yhdeksi neljännekseksi kerrallaan ja jaetaan avoimesti koko organisaatiolle. Ne pidetään tavallisesti erillään bonuksista, jotta ihmiset uskaltavat asettaa kunnianhimoisia tavoitteita. Ne eroavat myös KPI-mittareista: KPI:t seuraavat jatkuvaa suorituskykyä, kun taas OKR-tavoitteilla ohjataan jotakin tiettyä muutosta.",
     },
 
     {

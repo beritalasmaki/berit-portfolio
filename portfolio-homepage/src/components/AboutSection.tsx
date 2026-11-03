@@ -6,9 +6,7 @@ import WhatIDo from "./WhatIDo";
 export default function AboutSection({ copy }: { copy: Pick<Dictionary, "about" | "whatIDo" | "process"> }) {
   return (
     <section id="about" aria-labelledby="about-heading" className="mt-rhythm">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.about.eyebrow}</p>
-
-      <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap mt-4">
+      <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap">
         <h2 id="about-heading" className="m-0 text-section-h2 text-ink">
           {copy.about.heading}
         </h2>

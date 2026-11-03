@@ -100,17 +100,16 @@ export const en = {
   },
 
   clients: {
-    eyebrowNumber: "01 / ",
     heading: "Experience with well-known organisations",
   },
 
   mindTabs: {
-    heading: "The questions behind the résumé",
+    heading: "How do I work?",
     aside: "A good collaboration starts with a better question.",
     tablistLabel: "Questions",
     tabs: [
       {
-        question: "Is she keeping her collaboration skills up to date?",
+        question: "How do I keep my collaboration skills up to date?",
         body: "Developer collaboration looks different today than it did a few years ago. I keep adapting to that: I do not just hand a finished design over and disappear, I stay part of the conversation while developers are building. I also build real prototypes myself with tools like Claude Design and VS Code, so developers see working components early, not just static images to interpret.",
         highlight:
           "On a national education platform with many municipalities and vendors, I ran the team's daily meetings and created the workshop process the team used to move from research to real concepts.",
@@ -118,7 +117,7 @@ export const en = {
         study: "education-platform",
       },
       {
-        question: "How does she approach complex problems?",
+        question: "How do I approach complex problems?",
         body: "I map the problem, build early concepts, and adapt quickly instead of trying to plan every detail in advance.",
         highlight:
           "Modernizing old environmental data systems meant working with tools researchers had used for years without a clear structure. Instead of waiting for a perfect solution, I focused on releasing something useful quickly, and then improving it based on what we learned.",
@@ -126,7 +125,7 @@ export const en = {
         study: "environmental-data-tool",
       },
       {
-        question: "How does she know when something is ready to ship?",
+        question: "How do I know a design is ready to build?",
         body: "I prefer to release something, learn from real feedback, and improve it, instead of spending too much time perfecting a first version nobody has tested yet.",
         highlight:
           "A university's digital portal launched as a first version, then kept improving based on real usage after launch.",
@@ -137,14 +136,12 @@ export const en = {
   },
 
   caseStudies: {
-    eyebrow: "03 / selected case studies",
     heading: "A closer look at the work.",
     projectOne: "project",
     projectMany: "projects",
   },
 
   about: {
-    eyebrow: "04 / about",
     heading: "About Me",
     aside: "The person behind the pixels.",
     closing: "We agree, together, on what success looks like before the work starts.",
@@ -212,7 +209,6 @@ export const en = {
   },
 
   process: {
-    eyebrow: "05 / my process",
     headingLines: ["Every project gets", "the approach it needs."],
     intro:
       "Sometimes that means weeks of research before anything gets drawn. Sometimes it means a prototype in someone's hands the same afternoon. Pick a project type to see how the shape changes.",

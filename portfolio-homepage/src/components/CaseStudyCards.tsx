@@ -9,8 +9,7 @@ export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy:
   const caseStudies = getCaseStudies(locale);
   return (
     <section id="case-studies" aria-labelledby="case-studies-heading" className="mt-rhythm">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.eyebrow}</p>
-      <h2 id="case-studies-heading" className="mt-4 m-0 text-section-h2 text-ink">
+      <h2 id="case-studies-heading" className="m-0 text-section-h2 text-ink">
         {copy.heading}
       </h2>
 
