@@ -25,14 +25,16 @@ export const industrialToolFi: CaseStudy = {
       "Teollisuuden asiantuntijoiden seuranta- ja raportointialustasta oli tullut hankala käyttää: pitkiä tekstilistoja, käsin tehtyjä laskelmia, unohtuneiden tallennusten takia katoavaa työtä ja vanhaan työkaluun jumittunut komponenttikirjasto.",
     role:
       "Alustan ainoa UX-suunnittelija vuosina 2020–2023. Jatkoin edellisen suunnittelijan työtä ja vastasin koko kokonaisuudesta.",
+    decisionsLabel: "Ratkaisut ja kädenjälki",
+    outcomeLabel: "Lopputulos ja vaikutus",
     decisions: [
-      "Muutin dashboardin tekstilistat visuaalisiksi korteiksi, jotta data hahmottuu yhdellä silmäyksellä",
-      "Pilkoin monimutkaiset laskennat ohjatuksi, vaiheittaiseksi ikkunaksi",
-      "Lisäsin data- ja raporttinäkymiin automaattisen tallennuksen",
-      "Siirsin suunnittelujärjestelmän Sketchistä Figmaan ja rakensin komponentit uudelleen kopioimisen sijaan",
+      "**Tiedon hahmotettavuus:** Tiivistin monimutkaisen datan ja pitkät listat selkeiksi visuaalisiksi kokonaisuuksiksi, jotta olennainen tieto löytyy yhdellä silmäyksellä.",
+      "**Käyttöprosessien selkeyttäminen:** Pilkoin raskaat ja monivaiheiset tehtävät ohjatuiksi, steppi stepiltä eteneviksi kokonaisuuksiksi (wizard).",
+      "**Käyttökokemuksen varmuus:** Paransin työn jatkuvuutta ja vähensin käyttäjän kuormitusta tuomalla näkymiin automaattisen tallennuksen.",
+      "**Design Systemin uudistus:** Siirsin suunnittelujärjestelmän Sketchistä Figmaan ja rakensin komponentit samalla skaalautuvasti uudelleen.",
     ],
     outcome:
-      "Asiantuntijat hahmottivat datansa sekunneissa, monimutkaisia laskentoja pystyi ajamaan varmoin mielin useampi tiimiläinen eikä työ enää kadonnut. Kehittäjät ja suunnittelijat työskentelivät vihdoin samassa työkalussa, ja sekä kehittäjät että projektipäällikkö kertoivat työn sujuvoituneen selvästi.",
+      "Asiantuntijat hahmottivat tarvitsemansa datan nopeasti, ja monimutkaisten laskentojen tekeminen muuttui varmaksi ja helppokäyttöiseksi koko tiimille. Automaattisen tallennuksen ansiosta työvaiheita ei enää menetetty.\n\nSuunnittelijoiden ja kehittäjien siirtyminen yhteiseen työkaluun selkeytti yhteistyötä, ja sekä kehitystiimi että projektipäällikkö kertoivat päivittäisen työn sujuvoituneen huomattavasti.",
   },
   roleLabel: "UX-suunnittelija (projektin ainoa suunnittelija)",
   focusLabel: "Asiantuntijatyökalut, datan visualisointi ja suunnittelujärjestelmän uudistaminen",

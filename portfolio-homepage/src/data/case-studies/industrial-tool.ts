@@ -23,14 +23,16 @@ export const industrialTool: CaseStudy = {
       "A monitoring and reporting platform for industrial specialists had become hard to use: long text lists, calculations done by hand, work lost to missed saves, and a design library stuck in an old tool.",
     role:
       "Sole UX designer on the platform, 2020–2023. I took over from the previous designer and owned the whole experience.",
+    decisionsLabel: "Solutions and hands-on work",
+    outcomeLabel: "Outcome and impact",
     decisions: [
-      "Turned the dashboard's text lists into visual cards, so data reads at a glance",
-      "Split complex calculations into a guided, step-by-step window",
-      "Added auto-save to the data and reporting views",
-      "Migrated the design system from Sketch to Figma, rebuilding components instead of copying them",
+      "**Readable information:** I condensed complex data and long lists into clear visual blocks, so the essentials can be found at a glance.",
+      "**Simpler processes:** I split heavy, multi-step tasks into guided, step-by-step flows (wizards).",
+      "**Confidence in the tool:** I improved continuity of work and reduced users' load by adding auto-save to the views.",
+      "**Design system overhaul:** I migrated the design system from Sketch to Figma and rebuilt the components to scale.",
     ],
     outcome:
-      "Specialists read their data in seconds, more people on the team could run complex calculations with confidence, and work stopped getting lost. Developers and designers finally shared one tool, and both developers and the project manager told me their work became noticeably smoother.",
+      "Specialists grasped the data they needed quickly, and running complex calculations became reliable and easy for the whole team. Thanks to auto-save, work was no longer lost.\n\nMoving designers and developers into one shared tool made collaboration clearer, and both the development team and the project manager told me their day-to-day work became noticeably smoother.",
   },
   roleLabel: "UX Designer (sole designer on the project)",
   focusLabel: "Expert tools, data visualization, and Design System modernization",

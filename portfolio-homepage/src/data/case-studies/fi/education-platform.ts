@@ -22,13 +22,14 @@ export const educationPlatformFi: CaseStudy = {
   ],
   glance: {
     problem:
-      "Perusopetuksessa ja lukiokoulutuksessa käytetyt vanhentuneet koulunhallinnon järjestelmät piti korvata monen kunnan tarpeisiin, ja useat kehitystiimit ja kolmannen osapuolen toimittajat rakensivat rinnakkain.",
+      "Perusopetuksessa ja lukiokoulutuksessa aikaisemmin käytetyt vanhentuneet opetus- ja hallintojärjestelmät piti korvata seitsemän kunnan tarpeisiin. Uutta järjestelmää oli mukana rakentamassa useampi kehitystiimi ja kolmannen osapuolen toimittaja. Sidosryhmiä ja käyttäjäryhmiä oli paljon. Alustan tuli palvella saumattomasti kahta erilaista oppilaitosympäristöä, mikä vaati peruskoulun ja lukion prosessien sekä toiminnallisten vaatimusten tarkkaa yhteensovittamista.",
     role:
-      "UX- ja tuotesuunnittelija, myöhemmin Lead Designer, kolmen vuoden ajan. Vastasin pääasiassa visuaalisesta suunnittelusta ja suunnittelun yhtenäisyydestä tiimien välillä sekä ehdotin työpajamallin ja vedin sitä.",
+      "UX- ja tuotesuunnittelija, myöhemmin Lead Designer (3 vuotta)\nVastasin tuotteen visuaalisesta ilmeestä, käyttäjätutkimuksesta sekä Design Systemin UI Kitistä. Huolehdin saavutettavuudesta ja varmistin suunnittelun yhtenäisyyden eri tiimien välillä. Toimin tiiviissä yhteistyössä tuoteomistajan ja kehittäjien kanssa muun muassa tikettien ja vaatimusten määrittelyssä.",
+    decisionsLabel: "Ratkaisu ja toteutus",
     decisions: [
-      "Vedin kolmivaiheisen työpajamallin: nykyisten ongelmakohtien kartoitus, ihanteellisen tulevaisuuden palvelun tutkiminen ja konseptien yhteissuunnittelu sidosryhmien kanssa",
-      "Määrittelin kaikille kehitystiimeille saman visuaalisen tyylin ja samat uudelleenkäytettävät komponentit ja kerroin perustelut säännöllisissä tapaamisissa kehittäjien kanssa",
-      "Rakensin luottamusta uudelleen budjetin ylityksen jälkeen: pysyin näkyvillä, viestin selkeästi ja kirjasin päätökset ylös",
+      "**Prosessin kirkastaminen:** Vedin sidosryhmille kolmivaiheisen työpajasarjan, jossa kartoitettiin nykyiset kipupisteet, määriteltiin tavoitetila ja suunniteltiin tulevat konseptit yhdessä.",
+      "**Yhtenäinen suunnittelu:** Määrittelin tiimeille yhteisen visuaalisen linjan ja komponentit, ja avasin päätösten taustoja säännöllisissä tapaamisissa kehittäjien kanssa.",
+      "**Luottamuksen rakentaminen:** Budjettiylityksen jälkeen palautin luottamuksen läpinäkyvällä viestinnällä, aktiivisella läsnäololla ja dokumentoimalla kaikki päätökset kirkkaasti.",
     ],
     outcome:
       "Pilottikoulujen mukaan alusta on helppokäyttöinen, monipuolinen ja moderni, ja opettajat ja hallintohenkilöstö kiittivät sen johdonmukaisuutta ja nopeutta. Kaksi kuntaa vetäytyi budjetin ylityksen vuoksi, ja alusta otettiin käyttöön jäljellä olevissa viidessä kunnassa keväällä 2026. Laajempi käyttöönotto kouluissa on suunniteltu.",

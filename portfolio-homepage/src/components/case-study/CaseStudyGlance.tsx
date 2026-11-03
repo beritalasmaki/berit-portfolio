@@ -1,4 +1,5 @@
 import type { CaseGlance } from "@/data/case-studies";
+import InlineText from "@/components/blog/InlineText";
 import type { Dictionary } from "@/i18n/dictionaries";
 
 /**
@@ -10,7 +11,7 @@ import type { Dictionary } from "@/i18n/dictionaries";
 export default function CaseStudyGlance({ glance, copy }: { glance: CaseGlance; copy: Dictionary["caseStudy"] }) {
   const g = copy.glance;
   const label = "font-mono-label text-mono-label uppercase text-accent-dark m-0";
-  const text = "m-0 max-w-prose-cs text-body-lg text-ink text-pretty";
+  const text = "m-0 whitespace-pre-line max-w-prose-cs text-body-lg text-ink text-pretty";
   return (
     <section id="glance" aria-labelledby="glance-heading" className="rounded-card glass p-card-pad">
       <p className="font-mono-label text-mono-label uppercase text-accent-dark m-0" aria-hidden="true">
@@ -29,20 +30,22 @@ export default function CaseStudyGlance({ glance, copy }: { glance: CaseGlance; 
           <dd className={text + " ml-0"}>{glance.role}</dd>
         </div>
         <div className="flex flex-col gap-2 border-t border-rule pt-6">
-          <dt className={label}>{g.decisions}</dt>
+          <dt className={label}>{glance.decisionsLabel ?? g.decisions}</dt>
           <dd className="m-0">
             <ul className="m-0 flex list-none flex-col gap-2 p-0">
               {glance.decisions.map((decision) => (
                 <li key={decision} className="flex gap-3 text-body-lg text-ink text-pretty">
                   <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-pill bg-accent" />
-                  <span>{decision}</span>
+                  <span>
+                    <InlineText text={decision} />
+                  </span>
                 </li>
               ))}
             </ul>
           </dd>
         </div>
         <div className="flex flex-col gap-2 border-t border-rule pt-6">
-          <dt className={label}>{g.outcome}</dt>
+          <dt className={label}>{glance.outcomeLabel ?? g.outcome}</dt>
           <dd className={text + " ml-0"}>{glance.outcome}</dd>
         </div>
       </dl>
