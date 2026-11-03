@@ -1,12 +1,13 @@
-export type FormMode = "default" | "hover" | "active" | "focus" | "disabled" | "loading";
+export type FormMode = "default" | "hover" | "active" | "focus" | "disabled" | "loading" | "error";
 
 const modeClasses: Record<FormMode, string> = {
   default: "",
   hover: "!border-[var(--preview-content,var(--color-content-primary))]",
-  active: "!border-[var(--color-action-accent-dark)] !bg-[var(--preview-surface-raised,var(--color-surface-subtle))]",
-  focus: "focus-ring !border-[var(--color-action-accent-dark)]",
+  active: "!border-[var(--preview-accent,var(--color-action-accent-dark))] !bg-[var(--preview-surface-raised,var(--color-surface-subtle))]",
+  focus: "focus-ring !border-[var(--preview-accent,var(--color-action-accent-dark))]",
   disabled: "",
   loading: "",
+  error: "!border-2 !border-[var(--preview-error,var(--color-status-error-strong))]",
 };
 
 const controlBase =
@@ -16,7 +17,7 @@ export function controlClassName(mode: FormMode, className = "") {
   return `${controlBase} ${modeClasses[mode]} ${className}`.replace(/\s+/g, " ").trim();
 }
 
-/** A control in these modes cannot be operated, so it is rendered disabled. */
+/** A control in these modes cannot be operated, so it is rendered disabled. The error mode is operable: it only marks the control invalid. */
 export function isInert(mode: FormMode) {
   return mode === "disabled" || mode === "loading";
 }
@@ -29,6 +30,7 @@ export function choiceClasses(mode: FormMode): { wrapper: string; box: string } 
   if (mode === "hover") return { wrapper: "bg-[var(--preview-surface-raised,var(--color-surface-subtle))]", box: "!border-[var(--preview-content,var(--color-content-primary))]" };
   if (mode === "active") return { wrapper: "bg-[var(--preview-surface-raised,var(--color-surface-subtle))]", box: "!scale-90 ring-2 ring-[var(--color-action-accent)] ring-offset-1" };
   if (mode === "focus") return { wrapper: "", box: "focus-ring" };
+  if (mode === "error") return { wrapper: "", box: "!border-2 !border-[var(--preview-error,var(--color-status-error-strong))]" };
   return { wrapper: "", box: "" };
 }
 
