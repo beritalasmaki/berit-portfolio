@@ -551,7 +551,7 @@ export default function Header({
                 // A tertiary (text) button in both languages: "Ota yhteyttä" is the
                 // natural Finnish phrase but too wide for a filled pill at 1024px;
                 // no fill means no padding to pay for.
-                className="group inline-flex items-center gap-2 h-11 px-1 text-nav font-semibold whitespace-nowrap text-ink underline decoration-accent decoration-2 underline-offset-[10px] transition-[text-decoration-color] duration-150 ease-out hover:decoration-accent-dark focus-visible:decoration-accent-dark"
+                className="group inline-flex items-center gap-2 h-11 px-1 text-nav font-semibold whitespace-nowrap text-ink underline decoration-transparent decoration-2 underline-offset-[10px] transition-[text-decoration-color] duration-150 ease-out hover:decoration-accent focus-visible:decoration-accent"
               >
                 {copy.header.contact}
               </a>
