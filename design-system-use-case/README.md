@@ -10,6 +10,15 @@ This project was built to demonstrate the connection between design-system think
 
 The project is also a practical design and coding study. It gives the system a place to evolve beyond static design files and shows how a designer can define foundations, document reusable patterns, and validate those patterns in working interfaces.
 
+## Figma UI kit
+
+The system also exists as a Figma file: [Design System by Berit](https://www.figma.com/design/WlwWrwDWzt5shl0sYocASJ/Design-System-by-Berit). It is the design-side mirror of this project.
+
+- **Tokens:** Figma variables use the token names from `src/data/tokens.ts` with slashes instead of dots (`color/content/primary`, `space/4`, `radius/md`). Each semantic colour carries its CSS variable name as code syntax, for example `var(--color-content-primary)`. There are paint, text and effect styles for the same tokens.
+- **Components:** one page per component, with every mode labelled and a Light and a Dark theme. Small shared pieces (icon button, checkbox and radio boxes, stepper parts) live on the Atoms page.
+- **Source of truth:** the tokens in this repository. Where the Figma file has something the code does not, such as the notification, date picker and multi-step form patterns, treat it as a proposal until it is built here.
+- **Not set up:** Figma Code Connect, which would show these React components when a component is inspected in Figma. It needs an Organization or Enterprise Figma plan. Until then the connection is by links: this README, the Getting started page on the documentation site, and the About page in the Figma file.
+
 ## How we started
 
 The `design-system-use-case` folder began as an empty project area inside the portfolio repository. We used the existing portfolio as a visual and accessibility reference, then created this as an independent Next.js application so the design-system work could have its own structure, routes, dependencies, and development workflow.
