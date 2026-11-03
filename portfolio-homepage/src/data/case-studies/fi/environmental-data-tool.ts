@@ -20,6 +20,20 @@ export const environmentalDataToolFi: CaseStudy = {
   intro: [
     "Ympäristötutkimuslaitos hallitsi ja analysoi kriittistä dataansa vanhentuneilla työkaluilla ja turvautui usein Exceliin, jotta datasta sai edes jotain selvää. Vuosina 2020–2023 tein laitokselle useita projekteja ainoana UX-suunnittelijana ja uudistin näitä työkaluja.",
   ],
+  glance: {
+    problem:
+      "Ympäristötutkimuslaitos hallitsi ja analysoi kriittistä dataansa vanhentuneilla työkaluilla ja turvautui usein Exceliin, jotta datasta sai edes jotain selvää.",
+    role:
+      "Ainoa UX/UI-suunnittelija useassa projektissa vuosina 2020–2023. Yhdistin UX/UI-suunnittelun ja kevyen palvelumuotoilun.",
+    decisions: [
+      "Mietin uudelleen, miten datan ja työnkulkujen kuuluu toimia, sen sijaan että olisin pukenut vanhan järjestelmän uuteen käyttöliittymään",
+      "Aloitin lyhyellä, kevyellä tutkimuksella suoraan järjestelmiä käyttävien asiantuntijoiden kanssa",
+      "Yhdistin kartta- ja taulukkonäkymät yhdeksi johdonmukaiseksi kokonaisuudeksi",
+      "Rakensin oikeat analytiikkanäkymät (pylväs- ja hajontakaaviot), jotta tutkijat eivät tarvinneet niihin Exceliä",
+    ],
+    outcome:
+      "Useita järjestelmiä rakennettiin uudelleen sen mukaan, miten tutkijat oikeasti työskentelevät. Suurimmassa projektissa sisäänrakennettu analytiikka korvasi paljon käsin tehtyä Excel-työtä, ja näytteiden tallentaminen ja seuraaminen helpottui selvästi. Perustuu käyttäjiltä projektien aikana saatuun palautteeseen.",
+  },
   roleLabel: "UI/UX-suunnittelija (ainoa suunnittelija, pitkäaikainen asiakassuhde)",
   focusLabel:
     "Vanhentuneiden datajärjestelmien uudistaminen, UX/UI-suunnittelun ja kevyen palvelumuotoilun yhdistäminen",

@@ -118,7 +118,7 @@ export const aiPilotToEverydayPracticeFi: BlogPost = {
     {
       type: "list",
       items: [
-        "**Päivitä toimintamallia oppimisen myötä.** Kun pilotit, kuten CollabAI-työskentelytapa tai GenAI Twin -kokeilu, tuottavat uusia oivalluksia, lisää ne laajempaan toimintamalliin.",
+        "**Päivitä toimintamallia oppimisen myötä.** Kun omat pilotit tuottavat uusia oivalluksia tai kun otat käyttöön muiden hyväksi havaittuja käytäntöjä, esimerkiksi Googlen julkaisemat tekoälyperiaatteet (AI Principles) ja niiden ympärille rakennetut arviointikäytännöt, lisää ne laajempaan toimintamalliin.",
         "**Tee palautteen antamisesta helppoa.** Tiimien pitäisi voida sanoa, kun jokin toimintamallin vaihe hidastaa niitä lisäämättä arvoa. Kun ihmiset voivat vaikuttaa toimintamalliin, he noudattavat sitä halukkaammin.",
       ],
     },

@@ -18,6 +18,20 @@ export const industrialTool: CaseStudy = {
   intro: [
     "An industrial platform for monitoring and reporting had grown complex over time, with expert users struggling through long text lists and manual calculations. I joined as the sole designer, taking over from a previous one, to make the tool work the way specialists actually needed it to.",
   ],
+  glance: {
+    problem:
+      "A monitoring and reporting platform for industrial specialists had become hard to use: long text lists, calculations done by hand, work lost to missed saves, and a design library stuck in an old tool.",
+    role:
+      "Sole UX designer on the platform, 2020–2023. I took over from the previous designer and owned the whole experience.",
+    decisions: [
+      "Turned the dashboard's text lists into visual cards, so data reads at a glance",
+      "Split complex calculations into a guided, step-by-step window",
+      "Added auto-save to the data and reporting views",
+      "Migrated the design system from Sketch to Figma, rebuilding components instead of copying them",
+    ],
+    outcome:
+      "Specialists read their data in seconds, more people on the team could run complex calculations with confidence, and work stopped getting lost. Developers and designers finally shared one tool, and both developers and the project manager told me their work became noticeably smoother.",
+  },
   roleLabel: "UX Designer (sole designer on the project)",
   focusLabel: "Expert tools, data visualization, and Design System modernization",
   categoryTag: "Industrial Platform",

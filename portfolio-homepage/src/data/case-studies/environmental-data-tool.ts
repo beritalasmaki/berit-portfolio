@@ -18,6 +18,20 @@ export const environmentalDataTool: CaseStudy = {
   intro: [
     "An environmental research institute relied on outdated tools to manage and analyze critical data, often defaulting to Excel just to make sense of it. Over several projects between 2020 and 2023, I was brought in as the institute's only UX designer to modernize these tools.",
   ],
+  glance: {
+    problem:
+      "An environmental research institute managed and analysed critical data with outdated tools and often fell back on Excel just to make sense of it.",
+    role:
+      "Sole UX/UI designer across several projects in 2020–2023, combining UX/UI design with lightweight service design.",
+    decisions: [
+      "Rethought how the data and workflows should work, instead of dressing the old system in a new interface",
+      "Started with short, lean research directly with the specialists who use the systems",
+      "Combined map and table views into one coherent experience",
+      "Built real analytics views (bar charts, scatter plots) so researchers no longer needed Excel for them",
+    ],
+    outcome:
+      "Several systems were rebuilt around how researchers actually work. In the largest project, built-in analytics replaced much of the manual Excel work, and saving and tracking samples became much simpler. Based on feedback from users during the projects.",
+  },
   roleLabel: "UI/UX Designer (sole designer, long-term client relationship)",
   focusLabel: "Modernizing outdated data systems, combining UX/UI design with lightweight service design",
   categoryTag: "Data Platform",

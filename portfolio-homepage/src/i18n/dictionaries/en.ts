@@ -358,6 +358,7 @@ export const en = {
     other: "Other case studies",
     viewCaseStudy: "View case study →",
     backToMain: "Back to main page",
+    glance: { eyebrow: "At a glance", heading: "The short version", problem: "The problem", role: "My role", decisions: "Decisions I made", outcome: "The outcome" },
     onThisPage: "On this page",
     navigateTo: "Navigate to...",
     showMore: "Show more",

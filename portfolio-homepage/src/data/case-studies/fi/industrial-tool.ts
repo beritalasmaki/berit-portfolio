@@ -20,6 +20,20 @@ export const industrialToolFi: CaseStudy = {
   intro: [
     "Teollisuuden seuranta- ja raportointialustasta oli vuosien mittaan tullut monimutkainen. Asiantuntijat kahlasivat pitkiä tekstilistoja ja tekivät laskelmia käsin. Tulin mukaan projektin ainoaksi suunnittelijaksi edellisen suunnittelijan jälkeen, ja tavoitteena oli saada työkalu toimimaan niin kuin asiantuntijat oikeasti tarvitsivat.",
   ],
+  glance: {
+    problem:
+      "Teollisuuden asiantuntijoiden seuranta- ja raportointialustasta oli tullut hankala käyttää: pitkiä tekstilistoja, käsin tehtyjä laskelmia, unohtuneiden tallennusten takia katoavaa työtä ja vanhaan työkaluun jumittunut komponenttikirjasto.",
+    role:
+      "Alustan ainoa UX-suunnittelija vuosina 2020–2023. Jatkoin edellisen suunnittelijan työtä ja vastasin koko kokonaisuudesta.",
+    decisions: [
+      "Muutin dashboardin tekstilistat visuaalisiksi korteiksi, jotta data hahmottuu yhdellä silmäyksellä",
+      "Pilkoin monimutkaiset laskennat ohjatuksi, vaiheittaiseksi ikkunaksi",
+      "Lisäsin data- ja raporttinäkymiin automaattisen tallennuksen",
+      "Siirsin suunnittelujärjestelmän Sketchistä Figmaan ja rakensin komponentit uudelleen kopioimisen sijaan",
+    ],
+    outcome:
+      "Asiantuntijat hahmottivat datansa sekunneissa, monimutkaisia laskentoja pystyi ajamaan varmoin mielin useampi tiimiläinen eikä työ enää kadonnut. Kehittäjät ja suunnittelijat työskentelivät vihdoin samassa työkalussa, ja sekä kehittäjät että projektipäällikkö kertoivat työn sujuvoituneen selvästi.",
+  },
   roleLabel: "UX-suunnittelija (projektin ainoa suunnittelija)",
   focusLabel: "Asiantuntijatyökalut, datan visualisointi ja suunnittelujärjestelmän uudistaminen",
   categoryTag: "Teollisuusalusta",

@@ -70,12 +70,17 @@ export default function SneakPeekHero({
     <section aria-labelledby="case-study-title" className="border-t border-rule pt-[clamp(32px,4vw,48px)]">
       <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-grid-gap-lg items-center">
         <div className="min-w-0 flex flex-col gap-6">
-          <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.breadcrumbEyebrow}</p>
+          <p className="font-mono-label text-mono-label uppercase text-muted m-0">
+            {copy.breadcrumbEyebrow} · {study.title}
+          </p>
           <span className="self-start font-mono-label text-mono-label-em uppercase text-accent-dark glass-pill rounded-pill py-2 px-4 whitespace-nowrap">
             {study.categoryTag}
           </span>
-          <h1 id="case-study-title" className="m-0 text-hero max-w-[18em]">
-            {study.title}
+          {/* The H1 states the result ("Monitoring, calculation and reporting, in
+              one place."), not just the topic; the project's title sits in the
+              eyebrow above and stays the page's <title>. */}
+          <h1 id="case-study-title" className="m-0 text-section-h2 text-ink max-w-[22em] text-balance">
+            {study.headline.replace(/\n/g, " ")}
           </h1>
           <p className="m-0 max-w-prose-cs text-lead text-body">{study.description}</p>
 

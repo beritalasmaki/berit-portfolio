@@ -129,6 +129,24 @@ export type SkillTag = {
   description: string;
 };
 
+/**
+ * The four things a recruiter should find in the first few seconds, shown as
+ * an "At a glance" block right under the hero. Written from the case study's
+ * own facts: what was wrong, what the designer's part was, what they decided,
+ * and what came of it. No invented numbers: where there is no metric, say what
+ * changed.
+ */
+export type CaseGlance = {
+  /** The problem, in one or two sentences, before any detail. */
+  problem: string;
+  /** What *I* did: role, scope and period, in the first person. */
+  role: string;
+  /** The decisions made, one short line each (three to four). */
+  decisions: string[];
+  /** The outcome, with evidence where there is any. */
+  outcome: string;
+};
+
 /** Everything beyond the summary — present only on fully-written case studies. */
 export type CaseStudyFullContent = {
   /**
@@ -138,6 +156,8 @@ export type CaseStudyFullContent = {
    * stays `intro` since `hasFullContent` type-guards on its presence.
    */
   intro: string[];
+  /** "At a glance": problem, role, decisions, outcome. */
+  glance: CaseGlance;
   roleLabel: string;
   focusLabel: string;
   /** Short category pill in the sneak-peek hero, e.g. "AI Search Platform". */

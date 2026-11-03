@@ -18,6 +18,19 @@ export const educationPlatform: CaseStudy = {
   intro: [
     "A consortium of public sector organizations needed to replace the outdated systems used across basic and upper secondary education, serving many municipalities with different needs. I joined as UX & Product Designer, later becoming Lead Designer, over a three-year period.",
   ],
+  glance: {
+    problem:
+      "Outdated school administration systems used in basic and upper secondary education had to be replaced for many municipalities, with several development teams and third-party vendors building in parallel.",
+    role:
+      "UX & Product Designer, later Lead Designer, over three years. I was mainly responsible for visual design and for keeping the design consistent across teams, and I proposed and led the workshop model.",
+    decisions: [
+      "Ran a three-phase workshop model: map today's pain points, explore an ideal future service, co-design concepts with stakeholders",
+      "Set one visual style and one set of reusable components for every development team, and explained the reasoning in regular sessions with developers",
+      "Rebuilt trust after a budget overrun by staying visible, communicating clearly and writing decisions down",
+    ],
+    outcome:
+      "Pilot schools described the platform as easy to use, versatile and modern, and teachers and administrators praised its logic and speed. After two municipalities withdrew because of the budget overrun, the platform launched in the remaining five in spring 2026, with a wider rollout to schools planned.",
+  },
   roleLabel: "UX & Product Designer, and later Lead Designer, over a three-year period",
   focusLabel: "Service design, Design Systems, and cross-team design consistency across a multi-vendor public sector platform",
   categoryTag: "Public Sector Platform",

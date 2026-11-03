@@ -20,6 +20,20 @@ export const universityAiToolFi: CaseStudy = {
   intro: [
     "Suuren yliopiston tieto oli hajallaan monilla erillisillä verkkosivustoilla, eivätkä opiskelijat, henkilökunta tai vierailijat usein tienneet, mistä etsiä. Liityin projektiin Senior UX- ja tuotesuunnittelijana: tehtäväni oli muuttaa varhaiset konseptit oikeiksi näkymiksi, testata niitä käyttäjillä ja muotoilla ensimmäinen versio, jota ihmiset pystyivät oikeasti käyttämään.",
   ],
+  glance: {
+    problem:
+      "Suuren yliopiston tieto oli hajallaan monilla erillisillä verkkosivustoilla, eivätkä opiskelijat, henkilökunta tai vierailijat usein tienneet, mistä aloittaa etsiminen.",
+    role:
+      "Senior UX- ja tuotesuunnittelija. Muutin palvelumuotoilijoiden varhaiset konseptit oikeiksi näkymiksi, testasin niitä käyttäjillä, muotoilin ensimmäisen julkaisun (MVP) ja kehitin palvelua julkaisun jälkeenkin.",
+    decisions: [
+      "Yksi etusivu ja yksi tekoälyhakuun perustuva sisäänkäynti kaikkiin palveluihin",
+      "Saavutettava ja mobiiliystävällinen alusta asti",
+      "Nostin henkilökunnan yksityisten tietojen näkymisen tekoälyhaussa ensisijaiseksi ongelmaksi ja kävin ratkaisuja läpi tiimin kanssa; se ratkaistiin myöhemmin kirjautumiskehotteella",
+      "Tein yhteiset suunnittelujärjestelmän komponentit helpommin löydettäviksi sen sijaan, että olisin kieltänyt kertarakennelmat",
+    ],
+    outcome:
+      "Vahvistettu julkaisun jälkeisillä käyttäjähaastatteluilla ja kyselyillä: vastaukset löytyivät nopeammin, yksinkertaiset kysymykset siirtyivät itsepalveluun, jolloin henkilökunnalle jäi enemmän aikaa tilanteisiin, jotka vaativat ihmisen apua, ja palvelu toimi puhelimella ja apuvälineillä.",
+  },
   roleLabel: "Senior UX- ja tuotesuunnittelija",
   focusLabel:
     "UX/UI-suunnittelu, tekoälyhaun käyttäjäpolku, palveluarkkitehtuuri, suunnittelujärjestelmän käyttöönotto ja julkaisun jälkeinen kehitys",

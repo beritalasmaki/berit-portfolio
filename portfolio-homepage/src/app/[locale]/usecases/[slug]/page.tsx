@@ -4,6 +4,7 @@ import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import AccordionSection from "@/components/case-study/AccordionSection";
+import CaseStudyGlance from "@/components/case-study/CaseStudyGlance";
 import CaseStudyHero from "@/components/case-study/CaseStudyHero";
 import ChallengesSection from "@/components/case-study/ChallengesSection";
 import ImpactSection from "@/components/case-study/ImpactSection";
@@ -84,6 +85,7 @@ export default async function CaseStudyPage({
   // link to a section that isn't there.
   const tocItems: TocItem[] = [
     ...(!full ? [{ id: "about-project", label: cs.aboutProject }] : []),
+    ...(study.glance ? [{ id: "glance", label: cs.glance.eyebrow }] : []),
     ...(hasIntro ? [{ id: "starting-point", label: cs.startingPoint }] : []),
     ...(hasGallery ? [{ id: "screens", label: cs.screensToc }] : []),
     ...(hasImpact ? [{ id: "impact", label: cs.impact }] : []),
@@ -141,6 +143,12 @@ export default async function CaseStudyPage({
               ) : (
                 <CaseStudyHero study={study} copy={cs} />
               )}</Reveal>
+
+            {study.glance !== undefined && (
+              <Reveal>
+                <CaseStudyGlance glance={study.glance} copy={cs} />
+              </Reveal>
+            )}
 
             {/* Each section is gated on its own field rather than on `full`.
                 The checks are inline (not the `has*` consts above) because

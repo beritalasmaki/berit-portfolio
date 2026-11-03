@@ -18,6 +18,20 @@ export const universityAiTool: CaseStudy = {
   intro: [
     "A major university had information scattered across many separate websites, so students, staff, and visitors often didn't know where to start looking. I joined as Senior UX & Product Designer to turn early concepts into real screens, test them with users, and shape the first version people could actually use.",
   ],
+  glance: {
+    problem:
+      "A major university's information was scattered across many separate websites, so students, staff and visitors often didn't know where to start looking.",
+    role:
+      "Senior UX & Product Designer. I turned early service-design concepts into real screens, tested them with users, shaped the first release (MVP) and kept improving it after launch.",
+    decisions: [
+      "One front page and one AI-powered search entry point for all services",
+      "Accessible and mobile-friendly from day one",
+      "Flagged the private-staff-data problem in AI search as a priority and worked on solutions with the team; it was later solved with a login prompt",
+      "Made shared design-system components easier to find, instead of policing one-off builds",
+    ],
+    outcome:
+      "Confirmed by user interviews and surveys after launch: people found answers faster, simple questions moved to self-service so staff had more time for cases that needed a person, and the service worked on phones and with assistive technology.",
+  },
   roleLabel: "Senior UX & Product Designer",
   focusLabel: "UX/UI Design, AI search flow, service architecture, Design System adoption, post-launch iteration",
   categoryTag: "AI Search Platform",

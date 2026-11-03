@@ -117,7 +117,7 @@ export const aiPilotToEverydayPractice: BlogPost = {
     {
       type: "list",
       items: [
-        "**Update the model as you learn.** When pilots such as a CollabAI way of working or a GenAI Twin experiment produce new insights, add them to the wider model.",
+        "**Update the model as you learn.** When your own pilots produce new insights, or when you pick up proven practices from others, such as Google's published AI Principles and the review processes built around them, add them to the wider model.",
         "**Make feedback easy to give.** Teams should be able to say when a step in the model slows them down without adding value. When people can influence the model, they're more willing to follow it.",
       ],
     },
