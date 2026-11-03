@@ -79,7 +79,7 @@ export const fi: Dictionary = {
     greeting: "Moikka! Olen Berit. 🙂",
     greetingSeparator: "",
     title: "Senior UX- ja tuotesuunnittelija",
-    headline: ["Kumppanisi", "vyyhtien", "selvittämiseen."],
+    headline: ["Kumppanisi", "solmujen", "avaamiseen."],
     stats: [
       { value: "10+", label: "vuotta" },
       { value: "25+", label: "projektia" },
@@ -88,71 +88,68 @@ export const fi: Dictionary = {
     lead: "Autan tiimejä tekemään monimutkaisista tuotteista ja palveluista kokemuksia, joita on helpompi käyttää ja helpompi rakentaa.",
     primaryCta: "Ota yhteyttä",
     secondaryCta: "Katso työni",
-    play: "Muuta kaaos selkeydeksi",
+    play: "Selvennä sekamelska",
     replay: "Toista uudelleen",
     story: [
-      "Jokainen projekti alkaa *vyyhdistä.*",
+      "Jokainen projekti alkaa *kirkastamisesta.*",
       "Ensin *kartoitan,* missä mennään.",
-      "Sitten *suunnittelemme,* mitä tarvitaan: järjestelmä ja tavoite.",
-      "Pystytämme *järjestelmät* ja sovimme, miten edistymistä mitataan.",
+      "Sitten *suunnitellaan,* mitä tarvitaan. Mietitään järjestelmät ja toimintavat.",
+      "Rakennetaan *järjestelmät* ja sovitaan, millä mittareilla edistymistä seurataan.",
       "*Etenemme,* opimme ja mukaudumme matkan varrella.",
-      "Ja saavutamme yhdessä *tavoitteen.*",
+      "Yhdessä saavuttaen lopullisen *tavoitteen.* 😊",
     ],
   },
 
   clients: {
-    eyebrowNumber: "01 / ",
     heading: "Asiakkaat, joiden kanssa olen työskennellyt",
   },
 
   mindTabs: {
-    heading: "Kysymyksiä ansioluettelon takaa",
+    heading: "Miten työskentelen?",
     aside: "Hyvä yhteistyö alkaa paremmasta kysymyksestä.",
     tablistLabel: "Kysymykset",
     tabs: [
       {
-        question: "Pitääkö hän yhteistyötaitonsa ajan tasalla?",
+        question: "Miten pidän yhteistyötaidot ajan tasalla?",
         body: "Yhteistyö kehittäjien kanssa on muuttunut muutamassa vuodessa, ja mukaudun muutokseen jatkuvasti. En luovuta valmista suunnitelmaa ja katoa, vaan pysyn mukana keskustelussa koko toteutuksen ajan. Rakennan myös itse toimivia prototyyppejä esimerkiksi Claude Designilla ja VS Codella, jotta kehittäjät näkevät toimivia komponentteja jo varhain eivätkä vain staattisia kuvia, joita pitäisi tulkita.",
         highlight:
           "Valtakunnallisessa koulutusalustahankkeessa, jossa oli mukana useita kuntia ja toimittajia, vedin tiimin päivittäiset palaverit ja suunnittelin työpajaprosessin, jonka avulla tiimi eteni tutkimuksesta konkreettisiin konsepteihin.",
-        linkLabel: "Lue tapaustutkimus: valtakunnallinen koulutusalusta →",
+        linkLabel: "Lue asiakasprojekti: koulutuksen digitaalinen palvelualusta →",
         study: "education-platform",
       },
       {
-        question: "Miten hän lähestyy monimutkaisia ongelmia?",
+        question: "Miten lähestyn monimutkaisia ongelmia?",
         body: "Kartoitan ongelman, rakennan varhaisia konsepteja ja mukaudun nopeasti sen sijaan, että yrittäisin suunnitella jokaisen yksityiskohdan etukäteen.",
         highlight:
           "Vanhojen ympäristödatajärjestelmien uudistaminen tarkoitti työtä välineillä, joita tutkijat olivat käyttäneet vuosia ilman selkeää rakennetta. Sen sijaan, että olisin odottanut täydellistä ratkaisua, keskityin julkaisemaan nopeasti jotain hyödyllistä ja parantamaan sitä sen mukaan, mitä opimme.",
-        linkLabel: "Lue tapaustutkimus: ympäristödatajärjestelmät →",
+        linkLabel: "Lue asiakasprojekti: ympäristödatajärjestelmät →",
         study: "environmental-data-tool",
       },
       {
-        question: "Mistä hän tietää, että jokin on valmis julkaistavaksi?",
+        question: "Mistä tiedän, että suunnitelma on valmis toteutettavaksi?",
         body: "Julkaisen mieluummin jotain, opin todellisesta palautteesta ja parannan sitä sen sijaan, että viilaisin liian pitkään ensimmäistä versiota, jota kukaan ei ole vielä testannut.",
         highlight:
           "Yliopiston digitaalinen portaali julkaistiin ensimmäisenä versiona ja kehittyi sen jälkeen jatkuvasti todellisen käytön perusteella.",
-        linkLabel: "Lue tapaustutkimus: yliopiston digitaalinen perehdytys →",
+        linkLabel: "Lue asiakasprojekti: yliopiston digitaalinen perehdytys →",
         study: "university-ai-tool",
       },
     ],
   },
 
   caseStudies: {
-    eyebrow: "03 / valitut työt",
-    heading: "Tarkempi katsaus töihin.",
+    heading: "Tarkempi katsaus projekteihini.",
     projectOne: "projekti",
     projectMany: "projektia",
   },
 
   about: {
-    eyebrow: "04 / minusta",
     heading: "Minusta",
     aside: "Ihminen pikselien takana.",
     closing: "Sovimme yhdessä, miltä onnistuminen näyttää, ennen kuin työ alkaa.",
     greeting: "Hei, kiva kun tulit käymään! ♥",
     photoAlt: "Berit Alasmäki",
     paragraphs: [
-      "Kasvoin pienessä kaupungissa Satakunnassa enkä koskaan kuvitellut päätyväni teknologia-alalle, saati suunnittelijaksi. Opiskelin tietotekniikkaa ja web-kehitystä, mutta varsinainen alkuni suunnittelussa oli lähes sattumaa: ystäväni otti minut mukaan startup-yritykseensä jo lukioaikana, ja siellä pääsin ensimmäistä kertaa käytännössä tekemään töitä sekä suunnittelutyökaluilla että koodilla. Molemmat ovat kiinnostaneet minua siitä lähtien.",
+      "Tulen alun perin pieneltä paikkakunnalta Satakunnasta enkä koskaan ajatellut päätyväni teknologia-alalle, saati suunnittelijaksi. Opiskelin aikoinaan tietojenkäsittelyä ja sovelluskehitystä, mutta polkuni alalle alkoi lukioaikana, kun eräs kaverini pyysi mukaan hänen startup-yritykseensä. Olin mukana nelisen vuotta, minkä aikana sain vankan kokemuksen sekä koodaus- että suunnittelutyökaluista. Siitä lähtien muotoilu ja koodaus ovat pitäneet otteessaan.",
       "Olen työskennellyt suunnittelijana kymmenen vuotta, joista yhdeksän konsulttina. Taustani julkisen sektorin alustoista, teollisuuden työkaluista ja ympäristödatasta on opettanut mutkattomaan liikkumiseen eri toimialojen välillä. Yli 25 projektia on opettanut ottamaan työn jäljestä täyden vastuun, tein töitä sitten yksin tai tiimissä.",
       "Minulle on tärkeää, että töissä on selkeä suunta, tiimissä hyvä henki ja että hommat tehdään kunnolla ja huolella.",
     ],
@@ -165,25 +162,25 @@ export const fi: Dictionary = {
       hintPress: "napauta",
       items: [
         {
-          statement: "Sanon vastaan, kunnioittavasti.",
+          statement: "Haastan ajatuksia, en ihmisiä.",
           detail:
             "Jos jokin ei toimi käyttäjille tai kehittäjille, sanon sen ajoissa. Perustelen aina syyn enkä vain kerro mielipidettäni.",
         },
         {
-          statement: "Keitän kahvit ja tuon naposteltavaa.",
+          statement: "Keitän kahvit ja huolehdin hyvästä tekemisen meiningistä.",
           detail: "Hyvä työ syntyy hyvässä mielentilassa. Pidän ilmapiirin kevyenä silloinkin, kun kiire on kovimmillaan.",
         },
         {
-          statement: "Huomaan ne yksityiskohdat, joilla on merkitystä.",
+          statement: "Huomaan yksityiskohdat, joilla on merkitystä.",
           detail:
             "Kaikkiin yksityiskohtiin ei tarvitse tarttua, mutta luottamukseen ja käytettävyyteen vaikuttavat saavat aina huomioni.",
         },
         {
-          statement: "Pyydän palautetta jo alussa, en vasta lopussa.",
+          statement: "Pyydän palautetta heti alussa, en vasta lopussa.",
           detail: "Näytän mieluummin keskeneräisen version ajoissa kuin viimeistellyn liian myöhään, kun mitään ei enää voi muuttaa.",
         },
         {
-          statement: "Puolustan sekä käyttäjää että kehittäjää, joka sen rakentaa.",
+          statement: "Ymmärrän sekä käyttäjän tarpeita että kehittäjän arkea.",
           detail:
             "Hyvän suunnittelun täytyy toimia sekä sen käyttäjälle että toteuttajalle. Yritän olla unohtamatta kumpaakaan.",
         },
@@ -195,26 +192,25 @@ export const fi: Dictionary = {
     heading: "Mitä teen",
     groups: [
       {
-        title: "Tutkimus ja ymmärrys",
-        body: "Käyttäjätutkimukset ja haastattelut, käytettävyystestaus, asiakaspolkujen kartoitus ja palvelukaaviot (service blueprint). Selvitän, miten työ oikeasti tehdään, ennen kuin päätän, mitä rakennetaan.",
+        title: "Käyttäjätutkimus ja arjen ymmärrys",
+        body: "Tutkin ja haastattelen käyttäjiä, testaan käytettävyyttä sekä kartoitan asiakaspolkuja ja palvelukaavioita. Haluan ymmärtää, miten työ arjessa todella tehdään, ennen kuin linjataan, mitä lähdetään rakentamaan.",
       },
       {
-        title: "Suunnittelu ja toteutus",
-        body: "Käyttäjäpolut ja käyttöliittymäsuunnittelu, prosessikaaviot sekä suunnittelujärjestelmät design tokeneista komponentteihin. Luen ja muokkaan frontend-koodia ja rakennan toimivia komponentteja pelkkien staattisten näkymien sijaan.",
+        title: "UI/UX-suunnittelu- ja kehitystyö (Software Design Engineering)",
+        body: "Suunnittelen käyttöliittymiä ja käyttäjäpolkuja, luon prosessikaavioita sekä rakennan Design Systemejä tokeneista komponentteihin. Koska osaan lukea ja muokata frontend-koodia, teen staattisten kuvien sijaan suoraan koodattuja prototyyppejä tai tuotantoon meneviä sivuja ja komponentteja.",
       },
       {
-        title: "Työskentely tekoälytyökalujen kanssa",
-        body: "Rakennan prototyyppejä ja oikeita komponentteja tekoälytyökaluilla, ja osaan ohjata tekoälyagenttia sen sijaan, että hyväksyisin sen tuotokset sellaisinaan: kirjoitan säännöt, joiden mukaan se työskentelee, ja tarkastan lopputuloksen. Rakensin oman suunnittelujärjestelmäni näin.",
+        title: "Tekoälyavusteinen muotoilu ja kehitys",
+        body: "Hyödynnän tekoälytyökaluja protojen ja komponenttien rakentamisessa. En vain hyväksy tekoälyn tuotoksia sellaisenaan, vaan ohjaan sitä: määrittelen pelisäännöt ja tarkastan lopputuloksen kriittisesti. Esimerkiksi oma Design Systemini on syntynyt tällä tavoin.",
       },
       {
-        title: "Työn vetäminen",
-        body: "Yhteissuunnittelun työpajat ja fasilitointi, mittarit, joiden avulla nähdään, onnistuiko suunnittelu, tuotteen omistajan tukeminen suunnittelussa ja priorisoinnissa sekä kevyt tapa saada jotain käyttökelpoista ihmisten eteen jo varhain.",
+        title: "Muotoilujohtaminen ja fasilitointi",
+        body: "Fasilitoin työpajoja ja autan tiimiä priorisoinnissa ja suunnittelussa. Varmistan mittareiden avulla, että tekeminen menee oikeaan suuntaan, ja uskon siihen, että keskeneräinenkin mutta käyttökelpoinen versio kannattaa viedä ihmisten eteen mahdollisimman aikaisin.",
       },
     ],
   },
 
   process: {
-    eyebrow: "05 / prosessini",
     headingLines: ["Jokainen projekti saa", "tarvitsemansa lähestymistavan."],
     intro:
       "Joskus se tarkoittaa viikkojen tutkimusta ennen kuin mitään piirretään. Joskus prototyyppi on jonkun käsissä jo samana iltapäivänä. Valitse projektityyppi, niin näet, miten kokonaisuus muuttuu.",
@@ -335,7 +331,7 @@ export const fi: Dictionary = {
 
   caseStudy: {
     backLink: "Takaisin töihin",
-    breadcrumbEyebrow: "Tapaustutkimus",
+    breadcrumbEyebrow: "Asiakasprojekti",
     liveProject: "Katso toimiva projekti ↗",
     role: "Rooli:",
     focus: "Painopiste:",
@@ -361,8 +357,8 @@ export const fi: Dictionary = {
     differentlyEyebrow: "Jälkiviisaana",
     differently: "Mitä tekisin toisin",
     otherEyebrow: "Lue lisää",
-    other: "Muut tapaustutkimukset",
-    viewCaseStudy: "Lue tapaustutkimus →",
+    other: "Muut asiakasprojektit",
+    viewCaseStudy: "Lue asiakasprojekti →",
     backToMain: "Takaisin etusivulle",
     onThisPage: "Tällä sivulla",
     navigateTo: "Siirry kohtaan...",

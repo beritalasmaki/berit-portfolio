@@ -25,7 +25,7 @@ export const caseStudyUrlSlugs: Record<Locale, Record<CaseStudySlug, string>> = 
   fi: {
     "industrial-tool": "teollisuuden-data-ja-asiantuntijatyokalut",
     "university-ai-tool": "yliopiston-perehdytys-ja-tekoalyhaku",
-    "education-platform": "valtakunnallinen-koulutusalusta",
+    "education-platform": "koulutuksen-digitaalinen-palvelualusta",
     "environmental-data-tool": "ymparistodatajarjestelmien-uudistus",
   },
 };
