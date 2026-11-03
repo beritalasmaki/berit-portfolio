@@ -69,7 +69,7 @@ export const fi: Dictionary = {
     github: "Katso GitHub-profiilini",
     linkedinShort: "LinkedIn",
     githubShort: "GitHub",
-    contact: "Yhteys",
+    contact: "Ota yhteyttä",
     openMenu: "Avaa valikko",
     closeMenu: "Sulje valikko",
   },
