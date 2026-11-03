@@ -20,13 +20,14 @@ export const educationPlatform: CaseStudy = {
   ],
   glance: {
     problem:
-      "Outdated school administration systems used in basic and upper secondary education had to be replaced for many municipalities, with several development teams and third-party vendors building in parallel.",
+      "Outdated teaching and administration systems used in basic and upper secondary education had to be replaced to serve seven municipalities. Several development teams and third-party vendors were building the new system, with many stakeholders and user groups. The platform had to serve two different school environments seamlessly, which meant carefully aligning the processes and functional requirements of comprehensive school and upper secondary school.",
     role:
-      "UX & Product Designer, later Lead Designer, over three years. I was mainly responsible for visual design and for keeping the design consistent across teams, and I proposed and led the workshop model.",
+      "UX & Product Designer, later Lead Designer (3 years)\nI was responsible for the product's visual design, user research and the design system's UI kit. I looked after accessibility and kept the design consistent across teams. I worked closely with the product owner and developers, including on defining tickets and requirements.",
+    decisionsLabel: "Solution and delivery",
     decisions: [
-      "Ran a three-phase workshop model: map today's pain points, explore an ideal future service, co-design concepts with stakeholders",
-      "Set one visual style and one set of reusable components for every development team, and explained the reasoning in regular sessions with developers",
-      "Rebuilt trust after a budget overrun by staying visible, communicating clearly and writing decisions down",
+      "**Clarifying the process:** I led a three-phase workshop series for stakeholders: mapping today's pain points, defining the target state and co-designing the future concepts together.",
+      "**Consistent design:** I defined a shared visual direction and components for the teams, and explained the reasoning behind decisions in regular sessions with developers.",
+      "**Rebuilding trust:** After a budget overrun I restored trust through transparent communication, active presence and clearly documenting every decision.",
     ],
     outcome:
       "Pilot schools described the platform as easy to use, versatile and modern, and teachers and administrators praised its logic and speed. After two municipalities withdrew because of the budget overrun, the platform launched in the remaining five in spring 2026, with a wider rollout to schools planned.",
