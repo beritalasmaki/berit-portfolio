@@ -57,8 +57,13 @@ export type OkrExample = {
 };
 
 export type BlogPost = {
-  /** URL segment: /blog/<slug>. Lowercase, hyphenated. */
+  /** URL segment: /blog/<slug> in English, /fi/blogi/<slug> in Finnish.
+   * Lowercase, hyphenated, ASCII; a Finnish post has a Finnish slug. */
   slug: string;
+  /** For a translation: the `slug` of the English post it translates. Links
+   * the two language versions for the language switcher and `hreflang`. The
+   * English originals leave it unset. */
+  translationOf?: string;
   /** The post page's <h1> and the card headline. */
   title: string;
   /** Browser tab title, when `title` doesn't read well before

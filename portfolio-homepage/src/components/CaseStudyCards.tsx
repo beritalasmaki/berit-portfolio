@@ -1,13 +1,17 @@
 import Link from "next/link";
 import CaseStudyThumbnail from "@/components/case-study/CaseStudyThumbnail";
-import { caseStudies } from "@/data/case-studies";
+import { getCaseStudies } from "@/data/case-studies";
+import { caseStudyPath } from "@/data/case-studies/slugs";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries";
 
-export default function CaseStudyCards() {
+export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy: Dictionary["caseStudies"] }) {
+  const caseStudies = getCaseStudies(locale);
   return (
     <section id="case-studies" aria-labelledby="case-studies-heading" className="mt-rhythm">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">03 / selected case studies</p>
+      <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.eyebrow}</p>
       <h2 id="case-studies-heading" className="mt-4 m-0 text-section-h2 text-ink">
-        A closer look at the work.
+        {copy.heading}
       </h2>
 
       {/* The case studies sit under each other, one row each: the
@@ -19,7 +23,7 @@ export default function CaseStudyCards() {
         {caseStudies.map((study) => (
           <article key={study.slug} data-ripple className="glass rounded-card overflow-hidden">
             <Link
-              href={`/usecases/${study.slug}`}
+              href={caseStudyPath(locale, study.slug)}
               data-sound="open"
               className="group flex flex-col md:flex-row md:items-stretch rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-[-2px]"
             >
@@ -33,7 +37,7 @@ export default function CaseStudyCards() {
                 <p className="font-mono-label text-mono-label uppercase text-muted m-0">
                   {study.label}{" "}
                   <span className="whitespace-nowrap">
-                    · {study.projectCount} {study.projectCount === "1" ? "project" : "projects"}
+                    · {study.projectCount} {study.projectCount === "1" ? copy.projectOne : copy.projectMany}
                   </span>
                 </p>
                 <h3 className="m-0 text-card-h3 text-ink whitespace-pre-line group-hover:underline group-focus-visible:underline decoration-accent underline-offset-4">

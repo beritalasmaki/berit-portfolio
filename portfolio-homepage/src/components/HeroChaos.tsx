@@ -99,17 +99,9 @@ const SHAPES: Shape[] = [
   { x: 16, y: 88, size: 10, kind: "dot", color: PEACH, tilt: 0 },
 ];
 
-// The story, one line per beat.
-// The story, one line per beat. The *starred* word is the beat's key word,
-// set in the brand orange.
-const STORY = [
-  "Every project starts in a *tangle.*",
-  "First, I *map* where things stand.",
-  "Then we *plan* what’s needed, the system and the goal.",
-  "We set up the *systems* and how we’ll measure progress.",
-  "We *move,* learning and adjusting as we go.",
-  "And we reach the *goal,* together.",
-];
+// The story (one line per beat) comes in as a prop: it is copy, and it is
+// translated. The *starred* word is the beat's key word, set in the brand
+// orange.
 
 // The tangle (and the play button) come in with the headline: T0 is on the
 // page's clock (Hero.tsx delays: H1 at 1650ms, timed to the logo's
@@ -165,7 +157,16 @@ function shapeStyle(s: Shape): React.CSSProperties {
   };
 }
 
-export default function HeroChaos() {
+export default function HeroChaos({
+  story: STORY,
+  playLabel,
+  replayLabel,
+}: {
+  /** The six story lines; `*word*` marks the word shown in orange. */
+  story: string[];
+  playLabel: string;
+  replayLabel: string;
+}) {
   const rootRef = useRef<HTMLDivElement>(null);
   const ballRef = useRef<HTMLDivElement>(null);
   const scanRef = useRef<HTMLSpanElement>(null);
@@ -536,7 +537,7 @@ export default function HeroChaos() {
               <path d="M4 2.5v11l9.5-5.5z" fill="white" />
             </svg>
           </span>
-          Turn chaos into clarity
+          {playLabel}
         </button>
       </div>
       {/* The last frame: "Play again" inside a soft, blurred bubble shaped
@@ -573,7 +574,7 @@ export default function HeroChaos() {
               <path d="M2.5 2.5v3h3" />
             </svg>
           </span>
-          Play again
+          {replayLabel}
         </button>
       </div>
       {/* The story, one line at a time, above the animation where it's

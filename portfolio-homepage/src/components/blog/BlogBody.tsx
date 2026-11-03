@@ -1,6 +1,7 @@
 import Image from "next/image";
 import FindingsList from "@/components/case-study/FindingsList";
 import type { BlogBlock } from "@/data/blog";
+import type { Dictionary } from "@/i18n/dictionaries";
 import InlineText from "./InlineText";
 import OkrDiagram from "./OkrDiagram";
 
@@ -9,7 +10,7 @@ import OkrDiagram from "./OkrDiagram";
  * paragraphs at the 800px `prose-cs` measure, section headings that the
  * table of contents links to, and the shared findings list.
  */
-export default function BlogBody({ blocks }: { blocks: BlogBlock[] }) {
+export default function BlogBody({ blocks, copy }: { blocks: BlogBlock[]; copy: Dictionary["blog"] }) {
   return (
     <div className="flex flex-col gap-6">
       {blocks.map((block, i) => {
@@ -94,7 +95,7 @@ export default function BlogBody({ blocks }: { blocks: BlogBlock[] }) {
           case "okr":
             return (
               <div key={i} className="my-2">
-                <OkrDiagram okr={block} />
+                <OkrDiagram okr={block} copy={copy} />
               </div>
             );
         }

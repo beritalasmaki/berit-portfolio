@@ -46,7 +46,17 @@ const FOLLOW_SPRING = 0.016;
  * Reduced motion: the star sits exactly at the reading position, with no
  * glide.
  */
-export default function TableOfContents({ items }: { items: TocItem[] }) {
+export default function TableOfContents({
+  items,
+  title,
+  navigateLabel,
+}: {
+  items: TocItem[];
+  /** "On this page": the heading and the accessible name of the nav. */
+  title: string;
+  /** The mobile disclosure's summary ("Navigate to..."). */
+  navigateLabel: string;
+}) {
   const sections = items.filter((item) => !item.href);
   const [activeIndex, setActiveIndex] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -263,7 +273,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
       {/* Desktop / tablet: fully expanded, sticky sidebar. */}
       <nav
         ref={navRef}
-        aria-label="On this page"
+        aria-label={title}
         className="hidden lg:sticky lg:top-28 lg:flex flex-col gap-4 rounded-card glass p-6"
       >
         {/* The star's line, tail, dots and head (positioned in the effect
@@ -314,7 +324,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
             </svg>
           </div>
         </div>
-        <p className="font-mono-label text-mono-label uppercase text-muted m-0 pb-2">On this page</p>
+        <p className="font-mono-label text-mono-label uppercase text-muted m-0 pb-2">{title}</p>
         {sectionLinks(undefined, true)}
         {pageLinks()}
       </nav>
@@ -327,7 +337,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
         onToggle={(event) => setMobileOpen(event.currentTarget.open)}
       >
         <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-mono-label text-mono-label uppercase text-muted marker:content-none [&::-webkit-details-marker]:hidden">
-          Navigate to...
+          {navigateLabel}
           <span
             aria-hidden="true"
             className="text-[15px] text-ink transition-transform duration-150 ease-out group-open:rotate-180"
@@ -335,7 +345,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
             ↓
           </span>
         </summary>
-        <nav aria-label="On this page" className="flex flex-col gap-4 px-6 pb-6 pt-1">
+        <nav aria-label={title} className="flex flex-col gap-4 px-6 pb-6 pt-1">
           {sectionLinks(() => setMobileOpen(false))}
           {pageLinks(() => setMobileOpen(false))}
         </nav>

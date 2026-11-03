@@ -7,9 +7,9 @@ export default function TagPill({ tag }: { tag: string }) {
   );
 }
 
-export function TagList({ tags }: { tags: string[] }) {
+export function TagList({ tags, label }: { tags: string[]; label: string }) {
   return (
-    <ul aria-label="Topics" className="flex flex-wrap gap-2 list-none p-0 m-0">
+    <ul aria-label={label} className="flex flex-wrap gap-2 list-none p-0 m-0">
       {tags.map((tag) => (
         <li key={tag}>
           <TagPill tag={tag} />

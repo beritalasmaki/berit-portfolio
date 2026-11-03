@@ -1,7 +1,7 @@
 import Logo from "./Logo";
-import { site } from "@/data/site";
+import type { Dictionary } from "@/i18n/dictionaries";
 
-export default function Footer() {
+export default function Footer({ copy }: { copy: Pick<Dictionary, "footer" | "site"> }) {
   const year = new Date().getFullYear();
   return (
     // Compact: a 40px mark (`.site-footer .logo-mark`) and even padding.
@@ -21,9 +21,9 @@ export default function Footer() {
     // so the page ends on its own band. The meta line is `text-body`, not
     // `footer-meta`, which fell under AA on that tint.
     <footer className="site-footer glass-footer flex items-center justify-between gap-x-6 gap-y-2 flex-wrap px-gutter py-6 pr-[80px] sm:pr-48">
-      <Logo />
+      <Logo copy={copy.site} />
       <p className="m-0 text-[13px] text-body sm:whitespace-nowrap">
-        Designed & built by Berit. Powered by Claude and Vercel. © {year}
+        {copy.footer.credit} © {year}
       </p>
     </footer>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { Dictionary } from "@/i18n/dictionaries";
 
 // Kept in this file, per the codebase's per-file icon convention (the same
 // LinkedIn mark as Header.tsx and AboutMe.tsx). All 16px, `currentColor`,
@@ -66,24 +67,30 @@ function ShareIcon() {
  * device's own share sheet where there is one (phones). The URL is read from
  * the page itself, so it's right on every domain the site is served from.
  */
-export default function ShareLinks({ title }: { title: string }) {
+export default function ShareLinks({ title, copy }: { title: string; copy: Dictionary["blog"] }) {
   const [url, setUrl] = useState("");
   const [canShare, setCanShare] = useState(false);
   const [status, setStatus] = useState("");
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     setUrl(window.location.href.split("#")[0]);
     setCanShare(typeof navigator.share === "function");
   }, []);
 
-  async function copy() {
+  async function copyLink() {
     try {
       await navigator.clipboard.writeText(url);
-      setStatus("Link copied");
+      setStatus(copy.linkCopied);
+      setCopied(true);
     } catch {
-      setStatus("Couldn't copy — copy the address from the address bar");
+      setStatus(copy.copyFailed);
+      setCopied(false);
     }
-    window.setTimeout(() => setStatus(""), 3000);
+    window.setTimeout(() => {
+      setStatus("");
+      setCopied(false);
+    }, 3000);
   }
 
   async function share() {
@@ -99,7 +106,7 @@ export default function ShareLinks({ title }: { title: string }) {
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="font-mono-label text-mono-label uppercase text-muted mr-2">Share</span>
+      <span className="font-mono-label text-mono-label uppercase text-muted mr-2">{copy.share}</span>
       <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`}
         target="_blank"
@@ -109,16 +116,16 @@ export default function ShareLinks({ title }: { title: string }) {
       >
         <LinkedInIcon />
         LinkedIn
-        <span className="sr-only"> (opens in a new tab)</span>
+        <span className="sr-only">{copy.opensNewTab}</span>
       </a>
-      <button type="button" onClick={copy} data-sound="pop" className={button}>
-        {status === "Link copied" ? <CheckIcon /> : <LinkIcon />}
-        Copy link
+      <button type="button" onClick={copyLink} data-sound="pop" className={button}>
+        {copied ? <CheckIcon /> : <LinkIcon />}
+        {copy.copyLink}
       </button>
       {canShare && (
         <button type="button" onClick={share} data-sound="pop" className={button}>
           <ShareIcon />
-          More…
+          {copy.more}
         </button>
       )}
       <span role="status" aria-live="polite" className="text-body-sm text-accent-dark">

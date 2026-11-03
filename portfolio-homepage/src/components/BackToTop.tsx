@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
  * to sit across a heading), and the footer carries enough bottom padding
  * that the last line of the page clears it when scrolled all the way
  * down. See Footer.tsx for the matching padding. */
-export default function BackToTop() {
+export default function BackToTop({ label }: { label: string }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function BackToTop() {
       // accessible name comes from aria-label rather than the text node —
       // that keeps the name identical at both sizes instead of vanishing
       // along with the text.
-      aria-label="Back to top"
+      aria-label={label}
       className={`fixed bottom-6 right-6 z-40 inline-flex items-center justify-center gap-2 glass-button-ink rounded-pill text-[13px] font-semibold uppercase tracking-[0.04em] text-white whitespace-nowrap h-12 w-12 sm:h-auto sm:w-auto sm:px-4 sm:py-4 hover:text-white focus-visible:text-white focus-visible:outline-white ${
         visible ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
@@ -51,7 +51,7 @@ export default function BackToTop() {
           underneath — the fill is already fully opaque `ink`, so nothing
           shows through it, but against dark imagery an opaque dark pill
           can otherwise read as part of the content behind it. */}
-      <span className="hidden sm:inline">Back to top</span>
+      <span className="hidden sm:inline">{label}</span>
     </a>
   );
 }

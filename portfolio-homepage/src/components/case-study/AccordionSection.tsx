@@ -67,6 +67,8 @@ export default function AccordionSection({
   id,
   label,
   heading,
+  showMore,
+  showLess,
   defaultOpen = false,
   children,
 }: {
@@ -75,6 +77,9 @@ export default function AccordionSection({
    * — see the note in the component docblock. */
   label: string;
   heading: string;
+  /** The toggle's two labels (translated). */
+  showMore: string;
+  showLess: string;
   defaultOpen?: boolean;
   children: ReactNode;
 }) {
@@ -118,7 +123,7 @@ export default function AccordionSection({
               per line on a phone. */}
           <span className="flex items-center gap-2 shrink-0 ml-auto">
             <span className="font-mono-label text-mono-label uppercase text-muted whitespace-nowrap group-hover:text-accent-dark group-focus-visible:text-accent-dark">
-              {open ? "Show less" : "Show more"}
+              {open ? showLess : showMore}
             </span>
             <span
               aria-hidden="true"

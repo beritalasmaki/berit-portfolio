@@ -2,6 +2,9 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { BlogPost } from "@/data/blog";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries";
+import { fmt } from "@/i18n/format";
 import PostCard from "./PostCard";
 
 /**
@@ -9,7 +12,17 @@ import PostCard from "./PostCard";
  * topic lives in the URL (`?tag=`), so a filtered list can be shared and the
  * back button undoes a filter.
  */
-export default function PostList({ posts, tags }: { posts: BlogPost[]; tags: string[] }) {
+export default function PostList({
+  posts,
+  tags,
+  locale,
+  copy,
+}: {
+  posts: BlogPost[];
+  tags: string[];
+  locale: Locale;
+  copy: Dictionary["blog"];
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -29,9 +42,9 @@ export default function PostList({ posts, tags }: { posts: BlogPost[]; tags: str
   return (
     <div className="flex flex-col gap-8">
       {tags.length > 0 && (
-        <div role="group" aria-label="Filter posts by topic" className="flex flex-wrap gap-2">
+        <div role="group" aria-label={copy.filterLabel} className="flex flex-wrap gap-2">
           <button type="button" aria-pressed={active === null} onClick={() => choose(null)} data-sound="pop" className={pill(active === null)}>
-            All posts
+            {copy.allPosts}
           </button>
           {tags.map((tag) => (
             <button
@@ -49,24 +62,34 @@ export default function PostList({ posts, tags }: { posts: BlogPost[]; tags: str
       )}
 
       <p role="status" aria-live="polite" className="sr-only">
-        {active ? `${shown.length} posts about ${active}` : `${shown.length} posts`}
+        {active
+          ? fmt(copy.countTopic, { count: shown.length, topic: active })
+          : fmt(copy.countAll, { count: shown.length })}
       </p>
 
-      <PostGrid posts={shown} />
+      <PostGrid posts={shown} locale={locale} copy={copy} />
     </div>
   );
 }
 
 /** The cards alone, without the filter — also the server-rendered stand-in
  * while the filter (which reads the URL) loads. */
-export function PostGrid({ posts }: { posts: BlogPost[] }) {
+export function PostGrid({
+  posts,
+  locale,
+  copy,
+}: {
+  posts: BlogPost[];
+  locale: Locale;
+  copy: Dictionary["blog"];
+}) {
   return posts.length > 0 ? (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-grid-gap items-stretch">
       {posts.map((post) => (
-        <PostCard key={post.slug} post={post} />
+        <PostCard key={post.slug} post={post} locale={locale} copy={copy} />
       ))}
     </div>
   ) : (
-    <p className="m-0 text-body-lg text-body">No posts yet — check back soon.</p>
+    <p className="m-0 text-body-lg text-body">{copy.noPosts}</p>
   );
 }

@@ -13,80 +13,136 @@ import PostMeta from "@/components/blog/PostMeta";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import ShareLinks from "@/components/blog/ShareLinks";
 import { TagList } from "@/components/blog/TagPill";
-import { getPost, getRelatedPosts, getSeriesParts, posts } from "@/data/blog";
+import { getPost, getPosts, getRelatedPosts, getSeriesParts, getTranslation } from "@/data/blog";
 import { siteUrl } from "@/data/site";
+import { fmt } from "@/i18n/format";
+import { htmlLang, isLocale, locales, type Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
+import { absoluteUrl, blogPath, homePath, postPath } from "@/i18n/paths";
+import { JsonLd, breadcrumbJsonLd, personNode } from "@/lib/jsonld";
+import { pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
+  return locales.flatMap((locale) => getPosts(locale).map((post) => ({ locale, slug: post.slug })));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getPost(slug);
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) return {};
+  const post = getPost(locale, slug);
   if (!post) return {};
-  const description = plainText(post.excerpt);
+  const t = getDictionary(locale);
+  const translation = getTranslation(locale, post);
+  // Only the languages this post exists in: an untranslated post gets no
+  // `hreflang` for the other language.
+  const paths: Partial<Record<Locale, string>> = { [locale]: postPath(locale, post.slug) };
+  if (translation) paths[locale === "en" ? "fi" : "en"] = postPath(locale === "en" ? "fi" : "en", translation.slug);
   return {
-    title: `${post.tabTitle ?? post.title} | By Berit Alasmäki`,
-    description,
-    alternates: { canonical: `${siteUrl}/blog/${post.slug}` },
-    openGraph: {
+    ...pageMetadata({
+      locale,
+      title: `${post.tabTitle ?? post.title} | ${t.meta.titleSuffix}`,
+      description: plainText(post.excerpt),
+      paths,
       type: "article",
-      title: post.title,
-      description,
-      url: `${siteUrl}/blog/${post.slug}`,
-      publishedTime: post.date,
-      modifiedTime: post.updated,
-      authors: ["Berit Alasmäki"],
-      tags: post.tags,
-    },
+      article: {
+        publishedTime: post.date,
+        modifiedTime: post.updated,
+        authors: [t.site.name],
+        tags: post.tags,
+      },
+      siteName: t.site.name,
+    }),
   };
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const post = getPost(slug);
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale: rawLocale, slug } = await params;
+  if (!isLocale(rawLocale)) notFound();
+  const locale: Locale = rawLocale;
+  const post = getPost(locale, slug);
   if (!post) notFound();
+  const t = getDictionary(locale);
+  const b = t.blog;
+  const other: Locale = locale === "en" ? "fi" : "en";
+  const translation = getTranslation(locale, post);
 
-  const series = getSeriesParts(post);
-  const related = getRelatedPosts(post.slug, 2);
+  const series = getSeriesParts(locale, post);
+  const related = getRelatedPosts(locale, post.slug, 2);
 
   // Built from the headings the body actually has, so the TOC can never
   // offer a link to a section that isn't there.
   const tocItems: TocItem[] = [
-    { id: "post-intro", label: "Introduction" },
+    { id: "post-intro", label: b.intro_toc },
     ...post.body.flatMap((block) =>
       block.type === "heading" ? [{ id: block.id, label: block.navLabel ?? block.text }] : []
     ),
-    ...(related.length > 0 ? [{ id: "other", label: "Keep reading" }] : []),
-    { id: "back-to-blog", label: "Back to all posts", href: "/blog" },
+    ...(related.length > 0 ? [{ id: "other", label: b.keepReading }] : []),
+    { id: "back-to-blog", label: b.backToAll, href: blogPath(locale) },
   ];
 
   return (
     <>
       <ReadingProgress targetId="post-article" />
-      <Header backHref="/blog" backLabel="Back to blog" />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BlogPosting",
+              headline: post.title,
+              description: plainText(post.excerpt),
+              inLanguage: htmlLang[locale],
+              datePublished: post.date,
+              dateModified: post.updated ?? post.date,
+              keywords: post.tags.join(", "),
+              url: absoluteUrl(siteUrl, postPath(locale, post.slug)),
+              mainEntityOfPage: absoluteUrl(siteUrl, postPath(locale, post.slug)),
+              author: { "@id": `${siteUrl}/#person` },
+              publisher: { "@id": `${siteUrl}/#person` },
+              image: `${siteUrl}/og/og-${locale}.png`,
+            },
+            personNode(locale, t),
+            breadcrumbJsonLd([
+              { name: t.site.name, path: homePath(locale) },
+              { name: b.eyebrow, path: blogPath(locale) },
+              { name: post.title, path: postPath(locale, post.slug) },
+            ]),
+          ],
+        }}
+      />
+      <Header
+        locale={locale}
+        copy={{ header: t.header, common: t.common, site: t.site }}
+        switchHref={translation ? postPath(other, translation.slug) : blogPath(other)}
+        backHref={blogPath(locale)}
+        backLabel={t.header.backToBlog}
+      />
       <main className="px-gutter pt-6 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] gap-x-16">
-          <TableOfContents items={tocItems} />
+          <TableOfContents items={tocItems} title={t.caseStudy.onThisPage} navigateLabel={t.caseStudy.navigateTo} />
 
           <div className="min-w-0 flex flex-col gap-[clamp(48px,5vw,64px)]">
             <article id="post-article" aria-labelledby="post-title" className="flex flex-col gap-[clamp(48px,5vw,64px)]">
               <Reveal>
                 <header id="post-intro" className="border-t border-rule pt-[clamp(32px,4vw,48px)] flex flex-col gap-6">
                   <p className="font-mono-label text-mono-label uppercase text-muted m-0">
-                    <Link href="/blog" data-sound="back" className="hover:text-ink focus-visible:text-ink">
-                      Blog
+                    <Link href={blogPath(locale)} data-sound="back" className="hover:text-ink focus-visible:text-ink">
+                      {b.eyebrow}
                     </Link>
                     {post.series && (
                       <>
                         {" · "}
-                        {post.series.name} · Part {post.series.part} of {series.length}
+                        {post.series.name} · {fmt(b.seriesPartOf, { part: post.series.part, total: series.length })}
                       </>
                     )}
                   </p>
@@ -96,23 +152,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   {post.series?.subtitle && (
                     <p className="m-0 text-sub-h4 text-accent-dark">{post.series.subtitle}</p>
                   )}
-                  <PostMeta post={post} />
+                  <PostMeta post={post} locale={locale} copy={b} />
                   <p className="m-0 max-w-prose-cs text-lead text-body">{post.excerpt}</p>
-                  <TagList tags={post.tags} />
-                  <ShareLinks title={post.title} />
+                  <TagList tags={post.tags} label={b.topics} />
+                  <ShareLinks title={post.title} copy={b} />
                 </header>
               </Reveal>
 
               <Reveal>
                 <div className="rounded-card glass p-card-pad">
-                  <BlogBody blocks={post.body} />
+                  <BlogBody blocks={post.body} copy={b} />
                 </div>
               </Reveal>
 
               {series.length > 1 && (
                 <Reveal>
                   <nav aria-labelledby="series-heading" className="rounded-card glass p-card-pad">
-                    <p className="font-mono-label text-mono-label uppercase text-muted m-0">Series</p>
+                    <p className="font-mono-label text-mono-label uppercase text-muted m-0">{b.series}</p>
                     <h2 id="series-heading" className="mt-4 m-0 text-card-h3 text-ink">
                       {post.series?.name}
                     </h2>
@@ -126,11 +182,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             </span>
                             {current ? (
                               <span aria-current="page" className="text-body-em font-semibold text-accent-dark">
-                                {part.title} <span className="font-normal text-muted">(you are here)</span>
+                                {part.title} <span className="font-normal text-muted">{b.youAreHere}</span>
                               </span>
                             ) : (
                               <Link
-                                href={`/blog/${part.slug}`}
+                                href={postPath(locale, part.slug)}
                                 data-sound="open"
                                 className="text-body-em font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4 hover:decoration-accent-dark focus-visible:decoration-accent-dark"
                               >
@@ -147,7 +203,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
               <Reveal>
                 <div className="border-t border-rule pt-8">
-                  <ShareLinks title={post.title} />
+                  <ShareLinks title={post.title} copy={b} />
                 </div>
               </Reveal>
             </article>
@@ -155,13 +211,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {related.length > 0 && (
               <Reveal>
                 <section id="other" aria-labelledby="other-heading">
-                  <p className="font-mono-label text-mono-label uppercase text-muted m-0">Keep reading</p>
+                  <p className="font-mono-label text-mono-label uppercase text-muted m-0">{b.keepReading}</p>
                   <h2 id="other-heading" className="mt-4 m-0 text-section-h2 text-ink">
-                    More from the blog
+                    {b.moreFromBlog}
                   </h2>
                   <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-grid-gap items-stretch">
-                    {related.map((other) => (
-                      <PostCard key={other.slug} post={other} headingLevel="h3" />
+                    {related.map((more) => (
+                      <PostCard key={more.slug} post={more} locale={locale} copy={b} headingLevel="h3" />
                     ))}
                   </div>
                 </section>
@@ -170,8 +226,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
       </main>
-      <Footer />
-      <BackToTop />
+      <Footer copy={{ footer: t.footer, site: t.site }} />
+      <BackToTop label={t.common.backToTop} />
     </>
   );
 }

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { clientLogos } from "@/data/site";
+import type { Dictionary } from "@/i18n/dictionaries";
 
-export default function ClientLogos() {
+export default function ClientLogos({ copy }: { copy: Dictionary["clients"] }) {
   return (
     // `mt-rhythm` matches every other top-level section break on the page
     // (64px mobile / 120px desktop). Without it this section's divider rule
@@ -17,8 +18,8 @@ export default function ClientLogos() {
           the page is a plain `<p>` sitting beside its own `<h2>`, so the
           number is free to be read there. */}
       <h2 id="clients-heading" className="font-mono-label text-mono-label uppercase text-muted m-0">
-        <span aria-hidden="true">01 / </span>
-        Experience with well-known organisations
+        <span aria-hidden="true">{copy.eyebrowNumber}</span>
+        {copy.heading}
       </h2>
       {/* Infinite carousel: the logo list is rendered twice inside one flex
           track that slides left by 50% (see `.logo-marquee` in globals.css).

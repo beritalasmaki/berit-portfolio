@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useId, useState, type ReactNode } from "react";
 import { site } from "@/data/site";
+import type { Dictionary } from "@/i18n/dictionaries";
 import { ArrowRightIcon } from "./icons";
 
 // Small brand mark for the LinkedIn button — same path Header.tsx uses for
@@ -87,34 +88,8 @@ type WorkingWithMeItem = {
   detail: string;
 };
 
-const items: WorkingWithMeItem[] = [
-  {
-    icon: <ShieldIcon />,
-    statement: "I'll push back, respectfully.",
-    detail:
-      "If something won't work for users or developers, I'll say so early. I always explain the reason, not just share an opinion.",
-  },
-  {
-    icon: <CoffeeIcon />,
-    statement: "I'll make the coffee and bring the snacks.",
-    detail: "Good work happens in a good mood. I like keeping the atmosphere light, even during crunch time.",
-  },
-  {
-    icon: <DetailIcon />,
-    statement: "I'll notice the details that matter.",
-    detail: "Not every detail needs attention, but the ones that affect trust or usability always get mine.",
-  },
-  {
-    icon: <FeedbackIcon />,
-    statement: "I'll ask for feedback early, not just at the end.",
-    detail: "I'd rather show a rough version early than a polished one too late to change.",
-  },
-  {
-    icon: <TeamIcon />,
-    statement: "I'll speak up for both the user and the developer building it.",
-    detail: "Good design has to work for the person using it and the person building it. I try not to forget either side.",
-  },
-];
+/** One icon per "Working with me" statement, in the dictionary's order. */
+const ITEM_ICONS: ReactNode[] = [<ShieldIcon key="shield" />, <CoffeeIcon key="coffee" />, <DetailIcon key="detail" />, <FeedbackIcon key="feedback" />, <TeamIcon key="team" />];
 
 /**
  * One "Working with me" row. Four things worth calling out:
@@ -154,6 +129,8 @@ function WorkingWithMeRow({
   pinned,
   onTogglePin,
   hoverCapable,
+  hintHover,
+  hintPress,
   buttonId,
   panelId,
 }: {
@@ -161,6 +138,8 @@ function WorkingWithMeRow({
   pinned: boolean;
   onTogglePin: () => void;
   hoverCapable: boolean;
+  hintHover: string;
+  hintPress: string;
   buttonId: string;
   panelId: string;
 }) {
@@ -171,7 +150,7 @@ function WorkingWithMeRow({
   // touch device has no hover to offer, and telling it to hover is an
   // instruction it cannot follow. Deriving both from one source keeps the
   // label from drifting out of step with the behaviour.
-  const hint = hoverCapable ? "hover for more" : "press for more";
+  const hint = hoverCapable ? hintHover : hintPress;
 
   return (
     <li className="relative">
@@ -243,7 +222,7 @@ function WorkingWithMeRow({
  * works; activating it "pins" the row open (persists on blur/mouse-leave)
  * so a keyboard user isn't required to keep focus on it to keep reading.
  */
-function WorkingWithMe() {
+function WorkingWithMe({ copy }: { copy: Dictionary["about"]["workingWithMe"] }) {
   const [hoverCapable, setHoverCapable] = useState(true);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const baseId = useId();
@@ -260,12 +239,14 @@ function WorkingWithMe() {
 
   return (
     <div className="flex flex-col gap-6 glass rounded-card p-card-pad">
-      <h3 className="m-0 text-card-h3 text-ink">Working with me</h3>
+      <h3 className="m-0 text-card-h3 text-ink">{copy.heading}</h3>
       <ul className="flex flex-col gap-4 list-none p-0 m-0">
-        {items.map((item, index) => (
+        {copy.items.map((text, index) => (
           <WorkingWithMeRow
-            key={item.statement}
-            item={item}
+            key={text.statement}
+            item={{ icon: ITEM_ICONS[index], ...text }}
+            hintHover={copy.hintHover}
+            hintPress={copy.hintPress}
             pinned={openIndex === index}
             onTogglePin={() => setOpenIndex((current) => (current === index ? null : index))}
             hoverCapable={hoverCapable}
@@ -278,39 +259,26 @@ function WorkingWithMe() {
   );
 }
 
-export default function AboutMe() {
+export default function AboutMe({ copy }: { copy: Dictionary["about"] }) {
   return (
     <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-grid-gap items-stretch">
       <div className="flex flex-col gap-6 glass rounded-card p-card-pad">
         <div className="flex items-center gap-4">
           <Image
             src="/photo.png"
-            alt="Berit Alasmäki"
+            alt={copy.photoAlt}
             width={80}
             height={80}
             className="w-20 h-20 object-contain shrink-0"
           />
-          <p className="m-0 text-body-em font-semibold italic text-ink">Hey, happy to have you here! ♥</p>
+          <p className="m-0 text-body-em font-semibold italic text-ink">{copy.greeting}</p>
         </div>
         <div className="flex flex-col gap-4">
-          <p className="m-0 text-body-lg text-body">
-            Growing up in a small town in Finland, I never expected to end up in tech, let alone design. I studied
-            IT and web development, but my real start in design happened almost by accident: a friend brought me
-            into his startup while I was still in high school, and that&apos;s where I first got hands-on
-            experience with both design tools and code. I&apos;ve been curious about both ever since.
-          </p>
-          <p className="m-0 text-body-lg text-body">
-            Ten years in design, nine of them as a consultant, taught me to move between very different worlds:
-            public sector platforms, industrial tools, environmental data systems, often as the only designer in
-            the room. I&apos;ve worked on more than 25 projects, and each one shaped how I work today. That kind of
-            work forces you to care about your craft, because there might not be anyone else to catch what you
-            miss.
-          </p>
-          <p className="m-0 text-body-lg text-body">
-            I value quality work, clear focus, and strong collaboration. Instead of worrying about how AI is
-            changing design, I take a practical approach: I use the tools that make sense, keep improving my
-            process, and keep building solid product experiences.
-          </p>
+          {copy.paragraphs.map((paragraph) => (
+            <p key={paragraph} className="m-0 text-body-lg text-body">
+              {paragraph}
+            </p>
+          ))}
         </div>
         <a
           href={site.linkedinUrl}
@@ -320,7 +288,7 @@ export default function AboutMe() {
           className="glass-button-ink group inline-flex items-center gap-2 text-white text-nav font-semibold h-11 px-6 rounded-pill self-start whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
         >
           <LinkedInIcon />
-          Connect on LinkedIn
+          {copy.linkedin}
           <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
         </a>
 
@@ -336,10 +304,10 @@ export default function AboutMe() {
             snippet and the player works without it. */}
         <div className="flex flex-col gap-4">
           <p className="m-0 font-mono-label text-mono-label uppercase text-muted">
-            Music I keep listening to
+            {copy.musicLabel}
           </p>
           <iframe
-            title="Spotify playlist: music I keep listening to"
+            title={copy.musicTitle}
             src="https://open.spotify.com/embed/playlist/0yPE6DjVE7ovzpKaHumEHQ?utm_source=generator&theme=0"
             height={152}
             loading="lazy"
@@ -350,7 +318,7 @@ export default function AboutMe() {
         </div>
       </div>
 
-      <WorkingWithMe />
+      <WorkingWithMe copy={copy.workingWithMe} />
     </div>
   );
 }
