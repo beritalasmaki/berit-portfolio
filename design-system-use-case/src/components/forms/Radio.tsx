@@ -8,6 +8,7 @@ type RadioProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
 
 export function Radio({ label, mode = "default", disabled, className = "", ...props }: RadioProps) {
   const isLoading = mode === "loading";
+  const isError = mode === "error";
   const isDisabled = disabled || isInert(mode);
   const choice = choiceClasses(mode);
 
@@ -17,7 +18,8 @@ export function Radio({ label, mode = "default", disabled, className = "", ...pr
         type="radio"
         disabled={isDisabled}
         aria-busy={isLoading || undefined}
-        className={`h-5 w-5 shrink-0 border border-[var(--preview-border,var(--color-border-strong))] accent-[var(--color-action-accent-dark)] transition ${choice.box}`}
+        aria-invalid={isError || undefined}
+        className={`h-5 w-5 shrink-0 border border-[var(--preview-border,var(--color-border-strong))] accent-[var(--preview-accent,var(--color-action-accent-dark))] transition ${choice.box}`}
         {...props}
       />
       <span>{label}</span>

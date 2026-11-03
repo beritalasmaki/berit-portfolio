@@ -4,7 +4,7 @@ This folder holds the React components used across the design system.
 
 ## System components
 
-`buttons`, `cards`, `forms`, `navigation` and `table` are the design
+`buttons`, `cards`, `forms`, `icons`, `navigation`, `notifications` and `table` are the design
 system components themselves. They read their values from the tokens in
 `src/data`, so appearance is controlled centrally rather than component
 by component. If you want to change how something looks, start from the
@@ -38,3 +38,10 @@ will be split into `ui/` and `docs/`.
 
 `examples` appears twice in this project. This folder holds the mockup
 component. The pages that use it live in `src/app/examples`.
+
+## Added with the Figma sync
+
+- `icons/Icon.tsx` draws the small set of inline icons. Icons are decorative; put the meaning in text beside them.
+- `buttons/IconButton.tsx` is an icon-only 44px button and requires a `label`. `Button` takes `leadingIcon` and `trailingIcon`.
+- `forms` gained an error mode, `RadioGroup`, `Calendar`, `DatePicker` (with `dates.ts` for DD/MM/YYYY helpers), and the form patterns `FormIntro`, `FormSection`, `FormProgress` and `FormActions`. `Field` can mark a control required or optional, and `Input` takes icons.
+- `notifications` holds `NotificationPanel` (info, success, warning, error) and `Toast` (success, error, warning).

@@ -9,9 +9,12 @@ const componentLinks = [
   ["Buttons", "Primary, secondary, tertiary, loading, and disabled states."],
   ["Cards", "Metric, action, media, and selectable content surfaces."],
   ["Table", "Semantic data, sorting, filtering, selection, and empty states."],
-  ["Forms", "Input, select, checkbox, and radio with shared modes and labelling."],
+  ["Forms", "Input, select, checkbox, and radio with shared modes and labelling.", "forms"],
+  ["Form patterns", "Introduction, sections, progress, and actions for multi-step forms.", "form-patterns"],
+  ["Date picker", "A DD/MM/YYYY field with a Monday-first calendar.", "date-picker"],
+  ["Notifications", "Panels and toasts for info, success, warning, and error.", "notifications"],
 ];
 
 export default function ComponentsPage() {
-  return <DocsShell active="Components"><div className="max-w-5xl"><p className="eyebrow mb-4">Documentation / components</p><h1 className="text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">Components</h1><p className="body-copy mt-5 text-lg">Five accessible families for common product work. Each page documents the API, anatomy, interaction states, and keyboard behavior.</p><div className="mt-12 grid gap-4 md:grid-cols-2">{componentLinks.map(([label, detail], index) => <Link key={label} href={`/components/${label.toLowerCase()}`} className="group rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 transition hover:-translate-y-1 hover:border-[var(--color-action-accent)]"><span className="eyebrow">0{index + 1}</span><h2 className="mt-8 text-2xl font-bold">{label}</h2><p className="body-copy mt-2 text-sm">{detail}</p><span aria-hidden="true" className="material-symbols-outlined mt-8 block text-xl transition-transform group-hover:translate-x-1">arrow_forward</span></Link>)}</div></div></DocsShell>;
+  return <DocsShell active="Components"><div className="max-w-5xl"><p className="eyebrow mb-4">Documentation / components</p><h1 className="text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">Components</h1><p className="body-copy mt-5 text-lg">Accessible families and patterns for common product work. Each page documents the API, anatomy, interaction states, and keyboard behavior.</p><div className="mt-12 grid gap-4 md:grid-cols-2">{componentLinks.map(([label, detail, slug], index) => <Link key={label} href={`/components/${slug ?? label.toLowerCase()}`} className="group rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 transition hover:-translate-y-1 hover:border-[var(--color-action-accent)]"><span className="eyebrow">0{index + 1}</span><h2 className="mt-8 text-2xl font-bold">{label}</h2><p className="body-copy mt-2 text-sm">{detail}</p><span aria-hidden="true" className="material-symbols-outlined mt-8 block text-xl transition-transform group-hover:translate-x-1">arrow_forward</span></Link>)}</div></div></DocsShell>;
 }
