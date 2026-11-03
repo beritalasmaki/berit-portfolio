@@ -20,6 +20,19 @@ export const educationPlatformFi: CaseStudy = {
   intro: [
     "Julkisen sektorin organisaatioiden konsortio halusi korvata perusopetuksessa ja lukiokoulutuksessa käytetyt vanhentuneet järjestelmät, ja palveltavana oli monta kuntaa erilaisine tarpeineen. Aloitin UX- ja tuotesuunnittelijana, ja kolmen vuoden aikana minusta tuli projektin Lead Designer.",
   ],
+  glance: {
+    problem:
+      "Perusopetuksessa ja lukiokoulutuksessa käytetyt vanhentuneet koulunhallinnon järjestelmät piti korvata monen kunnan tarpeisiin, ja useat kehitystiimit ja kolmannen osapuolen toimittajat rakensivat rinnakkain.",
+    role:
+      "UX- ja tuotesuunnittelija, myöhemmin Lead Designer, kolmen vuoden ajan. Vastasin pääasiassa visuaalisesta suunnittelusta ja suunnittelun yhtenäisyydestä tiimien välillä sekä ehdotin työpajamallin ja vedin sitä.",
+    decisions: [
+      "Vedin kolmivaiheisen työpajamallin: nykyisten ongelmakohtien kartoitus, ihanteellisen tulevaisuuden palvelun tutkiminen ja konseptien yhteissuunnittelu sidosryhmien kanssa",
+      "Määrittelin kaikille kehitystiimeille saman visuaalisen tyylin ja samat uudelleenkäytettävät komponentit ja kerroin perustelut säännöllisissä tapaamisissa kehittäjien kanssa",
+      "Rakensin luottamusta uudelleen budjetin ylityksen jälkeen: pysyin näkyvillä, viestin selkeästi ja kirjasin päätökset ylös",
+    ],
+    outcome:
+      "Pilottikoulujen mukaan alusta on helppokäyttöinen, monipuolinen ja moderni, ja opettajat ja hallintohenkilöstö kiittivät sen johdonmukaisuutta ja nopeutta. Kaksi kuntaa vetäytyi budjetin ylityksen vuoksi, ja alusta otettiin käyttöön jäljellä olevissa viidessä kunnassa keväällä 2026. Laajempi käyttöönotto kouluissa on suunniteltu.",
+  },
   roleLabel: "UX- ja tuotesuunnittelija, myöhemmin Lead Designer, kolmen vuoden ajan",
   focusLabel:
     "Palvelumuotoilu, suunnittelujärjestelmät ja suunnittelun yhtenäisyys tiimien välillä usean toimittajan julkisen sektorin alustalla",

@@ -15,6 +15,7 @@ export type {
   CaseStudySummary,
   CaseStudy,
   CaseStudyFullContent,
+  CaseGlance,
   ImpactCard,
   GalleryImage,
   ChallengeSubsection,
