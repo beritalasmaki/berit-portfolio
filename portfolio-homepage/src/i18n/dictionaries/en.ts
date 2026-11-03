@@ -75,8 +75,8 @@ export const en = {
 
   hero: {
     photoAlt: "Berit Alasmäki",
-    greeting: "Hi, I'm Berit",
-    greetingSeparator: "·",
+    greeting: "Hi! I'm Berit. 🙂",
+    greetingSeparator: "",
     title: "Senior UX & Product Designer",
     headline: ["Your partner in", "untangling", "complexity."],
     stats: [
@@ -95,7 +95,7 @@ export const en = {
       "Then we *plan* what’s needed, the system and the goal.",
       "We set up the *systems* and how we’ll measure progress.",
       "We *move,* learning and adjusting as we go.",
-      "And we reach the *goal,* together.",
+      "And we reach the *goal,* together. 😊",
     ],
   },
 
