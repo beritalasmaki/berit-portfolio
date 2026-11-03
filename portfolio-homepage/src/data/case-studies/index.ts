@@ -24,13 +24,14 @@ export type {
 } from "./types";
 export { hasFullContent } from "./types";
 
-// Registry order = display order on the homepage and in "Other case studies"
+// Registry order = display order (strongest first: industrial, education,
+// university, environmental) on the homepage and in "Other case studies"
 // lists. Each language has its own files (`fi/` for Finnish): the Finnish
 // versions are written for Finnish readers, not mirrored sentence by sentence,
 // but they keep the same `slug` ids, images and structure.
 const registries: Record<Locale, CaseStudy[]> = {
-  en: [industrialTool, universityAiTool, educationPlatform, environmentalDataTool],
-  fi: [industrialToolFi, universityAiToolFi, educationPlatformFi, environmentalDataToolFi],
+  en: [industrialTool, educationPlatform, universityAiTool, environmentalDataTool],
+  fi: [industrialToolFi, educationPlatformFi, universityAiToolFi, environmentalDataToolFi],
 };
 
 export function getCaseStudies(locale: Locale): CaseStudy[] {
