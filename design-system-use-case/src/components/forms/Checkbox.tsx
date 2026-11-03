@@ -8,6 +8,7 @@ type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
 
 export function Checkbox({ label, mode = "default", disabled, className = "", ...props }: CheckboxProps) {
   const isLoading = mode === "loading";
+  const isError = mode === "error";
   const isDisabled = disabled || isInert(mode);
   const choice = choiceClasses(mode);
 
@@ -17,7 +18,8 @@ export function Checkbox({ label, mode = "default", disabled, className = "", ..
         type="checkbox"
         disabled={isDisabled}
         aria-busy={isLoading || undefined}
-        className={`h-5 w-5 shrink-0 rounded-sm border border-[var(--preview-border,var(--color-border-strong))] accent-[var(--color-action-accent-dark)] transition ${choice.box}`}
+        aria-invalid={isError || undefined}
+        className={`h-5 w-5 shrink-0 rounded-sm border border-[var(--preview-border,var(--color-border-strong))] accent-[var(--preview-accent,var(--color-action-accent-dark))] transition ${choice.box}`}
         {...props}
       />
       <span>{label}</span>

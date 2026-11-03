@@ -6,6 +6,8 @@ import { Field } from "@/components/forms/Field";
 import { Input } from "@/components/forms/Input";
 import { Radio } from "@/components/forms/Radio";
 import { Select } from "@/components/forms/Select";
+import { Icon } from "@/components/icons/Icon";
+import { RadioGroup } from "@/components/forms/RadioGroup";
 import { Variation } from "@/components/documentation/Variation";
 import type { FormMode } from "@/components/forms/controlStyles";
 
@@ -23,13 +25,14 @@ const modes: { label: string; mode: FormMode }[] = [
 const cssCode = `.control {
   min-height: 44px;
   border: 1px solid var(--color-border-strong);
-  border-radius: 8px;
+  border-radius: 16px;
   background: var(--color-surface-canvas);
 }
 
 .control:focus-visible {
   outline: 3px solid var(--color-focus-ring);
-  outline-offset: 3px;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--color-surface-inverse);
 }`;
 
 function ModeGrid({ children }: { children: React.ReactNode }) {
@@ -44,7 +47,8 @@ export default function FormsPage() {
     usage={<p className="m-0">Wrap every control in a Field so it carries a real label, and use the hint before the control rather than placeholder text. The modes below are documentation states: in a live form the browser drives hover, active and focus, and only disabled and loading are set from code.</p>}
     contract={[
       "Controls are Input, Select, Checkbox and Radio, with Field supplying label, hint and error.",
-      "Modes are default, hover, active, focus, disabled and loading, matching Button.",
+      "Modes are default, hover, active, focus, disabled, loading and error, matching Button.",
+      "Field marks a control as required or optional. Input takes a leadingIcon and a trailingIcon. RadioGroup wraps radios in a fieldset.",
       "Loading renders the control disabled and exposes aria-busy.",
       "Field takes the id that the control inside it also uses, so the label points at a real control.",
       "Every control renders its native HTML element rather than a styled div.",
@@ -57,6 +61,33 @@ export default function FormsPage() {
       "Radio groups belong in a fieldset with a legend so the group has a name.",
     ]}
     examples={[
+      {
+        title: "Required, optional and hint text",
+        description: "Mark every field as required or optional, say the format in a hint above the control, and explain the asterisk once. An error replaces the hint's job with a message and an icon.",
+        content: <CodeTabs
+          view={<div className="grid max-w-md gap-6"><p className="m-0 text-sm">* marked fields are required</p><Field id="demo-name" label="Full name" hint="As it appears on your passport" required><Input id="demo-name" required aria-describedby="demo-name-hint" /></Field><Field id="demo-phone" label="Phone number" hint="Include the country code" optional><Input id="demo-phone" type="tel" aria-describedby="demo-phone-hint" /></Field><Field id="demo-email" label="Email" hint="We will send the confirmation here" error="Enter an email address like name@example.com." required><Input id="demo-email" mode="error" defaultValue="name@" aria-invalid="true" aria-describedby="demo-email-hint demo-email-error" /></Field></div>}
+          cssCode={cssCode}
+          javascriptCode={'<Field id="email" label="Email" hint="We will send the confirmation here" error={error} required>\n  <Input id="email" mode={error ? "error" : "default"} aria-invalid={Boolean(error)} aria-describedby="email-hint email-error" />\n</Field>'}
+        />,
+      },
+      {
+        title: "Input with icons",
+        description: "A decorative icon can sit before or after the text. Icons are hidden from assistive technology, so the label still does the naming.",
+        content: <CodeTabs
+          view={<div className="grid max-w-md gap-6"><Field id="demo-search" label="Search"><Input id="demo-search" leadingIcon={<Icon name="search" />} /></Field><Field id="demo-user" label="Username"><Input id="demo-user" leadingIcon={<Icon name="person" />} /></Field></div>}
+          cssCode={cssCode}
+          javascriptCode={'<Input id="search" leadingIcon={<Icon name="search" />} />'}
+        />,
+      },
+      {
+        title: "Radio group",
+        description: "A fieldset with a legend gives the options a shared name and a place for the hint and the error.",
+        content: <CodeTabs
+          view={<RadioGroup id="demo-contact" legend="How should we contact you?" hint="Choose one" required><Radio name="demo-contact" label="Email" defaultChecked /><Radio name="demo-contact" label="Phone" /></RadioGroup>}
+          cssCode={cssCode}
+          javascriptCode={'<RadioGroup id="contact" legend="How should we contact you?" hint="Choose one" required>\n  <Radio name="contact" label="Email" />\n  <Radio name="contact" label="Phone" />\n</RadioGroup>'}
+        />,
+      },
       {
         title: "Text input",
         description: "A single-line field in every documented mode.",
