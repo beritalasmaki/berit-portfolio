@@ -548,19 +548,12 @@ export default function Header({
               <a
                 href={contactHref}
                 data-sound={contactSound}
-                className={
-                  locale === "fi"
-                    ? // Finnish: a tertiary (text) button. "Ota yhteyttä" is the natural
-                      // phrase but too wide for a filled pill at 1024px; no fill means
-                      // no padding to pay for.
-                      "group inline-flex items-center gap-2 h-11 px-1 text-nav font-semibold whitespace-nowrap text-ink underline decoration-accent decoration-2 underline-offset-[10px] transition-[text-decoration-color] duration-150 ease-out hover:decoration-accent-dark focus-visible:decoration-accent-dark"
-                    : "glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
-                }
+                // A tertiary (text) button in both languages: "Ota yhteyttä" is the
+                // natural Finnish phrase but too wide for a filled pill at 1024px;
+                // no fill means no padding to pay for.
+                className="group inline-flex items-center gap-2 h-11 px-1 text-nav font-semibold whitespace-nowrap text-ink underline decoration-accent decoration-2 underline-offset-[10px] transition-[text-decoration-color] duration-150 ease-out hover:decoration-accent-dark focus-visible:decoration-accent-dark"
               >
                 {copy.header.contact}
-                {locale !== "fi" && (
-                  <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
-                )}
               </a>
             </span>
           </nav>
