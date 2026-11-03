@@ -1,5 +1,7 @@
 import Image from "next/image";
 import type { CaseStudy, CaseStudyFullContent, GalleryImage } from "@/data/case-studies";
+import type { Dictionary } from "@/i18n/dictionaries";
+import { fmt } from "@/i18n/format";
 
 function ClockIcon() {
   return (
@@ -16,7 +18,7 @@ function ClockIcon() {
  * through (Starting Point, Impact, and the three accordion sections),
  * at ~200wpm — computed from the real copy rather than hand-maintained
  * per case study, so it can't drift out of sync as content changes. */
-function estimateReadMinutes(study: CaseStudy & CaseStudyFullContent): number {
+function estimateReadMinutes(study: CaseStudy & CaseStudyFullContent, wordsPerMinute: number): number {
   const text = [
     ...study.intro,
     study.impactIntro,
@@ -26,7 +28,7 @@ function estimateReadMinutes(study: CaseStudy & CaseStudyFullContent): number {
     ...study.whatIWouldDoDifferently,
   ].join(" ");
   const wordCount = text.trim().split(/\s+/).length;
-  return Math.max(3, Math.round(wordCount / 200));
+  return Math.max(3, Math.round(wordCount / wordsPerMinute));
 }
 
 // Absolute position/rotation per stacked card, front-most first. Each card
@@ -49,17 +51,26 @@ function cardWidth(image: GalleryImage, index: number): string {
   return `${index === 0 ? base : base - 10}%`;
 }
 
-export default function SneakPeekHero({ study }: { study: CaseStudy & CaseStudyFullContent }) {
+export default function SneakPeekHero({
+  study,
+  copy,
+  wordsPerMinute,
+}: {
+  study: CaseStudy & CaseStudyFullContent;
+  copy: Dictionary["caseStudy"];
+  /** Reading speed for the estimate: Finnish words are longer, so fewer per minute. */
+  wordsPerMinute: number;
+}) {
   const images = study.sneakPeekImages
     .map((src) => study.gallery.find((image) => image.src === src))
     .filter((image): image is GalleryImage => image !== undefined);
-  const readMinutes = estimateReadMinutes(study);
+  const readMinutes = estimateReadMinutes(study, wordsPerMinute);
 
   return (
     <section aria-labelledby="case-study-title" className="border-t border-rule pt-[clamp(32px,4vw,48px)]">
       <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-grid-gap-lg items-center">
         <div className="min-w-0 flex flex-col gap-6">
-          <p className="font-mono-label text-mono-label uppercase text-muted m-0">Case study</p>
+          <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.breadcrumbEyebrow}</p>
           <span className="self-start font-mono-label text-mono-label-em uppercase text-accent-dark glass-pill rounded-pill py-2 px-4 whitespace-nowrap">
             {study.categoryTag}
           </span>
@@ -70,16 +81,16 @@ export default function SneakPeekHero({ study }: { study: CaseStudy & CaseStudyF
 
           <div className="flex flex-col gap-2 glass rounded-card p-card-pad max-w-[30em]">
             <p className="m-0 text-body-sm text-ink">
-              <span className="font-bold">Role:</span> {study.roleLabel}
+              <span className="font-bold">{copy.role}</span> {study.roleLabel}
             </p>
             <p className="m-0 text-body-sm text-ink">
-              <span className="font-bold">Focus:</span> {study.focusLabel}
+              <span className="font-bold">{copy.focus}</span> {study.focusLabel}
             </p>
           </div>
 
           <div className="flex items-center gap-2 text-body-sm text-muted">
             <ClockIcon />
-            <span>~{readMinutes} min read</span>
+            <span>{fmt(copy.readingTime, { min: readMinutes })}</span>
           </div>
 
           <ul className="flex flex-wrap gap-2 list-none p-0 m-0">

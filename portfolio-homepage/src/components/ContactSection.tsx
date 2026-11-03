@@ -1,7 +1,8 @@
 import StatusPill from "./StatusPill";
 import { site } from "@/data/site";
+import type { Dictionary } from "@/i18n/dictionaries";
 
-export default function ContactSection() {
+export default function ContactSection({ copy }: { copy: Dictionary["contact"] }) {
   return (
     // A glass card like every other surface, not the full-bleed orange slab
     // it used to be: a flat orange band read as a different site next to
@@ -10,9 +11,10 @@ export default function ContactSection() {
     <section id="contact" aria-labelledby="contact-heading" className="mt-rhythm">
       <div className="glass rounded-card px-pane-pad py-contact-y grid grid-cols-1 lg:grid-cols-2 gap-grid-gap-lg items-end">
         <h2 id="contact-heading" className="m-0 text-contact-h2 text-ink">
-          What could we
+          {copy.headingLine1}
           <br />
-          make <span className="text-accent-hero">better?</span>
+          {copy.headingLine2Before}
+          <span className="text-accent-hero">{copy.headingAccent}</span>
         </h2>
         <div className="flex flex-col gap-4">
           {/* Availability sits at the top of this column as a kicker above
@@ -20,10 +22,9 @@ export default function ContactSection() {
               you're building", whether I'm actually free is the next thing
               they want to know. Moved here from the header, where it
               competed with the nav and was hidden below 1300px. */}
-          <StatusPill />
+          <StatusPill statuses={copy.statuses} width={copy.statusWidth} srLabel={copy.statusSrOnly} />
           <p className="m-0 text-lead text-body max-w-prose">
-            Tell me what you&apos;re building, what&apos;s getting in the way, and where
-            you want to go.
+            {copy.lead}
           </p>
           <a
             href={`mailto:${site.email}`}
@@ -38,7 +39,7 @@ export default function ContactSection() {
             rel="noreferrer"
             className="text-nav font-bold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-transform duration-150 ease-out hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
           >
-            Connect on LinkedIn
+            {copy.linkedin}
           </a>
         </div>
       </div>

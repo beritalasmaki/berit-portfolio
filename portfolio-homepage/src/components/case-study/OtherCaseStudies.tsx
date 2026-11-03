@@ -2,15 +2,26 @@ import Link from "next/link";
 import CaseStudyThumbnail from "@/components/case-study/CaseStudyThumbnail";
 import { getOtherCaseStudies } from "@/data/case-studies";
 import type { CaseStudySlug } from "@/data/case-studies";
+import { caseStudyPath } from "@/data/case-studies/slugs";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries";
 
-export default function OtherCaseStudies({ currentSlug }: { currentSlug: CaseStudySlug }) {
-  const others = getOtherCaseStudies(currentSlug);
+export default function OtherCaseStudies({
+  locale,
+  currentSlug,
+  copy,
+}: {
+  locale: Locale;
+  currentSlug: CaseStudySlug;
+  copy: Dictionary["caseStudy"];
+}) {
+  const others = getOtherCaseStudies(locale, currentSlug);
 
   return (
     <section id="other" aria-labelledby="other-heading">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">Keep reading</p>
+      <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.otherEyebrow}</p>
       <h2 id="other-heading" className="mt-4 m-0 text-section-h2 text-ink">
-        Other case studies
+        {copy.other}
       </h2>
 
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-grid-gap items-stretch">
@@ -36,7 +47,7 @@ export default function OtherCaseStudies({ currentSlug }: { currentSlug: CaseStu
               } ${isIsolatedLast ? "lg:col-span-3" : ""}`}
             >
               <Link
-                href={`/usecases/${study.slug}`}
+                href={caseStudyPath(locale, study.slug)}
                 data-sound="open"
                 className={`flex flex-1 flex-col group rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-[-2px] ${
                   isOddAtSm ? "sm:flex-row sm:items-stretch lg:flex-col" : ""
@@ -68,7 +79,7 @@ export default function OtherCaseStudies({ currentSlug }: { currentSlug: CaseStu
                   </h3>
                   <p className="m-0 text-body-sm text-body">{study.otherCaseStudyDescription}</p>
                   <span className="mt-auto text-nav font-semibold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-[border-color] duration-150 ease-out group-hover:border-accent-dark group-focus-visible:border-accent-dark">
-                    View case study →
+                    {copy.viewCaseStudy}
                   </span>
                 </div>
               </Link>

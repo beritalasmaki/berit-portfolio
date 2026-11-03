@@ -1,4 +1,7 @@
 import { formatPostDate, readingMinutes, type BlogPost } from "@/data/blog";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries";
+import { fmt } from "@/i18n/format";
 
 function ClockIcon() {
   return (
@@ -12,19 +15,30 @@ function ClockIcon() {
 }
 
 /** "31 Oct 2026 · ~6 min read", the date a real <time>. */
-export default function PostMeta({ post, className = "" }: { post: BlogPost; className?: string }) {
+export default function PostMeta({
+  post,
+  locale,
+  copy,
+  className = "",
+}: {
+  post: BlogPost;
+  locale: Locale;
+  copy: Dictionary["blog"];
+  className?: string;
+}) {
   return (
     <p className={`m-0 flex flex-wrap items-center gap-x-4 gap-y-2 text-body-sm text-muted ${className}`}>
-      <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+      <time dateTime={post.date}>{formatPostDate(post.date, locale)}</time>
       <span aria-hidden="true">·</span>
       <span className="inline-flex items-center gap-2">
-        <ClockIcon />~{readingMinutes(post)} min read
+        <ClockIcon />
+        {fmt(copy.readingTime, { min: readingMinutes(post, locale) })}
       </span>
       {post.updated && (
         <>
           <span aria-hidden="true">·</span>
           <span>
-            Updated <time dateTime={post.updated}>{formatPostDate(post.updated)}</time>
+            {copy.updated} <time dateTime={post.updated}>{formatPostDate(post.updated, locale)}</time>
           </span>
         </>
       )}

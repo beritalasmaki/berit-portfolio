@@ -1,4 +1,5 @@
 import type { OkrExample } from "@/data/blog";
+import type { Dictionary } from "@/i18n/dictionaries";
 
 /**
  * A worked OKR example as a diagram in the site's own language: glass
@@ -11,29 +12,29 @@ import type { OkrExample } from "@/data/blog";
  * from the objective (ink) to the key results (orange figures) to the
  * initiatives (orange bullets), so it stays one palette.
  */
-export default function OkrDiagram({ okr }: { okr: OkrExample }) {
+export default function OkrDiagram({ okr, copy }: { okr: OkrExample; copy: Dictionary["blog"] }) {
   return (
     <figure className="m-0 rounded-card glass p-card-pad">
       <figcaption className="flex flex-col gap-2">
-        <span className="font-mono-label text-mono-label uppercase text-muted">Diagram</span>
+        <span className="font-mono-label text-mono-label uppercase text-muted">{copy.diagram}</span>
         <span className="text-card-h3 text-ink">{okr.title}</span>
         {okr.subtitle && <span className="text-body-sm text-body">{okr.subtitle}</span>}
       </figcaption>
 
       <div className="mt-8 flex flex-col">
-        <Row index="01" name="Objective" question="Where are we heading?" tone="ink">
+        <Row index="01" name={copy.okr.objective} question={copy.okr.objectiveQuestion} tone="ink">
           <p className="m-0 h-full flex items-center rounded-frame bg-cream/60 border border-white/70 p-card-pad text-sub-h4 text-ink text-pretty">
             {okr.objective}
           </p>
         </Row>
 
-        <Connector label="measured by key results" />
+        <Connector label={copy.okr.measuredBy} />
 
         <Row
           index="02"
-          name="Key results"
-          question="How do we know we got there?"
-          hint="A number you can check"
+          name={copy.okr.keyResults}
+          question={copy.okr.keyResultsQuestion}
+          hint={copy.okr.keyResultsHint}
           tone="accent"
         >
           <ul className="m-0 p-0 list-none grid grid-cols-1 sm:grid-cols-3 gap-4 h-full">
@@ -49,13 +50,13 @@ export default function OkrDiagram({ okr }: { okr: OkrExample }) {
           </ul>
         </Row>
 
-        <Connector label="achieved through initiatives" />
+        <Connector label={copy.okr.achievedThrough} />
 
         <Row
           index="03"
-          name="Initiatives"
-          question="What do we do about it?"
-          hint="Can change along the way"
+          name={copy.okr.initiatives}
+          question={copy.okr.initiativesQuestion}
+          hint={copy.okr.initiativesHint}
           tone="soft"
         >
           <ul className="m-0 p-0 list-none grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">

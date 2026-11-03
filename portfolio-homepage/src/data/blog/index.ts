@@ -1,36 +1,54 @@
+import type { Locale } from "@/i18n/config";
 import { aiAdoptionStrategy } from "./ai-adoption-starts-with-strategy";
 import { aiPilotToEverydayPractice } from "./from-ai-pilot-to-everyday-practice";
+import { aiAdoptionStrategyFi } from "./fi/ai-adoption-starts-with-strategy";
+import { aiPilotToEverydayPracticeFi } from "./fi/from-ai-pilot-to-everyday-practice";
 import type { BlogBlock, BlogPost } from "./types";
 
 export type { BlogBlock, BlogPost, OkrExample } from "./types";
 
-// Every post, in any order — `posts` below sorts them newest first. Add a
-// new post by importing its file here.
-const registry: BlogPost[] = [aiAdoptionStrategy, aiPilotToEverydayPractice];
+const sortNewestFirst = (registry: BlogPost[]): BlogPost[] =>
+  [...registry].sort((a, b) => b.date.localeCompare(a.date) || (b.series?.part ?? 0) - (a.series?.part ?? 0));
 
-/** All posts, newest first (a series' later part first on the same day):
- * the display order everywhere. */
-export const posts: BlogPost[] = [...registry].sort(
-  (a, b) => b.date.localeCompare(a.date) || (b.series?.part ?? 0) - (a.series?.part ?? 0)
-);
+// Each language has its own list: a translation is a post of its own, with its
+// own slug, title and excerpt (written for that language's readers, not
+// machine-mirrored). Finnish posts name their English original in
+// `translationOf`. To publish a post in one language only, add it to just
+// that language's list.
+const registries: Record<Locale, BlogPost[]> = {
+  en: sortNewestFirst([aiAdoptionStrategy, aiPilotToEverydayPractice]),
+  fi: sortNewestFirst([aiAdoptionStrategyFi, aiPilotToEverydayPracticeFi]),
+};
 
-export function getPost(slug: string): BlogPost | undefined {
-  return posts.find((post) => post.slug === slug);
+export function getPosts(locale: Locale): BlogPost[] {
+  return registries[locale];
 }
 
-/** Every part of `post`'s series in part order (empty when it isn't in one). */
-export function getSeriesParts(post: BlogPost): BlogPost[] {
+export function getPost(locale: Locale, slug: string): BlogPost | undefined {
+  return registries[locale].find((post) => post.slug === slug);
+}
+
+/**
+ * The same post in the other language, if it has been translated. A Finnish
+ * post points at its English original through `translationOf`; for an English
+ * post the Finnish version is whichever Finnish post names it.
+ */
+export function getTranslation(locale: Locale, post: BlogPost): BlogPost | undefined {
+  if (locale === "fi") return registries.en.find((other) => other.slug === post.translationOf);
+  return registries.fi.find((other) => other.translationOf === post.slug);
+}
+
+export function getSeriesParts(locale: Locale, post: BlogPost): BlogPost[] {
   if (!post.series) return [];
   const name = post.series.name;
-  return posts
+  return registries[locale]
     .filter((other) => other.series?.name === name)
     .sort((a, b) => (a.series?.part ?? 0) - (b.series?.part ?? 0));
 }
 
-/** Every tag in use, most-used first, then alphabetically. */
-export function getAllTags(): string[] {
+export function getAllTags(locale: Locale): string[] {
   const counts = new Map<string, number>();
-  for (const post of posts) {
+  for (const post of registries[locale]) {
     for (const tag of post.tags) counts.set(tag, (counts.get(tag) ?? 0) + 1);
   }
   return [...counts.entries()]
@@ -38,12 +56,10 @@ export function getAllTags(): string[] {
     .map(([tag]) => tag);
 }
 
-/** Up to `limit` other posts: those sharing the most tags first, then the
- * newest, so "Keep reading" offers something related when there is one. */
-export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
-  const current = getPost(slug);
+export function getRelatedPosts(locale: Locale, slug: string, limit = 3): BlogPost[] {
+  const current = getPost(locale, slug);
   const tags = new Set(current?.tags ?? []);
-  return posts
+  return registries[locale]
     .filter((post) => post.slug !== slug)
     .map((post, order) => ({ post, order, shared: post.tags.filter((tag) => tags.has(tag)).length }))
     .sort((a, b) => b.shared - a.shared || a.order - b.order)
@@ -73,19 +89,22 @@ function blockText(block: BlogBlock): string {
   }
 }
 
-/** Reading time in whole minutes at ~200 words a minute, from the real copy
- * (so it can't drift as the text changes). Never less than 1. */
-export function readingMinutes(post: BlogPost): number {
+/** Words per minute used for reading-time estimates. Finnish words are long
+ * (compounds, inflection), so a Finnish reader gets through fewer of them. */
+export const wordsPerMinute: Record<Locale, number> = { en: 200, fi: 150 };
+
+export function readingMinutes(post: BlogPost, locale: Locale): number {
   const text = [post.excerpt, ...post.body.map(blockText)].join(" ").trim();
   const words = text ? text.split(/\s+/).length : 0;
-  return Math.max(1, Math.round(words / 200));
+  return Math.max(1, Math.round(words / wordsPerMinute[locale]));
 }
 
-/** "12 Oct 2026" — fixed locale and UTC, so the server and browser agree. */
-export function formatPostDate(iso: string): string {
-  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
+const dateLocale: Record<Locale, string> = { en: "en-GB", fi: "fi-FI" };
+
+export function formatPostDate(iso: string, locale: Locale): string {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString(dateLocale[locale], {
     day: "numeric",
-    month: "short",
+    month: locale === "fi" ? "long" : "short",
     year: "numeric",
     timeZone: "UTC",
   });

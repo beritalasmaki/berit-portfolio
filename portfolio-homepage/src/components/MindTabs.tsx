@@ -1,52 +1,14 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
+import { caseStudyPath, type CaseStudySlug } from "@/data/case-studies/slugs";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries";
 import { useLiquidIndicator } from "./useLiquidIndicator";
 
-type Tab = {
-  question: string;
-  body: string;
-  highlight: string;
-  linkLabel: string;
-  linkHref: string;
-};
 
-const tabs: Tab[] = [
-  {
-    question: "Is she keeping her collaboration skills up to date?",
-    body: "Developer collaboration looks different today than it did a few years ago. I keep adapting to that: I do not just hand a finished design over and disappear, I stay part of the conversation while developers are building. I also build real prototypes myself with tools like Claude Design and VS Code, so developers see working components early, not just static images to interpret.",
-    highlight:
-      "On a national education platform with many municipalities and vendors, I ran the team's daily meetings and created the workshop process the team used to move from research to real concepts.",
-    linkLabel: "See the National Education case study →",
-    linkHref: "/usecases/education-platform",
-  },
-  {
-    question: "How does she approach complex problems?",
-    body: "I map the problem, build early concepts, and adapt quickly instead of trying to plan every detail in advance.",
-    highlight:
-      "Modernizing old environmental data systems meant working with tools researchers had used for years without a clear structure. Instead of waiting for a perfect solution, I focused on releasing something useful quickly, and then improving it based on what we learned.",
-    linkLabel: "See the Environmental Data Systems case study →",
-    linkHref: "/usecases/environmental-data-tool",
-  },
-  {
-    question: "Does her work survive when developers start building it?",
-    body: "Before I hand a design over, I walk the developers through it and explain the reasoning behind each decision, not only what to build.",
-    highlight:
-      "I moved a design system from Sketch to Figma during an active project, rebuilding the components properly instead of copying them as they were. Both the developers and the project manager told me how much smoother their work became because of this.",
-    linkLabel: "See the Industrial Data case study →",
-    linkHref: "/usecases/industrial-tool",
-  },
-  {
-    question: "How does she know when something is ready to ship?",
-    body: "I prefer to release something, learn from real feedback, and improve it, instead of spending too much time perfecting a first version nobody has tested yet.",
-    highlight:
-      "A university's digital portal launched as a first version, then kept improving based on real usage after launch.",
-    linkLabel: "See the University Onboarding case study →",
-    linkHref: "/usecases/university-ai-tool",
-  },
-];
-
-export default function MindTabs() {
+export default function MindTabs({ locale, copy }: { locale: Locale; copy: Dictionary["mindTabs"] }) {
+  const tabs = copy.tabs;
   const [active, setActive] = useState(0);
   // Every question starts collapsed on mobile. It used to open the first one
   // to mirror the desktop panel, which always has an active answer — but the
@@ -93,13 +55,13 @@ export default function MindTabs() {
 
   return (
     <section id="key-skills" aria-labelledby="mind-heading" className="mt-rhythm">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">02 / your next move</p>
+      <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.eyebrow}</p>
       <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap mt-4">
         <h2 id="mind-heading" className="m-0 text-section-h2 text-ink">
-          The questions behind the résumé
+          {copy.heading}
         </h2>
         <p className="m-0 text-[15px] leading-snug text-footer-meta max-w-[20em]">
-          A good collaboration starts with a better question.
+          {copy.aside}
         </p>
       </div>
 
@@ -112,7 +74,7 @@ export default function MindTabs() {
           ref={tablistRef}
           role="tablist"
           aria-orientation="vertical"
-          aria-label="Questions"
+          aria-label={copy.tablistLabel}
           className="relative flex flex-col bg-transparent"
         >
           <span
@@ -188,7 +150,7 @@ export default function MindTabs() {
             <p className="m-0 text-body-sm text-ink-alt max-w-[34em]">{current.highlight}</p>
           </div>
           <a
-            href={current.linkHref}
+            href={caseStudyPath(locale, current.study as CaseStudySlug)}
             className="ml-4 text-nav font-semibold text-ink border-b border-accent pb-2 self-start md:whitespace-nowrap transition-[border-color,transform] duration-150 ease-out hover:border-accent-dark hover:-translate-y-px focus-visible:border-accent-dark focus-visible:-translate-y-px"
           >
             {current.linkLabel}
@@ -271,7 +233,7 @@ export default function MindTabs() {
                     <p className="m-0 text-body-sm text-ink-alt max-w-[34em]">{tab.highlight}</p>
                   </div>
                   <a
-                    href={tab.linkHref}
+                    href={caseStudyPath(locale, tab.study as CaseStudySlug)}
                     className="ml-4 text-nav font-semibold text-ink border-b border-accent pb-2 self-start md:whitespace-nowrap transition-[border-color,transform] duration-150 ease-out hover:border-accent-dark hover:-translate-y-px focus-visible:border-accent-dark focus-visible:-translate-y-px"
                   >
                     {tab.linkLabel}

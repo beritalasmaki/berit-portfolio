@@ -18,23 +18,33 @@ import { useEffect, useState } from "react";
 // rounded-pill badge) but the fill is what made the fixed width below
 // visible, and the box read as heavy chrome for what is really a caption.
 // With the fill gone the leftover width is simply invisible.
-const STATUSES = ["Open to work", "Open to networking", "Open to brainstorming"] as const;
 
-// Fixed regardless of which status is showing, sized to fit the longest
-// ("Open to brainstorming") with a little slack for font-fallback variance.
+// The label box has a fixed width (the `width` prop), regardless of which
+// status is showing: the longest label of the language, with a little slack
+// for font-fallback variance.
 // Nothing sits beside it in the contact column, so this no longer guards a
 // neighbouring control from being shoved around — it just stops the block
 // from twitching as the text swaps. Text is left-aligned inside the box so
 // the leftover width always falls to the right, keeping the dot tight
 // against the text.
-const TEXT_WIDTH = "172px";
-
 // How long each status stays up. Kept in step with the `status-breathe`
 // animation duration in tailwind.config.ts so the dot's fade and the
 // text's crossfade share one rhythm — change both together.
 const ROTATION_MS = 4500;
 
-export default function StatusPill() {
+export default function StatusPill({
+  statuses,
+  width,
+  srLabel,
+}: {
+  /** The rotating labels, in order. */
+  statuses: string[];
+  /** Fixed width of the label box: the longest label of the language, so the
+   * pill never resizes while the labels crossfade. */
+  width: string;
+  /** The one static label screen readers get instead of the rotation. */
+  srLabel: string;
+}) {
   const [index, setIndex] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -54,10 +64,10 @@ export default function StatusPill() {
   useEffect(() => {
     if (reducedMotion) return;
     const id = setInterval(() => {
-      setIndex((current) => (current + 1) % STATUSES.length);
+      setIndex((current) => (current + 1) % statuses.length);
     }, ROTATION_MS);
     return () => clearInterval(id);
-  }, [reducedMotion]);
+  }, [reducedMotion, statuses.length]);
 
   return (
     <span className="inline-flex items-center gap-2 shrink-0">
@@ -74,14 +84,14 @@ export default function StatusPill() {
           fresh live-region update every 4-5 seconds would be noisy and not
           particularly useful, so this whole stack is aria-hidden and a
           single static sr-only label covers all three states instead.
-          Fixed width (see TEXT_WIDTH above): only opacity crossfades, the
+          Fixed width (the `width` prop): only opacity crossfades, the
           box itself never resizes. */}
       <span
         className="relative inline-block h-4 overflow-hidden shrink-0 font-mono-label text-mono-label uppercase text-ink"
-        style={{ width: TEXT_WIDTH }}
+        style={{ width }}
         aria-hidden="true"
       >
-        {STATUSES.map((status, i) => (
+        {statuses.map((status, i) => (
           <span
             key={status}
             className={`absolute inset-0 flex items-center justify-start whitespace-nowrap transition-opacity duration-700 ease-in-out ${
@@ -92,7 +102,7 @@ export default function StatusPill() {
           </span>
         ))}
       </span>
-      <span className="sr-only">Open to work, networking, and brainstorming</span>
+      <span className="sr-only">{srLabel}</span>
     </span>
   );
 }

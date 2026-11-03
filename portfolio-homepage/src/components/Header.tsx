@@ -6,13 +6,23 @@ import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { useLiquidIndicator } from "./useLiquidIndicator";
 import Logo from "./Logo";
 import { AboutIcon, ArrowLeftIcon, ArrowRightIcon, BlogIcon, CaseStudiesIcon, ProcessIcon } from "./icons";
-import { primaryNav, site } from "@/data/site";
+import { site } from "@/data/site";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries";
+import { blogPath, homePath, pageKind } from "@/i18n/paths";
 
 type HeaderProps = {
   /**
    * When set, the page-links slot is replaced with a single "← Back to
    * work" link (case-study page pattern) instead of the primary nav.
    */
+  /** The page's language; decides every internal link the header builds. */
+  locale: Locale;
+  /** The dictionary slices the header needs (passed whole from the server
+   * page, so the client bundle doesn't carry both languages). */
+  copy: Pick<Dictionary, "header" | "common" | "site">;
+  /** Where the same page lives in the other language, for the switcher. */
+  switchHref: string;
   backHref?: string;
   backLabel?: string;
   /** Plays the logo's draw-on entrance, then leads into the hero's own
@@ -55,19 +65,41 @@ function GithubIcon() {
  * rendered. On touch, there's no hover or focus-within to trigger it —
  * a tap just navigates, exactly as a plain link would.
  */
+/** The link to the same page in the other language. Written in that
+ * language (`lang`), so a screen reader pronounces it correctly. A plain
+ * link, not a toggle: each language is a page of its own, which is what lets
+ * search engines index both. */
+function LanguageLink({ href, other }: { href: string; other: Dictionary["common"]["otherLanguage"] }) {
+  return (
+    <Link
+      href={href}
+      hrefLang={other.lang}
+      lang={other.lang}
+      aria-label={other.aria}
+      title={other.name}
+      data-sound="open"
+      className="glass-button inline-flex items-center justify-center h-11 px-3 rounded-pill font-mono-label text-mono-label-em font-medium uppercase text-body hover:text-ink focus-visible:text-ink"
+    >
+      {other.code}
+    </Link>
+  );
+}
+
 function IconLink({
   href,
   label,
   tooltip,
   icon,
+  className = "",
 }: {
   href: string;
   label: string;
   tooltip: string;
   icon: ReactNode;
+  className?: string;
 }) {
   return (
-    <span className="relative group/tip">
+    <span className={`relative group/tip ${className}`}>
       <a
         href={href}
         data-sound="social"
@@ -89,12 +121,28 @@ function IconLink({
 }
 
 // Theme icon for each primary nav link, keyed by its href.
-const NAV_ICONS: Record<(typeof primaryNav)[number]["href"], typeof AboutIcon> = {
-  "/#case-studies": CaseStudiesIcon,
-  "/#about": AboutIcon,
-  "/#process": ProcessIcon,
-  "/blog": BlogIcon,
+type NavId = "case-studies" | "about" | "process" | "blog";
+
+const NAV_ICONS: Record<NavId, typeof AboutIcon> = {
+  "case-studies": CaseStudiesIcon,
+  about: AboutIcon,
+  process: ProcessIcon,
+  blog: BlogIcon,
 };
+
+type NavItem = { id: NavId; label: string; short?: string; href: string };
+
+/** The primary nav, in order, with locale-correct hrefs. The "Blog" link is a
+ * page of its own (no `#`), so the header marks it current by pathname; the
+ * others are homepage sections, marked current by scroll position. */
+function buildNav(locale: Locale, nav: Dictionary["header"]["nav"]): NavItem[] {
+  return [
+    { id: "case-studies", label: nav.caseStudies.label, short: nav.caseStudies.short, href: homePath(locale, "case-studies") },
+    { id: "about", label: nav.about, href: homePath(locale, "about") },
+    { id: "process", label: nav.process, href: homePath(locale, "process") },
+    { id: "blog", label: nav.blog, href: blogPath(locale) },
+  ];
+}
 
 // The homepage-section links ("/#about") are current by scroll position;
 // a page link ("/blog") by being on that page or below it.
@@ -104,7 +152,7 @@ function sectionId(href: string): string | null {
 
 // From another page, the logo fades the page out, goes home under the veil
 // and fades the homepage in, again along the sound's swell and tail.
-function fadeHome(go: () => void) {
+function fadeHome(go: () => void, homeHref: string) {
   const out = veil([{ opacity: 0 }, { opacity: 1 }], {
     duration: 600,
     easing: "cubic-bezier(0.4, 0, 0.6, 1)",
@@ -117,7 +165,7 @@ function fadeHome(go: () => void) {
     // so a slow or failed navigation never leaves the page veiled).
     const started = performance.now();
     function lift() {
-      if (window.location.pathname !== "/" && performance.now() - started < 3000) {
+      if (window.location.pathname !== homeHref && performance.now() - started < 3000) {
         requestAnimationFrame(lift);
         return;
       }
@@ -131,17 +179,18 @@ function fadeHome(go: () => void) {
 // nav's sections whose top has passed a line 35% down the viewport, as long
 // as its bottom hasn't (so nothing is current over the hero or the contact
 // block).
+const SECTION_IDS = ["case-studies", "about", "process"];
+
 function useActiveSection(enabled: boolean) {
   const [active, setActive] = useState<string | null>(null);
   useEffect(() => {
     if (!enabled) return;
-    const ids = primaryNav.map((item) => sectionId(item.href)).filter((id): id is string => id !== null);
     let frame = 0;
     function update() {
       frame = 0;
       const line = window.innerHeight * 0.35;
       let current: string | null = null;
-      for (const id of ids) {
+      for (const id of SECTION_IDS) {
         const rect = document.getElementById(id)?.getBoundingClientRect();
         if (rect && rect.top <= line && rect.bottom > line) current = id;
       }
@@ -226,15 +275,25 @@ function whooshToTop() {
   frame = requestAnimationFrame(step);
 }
 
-export default function Header({ backHref, backLabel = "Back to work", animateLogo = false }: HeaderProps) {
+export default function Header({
+  locale,
+  copy,
+  switchHref,
+  backHref,
+  backLabel = copy.header.backToWork,
+  animateLogo = false,
+}: HeaderProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   // Section tracking only on the homepage, where those sections live.
-  const activeSection = useActiveSection(!backHref && pathname === "/");
+  const isHome = pageKind(pathname) === "home";
+  const homeHref = homePath(locale);
+  const primaryNav = buildNav(locale, copy.header.nav);
+  const activeSection = useActiveSection(!backHref && isHome);
   function isCurrent(href: string): boolean {
     const id = sectionId(href);
-    if (id !== null) return pathname === "/" && activeSection === id;
+    if (id !== null) return isHome && activeSection === id;
     return pathname === href || pathname.startsWith(`${href}/`);
   }
   // Sounds follow one rule: staying on the page pops; changing page doesn't.
@@ -242,10 +301,11 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
   // takes you back there ("back"); a page link opens its page ("open"),
   // unless you're already on it.
   function navSound(href: string): "pop" | "open" | "back" {
-    if (sectionId(href) !== null) return pathname === "/" ? "pop" : "back";
+    if (sectionId(href) !== null) return isHome ? "pop" : "back";
     return pathname === href ? "pop" : "open";
   }
-  const contactSound = pathname === "/" ? "pop" : "back";
+  const contactSound = isHome ? "pop" : "back";
+  const contactHref = isHome ? "#contact" : homePath(locale, "contact");
 
   // The page links' highlight: a frosted-glass pill behind the link being
   // pointed at or focused, otherwise the current section's. It pops up on
@@ -366,23 +426,23 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               the toggle past the right edge, where a fixed header can't be
               scrolled to. Now the wordmark truncates instead (see Logo.tsx). */}
           <Link
-            href="/"
+            href={homeHref}
             data-sound="home"
             onClick={(event) => {
               // A new tab or window (modifier keys) is left to the browser.
               if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
               event.preventDefault();
               // Elsewhere: fade out, go home, fade in.
-              if (window.location.pathname !== "/") return fadeHome(() => router.push("/"));
+              if (window.location.pathname !== homeHref) return fadeHome(() => router.push(homeHref), homeHref);
               // Already home: whoosh up to the hero instead of reloading it.
               // The hash goes too, so the address matches the view.
-              if (window.location.hash) history.replaceState(null, "", "/");
+              if (window.location.hash) history.replaceState(null, "", homeHref);
               whooshToTop();
             }}
             className="block min-w-0"
-            aria-label={`${site.name} — home`}
+            aria-label={copy.site.homeLabel}
           >
-            <Logo animated={animateLogo} />
+            <Logo animated={animateLogo} copy={copy.site} />
           </Link>
 
           {/* Desktop nav — `lg` (1024px), not `md` (768px). The full row is
@@ -402,7 +462,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               blinked between links instead of going straight to the next. */}
           <nav
             ref={navRef}
-            aria-label="Primary"
+            aria-label={copy.common.primaryNav}
             onPointerLeave={() => setPointed(null)}
             onBlur={(event) => {
               if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPointed(null);
@@ -427,7 +487,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               </Link>
             ) : (
               primaryNav.map((item, index) => {
-                const NavIcon = NAV_ICONS[item.href];
+                const NavIcon = NAV_ICONS[item.id];
                 const current = isCurrent(item.href);
                 // A page link goes through the router; a homepage-section
                 // anchor stays a plain link so the browser scrolls to it.
@@ -448,7 +508,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                   >
                     <NavIcon />
                     <span>
-                      {"short" in item ? (
+                      {item.short ? (
                         <>
                           <span className="xl:hidden">{item.short}</span>
                           <span className="hidden xl:inline">{item.label}</span>
@@ -468,19 +528,29 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                 this cluster; it moved to the contact block, which is both
                 calmer and not width-constrained (see StatusPill.tsx). */}
             <span className="flex items-center gap-2">
+              <LanguageLink href={switchHref} other={copy.common.otherLanguage} />
               <IconLink
                 href={site.linkedinUrl}
-                label="Connect with me on LinkedIn"
-                tooltip="Connect with me on LinkedIn"
+                label={copy.header.linkedin}
+                tooltip={copy.header.linkedin}
                 icon={<LinkedInIcon />}
               />
-              <IconLink href={site.githubUrl} label="Visit my GitHub" tooltip="Visit my GitHub" icon={<GithubIcon />} />
+              {/* Finnish only: hidden at lg (1024px), where the nav is tightest: the mobile menu and
+                  the footer-less pages still link to GitHub, and the longer Finnish
+                  labels need the room. */}
+              <IconLink
+                href={site.githubUrl}
+                label={copy.header.github}
+                tooltip={copy.header.github}
+                icon={<GithubIcon />}
+                className={locale === "fi" ? "hidden xl:block" : ""}
+              />
               <a
-                href={pathname === "/" ? "#contact" : "/#contact"}
+                href={contactHref}
                 data-sound={contactSound}
                 className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
               >
-                Contact
+                {copy.header.contact}
                 <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
               </a>
             </span>
@@ -493,7 +563,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
             className="glass-button lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded-chrome shrink-0"
             aria-expanded={open}
             aria-controls={panelId}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? copy.header.closeMenu : copy.header.openMenu}
             onClick={() => setOpen((v) => !v)}
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -522,7 +592,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
         {open && (
           <nav
             id={panelId}
-            aria-label="Primary"
+            aria-label={copy.common.primaryNav}
             className="lg:hidden flex flex-col items-start gap-4 pt-2 pb-6 max-h-[calc(100dvh-var(--hdr-compact))] overflow-y-auto"
           >
             {backHref ? (
@@ -536,7 +606,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               </Link>
             ) : (
               primaryNav.map((item) => {
-                const NavIcon = NAV_ICONS[item.href];
+                const NavIcon = NAV_ICONS[item.id];
                 const current = isCurrent(item.href);
                 const NavLink = sectionId(item.href) === null ? Link : "a";
                 return (
@@ -554,6 +624,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
                 );
               })
             )}
+            <LanguageLink href={switchHref} other={copy.common.otherLanguage} />
             <a
               href={site.linkedinUrl}
               data-sound="social"
@@ -562,7 +633,7 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               className="glass-button inline-flex items-center gap-2 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill h-11 px-6 hover:text-ink focus-visible:text-ink"
             >
               <LinkedInIcon />
-              LinkedIn
+              {copy.header.linkedinShort}
             </a>
             <a
               href={site.githubUrl}
@@ -572,15 +643,15 @@ export default function Header({ backHref, backLabel = "Back to work", animateLo
               className="glass-button inline-flex items-center gap-2 font-mono-label text-mono-label-em font-medium uppercase text-body rounded-pill h-11 px-6 hover:text-ink focus-visible:text-ink"
             >
               <GithubIcon />
-              GitHub
+              {copy.header.githubShort}
             </a>
             <a
-              href={pathname === "/" ? "#contact" : "/#contact"}
+              href={contactHref}
               data-sound={contactSound}
               onClick={() => setOpen(false)}
               className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
             >
-              Contact
+              {copy.header.contact}
               <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
             </a>
           </nav>

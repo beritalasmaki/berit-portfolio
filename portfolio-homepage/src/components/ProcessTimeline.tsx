@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useRef, useState, type ReactNode } from "react";
+import type { Dictionary } from "@/i18n/dictionaries";
 import { useLiquidIndicator } from "./useLiquidIndicator";
 
 // Imported from Claude Design ("My Process" component, Process Timeline.dc.html)
@@ -14,7 +15,6 @@ import { useLiquidIndicator } from "./useLiquidIndicator";
 type CategoryKey = "research" | "design" | "code" | "testing" | "systems" | "ship";
 
 type Category = {
-  label: string;
   dot: string;
   fill: string;
   border: string;
@@ -27,12 +27,12 @@ type Category = {
 // colors are local to that chart rather than pulled from brand tokens. Kept
 // exactly as designed in Claude Design.
 const CATEGORIES: Record<CategoryKey, Category> = {
-  research: { label: "Research", dot: "#6b6660", fill: "#FAF8F3", border: "#B8B1A4", text: "#3f3a34" },
-  design: { label: "Design", dot: "#1D4FBF", fill: "#D3E2FC", border: "#8FB4F3", text: "#12387F" },
-  code: { label: "Code", dot: "#116330", fill: "#D4EEDD", border: "#8ECFA7", text: "#0D4E26" },
-  testing: { label: "Testing", dot: "#A8710A", fill: "#FBEDBE", border: "#E4C86A", text: "#6B4606" },
-  systems: { label: "Systems", dot: "#7E22CE", fill: "#EEDCFB", border: "#C99AF0", text: "#5B1799" },
-  ship: { label: "Launch", dot: "#0B5A54", fill: "#D2EAE6", border: "#8CC9C1", text: "#084741" },
+  research: { dot: "#6b6660", fill: "#FAF8F3", border: "#B8B1A4", text: "#3f3a34" },
+  design: { dot: "#1D4FBF", fill: "#D3E2FC", border: "#8FB4F3", text: "#12387F" },
+  code: { dot: "#116330", fill: "#D4EEDD", border: "#8ECFA7", text: "#0D4E26" },
+  testing: { dot: "#A8710A", fill: "#FBEDBE", border: "#E4C86A", text: "#6B4606" },
+  systems: { dot: "#7E22CE", fill: "#EEDCFB", border: "#C99AF0", text: "#5B1799" },
+  ship: { dot: "#0B5A54", fill: "#D2EAE6", border: "#8CC9C1", text: "#084741" },
 };
 
 type StageKey =
@@ -49,90 +49,26 @@ type StageKey =
   | "buildInCode"
   | "tokens";
 
-type StageMeta = {
-  name: string;
-  cat: CategoryKey;
-  when: string;
-  skip: string;
-};
-
-const STAGES: Record<StageKey, StageMeta> = {
-  research: {
-    name: "Research",
-    cat: "research",
-    when: "When I'm working in a new domain, or the problem is tricky. I talk to real users, look around, and find out what actually needs solving.",
-    skip: "The problem is already well understood, or we need to move fast and learn from a real release.",
-  },
-  discovery: {
-    name: "Discovery",
-    cat: "research",
-    when: "I talk to the people involved (stakeholders), look at similar products (competitive analysis), and learn what limits we're working with (business constraints).",
-    skip: "It's a small personal project, or the limits are already clear.",
-  },
-  flows: {
-    name: "Flows & IA",
-    cat: "design",
-    when: "For big products with many paths. I draw out the whole journey (user flows, information architecture) before I design any screens.",
-    skip: "It's a simple tool where there's really only one way through.",
-  },
-  wireframes: {
-    name: "Wireframes",
-    cat: "design",
-    when: "When I need to test if the structure makes sense before I make it look good.",
-    skip: "I already know the direction, or it's faster to just build it.",
-  },
-  ui: {
-    name: "UI Design",
-    cat: "design",
-    when: "Making it look and feel right (components, interactions, visual polish).",
-    skip: "We're doing quick prototypes where we just want to learn something fast, not make it pretty.",
-  },
-  testing: {
-    name: "User Testing",
-    cat: "testing",
-    when: "Before big decisions or launches. I watch real users use it and listen to what they say.",
-    skip: "It's a small change where we can just check the numbers afterward.",
-  },
-  iterate: {
-    name: "Iterate",
-    cat: "testing",
-    when: "After every round of feedback. The first version is never the final one.",
-    skip: "Never. This step always happens.",
-  },
-  handoff: {
-    name: "Handover",
-    cat: "ship",
-    when: "Writing down exactly what should be built, and working closely with developers so nothing gets lost along the way.",
-    skip: "I'm building it myself, or working side by side with a developer already.",
-  },
-  ship: {
-    name: "Launch",
-    cat: "ship",
-    when: "Release it to real users and learn from how they actually use it.",
-    skip: "Never. Releasing it is how you find out whether it works.",
-  },
-  aiAssisted: {
-    name: "AI-assisted",
-    cat: "code",
-    when: "Using AI to sketch ideas, write code, or try out options faster.",
-    skip: "The work needs careful thinking and real craft, not speed.",
-  },
-  buildInCode: {
-    name: "Build in Code",
-    cat: "code",
-    when: "When building it is the fastest way to know if it works, especially for things users need to feel and use.",
-    skip: "We still don't know what we're building yet.",
-  },
-  tokens: {
-    name: "Tokens & Systems",
-    cat: "systems",
-    when: "Setting up building blocks and rules (components and design tokens) that the whole team can reuse, plus the documentation to go with it.",
-    skip: "It's a one-off project that won't need to grow or be reused.",
-  },
+/** Which kind of work (and so which colour) each stage is. The stage's name
+ * and its two paragraphs are copy, and live in the dictionary. */
+const STAGE_CATEGORY: Record<StageKey, CategoryKey> = {
+  research: "research",
+  discovery: "research",
+  flows: "design",
+  wireframes: "design",
+  ui: "design",
+  testing: "testing",
+  iterate: "testing",
+  handoff: "ship",
+  ship: "ship",
+  aiAssisted: "code",
+  buildInCode: "code",
+  tokens: "systems",
 };
 
 type TabStage = { key: StageKey; start: number; len: number; row: number };
-type Tab = { id: string; label: string; icon: ReactNode; weeks: number; durationLabel: string; stages: TabStage[] };
+type TabId = "zeroToOne" | "prototype" | "designSystem" | "redesign";
+type Tab = { id: TabId; icon: ReactNode; weeks: number; stages: TabStage[] };
 
 // Small line icons, one per project type — decorative, matching the accent-
 // stroke SVG convention already used elsewhere on the site (the untangle
@@ -188,10 +124,8 @@ function RedesignIcon() {
 const TABS: Tab[] = [
   {
     id: "zeroToOne",
-    label: "0→1 Product",
     icon: <ZeroToOneIcon />,
     weeks: 12,
-    durationLabel: "~10 weeks",
     stages: [
       { key: "research", start: 0, len: 2, row: 0 },
       { key: "discovery", start: 2, len: 1, row: 0 },
@@ -206,10 +140,8 @@ const TABS: Tab[] = [
   },
   {
     id: "prototype",
-    label: "Rapid Prototype",
     icon: <PrototypeIcon />,
     weeks: 4,
-    durationLabel: "~2 weeks",
     stages: [
       { key: "discovery", start: 0, len: 1, row: 0 },
       { key: "aiAssisted", start: 1, len: 0.5, row: 1 },
@@ -221,10 +153,8 @@ const TABS: Tab[] = [
   },
   {
     id: "designSystem",
-    label: "Design System",
     icon: <DesignSystemIcon />,
     weeks: 8,
-    durationLabel: "~6 weeks",
     stages: [
       { key: "discovery", start: 0, len: 1, row: 0 },
       { key: "research", start: 1, len: 2, row: 0 },
@@ -237,10 +167,8 @@ const TABS: Tab[] = [
   },
   {
     id: "redesign",
-    label: "Redesign",
     icon: <RedesignIcon />,
     weeks: 10,
-    durationLabel: "~8 weeks",
     stages: [
       { key: "research", start: 0, len: 2, row: 0 },
       { key: "flows", start: 1.5, len: 1, row: 1 },
@@ -278,7 +206,7 @@ function layoutRows(stages: TabStage[], totalWeeks: number): PositionedStage[][]
   });
 }
 
-export default function ProcessTimeline() {
+export default function ProcessTimeline({ copy }: { copy: Dictionary["process"] }) {
   const [tabIndex, setTabIndex] = useState(0);
   const [stageKey, setStageKey] = useState<StageKey | null>(null);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -332,30 +260,29 @@ export default function ProcessTimeline() {
   const totalWeeks = tab.weeks;
   const rows = layoutRows(tab.stages, totalWeeks);
   const weeks = Array.from({ length: totalWeeks }, (_, i) => i);
-  const detail = stageKey ? STAGES[stageKey] : null;
+  const stageMeta = (key: StageKey) => ({ ...copy.stages[key], cat: STAGE_CATEGORY[key] });
+  const detail = stageKey ? stageMeta(stageKey) : null;
 
   return (
     <section id="process" aria-labelledby="process-heading" className="mt-rhythm">
-      <p className="font-mono-label text-mono-label uppercase text-muted m-0">05 / my process</p>
+      <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.eyebrow}</p>
       <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap mt-4">
         <h2 id="process-heading" className="m-0 text-section-h2 text-ink">
-          Every project gets
+          {copy.headingLines[0]}
           <br />
-          the approach it needs.
+          {copy.headingLines[1]}
         </h2>
         <p className="m-0 text-body-lg text-body max-w-[34em]">
-          Sometimes that means weeks of research before anything gets drawn. Sometimes it means a
-          prototype in someone&apos;s hands the same afternoon. Pick a project type to see how the shape
-          changes.
+          {copy.intro}
         </p>
       </div>
 
-      <p className="font-mono-label text-mono-label uppercase text-ink mt-12 mb-0">What kind of project?</p>
+      <p className="font-mono-label text-mono-label uppercase text-ink mt-12 mb-0">{copy.kindQuestion}</p>
 
       <div
         ref={tablistRef}
         role="tablist"
-        aria-label="Project type"
+        aria-label={copy.tablistLabel}
         className="relative flex flex-wrap gap-grid-gap-lg border-b border-rule-strong mt-2"
       >
         <span
@@ -386,7 +313,7 @@ export default function ProcessTimeline() {
               }`}
             >
               {t.icon}
-              {t.label}
+              {copy.tabs[t.id].label}
             </button>
           );
         })}
@@ -407,9 +334,9 @@ export default function ProcessTimeline() {
       >
         <div className="bg-cream/30 p-card-pad min-w-0">
           <div className="flex items-center justify-between gap-4 flex-wrap">
-            <h3 className="m-0 text-sub-h4 font-extrabold whitespace-nowrap">Typical timeline</h3>
+            <h3 className="m-0 text-sub-h4 font-extrabold whitespace-nowrap">{copy.timelineHeading}</h3>
             <span className="font-mono-label text-mono-label-em uppercase text-body glass-pill rounded-pill py-2 px-4 whitespace-nowrap">
-              {tab.durationLabel}
+              {copy.tabs[tab.id].duration}
             </span>
           </div>
 
@@ -431,7 +358,8 @@ export default function ProcessTimeline() {
                     className="absolute top-0 font-mono-label text-mono-label text-muted whitespace-nowrap"
                     style={{ left: `${(w / totalWeeks) * 100}%` }}
                   >
-                    W{w + 1}
+                    {copy.weekPrefix}
+                    {w + 1}
                   </span>
                 ))}
               </div>
@@ -440,7 +368,7 @@ export default function ProcessTimeline() {
                 {rows.map((row, rowIndex) => (
                   <div key={rowIndex} className="flex items-stretch h-14 min-w-0">
                     {row.map((block) => {
-                      const meta = STAGES[block.key];
+                      const meta = stageMeta(block.key);
                       const cat = CATEGORIES[meta.cat];
                       const active = stageKey === block.key;
                       return (
@@ -464,9 +392,10 @@ export default function ProcessTimeline() {
                           }`}
                         >
                           <span className="flex flex-col gap-1 text-left">
-                            <span className="block text-sm font-bold whitespace-nowrap">{meta.name}</span>
+                            <span className="block text-sm font-bold whitespace-nowrap">{meta.block}</span>
                             <span className="block font-mono-label text-mono-label whitespace-nowrap">
-                              {block.len}w
+                              {String(block.len).replace(".", copy.decimal)}
+                              {copy.weekUnit}
                             </span>
                           </span>
                         </button>
@@ -479,14 +408,14 @@ export default function ProcessTimeline() {
           </div>
 
           <div className="flex flex-wrap items-center gap-4 border-t border-rule-strong mt-6 pt-4">
-            {Object.values(CATEGORIES).map((cat) => (
-              <span key={cat.label} className="flex items-center gap-2 text-body-sm text-body whitespace-nowrap">
+            {(Object.keys(CATEGORIES) as CategoryKey[]).map((key) => (
+              <span key={key} className="flex items-center gap-2 text-body-sm text-body whitespace-nowrap">
                 <span
                   aria-hidden="true"
                   className="block w-2.5 h-2.5 rounded-pill shrink-0 box-border"
-                  style={{ background: cat.dot }}
+                  style={{ background: CATEGORIES[key].dot }}
                 />
-                {cat.label}
+                {copy.categories[key]}
               </span>
             ))}
           </div>
@@ -499,15 +428,15 @@ export default function ProcessTimeline() {
                 className="self-start font-mono-label text-mono-label uppercase rounded-pill py-2 px-4 whitespace-nowrap"
                 style={{ background: CATEGORIES[detail.cat].fill, color: CATEGORIES[detail.cat].text }}
               >
-                {CATEGORIES[detail.cat].label}
+                {copy.categories[detail.cat]}
               </span>
               <h4 className="m-0 text-sub-h4 font-extrabold text-pretty">{detail.name}</h4>
               <div className="flex flex-col gap-4">
-                <p className="font-mono-label text-mono-label uppercase text-ink m-0">When I use this</p>
+                <p className="font-mono-label text-mono-label uppercase text-ink m-0">{copy.whenLabel}</p>
                 <p className="m-0 text-body-sm text-body text-pretty">{detail.when}</p>
               </div>
               <div className="flex flex-col gap-4">
-                <p className="font-mono-label text-mono-label uppercase text-ink m-0">I skip this when…</p>
+                <p className="font-mono-label text-mono-label uppercase text-ink m-0">{copy.skipLabel}</p>
                 <div className="border-l-4 border-accent rounded-r-[12px] p-4 bg-soft">
                   <p className="m-0 text-body-sm text-ink-alt text-pretty">{detail.skip}</p>
                 </div>
@@ -526,10 +455,10 @@ export default function ProcessTimeline() {
                 <circle cx="20" cy="17" r="3" fill="#FC890C" />
               </svg>
               <p className="m-0 text-[clamp(16px,1.3vw,18px)] leading-snug font-bold text-ink text-pretty">
-                Click a step to see how I work.
+                {copy.emptyTitle}
               </p>
               <p className="m-0 text-body-sm text-body text-pretty">
-                Each one has a reason it exists, and a reason I sometimes leave it out.
+                {copy.emptyBody}
               </p>
             </div>
           )}

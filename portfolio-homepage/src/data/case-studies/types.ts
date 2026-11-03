@@ -7,11 +7,9 @@
 // studies") instead of 404ing — handy for a project still in progress. All
 // four current case studies have full content.
 
-export type CaseStudySlug =
-  | "industrial-tool"
-  | "university-ai-tool"
-  | "education-platform"
-  | "environmental-data-tool";
+import type { CaseStudySlug } from "./slugs";
+
+export type { CaseStudySlug };
 
 /** The subset of a case study's content used by homepage/summary cards. */
 export type CaseStudySummary = {

@@ -3,7 +3,6 @@
 
 export const site = {
   name: "Berit Alasmäki",
-  role: "UX & Product Designer",
   email: "berit.alasmaki@gmail.com",
   linkedinUrl: "https://www.linkedin.com/in/berit-alasmaki/",
   githubUrl: "https://github.com/beritalasmaki/portfolio",
@@ -20,17 +19,6 @@ export const siteUrl = (
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "http://localhost:3000")
 ).replace(/\/$/, "");
-
-export const primaryNav = [
-  // `short` is shown in the desktop nav below xl (1280px), where the full
-  // label, with the icons and 24px gaps, would push the nav onto two lines.
-  { label: "Selected case studies", short: "Case studies", href: "/#case-studies" },
-  { label: "About", href: "/#about" },
-  { label: "My Process", href: "/#process" },
-  // A page of its own, not a homepage section: no `#`, so the header marks
-  // it current by pathname rather than by scroll position.
-  { label: "Blog", href: "/blog" },
-] as const;
 
 export type ClientLogo = {
   name: string;

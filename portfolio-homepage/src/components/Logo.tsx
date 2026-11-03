@@ -1,5 +1,4 @@
 import { useId } from "react";
-import { site } from "@/data/site";
 
 // The "Ber" signature mark, as real vector paths (previously a flat PNG).
 // Both are given at 1:1 scale with each other; the offsets below were
@@ -21,7 +20,18 @@ const BLOB_TRANSFORM = "translate(39,26)";
 const SIGNATURE_TRANSFORM = "translate(31,28)";
 const MARK_VIEWBOX = "27 22 186 115";
 
-export default function Logo({ animated = false }: {
+export type LogoCopy = {
+  name: string;
+  role: string;
+  /** Letter-spacing of the name / role lines. They differ per language: the
+   * two lines are tuned to the same width (see the note below). */
+  nameTracking: string;
+  roleTracking: string;
+};
+
+export default function Logo({ animated = false, copy }: {
+  /** Name, role line and their tracking, from the dictionary's `site`. */
+  copy: LogoCopy;
   /** Plays the signature's draw-on entrance once. Off by default — only
    * the homepage pairs it with the hero sequence; every other render
    * (case-study headers, the footer) shows the finished mark immediately. */
@@ -115,9 +125,21 @@ export default function Logo({ animated = false }: {
             (÷ 14 rather than ÷ 13 gaps because letter-spacing also adds
             one trailing space after the last glyph — as it does on the
             role line, so both lines carry it and they cancel out.)
-            Recompute the same way if `site.name` or `site.role` changes. */}
-        <span className="truncate text-[22px] leading-none font-bold tracking-[0.0616em] text-ink">{site.name}</span>
-        <span className="truncate font-mono-label text-mono-label uppercase text-muted">{site.role}</span>
+            Recompute the same way if the name or role text changes: the tracking
+            values live in the dictionaries (`site.nameTracking`, `site.roleTracking`),
+            one pair per language. */}
+        <span
+          className="truncate text-[22px] leading-none font-bold text-ink"
+          style={{ letterSpacing: copy.nameTracking }}
+        >
+          {copy.name}
+        </span>
+        <span
+          className="truncate font-mono-label text-mono-label uppercase text-muted"
+          style={{ letterSpacing: copy.roleTracking }}
+        >
+          {copy.role}
+        </span>
       </span>
     </span>
   );

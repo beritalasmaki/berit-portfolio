@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { GalleryImage } from "@/data/case-studies";
+import type { Dictionary } from "@/i18n/dictionaries";
 
 const FOCUSABLE_SELECTOR =
   'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -18,7 +19,13 @@ const ZOOM_LEVELS = [0.6, 1] as const;
 // short enough to feel responsive on a narrow phone.
 const SWIPE_THRESHOLD = 50;
 
-export default function ScreenshotGallery({ images }: { images: GalleryImage[] }) {
+export default function ScreenshotGallery({
+  images,
+  copy,
+}: {
+  images: GalleryImage[];
+  copy: Dictionary["caseStudy"];
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [zoomed, setZoomed] = useState(false);
   // Click-to-zoom is a desktop-only affordance — on a touch-sized viewport
@@ -140,11 +147,11 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
   return (
     <section id="screens" aria-labelledby="screens-heading">
       <div className="flex items-baseline justify-between gap-6 flex-wrap">
-        <p className="font-mono-label text-mono-label uppercase text-muted m-0">Selected screens</p>
-        <p className="font-mono-label text-mono-label uppercase text-muted m-0">Desktop and mobile, one platform</p>
+        <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.selectedScreens}</p>
+        <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.screensNote}</p>
       </div>
       <h2 id="screens-heading" className="sr-only">
-        Examples of UI screens
+        {copy.screensHeading}
       </h2>
 
       <ul className="mt-4 flex flex-wrap gap-4 list-none p-0">
@@ -215,7 +222,7 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
                     <button
                       type="button"
                       onClick={() => step(-1)}
-                      aria-label="Previous screenshot"
+                      aria-label={copy.prevScreenshot}
                       className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
                     >
                       ‹
@@ -223,7 +230,7 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
                     <button
                       type="button"
                       onClick={() => step(1)}
-                      aria-label="Next screenshot"
+                      aria-label={copy.nextScreenshot}
                       className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
                     >
                       ›
@@ -236,7 +243,7 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
                   onClick={close}
                   className="text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
                 >
-                  Close ✕
+                  {copy.close}
                 </button>
               </div>
             </div>
@@ -250,7 +257,7 @@ export default function ScreenshotGallery({ images }: { images: GalleryImage[] }
                 <button
                   type="button"
                   onClick={() => setZoomed((z) => !z)}
-                  aria-label={zoomed ? "Zoom out" : "Zoom in"}
+                  aria-label={zoomed ? copy.zoomOut : copy.zoomIn}
                   className={`block ${zoomed ? "cursor-zoom-out" : "cursor-zoom-in"}`}
                 >
                   <Image

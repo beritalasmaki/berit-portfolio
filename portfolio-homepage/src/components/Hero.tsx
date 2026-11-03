@@ -1,10 +1,12 @@
 import Image from "next/image";
+import { Fragment } from "react";
 import HeroChaos from "./HeroChaos";
 import HeroLine from "./HeroLine";
+import type { Dictionary } from "@/i18n/dictionaries";
 import { ArrowRightIcon } from "./icons";
 import LiquidHover from "./LiquidHover";
 
-export default function Hero() {
+export default function Hero({ copy }: { copy: Dictionary["hero"] }) {
   return (
     <section aria-labelledby="hero-heading" className="pb-[clamp(48px,7vw,96px)]">
       <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-[clamp(32px,6vw,96px)] items-center py-8 lg:py-[clamp(32px,5vw,48px)]">
@@ -23,15 +25,15 @@ export default function Hero() {
             <LiquidHover strength={4} className="shrink-0">
               <Image
                 src="/photo.png"
-                alt="Berit Alasmäki"
+                alt={copy.photoAlt}
                 width={44}
                 height={44}
                 className="w-11 h-11 object-contain block"
               />
             </LiquidHover>
             <p className="m-0 text-body-em font-semibold text-ink">
-              Hi, I&apos;m Berit <span aria-hidden="true">·</span>{" "}
-              <span className="font-medium text-body">Senior UX &amp; Product Designer</span>
+              {copy.greeting} <span aria-hidden="true">·</span>{" "}
+              <span className="font-medium text-body">{copy.title}</span>
             </p>
           </div>
           <h1
@@ -39,11 +41,12 @@ export default function Hero() {
             className="m-0 text-hero fade-up-item"
             style={{ animationDelay: "1650ms" }}
           >
-            Your partner in
-            <br />
-            untangling
-            <br />
-            complexity.
+            {copy.headline.map((line, i) => (
+              <Fragment key={line}>
+                {i > 0 && <br />}
+                {line}
+              </Fragment>
+            ))}
           </h1>
           {/* Proof first, then the promise: a stat line (numbers in
               accent-dark, the AA-safe orange for text; the dots are
@@ -52,21 +55,18 @@ export default function Hero() {
               are for screen readers only, so it reads as one sentence. */}
           <div className="mt-8 max-w-prose fade-up-item" style={{ animationDelay: "1830ms" }}>
             <p className="m-0 flex flex-wrap items-center gap-x-2 gap-y-2 text-body-em font-semibold text-ink">
-              <span className="whitespace-nowrap">
-                <span className="text-accent-dark">10+</span> years<span className="sr-only">,</span>
-              </span>
-              <span aria-hidden="true" className="h-1 w-1 rounded-full bg-accent" />
-              <span className="whitespace-nowrap">
-                <span className="text-accent-dark">25+</span> projects<span className="sr-only">,</span>
-              </span>
-              <span aria-hidden="true" className="h-1 w-1 rounded-full bg-accent" />
-              <span className="whitespace-nowrap">
-                <span className="text-accent-dark">10+</span> clients<span className="sr-only">.</span>
-              </span>
+              {copy.stats.map((stat, i) => (
+                <Fragment key={stat.label}>
+                  {i > 0 && <span aria-hidden="true" className="h-1 w-1 rounded-full bg-accent" />}
+                  <span className="whitespace-nowrap">
+                    <span className="text-accent-dark">{stat.value}</span> {stat.label}
+                    <span className="sr-only">{i === copy.stats.length - 1 ? "." : ","}</span>
+                  </span>
+                </Fragment>
+              ))}
             </p>
             <p className="mt-4 m-0 text-lead text-body">
-              I help teams turn complex products and services into experiences that are easier to
-              use and easier to build.
+              {copy.lead}
             </p>
           </div>
           <div className="flex flex-wrap gap-4 mt-12 fade-up-item" style={{ animationDelay: "2010ms" }}>
@@ -80,14 +80,14 @@ export default function Hero() {
               href="#contact"
               className="glass-button-ink group inline-flex items-center gap-2 text-white text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
             >
-              Get in touch
+              {copy.primaryCta}
               <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
             </a>
             <a
               href="#case-studies"
               className="glass-button group inline-flex items-center gap-2 text-ink text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap hover:text-ink focus-visible:text-ink"
             >
-              See the work
+              {copy.secondaryCta}
               <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
             </a>
           </div>
@@ -103,7 +103,7 @@ export default function Hero() {
               top margin leaves room for the story's line of text. */}
           <div className="relative w-full max-w-[600px] mx-auto mt-24">
             <HeroLine />
-            <HeroChaos />
+            <HeroChaos story={copy.story} playLabel={copy.play} replayLabel={copy.replay} />
           </div>
         </div>
       </div>
