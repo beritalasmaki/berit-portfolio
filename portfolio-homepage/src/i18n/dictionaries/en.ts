@@ -90,7 +90,7 @@ export const en = {
     play: "Turn chaos into clarity",
     replay: "Play again",
     story: [
-      "Every project starts in a *tangle.*",
+      "Every project starts with *clarifying.*",
       "First, I *map* where things stand.",
       "Then we *plan* what’s needed, the system and the goal.",
       "We set up the *systems* and how we’ll measure progress.",
