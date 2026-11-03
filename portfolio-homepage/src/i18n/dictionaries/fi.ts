@@ -360,7 +360,7 @@ export const fi: Dictionary = {
     other: "Muut asiakasprojektit",
     viewCaseStudy: "Lue asiakasprojekti →",
     backToMain: "Takaisin etusivulle",
-    glance: { eyebrow: "Lyhyesti", heading: "Tiivistettynä", problem: "Ongelma", role: "Roolini", decisions: "Päätökseni", outcome: "Lopputulos" },
+    glance: { eyebrow: "Lyhyesti", heading: "Tiivistettynä", problem: "Ongelma", role: "Roolini", decisions: "Ratkaisu ja toteutus", outcome: "Lopputulos" },
     onThisPage: "Tällä sivulla",
     navigateTo: "Siirry kohtaan...",
     showMore: "Näytä lisää",

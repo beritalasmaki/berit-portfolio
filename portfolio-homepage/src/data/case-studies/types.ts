@@ -141,8 +141,13 @@ export type CaseGlance = {
   problem: string;
   /** What *I* did: role, scope and period, in the first person. */
   role: string;
-  /** The decisions made, one short line each (three to four). */
+  /** The decisions made, one short line each (three to four). `**Lead-in:**`
+   * markup bolds a lead-in. */
   decisions: string[];
+  /** Replaces the block's "Decisions" label, e.g. "Solution and delivery". */
+  decisionsLabel?: string;
+  /** Replaces the block's "Outcome" label, e.g. "Outcome and impact". */
+  outcomeLabel?: string;
   /** The outcome, with evidence where there is any. */
   outcome: string;
 };
