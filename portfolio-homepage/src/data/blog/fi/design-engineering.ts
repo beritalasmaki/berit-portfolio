@@ -155,12 +155,30 @@ export const designEngineeringFi: BlogPost = {
       ],
       tip: {
         label: "Vinkki",
-        text: "Asettelussa voi aivan hyvin käyttää suunnittelutyökalua (esim. Figma tai Claude Design) alussa.",
+        text: "Asettelussa voi aivan hyvin käyttää suunnittelutyökalua apuna (esim. Figma tai Claude Design), jonka jälkeen kuvat voidaan syöttää agentille.",
       },
     },
     {
       type: "paragraph",
       text: "Kaikki viisi taitoa nojaavat samaan asiaan: tiimin oman sanaston tuntemiseen. Vaikeinta design engineerin roolissa ei siis ole koodin lukeminen, vaan eri tiimien toimintatapoihin ja sanastoon pääseminen. Se täytyy opetella uudelleen jokaisessa tiimissä, ja parhaiten sen oppii tekemällä työtä yhdessä kehittäjien kanssa.",
+    },
+
+    { type: "heading", id: "design-system", text: "Hyvin rakennettu design system tukee työtä", navLabel: "Design system tukena" },
+    {
+      type: "paragraph",
+      text: "Design engineering toimii parhaiten, kun tiimillä on hyvin rakennettu design system. Silloin agentille on jo valmiina oikeat komponentit, tokenit ja nimet, joihin viitata. Sen ei tarvitse arvata tai keksiä uutta, ja tulos noudattaa tiimin tapaa tehdä asioita.",
+    },
+    { type: "paragraph", text: "Design system tukee työtä kahdessa tilanteessa:" },
+    {
+      type: "list",
+      items: [
+        "**Uusia näkymiä rakennettaessa.** Kun komponentit ja tokenit ovat selkeästi nimettyjä ja helposti löydettäviä, uuden näkymän voi koota niistä pienissä vaiheissa. Näkymä on alusta asti yhdenmukainen muun tuotteen kanssa.",
+        "**Vanhaa näkymää parannettaessa.** Kun näkymää muutetaan toimivammaksi, design system kertoo, mitä on jo olemassa. Muutos voidaan tehdä käyttämällä valmiita komponentteja, ja kehittäjän on helpompi katselmoida pienempi ja tutumpi muutos.",
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "Design system on siis sama sanasto, josta puhuin aiemmin. Mitä selkeämpi se on, sitä helpompi muotoilijan on ohjata agenttia ja sitä vähemmän kehittäjän tarvitsee korjata katselmoinnissa.",
     },
 
     { type: "heading", id: "support-developers", text: "Miten muotoilija voi tukea kehittäjiä?", navLabel: "Kehittäjien tukeminen" },

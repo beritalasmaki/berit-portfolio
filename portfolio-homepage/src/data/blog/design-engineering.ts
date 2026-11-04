@@ -158,12 +158,30 @@ export const designEngineering: BlogPost = {
       ],
       tip: {
         label: "Tip",
-        text: "A design tool (e.g. Figma or Claude Design) works perfectly well for the layout at the start.",
+        text: "A design tool (e.g. Figma or Claude Design) works perfectly well as an aid for the layout, after which the images can be fed to the agent.",
       },
     },
     {
       type: "paragraph",
       text: "All five skills rest on the same thing: knowing the team's own vocabulary. So the hardest part of the design engineer role isn't reading code, but getting into each team's way of working and its vocabulary. You have to learn it again in every team, and the best way to learn it is by working together with developers.",
+    },
+
+    { type: "heading", id: "design-system", text: "A well-built design system supports the work", navLabel: "Design system as support" },
+    {
+      type: "paragraph",
+      text: "Design engineering works best when the team has a well-built design system. The agent then already has the right components, tokens and names to refer to. It doesn't have to guess or invent something new, and the result follows the team's way of doing things.",
+    },
+    { type: "paragraph", text: "A design system helps in two situations:" },
+    {
+      type: "list",
+      items: [
+        "**When building new views.** When components and tokens are clearly named and easy to find, a new view can be put together from them in small steps. It's consistent with the rest of the product from the start.",
+        "**When improving an existing view.** When a view is changed to work better, the design system shows what already exists. The change can be made with ready-made components, and a smaller, more familiar change is easier for a developer to review.",
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "So the design system is the same vocabulary I described earlier. The clearer it is, the easier it is for the designer to guide the agent, and the less the developer has to fix in review.",
     },
 
     { type: "heading", id: "support-developers", text: "How can a designer support developers?", navLabel: "Supporting developers" },
