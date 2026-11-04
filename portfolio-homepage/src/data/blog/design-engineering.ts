@@ -215,18 +215,22 @@ export const designEngineering: BlogPost = {
           text: "The designer works in Figma, and a developer builds the design in code.",
           badge: "Where I am in client work",
         },
-        { name: "AI prototypes", text: "The designer makes prototypes with AI, which developers later rebuild." },
+        {
+          name: "AI prototypes",
+          text: "The designer makes prototypes with AI, which developers later rebuild.",
+          badge: "Where I am in client work",
+        },
         {
           name: "Design engineer",
           text: "The designer's pull requests get merged into the product.",
-          badge: "Practising in my own projects",
+          badge: "Where I'm aiming",
         },
       ],
       source: "Source: Modeinspect, The New Design Ladder",
     },
     {
       type: "paragraph",
-      text: "In client work, I've been on the first rung so far. I'm practising the third rung in my own projects. I built my portfolio with Claude Code, for example, and every change goes through its own branch and a preview. This post also reached the site through a merged pull request. 😉",
+      text: "In client work, I've been on the first and second rungs so far: I work in Figma and make prototypes. Design engineering is what I'm aiming for, and I'm practising the third rung in my own projects. I built my portfolio with Claude Code, for example, and every change goes through its own branch and a preview. This post also reached the site through a merged pull request. 😉",
     },
     {
       type: "paragraph",

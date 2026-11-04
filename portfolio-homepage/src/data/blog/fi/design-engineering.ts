@@ -212,18 +212,22 @@ export const designEngineeringFi: BlogPost = {
           text: "Suunnittelija työskentelee Figmassa, ja kehittäjä rakentaa suunnitelman koodiksi.",
           badge: "Tässä olen asiakastöissä",
         },
-        { name: "Tekoälyprototyypit", text: "Suunnittelija tekee tekoälyllä prototyyppejä, jotka kehittäjät rakentavat myöhemmin uudelleen." },
+        {
+          name: "Tekoälyprototyypit",
+          text: "Suunnittelija tekee tekoälyllä prototyyppejä, jotka kehittäjät rakentavat myöhemmin uudelleen.",
+          badge: "Tässä olen asiakastöissä",
+        },
         {
           name: "Design engineer",
           text: "Suunnittelijan tekemät pull requestit yhdistetään tuotteeseen.",
-          badge: "Harjoittelen omissa projekteissa",
+          badge: "Tähän tähtään",
         },
       ],
       source: "Lähde: Modeinspect, The New Design Ladder",
     },
     {
       type: "paragraph",
-      text: "Asiakastöissä olen tähän asti ollut ensimmäisellä portaalla. Kolmatta porrasta harjoittelen omissa projekteissani. Rakensin esimerkiksi portfolioni Claude Coden kanssa, ja jokainen muutos kulkee oman haaran ja esikatselun kautta. Tämäkin kirjoitus päätyi sivustolle hyväksytyn pull requestin kautta. 😉",
+      text: "Asiakastöissä olen tähän asti ollut ensimmäisellä ja toisella portaalla: työskentelen Figmassa ja teen prototyyppejä. Design engineering on se, mihin haluan tähdätä, ja kolmatta porrasta harjoittelen omissa projekteissani. Rakensin esimerkiksi portfolioni Claude Coden kanssa, ja jokainen muutos kulkee oman haaran ja esikatselun kautta. Tämäkin kirjoitus päätyi sivustolle hyväksytyn pull requestin kautta. 😉",
     },
     {
       type: "paragraph",
