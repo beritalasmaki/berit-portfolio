@@ -26,8 +26,8 @@ export const universityAiTool: CaseStudy = {
     decisions: [
       "One front page and one AI-powered search entry point for all services",
       "Accessible and mobile-friendly from day one",
-      "Flagged the private-staff-data problem in AI search as a priority and worked on solutions with the team; it was later solved with a login prompt",
-      "Made shared design-system components easier to find, instead of policing one-off builds",
+      "I put the service's accessibility, clarity and ease of use at the centre of the design and defined clear metrics for the work. I made sure the key user groups were closely involved in development.",
+      "To keep the design consistent and high quality, we agreed not to use one-off builds. I guided developers to use the Design System's components and set up a working collaboration model between developers and the Design System team.",
     ],
     outcome:
       "Confirmed by user interviews and surveys after launch: people found answers faster, simple questions moved to self-service so staff had more time for cases that needed a person, and the service worked on phones and with assistive technology.",
@@ -86,23 +86,23 @@ export const universityAiTool: CaseStudy = {
   impactCards: [
     {
       number: "01",
-      title: "Faster and safer help",
-      body: "People found answers much faster, whether through AI search, messaging, forms, or an in-person service desk, while private staff data stayed safe behind a login.",
+      title: "Faster access to help",
+      body: "Answers are found faster across channels, whether it's AI search, messaging, forms or an information desk.",
     },
     {
       number: "02",
       title: "Less pressure on staff channels",
-      body: "As AI search and self-service handled more of the simple, everyday questions, staff had more room to focus on situations that genuinely needed a person's attention.",
+      body: "When AI search and self-service handle everyday questions, staff have more time for situations that need personal support.",
     },
     {
       number: "03",
-      title: "Accessible and mobile from day one",
-      body: "Because the service was designed to be accessible and mobile-friendly from the start, more people could use it independently, including on their phone, on the go, or with assistive technology.",
+      title: "Accessible and mobile-friendly from day one",
+      body: "The implementation makes the service easy to use independently on a phone, on the go or with assistive technology.",
     },
     {
       number: "04",
-      title: "A faster start for people who don't yet know their way around",
-      body: "For anyone new, whether a first-year student or a visitor, finding the right help used to mean knowing where to look first. Now it takes one entry point instead of navigating the university's structure blindly.",
+      title: "An easy start for new visitors",
+      body: "New students and visitors don't need to know the university's structure beforehand: one entry point leads straight to the right information.",
     },
   ],
 
@@ -121,22 +121,22 @@ export const universityAiTool: CaseStudy = {
     {
       number: "02",
       title: "Private staff data appearing in AI search results",
-      body: "During my time on the project, we found a problem: the AI search could show private staff information to visitors who were not logged in. We flagged this as a priority issue and discussed possible solutions with the team before I left the project. It was later solved with a login prompt: a window appears as soon as the user starts searching, asking them to log in to see the full results. It solves the privacy issue well, and I understand why that solution made sense given the constraints at the time. If I'd still been involved, I might have explored whether that prompt could appear a bit later in the flow, so it interrupts the user less right at the start of their search.",
+      body: "During the project, the product's project manager raised an issue: the AI search could show private staff information to visitors who were not logged in. We discussed it closely as a team before I left the project. It was later solved with a login prompt: a window appears as soon as the user starts searching, asking them to log in to see the full results. It solves the privacy issue well, and I understand why that solution made sense given the constraints at the time. My own contribution to the discussion was accessibility and how to make the service clear and easy to use, I tried to bring the important user groups into the conversation, and I proposed setting up metrics. If I'd still been involved, I might have explored whether the login prompt could appear a bit later in the flow, so it interrupts the user less right at the start of their search.",
     },
     {
       number: "03",
-      title: "Supporting a new Product Owner",
-      body: "Our Product Owner was completely new to software projects and agile development. I stepped in together with our service designer to mentor and support them, helping structure the list of work waiting to be done, organise user feedback, and write clear tasks for the team.",
+      title: "Supporting the Product Owner",
+      body: "Agile development and software projects were new to our Product Owner. Together with our service designer I supported them, helping structure the list of work waiting to be done, organise user feedback, and write clear tasks for the team.",
     },
     {
       number: "04",
       title: "Encouraging shared components instead of one-off builds",
-      body: "Some developers ended up building their own custom UI elements instead of using what was already in the Design System, often just because it was faster in the moment, which is a pretty natural thing to happen under a tight timeline. Rather than turning it into a compliance issue, I focused on making it easier to find and reuse existing components, and brought in the Design System team whenever something genuinely new was needed.",
+      body: "To keep the design consistent and high quality, we agreed not to use one-off builds. I reminded developers to use the Design System's components and connected them with the Design System developers to talk things through. I brought in the Design System team whenever something genuinely new was needed.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "Set clearer rules for the design before handing it over. Looking back, I would have documented a few key UX principles more clearly before leaving the project, so the experience could stay consistent even without me there to weigh in on changes. After I left, a few small things ended up looking different from how they were originally designed, for example, search results appearing below the search bar instead of in the same visible area, so it's not clear when results are loading. Small things like that can add up over time. It taught me something useful: it's not just the design itself that needs documenting, but the reasoning behind it, so that reasoning can still guide decisions even when I'm not in the room anymore.",
+    "Set clearer rules for the design before handing it over. Looking back, I would have documented a few key UX principles more clearly before leaving the project, so the experience could stay consistent even without me there to weigh in on changes. After I left, a few small details evolved differently from how they were originally designed, for example, search results appearing below the search bar instead of in the same visible area, so it's not clear when results are loading. Small things like that can add up over time. It taught me something useful: it's not just the design itself that needs documenting, but the reasoning behind it, so that reasoning can still guide decisions even when I'm not in the room anymore.",
     "Set clearer success metrics from the start, beyond basic usage data. We had Matomo (a privacy-focused web analytics tool) in place, which gave us useful data on things like page views and click behavior. We did actually plan to go further than that, defining metrics that could tell us whether the service was solving the right problem for users, not just how it was being used, but we never managed to get it implemented.",
     "Looking back, I'd want to solve this without adding extra burden on users, for example, a lightweight, optional feedback prompt after key moments like an AI search result, rather than a separate survey, or looking at indirect signals we already had access to, like whether staff contact volume for common questions changed over time. Having something like this in place from the start would have given us a clearer way to answer the real question: is this actually helping people, not just are people using it.",
     "Make design's role in the process a bit more structured, not just reactive. I stayed closely involved throughout, checking in regularly with developers and the scrum master, the person who keeps the team's way of working on track. Looking back, I'd set up a few lightweight checkpoints from day one: a short design review before UX-related changes ship, a clear point of contact for technical questions, and the reasoning behind UX decisions written directly into the task descriptions developers already work from, rather than in a separate document nobody has time to read. None of that has to slow a tight timeline down, if it's built into the workflow from the start.",

@@ -6,7 +6,7 @@ export const industrialTool: CaseStudy = {
   label: "INDUSTRIAL DATA TOOLS · 2020–2023",
   headline: "Monitoring, calculation and reporting, in one place.",
   description:
-    "A platform for monitoring, calculation, reporting and statistical analysis, used by specialists both internally and by customers. I redesigned the full expert experience, from dashboards to data views.",
+    "A platform for monitoring, calculation, reporting and statistical analysis, used by specialists both internally and by customers. I redesigned the expert experience in many ways, from dashboards to data views.",
   thumbnail: "/case/kemira-card.png",
   thumbnailAlt: "Kemira data tools",
   projectCount: "2",
