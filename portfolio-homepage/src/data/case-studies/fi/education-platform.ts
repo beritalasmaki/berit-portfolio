@@ -8,7 +8,7 @@ export const educationPlatformFi: CaseStudy = {
   label: "KOULUTUKSEN DIGITAALINEN PALVELUALUSTA · 2021–2024",
   headline: "Monta tiimiä, monta järjestelmää.\nYksi yhtenäinen kokemus.",
   description:
-    "Yhteinen, standardoitu suunnitteluperusta monimutkaisille kuntien koulutusjärjestelmille. Se yhtenäisti käytettävyyden ja toimintalogiikan usealla alustalla.",
+    "Yhteinen, standardoitu suunnitteluperusta, joka yhtenäisti käytettävyyden ja toimintalogiikan usealla alustalla.",
   thumbnail: "/case/education-new-card.png",
   thumbnailAlt: "Koulutusalusta",
   projectCount: "1",
@@ -18,21 +18,21 @@ export const educationPlatformFi: CaseStudy = {
     "Tein valtavasta julkisen sektorin alustasta selkeän: kokosin monimutkaiset kuntien koulutyönkulut saavutettavaksi työkaluksi opettajille ja hallintohenkilöstölle.",
 
   intro: [
-    "Julkisen sektorin organisaatioiden konsortio halusi korvata perusopetuksessa ja lukiokoulutuksessa käytetyt vanhentuneet järjestelmät, ja palveltavana oli monta kuntaa erilaisine tarpeineen. Aloitin UX- ja tuotesuunnittelijana, ja kolmen vuoden aikana minusta tuli projektin Lead Designer.",
+    "Tehtävänä oli korvata usean kunnan vanhentuneet opetus- ja lukiojärjestelmät yhtenäisellä ratkaisulla julkisen sektorin konsortiolle. Liityin projektiin UX- ja tuotesuunnittelijana, ja kasvoin kolmen vuoden aikana hankkeen Lead Designeriksi.",
   ],
   glance: {
     problem:
       "Perusopetuksessa ja lukiokoulutuksessa aikaisemmin käytetyt vanhentuneet opetus- ja hallintojärjestelmät piti korvata seitsemän kunnan tarpeisiin. Uutta järjestelmää oli mukana rakentamassa useampi kehitystiimi ja kolmannen osapuolen toimittaja. Sidosryhmiä ja käyttäjäryhmiä oli paljon. Alustan tuli palvella saumattomasti kahta erilaista oppilaitosympäristöä, mikä vaati peruskoulun ja lukion prosessien sekä toiminnallisten vaatimusten tarkkaa yhteensovittamista.",
     role:
-      "UX- ja tuotesuunnittelija, myöhemmin Lead Designer (3 vuotta)\nVastasin tuotteen visuaalisesta ilmeestä, käyttäjätutkimuksesta sekä Design Systemin UI Kitistä. Huolehdin saavutettavuudesta ja varmistin suunnittelun yhtenäisyyden eri tiimien välillä. Toimin tiiviissä yhteistyössä tuoteomistajan ja kehittäjien kanssa muun muassa tikettien ja vaatimusten määrittelyssä.",
+      "Kolmen vuoden yhteistyö, jossa toimin UX- ja tuotesuunnittelijana, myöhemmin Lead Designer. Vastasin tuotteen visuaalisesta ilmeestä, käyttäjätutkimuksesta sekä Design Systemin UI Kitistä. Huolehdin saavutettavuudesta ja varmistin suunnittelun yhtenäisyyden eri tiimien välillä. Toimin tiiviissä yhteistyössä tuoteomistajan ja kehittäjien kanssa muun muassa tikettien ja vaatimusten määrittelyssä.",
     decisionsLabel: "Ratkaisu ja toteutus",
     decisions: [
       "**Prosessin kirkastaminen:** Vedin sidosryhmille kolmivaiheisen työpajasarjan, jossa kartoitettiin nykyiset kipupisteet, määriteltiin tavoitetila ja suunniteltiin tulevat konseptit yhdessä.",
       "**Yhtenäinen suunnittelu:** Määrittelin tiimeille yhteisen visuaalisen linjan ja komponentit, ja avasin päätösten taustoja säännöllisissä tapaamisissa kehittäjien kanssa.",
-      "**Luottamuksen rakentaminen:** Budjettiylityksen jälkeen palautin luottamuksen läpinäkyvällä viestinnällä, aktiivisella läsnäololla ja dokumentoimalla kaikki päätökset kirkkaasti.",
+      "**Luottamuksen palauttaminen:** Budjettiylityksen jälkeen otin aktiivisen roolin suunnittelutyön edistymisen ja sen arvon viestimisessä sidosryhmille. Rakensimme luottamusta läpinäkyvällä viestinnällä, säännöllisellä läsnäololla ja kirkkaalla päätöksenteon dokumentoinnilla. Tämä selkeytti yhteistyötä eri osapuolten välillä ja varmisti hankkeen etenemisen.",
     ],
     outcome:
-      "Pilottikoulujen mukaan alusta on helppokäyttöinen, monipuolinen ja moderni, ja opettajat ja hallintohenkilöstö kiittivät sen johdonmukaisuutta ja nopeutta. Kaksi kuntaa vetäytyi budjetin ylityksen vuoksi, ja alusta otettiin käyttöön jäljellä olevissa viidessä kunnassa keväällä 2026. Laajempi käyttöönotto kouluissa on suunniteltu.",
+      "Pilottikoulujen palaute oli erittäin myönteistä: opettajat ja hallintohenkilöstö kiittivät alustan helppokäyttöisyyttä, nopeutta ja johdonmukaista rakennetta. Alusta otettiin käyttöön viidessä kunnassa keväällä 2026, ja seuraavaksi valmistellaan järjestelmän laajempaa levittämistä kouluverkostossa.",
   },
   roleLabel: "UX- ja tuotesuunnittelija, myöhemmin Lead Designer, kolmen vuoden ajan",
   focusLabel:
@@ -105,7 +105,7 @@ export const educationPlatformFi: CaseStudy = {
     {
       number: "01",
       title: "Suunnittelun yhtenäisyyden varmistaminen monessa tiimissä",
-      body: "Tässä isossa projektissa oli kerrallaan vain yhdestä kolmeen suunnittelijaa. Minun tehtäväni oli huolehtia, että kaikki kehitystiimit käyttivät samaa visuaalista tyyliä ja samoja uudelleenkäytettäviä komponentteja sen sijaan, että kukin tekisi omaan tyyliinsä. Yhtä tärkeää oli, että tiimit ymmärsivät, miksi jokin tehdään tietyllä tavalla, eikä vain sitä, miltä sen pitää näyttää. Pidimme säännöllisiä tapaamisia kehittäjien kanssa, joissa kerroimme päätösten taustat ja kuuntelimme myös heidän ideansa.",
+      body: "Tässä isossa projektissa oli kerrallaan vain yhdestä kolmeen suunnittelijaa. Minun tehtäväni oli huolehtia, että kaikki kehitystiimit käyttivät samaa visuaalista tyyliä ja samoja uudelleenkäytettäviä komponentteja. Yhtä tärkeää oli, että tiimit ymmärsivät, miksi jokin tehdään tietyllä tavalla, eikä vain sitä, miltä sen pitää näyttää. Pidimme säännöllisiä tapaamisia kehittäjien kanssa, joissa kerroimme päätösten taustat ja kuuntelimme myös heidän ideansa.",
     },
     {
       number: "02",
@@ -123,7 +123,7 @@ export const educationPlatformFi: CaseStudy = {
     "Selkeämpi viestintä ja suunnittelu heti alusta. Varmistaisin, että kehitystiimi ymmärtää heti alusta alkaen, ei vain mitä rakennamme, vaan myös miksi.",
     "Onnistumisen mittarit määriteltyinä aiemmin. Jos olisimme alusta asti tienneet, mitä halusimme saavuttaa ja miten sitä mitattaisiin, priorisointi olisi ollut koko projektin ajan helpompaa. Yksi konkreettinen esimerkki, jonka projektin tekninen projektipäällikkö ehdotti jälkikäteen, olisi ollut lainmukaisuuden seuranta suoraan: mitkä sääntelyvaatimukset täyttyivät jo ja mitkä eivät vielä, varsinaisena mittarina koko projektin ajan.",
     "Jäsennellympi suunnittelujärjestelmä alusta asti. Vuosi oli 2021, ja vaikka suunnittelujärjestelmät olivat jo tuttu käsite, sellaisen toteuttaminen kokonaan koodiin tässä mittakaavassa ei ollut vielä yleistä. Jos voisin palata ajassa taaksepäin, ajaisin tuon perustan rakentamista määrätietoisemmin heti alusta.",
-    "Juridisen ja sääntelyosaamisen mukaan ottaminen aiemmin. Suunnittelujärjestelmän lisäksi projekti olisi hyötynyt juridisen tai sääntelyasiantuntijan mukaantulosta heti alusta, jotta tietosuoja-asetus (GDPR) ja perusopetuslainsäädäntö olisi huomioitu ajoissa. Moni ominaisuustoive perustui siihen, miten edellinen järjestelmä toimi, eikä kukaan tiennyt, ettei osa niistä ollut enää lain mukaan sallittua.",
+    "Juridisen ja sääntelyosaamisen mukaan ottaminen aiemmin. Suunnittelujärjestelmän lisäksi projekti olisi hyötynyt juridisen tai sääntelyasiantuntijan mukaantulosta heti alusta, jotta tietosuoja-asetus (GDPR) ja perusopetuslainsäädäntö olisi huomioitu ajoissa. Moni ominaisuustoive perustui siihen, miten edellinen järjestelmä toimi, ja osa niistä ei enää ollut lain mukaan sallittuja.",
     "Ensimmäinen julkaisu aidosti minimituotteena (MVP). Käytännössä emme rakentaneet minimituotetta eli pienintä julkaisemisen arvoista versiota, vaan jotain lopullisen tuotteen kaltaista, joka yritti kattaa kaikki tarpeet heti alusta. Sillä oli todellinen vaikutus sekä aikatauluun että työmäärään.",
     "Päivittäisissä keskusteluissa mukana oleminen aiemmin. Meillä oli säännölliset päivittäiset ja viikoittaiset palaverit, ja tuo rytmi oli oikea, mutta aliarvioin alussa, kuinka paljon arvoa syntyi siitä, että oli jatkuvasti läsnä noissa keskusteluissa.",
     "Suunnittelija mukaan jo kolmansien osapuolten ratkaisuja arvioitaessa. Kun hankitaan valmiita alustoja, suunnittelijan tekemä arvio räätälöintimahdollisuuksista etukäteen olisi auttanut välttämään myöhempiä vaikeita kompromisseja.",
