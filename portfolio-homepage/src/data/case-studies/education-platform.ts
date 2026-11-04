@@ -6,7 +6,7 @@ export const educationPlatform: CaseStudy = {
   label: "NATIONAL EDUCATION ADMINISTRATION PLATFORM · 2021–2024",
   headline: "Many teams, many systems.\nOne coherent experience.",
   description:
-    "A shared, standardised design foundation for complex municipal education systems, unifying usability and logic across several platforms.",
+    "A shared, standardised design foundation that unified usability and logic across several platforms.",
   thumbnail: "/case/education-new-card.png",
   thumbnailAlt: "Education platform",
   projectCount: "1",
@@ -16,21 +16,21 @@ export const educationPlatform: CaseStudy = {
     "Brought structure to a massive public sector platform by uniting complex municipal school workflows into a clear, accessible tool for teachers and administrators.",
 
   intro: [
-    "A consortium of public sector organizations needed to replace the outdated systems used across basic and upper secondary education, serving many municipalities with different needs. I joined as UX & Product Designer, later becoming Lead Designer, over a three-year period.",
+    "The task was to replace the outdated teaching and upper secondary systems of several municipalities with one unified solution for a public sector consortium. I joined the project as UX & Product Designer and, over three years, grew into its Lead Designer.",
   ],
   glance: {
     problem:
       "Outdated teaching and administration systems used in basic and upper secondary education had to be replaced to serve seven municipalities. Several development teams and third-party vendors were building the new system, with many stakeholders and user groups. The platform had to serve two different school environments seamlessly, which meant carefully aligning the processes and functional requirements of comprehensive school and upper secondary school.",
     role:
-      "UX & Product Designer, later Lead Designer (3 years)\nI was responsible for the product's visual design, user research and the design system's UI kit. I looked after accessibility and kept the design consistent across teams. I worked closely with the product owner and developers, including on defining tickets and requirements.",
+      "A three-year engagement as UX & Product Designer, later Lead Designer. I was responsible for the product's visual design, user research and the design system's UI kit. I looked after accessibility and kept the design consistent across teams. I worked closely with the product owner and developers, including on defining tickets and requirements.",
     decisionsLabel: "Solution and delivery",
     decisions: [
       "**Clarifying the process:** I led a three-phase workshop series for stakeholders: mapping today's pain points, defining the target state and co-designing the future concepts together.",
       "**Consistent design:** I defined a shared visual direction and components for the teams, and explained the reasoning behind decisions in regular sessions with developers.",
-      "**Rebuilding trust:** After a budget overrun I restored trust through transparent communication, active presence and clearly documenting every decision.",
+      "**Restoring trust:** After a budget overrun, I took an active role in communicating the progress and value of the design work to stakeholders. We rebuilt trust through transparent communication, regular presence and clear documentation of decisions. This made collaboration between the parties clearer and kept the project moving.",
     ],
     outcome:
-      "Pilot schools described the platform as easy to use, versatile and modern, and teachers and administrators praised its logic and speed. After two municipalities withdrew because of the budget overrun, the platform launched in the remaining five in spring 2026, with a wider rollout to schools planned.",
+      "Pilot feedback was very positive: teachers and administrative staff praised the platform's ease of use, speed and consistent structure. The platform launched in five municipalities in spring 2026, and a wider rollout across the school network is now being prepared.",
   },
   roleLabel: "UX & Product Designer, and later Lead Designer, over a three-year period",
   focusLabel: "Service design, Design Systems, and cross-team design consistency across a multi-vendor public sector platform",
@@ -138,7 +138,7 @@ export const educationPlatform: CaseStudy = {
     {
       number: "01",
       title: "Keeping design consistent across many teams",
-      body: "Only 1 to 3 designers worked on this large project at any given time. My job was to make sure every development team used the same visual style and the same reusable building blocks, instead of everyone doing their own thing. Just as important was making sure teams understood why we were building something a certain way, not just how it should look. We held regular sessions with developers to explain the reasoning behind decisions and to hear their ideas too.",
+      body: "Only 1 to 3 designers worked on this large project at any given time. My job was to make sure every development team used the same visual style and the same reusable building blocks. Just as important was making sure teams understood why we were building something a certain way, not just how it should look. We held regular sessions with developers to explain the reasoning behind decisions and to hear their ideas too.",
     },
     {
       number: "02",
@@ -156,7 +156,7 @@ export const educationPlatform: CaseStudy = {
     "Clearer communication and planning from day one. I would make sure the development team understood not just what we were building, but why, from the very start.",
     "Defining success metrics earlier. Knowing from the outset what we wanted to achieve and how we'd measure it would have made prioritization easier throughout the project. One concrete example, suggested by the project's technical project manager in hindsight, would have been tracking legal compliance directly: which regulatory requirements were already met, and which ones weren't yet, as an actual metric to follow throughout the project.",
     "A more structured Design System from the beginning. This was 2021, and while Design Systems were a known concept, implementing one fully into code at this scale wasn't yet common practice. If I could go back, I would push for building that foundation more deliberately from day one.",
-    "Involving legal and regulatory expertise earlier. Alongside the design system, the project would have benefited from bringing in a legal or regulatory expert from the very start, to make sure GDPR and basic education legislation were accounted for early on. A number of feature requests were based on how the previous system worked, without realizing that some of it was no longer legally permitted.",
+    "Involving legal and regulatory expertise earlier. Alongside the design system, the project would have benefited from bringing in a legal or regulatory expert from the very start, to make sure GDPR and basic education legislation were accounted for early on. A number of feature requests were based on how the previous system worked, and some of it was no longer legally permitted.",
     "Treating the first release as a genuine minimum viable product. In practice we were not building a minimum viable product, meaning the smallest version worth releasing. We were building something closer to a final product that tried to cover every need from day one, which had a real impact on both timeline and workload.",
     "Being present in daily discussions earlier. We had regular daily and weekly meetings, and that rhythm itself was right, but I underestimated early on how much value came from being consistently present in those conversations.",
     "Involving a designer earlier when evaluating third-party solutions. When purchasing ready-made platforms, having a designer assess customization options upfront would have helped avoid some difficult trade-offs later.",

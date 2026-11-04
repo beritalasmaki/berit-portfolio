@@ -8,7 +8,7 @@ export const industrialToolFi: CaseStudy = {
   label: "TEOLLISUUDEN DATATYÖKALUT · 2020–2023",
   headline: "Seuranta, laskenta ja raportointi yhdessä paikassa.",
   description:
-    "Alusta seurantaan, laskentaan, raportointiin ja tilastolliseen analyysiin. Sitä käyttävät sekä yrityksen omat asiantuntijat että asiakkaat. Uudistin koko asiantuntijakokemuksen dashboardeista datanäkymiin.",
+    "Alusta seurantaan, laskentaan, raportointiin ja tilastolliseen analyysiin. Sitä käyttävät sekä yrityksen omat asiantuntijat että asiakkaat. Uudistin asiantuntijakokemusta monipuolisesti dashboardeista datanäkymiin.",
   thumbnail: "/case/kemira-card.png",
   thumbnailAlt: "Kemiran datatyökalut",
   projectCount: "2",
