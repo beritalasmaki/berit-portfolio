@@ -186,13 +186,14 @@ export const designEngineeringFi: BlogPost = {
       type: "paragraph",
       text: "En näe design engineerin roolia niin, että muotoilijan ratkaisut olisivat valmiita ja niitä pitäisi vain noudattaa. Oma periaatteeni on, että asiat suunnitellaan ja mietitään yhdessä. Koodi on minulle uusi tapa osallistua siihen keskusteluun, ei tapa ohittaa sitä.",
     },
-    { type: "paragraph", text: "Käytännössä tarkoitan kolmea asiaa:" },
+    { type: "paragraph", text: "Käytännössä tarkoitan neljää asiaa:" },
     {
       type: "list",
       items: [
         "**Komponentin ensimmäinen versio.** Voin tehdä komponentista ensimmäisen version koodiin. Kehittäjä katsoo sen, ja päätämme yhdessä, miten se sopii kokonaisuuteen.",
         "**Koodilla toimivat prototyypit.** Prototyyppi, joka käyttää tiimin oikeita komponentteja ja dataa, vastaa kehittäjien kysymyksiin usein paremmin kuin kuva. Siinä näkyvät esimerkiksi latautuminen, virheet ja tyhjät tilat, joita staattisesta kuvasta on vaikea päätellä.",
-        "**Suunnitelmat, jotka puhuvat koodin kieltä.** Kun suunnitelmassa lukee `Button` eikä \"oranssi painike\", kehittäjän ei tarvitse arvata, mitä tarkoitin.",
+        "**Käyttöliittymän osien toteutus.** Voin toteuttaa osan käyttöliittymästä itse, esimerkiksi näkymän asettelun, tilat tai visuaaliset korjaukset, ja tarjota sen kehittäjille pull requestina. Kehittäjä katselmoi muutoksen ja päättää, yhdistetäänkö se tuotteeseen. Näin kehittäjillä jää enemmän aikaa logiikkaan, rajapintoihin ja muihin teknisiin kysymyksiin.",
+        "**Yhteinen sanasto.** Käytän koodin nimiä kaikkialla, missä puhun kehittäjien kanssa: keskusteluissa, tehtävänkuvauksissa ja Figmassa, jos tiimi sitä käyttää. Kun puhun `Button`-komponentista enkä \"oranssista painikkeesta\", kehittäjän ei tarvitse arvata, mitä tarkoitan.",
       ],
     },
 

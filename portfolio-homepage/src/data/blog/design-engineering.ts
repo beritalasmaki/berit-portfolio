@@ -189,13 +189,14 @@ export const designEngineering: BlogPost = {
       type: "paragraph",
       text: "I don't see the design engineer role as one where the designer's solutions are final and simply need to be followed. My own principle is that we design and think things through together. Code is a new way for me to take part in that conversation, not a way to skip it.",
     },
-    { type: "paragraph", text: "In practice, I mean three things:" },
+    { type: "paragraph", text: "In practice, I mean four things:" },
     {
       type: "list",
       items: [
         "**A first version of a component.** I can build a first version of a component in code. A developer looks at it, and we decide together how it fits the whole.",
         "**Prototypes that work in code.** A prototype that uses the team's real components and data often answers developers' questions better than a picture. It shows things like loading, errors and empty states, which are hard to read from a static image.",
-        "**Designs that speak the language of code.** When a design says `Button` instead of \"the orange button\", the developer doesn't have to guess what I meant.",
+        "**Building parts of the interface.** I can build part of the interface myself, such as a view's layout, its states or visual fixes, and offer it to developers as a pull request. A developer reviews the change and decides whether it's merged into the product. That leaves developers more time for logic, APIs and other technical questions.",
+        "**A shared vocabulary.** I use the names from the code everywhere I talk with developers: in conversations, in task descriptions and in Figma, if the team uses it. When I talk about the `Button` component and not \"the orange button\", the developer doesn't have to guess what I mean.",
       ],
     },
 
