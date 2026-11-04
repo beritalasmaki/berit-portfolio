@@ -397,6 +397,7 @@ export const fi: Dictionary = {
     copyFailed: "Kopiointi ei onnistunut — kopioi osoite selaimen osoiterivistä",
     more: "Lisää…",
     diagram: "Kaavio",
+    ladderRung: "porras",
     okr: {
       objective: "Tavoite",
       objectiveQuestion: "Mihin olemme menossa?",
