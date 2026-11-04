@@ -3,7 +3,10 @@ import FindingsList from "@/components/case-study/FindingsList";
 import type { BlogBlock } from "@/data/blog";
 import type { Dictionary } from "@/i18n/dictionaries";
 import InlineText from "./InlineText";
+import FlowDiagram from "./FlowDiagram";
+import LadderDiagram from "./LadderDiagram";
 import OkrDiagram from "./OkrDiagram";
+import StepsDiagram from "./StepsDiagram";
 
 /**
  * A post's body, block by block, in the case studies' type scale: body-lg
@@ -96,6 +99,24 @@ export default function BlogBody({ blocks, copy }: { blocks: BlogBlock[]; copy: 
             return (
               <div key={i} className="my-2">
                 <OkrDiagram okr={block} copy={copy} />
+              </div>
+            );
+          case "steps":
+            return (
+              <div key={i} className="my-2">
+                <StepsDiagram data={block} copy={copy} />
+              </div>
+            );
+          case "flow":
+            return (
+              <div key={i} className="my-2">
+                <FlowDiagram data={block} copy={copy} />
+              </div>
+            );
+          case "ladder":
+            return (
+              <div key={i} className="my-2">
+                <LadderDiagram data={block} copy={copy} />
               </div>
             );
         }

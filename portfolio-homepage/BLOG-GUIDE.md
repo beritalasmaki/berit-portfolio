@@ -75,9 +75,12 @@ Notes:
 | `![alt](file)` photo/screenshot | `{ type: "image", src, alt, caption?, width, height }` | See [§6](#6-visuals) |
 | Numbered "claim + explanation" set | `{ type: "findings", items: [{ title, body }] }` | Same look as the case studies' findings |
 | OKR example | `{ type: "okr", ... }` | The diagram component, see `ai-adoption-starts-with-strategy.ts` |
+| Login-view-in-four-stages diagram | `{ type: "steps", ... }` | `StepsDiagram.tsx`, see `design-engineering.ts` |
+| "Pill → box → box → pill" comparison | `{ type: "flow", ... }` | `FlowDiagram.tsx`, see `design-engineering.ts` |
+| Three rising rungs | `{ type: "ladder", ... }` | `LadderDiagram.tsx`, see `design-engineering.ts` |
 | `---` separator | (nothing) | The page layout separates the hero from the body |
 
-**Inline formatting** inside any text field: `**bold**`, `*italic*`, `[label](/path)` or `[label](https://…)`. These can't be nested (no italic inside bold). Handled by `src/components/blog/InlineText.tsx`.
+**Inline formatting** inside any text field: `**bold**`, `*italic*`, `` `code` ``, `[label](/path)` or `[label](https://…)`. These can't be nested (no italic inside bold). Handled by `src/components/blog/InlineText.tsx`.
 
 ---
 

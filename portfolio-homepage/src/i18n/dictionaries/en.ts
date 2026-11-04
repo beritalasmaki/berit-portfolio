@@ -395,6 +395,7 @@ export const en = {
     copyFailed: "Couldn't copy — copy the address from the address bar",
     more: "More…",
     diagram: "Diagram",
+    ladderRung: "rung",
     okr: {
       objective: "Objective",
       objectiveQuestion: "Where are we heading?",

@@ -1,11 +1,13 @@
 import type { Locale } from "@/i18n/config";
 import { aiAdoptionStrategy } from "./ai-adoption-starts-with-strategy";
 import { aiPilotToEverydayPractice } from "./from-ai-pilot-to-everyday-practice";
+import { designEngineering } from "./design-engineering";
+import { designEngineeringFi } from "./fi/design-engineering";
 import { aiAdoptionStrategyFi } from "./fi/ai-adoption-starts-with-strategy";
 import { aiPilotToEverydayPracticeFi } from "./fi/from-ai-pilot-to-everyday-practice";
 import type { BlogBlock, BlogPost } from "./types";
 
-export type { BlogBlock, BlogPost, OkrExample } from "./types";
+export type { BlogBlock, BlogPost, FlowExample, FlowNode, FlowRow, LadderExample, OkrExample, StepsExample } from "./types";
 
 const sortNewestFirst = (registry: BlogPost[]): BlogPost[] =>
   [...registry].sort((a, b) => b.date.localeCompare(a.date) || (b.series?.part ?? 0) - (a.series?.part ?? 0));
@@ -16,8 +18,8 @@ const sortNewestFirst = (registry: BlogPost[]): BlogPost[] =>
 // `translationOf`. To publish a post in one language only, add it to just
 // that language's list.
 const registries: Record<Locale, BlogPost[]> = {
-  en: sortNewestFirst([aiAdoptionStrategy, aiPilotToEverydayPractice]),
-  fi: sortNewestFirst([aiAdoptionStrategyFi, aiPilotToEverydayPracticeFi]),
+  en: sortNewestFirst([aiAdoptionStrategy, aiPilotToEverydayPractice, designEngineering]),
+  fi: sortNewestFirst([aiAdoptionStrategyFi, aiPilotToEverydayPracticeFi, designEngineeringFi]),
 };
 
 export function getPosts(locale: Locale): BlogPost[] {
@@ -86,6 +88,24 @@ function blockText(block: BlogBlock): string {
         ...block.keyResults.map((kr) => `${kr.value} ${kr.label}`),
         ...block.initiatives,
       ].join(" ");
+    case "steps":
+      return [
+        block.title,
+        ...block.steps.map((step) => `${step.heading} ${step.text}`),
+        block.tip?.text ?? "",
+      ].join(" ");
+    case "flow":
+      return [
+        block.title,
+        ...block.rows.flatMap((row) => [
+          row.heading,
+          row.text,
+          ...row.nodes.map((node) => `${node.heading} ${node.text}`),
+        ]),
+        block.quote?.text ?? "",
+      ].join(" ");
+    case "ladder":
+      return [block.title, ...block.rungs.map((rung) => `${rung.name} ${rung.text}`)].join(" ");
   }
 }
 
