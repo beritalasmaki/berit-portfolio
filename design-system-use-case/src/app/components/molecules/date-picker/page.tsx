@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Date picker" };
 export default function DatePickerPage() {
   return <ComponentPage
     name="Date picker"
-    eyebrow="Components / forms"
+    eyebrow="Components / molecules"
     description="A date field in the European format DD/MM/YYYY. People can type the date or choose it from a calendar that starts on Monday."
     usage={<p className="m-0">Use it when a date is a single known day, such as a start date. For a date everyone knows by heart, such as a birth date, typing is often quicker, and the field still works that way.</p>}
     contract={["DatePicker is a text input plus a calendar button. The value is a string written DD/MM/YYYY.", "Calendar can be used on its own. It takes a value, onSelect, and optional minDate and maxDate.", "The format is explained in the hint above the field, not in a placeholder.", "A date that does not exist, such as 31/02/2026, shows an error message after the field is left."]}

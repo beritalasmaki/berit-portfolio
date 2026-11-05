@@ -59,14 +59,9 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Routes
 
 - `/` - landing page explaining the system and its purpose
-- `/components/navigation` - top navigation, sidebar, wayfinding, and keyboard model
-- `/components/buttons` - primary, secondary, tertiary, loading, and disabled states
-- `/components/cards` - metric, action, and composable card parts
-- `/components/table` - cell anatomy, filtering, sorting, selection, empty state, and responsive overflow
-- `/components/forms` - input, select, checkbox, and radio in every documented mode
-- `/components/form-patterns` - form introduction, sections, progress, and actions
-- `/components/date-picker` - DD/MM/YYYY field with a Monday-first calendar
-- `/components/notifications` - notification panels and toasts
+- `/components/atoms/icons`, `/components/atoms/buttons`, `/components/atoms/form-controls` - the smallest parts
+- `/components/molecules/form-fields`, `/components/molecules/navigation-parts`, `/components/molecules/date-picker`, `/components/molecules/notifications`, `/components/molecules/form-progress` - small groups of atoms
+- `/components/organisms/navigation`, `/components/organisms/cards`, `/components/organisms/table`, `/components/organisms/forms` - larger sections
 - `/getting-started` - introduction to the documentation structure
 - `/foundations` - dedicated token and foundation documentation
 - `/foundations/colors` - color tokens and semantic color roles
@@ -90,7 +85,7 @@ Components should consume semantic roles rather than raw palette values. This ke
 
 ## Component conventions
 
-The project focuses on five families: `Navigation`, `Button`, `Card`, `DataTable`, and the form controls (`Input`, `Select`, `Checkbox`, `Radio`). Inner patterns such as tabs, breadcrumbs, pagination, filters, row selection, and loading states stay within those families. Native HTML semantics are preferred for landmarks, buttons, links, tables, headings, and form controls.
+Components are documented by Atomic Design level. Atoms are the smallest parts (icons, buttons, form controls). Molecules are small groups of atoms (form fields, links, tabs and breadcrumbs, date picker, notifications, form progress and actions). Organisms are larger sections (navigation, cards, table, multi-step form). Templates are page layouts without content, and pages are templates with real content; the two example screens are the pages, and there are no separate templates yet. The source folders in `src/components` are still grouped by component type, not by level. Native HTML semantics are preferred for landmarks, buttons, links, tables, headings, and form controls.
 
 ## Accessibility baseline
 

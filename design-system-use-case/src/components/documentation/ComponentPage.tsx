@@ -33,7 +33,7 @@ export function ComponentPage({ name, eyebrow, description, usage, examples, con
         </header>
 
         <section id="usage" className="mt-12 grid scroll-mt-24 gap-5 rounded-2xl bg-[var(--color-surface-inverse)] p-6 text-white md:grid-cols-[.7fr_1.3fr] md:p-8">
-          <div><p className="eyebrow text-[var(--color-action-accent)]">How it&apos;s used?</p><h2 className="mt-3 text-2xl font-bold">A pattern with a job to do.</h2></div>
+          <div><p className="eyebrow text-[var(--color-action-accent)]">Usage</p><h2 className="mt-3 text-2xl font-bold">When to use it</h2></div>
           <div className="max-w-2xl text-white/75">{usage}</div>
         </section>
 
