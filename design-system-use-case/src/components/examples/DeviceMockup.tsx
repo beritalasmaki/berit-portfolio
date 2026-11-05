@@ -4,9 +4,11 @@ type DeviceMockupProps = {
   children: ReactNode;
   label: string;
   mode?: "desktop" | "mobile";
+  /** The address shown in the browser bar of the desktop frame. */
+  url?: string;
 };
 
-export function DeviceMockup({ children, label, mode = "desktop" }: DeviceMockupProps) {
+export function DeviceMockup({ children, label, mode = "desktop", url = "app.dsbyberit.example" }: DeviceMockupProps) {
   const isMobile = mode === "mobile";
   return (
     <figure className={isMobile ? "w-full max-w-[390px]" : "w-full"}>
@@ -16,8 +18,8 @@ export function DeviceMockup({ children, label, mode = "desktop" }: DeviceMockup
       </figcaption>
       <div className={`overflow-hidden border border-[var(--color-border-strong)] bg-[var(--color-surface-canvas)] shadow-[var(--shadow-panel)] ${isMobile ? "rounded-[24px] p-2" : "rounded-2xl"}`}>
         <div className={isMobile ? "overflow-hidden rounded-[18px] border border-[var(--color-border-default)]" : "overflow-hidden rounded-xl"}>
-          {!isMobile ? <div className="flex items-center gap-2 border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-4 py-3"><span className="h-2.5 w-2.5 rounded-full bg-[#e27d68]" /><span className="h-2.5 w-2.5 rounded-full bg-[#e2b968]" /><span className="h-2.5 w-2.5 rounded-full bg-[#78ad83]" /><span className="ml-3 font-mono text-[10px] text-[var(--color-content-muted)]">fieldwork.local</span></div> : <div className="flex items-center justify-between border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-4 py-3"><span className="font-mono text-[10px] font-semibold">FW</span><span aria-hidden="true" className="material-symbols-outlined text-lg leading-none">menu</span></div>}
-          <div className={isMobile ? "max-h-[720px] overflow-y-auto p-4" : "p-8 lg:p-10"}>{children}</div>
+          {!isMobile ? <div className="flex items-center gap-2 border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-4 py-3"><span className="h-2.5 w-2.5 rounded-full bg-[var(--color-status-error-default)]" /><span className="h-2.5 w-2.5 rounded-full bg-[var(--color-status-warning-default)]" /><span className="h-2.5 w-2.5 rounded-full bg-[var(--color-status-success-default)]" /><span className="ml-3 rounded-full border border-[var(--color-border-default)] bg-[var(--color-surface-canvas)] px-3 py-0.5 font-mono text-[10px] text-[var(--color-content-muted)]">{url}</span></div> : <div className="flex items-center justify-center border-b border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] px-4 py-2"><span className="font-mono text-[10px] text-[var(--color-content-muted)]">{url}</span></div>}
+          <div className={isMobile ? "max-h-[720px] overflow-y-auto p-4" : "p-0"}>{children}</div>
         </div>
       </div>
     </figure>
