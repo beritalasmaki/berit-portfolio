@@ -13,7 +13,7 @@ export default function Home() {
       <div className="mx-auto grid w-full max-w-[var(--width-page)] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,640px)] lg:items-center lg:gap-16">
         <div>
           <span role="img" aria-label="DS by Berit logo" className="mb-5 block"><BrandMark className="h-14 w-14" /></span>
-          <h1 className="display-title !max-w-[12ch] !text-[clamp(34px,3.7vw,54px)]">A design system built in code and in Figma.</h1>
+          <h1 className="display-title !max-w-[17ch] !text-[clamp(34px,3.7vw,54px)]">A design system built in code and in Figma.</h1>
           <div className="mt-8 max-w-[var(--width-text-narrow)]">
             <p className="body-copy text-base leading-7">Berit Alasmäki built DS by Berit as a work sample, to show that she can create, build, develop and manage a design system.</p>
             <p className="body-copy mt-4 text-base leading-7">The design system is connected to Figma, where the UI kit, components and tokens are designed. When something changes in Figma, the tokens and components in code are updated to match.</p>
