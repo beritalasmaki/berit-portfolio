@@ -38,7 +38,7 @@
 	--color-status-error-strong: #a12a21;
 	--color-status-error-on-dark: #ee9a92;
 	--gradient-action-primary: linear-gradient(180deg, var(--color-surface-raised-dark), var(--color-surface-inverse));
-	--gradient-action-primary-hover: linear-gradient(180deg, var(--color-action-accent-dark), var(--color-action-accent-dark));
+	--gradient-action-primary-hover: linear-gradient(180deg, var(--color-action-accent), var(--color-action-accent));
 	--gradient-action-primary-dark: linear-gradient(180deg, var(--color-surface-canvas), var(--color-surface-raised));
 	--gradient-action-primary-hover-dark: linear-gradient(180deg, var(--color-action-accent), var(--color-status-warning-default));
 	--grid-columns: 4;
@@ -121,7 +121,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .skip-link:focus { transform: translateY(0); }
 
 .eyebrow {
-	color: var(--color-action-accent-dark);
+	color: var(--preview-accent, var(--color-action-accent-dark));
 	font-family: "IBM Plex Mono", monospace;
 	font-size: 11px;
 	font-weight: 600;
@@ -145,7 +145,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .token-name {
-	color: var(--color-content-primary);
+	color: var(--preview-content, var(--color-content-primary));
 	font-family: "IBM Plex Mono", monospace;
 	font-size: 12px;
 }
@@ -160,7 +160,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	text-wrap: balance;
 }
 
-.body-copy { max-width: var(--width-text); color: var(--color-content-secondary); }
+.body-copy { max-width: var(--width-text); color: var(--preview-content-secondary, var(--color-content-secondary)); }
 
 .surface-grid {
 	background-image: linear-gradient(var(--color-border-default) 1px, transparent 1px), linear-gradient(90deg, var(--color-border-default) 1px, transparent 1px);
@@ -174,9 +174,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-content: var(--color-content-primary);
 	--preview-content-muted: var(--color-content-muted);
 	--preview-border: var(--color-border-subtle);
+	--preview-content-secondary: var(--color-content-secondary);
 	--preview-action: var(--color-action-primary);
 	--preview-action-text: var(--color-content-inverse);
-	--preview-action-hover-text: var(--color-content-inverse);
+	--preview-action-hover-text: var(--color-content-primary);
 	--preview-action-gradient: var(--gradient-action-primary);
 	--preview-action-gradient-hover: var(--gradient-action-primary-hover);
 	--preview-action-border: transparent;
@@ -205,6 +206,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-surface-raised: var(--color-surface-raised-dark);
 	--preview-content: var(--color-content-inverse);
 	--preview-content-muted: var(--color-content-muted-dark);
+	--preview-content-secondary: var(--color-content-muted-dark);
 	--preview-border: var(--color-border-strong);
 	--preview-action: var(--color-content-inverse);
 	--preview-action-text: var(--color-content-primary);
@@ -245,4 +247,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-motion: reduce) {
 	html { scroll-behavior: auto; }
 	*, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* A soft fade on hover for links, buttons and other controls. The global reduced motion rule above removes it when asked. */
+a, button, summary, label, [role="tab"] {
+	transition-property: color, background-color, border-color, text-decoration-color, box-shadow, opacity, transform;
+	transition-duration: 200ms;
+	transition-timing-function: ease;
 }

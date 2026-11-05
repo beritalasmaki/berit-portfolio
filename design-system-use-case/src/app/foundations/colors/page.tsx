@@ -8,7 +8,7 @@ const raw = (prefix: string) => primitiveTokens.colors.filter((token) => token.n
 const semantic = (prefix: string) => semanticTokens.filter((token) => token.name.startsWith(prefix));
 
 const guide = [
-  ["Orange", "Two oranges. Orange 500 is for fills, icons, borders and the active marker, and for accent text on dark surfaces. Orange 700 is for accent text on light surfaces and for the hover state of a primary button."],
+  ["Orange", "Two oranges. Orange 500 is for fills, icons, borders and the active marker, and for accent text on dark surfaces. Orange 500 is also the hover colour of the primary button. Orange 700 is only for accent text on light surfaces, and is never used on a dark background."],
   ["Charcoal", "Three charcoals. Charcoal 950 is ink: headings, primary text, the primary button and the dark-mode canvas. Charcoal 800 is a surface raised above the dark canvas. Charcoal 700 is for body copy, hints and metadata."],
   ["Status", "Yellow, blue, green and red are only for info, success, warning and error, and for the focus ring. Do not use them as decoration."],
   ["Components", "Components use semantic colours only. If the colour you need has no semantic name, add one instead of using a raw value."],
@@ -24,7 +24,7 @@ const sections: TokenSection[] = [
   { id: "action-gradients", group: "Semantic (roles)", title: "Action gradients", description: "The gradient each state of the primary button uses.", tokens: semantic("gradient.") },
   { id: "main-colors", compact: true, group: "Primitives (raw values)", title: "Main colors", description: "Raw values are the actual colours. Components do not use them directly; they use the semantic roles at the top of the page. These are the orange accent, the charcoal ink and the neutral greys, greens and whites.", tokens: [...raw("color.orange."), ...raw("color.charcoal."), ...raw("color.sage."), ...raw("color.paper."), ...raw("color.border.")] },
   { id: "status-colors", compact: true, group: "Primitives (raw values)", title: "Status colors", description: "Yellow, blue, green and red in four steps each: a pale surface (100), a soft tone for dark surfaces (300), a mid tone for borders and icons (500) and a dark tone for text (700). Yellow 500 is also the focus ring.", tokens: [...raw("color.yellow."), ...raw("color.blue."), ...raw("color.green."), ...raw("color.red.")] },
-  { id: "raw-gradients", compact: true, group: "Primitives (raw values)", title: "Gradients", description: "Four gradients, all running from top to bottom: ink and white for the primary button, and two orange ones for its hover state.", tokens: primitiveTokens.gradients },
+  { id: "raw-gradients", compact: true, group: "Primitives (raw values)", title: "Gradients", description: "Four gradients, all running from top to bottom: ink and white for the primary button, and two orange ones for its hover state on light and dark surfaces.", tokens: primitiveTokens.gradients },
 ];
 
 export default function ColorsPage() {
