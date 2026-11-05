@@ -57,20 +57,20 @@ export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy:
 
         {/* The design system is a work sample outside the case studies. It uses
             the same row as the case studies: two thumbnails on the left (each
-            with a caption pill, like the industry pill on a case study) and the
+            with a quiet caption underneath) and the
             text on the right. It has two links instead of one link around the
             whole card. */}
         <article className="glass rounded-card overflow-hidden flex flex-col md:flex-row md:items-stretch">
-          <div className="flex flex-col gap-px md:w-2/5 lg:w-1/3 md:shrink-0">
+          <div className="flex flex-col gap-4 p-4 md:w-2/5 lg:w-1/3 md:shrink-0 md:justify-center">
             {[
               { src: "/ds/ui-kit-figma.png", alt: copy.designSystem.uiKitAlt, caption: copy.designSystem.uiKitCaption },
               { src: "/ds/component-library.png", alt: copy.designSystem.libraryAlt, caption: copy.designSystem.libraryCaption },
             ].map((figure) => (
-              <figure key={figure.src} className="relative m-0 aspect-[16/8] overflow-hidden">
-                <Image src={figure.src} alt={figure.alt} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 40vw, 100vw" className="object-cover object-left-top" />
-                <figcaption className="absolute top-3 left-3 font-mono-label text-mono-label uppercase text-white bg-ink rounded-pill py-1 px-3 whitespace-nowrap ring-1 ring-white/70 shadow-[0_2px_8px_rgba(34,34,34,0.12)]">
-                  {figure.caption}
-                </figcaption>
+              <figure key={figure.src} className="m-0 flex flex-col gap-2">
+                <div className="relative aspect-[16/8] overflow-hidden rounded-frame border border-rule-strong">
+                  <Image src={figure.src} alt={figure.alt} fill sizes="(min-width: 1024px) 30vw, (min-width: 768px) 36vw, 100vw" className="object-cover object-left-top" />
+                </div>
+                <figcaption className="font-mono-label text-mono-label uppercase text-muted">{figure.caption}</figcaption>
               </figure>
             ))}
           </div>
