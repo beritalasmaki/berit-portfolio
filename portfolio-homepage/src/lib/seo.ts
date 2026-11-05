@@ -19,7 +19,7 @@ export const ogImage: Record<Locale, { url: string; width: number; height: numbe
     url: "/og/og-fi.png",
     width: 1200,
     height: 630,
-    alt: "Berit Alasmäki — senior UX-suunnittelija Suomessa",
+    alt: "Berit Alasmäki — senior UX- ja tuotesuunnittelija, Design Systems ja DesignOps",
   },
 };
 

@@ -21,9 +21,9 @@ export const fi: Dictionary = {
   meta: {
     titleSuffix: "Berit Alasmäki",
     home: {
-      title: "UX-suunnittelija (UX Designer) Suomessa | Berit Alasmäki",
+      title: "Berit Alasmäki | UX- ja tuotesuunnittelija, Design Systems",
       description:
-        "Berit Alasmäki on senior UX- ja UI/UX-suunnittelija Suomessa. Yli 10 vuoden kokemus asiantuntijatyökaluista, julkisen sektorin palveluista ja suunnittelujärjestelmistä. Tutustu töihin.",
+        "Senior UX- ja tuotesuunnittelija: monimutkaisia digitaalisia palveluita Figmasta tuotantovalmiiseen koodiin. Design Systems ja DesignOps. Tutustu töihin.",
     },
     blog: {
       title: "Blogi",
@@ -33,13 +33,14 @@ export const fi: Dictionary = {
     jsonLd: {
       jobTitle: "Senior UX- ja tuotesuunnittelija",
       description:
-        "Suomessa toimiva senior UX- ja UI/UX-suunnittelija, jolla on yli kymmenen vuoden kokemus asiantuntijatyökalujen, julkisen sektorin palveluiden ja suunnittelujärjestelmien suunnittelusta.",
+        "Senior UX- ja tuotesuunnittelija, joka suunnittelee monimutkaisia digitaalisia palveluita Figmasta tuotantovalmiiseen koodiin. Erikoisalueina suunnittelujärjestelmät (Design Systems) ja DesignOps.",
       knowsAbout: [
         "UX-suunnittelu",
         "UI-suunnittelu",
         "Tuotesuunnittelu",
         "Palvelumuotoilu",
-        "Suunnittelujärjestelmät",
+        "Suunnittelujärjestelmät (Design Systems)",
+        "DesignOps",
         "Käyttäjätutkimus",
         "Käytettävyystestaus",
         "Tietoarkkitehtuuri",

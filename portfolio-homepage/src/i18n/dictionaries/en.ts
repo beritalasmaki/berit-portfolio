@@ -38,6 +38,7 @@ export const en = {
         "Product design",
         "Service design",
         "Design systems",
+        "DesignOps",
         "User research",
         "Usability testing",
         "Information architecture",
