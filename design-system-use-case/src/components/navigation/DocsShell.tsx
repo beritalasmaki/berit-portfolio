@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
+import { PageNav, type PageNavGroup } from "@/components/navigation/PageNav";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
 
 const componentLinks = [
@@ -17,7 +18,7 @@ const componentLinks = [
 
 const navItem = (active: boolean) => `block whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold ${active ? "bg-[var(--color-surface-inverse)] text-white" : "text-[var(--color-content-secondary)] hover:bg-[var(--color-surface-subtle)]"}`;
 
-export function DocsShell({ children, active, topLink = { href: "/", label: "Back to landing page" } }: { children: ReactNode; active?: string; topLink?: { href: string; label: string } }) {
+export function DocsShell({ children, active, topLink = { href: "/", label: "Back to landing page" }, pageNav }: { children: ReactNode; active?: string; topLink?: { href: string; label: string }; pageNav?: PageNavGroup[] }) {
   const foundationRouteActive = active === "Foundations" || ["Colors", "Spacing", "Typography", "Shape & elevation"].includes(active ?? "");
   const componentRouteActive = active === "Components" || componentLinks.some((item) => item.label === active);
   const [foundationsOpen, setFoundationsOpen] = useState(foundationRouteActive);
@@ -54,7 +55,7 @@ export function DocsShell({ children, active, topLink = { href: "/", label: "Bac
             <Link href="/examples/analytics" className="hidden rounded-lg px-3 py-2 text-sm font-semibold text-[var(--color-content-secondary)] hover:bg-[var(--color-surface-subtle)] lg:block">Analytics</Link>
           </nav>
         </aside>
-        <main id="main-content" className="min-w-0 px-6 py-10 lg:px-12 lg:py-14">{children}</main>
+        <main id="main-content" className="min-w-0 px-6 py-10 lg:px-12 lg:py-14">{pageNav ? <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_14rem] xl:gap-12"><div className="min-w-0">{children}</div><PageNav groups={pageNav} /></div> : children}</main>
       </div>
     </div>
   );

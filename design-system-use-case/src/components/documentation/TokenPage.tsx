@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
+import type { PageNavGroup } from "@/components/navigation/PageNav";
 import { DocsShell } from "@/components/navigation/DocsShell";
 import { primitiveTokens } from "@/data/tokens";
 
@@ -12,7 +13,7 @@ function resolveColorValue(value: string) {
 type Token = { name: string; value: string; description: string; type?: string };
 
 /** A titled group of tokens. A page with several groups lists each one in its own card. */
-export type TokenSection = { id: string; title: string; description?: string; tokens: readonly Token[] };
+export type TokenSection = { id: string; group: string; title: string; navLabel?: string; description?: string; tokens: readonly Token[] };
 
 type TokenPageProps = {
   active: string;
@@ -50,24 +51,23 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
 }
 
 export function TokenPage({ active, title, description, tokens = [], sections, intro = "Foundations / tokens", preview, lead }: TokenPageProps) {
-  const groups: readonly TokenSection[] = sections ?? [{ id: "tokens", title: `${title} tokens`, tokens }];
+  const groups: readonly TokenSection[] = sections ?? [{ id: "tokens", group: title, title: `${title} tokens`, navLabel: "All tokens", tokens }];
+  const pageNav: PageNavGroup[] = [];
+  for (const group of groups) {
+    const heading = sections ? group.group : title;
+    let entry = pageNav.find((item) => item.heading === heading);
+    if (!entry) { entry = { heading, items: [] }; pageNav.push(entry); }
+    entry.items.push({ id: group.id, label: group.navLabel ?? group.title });
+  }
+  if (preview) pageNav[0]?.items.unshift({ id: "preview", label: "Rendered preview" });
   return (
-    <DocsShell active={active}>
+    <DocsShell active={active} pageNav={pageNav}>
       <div className="max-w-5xl">
         <p className="eyebrow mb-4">Documentation / {intro.toLowerCase()}</p>
         <h1 className="text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">{title}</h1>
         <p className="body-copy mt-5 text-lg">{description}</p>
-        {sections ? (
-          <nav aria-label={`${title} on this page`} className="mt-8">
-            <ul className="m-0 flex list-none flex-wrap gap-3 p-0">
-              {sections.map((section) => (
-                <li key={section.id}><a href={`#${section.id}`} className="inline-flex min-h-11 items-center rounded-full border border-[var(--color-border-strong)] px-4 text-sm font-semibold">{section.title}</a></li>
-              ))}
-            </ul>
-          </nav>
-        ) : null}
         {lead}
-        {preview ? <section className="mt-12" aria-labelledby="type-preview-heading"><p className="eyebrow mb-3">Rendered preview</p><h2 id="type-preview-heading" className="mb-5 text-2xl font-bold">See the scale in context.</h2>{preview}</section> : null}
+        {preview ? <section id="preview" className="mt-12 scroll-mt-24" aria-labelledby="type-preview-heading"><p className="eyebrow mb-3">Rendered preview</p><h2 id="type-preview-heading" className="mb-5 text-2xl font-bold">See the scale in context.</h2>{preview}</section> : null}
         {groups.map((group) => (
           <article key={group.id} id={group.id} aria-labelledby={`${group.id}-heading`} className="mt-12 scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] bg-white p-6 md:p-8">
             <div className="mb-6 flex flex-wrap items-baseline justify-between gap-4">
