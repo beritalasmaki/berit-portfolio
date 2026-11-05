@@ -5,46 +5,46 @@ export const metadata: Metadata = { title: "Design principles" };
 
 const principles = [
   {
-    title: "Accessible from the start",
-    statement: "Accessibility is part of every component, not a check at the end.",
-    design: "Check contrast before choosing a colour. Never use colour as the only signal. Make every target at least 44px.",
-    code: "Use semantic HTML, make everything work with a keyboard, keep a visible focus ring and announce changes with ARIA where needed.",
-    example: "An error is shown with an icon and text, not just red. The focus ring is yellow with a dark edge, so it can be seen on any surface.",
+    title: "Everyone can use it",
+    statement: "Every part works for people with different needs: people who use a keyboard or a screen reader, and people who find small or pale text hard to read.",
+    design: "Make text easy to read against its background. Never use colour alone to show something. Make buttons and links big enough to tap.",
+    code: "Use the right HTML element for each job. Make everything work with a keyboard. Keep the focus outline visible.",
+    example: "An error shows an icon and words, not only red. The focus outline is yellow with a dark edge, so it shows on any background.",
   },
   {
-    title: "One language for design and code",
-    statement: "A token has the same name in Figma and in code, so nothing gets lost in handover.",
-    design: "Bind every colour, space and radius to a variable instead of a raw value. Changes are designed in Figma first.",
-    code: "Use the same names as CSS variables and keep the token files in step with the Figma file.",
-    example: "color/content/primary in Figma is --color-content-primary in code. The Colors page lists both layers, raw values and semantic roles.",
+    title: "Design and code match",
+    statement: "A colour or a size has the same name in Figma and in the code. So designers and developers talk about the same thing.",
+    design: "Use the variables in Figma instead of typing in values. Change things in Figma first.",
+    code: "Use the same names in the code. When something changes in Figma, update the code to match.",
+    example: "color/content/primary in Figma is --color-content-primary in the code.",
   },
   {
-    title: "Few choices, each with a job",
-    statement: "Too many options make it unclear which one to use. A colour, token or component has to earn its place.",
-    design: "Before adding something, check whether an existing part does the job. Write down what each one is for and what it is not for.",
-    code: "Build from the existing tokens and components. If something is missing, say so and fix the gap in the system instead of working around it.",
-    example: "The palette has two oranges and three charcoals, four gradients, and a note on every colour that says what it is for.",
+    title: "Keep it small",
+    statement: "Fewer choices make it easier to pick the right one. A new colour or component is only added when it is really needed.",
+    design: "Before you add something, check whether an existing part already does the job. Write down what each part is for.",
+    code: "Use what already exists. If something is missing, add it to the system so everyone can use it.",
+    example: "There are two oranges, three dark greys and four gradients. Every colour has a note that says what it is for.",
   },
   {
-    title: "Roles before values",
-    statement: "Components use roles such as content, surface and action, never raw colours, so one change reaches everywhere.",
-    design: "Pick colours by what they do. Use the semantic layer and leave the raw palette to the system.",
-    code: "Write var(--color-content-primary), not a hex code. Never repeat a value that already exists as a variable.",
-    example: "Dark mode works by pointing the same roles at other values. No component has its own dark colours.",
+    title: "Colours are named by their job",
+    statement: "Pick a colour by what it is used for, such as text, background or button. Do not pick it by how it looks.",
+    design: "Choose the text colour or the button colour, not “orange”.",
+    code: "Use a name such as --color-content-primary, not a code such as #1f2321. Do not copy a value that already has a name.",
+    example: "Dark mode only changes what each name points to. No component has its own dark colours.",
   },
   {
-    title: "Plain language",
-    statement: "Write so that anyone can understand it: labels, error messages and documentation alike.",
-    design: "Use short words and say what to do. Explain unusual terms next to where they appear.",
-    code: "Name things by what they are. Put a plain-language reading next to any value that needs one.",
-    example: "A type value such as clamp(22px, 2.4vw, 32px) / 1.1 / 800 has a sentence under it explaining size, line height and weight.",
+    title: "Say it simply",
+    statement: "Use short, plain words in labels, messages and documentation. If a term needs explaining, explain it right there.",
+    design: "Tell people what to do next. Avoid jargon.",
+    code: "Give things clear names. Put a plain explanation next to any value that needs one.",
+    example: "A value such as clamp(22px, 2.4vw, 32px) / 1.1 / 800 has a sentence under it that says what it means.",
   },
 ];
 
 const inspiration = [
-  { name: "Apple Human Interface Guidelines", href: "https://developer.apple.com/design/human-interface-guidelines/", text: "for treating clarity, consistency and accessibility as everyday practice." },
-  { name: "Google Material Design", href: "https://m3.material.io/", text: "for building accessibility and clear states into the components themselves." },
-  { name: "University of Helsinki design system", href: "https://designsystem.helsinki.fi/2de013a32/p/34207e-design-principles", text: "for stating principles openly and writing separate guidance for designers, developers and product owners." },
+  { name: "Apple Human Interface Guidelines", href: "https://developer.apple.com/design/human-interface-guidelines/", text: "for making clear, consistent and accessible design part of everyday work." },
+  { name: "Google Material Design", href: "https://m3.material.io/", text: "for building accessibility and clear states into the components." },
+  { name: "University of Helsinki design system", href: "https://designsystem.helsinki.fi/2de013a32/p/34207e-design-principles", text: "for stating principles openly and writing separate guides for designers, developers and product owners." },
 ];
 
 export default function PrinciplesPage() {
@@ -53,7 +53,7 @@ export default function PrinciplesPage() {
       <div className="max-w-[var(--width-page)]">
         <p className="eyebrow mb-4">Principles / design principles</p>
         <h1 className="text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">Design principles</h1>
-        <p className="body-copy mt-5 text-lg">Five principles explain how DS by Berit is designed and built. Each one shows what it means for a designer, what it means in code, and where you can see it in this system.</p>
+        <p className="body-copy mt-5 text-lg">These five principles explain how DS by Berit is designed and built. Each one says what it means for designers, what it means in the code, and where you can see it in this system.</p>
         <ol className="m-0 mt-12 list-none space-y-6 p-0">
           {principles.map((principle, index) => (
             <li key={principle.title} id={`principle-${index + 1}`} className="scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 md:p-8">

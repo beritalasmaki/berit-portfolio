@@ -7,9 +7,9 @@ export const metadata: Metadata = { title: "Get started" };
 const figmaUrl = "https://www.figma.com/design/WlwWrwDWzt5shl0sYocASJ/Design-System-by-Berit";
 
 const roles = [
-  { href: "/getting-started/designers", title: "For designers", text: "Find your way around the Figma file, use variables and styles, and design a new component the way the system expects." },
-  { href: "/getting-started/developers", title: "For developers", text: "Install and run the project, use components, tokens and the layout grid, and keep code and Figma in step." },
-  { href: "/getting-started/product-owners", title: "For product owners", text: "See what the system gives your team, how to read the documentation and how to ask for a change." },
+  { href: "/getting-started/designers", title: "For designers", text: "Find your way around the Figma file, use its colours and sizes, and design a new part the way the system expects." },
+  { href: "/getting-started/developers", title: "For developers", text: "Run the project, use the components, colours and grid in code, and keep the code in step with Figma." },
+  { href: "/getting-started/product-owners", title: "For product owners", text: "See what the system gives your team, how to read these pages and how to ask for a change." },
 ];
 
 const parts = [
@@ -25,7 +25,7 @@ export default function GettingStartedPage() {
       <div className="max-w-[var(--width-page)]">
         <p className="eyebrow mb-4">Getting started</p>
         <h1 className="text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">How to get started</h1>
-        <p className="body-copy mt-5 text-lg">DS by Berit is a design system with a Figma file and a coded component library that match each other. Pick the guide that fits your role.</p>
+        <p className="body-copy mt-5 text-lg">DS by Berit is a design system: a set of ready-made parts and rules for building a product. It has a Figma file for designers and a code library for developers, and the two match each other. Pick the guide that fits your role.</p>
 
         <section aria-labelledby="roles-heading" className="mt-12">
           <h2 id="roles-heading" className="m-0 text-2xl font-bold">Choose your role</h2>
@@ -49,9 +49,23 @@ export default function GettingStartedPage() {
           </ul>
         </section>
 
+        <section aria-labelledby="words-heading" className="mt-12">
+          <h2 id="words-heading" className="m-0 text-2xl font-bold">Words used in these pages</h2>
+          <dl className="mt-6 grid gap-5 md:grid-cols-2">
+            {[
+              ["Token", "A named value, such as a colour or a size. Using the name instead of the value means one change updates everything."],
+              ["Raw value (primitive)", "The actual value, such as the colour #f28b30. Components do not use raw values directly."],
+              ["Role (semantic token)", "A name that says what a value is for, such as “text colour” or “button background”. Components use roles."],
+              ["Atoms, molecules, organisms", "Three sizes of component. Atoms are the smallest parts (a button). Molecules are small groups of atoms (a field with its label). Organisms are bigger sections (a table)."],
+              ["Template and page", "A template is a page layout without real content. A page is a template filled with real content."],
+              ["Grid", "Invisible columns that line things up. It has 4 columns on a phone, 8 on a tablet and 12 on a desktop."],
+            ].map(([term, text]) => <div key={term}><dt className="text-sm font-bold">{term}</dt><dd className="body-copy m-0 mt-1 text-sm">{text}</dd></div>)}
+          </dl>
+        </section>
+
         <section aria-labelledby="figma-heading" className="mt-12 rounded-2xl bg-[var(--color-surface-subtle)] p-6 md:p-8">
           <h2 id="figma-heading" className="m-0 text-2xl font-bold">The Figma UI kit</h2>
-          <p className="body-copy mt-3">The design system is connected to a Figma file with the UI kit, the components and the tokens. The variables there are named like the tokens in the code, and every component has a Light and a Dark theme. Changes are designed in Figma first. The tokens and components in code are then updated by hand to match.</p>
+          <p className="body-copy mt-3">The Figma file has the UI kit: the components, colours, sizes and other values. Things have the same names in Figma and in the code, and every component comes in a light and a dark version. Changes are made in Figma first. The code is then updated by hand to match.</p>
           <a href={figmaUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--color-border-strong)] px-4 py-3 text-sm font-semibold">Open the Figma UI kit <span className="sr-only">(opens in a new tab)</span><span aria-hidden="true">↗</span></a>
         </section>
       </div>
