@@ -19,7 +19,7 @@ type Part = {
 const parts: Part[] = [
   { id: "tokens", tone: "ux", tag: "UX", title: "Design tokens", text: "Colours, typography, spacing, radius, shadows and more", href: "/foundations", cells: [8, 3, 14, 3] },
   { id: "guidelines", tone: "guide", title: "Guidelines", text: "Principles, rules and recommendations", href: "/principles", cells: [6, 7, 8, 3] },
-  { id: "ui-kit", tone: "ux", tag: "UX", title: "UI kit", text: "Components, templates and resources in Figma", href: figmaUrl, external: true, cells: [16, 7, 8, 3] },
+  { id: "ui-kit", tone: "ux", tag: "UX", title: "UI kit", text: "Components, templates and resources", href: figmaUrl, external: true, cells: [16, 7, 8, 3] },
   { id: "reference", tone: "reference", title: "Reference site", text: "Guides, documentation and examples", href: "/getting-started", cells: [3, 11, 9, 3] },
   { id: "library", tone: "dev", tag: "DEV", title: "Component library", text: "Ready-to-use components in code", href: "/components", cells: [18, 11, 9, 3] },
   { id: "app-1", tone: "app", title: "Application 1", text: "Mobile, desktop, system and so on", href: "/examples/project-management", cells: [5, 17, 6, 3] },
@@ -80,7 +80,7 @@ const description = "Design tokens feed the reference site and the component lib
  * 32px grid as the page background, with dashed lines between the parts. On a narrow screen it becomes a
  * short top-to-bottom list.
  */
-export function SystemDiagram() {
+export function SystemDiagram({ compact = false }: { compact?: boolean }) {
   const byId = Object.fromEntries(parts.map((part) => [part.id, part]));
   const group = (ids: string[]) => ids.map((id) => <li key={id} className="list-none"><Box part={byId[id]} positioned={false} /></li>);
   return (
@@ -90,7 +90,7 @@ export function SystemDiagram() {
       <div className="hidden md:block" style={{ containerType: "inline-size" }}>
         <div
           className="relative mx-auto w-full max-w-[960px] overflow-hidden rounded-3xl border border-[var(--color-border-default)] bg-[var(--color-surface-canvas)]"
-          style={{ aspectRatio: `${COLS} / ${ROWS}`, backgroundImage: "linear-gradient(var(--color-border-default) 1px, transparent 1px), linear-gradient(90deg, var(--color-border-default) 1px, transparent 1px)", backgroundSize: `${100 / COLS}% ${100 / ROWS}%`, backgroundPosition: "-1px -1px" }}
+          style={{ aspectRatio: `${COLS} / ${ROWS}`, ...(compact ? {} : { backgroundImage: "linear-gradient(var(--color-border-default) 1px, transparent 1px), linear-gradient(90deg, var(--color-border-default) 1px, transparent 1px)", backgroundSize: `${100 / COLS}% ${100 / ROWS}%`, backgroundPosition: "-1px -1px" }) }}
         >
           <div aria-hidden="true" className="absolute rounded-[2.4cqw] border-2 border-[var(--color-action-accent)] bg-white/60" style={{ left: `${(1 / COLS) * 100}%`, top: `${(1 / ROWS) * 100}%`, width: `${(28 / COLS) * 100}%`, height: `${(14 / ROWS) * 100}%` }} />
           <p aria-hidden="true" className="absolute m-0 flex items-center justify-center rounded-full border-2 border-[var(--color-action-accent)] bg-[var(--color-status-warning-subtle)] font-mono text-[max(10px,1.2cqw)] font-semibold uppercase tracking-[0.12em]" style={{ left: `${(11.5 / COLS) * 100}%`, top: `${(0.4 / ROWS) * 100}%`, width: `${(7 / COLS) * 100}%`, height: `${(1.2 / ROWS) * 100}%` }}>Design system</p>
