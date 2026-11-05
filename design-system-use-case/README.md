@@ -63,7 +63,9 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/components/molecules/form-fields`, `/components/molecules/navigation-parts`, `/components/molecules/date-picker`, `/components/molecules/notifications`, `/components/molecules/form-progress` - small groups of atoms
 - `/components/templates/dashboard`, `/components/templates/form-page` - page layouts without content
 - `/components/organisms/navigation`, `/components/organisms/cards`, `/components/organisms/table`, `/components/organisms/forms` - larger sections
-- `/getting-started` - introduction to the documentation structure
+- `/getting-started` - overview, with guides for designers, developers and product owners at `/getting-started/designers`, `/getting-started/developers` and `/getting-started/product-owners`
+- `/principles` - the five design principles
+- `/examples` - the example pages
 - `/foundations` - dedicated token and foundation documentation
 - `/foundations/colors` - color tokens and semantic color roles
 - `/foundations/spacing` - spacing scale tokens
