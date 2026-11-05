@@ -1,7 +1,7 @@
 export const primitiveTokens = {
   colors: [
-    { name: "color.orange.500", value: "#f28b30", type: "color", description: "Accent. Use for fills, active markers, icons and borders, for accent text on dark surfaces, and for the hover background of the primary button. Not for text on a light surface." },
-    { name: "color.orange.700", value: "#b85b16", type: "color", description: "Accent at text contrast (4.6:1 on white). Use for accent text and labels on light surfaces. Never use it on a dark background." },
+    { name: "color.orange.500", value: "#f28b30", type: "color", description: "Accent. Use for fills, active markers, icons and borders, and for accent text on dark surfaces. Not for text on a light surface." },
+    { name: "color.orange.700", value: "#b85b16", type: "color", description: "Accent at text contrast (4.6:1 on white). Use for accent text and labels on light surfaces, and as the hover background of the primary button with white text. Never use it on a dark background." },
     { name: "color.yellow.100", value: "#fdf4cc", type: "color", description: "Pale yellow, the warning surface." },
     { name: "color.yellow.300", value: "#f8dd74", type: "color", description: "Soft yellow, warning content on a dark surface." },
     { name: "color.yellow.500", value: "#f2b705", type: "color", description: "Yellow companion to the orange accent, and the focus ring." },
@@ -95,7 +95,7 @@ export const primitiveTokens = {
   ],
   gradients: [
     { name: "gradient.ink", value: "linear-gradient(180deg, #303733, #1f2321)", type: "gradient", description: "Charcoal 800 to 950. Primary action on a light surface." },
-    { name: "gradient.accent", value: "linear-gradient(180deg, #f28b30, #f28b30)", type: "gradient", description: "Flat orange 500. Primary action on hover on a light surface, with dark text. It is a gradient with two equal stops so it works wherever a gradient is used." },
+    { name: "gradient.accent", value: "linear-gradient(180deg, #b85b16, #b85b16)", type: "gradient", description: "Flat orange 700. Primary action on hover on a light surface, with white text. It is a gradient with two equal stops so it works wherever a gradient is used." },
     { name: "gradient.sun", value: "linear-gradient(180deg, #f28b30, #f2b705)", type: "gradient", description: "Orange 500 to yellow 500. Primary action on hover on a dark surface." },
     { name: "gradient.white", value: "linear-gradient(180deg, #ffffff, #e8eee5)", type: "gradient", description: "White to sage 100. Primary action on a dark surface." },
   ],
@@ -114,8 +114,8 @@ export const semanticTokens = [
   { name: "color.surface.raised-dark", value: "{color.charcoal.800}", description: "The raised role, rebalanced for a dark canvas." },
   { name: "color.surface.inverse", value: "{color.charcoal.950}", description: "Navigation and emphasis surface." },
   { name: "color.action.primary", value: "{color.charcoal.950}", description: "Primary button background and other main actions." },
-  { name: "color.action.accent", value: "{color.orange.500}", description: "Accent fills, icons, borders, the active marker and the hover background of the primary button. Not for text on a light surface." },
-  { name: "color.action.accent-dark", value: "{color.orange.700}", description: "Accent text and labels on a light surface. Never use it on a dark background." },
+  { name: "color.action.accent", value: "{color.orange.500}", description: "Accent fills, icons, borders and the active marker. Not for text on a light surface." },
+  { name: "color.action.accent-dark", value: "{color.orange.700}", description: "Accent text and labels on a light surface, and the hover background of the primary button with white text. Never use it on a dark background." },
   { name: "color.action.accent-on-dark", value: "{color.orange.500}", description: "Accent for text, fills and borders on a dark canvas." },
   { name: "color.border.default", value: "{color.border.200}", description: "Default component boundary." },
   { name: "color.border.subtle", value: "{color.sage.200}", description: "Boundary on a light surface that needs more definition than the default, such as a preview panel." },

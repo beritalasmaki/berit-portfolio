@@ -38,7 +38,7 @@
 	--color-status-error-strong: #a12a21;
 	--color-status-error-on-dark: #ee9a92;
 	--gradient-action-primary: linear-gradient(180deg, var(--color-surface-raised-dark), var(--color-surface-inverse));
-	--gradient-action-primary-hover: linear-gradient(180deg, var(--color-action-accent), var(--color-action-accent));
+	--gradient-action-primary-hover: linear-gradient(180deg, var(--color-action-accent-dark), var(--color-action-accent-dark));
 	--gradient-action-primary-dark: linear-gradient(180deg, var(--color-surface-canvas), var(--color-surface-raised));
 	--gradient-action-primary-hover-dark: linear-gradient(180deg, var(--color-action-accent), var(--color-status-warning-default));
 	--grid-columns: 4;
@@ -135,6 +135,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	box-shadow: 0 0 0 2px var(--color-surface-inverse);
 }
 
+/* Put this on a dark surface so eyebrow labels and other accent text use the brighter orange. */
+.on-dark { --preview-accent: var(--color-action-accent-on-dark); }
+
 .variation-label {
 	color: var(--preview-content-muted, var(--color-content-muted));
 	font-family: "IBM Plex Mono", monospace;
@@ -177,7 +180,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-content-secondary: var(--color-content-secondary);
 	--preview-action: var(--color-action-primary);
 	--preview-action-text: var(--color-content-inverse);
-	--preview-action-hover-text: var(--color-content-primary);
+	--preview-action-hover-text: var(--color-content-inverse);
 	--preview-action-gradient: var(--gradient-action-primary);
 	--preview-action-gradient-hover: var(--gradient-action-primary-hover);
 	--preview-action-border: transparent;

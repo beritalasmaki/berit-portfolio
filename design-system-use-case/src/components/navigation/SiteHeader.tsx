@@ -19,7 +19,7 @@ export function SiteHeader({ actionHref, actionLabel, actionIcon, children }: Si
         </Link>
         {children}
         <nav aria-label="Primary" className="flex items-center text-sm font-semibold">
-          <Link href={actionHref} className="inline-flex items-center rounded-full bg-[var(--color-action-primary)] px-4 py-2 text-white hover:bg-[var(--color-action-accent)] hover:text-[var(--color-content-primary)]">
+          <Link href={actionHref} className="inline-flex items-center rounded-full bg-[var(--color-action-primary)] px-4 py-2 text-white hover:bg-[var(--color-action-accent-dark)]">
             {actionIcon === "arrow_back" ? <span aria-hidden="true" className="material-symbols-outlined mr-1">arrow_back</span> : null}
             {actionLabel}
             {actionIcon === "arrow_forward" ? <span aria-hidden="true" className="material-symbols-outlined ml-1">arrow_forward</span> : null}

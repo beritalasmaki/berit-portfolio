@@ -77,7 +77,7 @@ export default function PrinciplesPage() {
             </li>
           ))}
         </ol>
-        <section id="inspiration" aria-labelledby="inspiration-heading" className="mt-12 scroll-mt-24 rounded-2xl bg-[var(--color-surface-inverse)] p-6 text-white md:p-8">
+        <section id="inspiration" aria-labelledby="inspiration-heading" className="on-dark mt-12 scroll-mt-24 rounded-2xl bg-[var(--color-surface-inverse)] p-6 text-white md:p-8">
           <p className="eyebrow text-[var(--color-action-accent)]">Where these come from</p>
           <h2 id="inspiration-heading" className="mt-3 text-2xl font-bold">Systems I learn from or find inspiration in</h2>
           <ul className="mt-4 list-disc space-y-4 pl-5 text-white/80">

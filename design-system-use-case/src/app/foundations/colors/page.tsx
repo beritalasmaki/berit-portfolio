@@ -8,7 +8,7 @@ const raw = (prefix: string) => primitiveTokens.colors.filter((token) => token.n
 const semantic = (prefix: string) => semanticTokens.filter((token) => token.name.startsWith(prefix));
 
 const guide = [
-  ["Orange", "Two oranges. Orange 500 is for fills, icons, borders and the active marker, and for accent text on dark surfaces. Orange 500 is also the hover colour of the primary button. Orange 700 is only for accent text on light surfaces, and is never used on a dark background."],
+  ["Orange", "Two oranges. Orange 500 is for fills, icons, borders and the active marker, and for accent text on dark surfaces. Orange 700 is for accent text on light surfaces and for the hover state of the primary button, with white text. It is never used on a dark background."],
   ["Charcoal", "Three charcoals. Charcoal 950 is ink: headings, primary text, the primary button and the dark-mode canvas. Charcoal 800 is a surface raised above the dark canvas. Charcoal 700 is for body copy, hints and metadata."],
   ["Status", "Yellow, blue, green and red are only for info, success, warning and error, and for the focus ring. Do not use them as decoration."],
   ["Components", "Components use semantic colours only. If the colour you need has no semantic name, add one instead of using a raw value."],
