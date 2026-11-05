@@ -139,6 +139,15 @@ export const en = {
     heading: "A closer look at the work.",
     projectOne: "project",
     projectMany: "projects",
+    designSystem: {
+      label: "Design system · Work sample",
+      headline: "DS by Berit",
+      description:
+        "I built this design system to show that I can create, build, develop and manage one. It has tokens, accessible components and documentation in code, and a matching UI kit in Figma. Design changes start in Figma, and the code is updated to match.",
+      siteLabel: "Open the design system",
+      figmaLabel: "Open the Figma UI kit",
+      opensNewTab: " (opens in a new tab)",
+    },
   },
 
   about: {

@@ -16,7 +16,7 @@ The system also exists as a Figma file: [Design System by Berit](https://www.fig
 
 - **Tokens:** Figma variables use the token names from `src/data/tokens.ts` with slashes instead of dots (`color/content/primary`, `space/4`, `radius/md`). Each semantic colour carries its CSS variable name as code syntax, for example `var(--color-content-primary)`. There are paint, text and effect styles for the same tokens.
 - **Components:** one page per component, with every mode labelled and a Light and a Dark theme. Small shared pieces (icon button, checkbox and radio boxes, stepper parts) live on the Atoms page.
-- **Source of truth:** the tokens in this repository. The notification, date picker and multi-step form patterns from the Figma file are now built here too, with documentation pages under `/components`.
+- **How they stay in sync:** changes are designed in Figma first. The tokens in `src/data/tokens.ts` and `src/app/globals.css` and the components in `src/components` are then updated by hand to match. There is no automatic sync. The notification, date picker and multi-step form patterns are built here as well, with documentation pages under `/components`.
 - **Not set up:** Figma Code Connect, which would show these React components when a component is inspected in Figma. It needs an Organization or Enterprise Figma plan. Until then the connection is by links: this README, the Getting started page on the documentation site, and the About page in the Figma file.
 
 ## How we started

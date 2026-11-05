@@ -43,7 +43,7 @@ export default function FormsPage() {
   return <ComponentPage
     name="Forms"
     eyebrow="Components / input"
-    description="Form controls share one control shape, one focus treatment, and one set of modes, so a field behaves the same wherever it appears."
+    description="Form controls share one shape, one focus style and the same modes, so a field looks and works the same wherever it is used."
     usage={<p className="m-0">Wrap every control in a Field so it carries a real label, and use the hint before the control rather than placeholder text. The modes below are documentation states: in a live form the browser drives hover, active and focus, and only disabled and loading are set from code.</p>}
     contract={[
       "Controls are Input, Select, Checkbox and Radio, with Field supplying label, hint and error.",

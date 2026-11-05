@@ -5,5 +5,5 @@ import { primitiveTokens, semanticTokens } from "@/data/tokens";
 export const metadata: Metadata = { title: "Shape and elevation" };
 
 export default function ShapePage() {
-  return <TokenPage active="Shape & elevation" title="Shape & elevation" description="Radii, borders, and shadows that create hierarchy without adding visual noise." tokens={[...primitiveTokens.shape, ...semanticTokens.filter((token) => token.name.startsWith("radius.") || token.name.startsWith("elevation."))]} />;
+  return <TokenPage active="Shape & elevation" title="Shape & elevation" description="Corner radii, borders and shadows." tokens={[...primitiveTokens.shape, ...semanticTokens.filter((token) => token.name.startsWith("radius.") || token.name.startsWith("elevation."))]} />;
 }

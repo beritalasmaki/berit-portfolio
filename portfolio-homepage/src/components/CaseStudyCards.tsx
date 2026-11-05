@@ -5,6 +5,9 @@ import { caseStudyPath } from "@/data/case-studies/slugs";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 
+const designSystemUrl = "https://design-system-use-case.vercel.app/";
+const figmaUiKitUrl = "https://www.figma.com/design/WlwWrwDWzt5shl0sYocASJ/Design-System-by-Berit?node-id=4-4";
+
 export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy: Dictionary["caseStudies"] }) {
   const caseStudies = getCaseStudies(locale);
   return (
@@ -50,6 +53,33 @@ export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy:
             </Link>
           </article>
         ))}
+
+        {/* The design system is a work sample outside the case studies, so it
+            closes the list as a text card with two external links instead of
+            one link around the whole card. */}
+        <article className="glass rounded-card flex flex-col gap-4 p-card-pad">
+          <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.designSystem.label}</p>
+          <h3 className="m-0 text-card-h3 text-ink">{copy.designSystem.headline}</h3>
+          <p className="m-0 text-body-lg text-body max-w-prose">{copy.designSystem.description}</p>
+          <div className="flex flex-wrap gap-x-8 gap-y-4">
+            {[
+              { href: designSystemUrl, label: copy.designSystem.siteLabel },
+              { href: figmaUiKitUrl, label: copy.designSystem.figmaLabel },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-nav font-semibold text-ink border-b border-accent pb-2 whitespace-nowrap transition-[border-color] duration-150 ease-out hover:border-accent-dark focus-visible:border-accent-dark"
+              >
+                {link.label}
+                <span className="sr-only">{copy.designSystem.opensNewTab}</span>
+                <span aria-hidden="true"> ↗</span>
+              </a>
+            ))}
+          </div>
+        </article>
       </div>
     </section>
   );

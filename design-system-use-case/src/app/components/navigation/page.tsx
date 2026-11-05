@@ -34,7 +34,7 @@ export default function NavigationPage() {
   return <ComponentPage
     name="Navigation"
     eyebrow="Components / wayfinding"
-    description="Navigation orients people across a product with persistent context, focused movement, and clear current-page signals."
+    description="Navigation shows people where they are in a product and how to move around it."
     usage={<p className="m-0">Use top navigation for product-level movement and side navigation for a focused workspace. Use links for individual destinations, then add tabs, breadcrumbs, or pagination when people need context within a deeper task.</p>}
     contract={["Navigation landmarks have distinct aria-label values.", "NavigationLink variants include default, current, muted, and inverse.", "Top navigation handles product-level movement; side navigation handles workspace movement.", "Tabs switch peer views in place and use a roving tabindex with Arrow, Home, and End keys.", "Breadcrumbs describe hierarchy and always end in the current page, which is not a link."]}
     accessibility={["Use native nav landmarks for navigation groups.", "Do not rely on color alone to show the current page.", "Top and side navigation use clear, distinct aria-label values.", "Disclosure menus return focus to their trigger on Escape.", "Breadcrumbs use an ordered list inside their own nav landmark, and mark the last item aria-current."]}
