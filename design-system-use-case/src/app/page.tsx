@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { SystemDiagram } from "@/components/documentation/SystemDiagram";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
 
 export const metadata: Metadata = { title: "DS by Berit" };
@@ -31,6 +32,13 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section aria-labelledby="map-heading" className="mx-auto max-w-[var(--width-page)] px-6 py-20 lg:px-12 lg:py-28">
+        <p className="eyebrow mb-3">The system map</p>
+        <h2 id="map-heading" className="m-0 max-w-[var(--width-text-narrow)] text-3xl font-extrabold tracking-[-0.04em] md:text-5xl">How the parts fit together.</h2>
+        <p className="body-copy mt-4 max-w-[var(--width-text-narrow)]">The tokens and the UI kit in Figma are the design side. The component library is the code side. The reference site explains both, and the applications and websites use the component library.</p>
+        <div className="mt-10"><SystemDiagram /></div>
       </section>
 
       <section className="mx-auto max-w-[var(--width-page)] px-6 py-20 lg:px-12 lg:py-28">
