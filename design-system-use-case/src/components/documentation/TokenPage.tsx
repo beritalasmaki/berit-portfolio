@@ -2,6 +2,7 @@ import { Fragment, type CSSProperties, type ReactNode } from "react";
 import type { PageNavGroup } from "@/components/navigation/PageNav";
 import { DocsShell } from "@/components/navigation/DocsShell";
 import { primitiveTokens } from "@/data/tokens";
+import { explainTypeValue } from "@/components/documentation/typeValue";
 
 const primitiveColorValues: Map<string, string> = new Map([...primitiveTokens.colors, ...primitiveTokens.gradients].map((token) => [token.name, token.value]));
 
@@ -39,6 +40,18 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
         const isGradient = token.type === "gradient" || token.name.startsWith("gradient.");
         const isColor = token.type === "color" || token.name.startsWith("color.");
         const colorValue = isColor || isGradient ? resolveColorValue(token.value) : undefined;
+        if (token.type === "type") {
+          return (
+            <div key={token.name} className="grid gap-x-4 gap-y-2 border-b border-[var(--color-border-default)] py-5 last:border-0 lg:grid-cols-[15rem_1fr]">
+              <span className="token-name">{token.name}</span>
+              <div>
+                <p className="m-0 text-sm font-semibold text-[var(--color-content-primary)]">{token.value}</p>
+                <p className="m-0 mt-1 text-sm text-[var(--color-content-muted)]">{token.description}</p>
+                <ul className="m-0 mt-2 list-none space-y-1 p-0 text-sm text-[var(--color-content-secondary)]">{explainTypeValue(token.value).map((line) => <li key={line}>{line}</li>)}</ul>
+              </div>
+            </div>
+          );
+        }
         return (
           <div key={token.name} className="grid gap-x-4 gap-y-2 border-b border-[var(--color-border-default)] py-4 last:border-0 lg:grid-cols-[15rem_17rem_1fr] lg:items-center">
             <span className="token-name">{token.name}</span>
@@ -46,7 +59,9 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
               {colorValue ? <span aria-hidden="true" className="h-6 w-6 shrink-0 rounded-md border border-[var(--color-border-strong)]" style={(isGradient ? { backgroundImage: colorValue } : { backgroundColor: colorValue }) as CSSProperties} /> : null}
               <span className="min-w-0 break-words">{token.value.replace(/^\{(.+)\}$/, "$1")}{colorValue && token.value.startsWith("{") && !isGradient ? <span className="token-name ml-2 font-normal text-[var(--color-content-muted)]">{colorValue}</span> : null}</span>
             </span>
-            <span className="text-sm text-[var(--color-content-muted)]">{token.description}</span>
+            <span className="text-sm text-[var(--color-content-muted)]">
+              {token.description}
+            </span>
           </div>
         );
       })}
