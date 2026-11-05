@@ -6,6 +6,30 @@ import { caseStudyPath } from "@/data/case-studies/slugs";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 
+/* Small marks that sit next to the image captions. Both are drawn at the same 16px height. */
+function FigmaMark() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 38 57" className="h-4 w-auto shrink-0">
+      <path d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z" fill="#1abcfe" />
+      <path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z" fill="#0acf83" />
+      <path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="#ff7262" />
+      <path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#f24e1e" />
+      <path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#a259ff" />
+    </svg>
+  );
+}
+
+function GlobeCodeIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 shrink-0">
+      <path d="M15.5 10 13 7.5 15.5 5" />
+      <path d="M15.861 14A14.5 14.5 0 0112 22a14.48 14.48 0 010-20 10 10 0 109.888 11.5" />
+      <path d="M19.5 5 22 7.5 19.5 10" />
+      <path d="M2 12h8.5" />
+    </svg>
+  );
+}
+
 const designSystemUrl = "https://design-system-use-case.vercel.app/";
 const figmaUiKitUrl = "https://www.figma.com/design/WlwWrwDWzt5shl0sYocASJ/Design-System-by-Berit?node-id=4-4";
 
@@ -63,14 +87,15 @@ export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy:
         <article className="glass rounded-card overflow-hidden flex flex-col md:flex-row md:items-stretch">
           <div className="flex flex-col gap-4 p-4 md:w-2/5 lg:w-1/3 md:shrink-0 md:justify-center">
             {[
-              { src: "/ds/ui-kit-figma.png", alt: copy.designSystem.uiKitAlt, caption: copy.designSystem.uiKitCaption },
-              { src: "/ds/component-library.png", alt: copy.designSystem.libraryAlt, caption: copy.designSystem.libraryCaption },
+              { src: "/ds/ui-kit-figma.png", alt: copy.designSystem.uiKitAlt, caption: copy.designSystem.uiKitCaption, mark: <FigmaMark /> },
+              { src: "/ds/component-library.png", alt: copy.designSystem.libraryAlt, caption: copy.designSystem.libraryCaption, mark: <GlobeCodeIcon /> },
             ].map((figure) => (
-              <figure key={figure.src} className="m-0 flex flex-col gap-2">
-                <div className="relative aspect-[16/8] overflow-hidden rounded-frame border border-rule-strong">
-                  <Image src={figure.src} alt={figure.alt} fill sizes="(min-width: 1024px) 30vw, (min-width: 768px) 36vw, 100vw" className="object-cover object-left-top" />
-                </div>
-                <figcaption className="font-mono-label text-mono-label uppercase text-muted">{figure.caption}</figcaption>
+              <figure key={figure.src} className="relative m-0 aspect-[16/8] overflow-hidden rounded-frame border border-rule-strong">
+                <Image src={figure.src} alt={figure.alt} fill sizes="(min-width: 1024px) 30vw, (min-width: 768px) 36vw, 100vw" className="object-cover object-left-top" />
+                <figcaption className="absolute top-3 left-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-2 rounded-pill bg-white/90 px-3 py-1 font-mono-label text-mono-label uppercase text-ink shadow-sm ring-1 ring-black/10 backdrop-blur-sm">
+                  {figure.mark}
+                  <span className="min-w-0">{figure.caption}</span>
+                </figcaption>
               </figure>
             ))}
           </div>
