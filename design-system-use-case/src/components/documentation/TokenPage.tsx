@@ -2,6 +2,7 @@ import { Fragment, type CSSProperties, type ReactNode } from "react";
 import type { PageNavGroup } from "@/components/navigation/PageNav";
 import { DocsShell } from "@/components/navigation/DocsShell";
 import { primitiveTokens } from "@/data/tokens";
+import { explainShadowValue, explainTypeValue } from "@/components/documentation/typeValue";
 
 const primitiveColorValues: Map<string, string> = new Map([...primitiveTokens.colors, ...primitiveTokens.gradients].map((token) => [token.name, token.value]));
 
@@ -13,7 +14,7 @@ function resolveColorValue(value: string) {
 type Token = { name: string; value: string; description: string; type?: string };
 
 /** A titled group of tokens. A page with several groups lists each one in its own card. */
-export type TokenSection = { id: string; group: string; title: string; navLabel?: string; description?: string; tokens: readonly Token[] };
+export type TokenSection = { id: string; group: string; title: string; navLabel?: string; /** Show the tokens as a compact grid of swatches instead of a list. */ compact?: boolean; description?: string; tokens: readonly Token[] };
 
 type TokenPageProps = {
   active: string;
@@ -24,11 +25,36 @@ type TokenPageProps = {
   sections?: readonly TokenSection[];
   /** A short explanation for each group name used in `sections`, shown under the group heading. */
   groupIntro?: Record<string, string>;
+  /** A small label above each group heading, such as "Layer 1". */
+  groupEyebrow?: Record<string, string>;
+  /** Links to sections in `lead`, shown first in the on-this-page list. */
+  leadNav?: { id: string; label: string }[];
   intro?: string;
   preview?: ReactNode;
   /** Guidance shown above the token lists. */
   lead?: ReactNode;
 };
+
+function TokenSwatches({ tokens }: { tokens: readonly Token[] }) {
+  return (
+    <ul className="m-0 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+      {tokens.map((token) => {
+        const isGradient = token.type === "gradient" || token.name.startsWith("gradient.");
+        const colorValue = resolveColorValue(token.value);
+        return (
+          <li key={token.name} className="flex flex-col gap-2 rounded-xl border border-[var(--color-border-default)] p-3">
+            <div aria-hidden="true" className="h-14 rounded-lg border border-[var(--color-border-default)]" style={(isGradient ? { backgroundImage: colorValue } : { backgroundColor: colorValue }) as CSSProperties} />
+            <div>
+              <p className="token-name m-0">{token.name}</p>
+              <p className="m-0 mt-1 text-xs font-semibold text-[var(--color-content-primary)]">{isGradient ? "Top to bottom gradient" : token.value}</p>
+              <p className="m-0 mt-1 text-xs text-[var(--color-content-muted)]">{token.description}</p>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 
 function TokenRows({ tokens }: { tokens: readonly Token[] }) {
   return (
@@ -37,6 +63,18 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
         const isGradient = token.type === "gradient" || token.name.startsWith("gradient.");
         const isColor = token.type === "color" || token.name.startsWith("color.");
         const colorValue = isColor || isGradient ? resolveColorValue(token.value) : undefined;
+        if (token.type === "type" || token.type === "shadow") {
+          return (
+            <div key={token.name} className="grid gap-x-4 gap-y-2 border-b border-[var(--color-border-default)] py-5 last:border-0 lg:grid-cols-[15rem_1fr]">
+              <span className="token-name">{token.name}</span>
+              <div>
+                <p className="m-0 text-sm font-semibold text-[var(--color-content-primary)]">{token.value}</p>
+                <p className="m-0 mt-1 text-sm text-[var(--color-content-muted)]">{token.description}</p>
+                <ul className="m-0 mt-2 list-none space-y-1 p-0 text-sm text-[var(--color-content-secondary)]">{(token.type === "shadow" ? explainShadowValue(token.value) : explainTypeValue(token.value)).map((line) => <li key={line}>{line}</li>)}</ul>
+              </div>
+            </div>
+          );
+        }
         return (
           <div key={token.name} className="grid gap-x-4 gap-y-2 border-b border-[var(--color-border-default)] py-4 last:border-0 lg:grid-cols-[15rem_17rem_1fr] lg:items-center">
             <span className="token-name">{token.name}</span>
@@ -44,7 +82,9 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
               {colorValue ? <span aria-hidden="true" className="h-6 w-6 shrink-0 rounded-md border border-[var(--color-border-strong)]" style={(isGradient ? { backgroundImage: colorValue } : { backgroundColor: colorValue }) as CSSProperties} /> : null}
               <span className="min-w-0 break-words">{token.value.replace(/^\{(.+)\}$/, "$1")}{colorValue && token.value.startsWith("{") && !isGradient ? <span className="token-name ml-2 font-normal text-[var(--color-content-muted)]">{colorValue}</span> : null}</span>
             </span>
-            <span className="text-sm text-[var(--color-content-muted)]">{token.description}</span>
+            <span className="text-sm text-[var(--color-content-muted)]">
+              {token.description}
+            </span>
           </div>
         );
       })}
@@ -52,7 +92,7 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
   );
 }
 
-export function TokenPage({ active, title, description, tokens = [], sections, intro = "Foundations / tokens", preview, lead, groupIntro }: TokenPageProps) {
+export function TokenPage({ active, title, description, tokens = [], sections, intro = "Foundations / tokens", preview, lead, groupIntro, groupEyebrow, leadNav }: TokenPageProps) {
   const groups: readonly TokenSection[] = sections ?? [{ id: "tokens", group: title, title: `${title} tokens`, navLabel: "All tokens", tokens }];
   const pageNav: PageNavGroup[] = [];
   for (const group of groups) {
@@ -62,9 +102,10 @@ export function TokenPage({ active, title, description, tokens = [], sections, i
     entry.items.push({ id: group.id, label: group.navLabel ?? group.title });
   }
   if (preview) pageNav[0]?.items.unshift({ id: "preview", label: "Rendered preview" });
+  if (leadNav) pageNav[0]?.items.unshift(...leadNav);
   return (
     <DocsShell active={active} pageNav={pageNav}>
-      <div className="max-w-5xl">
+      <div className="max-w-[var(--width-page)]">
         <p className="eyebrow mb-4">Documentation / {intro.toLowerCase()}</p>
         <h1 className="text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">{title}</h1>
         <p className="body-copy mt-5 text-lg">{description}</p>
@@ -74,9 +115,9 @@ export function TokenPage({ active, title, description, tokens = [], sections, i
           <Fragment key={group.id}>
           {sections && group.group !== groups[index - 1]?.group ? (
             <div className="mt-16 border-t-2 border-[var(--color-action-accent)] pt-6">
-              <p className="eyebrow mb-2">{group.group.startsWith("Primitives") ? "Layer 1" : "Layer 2"}</p>
+              {groupEyebrow?.[group.group] ? <p className="eyebrow mb-2">{groupEyebrow[group.group]}</p> : null}
               <h2 className="m-0 text-3xl font-extrabold tracking-[-0.04em] md:text-4xl">{group.group}</h2>
-              {groupIntro?.[group.group] ? <p className="body-copy mt-3 max-w-3xl">{groupIntro[group.group]}</p> : null}
+              {groupIntro?.[group.group] ? <p className="body-copy mt-3 max-w-[var(--width-text)]">{groupIntro[group.group]}</p> : null}
             </div>
           ) : null}
           <article id={group.id} aria-labelledby={`${group.id}-heading`} className="mt-8 scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] bg-white p-6 md:p-8">
@@ -84,8 +125,8 @@ export function TokenPage({ active, title, description, tokens = [], sections, i
               {sections ? <h3 id={`${group.id}-heading`} className="m-0 text-2xl font-bold">{group.title}</h3> : <h2 id={`${group.id}-heading`} className="m-0 text-2xl font-bold">{group.title}</h2>}
               <span className="token-name text-[var(--color-content-muted)]">{group.tokens.length} values</span>
             </div>
-            {group.description ? <p className="body-copy -mt-2 mb-6 max-w-3xl text-sm">{group.description}</p> : null}
-            <TokenRows tokens={group.tokens} />
+            {group.description ? <p className="body-copy -mt-2 mb-6 max-w-[var(--width-text)] text-sm">{group.description}</p> : null}
+            {group.compact ? <TokenSwatches tokens={group.tokens} /> : <TokenRows tokens={group.tokens} />}
           </article>
           </Fragment>
         ))}

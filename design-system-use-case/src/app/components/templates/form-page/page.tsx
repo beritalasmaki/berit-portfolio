@@ -17,8 +17,8 @@ export default function FormPageTemplatePage() {
     showPageNav={false}
     description="A page layout for filling in a form: one narrow column with the instructions first, the steps, the fields in sections and the buttons last."
     usage={<p className="m-0">Use it for applications, sign-ups and any task where people enter information step by step. The template keeps one column so the eye moves straight down, and puts the buttons in the same place on every step.</p>}
-    contract={["Regions are the top navigation, a breadcrumb, a form introduction, progress through the steps, one or more form sections and the form actions.", "The form is one column, about 40rem wide, and sits in the middle of the page.", "The introduction says what is asked, how long it takes and that * marked fields are required.", "The primary action is on the right in the form actions, on every step."]}
-    accessibility={["The page has one h1, in the form introduction.", "The form is a form element with sections grouped by headings or fieldsets.", "Progress is given as text as well as numbered steps.", "Errors appear next to the field and in a panel at the top. See Notifications."]}
+    contract={["The form page template is a single, narrow column in the middle of the page, with the introduction first, then the progress, the form sections and the buttons last. One column keeps the eye moving straight down, and the buttons stay in the same place on every step.", "The introduction says what is asked, how long it takes and that fields marked with an asterisk are required. The form column uses the form width, and the primary action sits on the right."]}
+    accessibility={["The page has one main heading, which is in the form introduction, and the form is a real form element with its sections grouped by headings or fieldsets. Progress is given in words as well as numbered steps.", "Errors appear next to the field they belong to and also in a panel at the top, so people can find them quickly. See the notifications component for how errors and warnings are announced."]}
     examples={[
       {
         title: "Layout",
@@ -29,7 +29,7 @@ export default function FormPageTemplatePage() {
               <Link href="#top" className="font-bold">DS by Berit</Link>
               <nav aria-label="Top navigation" className="flex flex-wrap gap-1"><NavigationLink href="#work">Work</NavigationLink><NavigationLink href="#applications" aria-current="page">Applications</NavigationLink><NavigationLink href="#help">Help</NavigationLink></nav>
             </header>
-            <main className="mx-auto grid max-w-2xl gap-6 p-6">
+            <main className="mx-auto grid max-w-[var(--width-form)] gap-6 p-6">
               <Breadcrumb items={[{ label: "Applications", href: "#applications" }, { label: "New application" }]} />
               <TemplateRegion label="Form introduction" hint="Title, what is asked, how long it takes, * marked fields are required" className="min-h-24" />
               <FormProgress steps={["Your details", "Contact", "Review"]} current={1} />
@@ -39,7 +39,7 @@ export default function FormPageTemplatePage() {
             </main>
           </div>}
           cssCode={".form-page {\n  max-width: 40rem;\n  margin-inline: auto;\n  display: grid;\n  gap: 24px;\n}"}
-          javascriptCode={'<main className="mx-auto grid max-w-2xl gap-6">\n  <Breadcrumb items={items} />\n  <FormIntro title="Apply for a place">...</FormIntro>\n  <FormProgress steps={steps} current={1} />\n  <FormSection title="Your details">...</FormSection>\n  <FormActions position="first" onNext={next} />\n</main>'}
+          javascriptCode={'<main className="mx-auto grid max-w-[var(--width-form)] gap-6">\n  <Breadcrumb items={items} />\n  <FormIntro title="Apply for a place">...</FormIntro>\n  <FormProgress steps={steps} current={1} />\n  <FormSection title="Your details">...</FormSection>\n  <FormActions position="first" onNext={next} />\n</main>'}
         />,
       },
     ]}

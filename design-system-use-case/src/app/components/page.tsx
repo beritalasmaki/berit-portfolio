@@ -32,7 +32,7 @@ const levels = [
 export default function ComponentsPage() {
   return (
     <DocsShell active="Components">
-      <div className="max-w-5xl">
+      <div className="max-w-[var(--width-page)]">
         <p className="eyebrow mb-4">Documentation / components</p>
         <h1 className="text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">Components</h1>
         <p className="body-copy mt-5 text-lg">Components are grouped by Atomic Design: atoms, molecules, organisms and templates. Each page shows a component in its modes, with code, the rules it follows and its accessibility notes. Colours, type and spacing are the foundations underneath, and the example screens at the end are the pages.</p>
@@ -40,7 +40,7 @@ export default function ComponentsPage() {
           <section key={group.level} className="mt-12" aria-labelledby={`level-${group.level}`}>
             <p className="eyebrow mb-2">0{levelIndex + 1}</p>
             <h2 id={`level-${group.level}`} className="m-0 text-3xl font-extrabold tracking-[-0.04em]">{group.level}</h2>
-            <p className="body-copy mt-2 max-w-2xl text-sm">{group.text}</p>
+            <p className="body-copy mt-2 max-w-[var(--width-text-narrow)] text-sm">{group.text}</p>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               {group.items.map(([label, detail, slug]) => (
                 <Link key={slug} href={`/components/${slug}`} className="group rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 transition hover:-translate-y-1 hover:border-[var(--color-action-accent)]">
@@ -55,7 +55,7 @@ export default function ComponentsPage() {
         <section className="mt-12" aria-labelledby="level-pages">
           <p className="eyebrow mb-2">05</p>
           <h2 id="level-pages" className="m-0 text-3xl font-extrabold tracking-[-0.04em]">Pages</h2>
-          <p className="body-copy mt-2 max-w-2xl text-sm">Pages are templates filled with real content. They show how the components hold up with realistic content.</p>
+          <p className="body-copy mt-2 max-w-[var(--width-text-narrow)] text-sm">Pages are templates filled with real content. They show how the components hold up with realistic content.</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             <Link href="/examples/project-management" className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 hover:border-[var(--color-action-accent)]"><h3 className="m-0 text-xl font-bold">Project management</h3><p className="body-copy mt-2 text-sm">A project workspace with a table, cards and filters.</p></Link>
             <Link href="/examples/analytics" className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 hover:border-[var(--color-action-accent)]"><h3 className="m-0 text-xl font-bold">Analytics</h3><p className="body-copy mt-2 text-sm">A metrics view with cards and a table.</p></Link>
