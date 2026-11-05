@@ -23,6 +23,8 @@ type TokenPageProps = {
   sections?: readonly TokenSection[];
   intro?: string;
   preview?: ReactNode;
+  /** Guidance shown above the token lists. */
+  lead?: ReactNode;
 };
 
 function TokenRows({ tokens }: { tokens: readonly Token[] }) {
@@ -33,13 +35,13 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
         const isColor = token.type === "color" || token.name.startsWith("color.");
         const colorValue = isColor || isGradient ? resolveColorValue(token.value) : undefined;
         return (
-          <div key={token.name} className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-[var(--color-border-default)] py-4 last:border-0">
-            <span className="token-name min-w-[15rem]">{token.name}</span>
-            <span className="flex min-w-[15rem] items-center gap-2 text-sm font-semibold text-[var(--color-content-primary)]">
+          <div key={token.name} className="grid gap-x-4 gap-y-2 border-b border-[var(--color-border-default)] py-4 last:border-0 lg:grid-cols-[15rem_17rem_1fr] lg:items-center">
+            <span className="token-name">{token.name}</span>
+            <span className="flex items-center gap-2 text-sm font-semibold text-[var(--color-content-primary)]">
               {colorValue ? <span aria-hidden="true" className="h-6 w-6 shrink-0 rounded-md border border-[var(--color-border-strong)]" style={(isGradient ? { backgroundImage: colorValue } : { backgroundColor: colorValue }) as CSSProperties} /> : null}
-              {token.value}
+              <span className="min-w-0 break-words">{token.value.replace(/^\{(.+)\}$/, "$1")}{colorValue && token.value.startsWith("{") && !isGradient ? <span className="token-name ml-2 font-normal text-[var(--color-content-muted)]">{colorValue}</span> : null}</span>
             </span>
-            <span className="w-full text-sm text-[var(--color-content-muted)] lg:w-auto">{token.description}</span>
+            <span className="text-sm text-[var(--color-content-muted)]">{token.description}</span>
           </div>
         );
       })}
@@ -47,7 +49,7 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
   );
 }
 
-export function TokenPage({ active, title, description, tokens = [], sections, intro = "Foundations / tokens", preview }: TokenPageProps) {
+export function TokenPage({ active, title, description, tokens = [], sections, intro = "Foundations / tokens", preview, lead }: TokenPageProps) {
   const groups: readonly TokenSection[] = sections ?? [{ id: "tokens", title: `${title} tokens`, tokens }];
   return (
     <DocsShell active={active}>
@@ -64,6 +66,7 @@ export function TokenPage({ active, title, description, tokens = [], sections, i
             </ul>
           </nav>
         ) : null}
+        {lead}
         {preview ? <section className="mt-12" aria-labelledby="type-preview-heading"><p className="eyebrow mb-3">Rendered preview</p><h2 id="type-preview-heading" className="mb-5 text-2xl font-bold">See the scale in context.</h2>{preview}</section> : null}
         {groups.map((group) => (
           <article key={group.id} id={group.id} aria-labelledby={`${group.id}-heading`} className="mt-12 scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] bg-white p-6 md:p-8">
