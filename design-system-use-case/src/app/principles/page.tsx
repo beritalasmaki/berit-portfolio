@@ -5,37 +5,42 @@ export const metadata: Metadata = { title: "Design principles" };
 
 const principles = [
   {
+    field: "Accessibility",
     title: "Everyone can use it",
-    statement: "Every part works for people with different needs: people who use a keyboard or a screen reader, and people who find small or pale text hard to read.",
-    design: "Make text easy to read against its background. Never use colour alone to show something. Make buttons and links big enough to tap.",
-    code: "Use the right HTML element for each job. Make everything work with a keyboard. Keep the focus outline visible.",
+    statement: "This is accessibility (a11y). Every part works for people with different needs, including people who use a keyboard or a screen reader and people who find small or pale text hard to read.",
+    design: "Make text easy to read against its background (colour contrast, at least 4.5:1). Never use colour alone to show something. Make buttons and links big enough to tap (touch target, 44px).",
+    code: "Use the right HTML element for each job (semantic HTML). Make everything work with a keyboard. Keep the focus outline visible (focus state).",
     example: "An error shows an icon and words, not only red. The focus outline is yellow with a dark edge, so it shows on any background.",
   },
   {
+    field: "Design-code consistency",
     title: "Design and code match",
-    statement: "A colour or a size has the same name in Figma and in the code. So designers and developers talk about the same thing.",
-    design: "Use the variables in Figma instead of typing in values. Change things in Figma first.",
-    code: "Use the same names in the code. When something changes in Figma, update the code to match.",
+    statement: "A colour or a size has the same name in Figma and in the code (design tokens), so designers and developers talk about the same thing. This is a single source of truth.",
+    design: "Use the variables in Figma (design tokens) instead of typing in values. Change things in Figma first.",
+    code: "Use the same names in the code. When something changes in Figma, update the code to match (design-to-code sync).",
     example: "color/content/primary in Figma is --color-content-primary in the code.",
   },
   {
+    field: "Lean system",
     title: "Keep it small",
-    statement: "Fewer choices make it easier to pick the right one. A new colour or component is only added when it is really needed.",
-    design: "Before you add something, check whether an existing part already does the job. Write down what each part is for.",
+    statement: "Fewer choices make it easier to pick the right one. A new colour or component is only added when it is really needed (governance: reuse before you create).",
+    design: "Before you add something, check whether an existing part already does the job. Write down what each part is for (usage guidelines).",
     code: "Use what already exists. If something is missing, add it to the system so everyone can use it.",
     example: "There are two oranges, three dark greys and four gradients. Every colour has a note that says what it is for.",
   },
   {
+    field: "Semantic tokens",
     title: "Colours are named by their job",
-    statement: "Pick a colour by what it is used for, such as text, background or button. Do not pick it by how it looks.",
+    statement: "Pick a colour by what it is used for, such as text, background or button (semantic naming). Do not pick it by how it looks.",
     design: "Choose the text colour or the button colour, not “orange”.",
-    code: "Use a name such as --color-content-primary, not a code such as #1f2321. Do not copy a value that already has a name.",
+    code: "Use a name such as --color-content-primary (a semantic token), not a code such as #1f2321 (a raw value, or primitive). Do not copy a value that already has a name.",
     example: "Dark mode only changes what each name points to. No component has its own dark colours.",
   },
   {
+    field: "Plain language",
     title: "Say it simply",
-    statement: "Use short, plain words in labels, messages and documentation. If a term needs explaining, explain it right there.",
-    design: "Tell people what to do next. Avoid jargon.",
+    statement: "Use short, plain words in labels, messages and documentation (content design, UX writing). If a term needs explaining, explain it right there.",
+    design: "Tell people what to do next. Avoid jargon, and give the expert term next to the plain one.",
     code: "Give things clear names. Put a plain explanation next to any value that needs one.",
     example: "A value such as clamp(22px, 2.4vw, 32px) / 1.1 / 800 has a sentence under it that says what it means.",
   },
@@ -57,7 +62,7 @@ export default function PrinciplesPage() {
         <ol className="m-0 mt-12 list-none space-y-6 p-0">
           {principles.map((principle, index) => (
             <li key={principle.title} id={`principle-${index + 1}`} className="scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 md:p-8">
-              <p className="eyebrow mb-2">Principle 0{index + 1}</p>
+              <p className="eyebrow mb-2">Principle 0{index + 1} · {principle.field}</p>
               <h2 className="m-0 text-3xl font-extrabold tracking-[-0.04em]">{principle.title}</h2>
               <p className="body-copy mt-3 text-lg">{principle.statement}</p>
               <dl className="mt-6 grid gap-6 md:grid-cols-3">

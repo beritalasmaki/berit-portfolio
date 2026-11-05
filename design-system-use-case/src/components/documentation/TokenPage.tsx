@@ -2,7 +2,7 @@ import { Fragment, type CSSProperties, type ReactNode } from "react";
 import type { PageNavGroup } from "@/components/navigation/PageNav";
 import { DocsShell } from "@/components/navigation/DocsShell";
 import { primitiveTokens } from "@/data/tokens";
-import { explainTypeValue } from "@/components/documentation/typeValue";
+import { explainShadowValue, explainTypeValue } from "@/components/documentation/typeValue";
 
 const primitiveColorValues: Map<string, string> = new Map([...primitiveTokens.colors, ...primitiveTokens.gradients].map((token) => [token.name, token.value]));
 
@@ -27,6 +27,8 @@ type TokenPageProps = {
   groupIntro?: Record<string, string>;
   /** A small label above each group heading, such as "Layer 1". */
   groupEyebrow?: Record<string, string>;
+  /** Links to sections in `lead`, shown first in the on-this-page list. */
+  leadNav?: { id: string; label: string }[];
   intro?: string;
   preview?: ReactNode;
   /** Guidance shown above the token lists. */
@@ -40,14 +42,14 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
         const isGradient = token.type === "gradient" || token.name.startsWith("gradient.");
         const isColor = token.type === "color" || token.name.startsWith("color.");
         const colorValue = isColor || isGradient ? resolveColorValue(token.value) : undefined;
-        if (token.type === "type") {
+        if (token.type === "type" || token.type === "shadow") {
           return (
             <div key={token.name} className="grid gap-x-4 gap-y-2 border-b border-[var(--color-border-default)] py-5 last:border-0 lg:grid-cols-[15rem_1fr]">
               <span className="token-name">{token.name}</span>
               <div>
                 <p className="m-0 text-sm font-semibold text-[var(--color-content-primary)]">{token.value}</p>
                 <p className="m-0 mt-1 text-sm text-[var(--color-content-muted)]">{token.description}</p>
-                <ul className="m-0 mt-2 list-none space-y-1 p-0 text-sm text-[var(--color-content-secondary)]">{explainTypeValue(token.value).map((line) => <li key={line}>{line}</li>)}</ul>
+                <ul className="m-0 mt-2 list-none space-y-1 p-0 text-sm text-[var(--color-content-secondary)]">{(token.type === "shadow" ? explainShadowValue(token.value) : explainTypeValue(token.value)).map((line) => <li key={line}>{line}</li>)}</ul>
               </div>
             </div>
           );
@@ -69,7 +71,7 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
   );
 }
 
-export function TokenPage({ active, title, description, tokens = [], sections, intro = "Foundations / tokens", preview, lead, groupIntro, groupEyebrow }: TokenPageProps) {
+export function TokenPage({ active, title, description, tokens = [], sections, intro = "Foundations / tokens", preview, lead, groupIntro, groupEyebrow, leadNav }: TokenPageProps) {
   const groups: readonly TokenSection[] = sections ?? [{ id: "tokens", group: title, title: `${title} tokens`, navLabel: "All tokens", tokens }];
   const pageNav: PageNavGroup[] = [];
   for (const group of groups) {
@@ -79,6 +81,7 @@ export function TokenPage({ active, title, description, tokens = [], sections, i
     entry.items.push({ id: group.id, label: group.navLabel ?? group.title });
   }
   if (preview) pageNav[0]?.items.unshift({ id: "preview", label: "Rendered preview" });
+  if (leadNav) pageNav[0]?.items.unshift(...leadNav);
   return (
     <DocsShell active={active} pageNav={pageNav}>
       <div className="max-w-[var(--width-page)]">

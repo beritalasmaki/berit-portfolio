@@ -60,7 +60,7 @@ export const primitiveTokens = {
   shape: [
     { name: "radius.sm", value: "8px", type: "dimension", description: "Small controls and code samples." },
     { name: "radius.md", value: "16px", type: "dimension", description: "Cards and panels." },
-    { name: "radius.pill", value: "999px", type: "dimension", description: "Buttons and tags." },
+    { name: "radius.pill", value: "999px", type: "dimension", description: "Tags and badges. 999px is bigger than any height used, so the ends are fully round." },
     { name: "shadow.panel", value: "0 18px 45px rgba(31, 35, 33, .08)", type: "shadow", description: "Elevated documentation panels." },
     { name: "shadow.s", value: "0 1px 2px rgba(31, 35, 33, .10), 0 2px 6px rgba(31, 35, 33, .08)", type: "shadow", description: "Small drop shadow for chips and small controls." },
     { name: "shadow.m", value: "0 4px 8px rgba(31, 35, 33, .08), 0 8px 20px rgba(31, 35, 33, .10)", type: "shadow", description: "Medium drop shadow for cards and menus." },

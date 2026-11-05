@@ -27,3 +27,26 @@ export function explainTypeValue(value: string): string[] {
   }
   return lines;
 }
+
+const colourName = (r: number, g: number, b: number) => (r === 31 && g === 35 && b === 33 ? "dark charcoal" : r === 199 && g === 209 && b === 200 ? "light sage" : `rgb(${r}, ${g}, ${b})`);
+
+/** Turns a shadow token value into plain-language sentences, one per layer. */
+export function explainShadowValue(value: string): string[] {
+  const layers: string[] = [];
+  let depth = 0, current = "";
+  for (const char of value) {
+    if (char === "(") depth += 1;
+    if (char === ")") depth -= 1;
+    if (char === "," && depth === 0) { layers.push(current.trim()); current = ""; } else current += char;
+  }
+  layers.push(current.trim());
+  const lines = layers.map((layer, index) => {
+    const inset = layer.startsWith("inset");
+    const match = layer.replace(/^inset\s+/, "").match(/^(-?[\d.]+)(?:px)?\s+(-?[\d.]+)(?:px)?\s+(-?[\d.]+)(?:px)?\s+rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)$/);
+    if (!match) return `Layer ${index + 1}: ${layer}`;
+    const [, x, y, blur, r, g, b, a] = match;
+    const move = Number(x) === 0 ? `${y}px ${Number(y) >= 0 ? "down" : "up"}` : `${x}px sideways and ${y}px down`;
+    return `Layer ${index + 1}${inset ? " (inside the shape)" : ""}: shifted ${move}, blurred by ${blur}px, in ${colourName(Number(r), Number(g), Number(b))} at ${Math.round(Number(a) * 100)}% strength.`;
+  });
+  return layers.length > 1 ? ["Layers are stacked on top of each other, so the shadow looks soft.", ...lines] : lines;
+}
