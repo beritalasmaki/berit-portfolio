@@ -14,7 +14,7 @@ function resolveColorValue(value: string) {
 type Token = { name: string; value: string; description: string; type?: string };
 
 /** A titled group of tokens. A page with several groups lists each one in its own card. */
-export type TokenSection = { id: string; group: string; title: string; navLabel?: string; description?: string; tokens: readonly Token[] };
+export type TokenSection = { id: string; group: string; title: string; navLabel?: string; /** Show the tokens as a compact grid of swatches instead of a list. */ compact?: boolean; description?: string; tokens: readonly Token[] };
 
 type TokenPageProps = {
   active: string;
@@ -34,6 +34,27 @@ type TokenPageProps = {
   /** Guidance shown above the token lists. */
   lead?: ReactNode;
 };
+
+function TokenSwatches({ tokens }: { tokens: readonly Token[] }) {
+  return (
+    <ul className="m-0 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+      {tokens.map((token) => {
+        const isGradient = token.type === "gradient" || token.name.startsWith("gradient.");
+        const colorValue = resolveColorValue(token.value);
+        return (
+          <li key={token.name} className="flex flex-col gap-2 rounded-xl border border-[var(--color-border-default)] p-3">
+            <div aria-hidden="true" className="h-14 rounded-lg border border-[var(--color-border-default)]" style={(isGradient ? { backgroundImage: colorValue } : { backgroundColor: colorValue }) as CSSProperties} />
+            <div>
+              <p className="token-name m-0">{token.name}</p>
+              <p className="m-0 mt-1 text-xs font-semibold text-[var(--color-content-primary)]">{isGradient ? "Top to bottom gradient" : token.value}</p>
+              <p className="m-0 mt-1 text-xs text-[var(--color-content-muted)]">{token.description}</p>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 
 function TokenRows({ tokens }: { tokens: readonly Token[] }) {
   return (
@@ -105,7 +126,7 @@ export function TokenPage({ active, title, description, tokens = [], sections, i
               <span className="token-name text-[var(--color-content-muted)]">{group.tokens.length} values</span>
             </div>
             {group.description ? <p className="body-copy -mt-2 mb-6 max-w-[var(--width-text)] text-sm">{group.description}</p> : null}
-            <TokenRows tokens={group.tokens} />
+            {group.compact ? <TokenSwatches tokens={group.tokens} /> : <TokenRows tokens={group.tokens} />}
           </article>
           </Fragment>
         ))}
