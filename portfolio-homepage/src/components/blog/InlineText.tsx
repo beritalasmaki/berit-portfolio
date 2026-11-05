@@ -1,16 +1,23 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-// `**bold**`, `*italic*` and `[label](href)` — just enough inline markup for
+// `` `code` ``, `**bold**`, `*italic*` and `[label](href)` — just enough inline markup for
 // blog copy kept as plain strings in `data/blog/`. Not nested: an italic
 // inside a bold stays literal, which no post needs.
-const TOKEN = /(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)\s]+\))/g;
+const TOKEN = /(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)\s]+\))/g;
 
 const linkClass =
   "text-ink font-semibold underline decoration-accent decoration-2 underline-offset-4 transition-[text-decoration-color] duration-150 ease-out hover:decoration-accent-dark focus-visible:decoration-accent-dark";
 
 export default function InlineText({ text }: { text: string }) {
   const parts: ReactNode[] = text.split(TOKEN).map((part, i) => {
+    if (part.startsWith("`") && part.endsWith("`") && part.length > 2) {
+      return (
+        <code key={i} className="font-mono text-[0.88em] text-ink bg-panel rounded-img-inner px-1 py-0.5">
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
     if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
       return (
         <strong key={i} className="font-semibold text-ink">
@@ -45,6 +52,7 @@ export default function InlineText({ text }: { text: string }) {
 export function plainText(text: string): string {
   return text
     .replace(/\[([^\]]+)\]\([^)\s]+\)/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
     .replace(/\*\*([^*]+)\*\*/g, "$1")
     .replace(/\*([^*]+)\*/g, "$1");
 }

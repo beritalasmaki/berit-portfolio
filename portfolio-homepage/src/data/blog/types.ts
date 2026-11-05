@@ -43,7 +43,45 @@ export type BlogBlock =
   /** A worked OKR example drawn as a diagram in the site's own styles
    * (`components/blog/OkrDiagram.tsx`) rather than a picture of one, so
    * its text reflows on a phone and reads out to a screen reader. */
-  | ({ type: "okr" } & OkrExample);
+  | ({ type: "okr" } & OkrExample)
+  /** A login view built in four stages, drawn as four mini mock-ups. */
+  | ({ type: "steps" } & StepsExample)
+  /** Rows of "pill → box → box → pill" flows, one highlighted. */
+  | ({ type: "flow" } & FlowExample)
+  /** Three rungs of rising height; the last is the goal. */
+  | ({ type: "ladder" } & LadderExample);
+
+export type StepsExample = {
+  title: string;
+  /** Labels used inside the four mock-ups. */
+  mock: { email: string; password: string; button: string; typed: string; wrongEmail: string; error: string };
+  /** Always four, in order: layout, states, validation, phone. */
+  steps: { name: string; heading: string; text: string }[];
+  tip?: { label: string; text: string };
+};
+
+export type FlowNode = { eyebrow: string; heading: string; text: string; highlight?: boolean };
+export type FlowRow = {
+  eyebrow: string;
+  heading: string;
+  text: string;
+  start: string;
+  nodes: FlowNode[];
+  end: string;
+};
+export type FlowExample = {
+  title: string;
+  rows: FlowRow[];
+  quote?: { text: string; cite: string };
+};
+
+export type LadderExample = {
+  title: string;
+  eyebrow?: string;
+  /** Lowest to highest. */
+  rungs: { name: string; text: string; badge?: string }[];
+  source?: string;
+};
 
 export type OkrExample = {
   title: string;

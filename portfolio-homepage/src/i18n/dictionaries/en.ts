@@ -38,6 +38,7 @@ export const en = {
         "Product design",
         "Service design",
         "Design systems",
+        "DesignOps",
         "User research",
         "Usability testing",
         "Information architecture",
@@ -110,7 +111,7 @@ export const en = {
     tabs: [
       {
         question: "How do I keep my collaboration skills up to date?",
-        body: "Developer collaboration looks different today than it did a few years ago. I keep adapting to that: I do not just hand a finished design over and disappear, I stay part of the conversation while developers are building. I also build real prototypes myself with tools like Claude Design and VS Code, so developers see working components early, not just static images to interpret.",
+        body: "Developer collaboration looks different today than it did a few years ago. I keep adapting to that: I do not just hand a finished design over and disappear, I stay part of the conversation while developers are building. I build working prototypes myself with tools like Claude Design, and I also work directly in code: building a component, or a specific part of a site, as a first version for a developer to review. That way developers see real components early, with their loading, error and empty states, instead of static images to interpret.",
         highlight:
           "On a national education platform with many municipalities and vendors, I ran the team's daily meetings and created the workshop process the team used to move from research to real concepts.",
         linkLabel: "See the National Education case study →",
@@ -118,7 +119,7 @@ export const en = {
       },
       {
         question: "How do I approach complex problems?",
-        body: "I map the problem, build early concepts, and adapt quickly instead of trying to plan every detail in advance.",
+        body: "I start by mapping the problem: who is affected, how the work happens today and where it gets stuck. Then I build early concepts and test them with real users. I do not try to plan every detail in advance. I plan enough to get moving, then adapt as we learn, and I keep the goal and the measures of success in sight so that the changes stay purposeful.",
         highlight:
           "Modernizing old environmental data systems meant working with tools researchers had used for years without a clear structure. Instead of waiting for a perfect solution, I focused on releasing something useful quickly, and then improving it based on what we learned.",
         linkLabel: "See the Environmental Data Systems case study →",
@@ -195,15 +196,23 @@ export const en = {
       },
       {
         title: "Design and delivery",
-        body: "UI flows and interface design, process diagrams, design systems from tokens to components. I read and modify front-end code, and build working components rather than only static screens.",
+        body: "UI flows and interface design, process diagrams and prototypes. I read and modify front-end code, and build working components or specific parts of a site in code rather than only static screens.",
+      },
+      {
+        title: "Design systems and DesignOps",
+        body: "Design systems from tokens to components, built so that developers can pull from them directly. DesignOps keeps design and development in step: shared tools, clear naming, documentation and ways of working that help a team deliver consistently.",
       },
       {
         title: "Working with AI tools",
         body: "I build prototypes and real components with AI tooling, and I know how to direct an agent rather than accept what it produces: writing the rules it works from, and reviewing what came out. I built my own design system this way.",
       },
       {
-        title: "Leading the work",
-        body: "Co-design workshops and facilitation, setting the measures that show whether a design worked, supporting a product owner through planning and prioritisation, and a lean approach to getting something usable in front of people early.",
+        title: "Facilitation and co-design",
+        body: "Workshops that bring users, stakeholders and developers to the same table, from mapping today's pain points to co-designing what comes next.",
+      },
+      {
+        title: "Planning and measuring",
+        body: "Supporting a product owner through planning and prioritisation, setting the measures that show whether a design worked, and a lean approach to getting something usable in front of people early.",
       },
     ],
   },
@@ -395,6 +404,7 @@ export const en = {
     copyFailed: "Couldn't copy — copy the address from the address bar",
     more: "More…",
     diagram: "Diagram",
+    ladderRung: "rung",
     okr: {
       objective: "Objective",
       objectiveQuestion: "Where are we heading?",

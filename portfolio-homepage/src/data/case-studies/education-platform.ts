@@ -25,7 +25,7 @@ export const educationPlatform: CaseStudy = {
       "A three-year engagement as UX & Product Designer, later Lead Designer. I was responsible for the product's visual design, user research and the design system's UI kit. I looked after accessibility and kept the design consistent across teams. I worked closely with the product owner and developers, including on defining tickets and requirements.",
     decisionsLabel: "Solution and delivery",
     decisions: [
-      "**Clarifying the process:** I led a three-phase workshop series for stakeholders: mapping today's pain points, defining the target state and co-designing the future concepts together.",
+      "**Clarifying the process:** I ran more than 10 workshops, and a couple of them followed a three-phase process for stakeholders: mapping today's pain points, defining the ideal situation and co-designing the future concepts together. Throughout design and iteration I also held user interviews whenever they were needed. When we built the student admission view, for example, I reached out directly to the study secretaries who handled admissions at the schools. The most important thing was always to hear representatives from each municipality and how they actually worked.",
       "**Consistent design:** I defined a shared visual direction and components for the teams, and explained the reasoning behind decisions in regular sessions with developers.",
       "**Restoring trust:** After a budget overrun, I took an active role in communicating the progress and value of the design work to stakeholders. We rebuilt trust through transparent communication, regular presence and clear documentation of decisions. This made collaboration between the parties clearer and kept the project moving.",
     ],
