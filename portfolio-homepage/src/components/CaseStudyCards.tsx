@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import CaseStudyThumbnail from "@/components/case-study/CaseStudyThumbnail";
 import { getCaseStudies } from "@/data/case-studies";
@@ -54,30 +55,50 @@ export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy:
           </article>
         ))}
 
-        {/* The design system is a work sample outside the case studies, so it
-            closes the list as a text card with two external links instead of
-            one link around the whole card. */}
-        <article className="glass rounded-card flex flex-col gap-4 p-card-pad">
-          <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.designSystem.label}</p>
-          <h3 className="m-0 text-card-h3 text-ink">{copy.designSystem.headline}</h3>
-          <p className="m-0 text-body-lg text-body max-w-prose">{copy.designSystem.description}</p>
-          <div className="flex flex-wrap gap-x-8 gap-y-4">
+        {/* The design system is a work sample outside the case studies. It uses
+            the same row as the case studies: two thumbnails on the left (each
+            with a caption pill, like the industry pill on a case study) and the
+            text on the right. It has two links instead of one link around the
+            whole card. */}
+        <article className="glass rounded-card overflow-hidden flex flex-col md:flex-row md:items-stretch">
+          <div className="flex flex-col gap-px md:w-2/5 lg:w-1/3 md:shrink-0">
             {[
-              { href: designSystemUrl, label: copy.designSystem.siteLabel },
-              { href: figmaUiKitUrl, label: copy.designSystem.figmaLabel },
-            ].map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-nav font-semibold text-ink border-b border-accent pb-2 whitespace-nowrap transition-[border-color] duration-150 ease-out hover:border-accent-dark focus-visible:border-accent-dark"
-              >
-                {link.label}
-                <span className="sr-only">{copy.designSystem.opensNewTab}</span>
-                <span aria-hidden="true"> ↗</span>
-              </a>
+              { src: "/ds/ui-kit-figma.png", alt: copy.designSystem.uiKitAlt, caption: copy.designSystem.uiKitCaption },
+              { src: "/ds/component-library.png", alt: copy.designSystem.libraryAlt, caption: copy.designSystem.libraryCaption },
+            ].map((figure) => (
+              <figure key={figure.src} className="relative m-0 aspect-[16/8] overflow-hidden">
+                <Image src={figure.src} alt={figure.alt} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 40vw, 100vw" className="object-cover object-left-top" />
+                <figcaption className="absolute top-3 left-3 font-mono-label text-mono-label uppercase text-white bg-ink rounded-pill py-1 px-3 whitespace-nowrap ring-1 ring-white/70 shadow-[0_2px_8px_rgba(34,34,34,0.12)]">
+                  {figure.caption}
+                </figcaption>
+              </figure>
             ))}
+          </div>
+          <div className="flex flex-1 flex-col gap-4 p-card-pad md:justify-center">
+            <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.designSystem.label}</p>
+            <h3 className="m-0 flex items-center gap-4 text-card-h3 text-ink">
+              <Image src="/ds/ds-logo.svg" alt={copy.designSystem.logoAlt} width={48} height={48} className="shrink-0" />
+              {copy.designSystem.headline}
+            </h3>
+            <p className="m-0 text-body-lg text-body max-w-prose">{copy.designSystem.description}</p>
+            <div className="flex flex-wrap gap-x-8 gap-y-4">
+              {[
+                { href: designSystemUrl, label: copy.designSystem.siteLabel },
+                { href: figmaUiKitUrl, label: copy.designSystem.figmaLabel },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-nav font-semibold text-ink border-b border-accent pb-2 whitespace-nowrap transition-[border-color] duration-150 ease-out hover:border-accent-dark focus-visible:border-accent-dark"
+                >
+                  {link.label}
+                  <span className="sr-only">{copy.designSystem.opensNewTab}</span>
+                  <span aria-hidden="true"> ↗</span>
+                </a>
+              ))}
+            </div>
           </div>
         </article>
       </div>

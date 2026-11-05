@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import { Fragment, type CSSProperties, type ReactNode } from "react";
 import type { PageNavGroup } from "@/components/navigation/PageNav";
 import { DocsShell } from "@/components/navigation/DocsShell";
 import { primitiveTokens } from "@/data/tokens";
@@ -22,6 +22,8 @@ type TokenPageProps = {
   /** One flat list. Use `sections` instead when the tokens fall into groups. */
   tokens?: readonly Token[];
   sections?: readonly TokenSection[];
+  /** A short explanation for each group name used in `sections`, shown under the group heading. */
+  groupIntro?: Record<string, string>;
   intro?: string;
   preview?: ReactNode;
   /** Guidance shown above the token lists. */
@@ -50,7 +52,7 @@ function TokenRows({ tokens }: { tokens: readonly Token[] }) {
   );
 }
 
-export function TokenPage({ active, title, description, tokens = [], sections, intro = "Foundations / tokens", preview, lead }: TokenPageProps) {
+export function TokenPage({ active, title, description, tokens = [], sections, intro = "Foundations / tokens", preview, lead, groupIntro }: TokenPageProps) {
   const groups: readonly TokenSection[] = sections ?? [{ id: "tokens", group: title, title: `${title} tokens`, navLabel: "All tokens", tokens }];
   const pageNav: PageNavGroup[] = [];
   for (const group of groups) {
@@ -68,15 +70,24 @@ export function TokenPage({ active, title, description, tokens = [], sections, i
         <p className="body-copy mt-5 text-lg">{description}</p>
         {lead}
         {preview ? <section id="preview" className="mt-12 scroll-mt-24" aria-labelledby="type-preview-heading"><p className="eyebrow mb-3">Rendered preview</p><h2 id="type-preview-heading" className="mb-5 text-2xl font-bold">See the scale in context.</h2>{preview}</section> : null}
-        {groups.map((group) => (
-          <article key={group.id} id={group.id} aria-labelledby={`${group.id}-heading`} className="mt-12 scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] bg-white p-6 md:p-8">
+        {groups.map((group, index) => (
+          <Fragment key={group.id}>
+          {sections && group.group !== groups[index - 1]?.group ? (
+            <div className="mt-16 border-t-2 border-[var(--color-action-accent)] pt-6">
+              <p className="eyebrow mb-2">{group.group.startsWith("Primitives") ? "Layer 1" : "Layer 2"}</p>
+              <h2 className="m-0 text-3xl font-extrabold tracking-[-0.04em] md:text-4xl">{group.group}</h2>
+              {groupIntro?.[group.group] ? <p className="body-copy mt-3 max-w-3xl">{groupIntro[group.group]}</p> : null}
+            </div>
+          ) : null}
+          <article id={group.id} aria-labelledby={`${group.id}-heading`} className="mt-8 scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] bg-white p-6 md:p-8">
             <div className="mb-6 flex flex-wrap items-baseline justify-between gap-4">
-              <h2 id={`${group.id}-heading`} className="m-0 text-2xl font-bold">{group.title}</h2>
+              {sections ? <h3 id={`${group.id}-heading`} className="m-0 text-2xl font-bold">{group.title}</h3> : <h2 id={`${group.id}-heading`} className="m-0 text-2xl font-bold">{group.title}</h2>}
               <span className="token-name text-[var(--color-content-muted)]">{group.tokens.length} values</span>
             </div>
             {group.description ? <p className="body-copy -mt-2 mb-6 max-w-3xl text-sm">{group.description}</p> : null}
             <TokenRows tokens={group.tokens} />
           </article>
+          </Fragment>
         ))}
       </div>
     </DocsShell>
