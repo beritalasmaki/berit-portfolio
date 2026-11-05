@@ -23,6 +23,10 @@ const levels = [
     ["Table", "Sorting, filtering, selection and empty states for tabular data.", "organisms/table"],
     ["Multi-step form", "An introduction, sections, progress and actions put together.", "organisms/forms"],
   ] },
+  { level: "Templates", text: "Page layouts without real content. They show where the organisms go.", items: [
+    ["Dashboard template", "Side and top navigation, metric cards, a chart area and a table.", "templates/dashboard"],
+    ["Form page template", "One column with an introduction, progress, form sections and actions.", "templates/form-page"],
+  ] },
 ];
 
 export default function ComponentsPage() {
@@ -31,7 +35,7 @@ export default function ComponentsPage() {
       <div className="max-w-5xl">
         <p className="eyebrow mb-4">Documentation / components</p>
         <h1 className="text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">Components</h1>
-        <p className="body-copy mt-5 text-lg">Components are grouped by Atomic Design: atoms, molecules and organisms. Each page shows a component in its modes, with code, the rules it follows and its accessibility notes. Colours, type and spacing are the foundations underneath, and the example screens at the end are the pages.</p>
+        <p className="body-copy mt-5 text-lg">Components are grouped by Atomic Design: atoms, molecules, organisms and templates. Each page shows a component in its modes, with code, the rules it follows and its accessibility notes. Colours, type and spacing are the foundations underneath, and the example screens at the end are the pages.</p>
         {levels.map((group, levelIndex) => (
           <section key={group.level} className="mt-12" aria-labelledby={`level-${group.level}`}>
             <p className="eyebrow mb-2">0{levelIndex + 1}</p>
@@ -49,9 +53,9 @@ export default function ComponentsPage() {
           </section>
         ))}
         <section className="mt-12" aria-labelledby="level-pages">
-          <p className="eyebrow mb-2">04</p>
-          <h2 id="level-pages" className="m-0 text-3xl font-extrabold tracking-[-0.04em]">Templates and pages</h2>
-          <p className="body-copy mt-2 max-w-2xl text-sm">Templates are page layouts without real content, and pages are those layouts filled with real content. There are no separate templates yet. The two example screens are pages: they show how the components hold up with realistic content.</p>
+          <p className="eyebrow mb-2">05</p>
+          <h2 id="level-pages" className="m-0 text-3xl font-extrabold tracking-[-0.04em]">Pages</h2>
+          <p className="body-copy mt-2 max-w-2xl text-sm">Pages are templates filled with real content. They show how the components hold up with realistic content.</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             <Link href="/examples/project-management" className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 hover:border-[var(--color-action-accent)]"><h3 className="m-0 text-xl font-bold">Project management</h3><p className="body-copy mt-2 text-sm">A project workspace with a table, cards and filters.</p></Link>
             <Link href="/examples/analytics" className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 hover:border-[var(--color-action-accent)]"><h3 className="m-0 text-xl font-bold">Analytics</h3><p className="body-copy mt-2 text-sm">A metrics view with cards and a table.</p></Link>

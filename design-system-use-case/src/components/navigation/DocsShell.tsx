@@ -24,6 +24,10 @@ const componentGroups = [
     { href: "/components/organisms/table", label: "Table" },
     { href: "/components/organisms/forms", label: "Multi-step form" },
   ] },
+  { level: "Templates", links: [
+    { href: "/components/templates/dashboard", label: "Dashboard template" },
+    { href: "/components/templates/form-page", label: "Form page template" },
+  ] },
 ];
 const componentLinks = componentGroups.flatMap((group) => group.links);
 

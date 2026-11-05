@@ -9,12 +9,17 @@ import { Tabs } from "@/components/navigation/Tabs";
 export const metadata: Metadata = { title: "Links, tabs and breadcrumbs" };
 
 const cssCode = `.navigation-item:hover {
-  background: var(--surface-subtle);
+  background: var(--color-surface-raised);
 }
 
 .navigation-item[aria-current="page"] {
-  background: var(--surface-inverse);
-  color: white;
+  background-image: var(--gradient-action-primary);
+  color: var(--color-content-inverse);
+}
+
+.navigation-item[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
 }`;
 
 const breadcrumbCss = `.breadcrumb a {
@@ -35,16 +40,16 @@ export default function NavigationPartsPage() {
     eyebrow="Components / molecules"
     description="The small pieces of navigation: a link to a destination, tabs that switch views, and breadcrumbs that show where a page sits."
     usage={<p className="m-0">Use links for single destinations, breadcrumbs to show where a page sits in a hierarchy, and tabs to switch between peer views of one thing without leaving the page.</p>}
-    contract={["NavigationLink variants include default, current, muted, and inverse.", "Tabs switch peer views in place and use a roving tabindex with Arrow, Home, and End keys.", "Breadcrumbs describe hierarchy and always end in the current page, which is not a link."]}
-    accessibility={["Do not rely on color alone to show the current page.", "Breadcrumbs use an ordered list inside their own nav landmark, and mark the last item aria-current.", "Tabs use the tablist, tab and tabpanel roles and keep one tab in the Tab order."]}
+    contract={["NavigationLink has three statuses: default, active (aria-current=\"page\") and disabled.", "Tabs switch peer views in place and use a roving tabindex with Arrow, Home, and End keys.", "Breadcrumbs describe hierarchy and always end in the current page, which is not a link."]}
+    accessibility={["The active link is marked with aria-current=\"page\" and a filled background, not colour alone.","A disabled link is plain text with aria-disabled, so it is skipped by Tab and announced as unavailable.", "Breadcrumbs use an ordered list inside their own nav landmark, and mark the last item aria-current.", "Tabs use the tablist, tab and tabpanel roles and keep one tab in the Tab order."]}
     examples={[
       {
         title: "Links",
-        description: "The small, reusable destination primitive used by both navigation panels.",
+        description: "A link has three statuses: default, active for the current page, and disabled for a destination that is not available right now.",
         content: <CodeTabs
-          view={<div className="grid max-w-sm gap-4 rounded-2xl border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))] p-4 text-[var(--preview-content,var(--color-content-primary))]"><Variation label="Current" className="w-full"><NavigationLink href="#overview" variant="current" aria-current="page" className="w-full">Overview</NavigationLink></Variation><Variation label="Default" className="w-full"><NavigationLink href="#projects" className="w-full">Projects</NavigationLink></Variation><Variation label="Muted" className="w-full"><NavigationLink href="#history" variant="muted" className="w-full">Version history</NavigationLink></Variation><Variation label="Inverse" className="w-full"><div className="w-full rounded-lg bg-[var(--color-surface-inverse)] p-2"><NavigationLink href="#help" variant="inverse" className="w-full">Settings</NavigationLink></div></Variation></div>}
+          view={<div className="grid max-w-sm gap-4 rounded-2xl border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))] p-4 text-[var(--preview-content,var(--color-content-primary))]"><Variation label="Active" className="w-full"><NavigationLink href="#overview" aria-current="page" className="w-full">Overview</NavigationLink></Variation><Variation label="Default" className="w-full"><NavigationLink href="#projects" className="w-full">Projects</NavigationLink></Variation><Variation label="Disabled" className="w-full"><NavigationLink href="#reports" disabled className="w-full">Reports</NavigationLink></Variation></div>}
           cssCode={cssCode}
-          javascriptCode={'<NavigationLink href="/projects" variant="current">Projects</NavigationLink>'}
+          javascriptCode={'<NavigationLink href="/overview" aria-current="page">Overview</NavigationLink>\n<NavigationLink href="/projects">Projects</NavigationLink>\n<NavigationLink href="/reports" disabled>Reports</NavigationLink>'}
         />,
       },
       {

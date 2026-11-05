@@ -61,6 +61,7 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/` - landing page explaining the system and its purpose
 - `/components/atoms/icons`, `/components/atoms/buttons`, `/components/atoms/form-controls` - the smallest parts
 - `/components/molecules/form-fields`, `/components/molecules/navigation-parts`, `/components/molecules/date-picker`, `/components/molecules/notifications`, `/components/molecules/form-progress` - small groups of atoms
+- `/components/templates/dashboard`, `/components/templates/form-page` - page layouts without content
 - `/components/organisms/navigation`, `/components/organisms/cards`, `/components/organisms/table`, `/components/organisms/forms` - larger sections
 - `/getting-started` - introduction to the documentation structure
 - `/foundations` - dedicated token and foundation documentation
@@ -85,7 +86,7 @@ Components should consume semantic roles rather than raw palette values. This ke
 
 ## Component conventions
 
-Components are documented by Atomic Design level. Atoms are the smallest parts (icons, buttons, form controls). Molecules are small groups of atoms (form fields, links, tabs and breadcrumbs, date picker, notifications, form progress and actions). Organisms are larger sections (navigation, cards, table, multi-step form). Templates are page layouts without content, and pages are templates with real content; the two example screens are the pages, and there are no separate templates yet. The source folders in `src/components` are still grouped by component type, not by level. Native HTML semantics are preferred for landmarks, buttons, links, tables, headings, and form controls.
+Components are documented by Atomic Design level. Atoms are the smallest parts (icons, buttons, form controls). Molecules are small groups of atoms (form fields, links, tabs and breadcrumbs, date picker, notifications, form progress and actions). Organisms are larger sections (navigation, cards, table, multi-step form). Templates are page layouts without content (a dashboard and a form page), and pages are templates with real content; the two example screens are the pages. The source folders in `src/components` are still grouped by component type, not by level. Native HTML semantics are preferred for landmarks, buttons, links, tables, headings, and form controls.
 
 ## Accessibility baseline
 
