@@ -16,16 +16,18 @@ type ComponentPageProps = {
   examples: ComponentExample[];
   contract: string[];
   accessibility: string[];
+  /** Set to false on a page that needs the full width, such as a template wireframe. */
+  showPageNav?: boolean;
 };
 
-export function ComponentPage({ name, eyebrow, description, usage, examples, contract, accessibility }: ComponentPageProps) {
+export function ComponentPage({ name, eyebrow, description, usage, examples, contract, accessibility, showPageNav = true }: ComponentPageProps) {
   return (
-    <DocsShell active={name} pageNav={[
+    <DocsShell active={name} pageNav={showPageNav ? [
       { heading: "Overview", items: [{ id: "usage", label: "How it is used" }] },
       { heading: "Examples", items: examples.map((example, index) => ({ id: `example-${index + 1}`, label: example.title })) },
       { heading: "Reference", items: [{ id: "contract", label: "Contract" }, { id: "accessibility", label: "Accessibility" }] },
-    ] satisfies PageNavGroup[]}>
-      <div className="max-w-6xl">
+    ] satisfies PageNavGroup[] : undefined}>
+      <div className={showPageNav ? "max-w-6xl" : "max-w-7xl"}>
         <header className="max-w-4xl">
           <p className="eyebrow mb-4">{eyebrow}</p>
           <h1 className="text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">{name}</h1>

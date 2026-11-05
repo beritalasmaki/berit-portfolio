@@ -14,6 +14,7 @@ export default function FormPageTemplatePage() {
   return <ComponentPage
     name="Form page template"
     eyebrow="Components / templates"
+    showPageNav={false}
     description="A page layout for filling in a form: one narrow column with the instructions first, the steps, the fields in sections and the buttons last."
     usage={<p className="m-0">Use it for applications, sign-ups and any task where people enter information step by step. The template keeps one column so the eye moves straight down, and puts the buttons in the same place on every step.</p>}
     contract={["Regions are the top navigation, a breadcrumb, a form introduction, progress through the steps, one or more form sections and the form actions.", "The form is one column, about 40rem wide, and sits in the middle of the page.", "The introduction says what is asked, how long it takes and that * marked fields are required.", "The primary action is on the right in the form actions, on every step."]}

@@ -13,6 +13,7 @@ export default function DashboardTemplatePage() {
   return <ComponentPage
     name="Dashboard template"
     eyebrow="Components / templates"
+    showPageNav={false}
     description="A page layout for an overview: navigation on the side and at the top, a row of key numbers, and the main content below."
     usage={<p className="m-0">Use it for pages where people check the state of something and then act, such as a project overview or an analytics view. The template has no real content. It shows where each organism goes and how much room it gets.</p>}
     contract={["Regions are the top navigation, the side navigation, a page header with one primary action, a row of metric cards, a main content area and a table.", "The side navigation stays on the left. On small screens it moves above the content.", "The page header has one primary button. Other actions are secondary.", "Metric cards sit in one row and wrap on smaller screens. They are Cards organisms.", "Content below the cards is either a chart area or a table, and keeps the same left edge as the cards."]}
