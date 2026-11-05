@@ -92,7 +92,7 @@ export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy:
             ].map((figure) => (
               <figure key={figure.src} className="relative m-0 aspect-[16/8] overflow-hidden rounded-frame border border-rule-strong">
                 <Image src={figure.src} alt={figure.alt} fill sizes="(min-width: 1024px) 30vw, (min-width: 768px) 36vw, 100vw" className="object-cover object-left-top" />
-                <figcaption className="absolute top-3 left-3 inline-flex max-w-[calc(100%-1.5rem)] items-center gap-2 rounded-pill bg-white/90 px-3 py-1 font-mono-label text-mono-label uppercase text-ink shadow-sm ring-1 ring-black/10 backdrop-blur-sm">
+                <figcaption className="absolute top-3 left-0 inline-flex max-w-[calc(100%-1rem)] items-center gap-2 rounded-r-pill bg-white py-1 pl-3 pr-4 font-mono-label text-mono-label uppercase text-ink shadow-[0_2px_8px_rgba(34,34,34,0.2)]">
                   {figure.mark}
                   <span className="min-w-0">{figure.caption}</span>
                 </figcaption>
