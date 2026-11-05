@@ -22,9 +22,9 @@ const parts: Part[] = [
   { id: "ui-kit", tone: "ux", tag: "UX", title: "UI kit", text: "Components, templates and resources in Figma", href: figmaUrl, external: true, cells: [16, 7, 8, 3] },
   { id: "reference", tone: "reference", title: "Reference site", text: "Guides, documentation and examples", href: "/getting-started", cells: [3, 11, 9, 3] },
   { id: "library", tone: "dev", tag: "DEV", title: "Component library", text: "Ready-to-use components in code", href: "/components", cells: [18, 11, 9, 3] },
-  { id: "app-1", tone: "app", title: "Application 1", text: "Mobile, desktop, system and so on", cells: [5, 17, 6, 3] },
-  { id: "app-2", tone: "app", title: "Application 2", text: "Mobile, desktop, system and so on", cells: [12, 17, 6, 3] },
-  { id: "website", tone: "app", title: "Website", text: "Public and internal sites", cells: [19, 17, 6, 3] },
+  { id: "app-1", tone: "app", title: "Application 1", text: "Mobile, desktop, system and so on", href: "/examples/project-management", cells: [5, 17, 6, 3] },
+  { id: "app-2", tone: "app", title: "Application 2", text: "Mobile, desktop, system and so on", href: "/examples/analytics", cells: [12, 17, 6, 3] },
+  { id: "website", tone: "app", title: "Website", text: "Public and internal sites", href: "/examples", cells: [19, 17, 6, 3] },
 ];
 
 const tones: Record<Tone, string> = {
@@ -43,6 +43,7 @@ function Body({ part }: { part: Part }) {
     <>
       {part.tag ? <span aria-hidden="true" className={`absolute -top-2 right-2 rounded border px-1.5 font-mono text-[10px] font-semibold leading-4 ${part.tone === "dev" ? "border-[var(--color-action-accent)] bg-[var(--color-action-accent)] text-[var(--color-content-primary)]" : "border-[var(--color-status-info-default)] bg-white text-[var(--color-content-primary)]"}`}>{part.tag}</span> : null}
       <span className="block text-[max(11px,1.45cqw)] font-bold leading-tight md:text-[max(11px,1.45cqw)]">{part.title}{part.tag ? <span className="sr-only"> ({part.tag === "UX" ? "design" : "development"})</span> : null}</span>
+      {part.href ? <span aria-hidden="true" className={`absolute bottom-1.5 right-2 text-[max(12px,1.4cqw)] font-bold leading-none ${part.tone === "dev" ? "text-[var(--color-action-accent)]" : "text-[var(--color-action-accent-dark)]"}`}>{part.external ? "↗" : "→"}</span> : null}
       <span className={`mt-1 block text-[max(10px,1.2cqw)] leading-snug ${part.tone === "dev" ? "text-white/80" : "text-[var(--color-content-secondary)]"}`}>{part.text}{part.external ? <span className="sr-only"> (opens in a new tab)</span> : null}</span>
     </>
   );
@@ -51,7 +52,7 @@ function Body({ part }: { part: Part }) {
 function Box({ part, positioned }: { part: Part; positioned: boolean }) {
   const base = `relative flex flex-col items-center justify-center rounded-xl border-2 p-2 text-center ${tones[part.tone]}`;
   const style = positioned && part.cells ? { position: "absolute" as const, left: `${(part.cells[0] / COLS) * 100}%`, top: `${(part.cells[1] / ROWS) * 100}%`, width: `${(part.cells[2] / COLS) * 100}%`, height: `${(part.cells[3] / ROWS) * 100}%` } : undefined;
-  const hover = part.href ? "transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-m)]" : "";
+  const hover = part.href ? "cursor-pointer transition hover:-translate-y-0.5 hover:border-[var(--color-action-accent)] hover:shadow-[var(--shadow-m)]" : "";
   if (part.href && part.external) return <a href={part.href} target="_blank" rel="noopener noreferrer" className={`${base} ${hover}`} style={style}><Body part={part} /></a>;
   if (part.href) return <Link href={part.href} className={`${base} ${hover}`} style={style}><Body part={part} /></Link>;
   return <div className={base} style={style}><Body part={part} /></div>;
@@ -83,7 +84,7 @@ export function SystemDiagram() {
   const byId = Object.fromEntries(parts.map((part) => [part.id, part]));
   const group = (ids: string[]) => ids.map((id) => <li key={id} className="list-none"><Box part={byId[id]} positioned={false} /></li>);
   return (
-    <figure className="m-0" aria-labelledby="system-diagram-caption">
+    <nav aria-label="Design system map"><figure className="m-0" aria-labelledby="system-diagram-caption">
       <figcaption id="system-diagram-caption" className="sr-only">How the parts of the design system fit together. {description}</figcaption>
 
       <div className="hidden md:block" style={{ containerType: "inline-size" }}>
@@ -116,7 +117,7 @@ export function SystemDiagram() {
         <p className="eyebrow m-0 mb-3">Where it is used</p>
         <ul className="m-0 grid gap-3 p-0">{group(["app-1", "app-2", "website"])}</ul>
       </div>
-    </figure>
+    </figure></nav>
   );
 }
 

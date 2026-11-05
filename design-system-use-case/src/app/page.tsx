@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SystemDiagram } from "@/components/documentation/SystemDiagram";
-import { SiteHeader } from "@/components/navigation/SiteHeader";
+import { BrandMark } from "@/components/navigation/BrandMark";
 
 export const metadata: Metadata = { title: "DS by Berit" };
 
@@ -16,12 +16,10 @@ const principles = [
 export default function Home() {
   return (
     <main id="main-content" className="min-h-screen">
-      <SiteHeader actionHref="/getting-started" actionLabel="Explore the system" actionIcon="arrow_forward" />
-
-      <section className="surface-grid border-b border-[var(--color-border-default)] px-6 py-24 lg:px-12 lg:py-36">
+      <section className="surface-grid border-b border-[var(--color-border-default)] px-6 py-10 lg:px-12 lg:py-14">
         <div className="mx-auto grid max-w-[var(--width-page)] gap-14 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
           <div>
-            <p className="eyebrow mb-6">DS by Berit / design system 01</p>
+            <span role="img" aria-label="DS by Berit logo" className="mb-6 block"><BrandMark className="h-16 w-16" /></span>
             <h1 className="display-title">A design system built in code and in Figma.</h1>
           </div>
           <div className="max-w-[var(--width-text-narrow)] lg:pb-2">
@@ -34,11 +32,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section aria-labelledby="map-heading" className="mx-auto max-w-[var(--width-page)] px-6 py-20 lg:px-12 lg:py-28">
-        <p className="eyebrow mb-3">The system map</p>
-        <h2 id="map-heading" className="m-0 max-w-[var(--width-text-narrow)] text-3xl font-extrabold tracking-[-0.04em] md:text-5xl">How the parts fit together.</h2>
-        <p className="body-copy mt-4 max-w-[var(--width-text-narrow)]">The tokens and the UI kit in Figma are the design side. The component library is the code side. The reference site explains both, and the applications and websites use the component library.</p>
-        <div className="mt-10"><SystemDiagram /></div>
+      <section aria-labelledby="map-heading" className="mx-auto max-w-[var(--width-page)] px-6 py-10 lg:px-12 lg:py-14">
+        <p className="eyebrow mb-2">Start here</p>
+        <h2 id="map-heading" className="m-0 text-2xl font-extrabold tracking-[-0.04em] md:text-4xl">Select a part of the map to open it.</h2>
+        <p className="body-copy mt-3 max-w-[var(--width-text-narrow)]">The map shows how the system fits together and is also the way in. Every box with an arrow opens that part of the documentation.</p>
+        <div className="mt-8"><SystemDiagram /></div>
       </section>
 
       <section className="mx-auto max-w-[var(--width-page)] px-6 py-20 lg:px-12 lg:py-28">
