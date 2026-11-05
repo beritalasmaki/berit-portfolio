@@ -17,7 +17,6 @@ export default function Home() {
           <div className="mt-5 max-w-[var(--width-text-narrow)]">
             <p className="body-copy text-base">Berit Alasmäki built DS by Berit as a work sample, to show that she can create, build, develop and manage a design system.</p>
             <p className="body-copy mt-3 text-sm">The design system is connected to Figma, where the UI kit, components and tokens are designed. When something changes in Figma, the tokens and components in code are updated to match.</p>
-            <p className="body-copy mt-3 text-sm">It exists to show that design and code can follow the same rules: tokens and components have the same names in Figma and in code, the parts cover what most product interfaces need, and accessibility is part of every component.</p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link href="/getting-started" className="rounded-full bg-[var(--color-action-primary)] px-5 py-3 text-sm font-semibold text-white hover:bg-[var(--color-action-accent-dark)]">How to get started <span aria-hidden="true" className="material-symbols-outlined">arrow_forward</span></Link><a href={figmaUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-full border border-[var(--color-border-strong)] px-5 py-3 text-sm font-semibold">Open the Figma UI kit <span className="sr-only">(opens in a new tab)</span><span aria-hidden="true" className="ml-1">↗</span></a>
             </div>
