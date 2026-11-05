@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Notifications" };
 export default function NotificationsPage() {
   return <ComponentPage
     name="Notifications"
-    eyebrow="Components / feedback"
+    eyebrow="Components / molecules"
     description="Notifications tell people what happened. A panel stays in the page until it is dealt with, and a toast appears briefly and goes away."
     usage={<p className="m-0">Use a panel for messages people must not miss, such as a form error summary, and a toast for short confirmations that need no action. Pair an error toast with an error panel in the page, because a toast can disappear before it is read.</p>}
     contract={["NotificationPanel has four statuses: info, success, warning and error. Toast has success, error and warning.", "Both show an icon and a title, so the status is never carried by colour alone.", "The coloured edge on the panel is 24px wide on the left. On the toast it runs the full width as a timer.", "Both take an onDismiss and then show a close button. Toast also takes a duration in milliseconds."]}

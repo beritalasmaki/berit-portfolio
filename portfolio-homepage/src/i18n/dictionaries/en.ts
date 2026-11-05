@@ -140,6 +140,21 @@ export const en = {
     heading: "A closer look at the work.",
     projectOne: "project",
     projectMany: "projects",
+    designSystem: {
+      label: "Design system · Work sample",
+      headline: "DS by Berit",
+      description:
+        "I built this design system to show that I can create, build, develop and manage one. It has tokens, accessible components and documentation in code, and a matching UI kit in Figma. Design changes start in Figma, and the code is updated to match.",
+      logoAlt: "DS by Berit logo",
+      uiKitCaption: "UI Kit in Figma",
+      uiKitAlt: "The Button page in the Figma UI kit, showing every button state in a light and a dark theme.",
+      libraryCaption: "Published Component Library page",
+      libraryAlt: "The Buttons page on the published design system site, with its navigation and an on-this-page list.",
+      siteLabel: "Open the design system",
+      figmaLabel: "Open the Figma UI kit",
+      repoLabel: "View the code on GitHub",
+      opensNewTab: " (opens in a new tab)",
+    },
   },
 
   about: {

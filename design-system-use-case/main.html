@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --ink:#1f2321; --body:#4d5550; --muted:#69736c; --orange:#f28b30; --orange-dark:#b85b16; --paper:#fff; --subtle:#f3f6f0; --raised:#e8eee5; --border:#dce3dc; --strong:#7d8b80; --shadow:0 18px 45px rgba(31,35,33,.08); }
+    :root { --ink:#1f2321; --body:#4d5550; --muted:#4d5550; --orange:#f28b30; --orange-dark:#b85b16; --paper:#fff; --subtle:#f3f6f0; --raised:#e8eee5; --border:#dce3dc; --strong:#7d8b80; --shadow:0 18px 45px rgba(31,35,33,.08); }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { margin:0; background:var(--paper); color:var(--ink); font-family:Montserrat,Helvetica,Arial,sans-serif; line-height:1.6; }
@@ -61,13 +61,13 @@
     .mode { border:0; border-radius:6px; padding:5px 9px; background:transparent; color:var(--body); font-size:11px; font-weight:700; cursor:pointer; }
     .mode.active { background:var(--paper); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.15); }
     .preview { min-height:140px; padding:28px; background:var(--paper); }
-    .preview.dark { --paper:#222222; --subtle:#303733; --ink:#fff; --body:#d6ded8; --muted:#c5cec7; --border:#69736c; --strong:#9ca99f; color:#fff; background:#222222; }
+    .preview.dark { --paper:#1f2321; --subtle:#303733; --ink:#fff; --body:#d6ded8; --muted:#c5cec7; --border:#7d8b80; --strong:#9ca99f; color:#fff; background:#1f2321; }
     .preview code { display:block; white-space:pre-wrap; color:#dfe8df; font:12px/1.7 "IBM Plex Mono",monospace; }
     .preview.dark code { color:#dfe8df; }
     .demo-link { display:block; width:max-content; max-width:100%; padding:9px 12px; border-radius:8px; font-size:14px; font-weight:700; }
     .demo-link:hover { background:var(--raised); }
     .demo-link.current { background:var(--ink); color:var(--paper); }
-    .preview.dark .demo-link.current { background:#fff; color:#222222; }
+    .preview.dark .demo-link.current { background:#fff; color:#1f2321; }
     .demo-buttons { display:flex; flex-wrap:wrap; gap:10px; }
     .button.secondary { border:1px solid var(--strong); background:transparent; color:var(--ink); }
     .button.tertiary { background:transparent; color:var(--orange-dark); padding-inline:4px; text-decoration:underline; text-underline-offset:4px; }

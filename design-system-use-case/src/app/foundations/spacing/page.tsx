@@ -5,5 +5,5 @@ import { primitiveTokens, semanticTokens } from "@/data/tokens";
 export const metadata: Metadata = { title: "Spacing" };
 
 export default function SpacingPage() {
-  return <TokenPage active="Spacing" title="Spacing" description="An 8px-based scale that keeps page rhythm, component gaps, and responsive layouts predictable." tokens={[...primitiveTokens.spacing, ...semanticTokens.filter((token) => token.name.startsWith("space."))]} />;
+  return <TokenPage active="Spacing" title="Spacing" description="Eight steps from 4px to 64px, used for gaps, padding and page layout." tokens={[...primitiveTokens.spacing, ...semanticTokens.filter((token) => token.name.startsWith("space."))]} />;
 }
