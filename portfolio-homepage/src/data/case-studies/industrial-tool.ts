@@ -153,7 +153,7 @@ export const industrialTool: CaseStudy = {
   ],
 
   whatIWouldDoDifferently: [
-    "Looking back, I would approach the technical side of this project differently today. Instead of relying on static mockups handed off to developers, I'd use AI tools like Claude Design to build working prototypes directly, closing the gap between design and implementation much faster. I'd also structure the Design System from the start with code-level implementation in mind, working closer with developers using tools like Cursor, not just as a well-organized component library in Figma, but as something developers could pull from directly.",
+    "Looking back, I would approach the technical side of this project differently today. Instead of relying on static mockups handed off to developers, I'd use AI tools like Claude Design to build working prototypes directly, closing the gap between design and implementation much faster. I'd also structure the Design System from the start with code-level implementation in mind, working closely with developers and building with Claude Code, so it would be not just a well-organized component library in Figma, but something developers could pull from directly.",
     "The team itself worked well together throughout the project, and I don't think our size or setup was ever the real issue. The growth I see now is more about how I'd use today's tools and ways of working to close that design-to-development gap earlier and more effectively.",
   ],
 

@@ -1,8 +1,8 @@
 import type { Dictionary } from "@/i18n/dictionaries";
 
-/** The four areas of work, as a scannable grid rather than a list to read
- * through. Four groups is small enough that two columns beat one long
- * column — the whole block fits on screen at once, which is the point.
+/** The six areas of work, as a scannable grid rather than a list to read
+ * through. Six groups in two columns beat one long column — an even count
+ * keeps the grid balanced and the block compact, which is the point.
  *
  * Sits inside the About section (no eyebrow, no number of its own) and takes
  * the same `glass rounded-card p-card-pad` card as the bio block directly
