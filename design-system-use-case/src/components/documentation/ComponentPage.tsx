@@ -47,8 +47,8 @@ export function ComponentPage({ name, eyebrow, description, usage, examples, con
         </section>
 
         <section className="mt-14 grid gap-5 md:grid-cols-2">
-          <article id="contract" className="scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] p-6"><p className="eyebrow mb-3">03 / contract</p><h2 className="text-2xl font-bold">Rules the component follows</h2><ul className="mt-5 space-y-3 text-sm text-[var(--color-content-secondary)]">{contract.map((item) => <li key={item} className="flex gap-3"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-action-accent)]" />{item}</li>)}</ul></article>
-          <article id="accessibility" className="scroll-mt-24 rounded-2xl bg-[var(--color-surface-subtle)] p-6"><p className="eyebrow mb-3">04 / accessibility</p><h2 className="text-2xl font-bold">Accessibility information</h2><ul className="mt-5 space-y-3 text-sm text-[var(--color-content-secondary)]">{accessibility.map((item) => <li key={item} className="flex gap-3"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-action-accent-dark)]" />{item}</li>)}</ul></article>
+          <article id="contract" className="scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] p-6"><p className="eyebrow mb-3">03 / contract</p><h2 className="text-2xl font-bold">Rules the component follows</h2><div className="mt-5 flex flex-col gap-4 text-sm leading-6 text-[var(--color-content-secondary)]">{contract.map((item) => <p key={item} className="m-0">{item}</p>)}</div></article>
+          <article id="accessibility" className="scroll-mt-24 rounded-2xl bg-[var(--color-surface-subtle)] p-6"><p className="eyebrow mb-3">04 / accessibility</p><h2 className="text-2xl font-bold">Accessibility information</h2><div className="mt-5 flex flex-col gap-4 text-sm leading-6 text-[var(--color-content-secondary)]">{accessibility.map((item) => <p key={item} className="m-0">{item}</p>)}</div></article>
         </section>
       </div>
     </DocsShell>

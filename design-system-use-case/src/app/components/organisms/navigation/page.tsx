@@ -26,8 +26,8 @@ export default function NavigationPage() {
     eyebrow="Components / organisms"
     description="Navigation shows people where they are in a product and how to move around it."
     usage={<p className="m-0">Use top navigation for product-level movement and side navigation for a focused workspace. Both are built from NavigationLink, and tabs and breadcrumbs can be added inside a page when people need context within a deeper task.</p>}
-    contract={["Navigation landmarks have distinct aria-label values.", "Top navigation handles product-level movement; side navigation handles workspace movement.", "Both are composed from NavigationLink molecules, and show their active, default and disabled statuses."]}
-    accessibility={["Use native nav landmarks for navigation groups.", "Top and side navigation use clear, distinct aria-label values.", "Disclosure menus return focus to their trigger on Escape."]}
+    contract={["Navigation shows people where they are in a product and how to move around it. Top navigation is used for movement between the main areas of a product, and side navigation is used for movement inside one area. Both are built from the navigation link molecule, so they show the same default, active and disabled statuses.", "Each navigation is wrapped in its own landmark with a distinct label, so that assistive technology can list them and tell them apart."]}
+    accessibility={["Navigation uses the native navigation landmark and each one has a clear, different label. The current page is shown with a filled background and is marked for assistive technology, so it is never shown by colour alone.", "Menus that open and close return focus to the control that opened them when they are closed with Escape, so keyboard users never lose their place."]}
     examples={[
       {
         title: "Top navigation",

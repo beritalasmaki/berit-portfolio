@@ -14,8 +14,8 @@ export default function IconsPage() {
     eyebrow="Components / atoms"
     description="A small set of line icons, drawn inline so they work without an icon font."
     usage={<p className="m-0">Use an icon to support a label, not to replace it. Put an icon before or after the text of a button or input. An icon on its own is a button, so use IconButton and give it a label.</p>}
-    contract={["Icon takes a name and renders an inline SVG that uses the current text colour.", "Icons are 24px by default and scale with the size set on them.", "IconButton is the icon-only button. It requires a label."]}
-    accessibility={["Icons are decorative and hidden from assistive technology. Meaning always comes from text beside them.", "An icon-only control needs an accessible name, which IconButton requires as its label.", "Do not use colour alone with an icon to show status. Add text."]}
+    contract={["Icon draws a small line icon as an inline image that takes the colour of the text around it, so it works in light and dark themes without a separate file. The icons are 24px by default and scale with the size set on them. The icon button is the icon-only button, and it always requires a text label.", "The set is kept small on purpose. An icon is added only when it supports a label or a state that is used in the system, so that the same meaning is always shown with the same picture."]}
+    accessibility={["Icons are decorative and are hidden from assistive technology, so the meaning must always come from text next to them. A control that shows only an icon needs an accessible name, which the icon button provides through its label.", "An icon must never be the only sign of a status. A status is shown with an icon together with words, so it is understood by people who cannot see the icon or its colour."]}
     examples={[
       {
         title: "All icons",
