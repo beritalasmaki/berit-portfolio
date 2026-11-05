@@ -29,7 +29,7 @@ export default function FormPageTemplatePage() {
               <Link href="#top" className="font-bold">DS by Berit</Link>
               <nav aria-label="Top navigation" className="flex flex-wrap gap-1"><NavigationLink href="#work">Work</NavigationLink><NavigationLink href="#applications" aria-current="page">Applications</NavigationLink><NavigationLink href="#help">Help</NavigationLink></nav>
             </header>
-            <main className="mx-auto grid max-w-2xl gap-6 p-6">
+            <main className="mx-auto grid max-w-[var(--width-form)] gap-6 p-6">
               <Breadcrumb items={[{ label: "Applications", href: "#applications" }, { label: "New application" }]} />
               <TemplateRegion label="Form introduction" hint="Title, what is asked, how long it takes, * marked fields are required" className="min-h-24" />
               <FormProgress steps={["Your details", "Contact", "Review"]} current={1} />
@@ -39,7 +39,7 @@ export default function FormPageTemplatePage() {
             </main>
           </div>}
           cssCode={".form-page {\n  max-width: 40rem;\n  margin-inline: auto;\n  display: grid;\n  gap: 24px;\n}"}
-          javascriptCode={'<main className="mx-auto grid max-w-2xl gap-6">\n  <Breadcrumb items={items} />\n  <FormIntro title="Apply for a place">...</FormIntro>\n  <FormProgress steps={steps} current={1} />\n  <FormSection title="Your details">...</FormSection>\n  <FormActions position="first" onNext={next} />\n</main>'}
+          javascriptCode={'<main className="mx-auto grid max-w-[var(--width-form)] gap-6">\n  <Breadcrumb items={items} />\n  <FormIntro title="Apply for a place">...</FormIntro>\n  <FormProgress steps={steps} current={1} />\n  <FormSection title="Your details">...</FormSection>\n  <FormActions position="first" onNext={next} />\n</main>'}
         />,
       },
     ]}

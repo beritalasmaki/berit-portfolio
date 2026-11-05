@@ -41,12 +41,28 @@
 	--gradient-action-primary-hover: linear-gradient(180deg, var(--color-action-accent-dark), var(--color-action-accent-dark));
 	--gradient-action-primary-dark: linear-gradient(180deg, var(--color-surface-canvas), var(--color-surface-raised));
 	--gradient-action-primary-hover-dark: linear-gradient(180deg, var(--color-action-accent), var(--color-status-warning-default));
+	--grid-columns: 4;
+	--grid-gutter: 16px;
+	--grid-margin: 16px;
+	--width-text: 800px;
+	--width-text-narrow: 600px;
+	--width-form: 640px;
+	--width-page: 1440px;
 	--shadow-panel: 0 18px 45px rgba(31, 35, 33, 0.08);
 	--shadow-s: 0 1px 2px rgba(31, 35, 33, 0.1), 0 2px 6px rgba(31, 35, 33, 0.08);
 	--shadow-m: 0 4px 8px rgba(31, 35, 33, 0.08), 0 8px 20px rgba(31, 35, 33, 0.1);
 	--shadow-l: 0 12px 24px rgba(31, 35, 33, 0.1), 0 24px 56px rgba(31, 35, 33, 0.14);
 	--shadow-inset: inset 0 1px 0 rgba(199, 209, 200, 0.28), inset 0 -2px 4px rgba(31, 35, 33, 0.55);
 }
+
+/* Grid tokens change at the Tailwind breakpoints md (768px), lg (1024px) and xl (1280px). */
+@media (min-width: 768px) { :root { --grid-columns: 8; --grid-gutter: 24px; --grid-margin: 24px; } }
+@media (min-width: 1024px) { :root { --grid-columns: 12; --grid-gutter: 24px; --grid-margin: 32px; } }
+@media (min-width: 1280px) { :root { --grid-columns: 12; --grid-gutter: 32px; --grid-margin: 48px; } }
+
+/* A centred page container with the grid margin at its sides, and the column grid itself. */
+.layout-container { width: 100%; max-width: var(--width-page); margin-inline: auto; padding-inline: var(--grid-margin); }
+.layout-grid { display: grid; grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr)); column-gap: var(--grid-gutter); }
 
 * { box-sizing: border-box; }
 
@@ -144,7 +160,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	text-wrap: balance;
 }
 
-.body-copy { max-width: 48ch; color: var(--color-content-secondary); }
+.body-copy { max-width: var(--width-text); color: var(--color-content-secondary); }
 
 .surface-grid {
 	background-image: linear-gradient(var(--color-border-default) 1px, transparent 1px), linear-gradient(90deg, var(--color-border-default) 1px, transparent 1px);

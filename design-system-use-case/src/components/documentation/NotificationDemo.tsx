@@ -17,7 +17,7 @@ export function NotificationPanelDemo() {
   const [closed, setClosed] = useState<string[]>([]);
   const visible = panels.filter((panel) => !closed.includes(panel.status));
   return (
-    <div className="grid w-full max-w-xl gap-4">
+    <div className="grid w-full max-w-[var(--width-text-narrow)] gap-4">
       {visible.map((panel) => (
         <NotificationPanel key={panel.status} status={panel.status} title={panel.title} onDismiss={() => setClosed((list) => [...list, panel.status])}>{panel.text}</NotificationPanel>
       ))}
@@ -37,7 +37,7 @@ export function ToastDemo() {
   const [shown, setShown] = useState<ToastStatus | null>(null);
   const toast = toasts.find((item) => item.status === shown);
   return (
-    <div className="grid w-full max-w-xl gap-4">
+    <div className="grid w-full max-w-[var(--width-text-narrow)] gap-4">
       <div className="flex flex-wrap gap-3">
         {toasts.map((item) => <Button key={item.status} variant="secondary" onClick={() => setShown(item.status)}>Show {item.status} toast</Button>)}
       </div>

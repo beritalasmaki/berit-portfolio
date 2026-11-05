@@ -67,6 +67,7 @@ Open [http://localhost:3000](http://localhost:3000).
 - `/foundations` - dedicated token and foundation documentation
 - `/foundations/colors` - color tokens and semantic color roles
 - `/foundations/spacing` - spacing scale tokens
+- `/foundations/layout` - breakpoints, column grid, and maximum widths
 - `/foundations/typography` - heading, body, label, and metadata tokens
 - `/foundations/shape` - radius, border, and elevation tokens
 - `/components` - dedicated component family index

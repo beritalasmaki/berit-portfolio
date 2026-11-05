@@ -15,7 +15,7 @@ export function FormPatternDemo() {
   const [step, setStep] = useState(1);
   const position = step === 1 ? "first" : step === steps.length ? "last" : "middle";
   return (
-    <form className="grid w-full max-w-xl gap-6" onSubmit={(event) => event.preventDefault()}>
+    <form className="grid w-full max-w-[var(--width-text-narrow)] gap-6" onSubmit={(event) => event.preventDefault()}>
       <FormIntro title="Apply for a place">Answering takes about three minutes. You can go back to change an answer before you send.</FormIntro>
       <FormProgress steps={steps} current={step} />
       <FormSection title={steps[step - 1]} description={`Step ${step} of ${steps.length}`}>

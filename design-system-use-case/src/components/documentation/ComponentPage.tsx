@@ -27,8 +27,8 @@ export function ComponentPage({ name, eyebrow, description, usage, examples, con
       { heading: "Examples", items: examples.map((example, index) => ({ id: `example-${index + 1}`, label: example.title })) },
       { heading: "Reference", items: [{ id: "contract", label: "Contract" }, { id: "accessibility", label: "Accessibility" }] },
     ] satisfies PageNavGroup[] : undefined}>
-      <div className={showPageNav ? "max-w-6xl" : "max-w-7xl"}>
-        <header className="max-w-4xl">
+      <div className="max-w-[var(--width-page)]">
+        <header className="max-w-[var(--width-text)]">
           <p className="eyebrow mb-4">{eyebrow}</p>
           <h1 className="text-4xl font-extrabold tracking-[-0.04em] md:text-6xl">{name}</h1>
           <p className="body-copy mt-5 text-lg">{description}</p>
@@ -36,7 +36,7 @@ export function ComponentPage({ name, eyebrow, description, usage, examples, con
 
         <section id="usage" className="mt-12 grid scroll-mt-24 gap-5 rounded-2xl bg-[var(--color-surface-inverse)] p-6 text-white md:grid-cols-[.7fr_1.3fr] md:p-8">
           <div><p className="eyebrow text-[var(--color-action-accent)]">Usage</p><h2 className="mt-3 text-2xl font-bold">When to use it</h2></div>
-          <div className="max-w-2xl text-white/75">{usage}</div>
+          <div className="max-w-[var(--width-text-narrow)] text-white/75">{usage}</div>
         </section>
 
         <section className="mt-14" aria-labelledby="examples-heading">

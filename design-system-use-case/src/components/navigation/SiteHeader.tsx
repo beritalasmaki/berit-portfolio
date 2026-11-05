@@ -12,7 +12,7 @@ type SiteHeaderProps = {
 export function SiteHeader({ actionHref, actionLabel, actionIcon, children }: SiteHeaderProps) {
   return (
     <header className="border-b border-[var(--color-border-default)] px-6 py-5 lg:px-10">
-      <div className="mx-auto flex max-w-[1480px] items-center justify-between gap-5">
+      <div className="mx-auto flex max-w-[var(--width-page)] items-center justify-between gap-5">
         <Link href="/" className="flex items-center gap-3 font-bold" aria-label="DS by Berit home">
           <BrandMark />
           <span>DS by Berit <span className="hidden font-normal text-[var(--color-content-muted)] sm:inline">/ Design System</span></span>

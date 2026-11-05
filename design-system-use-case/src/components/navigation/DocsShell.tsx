@@ -34,7 +34,7 @@ const componentLinks = componentGroups.flatMap((group) => group.links);
 const navItem = (active: boolean) => `block rounded-lg px-3 py-2 text-sm font-semibold ${active ? "bg-[var(--color-surface-inverse)] text-white" : "text-[var(--color-content-secondary)] hover:bg-[var(--color-surface-subtle)]"}`;
 
 export function DocsShell({ children, active, topLink = { href: "/", label: "Back to landing page" }, pageNav }: { children: ReactNode; active?: string; topLink?: { href: string; label: string }; pageNav?: PageNavGroup[] }) {
-  const foundationRouteActive = active === "Foundations" || ["Colors", "Spacing", "Typography", "Shape & elevation"].includes(active ?? "");
+  const foundationRouteActive = active === "Foundations" || ["Colors", "Spacing", "Layout & grid", "Typography", "Shape & elevation"].includes(active ?? "");
   const componentRouteActive = active === "Components" || componentLinks.some((item) => item.label === active);
   const [foundationsOpen, setFoundationsOpen] = useState(foundationRouteActive);
   const [componentsOpen, setComponentsOpen] = useState(componentRouteActive);
@@ -44,7 +44,7 @@ export function DocsShell({ children, active, topLink = { href: "/", label: "Bac
   return (
     <div className="min-h-screen bg-[var(--color-surface-canvas)]">
       <SiteHeader actionHref={topLink.href} actionLabel={topLink.label} actionIcon={topLink.label === "Back to landing page" ? "arrow_back" : "arrow_forward"} />
-      <div className="mx-auto grid max-w-[1480px] lg:grid-cols-[240px_1fr]">
+      <div className="mx-auto grid max-w-[var(--width-page)] lg:grid-cols-[240px_1fr]">
         <aside className="border-b border-[var(--color-border-default)] px-6 py-6 lg:min-h-[calc(100vh-81px)] lg:border-b-0 lg:border-r lg:px-8 lg:py-10">
           <nav aria-label="Design system documentation">
             <p className="eyebrow mb-4">Documentation</p>
@@ -57,6 +57,7 @@ export function DocsShell({ children, active, topLink = { href: "/", label: "Bac
               {showFoundations ? <div className="mt-2 hidden border-l border-[var(--color-border-default)] pl-3 lg:block">
                 <Link href="/foundations/colors" className={navItem(active === "Colors")}>Colors</Link>
                 <Link href="/foundations/spacing" className={navItem(active === "Spacing")}>Spacing</Link>
+                <Link href="/foundations/layout" className={navItem(active === "Layout & grid")}>Layout & grid</Link>
                 <Link href="/foundations/typography" className={navItem(active === "Typography")}>Typography</Link>
                 <Link href="/foundations/shape" className={navItem(active === "Shape & elevation")}>Shape & elevation</Link>
               </div> : null}
