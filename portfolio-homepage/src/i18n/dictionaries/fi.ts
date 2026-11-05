@@ -111,7 +111,7 @@ export const fi: Dictionary = {
     tabs: [
       {
         question: "Miten pidän yhteistyötaidot ajan tasalla?",
-        body: "Yhteistyö kehittäjien kanssa on muuttunut muutamassa vuodessa, ja mukaudun muutokseen jatkuvasti. En luovuta valmista suunnitelmaa ja katoa, vaan pysyn mukana keskustelussa koko toteutuksen ajan. Rakennan itse toimivia prototyyppejä esimerkiksi Claude Designilla, ja teen töitä myös suoraan koodissa: rakennan komponentin tai tietyn osan sivustosta ensimmäiseksi versioksi, jonka kehittäjä katselmoi. Näin kehittäjät näkevät oikeita komponentteja ja niiden lataus-, virhe- ja tyhjätilat jo varhain eivätkä vain staattisia kuvia, joita pitäisi tulkita. Käytän keskusteluissa koodin nimiä, jolloin ei tarvitse arvailla, mitä painiketta tarkoitetaan.",
+        body: "Yhteistyö kehittäjien kanssa on muuttunut muutamassa vuodessa, ja mukaudun muutokseen jatkuvasti. En luovuta valmista suunnitelmaa ja katoa, vaan pysyn mukana keskustelussa koko toteutuksen ajan. Rakennan itse toimivia prototyyppejä esimerkiksi Claude Designilla, ja teen töitä myös suoraan koodissa: rakennan komponentin tai tietyn osan sivustosta ensimmäiseksi versioksi, jonka kehittäjä katselmoi. Näin kehittäjät näkevät oikeita komponentteja ja niiden lataus-, virhe- ja tyhjätilat jo varhain eivätkä vain staattisia kuvia, joita pitäisi tulkita.",
         highlight:
           "Valtakunnallisessa koulutusalustahankkeessa, jossa oli mukana useita kuntia ja toimittajia, vedin tiimin päivittäiset palaverit ja suunnittelin työpajaprosessin, jonka avulla tiimi eteni tutkimuksesta konkreettisiin konsepteihin.",
         linkLabel: "Lue asiakasprojekti: koulutuksen digitaalinen palvelualusta →",
@@ -119,7 +119,7 @@ export const fi: Dictionary = {
       },
       {
         question: "Miten lähestyn monimutkaisia ongelmia?",
-        body: "Aloitan kartoittamalla ongelman: keitä asia koskee, miten työ tehdään nykyään ja missä se tökkii. Sen jälkeen rakennan varhaisia konsepteja ja vien ne niiden ihmisten eteen, jotka niitä käyttävät. Näin nähdään, mikä kestää, kun suunnan muuttaminen on vielä halpaa. En yritä suunnitella jokaista yksityiskohtaa etukäteen, vaan suunnittelen sen verran, että pääsen liikkeelle, ja mukaudun oppimisen mukana. Pidän tavoitteen ja onnistumisen mittarit näkyvissä, jotta muutokset pysyvät tarkoituksenmukaisina.",
+        body: "Aloitan kartoittamalla ongelman: keitä asia koskee, miten työ tehdään nykyään ja missä se tökkii. Sen jälkeen rakennan varhaisia konsepteja ja testaan niitä oikeiden käyttäjien kanssa. En yritä suunnitella jokaista yksityiskohtaa etukäteen, vaan suunnittelen sen verran, että pääsen liikkeelle, ja mukaudun oppimisen mukana. Pidän tavoitteen ja onnistumisen mittarit näkyvissä, jotta muutokset pysyvät tarkoituksenmukaisina.",
         highlight:
           "Vanhojen ympäristödatajärjestelmien uudistaminen tarkoitti työtä välineillä, joita tutkijat olivat käyttäneet vuosia ilman selkeää rakennetta. Sen sijaan, että olisin odottanut täydellistä ratkaisua, keskityin julkaisemaan nopeasti jotain hyödyllistä ja parantamaan sitä sen mukaan, mitä opimme.",
         linkLabel: "Lue asiakasprojekti: ympäristödatajärjestelmät →",
