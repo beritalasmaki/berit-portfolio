@@ -152,6 +152,7 @@ export const fi: Dictionary = {
       libraryAlt: "Julkaistun Design System -sivuston Buttons-sivu navigaatioineen ja sivun sisällysluettelo.",
       siteLabel: "Avaa Design System",
       figmaLabel: "Avaa Figman UI Kit",
+      repoLabel: "Katso koodi GitHubissa",
       opensNewTab: " (avautuu uuteen välilehteen)",
     },
   },

@@ -31,6 +31,7 @@ function GlobeCodeIcon() {
 }
 
 const designSystemUrl = "https://design-system-use-case.vercel.app/";
+const designSystemRepoUrl = "https://github.com/beritalasmaki/berit-portfolio/tree/main/design-system-use-case";
 const figmaUiKitUrl = "https://www.figma.com/design/WlwWrwDWzt5shl0sYocASJ/Design-System-by-Berit?node-id=4-4";
 
 export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy: Dictionary["caseStudies"] }) {
@@ -110,6 +111,7 @@ export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy:
               {[
                 { href: designSystemUrl, label: copy.designSystem.siteLabel },
                 { href: figmaUiKitUrl, label: copy.designSystem.figmaLabel },
+                { href: designSystemRepoUrl, label: copy.designSystem.repoLabel },
               ].map((link) => (
                 <a
                   key={link.href}

@@ -151,6 +151,7 @@ export const en = {
       libraryAlt: "The Buttons page on the published design system site, with its navigation and an on-this-page list.",
       siteLabel: "Open the design system",
       figmaLabel: "Open the Figma UI kit",
+      repoLabel: "View the code on GitHub",
       opensNewTab: " (opens in a new tab)",
     },
   },
