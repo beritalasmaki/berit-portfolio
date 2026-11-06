@@ -23,7 +23,7 @@ export default function Footer({ copy }: { copy: Pick<Dictionary, "footer" | "si
     <footer className="site-footer glass-footer flex items-center justify-between gap-x-6 gap-y-2 flex-wrap px-gutter py-6 pr-[80px] sm:pr-48">
       <Logo copy={copy.site} />
       <p className="m-0 text-[13px] text-body sm:whitespace-nowrap">
-        {copy.footer.credit} © {year}
+        {copy.footer.credit} © {year} Berit&Co
       </p>
     </footer>
   );
