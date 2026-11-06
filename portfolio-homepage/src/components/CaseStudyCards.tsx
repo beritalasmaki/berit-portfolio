@@ -72,7 +72,7 @@ export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy:
                   {study.headline}
                 </h3>
                 <p className="m-0 text-body-lg text-body max-w-prose">{study.description}</p>
-                <span className="text-nav font-semibold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-[border-color] duration-150 ease-out group-hover:border-accent-dark group-focus-visible:border-accent-dark">
+                <span className="text-nav font-semibold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-[border-color] duration-200 ease-linear group-hover:border-accent-dark group-focus-visible:border-accent-dark">
                   {study.ctaLabel}
                 </span>
               </div>
@@ -118,7 +118,7 @@ export default function CaseStudyCards({ locale, copy }: { locale: Locale; copy:
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-nav font-semibold text-ink border-b border-accent pb-2 whitespace-nowrap transition-[border-color] duration-150 ease-out hover:border-accent-dark focus-visible:border-accent-dark"
+                  className="text-nav font-semibold text-ink border-b border-accent pb-2 whitespace-nowrap transition-[border-color] duration-200 ease-linear hover:border-accent-dark focus-visible:border-accent-dark"
                 >
                   {link.label}
                   <span className="sr-only">{copy.designSystem.opensNewTab}</span>

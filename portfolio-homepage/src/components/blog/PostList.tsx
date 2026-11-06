@@ -35,7 +35,7 @@ export default function PostList({
   }
 
   const pill = (pressed: boolean) =>
-    `inline-flex items-center font-mono-label text-mono-label-em font-medium uppercase rounded-pill h-11 px-4 whitespace-nowrap transition-colors duration-150 ease-out ${
+    `inline-flex items-center font-mono-label text-mono-label-em font-medium uppercase rounded-pill h-11 px-4 whitespace-nowrap transition-colors duration-200 ease-linear ${
       pressed ? "glass-button-ink text-white" : "glass-button text-body hover:text-ink focus-visible:text-ink"
     }`;
 

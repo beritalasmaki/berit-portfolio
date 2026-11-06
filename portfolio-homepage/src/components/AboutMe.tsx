@@ -164,7 +164,7 @@ function WorkingWithMeRow({
         onMouseLeave={() => setHovered(false)}
         onFocus={() => setHovered(true)}
         onBlur={() => setHovered(false)}
-        className={`group relative z-0 flex w-full min-h-[124px] items-center gap-4 bg-cream/50 rounded-frame p-4 text-left transition-[background-color,opacity] duration-500 ease-out hover:bg-cream focus-visible:bg-cream ${
+        className={`group relative z-0 flex w-full min-h-[124px] items-center gap-4 bg-cream/50 rounded-frame p-4 text-left transition-[background-color,opacity] duration-200 ease-linear hover:bg-cream focus-visible:bg-cream ${
           expanded ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -202,7 +202,7 @@ function WorkingWithMeRow({
         role="region"
         aria-labelledby={buttonId}
         aria-hidden={!expanded}
-        className={`absolute inset-0 z-10 flex items-center rounded-frame border border-rule bg-white shadow-frame-accent p-4 pointer-events-none transition-[opacity,transform] duration-500 ease-out ${
+        className={`absolute inset-0 z-10 flex items-center rounded-frame border border-rule bg-white shadow-frame-accent p-4 pointer-events-none transition-[opacity,transform] duration-[200ms,500ms] ease-[linear,cubic-bezier(0.22,1,0.36,1)] ${
           expanded ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
         }`}
       >
@@ -289,7 +289,7 @@ export default function AboutMe({ copy }: { copy: Dictionary["about"] }) {
         >
           <LinkedInIcon />
           {copy.linkedin}
-          <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
+          <ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
         </a>
 
         {/* Closes out the bio column: the paragraphs above are the

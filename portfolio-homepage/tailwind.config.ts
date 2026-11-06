@@ -110,6 +110,17 @@ const config: Config = {
         "frame-accent": "0 16px 34px rgba(34, 34, 34, 0.16)",
         lightbox: "0 12px 30px rgba(34, 34, 34, 0.22)",
       },
+      // Motion tokens (Base motion: Quintic curves + default durations; see
+      // DESIGN-SYSTEM.md "Motion"). Linear is Tailwind's stock `ease-linear`.
+      transitionTimingFunction: {
+        "accel-decel": "cubic-bezier(0.83, 0, 0.17, 1)",
+        decelerate: "cubic-bezier(0.22, 1, 0.36, 1)",
+        accelerate: "cubic-bezier(0.64, 0, 0.78, 0)",
+        "responsive-accelerate": "cubic-bezier(0.11, 0, 0.5, 0)",
+      },
+      transitionDuration: {
+        400: "400ms",
+      },
       keyframes: {
         // The availability badge's dot (contact block). Replaces Tailwind's stock
         // `animate-pulse`, which dips to 0.5 over 2s — barely readable on

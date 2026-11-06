@@ -127,7 +127,7 @@ export default function AccordionSection({
             </span>
             <span
               aria-hidden="true"
-              className={`flex items-center text-muted transition-transform duration-300 ease-out group-hover:text-accent-dark group-focus-visible:text-accent-dark ${
+              className={`flex items-center text-muted transition-transform duration-500 ease-accel-decel group-hover:text-accent-dark group-focus-visible:text-accent-dark ${
                 open ? "rotate-180" : ""
               }`}
             >
@@ -141,7 +141,7 @@ export default function AccordionSection({
         role="region"
         aria-labelledby={headingId}
         aria-hidden={!open}
-        className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+        className={`grid transition-[grid-template-rows] duration-200 ease-linear ${
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
