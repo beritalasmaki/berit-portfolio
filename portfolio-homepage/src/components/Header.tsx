@@ -112,7 +112,7 @@ function IconLink({
       </a>
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-full z-30 mt-2 -translate-x-1/2 whitespace-nowrap rounded-chrome bg-ink px-2 py-1 text-[12px] font-medium text-white opacity-0 transition-opacity duration-150 ease-out group-hover/tip:opacity-100 group-focus-within/tip:opacity-100"
+        className="pointer-events-none absolute left-1/2 top-full z-30 mt-2 -translate-x-1/2 whitespace-nowrap rounded-chrome bg-ink px-2 py-1 text-[12px] font-medium text-white opacity-0 transition-opacity duration-200 ease-linear group-hover/tip:opacity-100 group-focus-within/tip:opacity-100"
       >
         {tooltip}
       </span>
@@ -480,10 +480,10 @@ export default function Header({
               <Link
                 href={backHref}
                 data-sound="back"
-                className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
+                className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-200 ease-linear hover:text-ink focus-visible:text-ink"
               >
                 <ArrowLeftIcon />
-                <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{backLabel}</span>
+                <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-200 ease-linear group-hover:decoration-current group-focus-visible:decoration-current">{backLabel}</span>
               </Link>
             ) : (
               primaryNav.map((item, index) => {
@@ -504,7 +504,7 @@ export default function Header({
                     onPointerEnter={() => setPointed(index)}
                     onFocus={() => setPointed(index)}
                     onClick={() => setJumpedTo(index)}
-                    className="relative inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
+                    className="relative inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-200 ease-linear hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                   >
                     <NavIcon />
                     <span>
@@ -551,7 +551,7 @@ export default function Header({
                 // A tertiary (text) button in both languages: "Ota yhteyttä" is the
                 // natural Finnish phrase but too wide for a filled pill at 1024px;
                 // no fill means no padding to pay for.
-                className="group ml-3 inline-flex items-center gap-2 h-11 px-1 text-nav font-semibold whitespace-nowrap text-ink underline decoration-transparent decoration-2 underline-offset-[10px] transition-[text-decoration-color] duration-150 ease-out hover:decoration-accent focus-visible:decoration-accent"
+                className="group ml-3 inline-flex items-center gap-2 h-11 px-1 text-nav font-semibold whitespace-nowrap text-ink underline decoration-transparent decoration-2 underline-offset-[10px] transition-[text-decoration-color] duration-200 ease-linear hover:decoration-accent focus-visible:decoration-accent"
               >
                 {copy.header.contact}
               </a>
@@ -601,10 +601,10 @@ export default function Header({
               <Link
                 href={backHref}
                 data-sound="back"
-                className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink"
+                className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap text-body transition-colors duration-200 ease-linear hover:text-ink focus-visible:text-ink"
               >
                 <ArrowLeftIcon />
-                <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{backLabel}</span>
+                <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-200 ease-linear group-hover:decoration-current group-focus-visible:decoration-current">{backLabel}</span>
               </Link>
             ) : (
               primaryNav.map((item) => {
@@ -617,11 +617,11 @@ export default function Header({
                     href={item.href}
                     data-sound={navSound(item.href)}
                     aria-current={current ? (sectionId(item.href) === null ? "page" : "location") : undefined}
-                    className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
+                    className="group inline-flex items-center gap-2 text-nav font-semibold whitespace-nowrap transition-colors duration-200 ease-linear hover:text-ink focus-visible:text-ink aria-[current]:text-accent-dark"
                     onClick={() => setOpen(false)}
                   >
                     <NavIcon />
-                    <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-150 ease-out group-hover:decoration-current group-focus-visible:decoration-current">{item.label}</span>
+                    <span className="underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-200 ease-linear group-hover:decoration-current group-focus-visible:decoration-current">{item.label}</span>
                   </NavLink>
                 );
               })
@@ -654,7 +654,7 @@ export default function Header({
               className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
             >
               {copy.header.contact}
-              <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
+              <ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
             </a>
           </nav>
         )}

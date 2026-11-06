@@ -38,7 +38,7 @@ export default function PostCard({
         <PostMeta post={post} locale={locale} copy={copy} />
         <p className="m-0 text-body-sm text-body">{post.excerpt}</p>
         <TagList tags={post.tags} label={copy.topics} />
-        <span className="mt-auto text-nav font-semibold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-[border-color] duration-150 ease-out group-hover:border-accent-dark group-focus-visible:border-accent-dark">
+        <span className="mt-auto text-nav font-semibold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-[border-color] duration-200 ease-linear group-hover:border-accent-dark group-focus-visible:border-accent-dark">
           {copy.readPost}
         </span>
       </Link>

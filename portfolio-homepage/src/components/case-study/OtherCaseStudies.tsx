@@ -78,7 +78,7 @@ export default function OtherCaseStudies({
                     {study.title}
                   </h3>
                   <p className="m-0 text-body-sm text-body">{study.otherCaseStudyDescription}</p>
-                  <span className="mt-auto text-nav font-semibold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-[border-color] duration-150 ease-out group-hover:border-accent-dark group-focus-visible:border-accent-dark">
+                  <span className="mt-auto text-nav font-semibold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-[border-color] duration-200 ease-linear group-hover:border-accent-dark group-focus-visible:border-accent-dark">
                     {copy.viewCaseStudy}
                   </span>
                 </div>

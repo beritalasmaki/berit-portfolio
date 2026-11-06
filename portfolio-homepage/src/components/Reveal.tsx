@@ -96,9 +96,11 @@ export default function Reveal({ children }: { children: ReactNode }) {
   return (
     <div
       ref={ref}
-      // A soft swell rather than a pop: a short rise, no scale, on a long
-      // gentle ease-out, in the same unhurried rhythm as the Line.
-      className="transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+      // Base "position and opacity" entrance: the rise decelerates over
+      // 500ms, the opacity fades in linearly over 200ms. Reduced motion
+      // drops the rise for a 100ms fade (globals.css, `data-reveal`).
+      className="transition-[opacity,transform] duration-[200ms,500ms] ease-[linear,cubic-bezier(0.22,1,0.36,1)]"
+      data-reveal=""
       style={hidden ? { opacity: 0, transform: "translateY(20px)" } : undefined}
       data-reveal-hidden={hidden ? "" : undefined}
     >

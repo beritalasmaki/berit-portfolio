@@ -1218,6 +1218,34 @@ Single row, one hairline below:
   explicit priority; `flex-wrap` stays on the nav as a last-resort safety
   net, not the primary narrow-viewport behavior.
 
+### Motion (Base motion rules)
+
+UI motion follows the Base design system's motion guidance (Quintic easing,
+atomic enter/exit/transform patterns). Where an older note elsewhere in this
+document gives different durations or curves for UI transitions, this section
+wins.
+
+| Use | Easing | Duration | Tailwind |
+| --- | --- | --- | --- |
+| Opacity, color, border, shadow (non-moving properties) | linear | 200ms in, 100ms out | `ease-linear duration-200` |
+| Move, scale, rotate (starts and ends in view) | accelerate/decelerate `cubic-bezier(0.83, 0, 0.17, 1)` | 500ms | `ease-accel-decel duration-500` |
+| Enter (starts out of view / hidden) | decelerate `cubic-bezier(0.22, 1, 0.36, 1)` | 500ms | `ease-decelerate duration-500` |
+| Passive exit | accelerate `cubic-bezier(0.64, 0, 0.78, 0)` | 400ms | `ease-accelerate duration-400` |
+| Exit after direct dismissal | responsive accelerate `cubic-bezier(0.11, 0, 0.5, 0)` | 200ms | `ease-responsive-accelerate duration-200` |
+
+- **Position/scale + opacity entrances** (Reveal, ripple items, hero fade-up,
+  logo ball, TOC nodes): the opacity fades linearly over 200ms while the
+  movement decelerates over 500ms. Mixed transitions pair per property:
+  `duration-[200ms,500ms] ease-[linear,cubic-bezier(0.22,1,0.36,1)]`.
+- No overshoot curves; no diagonal tweens; one direction of movement at a time.
+- **Reduced motion:** hover/focus changes are instant; entrances become a
+  100ms linear fade with no movement; decorative looping motion stops.
+- **Looping ambient motion** (glow orbs, logo marquee, hero play ring,
+  status dot) is kept as designed.
+- **Kept on purpose, not Base-timed:** the Line / logo signature draw-in and
+  hero chaos choreography, the header shrink and page veil, and the liquid
+  hover filter. They are brand choreography with their own timing.
+
 ### Focus & selection state
 Not covered by the original design files (no interactive states there) — added in
 code and applies site-wide:
