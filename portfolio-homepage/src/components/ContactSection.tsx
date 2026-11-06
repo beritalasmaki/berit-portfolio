@@ -28,7 +28,7 @@ export default function ContactSection({ copy }: { copy: Dictionary["contact"] }
           </p>
           <a
             href={`mailto:${site.email}`}
-            className="text-[clamp(16px,1.5vw,22px)] font-bold text-ink border-b-2 border-accent pb-2 self-start whitespace-nowrap transition-transform duration-150 ease-out hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
+            className="text-[clamp(16px,1.5vw,22px)] font-bold text-ink border-b-2 border-accent pb-2 self-start whitespace-nowrap transition-transform duration-500 ease-accel-decel hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
           >
             {site.email}
           </a>
@@ -37,7 +37,7 @@ export default function ContactSection({ copy }: { copy: Dictionary["contact"] }
             data-sound="social"
             target="_blank"
             rel="noreferrer"
-            className="text-nav font-bold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-transform duration-150 ease-out hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
+            className="text-nav font-bold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-transform duration-500 ease-accel-decel hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
           >
             {copy.linkedin}
           </a>

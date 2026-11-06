@@ -27,7 +27,7 @@ export default function CaseStudyHero({ study, copy }: { study: CaseStudy; copy:
           href={study.liveUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex w-fit items-center gap-2 border border-rule-strong text-ink text-nav font-semibold h-11 px-6 rounded-pill whitespace-nowrap transition-[border-color,transform] duration-150 ease-out hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
+          className="mt-6 inline-flex w-fit items-center gap-2 border border-rule-strong text-ink text-nav font-semibold h-11 px-6 rounded-pill whitespace-nowrap transition-[border-color,transform] duration-[200ms,500ms] ease-[linear,cubic-bezier(0.83,0,0.17,1)] hover:border-ink hover:-translate-y-px focus-visible:border-ink focus-visible:-translate-y-px"
         >
           {copy.liveProject}
         </a>

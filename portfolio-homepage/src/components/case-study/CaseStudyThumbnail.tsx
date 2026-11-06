@@ -21,7 +21,7 @@ export default function CaseStudyThumbnail({ study, sizes }: { study: CaseStudy;
     // card's glass shows through around the mockups.
     <div className="relative aspect-[16/13] overflow-hidden">
       {study.placeholderLabel ? (
-        <div className="absolute inset-4 flex items-center justify-center border border-dashed border-rule-strong rounded-frame transition-transform duration-150 ease-out group-hover:scale-[1.02] group-focus-visible:scale-[1.02]">
+        <div className="absolute inset-4 flex items-center justify-center border border-dashed border-rule-strong rounded-frame transition-transform duration-500 ease-accel-decel group-hover:scale-[1.02] group-focus-visible:scale-[1.02]">
           <p className="m-0 font-mono-label text-mono-label uppercase text-muted text-center px-4">
             {study.placeholderLabel}
           </p>
@@ -35,7 +35,7 @@ export default function CaseStudyThumbnail({ study, sizes }: { study: CaseStudy;
           alt=""
           fill
           sizes={sizes}
-          className="object-cover object-left-top transition-transform duration-150 ease-out group-hover:scale-[1.02] group-focus-visible:scale-[1.02]"
+          className="object-cover object-left-top transition-transform duration-500 ease-accel-decel group-hover:scale-[1.02] group-focus-visible:scale-[1.02]"
         />
       )}
       <span className="absolute top-4 left-4 font-mono-label text-mono-label uppercase text-white bg-ink rounded-pill py-2 px-4 whitespace-nowrap ring-1 ring-white/70 shadow-[0_2px_8px_rgba(34,34,34,0.12)]">

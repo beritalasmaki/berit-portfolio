@@ -101,7 +101,7 @@ export default function MindTabs({ locale, copy }: { locale: Locale; copy: Dicti
                 onKeyDown={(event) => onKeyDown(event, index)}
                 // Text colour waits a beat, so it turns white as the dark
                 // fill arrives rather than before.
-                className={`group relative flex flex-1 items-center justify-between gap-4 py-[clamp(16px,2.2vw,24px)] px-[clamp(16px,2.2vw,32px)] text-left border-b border-white/60 last:border-b-0 border-l-4 transition-[background-color,border-color,color] duration-[150ms,150ms,250ms] delay-[0ms,0ms,120ms] ease-out ${
+                className={`group relative flex flex-1 items-center justify-between gap-4 py-[clamp(16px,2.2vw,24px)] px-[clamp(16px,2.2vw,32px)] text-left border-b border-white/60 last:border-b-0 border-l-4 transition-[background-color,border-color,color] duration-200 delay-[0ms,0ms,120ms] ease-linear ${
                   selected
                     ? `${liquid.ready ? "bg-transparent border-l-transparent" : "bg-ink border-l-ink"} text-white focus-visible:outline-white`
                     : "bg-transparent text-ink border-l-transparent hover:bg-cream/60 hover:border-l-accent focus-visible:bg-cream/60 focus-visible:border-l-accent"
@@ -118,7 +118,7 @@ export default function MindTabs({ locale, copy }: { locale: Locale; copy: Dicti
                 </span>
                 <span
                   aria-hidden="true"
-                  className={`text-[15px] whitespace-nowrap transition-[color,transform] duration-150 ease-out ${
+                  className={`text-[15px] whitespace-nowrap transition-[color,transform] duration-[200ms,500ms] ease-[linear,cubic-bezier(0.83,0,0.17,1)] ${
                     selected
                       ? "text-white"
                       : "text-muted group-hover:text-accent-dark group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:text-accent-dark group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5"
@@ -150,7 +150,7 @@ export default function MindTabs({ locale, copy }: { locale: Locale; copy: Dicti
           </div>
           <a
             href={caseStudyPath(locale, current.study as CaseStudySlug)}
-            className="ml-4 text-nav font-semibold text-ink border-b border-accent pb-2 self-start md:whitespace-nowrap transition-[border-color,transform] duration-150 ease-out hover:border-accent-dark hover:-translate-y-px focus-visible:border-accent-dark focus-visible:-translate-y-px"
+            className="ml-4 text-nav font-semibold text-ink border-b border-accent pb-2 self-start md:whitespace-nowrap transition-[border-color,transform] duration-[200ms,500ms] ease-[linear,cubic-bezier(0.83,0,0.17,1)] hover:border-accent-dark hover:-translate-y-px focus-visible:border-accent-dark focus-visible:-translate-y-px"
           >
             {current.linkLabel}
           </a>
@@ -177,7 +177,7 @@ export default function MindTabs({ locale, copy }: { locale: Locale; copy: Dicti
                   aria-expanded={expanded}
                   aria-controls={panelId}
                   onClick={() => setOpenMobile(expanded ? null : index)}
-                  className={`flex w-full items-center justify-between gap-4 py-4 px-[clamp(16px,4vw,24px)] text-left border-l-4 transition-[background-color,border-color] duration-150 ease-out ${
+                  className={`flex w-full items-center justify-between gap-4 py-4 px-[clamp(16px,4vw,24px)] text-left border-l-4 transition-[background-color,border-color] duration-200 ease-linear ${
                     expanded
                       ? "bg-ink text-white border-l-ink focus-visible:outline-white"
                       : "bg-transparent text-ink border-l-transparent focus-visible:bg-cream/60 focus-visible:border-l-accent"
@@ -188,7 +188,7 @@ export default function MindTabs({ locale, copy }: { locale: Locale; copy: Dicti
                   </span>
                   <span
                     aria-hidden="true"
-                    className={`shrink-0 text-[15px] transition-transform duration-150 ease-out ${
+                    className={`shrink-0 text-[15px] transition-transform duration-500 ease-accel-decel ${
                       expanded ? "text-white rotate-180" : "text-muted"
                     }`}
                   >
@@ -233,7 +233,7 @@ export default function MindTabs({ locale, copy }: { locale: Locale; copy: Dicti
                   </div>
                   <a
                     href={caseStudyPath(locale, tab.study as CaseStudySlug)}
-                    className="ml-4 text-nav font-semibold text-ink border-b border-accent pb-2 self-start md:whitespace-nowrap transition-[border-color,transform] duration-150 ease-out hover:border-accent-dark hover:-translate-y-px focus-visible:border-accent-dark focus-visible:-translate-y-px"
+                    className="ml-4 text-nav font-semibold text-ink border-b border-accent pb-2 self-start md:whitespace-nowrap transition-[border-color,transform] duration-[200ms,500ms] ease-[linear,cubic-bezier(0.83,0,0.17,1)] hover:border-accent-dark hover:-translate-y-px focus-visible:border-accent-dark focus-visible:-translate-y-px"
                   >
                     {tab.linkLabel}
                   </a>

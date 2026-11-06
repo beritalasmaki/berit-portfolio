@@ -85,6 +85,23 @@
       animation-iteration-count: 1 !important;
       scroll-behavior: auto !important;
     }
+
+    /* Base: larger movements become a simple 100ms crossfade. Entrances
+       keep their fade but lose the rise (the selectors outrank the blanket
+       rule above, which is why they can restore a duration). */
+    [data-reveal] {
+      transition: opacity 100ms linear !important;
+    }
+    [data-reveal-hidden],
+    [data-reveal-hidden] [data-ripple] {
+      transform: none !important;
+    }
+    [data-ripple] {
+      transition: opacity 100ms linear !important;
+    }
+    .fade-up-item {
+      animation: panel-fade 100ms linear forwards !important;
+    }
   }
 
   ::selection {
@@ -151,18 +168,19 @@
   .logo-blob-in {
     transform-box: fill-box;
     transform-origin: center;
-    animation: logo-blob-in 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation:
+      logo-blob-fade 200ms linear both,
+      logo-blob-in 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes logo-blob-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   @keyframes logo-blob-in {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
+    from { transform: scale(0.9); }
+    to { transform: none; }
   }
 
   @keyframes logo-wipe {
@@ -181,30 +199,26 @@
      animation engine takes over on paint. */
   .fade-up-item {
     opacity: 0;
-    animation: fade-up 700ms ease-out forwards;
+    /* Base "position and opacity" entrance: opacity linear 200ms, the rise
+       decelerate 500ms. */
+    animation:
+      panel-fade 200ms linear forwards,
+      fade-up 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(12px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { transform: translateY(12px); }
+    to { transform: translateY(0); }
   }
 
-  /* Soft cross-fade for a detail panel whose content swaps in place (e.g.
-     MindTabs' question/answer panel) — opacity only, no vertical shift.
-     Retriggers on every click, not once on page load, so it's tuned as an
-     unhurried settle (a gentle ease-in-out, not a snap) rather than the
-     quicker ease-out used for one-off entrances elsewhere. Pair with
+  /* Opacity-only entrance (Base: linear, 200ms) for a detail panel whose
+     content swaps in place (e.g. MindTabs' question/answer panel) — no
+     vertical shift. Retriggers on every click, not once on page load. Pair with
      `key={state}` on the panel so React remounts the node per selection;
      changing text on a persisted node wouldn't restart the animation. */
   .panel-fade-item {
     opacity: 0;
-    animation: panel-fade 340ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: panel-fade 200ms linear forwards;
   }
 
   @keyframes panel-fade {
@@ -221,7 +235,7 @@
      before it, left → right, so a row rolls in like a gentle wave instead of
      arriving as one block. Reveal sets each item's --ripple-i. */
   [data-ripple] {
-    transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1), transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 200ms linear, transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: calc(var(--ripple-i, 0) * 70ms + 120ms);
   }
 
@@ -252,7 +266,7 @@
   .toc-node {
     opacity: 0;
     transform: scale(0.6);
-    transition: opacity 400ms ease-out, transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 200ms linear, transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .toc-node[data-lit] {
@@ -275,7 +289,7 @@
     overflow: visible;
   }
   .nav-icon .ni-line {
-    transition: opacity 300ms ease-out;
+    transition: opacity 100ms linear;
   }
   .nav-icon .ni-p {
     opacity: 0;
@@ -283,11 +297,11 @@
     transform-box: fill-box;
     transform-origin: center;
     transition:
-      opacity 200ms ease-out,
-      transform 260ms ease-in,
-      fill 260ms ease-in,
-      stroke 260ms ease-in,
-      stroke-dashoffset 260ms ease-in;
+      opacity 100ms linear,
+      transform 200ms cubic-bezier(0.11, 0, 0.5, 0),
+      fill 200ms linear,
+      stroke 200ms linear,
+      stroke-dashoffset 200ms cubic-bezier(0.11, 0, 0.5, 0);
   }
   .nav-icon .ni-pop {
     transform: scale(0.6);
@@ -308,7 +322,7 @@
   }
   :is(a:hover, a:focus-visible, a[aria-current]) > .nav-icon .ni-line {
     opacity: 0;
-    transition: opacity 700ms ease-in-out 250ms;
+    transition: opacity 200ms linear 250ms;
   }
   :is(a:hover, a:focus-visible, a[aria-current]) > .nav-icon .ni-p {
     opacity: 1;
@@ -316,11 +330,11 @@
     fill: #fc890c;
     stroke-dashoffset: 0;
     transition:
-      opacity 600ms ease-out calc(var(--i, 0) * 150ms),
-      transform 900ms cubic-bezier(0.34, 1.25, 0.64, 1) calc(var(--i, 0) * 150ms),
-      fill 1200ms ease-in-out calc(var(--i, 0) * 150ms),
-      stroke 1200ms ease-in-out calc(var(--i, 0) * 150ms),
-      stroke-dashoffset 700ms ease-out calc(var(--i, 0) * 150ms);
+      opacity 200ms linear calc(var(--i, 0) * 150ms),
+      transform 500ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i, 0) * 150ms),
+      fill 200ms linear calc(var(--i, 0) * 150ms),
+      stroke 200ms linear calc(var(--i, 0) * 150ms),
+      stroke-dashoffset 500ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--i, 0) * 150ms);
   }
   :is(a:hover, a:focus-visible, a[aria-current]) > .nav-icon .ni-draw {
     fill: none;
@@ -412,10 +426,10 @@
   .glass-button,
   .glass-button-ink {
     transition:
-      transform 150ms ease-out,
-      background-color 150ms ease-out,
-      color 150ms ease-out,
-      opacity 150ms ease-out;
+      transform 500ms cubic-bezier(0.83, 0, 0.17, 1),
+      background-color 200ms linear,
+      color 200ms linear,
+      opacity 200ms linear;
   }
 
   .glass-button:hover,

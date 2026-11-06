@@ -86,14 +86,14 @@ export default function Hero({ copy }: { copy: Dictionary["hero"] }) {
               className="glass-button-ink group inline-flex items-center gap-2 text-white text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
             >
               {copy.primaryCta}
-              <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
+              <ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
             </a>
             <a
               href="#case-studies"
               className="glass-button group inline-flex items-center gap-2 text-ink text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap hover:text-ink focus-visible:text-ink"
             >
               {copy.secondaryCta}
-              <ArrowRightIcon className="transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
+              <ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
             </a>
           </div>
         </div>

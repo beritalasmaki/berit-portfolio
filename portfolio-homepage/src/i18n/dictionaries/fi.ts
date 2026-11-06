@@ -141,6 +141,21 @@ export const fi: Dictionary = {
     heading: "Tarkempi katsaus projekteihini.",
     projectOne: "projekti",
     projectMany: "projektia",
+    designSystem: {
+      label: "Design System · Työnäyte",
+      headline: "DS by Berit",
+      description:
+        "Rakensin tämän Design Systemin osoittaakseni, että osaan luoda, rakentaa, kehittää ja hallinnoida sellaista. Siihen kuuluvat tokenit, saavutettavat komponentit ja dokumentaatio koodina sekä vastaava UI Kit Figmassa. Muutokset suunnitellaan ensin Figmassa, ja koodi päivitetään niiden mukaan.",
+      logoAlt: "DS by Beritin logo",
+      uiKitCaption: "UI Kit Figmassa",
+      uiKitAlt: "Figman UI Kitin Button-sivu, jolla kaikki painikkeen tilat näkyvät vaaleassa ja tummassa teemassa.",
+      libraryCaption: "Julkaistu komponenttikirjastosivu",
+      libraryAlt: "Julkaistun Design System -sivuston Buttons-sivu navigaatioineen ja sivun sisällysluettelo.",
+      siteLabel: "Avaa Design System",
+      figmaLabel: "Avaa Figman UI Kit",
+      repoLabel: "Katso koodi GitHubissa",
+      opensNewTab: " (avautuu uuteen välilehteen)",
+    },
   },
 
   about: {

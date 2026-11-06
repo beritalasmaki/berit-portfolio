@@ -305,7 +305,7 @@ export default function ProcessTimeline({ copy }: { copy: Dictionary["process"] 
               tabIndex={selected ? 0 : -1}
               onClick={() => selectTab(i)}
               onKeyDown={(event) => onTabKeyDown(event, i)}
-              className={`group inline-flex items-center gap-2 text-nav whitespace-nowrap bg-transparent border-0 py-4 -mb-px border-b-[3px] transition-[color,border-color] duration-150 ease-out ${
+              className={`group inline-flex items-center gap-2 text-nav whitespace-nowrap bg-transparent border-0 py-4 -mb-px border-b-[3px] transition-[color,border-color] duration-200 ease-linear ${
                 selected
                   ? `font-bold text-ink ${liquid.ready ? "border-transparent" : "border-accent"}`
                   : "font-semibold text-muted border-transparent hover:text-ink hover:border-rule-strong focus-visible:text-ink focus-visible:border-rule-strong"
@@ -386,7 +386,7 @@ export default function ProcessTimeline({ copy }: { copy: Dictionary["process"] 
                               ? "0 12px 30px rgba(34, 34, 34, 0.14)"
                               : "0 2px 8px rgba(34, 34, 34, 0.04)",
                           }}
-                          className={`min-w-fit max-w-full box-border flex items-center px-4 py-2 rounded-chrome cursor-pointer overflow-visible border transition-[border-color,box-shadow] duration-150 ease-out hover:border-accent hover:shadow-frame focus-visible:border-accent focus-visible:shadow-frame ${
+                          className={`min-w-fit max-w-full box-border flex items-center px-4 py-2 rounded-chrome cursor-pointer overflow-visible border transition-[border-color,box-shadow] duration-200 ease-linear hover:border-accent hover:shadow-frame focus-visible:border-accent focus-visible:shadow-frame ${
                             active ? "border-2" : "border"
                           }`}
                         >

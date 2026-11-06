@@ -224,7 +224,7 @@ export default function TableOfContents({
             window.dispatchEvent(new CustomEvent(OPEN_SECTION_EVENT, { detail: { id: item.id } }));
             onNavigate?.();
           }}
-          className={`flex items-center py-2 text-nav transition-colors duration-200 ease-out ${
+          className={`flex items-center py-2 text-nav transition-colors duration-200 ease-linear ${
             desktop ? "pl-6" : ""
           } ${
             isActive
@@ -248,7 +248,7 @@ export default function TableOfContents({
           href={item.href!}
           data-sound="back"
           onClick={onNavigate}
-          className="flex items-center gap-2 mt-2 pt-4 border-t border-rule text-nav font-bold text-ink transition-colors duration-150 ease-out hover:text-accent-dark focus-visible:text-accent-dark"
+          className="flex items-center gap-2 mt-2 pt-4 border-t border-rule text-nav font-bold text-ink transition-colors duration-200 ease-linear hover:text-accent-dark focus-visible:text-accent-dark"
         >
           <span aria-hidden="true">←</span>
           {item.label}
@@ -340,7 +340,7 @@ export default function TableOfContents({
           {navigateLabel}
           <span
             aria-hidden="true"
-            className="text-[15px] text-ink transition-transform duration-150 ease-out group-open:rotate-180"
+            className="text-[15px] text-ink transition-transform duration-500 ease-accel-decel group-open:rotate-180"
           >
             ↓
           </span>

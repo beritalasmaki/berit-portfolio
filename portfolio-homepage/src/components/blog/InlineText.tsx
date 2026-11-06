@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 const TOKEN = /(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)\s]+\))/g;
 
 const linkClass =
-  "text-ink font-semibold underline decoration-accent decoration-2 underline-offset-4 transition-[text-decoration-color] duration-150 ease-out hover:decoration-accent-dark focus-visible:decoration-accent-dark";
+  "text-ink font-semibold underline decoration-accent decoration-2 underline-offset-4 transition-[text-decoration-color] duration-200 ease-linear hover:decoration-accent-dark focus-visible:decoration-accent-dark";
 
 export default function InlineText({ text }: { text: string }) {
   const parts: ReactNode[] = text.split(TOKEN).map((part, i) => {

@@ -16,7 +16,7 @@ The system also exists as a Figma file: [Design System by Berit](https://www.fig
 
 - **Tokens:** Figma variables use the token names from `src/data/tokens.ts` with slashes instead of dots (`color/content/primary`, `space/4`, `radius/md`). Each semantic colour carries its CSS variable name as code syntax, for example `var(--color-content-primary)`. There are paint, text and effect styles for the same tokens.
 - **Components:** one page per component, with every mode labelled and a Light and a Dark theme. Small shared pieces (icon button, checkbox and radio boxes, stepper parts) live on the Atoms page.
-- **Source of truth:** the tokens in this repository. The notification, date picker and multi-step form patterns from the Figma file are now built here too, with documentation pages under `/components`.
+- **How they stay in sync:** changes are designed in Figma first. The tokens in `src/data/tokens.ts` and `src/app/globals.css` and the components in `src/components` are then updated by hand to match. There is no automatic sync. The notification, date picker and multi-step form patterns are built here as well, with documentation pages under `/components`.
 - **Not set up:** Figma Code Connect, which would show these React components when a component is inspected in Figma. It needs an Organization or Enterprise Figma plan. Until then the connection is by links: this README, the Getting started page on the documentation site, and the About page in the Figma file.
 
 ## How we started
@@ -59,18 +59,17 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Routes
 
 - `/` - landing page explaining the system and its purpose
-- `/components/navigation` - top navigation, sidebar, wayfinding, and keyboard model
-- `/components/buttons` - primary, secondary, tertiary, loading, and disabled states
-- `/components/cards` - metric, action, and composable card parts
-- `/components/table` - cell anatomy, filtering, sorting, selection, empty state, and responsive overflow
-- `/components/forms` - input, select, checkbox, and radio in every documented mode
-- `/components/form-patterns` - form introduction, sections, progress, and actions
-- `/components/date-picker` - DD/MM/YYYY field with a Monday-first calendar
-- `/components/notifications` - notification panels and toasts
-- `/getting-started` - introduction to the documentation structure
+- `/components/atoms/icons`, `/components/atoms/buttons`, `/components/atoms/form-controls` - the smallest parts
+- `/components/molecules/form-fields`, `/components/molecules/navigation-parts`, `/components/molecules/date-picker`, `/components/molecules/notifications`, `/components/molecules/form-progress` - small groups of atoms
+- `/components/templates/dashboard`, `/components/templates/form-page` - page layouts without content
+- `/components/organisms/navigation`, `/components/organisms/cards`, `/components/organisms/table`, `/components/organisms/forms` - larger sections
+- `/getting-started` - overview, with guides for designers, developers and product owners at `/getting-started/designers`, `/getting-started/developers` and `/getting-started/product-owners`
+- `/principles` - the five design principles
+- `/examples` - the example pages
 - `/foundations` - dedicated token and foundation documentation
 - `/foundations/colors` - color tokens and semantic color roles
 - `/foundations/spacing` - spacing scale tokens
+- `/foundations/layout` - breakpoints, column grid, and maximum widths
 - `/foundations/typography` - heading, body, label, and metadata tokens
 - `/foundations/shape` - radius, border, and elevation tokens
 - `/components` - dedicated component family index
@@ -90,7 +89,7 @@ Components should consume semantic roles rather than raw palette values. This ke
 
 ## Component conventions
 
-The project focuses on five families: `Navigation`, `Button`, `Card`, `DataTable`, and the form controls (`Input`, `Select`, `Checkbox`, `Radio`). Inner patterns such as tabs, breadcrumbs, pagination, filters, row selection, and loading states stay within those families. Native HTML semantics are preferred for landmarks, buttons, links, tables, headings, and form controls.
+Components are documented by Atomic Design level. Atoms are the smallest parts (icons, buttons, form controls). Molecules are small groups of atoms (form fields, links, tabs and breadcrumbs, date picker, notifications, form progress and actions). Organisms are larger sections (navigation, cards, table, multi-step form). Templates are page layouts without content (a dashboard and a form page), and pages are templates with real content; the two example screens are the pages. The source folders in `src/components` are still grouped by component type, not by level. Native HTML semantics are preferred for landmarks, buttons, links, tables, headings, and form controls.
 
 ## Accessibility baseline
 

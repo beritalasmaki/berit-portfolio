@@ -94,7 +94,7 @@ export default function StatusPill({
         {statuses.map((status, i) => (
           <span
             key={status}
-            className={`absolute inset-0 flex items-center justify-start whitespace-nowrap transition-opacity duration-700 ease-in-out ${
+            className={`absolute inset-0 flex items-center justify-start whitespace-nowrap transition-opacity duration-200 ease-linear ${
               i === index ? "opacity-100" : "opacity-0"
             }`}
           >

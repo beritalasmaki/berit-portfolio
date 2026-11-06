@@ -165,7 +165,7 @@ export default function ScreenshotGallery({
               onClick={() => openAt(i)}
               className="group flex flex-col gap-2 text-left cursor-zoom-in"
             >
-              <span className="block bg-white border border-rule rounded-frame p-2 shadow-frame transition-shadow duration-150 ease-out group-hover:shadow-frame-accent group-focus-visible:shadow-frame-accent">
+              <span className="block bg-white border border-rule rounded-frame p-2 shadow-frame transition-shadow duration-200 ease-linear group-hover:shadow-frame-accent group-focus-visible:shadow-frame-accent">
                 <Image
                   src={img.src}
                   alt={img.alt}
@@ -223,7 +223,7 @@ export default function ScreenshotGallery({
                       type="button"
                       onClick={() => step(-1)}
                       aria-label={copy.prevScreenshot}
-                      className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
+                      className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-200 ease-linear hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
                     >
                       ‹
                     </button>
@@ -231,7 +231,7 @@ export default function ScreenshotGallery({
                       type="button"
                       onClick={() => step(1)}
                       aria-label={copy.nextScreenshot}
-                      className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
+                      className="hidden sm:block text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-200 ease-linear hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
                     >
                       ›
                     </button>
@@ -241,7 +241,7 @@ export default function ScreenshotGallery({
                   ref={closeButtonRef}
                   type="button"
                   onClick={close}
-                  className="text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-150 ease-out hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
+                  className="text-[13px] font-semibold uppercase tracking-[0.06em] text-white border border-white rounded-pill py-2 px-4 whitespace-nowrap transition-[background-color,color] duration-200 ease-linear hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink focus-visible:outline-white"
                 >
                   {copy.close}
                 </button>
