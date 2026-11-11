@@ -355,6 +355,8 @@ export const en = {
     linkedin: "{name} on LinkedIn",
     newTab: "(opens in a new tab)",
     // Subtitle of a one-person card that belongs to an organization.
+    // Link to the organization's own site (expanded panel).
+    orgSite: "Visit {org}",
     roleAtOrg: "{role} at {org}",
     // One entry per card: Anna and Michelle each get their own, side by side.
     // Put several people in one group to share a card. Add a group per new
