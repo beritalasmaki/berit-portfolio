@@ -78,38 +78,37 @@ function BioDialog({ person, copy, onClose }: { person: Person | null; copy: Dic
 
 export default function PartnersSection({ copy }: { copy: Dictionary["partners"] }) {
   const [active, setActive] = useState<Person | null>(null);
+  // Plain tinted panes inside one glass card (nested .glass would only blur
+  // its parent). Rows stack, so more collaborators just add one slim row each.
+  const row = "rounded-card bg-white/45 border border-white/70 px-5 py-4 flex items-center gap-4 sm:gap-6";
   return (
     <section aria-labelledby="partners-heading" className="mt-rhythm">
-      <div className="glass rounded-card p-card-pad grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-grid-gap-lg items-center">
-        <div className="flex flex-col gap-5">
-          <h2 id="partners-heading" className="m-0 text-section-h2 text-ink">
-            {copy.heading}
-          </h2>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/empact/empact-logo.png" alt={copy.logoAlt} width={1206} height={435} className="h-10 w-auto self-start" />
-        </div>
-        {/* auto-fill tiles: more collaborators just wrap into the grid. */}
-        <ul className="m-0 p-0 list-none grid gap-x-6 gap-y-5 [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))]">
+      <div className="glass rounded-card p-card-pad flex flex-col gap-6">
+        <h2 id="partners-heading" className="m-0 text-section-h2 text-ink">
+          {copy.heading}
+        </h2>
+        <ul className="m-0 p-0 list-none flex flex-col gap-3">
+          <li className={`${row} flex-wrap`}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/empact/empact-logo.png" alt={copy.logoAlt} width={1206} height={435} className="h-10 w-auto shrink-0" />
+            <p className="m-0 text-lead text-body sm:ml-4">{copy.tagline}</p>
+          </li>
           {copy.people.map((p) => (
-            <li key={p.name} className="flex items-center gap-4">
+            <li key={p.name} className={`${row} flex-wrap`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.photo} alt={p.photoAlt} width={241} height={258} loading="lazy" className="w-16 h-auto shrink-0" />
-              <div className="min-w-0 flex flex-col gap-2">
-                <div>
-                  <h3 className="m-0 text-[clamp(17px,1.4vw,20px)] font-bold leading-tight text-ink">{p.name}</h3>
-                  <p className="m-0 mt-1 text-[14px] leading-snug text-muted">{p.role}</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setActive(p)}
-                    className="text-[14px] font-bold text-ink border-b border-accent pb-1 whitespace-nowrap transition-transform duration-500 ease-accel-decel hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
-                  >
-                    {copy.readBio}
-                  </button>
-                  <LinkedInLink person={p} label={copy.linkedin} />
-                </div>
+              <img src={p.photo} alt={p.photoAlt} width={241} height={258} loading="lazy" className="w-14 h-auto shrink-0" />
+              <div className="min-w-0 flex-1 basis-40">
+                <h3 className="m-0 text-[clamp(17px,1.4vw,20px)] font-bold leading-tight text-ink">{p.name}</h3>
+                <p className="m-0 mt-1 text-[14px] leading-snug text-muted">{p.role}</p>
               </div>
+              <button
+                type="button"
+                onClick={() => setActive(p)}
+                className="text-[15px] font-bold text-ink border-b border-accent pb-1 whitespace-nowrap transition-transform duration-500 ease-accel-decel hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
+              >
+                {copy.readBio}
+              </button>
+              <LinkedInLink person={p} label={copy.linkedin} />
             </li>
           ))}
         </ul>

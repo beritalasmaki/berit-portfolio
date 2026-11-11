@@ -350,6 +350,7 @@ export const en = {
   partners: {
     heading: "In collaboration",
     logoAlt: "Empact",
+    tagline: "Inclusive design and service design",
     readBio: "Read bio",
     closeBio: "Close",
     linkedin: "LinkedIn",
