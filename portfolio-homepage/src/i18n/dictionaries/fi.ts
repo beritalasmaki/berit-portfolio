@@ -352,7 +352,6 @@ export const fi: Dictionary = {
   partners: {
     heading: "Yhteistyössä",
     logoAlt: "Empact",
-    tagline: "Inklusiivinen muotoilu ja palvelumuotoilu",
     readBio: "Lue bio",
     closeBio: "Sulje",
     linkedin: "LinkedIn",

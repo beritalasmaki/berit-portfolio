@@ -78,37 +78,41 @@ function BioDialog({ person, copy, onClose }: { person: Person | null; copy: Dic
 
 export default function PartnersSection({ copy }: { copy: Dictionary["partners"] }) {
   const [active, setActive] = useState<Person | null>(null);
-  // Plain tinted panes inside one glass card (nested .glass would only blur
-  // its parent). Rows stack, so more collaborators just add one slim row each.
-  const row = "rounded-card bg-white/45 border border-white/70 px-5 py-4 flex items-center gap-4 sm:gap-6";
+  // One slim card: title + logo on the left, one pill per person on the
+  // right (wraps into extra pill rows as collaborators are added). Each pill
+  // opens the dialog, which holds the bio and the LinkedIn link, so the card
+  // itself carries no extra controls. Pills are plain tinted panes, not
+  // nested .glass (a nested backdrop-filter only blurs its parent).
   return (
     <section aria-labelledby="partners-heading" className="mt-rhythm">
-      <div className="glass rounded-card p-card-pad flex flex-col gap-6">
-        <h2 id="partners-heading" className="m-0 text-section-h2 text-ink">
-          {copy.heading}
-        </h2>
-        <ul className="m-0 p-0 list-none flex flex-col gap-3">
-          <li className={`${row} flex-wrap`}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/empact/empact-logo.png" alt={copy.logoAlt} width={1206} height={435} className="h-10 w-auto shrink-0" />
-            <p className="m-0 text-lead text-body sm:ml-4">{copy.tagline}</p>
-          </li>
+      <div className="glass rounded-card px-card-pad py-5 flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-10">
+        <div className="flex items-center gap-4 shrink-0">
+          <h2 id="partners-heading" className="m-0 text-card-h3 text-ink">
+            {copy.heading}
+          </h2>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/empact/empact-logo.png" alt={copy.logoAlt} width={1206} height={435} className="h-9 w-auto" />
+        </div>
+        <ul className="m-0 p-0 list-none flex flex-wrap gap-3 lg:flex-1 lg:justify-end">
           {copy.people.map((p) => (
-            <li key={p.name} className={`${row} flex-wrap`}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.photo} alt={p.photoAlt} width={241} height={258} loading="lazy" className="w-14 h-auto shrink-0" />
-              <div className="min-w-0 flex-1 basis-40">
-                <h3 className="m-0 text-[clamp(17px,1.4vw,20px)] font-bold leading-tight text-ink">{p.name}</h3>
-                <p className="m-0 mt-1 text-[14px] leading-snug text-muted">{p.role}</p>
-              </div>
+            <li key={p.name} className="w-full sm:w-auto">
               <button
                 type="button"
                 onClick={() => setActive(p)}
-                className="text-[15px] font-bold text-ink border-b border-accent pb-1 whitespace-nowrap transition-transform duration-500 ease-accel-decel hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
+                aria-haspopup="dialog"
+                aria-label={`${copy.readBio}: ${p.name}`}
+                className="group w-full text-left rounded-card bg-white/45 border border-white/70 pl-2 pr-4 py-2 flex items-center gap-3 transition-transform duration-500 ease-accel-decel hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
               >
-                {copy.readBio}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={p.photo} alt="" width={241} height={258} loading="lazy" className="w-11 h-auto shrink-0" />
+                <span className="min-w-0">
+                  <span className="block text-[16px] font-bold leading-tight text-ink">{p.name}</span>
+                  <span className="block mt-0.5 text-[13px] leading-snug text-muted">{p.role}</span>
+                </span>
+                <span className="ml-auto pl-3 font-mono-label text-mono-label uppercase text-muted whitespace-nowrap group-hover:text-accent-dark group-focus-visible:text-accent-dark">
+                  {copy.readBio}
+                </span>
               </button>
-              <LinkedInLink person={p} label={copy.linkedin} />
             </li>
           ))}
         </ul>
