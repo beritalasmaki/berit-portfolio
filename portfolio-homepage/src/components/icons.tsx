@@ -30,6 +30,16 @@ export function ArrowRightIcon({ className = "" }: IconProps) {
   );
 }
 
+/** "Contact": an envelope. Sits before the label of the header's Contact link. */
+export function MailIcon({ className = "" }: IconProps) {
+  return (
+    <Icon className={className}>
+      <rect x="2" y="3.5" width="12" height="9" rx="1.8" />
+      <path d="M2.8 5.2 8 9l5.2-3.8" />
+    </Icon>
+  );
+}
+
 export function ArrowLeftIcon({ className = "" }: IconProps) {
   return (
     <Icon className={className}>
