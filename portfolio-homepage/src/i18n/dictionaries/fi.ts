@@ -356,8 +356,6 @@ export const fi: Dictionary = {
     linkedin: "{name} LinkedInissä",
     newTab: "(aukeaa uuteen välilehteen)",
     // Subtitle of a one-person card that belongs to an organization.
-    // Link to the organization's own site (expanded panel).
-    orgSite: "Siirry sivustolle {org}",
     roleAtOrg: "{role}, {org}",
     // One entry per card: Anna and Michelle each get their own, side by side.
     // Put several people in one group to share a card. Add a group per new
