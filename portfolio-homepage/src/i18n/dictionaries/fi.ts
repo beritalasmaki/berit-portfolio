@@ -162,7 +162,7 @@ export const fi: Dictionary = {
     heading: "Minusta",
     aside: "Ihminen pikselien takana.",
     closing: "Sovimme yhdessä, miltä onnistuminen näyttää, ennen kuin työ alkaa.",
-    greeting: "Moi! Mukava että poikkesit sivuillani. ♥",
+    greeting: "Moi! Mukavaa, että poikkesit sivuillani. ♥",
     photoAlt: "Berit Alasmäki",
     paragraphs: [
       "Tulen alun perin pieneltä paikkakunnalta Satakunnasta enkä koskaan ajatellut päätyväni teknologia-alalle, saati suunnittelijaksi. Opiskelin aikoinaan tietojenkäsittelyä ja sovelluskehitystä, mutta polkuni alalle alkoi lukioaikana, kun eräs kaverini pyysi mukaan hänen startup-yritykseensä. Olin mukana nelisen vuotta, minkä aikana sain vankan kokemuksen sekä koodaus- että suunnittelutyökaluista. Siitä lähtien muotoilu ja koodaus ovat pitäneet otteessaan.",
@@ -347,6 +347,35 @@ export const fi: Dictionary = {
     statuses: ["Avoin työtarjouksille", "Avoin verkostoitumiselle", "Avoin ideoinnille"],
     statusWidth: "200px",
     statusSrOnly: "Avoin työtarjouksille, verkostoitumiselle ja ideoinnille",
+  },
+
+  partners: {
+    eyebrow: "Yhteistyössä",
+    heading: "Yhteistyössä Empactin Annan ja Michellen kanssa",
+    logoAlt: "Empact",
+    readBio: "Lue {name} esittely",
+    hideBio: "Piilota esittely",
+    linkedin: "LinkedIn",
+    people: [
+      {
+        name: "Anna Pyyluoma",
+        short: "Annan",
+        role: "Co-Founder ja Strategic Design Lead",
+        photo: "/empact/anna.png",
+        photoAlt: "Anna Pyyluoma",
+        linkedinUrl: "https://www.linkedin.com/in/annapyyluoma/",
+        bio: "Olen palvelumuotoilija, joka tukee organisaatioita tekemään työtään tehokkaammin ja hahmottelemaan kuinka muuttuvan maailman synnyttämät tarpeet tulisi huomioida toiminnassa. Olen erikoistunut strategiseen suunnitteluun, palvelumuotoiluun ja muutosjohtamiseen. Olen näppärä työyhteisöjen fasilitaattori ja kehittäjä, ja innostun sosiaalisten innovaatioiden parissa työskentelystä. Unelmaprojektini olisi osallistaa erityisryhmiä voimauttavaan tulevaisuusvisioinnin hankkeeseen, joka auttaisi organisaatioita mukauttamaan toimintaansa kohtaamaan erityisryhmät paremmin. Haluan hyödyntää muotoiluosaamistani kestävän tulevaisuuden ja inklusiivisuuden edistämiseen.",
+      },
+      {
+        name: "Michelle Sahal Estimé",
+        short: "Michellen",
+        role: "Co-Founder ja Inclusive Design Lead",
+        photo: "/empact/michelle.png",
+        photoAlt: "Michelle Sahal Estimé",
+        linkedinUrl: "https://www.linkedin.com/in/michelle-sahalestime/",
+        bio: "Olen palvelumuotoilija, joka haluaa tehdä niin digitaalisesta kuin fyysisestä yhteiskunnasta tasa-arvoisemman ja meitä kaikkia palvelevan. Olen työskennellyt yhdenvertaisuuteen liittyvien haasteiden parissa jo 14 vuoden ajan, järjestöissä, YK:lla, akatemiassa ja konsulttifirmassa. Vuodesta 2016 ihmiskeskeinen suunnittelu on ollut olennainen osa työtäni. Terveys- ja viestintäalan taustani kolmannelta sektorilta antaa minulle vahvan pohjan auttaa järjestöjä, liittoja ja pienyrityksiä kehittämään vaikuttavia ja saavutettavia palveluita. Minua innostavat erityisesti projektit, joissa voin olla konkreettisesti mukana osallistamassa vähemmistöjä muotoiluprosessiin, ja näin ollen tuottaa yhdenvertaisia organisaatioita ja palveluja.",
+      },
+    ],
   },
 
   footer: {

@@ -347,6 +347,35 @@ export const en = {
     statusSrOnly: "Open to work, networking, and brainstorming",
   },
 
+  partners: {
+    eyebrow: "In collaboration",
+    heading: "In collaboration with Anna and Michelle from Empact",
+    logoAlt: "Empact",
+    readBio: "Read {name} bio",
+    hideBio: "Hide bio",
+    linkedin: "LinkedIn",
+    people: [
+      {
+        name: "Anna Pyyluoma",
+        short: "Anna's",
+        role: "Co-Founder and Strategic Design Lead",
+        photo: "/empact/anna.png",
+        photoAlt: "Anna Pyyluoma",
+        linkedinUrl: "https://www.linkedin.com/in/annapyyluoma/",
+        bio: "I'm a service designer who helps organizations work more effectively and work out how the needs created by a changing world should shape what they do. I specialise in strategic design, service design and change management. I'm a skilled facilitator and developer of work communities, and I get excited about working with social innovation. My dream project would involve special groups in an empowering future-visioning initiative that helps organizations adapt their work to meet those groups better. I want to use my design expertise to advance a sustainable future and inclusivity.",
+      },
+      {
+        name: "Michelle Sahal Estimé",
+        short: "Michelle's",
+        role: "Co-Founder and Inclusive Design Lead",
+        photo: "/empact/michelle.png",
+        photoAlt: "Michelle Sahal Estimé",
+        linkedinUrl: "https://www.linkedin.com/in/michelle-sahalestime/",
+        bio: "I'm a service designer who wants to make both the digital and the physical society more equal and more useful to all of us. I've worked on equality-related challenges for 14 years, in non-profits, at the UN, in academia and at a consultancy. Human-centred design has been an essential part of my work since 2016. My health and communications background in the third sector gives me a strong base for helping associations, unions and small businesses build impactful, accessible services. I'm especially energised by projects where I can concretely involve minorities in the design process, and so help create equal organizations and services.",
+      },
+    ],
+  },
+
   footer: {
     credit: "Designed & built by Berit. Powered by Claude and Vercel.",
   },
