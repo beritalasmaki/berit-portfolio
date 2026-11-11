@@ -350,16 +350,14 @@ export const fi: Dictionary = {
   },
 
   partners: {
-    eyebrow: "Yhteistyössä",
-    heading: "Yhteistyössä Empactin Annan ja Michellen kanssa",
+    heading: "Yhteistyössä",
     logoAlt: "Empact",
-    readBio: "Lue {name} esittely",
-    hideBio: "Piilota esittely",
+    readBio: "Lue esittely",
+    closeBio: "Sulje",
     linkedin: "LinkedIn",
     people: [
       {
         name: "Anna Pyyluoma",
-        short: "Annan",
         role: "Co-Founder ja Strategic Design Lead",
         photo: "/empact/anna.png",
         photoAlt: "Anna Pyyluoma",
@@ -368,7 +366,6 @@ export const fi: Dictionary = {
       },
       {
         name: "Michelle Sahal Estimé",
-        short: "Michellen",
         role: "Co-Founder ja Inclusive Design Lead",
         photo: "/empact/michelle.png",
         photoAlt: "Michelle Sahal Estimé",

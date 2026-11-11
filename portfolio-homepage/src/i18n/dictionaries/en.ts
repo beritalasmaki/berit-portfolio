@@ -348,16 +348,14 @@ export const en = {
   },
 
   partners: {
-    eyebrow: "In collaboration",
-    heading: "In collaboration with Anna and Michelle from Empact",
+    heading: "In collaboration",
     logoAlt: "Empact",
-    readBio: "Read {name} bio",
-    hideBio: "Hide bio",
+    readBio: "Read bio",
+    closeBio: "Close",
     linkedin: "LinkedIn",
     people: [
       {
         name: "Anna Pyyluoma",
-        short: "Anna's",
         role: "Co-Founder and Strategic Design Lead",
         photo: "/empact/anna.png",
         photoAlt: "Anna Pyyluoma",
@@ -366,7 +364,6 @@ export const en = {
       },
       {
         name: "Michelle Sahal Estimé",
-        short: "Michelle's",
         role: "Co-Founder and Inclusive Design Lead",
         photo: "/empact/michelle.png",
         photoAlt: "Michelle Sahal Estimé",
