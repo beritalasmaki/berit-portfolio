@@ -27,6 +27,8 @@ export type PartnerCompany = {
   name: string;
   /** Company site, linked from the expanded card. */
   url?: string;
+  /** Full logo, shown beside the "Visit {org}" link in the expanded card. */
+  logo?: { src: string; width: number; height: number };
   /** Symbol-only mark (16–20px), rendered before the name, alt="". */
   mark?: { src: string; width: number; height: number };
 };
@@ -35,9 +37,10 @@ export const partnerCompanies: Record<string, PartnerCompany> = {
   empact: {
     name: "Empact",
     url: "https://empact.fi/",
+    logo: { src: "/empact/empact-logo.png", width: 1206, height: 435 },
     // TODO: add a symbol-only mark (the gradient circle) as
-    // `/empact/empact-mark.svg` and set `mark` here. The only asset we have,
-    // /empact/empact-logo.png, is the full wordmark, and the design says not
-    // to use the wordmark here, so the card shows the name as text for now.
+    // `/empact/empact-mark.svg` and set `mark` here. `logo` is the full
+    // wordmark: fine beside the site link, too wide for the card header, so
+    // the header shows the name as text until `mark` exists.
   },
 };
