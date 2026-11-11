@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { useLiquidIndicator } from "./useLiquidIndicator";
 import Logo from "./Logo";
-import { AboutIcon, ArrowLeftIcon, ArrowRightIcon, BlogIcon, CaseStudiesIcon, ProcessIcon } from "./icons";
+import { AboutIcon, ArrowLeftIcon, ArrowRightIcon, BlogIcon, CaseStudiesIcon, MailIcon, ProcessIcon } from "./icons";
 import { site } from "@/data/site";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -553,6 +553,9 @@ export default function Header({
                 // no fill means no padding to pay for.
                 className="group ml-3 inline-flex items-center gap-2 h-11 px-1 text-nav font-semibold whitespace-nowrap text-ink underline decoration-transparent decoration-2 underline-offset-[10px] transition-[text-decoration-color] duration-200 ease-linear hover:decoration-accent focus-visible:decoration-accent"
               >
+                {/* Finnish: the longer labels leave no room for the icon at 1024px,
+                    so it appears from xl up (same as the GitHub icon). */}
+                <MailIcon className={locale === "fi" ? "hidden xl:block" : ""} />
                 {copy.header.contact}
               </a>
             </span>
