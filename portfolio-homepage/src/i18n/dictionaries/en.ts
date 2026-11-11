@@ -4,6 +4,8 @@
 //
 // Strings with `*word*` markers (hero story) highlight that word in orange.
 
+import type { PartnerGroup } from "@/data/partner-companies";
+
 export const en = {
   site: {
     name: "Berit Alasmäki",
@@ -348,29 +350,41 @@ export const en = {
   },
 
   partners: {
-    heading: "In collaboration",
-    logoAlt: "Empact",
-    readBio: "Read bio",
-    hideBio: "Hide bio",
-    linkedin: "LinkedIn",
-    people: [
+    heading: "Collaborators",
+    // "{name}" is the person's first name.
+    linkedin: "{name} on LinkedIn",
+    newTab: "(opens in a new tab)",
+    // Subtitle of a one-person card that belongs to an organization.
+    roleAtOrg: "{role} at {org}",
+    // One entry per card: Anna and Michelle each get their own, side by side.
+    // Put several people in one group to share a card. Add a group per new
+    // collaborator; organizations live in src/data/partner-companies.ts.
+    groups: [
       {
-        name: "Anna Pyyluoma",
-        role: "Co-Founder and Strategic Design Lead",
-        photo: "/empact/anna.png",
-        photoAlt: "Anna Pyyluoma",
-        linkedinUrl: "https://www.linkedin.com/in/annapyyluoma/",
-        bio: "I'm a service designer who helps organizations work more effectively and work out how the needs created by a changing world should shape what they do. I specialise in strategic design, service design and change management. I'm a skilled facilitator and developer of work communities, and I get excited about working with social innovation. My dream project would involve special groups in an empowering future-visioning initiative that helps organizations adapt their work to meet those groups better. I want to use my design expertise to advance a sustainable future and inclusivity.",
+        company: "empact",
+        people: [
+          {
+            name: "Anna Pyyluoma",
+            role: "Strategic Design Lead & Co-founder",
+            photo: "/empact/anna.png",
+            linkedinUrl: "https://www.linkedin.com/in/annapyyluoma/",
+            bio: "I'm a service designer who helps organizations work more effectively and work out how the needs created by a changing world should shape what they do. I specialise in strategic design, service design and change management. I'm a skilled facilitator and developer of work communities, and I get excited about working with social innovation. My dream project would involve special groups in an empowering future-visioning initiative that helps organizations adapt their work to meet those groups better. I want to use my design expertise to advance a sustainable future and inclusivity.",
+          },
+        ],
       },
       {
-        name: "Michelle Sahal Estimé",
-        role: "Co-Founder and Inclusive Design Lead",
-        photo: "/empact/michelle.png",
-        photoAlt: "Michelle Sahal Estimé",
-        linkedinUrl: "https://www.linkedin.com/in/michelle-sahalestime/",
-        bio: "I'm a service designer who wants to make both the digital and the physical society more equal and more useful to all of us. I've worked on equality-related challenges for 14 years, in non-profits, at the UN, in academia and at a consultancy. Human-centred design has been an essential part of my work since 2016. My health and communications background in the third sector gives me a strong base for helping associations, unions and small businesses build impactful, accessible services. I'm especially energised by projects where I can concretely involve minorities in the design process, and so help create equal organizations and services.",
+        company: "empact",
+        people: [
+          {
+            name: "Michelle Sahal Estimé",
+            role: "Inclusive Design Lead & Co-founder",
+            photo: "/empact/michelle.png",
+            linkedinUrl: "https://www.linkedin.com/in/michelle-sahalestime/",
+            bio: "I'm a service designer who wants to make both the digital and the physical society more equal and more useful to all of us. I've worked on equality-related challenges for 14 years, in non-profits, at the UN, in academia and at a consultancy. Human-centred design has been an essential part of my work since 2016. My health and communications background in the third sector gives me a strong base for helping associations, unions and small businesses build impactful, accessible services. I'm especially energised by projects where I can concretely involve minorities in the design process, and so help create equal organizations and services.",
+          },
+        ],
       },
-    ],
+    ] as PartnerGroup[],
   },
 
   footer: {
