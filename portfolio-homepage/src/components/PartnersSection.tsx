@@ -121,6 +121,34 @@ function LinkedInLink({ person, copy }: { person: PartnerPerson; copy: Copy }) {
   );
 }
 
+function ExternalIcon() {
+  return (
+    <svg viewBox="0 0 16 16" aria-hidden="true" className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 3H3v10h10v-3M9 2h5v5M14 2 7.5 8.5" />
+    </svg>
+  );
+}
+
+// The organization's own site. It lives in the expanded panel, not the header:
+// the header is one big button, and a link can't sit inside a button.
+function OrgLink({ company, copy }: { company: { name: string; url?: string }; copy: Copy }) {
+  if (!company.url) return null;
+  return (
+    <a
+      href={company.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${SECONDARY} col-span-full -mt-3 inline-flex items-center gap-2 min-h-6 self-start justify-self-start underline underline-offset-4 hover:text-accent-dark ${focusRing}`}
+    >
+      <ExternalIcon />
+      <span>
+        {copy.orgSite.replace("{org}", company.name)}
+        <span className="sr-only"> {copy.newTab}</span>
+      </span>
+    </a>
+  );
+}
+
 function PartnerCard({ group, copy, id }: { group: PartnerGroup; copy: Copy; id: string }) {
   const { people } = group;
   const company = group.company ? partnerCompanies[group.company] : undefined;
@@ -175,14 +203,16 @@ function PartnerCard({ group, copy, id }: { group: PartnerGroup; copy: Copy; id:
         header={header}
         indent={facepileWidth(people.length) + GAP}
         wrap={people.length > 2}
-        panel={people.map((p, i) => (
+        panel={[...people.map((p, i) => (
           <div key={`${p.name}-${i}`} className="flex flex-col gap-2">
             {multi && <p className={`m-0 ${PRIMARY}`}>{p.name}</p>}
             {multi && p.role && <p className={`m-0 ${SECONDARY}`}>{p.role}</p>}
             {p.bio && <p className={`m-0 ${SECONDARY} ${multi && p.role ? "mt-2" : ""}`}>{p.bio}</p>}
             <LinkedInLink person={p} copy={copy} />
           </div>
-        ))}
+        )),
+        company ? <OrgLink key="org" company={company} copy={copy} /> : null,
+        ]}
       />
     </li>
   );
