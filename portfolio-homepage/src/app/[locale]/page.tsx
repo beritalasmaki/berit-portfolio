@@ -5,6 +5,7 @@ import BackToTop from "@/components/BackToTop";
 import CaseStudyCards from "@/components/CaseStudyCards";
 import ClientLogos from "@/components/ClientLogos";
 import ContactSection from "@/components/ContactSection";
+import PartnersSection from "@/components/PartnersSection";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -68,6 +69,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </Reveal>
         <Reveal>
           <ContactSection copy={t.contact} />
+        </Reveal>
+        <Reveal>
+          <PartnersSection copy={t.partners} />
         </Reveal>
       </main>
       <Footer copy={{ footer: t.footer, site: t.site }} />
