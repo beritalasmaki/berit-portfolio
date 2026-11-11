@@ -353,7 +353,7 @@ export const fi: Dictionary = {
     heading: "Yhteistyössä",
     logoAlt: "Empact",
     readBio: "Lue bio",
-    closeBio: "Sulje",
+    hideBio: "Sulje bio",
     linkedin: "LinkedIn",
     people: [
       {

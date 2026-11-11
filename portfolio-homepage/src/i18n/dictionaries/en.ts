@@ -351,7 +351,7 @@ export const en = {
     heading: "In collaboration",
     logoAlt: "Empact",
     readBio: "Read bio",
-    closeBio: "Close",
+    hideBio: "Hide bio",
     linkedin: "LinkedIn",
     people: [
       {

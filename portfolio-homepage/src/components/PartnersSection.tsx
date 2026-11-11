@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import type { Dictionary } from "@/i18n/dictionaries";
 
 type Person = Dictionary["partners"]["people"][number];
@@ -15,109 +15,90 @@ function LinkedInIcon() {
   );
 }
 
-function LinkedInLink({ person, label }: { person: Person; label: string }) {
+function ChevronIcon() {
   return (
-    <a
-      href={person.linkedinUrl}
-      data-sound="social"
-      target="_blank"
-      rel="noreferrer"
-      aria-label={`${person.name} – ${label}`}
-      className="glass-button inline-flex items-center justify-center w-11 h-11 rounded-pill text-body hover:text-ink focus-visible:text-ink"
-    >
-      <LinkedInIcon />
-    </a>
+    <svg viewBox="0 0 20 20" aria-hidden="true" className="w-4 h-4 shrink-0 block">
+      <path d="M5 8 L10 13 L15 8" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
-// Bios live in a native <dialog>: focus trapping, Esc to close and inert
-// background come for free, and the card keeps the same height however many
-// collaborators are added — each one is a fixed-size tile, and the grid wraps.
-function BioDialog({ person, copy, onClose }: { person: Person | null; copy: Dictionary["partners"]; onClose: () => void }) {
-  const ref = useRef<HTMLDialogElement>(null);
-  useEffect(() => {
-    const d = ref.current;
-    if (!d) return;
-    if (person && !d.open) d.showModal();
-    if (!person && d.open) d.close();
-  }, [person]);
+// One collaborator as an accordion row. The heading is the toggle (same
+// pattern and grid-rows 0fr -> 1fr animation as the case-study
+// AccordionSection). The "Read bio" label is real body-contrast text, not a
+// muted caption, and the whole row is the 44px+ hit area.
+function PersonRow({ person, copy, id }: { person: Person; copy: Dictionary["partners"]; id: string }) {
+  const [open, setOpen] = useState(false);
+  const panelId = `${id}-panel`;
   return (
-    <dialog
-      ref={ref}
-      onClose={onClose}
-      onClick={(e) => e.target === ref.current && onClose()}
-      aria-labelledby="partner-dialog-title"
-      className="m-auto w-[min(92vw,560px)] max-h-[85vh] rounded-card border border-white/85 bg-[#fffaf3] p-0 text-ink shadow-2xl backdrop:bg-ink/40 backdrop:backdrop-blur-sm"
-    >
-      {person && (
-        <div className="p-card-pad flex flex-col gap-5">
-          <div className="flex items-center gap-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={person.photo} alt="" width={241} height={258} className="w-16 h-auto shrink-0" />
-            <div className="min-w-0">
-              <h3 id="partner-dialog-title" className="m-0 text-card-h3 text-ink">{person.name}</h3>
-              <p className="m-0 mt-1 text-body text-muted">{person.role}</p>
-            </div>
-          </div>
-          <p className="m-0 text-body">{person.bio}</p>
-          <div className="flex items-center justify-between gap-4">
-            <LinkedInLink person={person} label={copy.linkedin} />
-            <button
-              type="button"
-              onClick={onClose}
-              className="text-nav font-bold text-ink border-b border-accent pb-2 transition-transform duration-500 ease-accel-decel hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
+    <li className="rounded-card bg-white/45 border border-white/70">
+      <h3 className="m-0">
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen((v) => !v)}
+          className="group w-full min-h-[56px] text-left px-3 py-2 flex items-center gap-3 focus-visible:outline-ink"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={person.photo} alt="" width={241} height={258} loading="lazy" className="w-11 h-auto shrink-0" />
+          <span className="min-w-0 flex-1">
+            <span className="block text-[16px] font-bold leading-tight text-ink">{person.name}</span>
+            <span className="block mt-0.5 text-[14px] leading-snug text-body">{person.role}</span>
+          </span>
+          <span className="flex items-center gap-2 shrink-0 text-[14px] font-bold text-ink group-hover:text-accent-dark group-focus-visible:text-accent-dark">
+            <span className="whitespace-nowrap">{open ? copy.hideBio : copy.readBio}</span>
+            <span aria-hidden="true" className={`flex transition-transform duration-500 ease-accel-decel ${open ? "rotate-180" : ""}`}>
+              <ChevronIcon />
+            </span>
+          </span>
+        </button>
+      </h3>
+      <div
+        id={panelId}
+        className={`grid transition-[grid-template-rows] duration-500 ease-accel-decel ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+      >
+        <div className="overflow-hidden" inert={!open}>
+          <div className="px-4 pb-4 pt-1 flex flex-col gap-4">
+            <p className="m-0 text-body max-w-prose">{person.bio}</p>
+            <a
+              href={person.linkedinUrl}
+              data-sound="social"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${person.name} – ${copy.linkedin}`}
+              className="glass-button self-start inline-flex items-center gap-2 h-11 px-4 rounded-pill text-[14px] font-bold text-ink hover:text-accent-dark focus-visible:text-accent-dark"
             >
-              {copy.closeBio}
-            </button>
+              <LinkedInIcon />
+              {copy.linkedin}
+            </a>
           </div>
         </div>
-      )}
-    </dialog>
+      </div>
+    </li>
   );
 }
 
 export default function PartnersSection({ copy }: { copy: Dictionary["partners"] }) {
-  const [active, setActive] = useState<Person | null>(null);
-  // One slim card: title + logo on the left, one pill per person on the
-  // right (wraps into extra pill rows as collaborators are added). Each pill
-  // opens the dialog, which holds the bio and the LinkedIn link, so the card
-  // itself carries no extra controls. Pills are plain tinted panes, not
-  // nested .glass (a nested backdrop-filter only blurs its parent).
+  // Title and logo stack in a left column with real space between them; the
+  // collaborators are a column of slim accordion rows on the right. A new
+  // collaborator adds one ~56px row, and bios only take space while open.
   return (
     <section aria-labelledby="partners-heading" className="mt-rhythm">
-      <div className="glass rounded-card px-card-pad py-5 flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-10">
-        <div className="flex items-center gap-4 shrink-0">
-          <h2 id="partners-heading" className="m-0 text-card-h3 text-ink">
+      <div className="glass rounded-card p-card-pad grid grid-cols-1 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-6 lg:gap-grid-gap-lg items-start">
+        <div className="flex flex-col gap-5 items-start">
+          <h2 id="partners-heading" className="m-0 text-section-h2 text-ink">
             {copy.heading}
           </h2>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/empact/empact-logo.png" alt={copy.logoAlt} width={1206} height={435} className="h-9 w-auto" />
+          <img src="/empact/empact-logo.png" alt={copy.logoAlt} width={1206} height={435} className="h-10 w-auto" />
         </div>
-        <ul className="m-0 p-0 list-none flex flex-wrap gap-3 lg:flex-1 lg:justify-end">
-          {copy.people.map((p) => (
-            <li key={p.name} className="w-full sm:w-auto">
-              <button
-                type="button"
-                onClick={() => setActive(p)}
-                aria-haspopup="dialog"
-                aria-label={`${copy.readBio}: ${p.name}`}
-                className="group w-full text-left rounded-card bg-white/45 border border-white/70 pl-2 pr-4 py-2 flex items-center gap-3 transition-transform duration-500 ease-accel-decel hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-ink"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.photo} alt="" width={241} height={258} loading="lazy" className="w-11 h-auto shrink-0" />
-                <span className="min-w-0">
-                  <span className="block text-[16px] font-bold leading-tight text-ink">{p.name}</span>
-                  <span className="block mt-0.5 text-[13px] leading-snug text-muted">{p.role}</span>
-                </span>
-                <span className="ml-auto pl-3 font-mono-label text-mono-label uppercase text-muted whitespace-nowrap group-hover:text-accent-dark group-focus-visible:text-accent-dark">
-                  {copy.readBio}
-                </span>
-              </button>
-            </li>
+        <ul className="m-0 p-0 list-none flex flex-col gap-3">
+          {copy.people.map((p, i) => (
+            <PersonRow key={p.name} person={p} copy={copy} id={`partner-${i}`} />
           ))}
         </ul>
       </div>
-      <BioDialog person={active} copy={copy} onClose={() => setActive(null)} />
     </section>
   );
 }
