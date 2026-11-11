@@ -131,7 +131,7 @@ function ExternalIcon() {
 
 // The organization's own site. It lives in the expanded panel, not the header:
 // the header is one big button, and a link can't sit inside a button.
-function OrgLink({ company, copy }: { company: { name: string; url?: string }; copy: Copy }) {
+function OrgLink({ company, copy }: { company: { name: string; url?: string; logo?: { src: string; width: number; height: number } }; copy: Copy }) {
   if (!company.url) return null;
   return (
     <a
@@ -145,6 +145,11 @@ function OrgLink({ company, copy }: { company: { name: string; url?: string }; c
         {copy.orgSite.replace("{org}", company.name)}
         <span className="sr-only"> {copy.newTab}</span>
       </span>
+      {/* The logo is part of the link and decorative: the text names it. */}
+      {company.logo && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={company.logo.src} alt="" width={company.logo.width} height={company.logo.height} className="h-6 w-auto ml-1" />
+      )}
     </a>
   );
 }
