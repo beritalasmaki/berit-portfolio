@@ -5,7 +5,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
   translationOf: "how-to-start-design-system-work",
   title: "Miten Design System -työ kannattaa aloittaa?",
   excerpt:
-    "Design System -työssä on yleensä kaksi lähtötilannetta: yrityksellä on jo useita digitaalisia palveluita tai se rakentaa Design Systemin uuden tuotteen rinnalle. Aloitus on erilainen, mutta onnistumisen edellytykset ovat samat. Tässä osassa käyn läpi, mikä kannattaa varmistaa ensin, miten brändi viedään verkkoon ja miten rakenne ja teknologia valitaan.",
+    "Mitä pitää olla kunnossa ennen kuin Design System -työ kannattaa aloittaa? Entä miten ensimmäiset komponentit ja tokenit otetaan käyttöön ja miten brändikirjan värit ja fontit saadaan toimimaan verkossa? Neliosaisen sarjan ensimmäinen osa käy läpi lähtökohdat.",
   date: "2026-11-15",
   tags: ["Design system", "Brändi", "Tokenit"],
   series: {

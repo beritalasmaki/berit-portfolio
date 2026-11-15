@@ -4,7 +4,7 @@ export const howToStartDesignSystemWork: BlogPost = {
   slug: "how-to-start-design-system-work",
   title: "How to start design system work",
   excerpt:
-    "Design system work usually starts from one of two situations: a company already has several digital services, or it is building a design system alongside a new product. The start is different, but the conditions for success are the same. In this part, I go through what to confirm first, how to take a brand to the web, and how to choose structure and technology.",
+    "What needs to be in place before design system work starts? And how do the first components and tokens come into use, and how do you make brand colours and fonts work on the web? The first part of a four-part series covers the groundwork.",
   date: "2026-11-15",
   tags: ["Design systems", "Branding", "Tokens"],
   series: {
