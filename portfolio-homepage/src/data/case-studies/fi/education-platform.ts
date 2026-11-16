@@ -4,8 +4,8 @@ import { localizeGallery } from "./helpers";
 
 export const educationPlatformFi: CaseStudy = {
   slug: "education-platform",
-  title: "Koulutuksen digitaalinen palvelualusta",
-  label: "KOULUTUKSEN DIGITAALINEN PALVELUALUSTA · 2021–2024",
+  title: "Kuntien opetusjärjestelmä",
+  label: "KUNTIEN OPETUSJÄRJESTELMÄ · 2021–2024",
   headline: "Monta tiimiä, monta järjestelmää.\nYksi yhtenäinen kokemus.",
   description:
     "Yhteinen, standardoitu suunnitteluperusta, joka yhtenäisti käytettävyyden ja toimintalogiikan usealla alustalla.",

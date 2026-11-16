@@ -65,7 +65,7 @@ export const designEngineeringFi: BlogPost = {
       type: "list",
       items: [
         "**Yhteinen työkalu.** [Teollisuuden datatyökalussa](/fi/tyot/teollisuuden-data-ja-asiantuntijatyokalut) siirsin komponenttikirjaston Sketchistä Figmaan, jotta muotoilijat ja kehittäjät työskentelivät samassa ympäristössä.",
-        "**Yhteinen ymmärrys.** [Koulutuksen digitaalisessa palvelualustassa](/fi/tyot/koulutuksen-digitaalinen-palvelualusta) pidimme kehittäjien kanssa säännöllisiä tapaamisia, joissa kävimme läpi ratkaisujen taustoja ja kuulimme kehittäjien ideoita.",
+        "**Yhteinen ymmärrys.** [Kuntien opetusjärjestelmässä](/fi/tyot/koulutuksen-digitaalinen-palvelualusta) pidimme kehittäjien kanssa säännöllisiä tapaamisia, joissa kävimme läpi ratkaisujen taustoja ja kuulimme kehittäjien ideoita.",
         "**Yhteiset komponentit.** [Yliopiston projektissa](/fi/tyot/yliopiston-perehdytys-ja-tekoalyhaku) tein design systemin komponenteista helpommin löydettäviä ja otin design system -tiimin mukaan aina, kun tarvittiin aidosti jotain uutta.",
       ],
     },

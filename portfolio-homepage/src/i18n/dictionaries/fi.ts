@@ -115,8 +115,8 @@ export const fi: Dictionary = {
         question: "Miten pidän yhteistyötaidot ajan tasalla?",
         body: "Yhteistyö kehittäjien kanssa on muuttunut muutamassa vuodessa, ja mukaudun muutokseen jatkuvasti. En luovuta valmista suunnitelmaa ja katoa, vaan pysyn mukana keskustelussa koko toteutuksen ajan. Rakennan itse toimivia prototyyppejä esimerkiksi Claude Designilla, ja teen töitä myös suoraan koodissa: rakennan komponentin tai tietyn osan sivustosta ensimmäiseksi versioksi, jonka kehittäjä katselmoi. Näin kehittäjät näkevät oikeita komponentteja ja niiden lataus-, virhe- ja tyhjätilat jo varhain eivätkä vain staattisia kuvia, joita pitäisi tulkita.",
         highlight:
-          "Valtakunnallisessa koulutusalustahankkeessa, jossa oli mukana useita kuntia ja toimittajia, vedin tiimin päivittäiset palaverit ja suunnittelin työpajaprosessin, jonka avulla tiimi eteni tutkimuksesta konkreettisiin konsepteihin.",
-        linkLabel: "Lue asiakasprojekti: koulutuksen digitaalinen palvelualusta →",
+          "Kuntien opetusjärjestelmähankkeessa, jossa oli mukana useita kuntia ja toimittajia, vedin tiimin päivittäiset palaverit ja suunnittelin työpajaprosessin, jonka avulla tiimi eteni tutkimuksesta konkreettisiin konsepteihin.",
+        linkLabel: "Lue asiakasprojekti: kuntien opetusjärjestelmä →",
         study: "education-platform",
       },
       {
