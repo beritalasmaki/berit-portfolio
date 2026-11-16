@@ -115,8 +115,8 @@ export const en = {
         question: "How do I keep my collaboration skills up to date?",
         body: "Developer collaboration looks different today than it did a few years ago. I keep adapting to that: I do not just hand a finished design over and disappear, I stay part of the conversation while developers are building. I build working prototypes myself with tools like Claude Design, and I also work directly in code: building a component, or a specific part of a site, as a first version for a developer to review. That way developers see real components early, with their loading, error and empty states, instead of static images to interpret.",
         highlight:
-          "On a national education platform with many municipalities and vendors, I ran the team's daily meetings and created the workshop process the team used to move from research to real concepts.",
-        linkLabel: "See the National Education case study →",
+          "On a municipal education system with many municipalities and vendors, I ran the team's daily meetings and created the workshop process the team used to move from research to real concepts.",
+        linkLabel: "See the Municipal Education System case study →",
         study: "education-platform",
       },
       {

@@ -68,7 +68,7 @@ export const designEngineering: BlogPost = {
       type: "list",
       items: [
         "**A shared tool.** On an [industrial data tool](/usecases/industrial-tool), I moved the component library from Sketch to Figma so that designers and developers could work in the same environment.",
-        "**A shared understanding.** On a [digital service platform for education](/usecases/education-platform), we held regular sessions with developers to go through the reasoning behind solutions and to hear their ideas.",
+        "**A shared understanding.** On a [municipal education system](/usecases/education-platform), we held regular sessions with developers to go through the reasoning behind solutions and to hear their ideas.",
         "**Shared components.** On a [university project](/usecases/university-ai-tool), I made the design system's components easier to find and brought in the design system team whenever something genuinely new was needed.",
       ],
     },
