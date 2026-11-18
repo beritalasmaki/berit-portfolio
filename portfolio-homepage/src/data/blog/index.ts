@@ -113,7 +113,7 @@ function blockText(block: BlogBlock): string {
     case "ladder":
       return [block.title, ...block.rungs.map((rung) => `${rung.name} ${rung.text}`)].join(" ");
     case "timeline":
-      return [block.title, ...block.items.map((item) => `${item.label} ${item.note ?? ""}`)].join(" ");
+      return block.items.map((item) => `${item.label} ${item.note ?? ""}`).join(" ");
   }
 }
 

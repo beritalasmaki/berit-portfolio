@@ -99,7 +99,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "timeline",
-      title: "The process in one line",
+      labelledBy: "process",
       items: [
         { label: "Frame the problem" },
         { label: "Understand the people" },

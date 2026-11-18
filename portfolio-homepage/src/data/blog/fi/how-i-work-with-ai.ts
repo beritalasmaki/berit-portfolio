@@ -101,7 +101,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "timeline",
-      title: "Prosessi yhdellä rivillä",
+      labelledBy: "process",
       items: [
         { label: "Ongelman muotoilu" },
         { label: "Ihmisten ymmärtäminen" },

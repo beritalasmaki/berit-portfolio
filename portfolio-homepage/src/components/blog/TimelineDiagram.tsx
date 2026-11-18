@@ -1,5 +1,4 @@
 import type { TimelineExample } from "@/data/blog";
-import type { Dictionary } from "@/i18n/dictionaries";
 
 /**
  * A process on one line. The stages sit side by side on a wide screen and
@@ -8,16 +7,11 @@ import type { Dictionary } from "@/i18n/dictionaries";
  * number, so the numbers count only the stages. Built as an ordered list of
  * real text, so it reflows and reads out to a screen reader.
  */
-export default function TimelineDiagram({ data, copy }: { data: TimelineExample; copy: Dictionary["blog"] }) {
+export default function TimelineDiagram({ data }: { data: TimelineExample }) {
   let stage = 0;
   return (
     <figure className="m-0 rounded-card glass p-card-pad">
-      <figcaption className="flex flex-col gap-2">
-        <span className="font-mono-label text-mono-label uppercase text-muted">{copy.diagram}</span>
-        <span className="text-card-h3 text-ink">{data.title}</span>
-      </figcaption>
-
-      <ol className="m-0 mt-8 flex list-none flex-col gap-6 p-0 md:flex-row md:gap-0">
+      <ol aria-labelledby={data.labelledBy} className="m-0 flex list-none flex-col gap-6 p-0 md:flex-row md:gap-0">
         {data.items.map((item, i) => {
           if (!item.highlight) stage += 1;
           const last = i === data.items.length - 1;

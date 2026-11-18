@@ -141,7 +141,7 @@ export default function BlogBody({ blocks, copy }: { blocks: BlogBlock[]; copy: 
           case "timeline":
             return (
               <div key={i} className="my-2">
-                <TimelineDiagram data={block} copy={copy} />
+                <TimelineDiagram data={block} />
               </div>
             );
         }

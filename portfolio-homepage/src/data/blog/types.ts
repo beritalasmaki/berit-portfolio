@@ -84,7 +84,8 @@ export type FlowExample = {
 };
 
 export type TimelineExample = {
-  title: string;
+  /** Id of the heading above the diagram; it names the list for screen readers. */
+  labelledBy: string;
   /** In order. A highlighted item carries the orange and no stage number. */
   items: { label: string; note?: string; highlight?: boolean }[];
 };
