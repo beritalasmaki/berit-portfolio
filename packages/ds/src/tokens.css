@@ -20,6 +20,7 @@
 	--color-action-accent: #fc890c;
 	--color-action-accent-dark: #a45b0b;
 	--color-action-accent-on-dark: #fc890c;
+	--color-action-accent-pale: #ffc98f;
 	--color-action-accent-subtle: rgb(252 137 12 / 0.14);
 	--color-border-default: #eeece7;
 	--color-border-subtle: #e2ded6;
@@ -45,7 +46,7 @@
 	--color-status-error-strong: #a12a21;
 	--color-status-error-on-dark: #ee9a92;
 	--gradient-action-primary: linear-gradient(180deg, var(--color-surface-inverse), var(--color-surface-inverse));
-	--gradient-action-primary-hover: linear-gradient(180deg, var(--color-action-accent-dark), var(--color-action-accent-dark));
+	--gradient-action-primary-hover: linear-gradient(180deg, var(--color-action-accent-pale), var(--color-action-accent-pale));
 	--gradient-action-primary-dark: linear-gradient(180deg, var(--color-surface-canvas), var(--color-surface-subtle));
 	--gradient-action-primary-hover-dark: linear-gradient(180deg, var(--color-action-accent), var(--color-status-warning-default));
 	--grid-columns: 4;

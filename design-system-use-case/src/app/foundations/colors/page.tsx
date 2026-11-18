@@ -8,7 +8,7 @@ const raw = (prefix: string) => primitiveTokens.colors.filter((token) => token.n
 const semantic = (prefix: string) => semanticTokens.filter((token) => token.name.startsWith(prefix));
 
 const guide = [
-  ["Orange", "Two oranges. Orange 500 is for fills, icons, borders and the active marker, and for accent text on dark surfaces. Orange 700 is for accent text on light surfaces and the hover background of the primary button. It is never used on a dark background."],
+  ["Orange", "Three oranges. Orange 500 is for fills, icons, borders and the active marker, and for accent text on dark surfaces. Orange 200 is a pale peach for the hover background of the primary button, with ink text. Orange 700 is for accent text on light surfaces. It is never used on a dark background."],
   ["Ink and stone", "Three inks and a family of warm stones. Ink 950 is for headings, primary text, the primary button and the dark-mode canvas. Ink 800 is a surface raised above the dark canvas. Ink 700 is for body copy. Stone 600 is for hints and metadata, and the stones from 300 to 50 are borders and soft surfaces. Cream 50 is the page ground that glass cards sit on."],
   ["Status", "Yellow, blue, green and red are only for info, success, warning and error. Do not use them as decoration."],
   ["Components", "Components use semantic colours only. If the colour you need has no semantic name, add one instead of using a raw value."],

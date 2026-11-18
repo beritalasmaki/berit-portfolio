@@ -1,6 +1,7 @@
 export const primitiveTokens = {
   colors: [
     { name: "color.orange.500", value: "#fc890c", type: "color", description: "Accent. Use for fills, active markers, icons and borders, and for accent text on dark surfaces. Not for text on a light surface." },
+    { name: "color.orange.200", value: "#ffc98f", type: "color", description: "Pale peach. The hover background of the primary button on a light surface, with ink text." },
     { name: "color.orange.700", value: "#a45b0b", type: "color", description: "Accent at text contrast (5.2:1 on white). Use for accent text and labels on light surfaces. Never use it on a dark background." },
     { name: "color.yellow.100", value: "#fdf4cc", type: "color", description: "Pale yellow, the warning surface." },
     { name: "color.yellow.300", value: "#f8dd74", type: "color", description: "Soft yellow, warning content on a dark surface." },
@@ -97,7 +98,7 @@ export const primitiveTokens = {
   ],
   gradients: [
     { name: "gradient.ink", value: "linear-gradient(180deg, #222222, #222222)", type: "gradient", description: "Flat ink 950. Primary action on a light surface. It is a gradient with two equal ends so it can be swapped with the other gradients." },
-    { name: "gradient.accent", value: "linear-gradient(180deg, #a45b0b, #a45b0b)", type: "gradient", description: "Flat orange 700. Primary action on hover on a light surface, with white text (5.2:1). It is a gradient with two equal ends so it can be swapped with the other gradients." },
+    { name: "gradient.accent", value: "linear-gradient(180deg, #ffc98f, #ffc98f)", type: "gradient", description: "Flat orange 200, a pale peach. Primary action on hover on a light surface, with ink text (11:1). It is a gradient with two equal ends so it can be swapped with the other gradients." },
     { name: "gradient.sun", value: "linear-gradient(180deg, #fc890c, #f2b705)", type: "gradient", description: "Orange 500 to yellow 500. Primary action on hover on a dark surface." },
     { name: "gradient.white", value: "linear-gradient(180deg, #ffffff, #f5f3ee)", type: "gradient", description: "White to stone 100. Primary action on a dark surface." },
   ],
@@ -120,6 +121,7 @@ export const semanticTokens = [
   { name: "color.action.primary", value: "{color.ink.950}", description: "Primary button background and other main actions." },
   { name: "color.action.accent", value: "{color.orange.500}", description: "Accent fills, icons, borders and the active marker. Not for text on a light surface." },
   { name: "color.action.accent-dark", value: "{color.orange.700}", description: "Accent text and labels on a light surface (5.2:1 on white). Never use it on a dark background." },
+  { name: "color.action.accent-pale", value: "{color.orange.200}", description: "A pale peach: the hover background of the primary button on a light surface, with ink text." },
   { name: "color.action.accent-subtle", value: "rgb(252 137 12 / 0.14)", description: "A pale orange wash behind a hovered secondary button or icon button." },
   { name: "color.action.accent-on-dark", value: "{color.orange.500}", description: "Accent for text, fills and borders on a dark canvas." },
   { name: "color.surface.glass-highlight", value: "rgb(255 255 255 / 0.75)", description: "The frosted pill behind the link being pointed at or the current link in a navigation." },
