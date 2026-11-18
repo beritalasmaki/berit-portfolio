@@ -3,13 +3,15 @@ import { aiAdoptionStrategy } from "./ai-adoption-starts-with-strategy";
 import { aiPilotToEverydayPractice } from "./from-ai-pilot-to-everyday-practice";
 import { designEngineering } from "./design-engineering";
 import { designEngineeringFi } from "./fi/design-engineering";
+import { howIWorkWithAi } from "./how-i-work-with-ai";
+import { howIWorkWithAiFi } from "./fi/how-i-work-with-ai";
 import { howToStartDesignSystemWork } from "./how-to-start-design-system-work";
 import { howToStartDesignSystemWorkFi } from "./fi/how-to-start-design-system-work";
 import { aiAdoptionStrategyFi } from "./fi/ai-adoption-starts-with-strategy";
 import { aiPilotToEverydayPracticeFi } from "./fi/from-ai-pilot-to-everyday-practice";
 import type { BlogBlock, BlogPost } from "./types";
 
-export type { BlogBlock, BlogPost, FlowExample, FlowNode, FlowRow, LadderExample, OkrExample, StepsExample } from "./types";
+export type { BlogBlock, BlogPost, FlowExample, FlowNode, FlowRow, LadderExample, OkrExample, StepsExample, TimelineExample } from "./types";
 
 const sortNewestFirst = (registry: BlogPost[]): BlogPost[] =>
   [...registry].sort((a, b) => b.date.localeCompare(a.date) || (b.series?.part ?? 0) - (a.series?.part ?? 0));
@@ -20,8 +22,8 @@ const sortNewestFirst = (registry: BlogPost[]): BlogPost[] =>
 // `translationOf`. To publish a post in one language only, add it to just
 // that language's list.
 const registries: Record<Locale, BlogPost[]> = {
-  en: sortNewestFirst([aiAdoptionStrategy, aiPilotToEverydayPractice, designEngineering, howToStartDesignSystemWork]),
-  fi: sortNewestFirst([aiAdoptionStrategyFi, aiPilotToEverydayPracticeFi, designEngineeringFi, howToStartDesignSystemWorkFi]),
+  en: sortNewestFirst([aiAdoptionStrategy, aiPilotToEverydayPractice, designEngineering, howToStartDesignSystemWork, howIWorkWithAi]),
+  fi: sortNewestFirst([aiAdoptionStrategyFi, aiPilotToEverydayPracticeFi, designEngineeringFi, howToStartDesignSystemWorkFi, howIWorkWithAiFi]),
 };
 
 export function getPosts(locale: Locale): BlogPost[] {
@@ -82,6 +84,8 @@ function blockText(block: BlogBlock): string {
       return block.items.join(" ");
     case "findings":
       return block.items.map((item) => `${item.title} ${item.body}`).join(" ");
+    case "links":
+      return block.items.map((item) => item.label).join(" ");
     case "image":
       return block.caption ?? "";
     case "okr":
@@ -108,6 +112,8 @@ function blockText(block: BlogBlock): string {
       ].join(" ");
     case "ladder":
       return [block.title, ...block.rungs.map((rung) => `${rung.name} ${rung.text}`)].join(" ");
+    case "timeline":
+      return block.items.map((item) => `${item.label} ${item.note ?? ""}`).join(" ");
   }
 }
 

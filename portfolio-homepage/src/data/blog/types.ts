@@ -40,6 +40,10 @@ export type BlogBlock =
     }
   /** Numbered lead-in + explanation list, the same as in the case studies. */
   | { type: "findings"; items: Finding[] }
+  /** A row of links to other sites, styled like the site's accent-underline
+   * text links with the ↗ arrow. Each opens in a new tab. Use it for the
+   * links a reader should see first, such as a project's repository. */
+  | { type: "links"; items: { label: string; href: string }[] }
   /** A worked OKR example drawn as a diagram in the site's own styles
    * (`components/blog/OkrDiagram.tsx`) rather than a picture of one, so
    * its text reflows on a phone and reads out to a screen reader. */
@@ -49,7 +53,11 @@ export type BlogBlock =
   /** Rows of "pill → box → box → pill" flows, one highlighted. */
   | ({ type: "flow" } & FlowExample)
   /** Three rungs of rising height; the last is the goal. */
-  | ({ type: "ladder" } & LadderExample);
+  | ({ type: "ladder" } & LadderExample)
+  /** A process on one line: stages in order, one of them highlighted. Drawn
+   * as real text (`components/blog/TimelineDiagram.tsx`), side by side on a
+   * wide screen and stacked on a phone. */
+  | ({ type: "timeline" } & TimelineExample);
 
 export type StepsExample = {
   title: string;
@@ -73,6 +81,13 @@ export type FlowExample = {
   title: string;
   rows: FlowRow[];
   quote?: { text: string; cite: string };
+};
+
+export type TimelineExample = {
+  /** Id of the heading above the diagram; it names the list for screen readers. */
+  labelledBy: string;
+  /** In order. A highlighted item carries the orange and no stage number. */
+  items: { label: string; note?: string; highlight?: boolean }[];
 };
 
 export type LadderExample = {

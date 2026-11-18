@@ -146,7 +146,7 @@ export default async function BlogPostPage({
                       </>
                     )}
                   </p>
-                  <h1 id="post-title" className="m-0 text-hero max-w-[18em] text-balance">
+                  <h1 id="post-title" className="m-0 text-hero max-w-prose-cs">
                     {post.title}
                   </h1>
                   {post.series?.subtitle && (

@@ -7,6 +7,7 @@ import FlowDiagram from "./FlowDiagram";
 import LadderDiagram from "./LadderDiagram";
 import OkrDiagram from "./OkrDiagram";
 import StepsDiagram from "./StepsDiagram";
+import TimelineDiagram from "./TimelineDiagram";
 
 /**
  * A post's body, block by block, in the case studies' type scale: body-lg
@@ -29,7 +30,7 @@ export default function BlogBody({ blocks, copy }: { blocks: BlogBlock[]; copy: 
               <h2
                 key={i}
                 id={block.id}
-                className="mt-6 first:mt-0 mb-0 max-w-prose-cs text-card-h3 text-ink text-balance"
+                className="mt-6 first:mt-0 mb-0 max-w-prose-cs text-card-h3 text-ink"
               >
                 {block.text}
               </h2>
@@ -95,6 +96,24 @@ export default function BlogBody({ blocks, copy }: { blocks: BlogBlock[]; copy: 
                 <FindingsList items={block.items} />
               </div>
             );
+          case "links":
+            return (
+              <div key={i} className="flex flex-wrap gap-x-8 gap-y-4">
+                {block.items.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-nav font-semibold text-ink border-b border-accent pb-2 whitespace-nowrap transition-[border-color] duration-200 ease-linear hover:border-accent-dark focus-visible:border-accent-dark"
+                  >
+                    {item.label}
+                    <span className="sr-only">{copy.opensNewTab}</span>
+                    <span aria-hidden="true"> ↗</span>
+                  </a>
+                ))}
+              </div>
+            );
           case "okr":
             return (
               <div key={i} className="my-2">
@@ -117,6 +136,12 @@ export default function BlogBody({ blocks, copy }: { blocks: BlogBlock[]; copy: 
             return (
               <div key={i} className="my-2">
                 <LadderDiagram data={block} copy={copy} />
+              </div>
+            );
+          case "timeline":
+            return (
+              <div key={i} className="my-2">
+                <TimelineDiagram data={block} />
               </div>
             );
         }

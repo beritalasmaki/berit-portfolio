@@ -8,7 +8,7 @@ export default function CaseStudyHero({ study, copy }: { study: CaseStudy; copy:
   return (
     <section id="about-project" aria-labelledby="case-study-title" className="border-t border-rule pt-[clamp(32px,4vw,48px)]">
       <p className="font-mono-label text-mono-label uppercase text-muted m-0">{copy.breadcrumbEyebrow}</p>
-      <h1 id="case-study-title" className="mt-4 m-0 text-hero max-w-[22em]">
+      <h1 id="case-study-title" className="mt-4 m-0 text-hero max-w-prose-cs">
         {study.title}
       </h1>
       {/* `heroIntro` when the page wants its own, longer opening; otherwise

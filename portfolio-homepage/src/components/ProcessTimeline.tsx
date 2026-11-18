@@ -206,7 +206,7 @@ function layoutRows(stages: TabStage[], totalWeeks: number): PositionedStage[][]
   });
 }
 
-export default function ProcessTimeline({ copy }: { copy: Dictionary["process"] }) {
+export default function ProcessTimeline({ copy, children }: { copy: Dictionary["process"]; children?: ReactNode }) {
   const [tabIndex, setTabIndex] = useState(0);
   const [stageKey, setStageKey] = useState<StageKey | null>(null);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -463,6 +463,10 @@ export default function ProcessTimeline({ copy }: { copy: Dictionary["process"] 
           )}
         </div>
       </div>
+
+      {/* Anything that belongs to My process but is not part of the
+          timeline, such as how I work with AI, goes under it. */}
+      {children}
     </section>
   );
 }

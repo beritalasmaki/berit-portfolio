@@ -62,6 +62,7 @@ export default function TableOfContents({
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navRef = useRef<HTMLElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
   const lineRef = useRef<HTMLDivElement>(null);
   const tailRef = useRef<HTMLDivElement>(null);
@@ -183,18 +184,41 @@ export default function TableOfContents({
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
+    // The sidebar scrolls on its own when it is taller than the window.
+    const scroller = scrollRef.current;
+    scroller?.addEventListener("scroll", update, { passive: true });
     // Accordions opening and closing move the sections.
     const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(update) : null;
     ro?.observe(document.body);
     return () => {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
+      scroller?.removeEventListener("scroll", update);
       ro?.disconnect();
       if (frame !== null) cancelAnimationFrame(frame);
     };
   }, [ids]);
 
+  // When the sidebar is taller than the window it scrolls inside itself. Keep
+  // the current section's link in view as the page is read.
+  useEffect(() => {
+    const wrap = scrollRef.current;
+    const link = linkRefs.current[activeIndex];
+    if (!wrap || !link || wrap.offsetParent === null) return;
+    if (wrap.scrollHeight <= wrap.clientHeight + 1) return;
+    const w = wrap.getBoundingClientRect();
+    const l = link.getBoundingClientRect();
+    const margin = 32;
+    let top: number | null = null;
+    if (l.top < w.top + margin) top = wrap.scrollTop + (l.top - w.top) - margin;
+    else if (l.bottom > w.bottom - margin) top = wrap.scrollTop + (l.bottom - w.bottom) + margin;
+    if (top === null) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    wrap.scrollTo({ top: Math.max(0, top), behavior: reduced ? "auto" : "smooth" });
+  }, [activeIndex]);
+
   const activeId = sections[activeIndex]?.id;
+  const hasPageLinks = items.some((item) => item.href);
 
   // Same-page section anchors. Real page links (`item.href` set — "Back to
   // main page") are rendered separately by `pageLinks()` below,
@@ -274,11 +298,11 @@ export default function TableOfContents({
       <nav
         ref={navRef}
         aria-label={title}
-        className="hidden lg:sticky lg:top-28 lg:flex flex-col gap-4 rounded-card glass p-6"
+        className="hidden lg:sticky lg:top-28 lg:flex flex-col rounded-card glass overflow-hidden lg:max-h-[calc(100dvh-8.5rem)]"
       >
         {/* The star's line, tail, dots and head (positioned in the effect
             above). Nothing is drawn ahead of the star. */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-10">
           <div
             ref={lineRef}
             className="absolute w-[1.5px] rounded-pill"
@@ -324,9 +348,18 @@ export default function TableOfContents({
             </svg>
           </div>
         </div>
-        <p className="font-mono-label text-mono-label uppercase text-muted m-0 pb-2">{title}</p>
-        {sectionLinks(undefined, true)}
-        {pageLinks()}
+        <div
+          ref={scrollRef}
+          className={`relative flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-6 pt-6 [scrollbar-width:thin] [scrollbar-color:theme(colors.rule-strong)_transparent] ${
+            hasPageLinks ? "pb-2" : "pb-6"
+          }`}
+        >
+          <p className="font-mono-label text-mono-label uppercase text-muted m-0 pb-2">{title}</p>
+          {sectionLinks(undefined, true)}
+        </div>
+        {/* The link out of the page stays below the scrolling part, so it is
+            always in view. */}
+        {hasPageLinks && <div className="shrink-0 px-6 pb-6">{pageLinks()}</div>}
       </nav>
 
       {/* Mobile: collapsed dropdown, native <details> for built-in keyboard
