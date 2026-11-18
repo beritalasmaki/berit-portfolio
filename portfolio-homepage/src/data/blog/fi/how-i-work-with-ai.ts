@@ -32,21 +32,21 @@ export const howIWorkWithAiFi: BlogPost = {
     {
       type: "heading",
       id: "roles",
-      text: "Missä tekoäly on vahva ja missä ihminen päättää",
+      text: "Mitä tekoäly osaa tehdä hyvin, ja missä asioissa tarvitaan ihmisen apua",
       navLabel: "Tekoäly ja ihminen",
     },
     {
       type: "paragraph",
-      text: "Hyvin rakennettu konteksti auttoi eniten, mutta se selkiytti myös työnjakoa. Joissakin asioissa tekoäly on vahva, ja joissakin tarvitaan yhä ihmisen päätöksiä ja ohjausta. Mielestäni niin kuuluukin olla.",
+      text: "Hyvin rakennettu konteksti auttaa paremmin ja selkeyttää myös työnjakoa. Joissakin asioissa tekoäly osaa toimia hyvin, ja joissakin se tarvitsee edelleen ihmisen päätöksentekoa ja ohjausta.",
     },
     {
       type: "subheading",
-      text: "Missä tekoäly on vahva",
+      text: "Missä asioissa tekoäly on hyvä",
     },
     {
       type: "list",
       items: [
-        "**Raakamuistiinpanoista jäsennelty ensimmäinen luonnos.** Sidosryhmäkartta, vaatimukset ja käyttäjävirtojen kuvaus syntyvät nopeasti.",
+        "**Raakamuistiinpanoista jäsennelty ensimmäinen luonnos.** Sidosryhmäkartta, vaatimukset ja käyttäjäpolkujen kuvaus syntyvät nopeasti.",
         "**Pitkän aineiston tiivistäminen** ja sen löytäminen, mikä siitä puuttuu.",
         "**Johdonmukaisuuden tarkistus.** Onko jokaisella näkymällä kaikki tilat, ja käytetäänkö käsitettä kaikkialla samalla tavalla.",
         "**Vaihtoehtojen tuottaminen,** joista voi valita.",
@@ -55,7 +55,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "subheading",
-      text: "Missä ihminen päättää ja ohjaa",
+      text: "Missä asioissa tarvitaan ihmisen päätöksentekoa ja ohjausta",
     },
     {
       type: "list",
@@ -117,27 +117,27 @@ export const howIWorkWithAiFi: BlogPost = {
       items: [
         {
           title: "Ongelman muotoilu",
-          body: "**Skill** `problem-framing` · **Artefaktit** `00 product context`, `01 problem framing`. Muuttaa toimeksiannon käyttäjän tilanteeksi, jossa ei ole ratkaisua sisällä, ja listaa, mitä tiedetään ja mikä puuttuu. Kirjoitan toimeksiannon ylös sellaisenaan, mutta pyrin anonymisoimaan tekstin niin, ettei asiakkaan tai kenenkään henkilön nimi näy missään. Asiakkaan tiedot pidän salaisina.",
+          body: "Toimeksianto muutetaan käyttäjän tilanteeksi, jossa ei ole ratkaisua valmiina, ja listataan, mitä tiedetään ja mikä puuttuu. Kirjoitan toimeksiannon ylös sellaisenaan, mutta pyrin anonymisoimaan sen niin, ettei asiakkaan tai kenenkään henkilön nimi näy. Asiakkaan tiedot pidän salaisina. Tekoälyn ohje (skill): problem-framing. Dokumentit (artefaktit): 00 product context ja 01 problem framing.",
         },
         {
           title: "Ihmisten ymmärtäminen",
-          body: "**Skill** `stakeholder-map` · **Artefaktit** `02 stakeholder map`, `03 requirements spec`. Näyttää, kuka päättää mistäkin, sekä vaatimukset omistajineen. Erimielisyydet nousevat yleensä esiin vasta projektin aikana, joten alussa tärkeintä on tietää, kenen sana painaa. Ristiriidat kirjataan vierekkäin sitä mukaa kuin ne tulevat esiin, enkä anna tekoälyn ratkaista niitä.",
+          body: "Selvitetään, kuka päättää mistäkin, ja kirjataan vaatimukset omistajineen. Erimielisyydet nousevat yleensä esiin vasta projektin aikana, joten alussa tärkeintä on tietää, kenen sana painaa. Ristiriidat kirjataan vierekkäin sitä mukaa kuin ne tulevat esiin, enkä anna tekoälyn ratkaista niitä. Tekoälyn ohje (skill): stakeholder-map. Dokumentit (artefaktit): 02 stakeholder map ja 03 requirements spec.",
         },
         {
           title: "Suunnittelu",
-          body: "**Skill** `user-flow-and-states` · **Artefaktit** `04 user flows and states`, `07 design system rules`. Kuvaa käyttäjävirrat vaihe vaiheelta virhepolkuineen ja jokaisen näkymän kaikkine tiloineen suunnittelujärjestelmän sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan niiden olevan suunniteltuja.",
+          body: "Käyttäjäpolut kuvataan vaihe vaiheelta virhetilanteineen, ja jokaiselle näkymälle listataan kaikki tilat suunnittelujärjestelmän sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan niiden olevan suunniteltuja. Tekoälyn ohje (skill): user-flow-and-states. Dokumentit (artefaktit): 04 user flows and states ja 07 design system rules.",
         },
         {
           title: "Tarkistus",
-          body: "**Skillit** `a11y-gate`, `security-privacy-brief`, `sameness-check` · **Artefaktit** `05 accessibility checklist`, `06 security and privacy brief`. Käy läpi saavutettavuuden, tiedot ja käyttöoikeudet sekä sen, mitkä valinnat jäivät pelkiksi oletuksiksi. Kontrastit laskee skripti. Tämä on suunnitteluvaiheen katselmointi, ei auditointi.",
+          body: "Käydään läpi saavutettavuus, tiedot ja käyttöoikeudet sekä se, mitkä valinnat jäivät pelkiksi oletuksiksi. Kontrastit laskee skripti. Tämä on suunnitteluvaiheen katselmointi, ei auditointi. Tekoälyn ohjeet (skillit): a11y-gate, security-privacy-brief ja sameness-check. Dokumentit (artefaktit): 05 accessibility checklist ja 06 security and privacy brief.",
         },
         {
           title: "Luovutus",
-          body: "**Skill** `procurement-ready-handoff` · **Artefaktit** `08 handoff spec`, `09 stakeholder feedback log`. Kertoo, mikä on valmista, kuka sen hyväksyi ja mitä kukin toimittaja tekee, ja pitää katselmoinnin kommentit yhdessä sen kanssa, kuka niistä päättää.",
+          body: "Kerrotaan, mikä on valmista, kuka sen hyväksyi ja mitä kukin toimittaja tekee. Katselmoinnin kommentit kootaan yhteen sen kanssa, kuka niistä päättää. Tekoälyn ohje (skill): procurement-ready-handoff. Dokumentit (artefaktit): 08 handoff spec ja 09 stakeholder feedback log.",
         },
         {
           title: "Kirjaaminen ja pohdinta",
-          body: "**Skillit** `decision-log`, `nda-safe-case-study` · **Artefaktit** `10 decision log`, `11 case study notes`. Kirjaa päätökset niin, että näkyy kuka päätti ja miksi. Projektin lopussa lokista tehdään case study ilman luottamuksellisia tietoja.",
+          body: "Päätökset kirjataan niin, että näkyy kuka päätti ja miksi. Projektin lopussa lokista tehdään case study ilman luottamuksellisia tietoja. Tekoälyn ohjeet (skillit): decision-log ja nda-safe-case-study. Dokumentit (artefaktit): 10 decision log ja 11 case study notes.",
         },
       ],
     },
@@ -149,25 +149,25 @@ export const howIWorkWithAiFi: BlogPost = {
     {
       type: "heading",
       id: "flows",
-      text: "Käyttäjävirrat ja haastavat polut",
+      text: "Käyttäjäpolut ja haastavat polut",
       navLabel: "Haastavat polut",
     },
     {
       type: "paragraph",
-      text: "Aloitan perusvirrasta: mitä vaiheita käyttäjä käy läpi tavoitteeseensa ja miten järjestelmä vastaa joka vaiheessa. Vasta sen jälkeen käyn virran läpi vaihe vaiheelta ja mietin, mitkä kohdat voivat olla osalle käyttäjistä haastavia.",
+      text: "Aloitan onnistuneesta polusta: mitä vaiheita käyttäjä käy läpi tavoitteeseensa ja miten järjestelmä vastaa joka vaiheessa. Vasta sen jälkeen käyn polun läpi vaihe vaiheelta ja mietin, mitkä kohdat voivat olla osalle käyttäjistä haastavia.",
     },
     {
       type: "list",
       ordered: true,
       items: [
-        "**Piirrän perusvirran.** Jokaisessa vaiheessa on käyttäjän tekeminen ja järjestelmän vastaus.",
+        "**Piirrän onnistuneen polun.** Jokaisessa vaiheessa on käyttäjän tekeminen ja järjestelmän vastaus.",
         "**Kysyn jokaisesta vaiheesta, kenelle se voi olla haastava ja miksi.** Sama polku voi olla yhdelle käyttäjälle sujuva ja toiselle sietämättömän vaikea.",
         "**Lisään tarvittavat polut ja tilat:** virheilmoitukset, lisäaika, toinen tapa tehdä vaihe ja se, mitä tapahtuu, kun jokin epäonnistuu.",
       ],
     },
     {
       type: "paragraph",
-      text: "Esimerkiksi julkisessa palvelussa vaihe ”kirjaudu vahvalla tunnistautumisella” voi olla helppo sille, jolla on pankkisovellus ja älypuhelin, ja este sille, jolla niitä ei ole. Pitkä lomake aikarajalla voi sopia useimmille ja olla mahdoton sille, joka tarvitsee enemmän aikaa tai käyttää ruudunlukijaa. Jokaisesta tällaisesta vaiheesta kirjaan, kenellä voi olla vaikeuksia ja mitä suunnittelu tarjoaa tilalle. Jos en tiedä, merkitsen sen aukoksi ja selvitän asian.",
+      text: "Esimerkiksi julkisessa palvelussa vaihe ”kirjaudu vahvalla tunnistautumisella” voi olla helppo sellaiselle käyttäjälle, jolla on pankkisovellus ja älypuhelin, ja este käyttäjille, joilla niitä ei ole. Pitkä lomake aikarajalla voi sopia useimmille ja olla mahdoton käyttäjälle, joka tarvitsee enemmän aikaa tai käyttää ruudunlukijaa. Jokaisesta tällaisesta vaiheesta kirjaan, kenellä voi olla vaikeuksia ja mitä suunnittelu tarjoaa tilalle. Jos en tiedä, merkitsen sen aukoksi ja selvitän asian.",
     },
 
     {
@@ -200,11 +200,11 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Miten ne päätyvät asiakkaalle, riippuu asiakkaan omista dokumentointitavoista ja -paikoista. Jos asiakas työskentelee Confluencessa, dokumentit viedään sinne sivuina. Toinen asiakas voi haluta PDF-tiedostot tai kansion omalle jaetulle levylleen. Tämä on dokumentaation luovutus: tiedostot toimitetaan siinä muodossa ja siinä paikassa, jota asiakas jo käyttää.",
+      text: "Miten ne päätyvät asiakkaalle, riippuu asiakkaan omista dokumentointitavoista ja -paikoista. Jos asiakas työskentelee Confluencessa, dokumentit viedään sinne sivuina. Toinen asiakas voi haluta PDF-tiedostot tai kansion omalle jaetulle levylleen. Dokumentaatio toimitetaan asiakkaan vaatimusten mukaisesti oikeassa muodossa ja oikeaan paikkaan.",
     },
     {
       type: "paragraph",
-      text: "Asiakkaan työkaluun viety kopio on vain luettavissa. Sisältö kopioidaan sinne Git-tiedostosta, esimerkiksi Confluence-sivuksi tai PDF-liitteeksi, ja kopio merkitään lukukopioksi. Muutokset tehdään aina alkuperäiseen ja kopio päivitetään siitä, joten kilpailevia versioita ei synny.",
+      text: "Jotta asiakkaan puolella oleva dokumentaatio ei jää vanhaksi, toimitetut versiot numeroidaan ja päivämäärätään, ja uusi versio viedään asiakkaan työkaluun aina, kun dokumentti muuttuu. Vanhat versiot jäävät talteen. Jos asiakas haluaa ylläpitää jotain dokumenttia itse, sovimme heti alussa, että heidän versionsa on siitä lähtien alkuperäinen.",
     },
 
     {
@@ -214,11 +214,11 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tiedostoon kirjoitettu sääntö unohtuu helposti. Skripti ajetaan jokaisen pushin yhteydessä, ja se hälyttää esimerkiksi silloin, kun pääohjetiedosto kasvaa liian pitkäksi, skilli lakkaa latautumasta tai väri putoaa kontrastin vähimmäisrajan alle. Ei ole väliä, teinkö muutoksen minä vai tekoäly.",
+      text: "Sääntöjä on helppo rikkoa huomaamatta. Siksi projektin tiedostoille on automaattinen tarkistus, joka ajetaan aina, kun tiedostoihin tehdään muutos. Se huomauttaa esimerkiksi, jos tekoälyn pääohje on kasvanut liian pitkäksi, tiedostossa on rikkinäinen linkki tai värien kontrasti on liian heikko. Tarkistus toimii samalla tavalla, tekipä muutoksen minä tai tekoäly.",
     },
     {
       type: "paragraph",
-      text: "Suunnittelun laadussa en nojaa kiellettyjen tyylien listaan. Annan tekoälylle sen sijaan esimerkkejä hyvästä työstä omista projekteistani, ja jokaisessa kerrotaan, mitä siinä päätettiin ja mistä luovuttiin.",
+      text: "Tekoälyn ohjaamiseen en käytä listaa siitä, mitä se ei saa tehdä. Annan sen sijaan esimerkkejä onnistuneesta suunnittelusta omista projekteistani. Jokaisessa esimerkissä kerrotaan, mitä päätettiin ja mistä luovuttiin, jotta tekoäly ymmärtää perustelut eikä vain lopputulosta.",
     },
 
     {
@@ -236,13 +236,13 @@ export const howIWorkWithAiFi: BlogPost = {
       items: [
         "**Aloitus viidellä dokumentilla:** tuotekonteksti, ongelman muotoilu, sidosryhmäkartta, vaatimukset ja päätösloki. Muut, kuten saavutettavuuslista tai luovutusdokumentti, lisätään, kun vaihe niitä tarvitsee.",
         "**Tekoäly tekee ensimmäisen version.** Liitän esimerkiksi kick-offin muistiinpanoni ja saan takaisin sidosryhmäkartan, jossa on roolit, päätösoikeudet ja aukot merkittyinä. Korjaan sen sen sijaan, että kirjoittaisin sen tyhjältä sivulta.",
-        "**Säännöt tarkistuvat itse.** Esimerkiksi skilli, josta puuttuu maininta siitä, milloin sitä ei käytetä, rikkinäinen linkki tai väripari, jonka kontrasti jää alle rajan, pysäyttää tarkistuksen. Kenenkään ei tarvitse muistaa katsoa.",
-        "**Ei dokumenttia ilman lukijaa.** Palautelokia ylläpidetään esimerkiksi vain silloin, kun usea sidosryhmä antaa keskenään ristiriitaista palautetta, ja case study -muistiinpanoja vain, jos aion julkaista projektin.",
+        "**Säännöt tarkistuvat itse.** Jos tekstiin jää esimerkiksi rikkinäinen linkki tai värien kontrasti jää liian heikoksi, automaattinen tarkistus huomauttaa siitä. Minun ei tarvitse muistaa tarkistaa asioita käsin.",
+        "**Ei dokumenttia ilman lukijaa.** Dokumentti tehdään vasta, kun sille on käyttäjä. Palauteloki, johon kirjataan sidosryhmien kommentit ja se, kuka niistä päättää, tehdään vain silloin, kun usea sidosryhmä antaa keskenään ristiriitaista palautetta. Case study -muistiinpanot, joista syntyy portfolioon julkaistava projektiesittely, tehdään vain, jos aion julkaista projektin.",
       ],
     },
     {
       type: "paragraph",
-      text: "Kaksi kohtaa on yhä käsityötä: lukukopion julkaiseminen asiakkaan työkaluihin ja päätösten kirjaaminen. Niiden keventäminen on seuraavana vuorossa.",
+      text: "Käsin tehdään vielä dokumenttien vieminen asiakkaan työkaluihin ja päätösten kirjaaminen. Haluan keventää molempia.",
     },
   ],
 };

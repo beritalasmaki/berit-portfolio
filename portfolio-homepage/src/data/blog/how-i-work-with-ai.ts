@@ -31,21 +31,21 @@ export const howIWorkWithAi: BlogPost = {
     {
       type: "heading",
       id: "roles",
-      text: "Where AI is strong, and where people decide",
+      text: "What AI does well, and where people are needed",
       navLabel: "AI and people",
     },
     {
       type: "paragraph",
-      text: "Well-built context made the biggest difference, and it also made the division of work clear. AI is strong at some things, and others still need a person's decisions and guidance. I think that is how it should be.",
+      text: "Well-built context gives better results and also makes the division of work clearer. AI works well in some things, and in others it still needs a person's decisions and guidance.",
     },
     {
       type: "subheading",
-      text: "Where AI is strong",
+      text: "Where AI is good",
     },
     {
       type: "list",
       items: [
-        "**Turning raw notes into a structured first draft.** Stakeholder maps, requirements and descriptions of user flows come together quickly.",
+        "**Turning raw notes into a structured first draft.** Stakeholder maps, requirements and descriptions of user paths come together quickly.",
         "**Summarising long material** and finding what is missing from it.",
         "**Checking consistency.** Does every screen have all its states, and is a term used the same way everywhere.",
         "**Producing options** to choose from.",
@@ -54,7 +54,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "subheading",
-      text: "Where people decide and guide",
+      text: "Where people's decisions and guidance are needed",
     },
     {
       type: "list",
@@ -115,27 +115,27 @@ export const howIWorkWithAi: BlogPost = {
       items: [
         {
           title: "Frame the problem",
-          body: "**Skill** `problem-framing` · **Artefacts** `00 product context`, `01 problem framing`. Turns the request into a user situation with no solution inside it, and lists what is known and what is missing. I write the request down as it was handed to me and aim to anonymise it, so that neither the client nor any person is named. Client information stays confidential.",
+          body: "The request is turned into a user situation with no solution inside it, and what is known and what is missing is listed. I write the request down as it was handed to me and aim to anonymise it, so that neither the client nor any person is named. Client information stays confidential. AI instructions (skill): problem-framing. Documents (artefacts): 00 product context and 01 problem framing.",
         },
         {
           title: "Understand the people",
-          body: "**Skill** `stakeholder-map` · **Artefacts** `02 stakeholder map`, `03 requirements spec`. Shows who decides what, and the requirements with their owners. Most disagreements appear only as the project goes on, so at the start what matters is knowing who has the final say. Conflicts are added side by side as they appear, and the AI does not resolve them.",
+          body: "Work out who decides what, and record the requirements with their owners. Most disagreements appear only as the project goes on, so at the start what matters is knowing who has the final say. Conflicts are added side by side as they appear, and the AI does not resolve them. AI instructions (skill): stakeholder-map. Documents (artefacts): 02 stakeholder map and 03 requirements spec.",
         },
         {
           title: "Design",
-          body: "**Skill** `user-flow-and-states` · **Artefacts** `04 user flows and states`, `07 design system rules`. Maps flows step by step, with error paths and every screen state, against the design system rules. The AI marks each state as missing until I confirm it is designed.",
+          body: "User paths are mapped step by step with error situations, and every screen gets all its states listed against the design system rules. The AI marks each state as missing until I confirm it is designed. AI instructions (skill): user-flow-and-states. Documents (artefacts): 04 user flows and states and 07 design system rules.",
         },
         {
           title: "Check",
-          body: "**Skills** `a11y-gate`, `security-privacy-brief`, `sameness-check` · **Artefacts** `05 accessibility checklist`, `06 security and privacy brief`. Reviews accessibility, data and permissions, and which choices were left at default. Contrast is calculated by a script. This is a design-stage review, not an audit.",
+          body: "Accessibility, data and permissions are reviewed, along with which choices were left at default. Contrast is calculated by a script. This is a design-stage review, not an audit. AI instructions (skills): a11y-gate, security-privacy-brief and sameness-check. Documents (artefacts): 05 accessibility checklist and 06 security and privacy brief.",
         },
         {
           title: "Hand off",
-          body: "**Skill** `procurement-ready-handoff` · **Artefacts** `08 handoff spec`, `09 stakeholder feedback log`. States what is final, who approved it and what each vendor provides, and keeps review comments together with who decides on them.",
+          body: "States what is final, who approved it and what each vendor provides, and keeps review comments together with who decides on them. AI instructions (skill): procurement-ready-handoff. Documents (artefacts): 08 handoff spec and 09 stakeholder feedback log.",
         },
         {
           title: "Record and reflect",
-          body: "**Skills** `decision-log`, `nda-safe-case-study` · **Artefacts** `10 decision log`, `11 case study notes`. Logs decisions with who decided and why. At the end, the log feeds a case study with the confidential details removed.",
+          body: "Decisions are logged with who decided and why. At the end, the log feeds a case study with the confidential details removed. AI instructions (skills): decision-log and nda-safe-case-study. Documents (artefacts): 10 decision log and 11 case study notes.",
         },
       ],
     },
@@ -147,18 +147,18 @@ export const howIWorkWithAi: BlogPost = {
     {
       type: "heading",
       id: "flows",
-      text: "User flows and challenging paths",
+      text: "User paths and challenging paths",
       navLabel: "Challenging paths",
     },
     {
       type: "paragraph",
-      text: "I start with the basic flow: the steps a user takes to reach their goal, and how the system responds at each step. Only then do I go through it step by step and ask which parts could be challenging for some users.",
+      text: "I start with the successful path: the steps a user takes to reach their goal, and how the system responds at each step. Only then do I go through the path step by step and ask which parts could be challenging for some users.",
     },
     {
       type: "list",
       ordered: true,
       items: [
-        "**Draw the basic flow.** Each step pairs what the user does with how the system responds.",
+        "**Draw the successful path.** Each step pairs what the user does with how the system responds.",
         "**Ask who might find each step challenging, and why.** The same path can be smooth for one user and unbearably hard for another.",
         "**Add the paths and states those users need:** error messages, more time, another way to do the step, and what happens when something fails.",
       ],
@@ -198,11 +198,11 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "How they reach the client depends on the client's own documentation practices and tools. If the client works in Confluence, the documents go there as pages. Another client may want PDF files, or a folder in their own shared drive. This is the documentation handoff: the files are delivered in the form and the place the client already uses.",
+      text: "How they reach the client depends on the client's own documentation practices and tools. If the client works in Confluence, the documents go there as pages. Another client may want PDF files, or a folder in their own shared drive. The documentation is delivered in the form and the place the client requires.",
     },
     {
       type: "paragraph",
-      text: "A copy in the client's tool is read-only. The content is copied there from the Git file, for example as a Confluence page or as a PDF attachment, and the copy is marked as a read-only copy. Changes are always made to the source and the copy is refreshed from it, so there are never two competing versions.",
+      text: "To keep the client's copy from going out of date, each delivered version is numbered and dated, and a new version is delivered whenever a document changes. Old versions stay available. If the client wants to maintain a document themselves, we agree at the start that their version is the original from then on.",
     },
 
     {
@@ -212,11 +212,11 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "A rule written in a file is easy to break quietly. A script runs on every push and fails if, for example, the main rules file grows too long, a skill stops loading or a colour falls below the contrast minimum. It does not matter whether I or the AI made the change.",
+      text: "Rules are easy to break without noticing. So the project files have an automatic check that runs whenever they change. It flags, for example, a main AI instruction file that has grown too long, a broken link or a colour contrast that is too weak. It works the same whether I or the AI made the change.",
     },
     {
       type: "paragraph",
-      text: "For design quality I do not rely on lists of banned styles. I give the AI annotated examples of good work from my own projects, each with what it decided and what it gave up.",
+      text: "To guide the AI I do not use a list of what it must not do. I give it examples of successful design from my own projects instead. Each example says what was decided and what was given up, so the AI understands the reasons and not only the result.",
     },
 
     {
@@ -233,13 +233,13 @@ export const howIWorkWithAi: BlogPost = {
       items: [
         "**Five documents to begin with:** product context, problem framing, stakeholder map, requirements and decision log. The others, such as the accessibility checklist or the handoff spec, are added when a stage needs them.",
         "**The AI writes the first version.** For example, I paste in my kick-off notes and get back a stakeholder map with roles, decision rights and the gaps marked. I correct it instead of writing it from a blank page.",
-        "**The rules check themselves.** For example, a skill without a “when not to use” line, a broken link or a colour pair below the contrast minimum fails the check, so nobody has to remember to look.",
-        "**No document without a reader.** The stakeholder feedback log, for example, is only made when several stakeholders send conflicting comments, and case study notes only if I plan to publish.",
+        "**The rules check themselves.** If a broken link slips into the text or a colour contrast is too weak, the automatic check flags it. I do not have to remember to look by hand.",
+        "**No document without a reader.** A document is made only when someone will use it. The feedback log, which records stakeholders' comments and who decides on them, is made only when several stakeholders give conflicting feedback. Case study notes, which become a portfolio write-up, are made only if I plan to publish the project.",
       ],
     },
     {
       type: "paragraph",
-      text: "Two parts are still manual: publishing a read-only copy to the client's tools, and logging decisions. Making those lighter is next.",
+      text: "Delivering documents to the client's tools and logging decisions are still done by hand. I want to make both lighter.",
     },
   ],
 };
