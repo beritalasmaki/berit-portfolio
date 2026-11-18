@@ -39,7 +39,7 @@ export function PageNav({ groups }: { groups: PageNavGroup[] }) {
                   <a
                     href={`#${item.id}`}
                     aria-current={current === item.id ? "location" : undefined}
-                    className={`block rounded-lg px-2 py-1.5 text-sm ${current === item.id ? "font-semibold text-[var(--color-content-primary)] bg-[var(--color-surface-subtle)]" : "text-[var(--color-content-secondary)] hover:bg-[var(--color-surface-subtle)]"}`}
+                    className={`block rounded-[var(--radius-sm)] px-2 py-1.5 text-sm ${current === item.id ? "font-semibold text-[var(--color-content-primary)] bg-[var(--color-surface-subtle)]" : "text-[var(--color-content-secondary)] hover:bg-[var(--color-surface-subtle)]"}`}
                   >
                     {item.label}
                   </a>

@@ -70,7 +70,7 @@ export function Calendar({ value = null, onSelect, today, defaultMonth, minDate,
   }
 
   return (
-    <div className={`w-[21.25rem] max-w-full rounded-2xl border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-popup-surface,var(--color-surface-canvas))] p-4 text-[var(--preview-content,var(--color-content-primary))] shadow-[var(--shadow-l)] ${className}`}>
+    <div className={`w-[21.25rem] max-w-full rounded-[var(--radius-md)] border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-popup-surface,var(--color-surface-canvas))] p-4 text-[var(--preview-content,var(--color-content-primary))] shadow-[var(--shadow-l)] ${className}`}>
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <IconButton label="Previous month" icon={<Icon name="chevron_left" />} onClick={() => move(addMonths(focusDate, -1), false)} />

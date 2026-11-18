@@ -68,7 +68,7 @@ export default function FormFieldsPage() {
               </Variation>
             </div>
             <Variation label="Grouped choices" className="w-full">
-              <fieldset className="m-0 w-full rounded-lg border border-[var(--preview-border,var(--color-border-default))] p-4">
+              <fieldset className="m-0 w-full rounded-[var(--radius-sm)] border border-[var(--preview-border,var(--color-border-default))] p-4">
                 <legend className="px-2 text-sm font-semibold text-[var(--preview-content,var(--color-content-primary))]">Email frequency</legend>
                 <div className="mt-2 grid">
                   <Radio name="frequency" value="daily" label="Daily summary" defaultChecked />

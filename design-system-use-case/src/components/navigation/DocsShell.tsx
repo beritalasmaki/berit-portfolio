@@ -7,7 +7,7 @@ import { PageNav, type PageNavGroup } from "@/components/navigation/PageNav";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
 import { siteSections } from "@/components/navigation/siteMap";
 
-const itemClass = (current: boolean) => `block rounded-lg px-3 py-2 text-sm font-semibold ${current ? "bg-[var(--color-surface-inverse)] text-white" : "text-[var(--color-content-secondary)] hover:bg-[var(--color-surface-subtle)]"}`;
+const itemClass = (current: boolean) => `block rounded-[var(--radius-sm)] px-3 py-2 text-sm font-semibold ${current ? "bg-[var(--color-surface-inverse)] text-white" : "text-[var(--color-content-secondary)] hover:bg-[var(--color-surface-subtle)]"}`;
 const topClass = (current: boolean) => `inline-flex min-h-11 items-center border-b-2 px-3 text-sm font-semibold ${current ? "border-[var(--color-action-accent)] text-[var(--color-content-primary)]" : "border-transparent text-[var(--color-content-secondary)] hover:text-[var(--color-content-primary)]"}`;
 
 type DocsShellProps = {

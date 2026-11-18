@@ -43,7 +43,7 @@ export default function ComponentsPage() {
             <p className="body-copy mt-2 max-w-[var(--width-text-narrow)] text-sm">{group.text}</p>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               {group.items.map(([label, detail, slug]) => (
-                <Link key={slug} href={`/components/${slug}`} className="group rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 transition hover:-translate-y-1 hover:border-[var(--color-action-accent)]">
+                <Link key={slug} href={`/components/${slug}`} className="group rounded-[var(--radius-md)] border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 transition hover:-translate-y-1 hover:border-[var(--color-action-accent)]">
                   <h3 className="m-0 text-xl font-bold">{label}</h3>
                   <p className="body-copy mt-2 text-sm">{detail}</p>
                   <span aria-hidden="true" className="material-symbols-outlined mt-6 block text-xl transition-transform group-hover:translate-x-1">arrow_forward</span>
@@ -57,8 +57,8 @@ export default function ComponentsPage() {
           <h2 id="level-pages" className="m-0 text-3xl font-extrabold tracking-[-0.04em]">Pages</h2>
           <p className="body-copy mt-2 max-w-[var(--width-text-narrow)] text-sm">Pages are templates filled with real content. They show how the components hold up with realistic content.</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <Link href="/examples/project-management" className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 hover:border-[var(--color-action-accent)]"><h3 className="m-0 text-xl font-bold">Project management</h3><p className="body-copy mt-2 text-sm">A project workspace with a table, cards and filters.</p></Link>
-            <Link href="/examples/analytics" className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 hover:border-[var(--color-action-accent)]"><h3 className="m-0 text-xl font-bold">Analytics</h3><p className="body-copy mt-2 text-sm">A metrics view with cards and a table.</p></Link>
+            <Link href="/examples/project-management" className="rounded-[var(--radius-md)] border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 hover:border-[var(--color-action-accent)]"><h3 className="m-0 text-xl font-bold">Project management</h3><p className="body-copy mt-2 text-sm">A project workspace with a table, cards and filters.</p></Link>
+            <Link href="/examples/analytics" className="rounded-[var(--radius-md)] border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 hover:border-[var(--color-action-accent)]"><h3 className="m-0 text-xl font-bold">Analytics</h3><p className="body-copy mt-2 text-sm">A metrics view with cards and a table.</p></Link>
           </div>
         </section>
       </div>

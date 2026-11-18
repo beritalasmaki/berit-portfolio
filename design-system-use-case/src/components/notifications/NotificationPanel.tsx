@@ -34,7 +34,7 @@ const iconColor: Record<NotificationStatus, string> = {
 /** A persistent message for a page or form. Error and warning use role="alert", info and success use role="status". */
 export function NotificationPanel({ status, title, children, onDismiss, className = "" }: NotificationPanelProps) {
   return (
-    <div role={status === "error" || status === "warning" ? "alert" : "status"} className={`flex items-start gap-3 rounded-2xl border border-l-[24px] py-1 pl-6 pr-1 text-[var(--preview-content,var(--color-content-primary))] ${surface[status]} ${className}`}>
+    <div role={status === "error" || status === "warning" ? "alert" : "status"} className={`flex items-start gap-3 rounded-[var(--radius-md)] border border-l-[24px] py-1 pl-6 pr-1 text-[var(--preview-content,var(--color-content-primary))] ${surface[status]} ${className}`}>
       <Icon name={icons[status]} className={`mt-3 ${iconColor[status]}`} />
       <div className="min-w-0 flex-1 py-3">
         <p className="m-0 text-sm font-semibold">{title}</p>

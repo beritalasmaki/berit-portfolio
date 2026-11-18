@@ -34,7 +34,7 @@ export function ComponentPage({ name, eyebrow, description, usage, examples, con
           <p className="body-copy mt-5 text-lg">{description}</p>
         </header>
 
-        <section id="usage" className="on-dark mt-12 grid scroll-mt-24 gap-5 rounded-2xl bg-[var(--color-surface-inverse)] p-6 text-white md:grid-cols-[.7fr_1.3fr] md:p-8">
+        <section id="usage" className="on-dark mt-12 grid scroll-mt-24 gap-5 rounded-[var(--radius-md)] bg-[var(--color-surface-inverse)] p-6 text-white md:grid-cols-[.7fr_1.3fr] md:p-8">
           <div><p className="eyebrow text-[var(--color-action-accent)]">Usage</p><h2 className="mt-3 text-2xl font-bold">When to use it</h2></div>
           <div className="max-w-[var(--width-text-narrow)] text-white/75">{usage}</div>
         </section>
@@ -42,13 +42,13 @@ export function ComponentPage({ name, eyebrow, description, usage, examples, con
         <section className="mt-14" aria-labelledby="examples-heading">
           <div className="mb-6"><p className="eyebrow mb-2">02 / examples</p><h2 id="examples-heading" className="m-0 text-3xl font-extrabold tracking-[-0.04em]">See the component in context.</h2></div>
           <div className="space-y-6">
-            {examples.map((example, index) => <article key={example.title} id={`example-${index + 1}`} className="scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-5 md:p-6"><div className="mb-5 flex flex-wrap items-baseline justify-between gap-3"><div><p className="eyebrow mb-2">Variant 0{index + 1}</p><h3 className="m-0 text-xl font-bold">{example.title}</h3></div><p className="body-copy m-0 text-sm">{example.description}</p></div>{example.content}</article>)}
+            {examples.map((example, index) => <article key={example.title} id={`example-${index + 1}`} className="scroll-mt-24 rounded-[var(--radius-md)] border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-5 md:p-6"><div className="mb-5 flex flex-wrap items-baseline justify-between gap-3"><div><p className="eyebrow mb-2">Variant 0{index + 1}</p><h3 className="m-0 text-xl font-bold">{example.title}</h3></div><p className="body-copy m-0 text-sm">{example.description}</p></div>{example.content}</article>)}
           </div>
         </section>
 
         <section className="mt-14 grid gap-5 md:grid-cols-2">
-          <article id="contract" className="scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] p-6"><p className="eyebrow mb-3">03 / contract</p><h2 className="text-2xl font-bold">Rules the component follows</h2><div className="mt-5 flex flex-col gap-4 text-sm leading-6 text-[var(--color-content-secondary)]">{contract.map((item) => <p key={item} className="m-0">{item}</p>)}</div></article>
-          <article id="accessibility" className="scroll-mt-24 rounded-2xl bg-[var(--color-surface-subtle)] p-6"><p className="eyebrow mb-3">04 / accessibility</p><h2 className="text-2xl font-bold">Accessibility information</h2><div className="mt-5 flex flex-col gap-4 text-sm leading-6 text-[var(--color-content-secondary)]">{accessibility.map((item) => <p key={item} className="m-0">{item}</p>)}</div></article>
+          <article id="contract" className="scroll-mt-24 rounded-[var(--radius-md)] border border-[var(--color-border-default)] p-6"><p className="eyebrow mb-3">03 / contract</p><h2 className="text-2xl font-bold">Rules the component follows</h2><div className="mt-5 flex flex-col gap-4 text-sm leading-6 text-[var(--color-content-secondary)]">{contract.map((item) => <p key={item} className="m-0">{item}</p>)}</div></article>
+          <article id="accessibility" className="scroll-mt-24 rounded-[var(--radius-md)] bg-[var(--color-surface-subtle)] p-6"><p className="eyebrow mb-3">04 / accessibility</p><h2 className="text-2xl font-bold">Accessibility information</h2><div className="mt-5 flex flex-col gap-4 text-sm leading-6 text-[var(--color-content-secondary)]">{accessibility.map((item) => <p key={item} className="m-0">{item}</p>)}</div></article>
         </section>
       </div>
     </DocsShell>

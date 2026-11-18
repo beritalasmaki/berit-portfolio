@@ -6,7 +6,7 @@ type NavigationLinkProps = ComponentProps<typeof Link> & {
   disabled?: boolean;
 };
 
-const base = "block rounded-lg px-3 py-2 text-sm font-semibold transition";
+const base = "block rounded-[var(--radius-sm)] px-3 py-2 text-sm font-semibold transition";
 
 /**
  * A link to a destination. It has three statuses:

@@ -52,7 +52,7 @@ export function DataTable({ compact = false }: { compact?: boolean }) {
   const muted = "text-[var(--preview-content-muted,var(--color-content-muted))]";
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))]">
+    <div className="overflow-hidden rounded-[var(--radius-md)] border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))]">
       <div className="flex flex-wrap items-center gap-3 border-b border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface-raised,var(--color-surface-subtle))] p-4">
         <div className="min-w-[14rem] flex-1">
           <label className="sr-only" htmlFor={`${id}-search`}>Search work items</label>

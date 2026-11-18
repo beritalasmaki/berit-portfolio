@@ -32,7 +32,7 @@ export default function GettingStartedPage() {
           <ul className="m-0 mt-6 grid list-none gap-4 p-0 md:grid-cols-3">
             {roles.map((role) => (
               <li key={role.href}>
-                <Link href={role.href} className="group flex h-full flex-col rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 transition hover:-translate-y-1 hover:border-[var(--color-action-accent)]">
+                <Link href={role.href} className="group flex h-full flex-col rounded-[var(--radius-md)] border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 transition hover:-translate-y-1 hover:border-[var(--color-action-accent)]">
                   <h3 className="m-0 text-xl font-bold">{role.title}</h3>
                   <p className="body-copy mt-2 flex-1 text-sm">{role.text}</p>
                   <span aria-hidden="true" className="material-symbols-outlined mt-6 block text-xl transition-transform group-hover:translate-x-1">arrow_forward</span>
@@ -45,7 +45,7 @@ export default function GettingStartedPage() {
         <section aria-labelledby="parts-heading" className="mt-12">
           <h2 id="parts-heading" className="m-0 text-2xl font-bold">What is in the system</h2>
           <ul className="m-0 mt-6 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-4">
-            {parts.map((part) => <li key={part.href}><Link href={part.href} className="block h-full rounded-2xl border border-[var(--color-border-default)] p-5 hover:border-[var(--color-action-accent)]"><h3 className="m-0 text-lg font-bold">{part.title}</h3><p className="body-copy mt-1 text-sm">{part.text}</p></Link></li>)}
+            {parts.map((part) => <li key={part.href}><Link href={part.href} className="block h-full rounded-[var(--radius-md)] border border-[var(--color-border-default)] p-5 hover:border-[var(--color-action-accent)]"><h3 className="m-0 text-lg font-bold">{part.title}</h3><p className="body-copy mt-1 text-sm">{part.text}</p></Link></li>)}
           </ul>
         </section>
 
@@ -54,7 +54,7 @@ export default function GettingStartedPage() {
           <dl className="mt-6 grid gap-5 md:grid-cols-2">
             {[
               ["Token", "A named value, such as a colour or a size. Using the name instead of the value means one change updates everything."],
-              ["Raw value (primitive)", "The actual value, such as the colour #f28b30. Components do not use raw values directly."],
+              ["Raw value (primitive)", "The actual value, such as the colour #fc890c. Components do not use raw values directly."],
               ["Role (semantic token)", "A name that says what a value is for, such as “text colour” or “button background”. Components use roles."],
               ["Atoms, molecules, organisms", "Three sizes of component. Atoms are the smallest parts (a button). Molecules are small groups of atoms (a field with its label). Organisms are bigger sections (a table)."],
               ["Template and page", "A template is a page layout without real content. A page is a template filled with real content."],
@@ -63,7 +63,7 @@ export default function GettingStartedPage() {
           </dl>
         </section>
 
-        <section aria-labelledby="figma-heading" className="mt-12 rounded-2xl bg-[var(--color-surface-subtle)] p-6 md:p-8">
+        <section aria-labelledby="figma-heading" className="mt-12 rounded-[var(--radius-md)] bg-[var(--color-surface-subtle)] p-6 md:p-8">
           <h2 id="figma-heading" className="m-0 text-2xl font-bold">The Figma UI kit</h2>
           <p className="body-copy mt-3">The Figma file has the UI kit: the components, colours, sizes and other values. Things have the same names in Figma and in the code, and every component comes in a light and a dark version. Changes are made in Figma first. The code is then updated by hand to match.</p>
           <a href={figmaUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--color-border-strong)] px-4 py-3 text-sm font-semibold">Open the Figma UI kit <span className="sr-only">(opens in a new tab)</span><span aria-hidden="true">↗</span></a>
