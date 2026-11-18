@@ -15,14 +15,14 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "group relative isolate overflow-hidden border border-[var(--preview-action-border,transparent)] bg-[image:var(--preview-action-gradient,var(--gradient-action-primary))] text-[var(--preview-action-text,var(--color-content-inverse))] shadow-[var(--preview-action-shadow,none)] hover:text-[var(--preview-action-hover-text,var(--color-content-inverse))] hover:shadow-none",
+    "group relative isolate overflow-hidden border border-[var(--preview-action-border,transparent)] [background-clip:padding-box] bg-[image:var(--preview-action-gradient,var(--gradient-action-primary))] text-[var(--preview-action-text,var(--color-content-inverse))] shadow-[var(--preview-action-shadow,none)] hover:text-[var(--preview-action-hover-text,var(--color-content-primary))] hover:shadow-none",
   secondary: "border-2 border-[var(--preview-content,var(--color-content-primary))] text-[var(--preview-content,var(--color-content-primary))] hover:border-[var(--preview-accent,var(--color-action-accent-dark))] hover:bg-[var(--color-action-accent-subtle)] hover:text-[var(--preview-accent,var(--color-action-accent-dark))]",
   tertiary: "text-[var(--preview-content,var(--color-content-primary))] underline decoration-[var(--color-action-accent)] decoration-1 underline-offset-8 hover:text-[var(--preview-accent,var(--color-action-accent-dark))] hover:decoration-2",
 };
 
 const base = "inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-pill)] px-6 py-3 text-[15px] font-semibold tracking-[0.01em] whitespace-nowrap transition";
 
-const hoverMode = "!text-[var(--preview-action-hover-text,var(--color-content-inverse))] !shadow-none";
+const hoverMode = "!text-[var(--preview-action-hover-text,var(--color-content-primary))] !shadow-none";
 const hoverModeOther: Record<"secondary" | "tertiary", string> = {
   secondary: "!border-[var(--preview-accent,var(--color-action-accent-dark))] !bg-[var(--color-action-accent-subtle)] !text-[var(--preview-accent,var(--color-action-accent-dark))]",
   tertiary: "!text-[var(--preview-accent,var(--color-action-accent-dark))] !decoration-2",
