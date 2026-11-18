@@ -44,7 +44,7 @@ export const howIWorkWithAiFi: BlogPost = {
       items: [
         "**Tekoäly luonnostelee.** Rakenteet, ensimmäiset versiot ja tiivistykset muistiinpanoistani. Lisäksi tekoäly tarkistaa työtä kriteereillä, jotka olen asettanut.",
         "**Minä päätän.** Suunnan, kompromissit ja sen, mitä jaetaan ja mitä viedään eteenpäin.",
-        "**Oikeat ihmiset testaavat.** Käyttäjätestit, testaus vammaisten ihmisten kanssa, tietoturvatarkastus ja juridinen arvio. Näitä tekoäly ei korvaa.",
+        "**Oikeat ihmiset testaavat.** Käyttäjätestit, joissa on mukana myös käyttäjiä, joilla on saavutettavuustarpeita, sekä tietoturvatarkastus ja juridinen arvio. Näitä tekoäly ei korvaa.",
       ],
     },
     {
@@ -111,7 +111,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tarkistuksen ja luovutuksen välissä vastuu siirtyy oikeille ihmisille: käyttäjätesteille, testaukselle vammaisten ihmisten kanssa, tietoturvatarkastukselle ja juridiselle arviolle. Pohjassa on tälle vaiheelle oma paikkansa, mutta tekoäly ei korvaa sitä.",
+      text: "Tarkistuksen ja luovutuksen välissä vastuu siirtyy oikeille ihmisille: käyttäjätesteille (mukana myös käyttäjät, joilla on saavutettavuustarpeita), tietoturvatarkastukselle ja juridiselle arviolle. Pohjassa on tälle vaiheelle oma paikkansa, mutta tekoäly ei korvaa sitä.",
     },
 
     {
@@ -168,7 +168,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tämä on ensimmäinen versio, enkä ole vielä käyttänyt sitä oikeassa projektissa. Pohjan esimerkit ovat keksittyjä. Testit, joilla tarkistetaan, että jokainen skilli latautuu silloin kun pitää, on kirjoitettu mutta ei vielä ajettu. Saavutettavuustarkistukset ovat suunnitteluvaiheen katselmointeja, eivät auditointeja. Ne eivät korvaa testausta avustavilla teknologioilla eivätkä testausta vammaisten ihmisten kanssa.",
+      text: "Tämä on ensimmäinen versio, enkä ole vielä käyttänyt sitä oikeassa projektissa. Pohjan esimerkit ovat keksittyjä. Testit, joilla tarkistetaan, että jokainen skilli latautuu silloin kun pitää, on kirjoitettu mutta ei vielä ajettu. Saavutettavuustarkistukset ovat suunnitteluvaiheen katselmointeja, eivät auditointeja. Ne eivät korvaa testausta apuvälineillä eivätkä käyttäjätestejä käyttäjillä, joilla on saavutettavuustarpeita.",
     },
     {
       type: "paragraph",

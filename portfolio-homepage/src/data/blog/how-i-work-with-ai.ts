@@ -43,7 +43,7 @@ export const howIWorkWithAi: BlogPost = {
       items: [
         "**AI drafts.** Structure, first versions, summaries of my notes and checks against criteria I have set.",
         "**I decide.** The direction, the trade-offs, what is shared and what ships.",
-        "**Real people test.** User testing, testing with disabled people, security review and legal advice. AI does not stand in for any of them.",
+        "**Real people test.** User testing that includes users with access needs, security review and legal advice. AI does not stand in for any of them.",
       ],
     },
     {
@@ -110,7 +110,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Between checking and handing off, real people take over: user testing, testing with disabled people, security review and legal advice. The template makes room for that step. It never replaces it.",
+      text: "Between checking and handing off, real people take over: user testing that includes users with access needs, security review and legal advice. The template makes room for that step. It never replaces it.",
     },
 
     {
@@ -168,7 +168,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "This is a first version, and I have not used it on a real project yet. The examples in it are fictional. The tests that check whether each skill loads when it should are written but not run. And the accessibility checks are design-stage reviews, not audits. They do not replace testing with assistive technology and with disabled people.",
+      text: "This is a first version, and I have not used it on a real project yet. The examples in it are fictional. The tests that check whether each skill loads when it should are written but not run. And the accessibility checks are design-stage reviews, not audits. They do not replace testing with assistive technology, or user testing with people who have access needs.",
     },
     {
       type: "paragraph",
