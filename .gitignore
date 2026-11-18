@@ -1,0 +1,8 @@
+# Dependencies (npm workspace root)
+/node_modules
+
+# Build output
+.next/
+out/
+*.tsbuildinfo
+.DS_Store

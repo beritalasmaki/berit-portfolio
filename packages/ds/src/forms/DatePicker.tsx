@@ -1,12 +1,12 @@
 "use client";
 
 import { useRef, useState, type ReactNode } from "react";
-import { IconButton } from "@/components/buttons/IconButton";
-import { Calendar } from "@/components/forms/Calendar";
-import { Field } from "@/components/forms/Field";
-import { Input } from "@/components/forms/Input";
-import { formatDate, parseDate } from "@/components/forms/dates";
-import { Icon } from "@/components/icons/Icon";
+import { IconButton } from "../buttons/IconButton";
+import { Calendar } from "./Calendar";
+import { Field } from "./Field";
+import { Input } from "./Input";
+import { formatDate, parseDate } from "./dates";
+import { Icon } from "../icons/Icon";
 
 type DatePickerProps = {
   id: string;

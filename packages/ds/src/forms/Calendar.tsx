@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { IconButton } from "@/components/buttons/IconButton";
-import { Icon } from "@/components/icons/Icon";
-import { addDays, addMonths, dayName, isSameDay, monthName, startOfDay, startOfWeek } from "@/components/forms/dates";
+import { IconButton } from "../buttons/IconButton";
+import { Icon } from "../icons/Icon";
+import { addDays, addMonths, dayName, isSameDay, monthName, startOfDay, startOfWeek } from "./dates";
 
 type CalendarProps = {
   /** The chosen date. */

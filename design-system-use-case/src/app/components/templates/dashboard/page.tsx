@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
 import { TemplateRegion } from "@/components/documentation/TemplateRegion";
-import { Button } from "@/components/buttons/Button";
-import { Icon } from "@/components/icons/Icon";
-import { NavigationLink } from "@/components/navigation/NavigationLink";
+import { Button } from "@berit/ds";
+import { Icon } from "@berit/ds";
+import { NavigationLink } from "@berit/ds/next";
 
 export const metadata: Metadata = { title: "Dashboard template" };
 

@@ -1,5 +1,5 @@
 import type { SelectHTMLAttributes } from "react";
-import { AlertMark, Chevron, controlClassName, isInert, Spinner, type FormMode } from "@/components/forms/controlStyles";
+import { AlertMark, Chevron, controlClassName, isInert, Spinner, type FormMode } from "./controlStyles";
 
 type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
   mode?: FormMode;

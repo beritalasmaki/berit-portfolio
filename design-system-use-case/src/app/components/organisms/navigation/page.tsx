@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
-import { Button } from "@/components/buttons/Button";
-import { SideNavigation } from "@/components/navigation/SideNavigation";
-import { TopNavigation } from "@/components/navigation/TopNavigation";
+import { Button } from "@berit/ds";
+import { SideNavigation } from "@berit/ds/next";
+import { TopNavigation } from "@berit/ds/next";
 
 export const metadata: Metadata = { title: "Navigation" };
 

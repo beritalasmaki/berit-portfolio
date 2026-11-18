@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from "react";
-import { Button } from "@/components/buttons/Button";
-import { Icon } from "@/components/icons/Icon";
+import { Button } from "../buttons/Button";
+import { Icon } from "../icons/Icon";
 
 type FormActionsProps = {
   /** The first step offers Cancel and Next, a middle step Back and Next, the last step Back and a submit. */

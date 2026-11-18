@@ -2,10 +2,10 @@
 
 import { usePathname } from "next/navigation";
 import { useRef, useState, type ReactNode } from "react";
-import { PageNav, type PageNavGroup } from "@/components/navigation/PageNav";
-import { SideNavigation, type NavigationGroup } from "@/components/navigation/SideNavigation";
+import { PageNav, type PageNavGroup } from "@berit/ds";
+import { SideNavigation, type NavigationGroup } from "@berit/ds/next";
 import { SiteBrand, SiteHeader, SiteHeaderAction } from "@/components/navigation/SiteHeader";
-import { TopNavigation } from "@/components/navigation/TopNavigation";
+import { TopNavigation } from "@berit/ds/next";
 import { siteSections } from "@/components/navigation/siteMap";
 
 type DocsShellProps = {

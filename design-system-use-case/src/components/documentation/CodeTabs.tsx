@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState, type ReactNode } from "react";
-import { Icon } from "@/components/icons/Icon";
+import { Icon } from "@berit/ds";
 
 type CodeTabsProps = {
   view: ReactNode;

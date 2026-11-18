@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
-import { Tag, TagList } from "@/components/tags/Tag";
+import { Tag, TagList } from "@berit/ds";
 import { Variation } from "@/components/documentation/Variation";
 
 export const metadata: Metadata = { title: "Tags" };

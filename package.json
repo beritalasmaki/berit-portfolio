@@ -1,0 +1,10 @@
+{
+  "name": "berit-portfolio",
+  "private": true,
+  "description": "Berit's portfolio site, the DS by Berit documentation site, and the design system package they share.",
+  "workspaces": [
+    "packages/*",
+    "design-system-use-case",
+    "portfolio-homepage"
+  ]
+}

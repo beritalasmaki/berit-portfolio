@@ -1,4 +1,4 @@
-import { Icon } from "@/components/icons/Icon";
+import { Icon } from "../icons/Icon";
 
 type FormProgressProps = {
   /** The step names, in order. */

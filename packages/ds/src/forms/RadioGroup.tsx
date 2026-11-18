@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { AlertMark } from "@/components/forms/controlStyles";
+import { AlertMark } from "./controlStyles";
 
 type RadioGroupProps = {
   /** Gives the group a stable id, used to link the hint and the error to the group. */

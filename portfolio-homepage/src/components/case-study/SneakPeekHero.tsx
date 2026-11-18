@@ -1,3 +1,4 @@
+import { Tag } from "@berit/ds";
 import Image from "next/image";
 import type { CaseStudy, CaseStudyFullContent, GalleryImage } from "@/data/case-studies";
 import type { Dictionary } from "@/i18n/dictionaries";
@@ -101,12 +102,7 @@ export default function SneakPeekHero({
           <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
             {study.skillTags.map((tag) => (
               <li key={tag.label}>
-                <span
-                  title={tag.description}
-                  className="inline-block font-mono-label text-mono-label-em uppercase text-ink glass-pill rounded-pill py-2 px-4 whitespace-nowrap"
-                >
-                  {tag.label}
-                </span>
+                <Tag title={tag.description}>{tag.label}</Tag>
               </li>
             ))}
           </ul>

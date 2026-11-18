@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { IconButton } from "@/components/buttons/IconButton";
-import { Icon, type IconName } from "@/components/icons/Icon";
+import { IconButton } from "../buttons/IconButton";
+import { Icon, type IconName } from "../icons/Icon";
 
 export type ToastStatus = "success" | "error" | "warning";
 

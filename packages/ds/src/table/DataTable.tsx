@@ -1,11 +1,11 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
-import { IconButton } from "@/components/buttons/IconButton";
-import { Input } from "@/components/forms/Input";
-import { Select } from "@/components/forms/Select";
-import { Icon, type IconName } from "@/components/icons/Icon";
-import { Table, TableBody, TableCell, TableColumnHeader, TableHead, TableRow } from "@/components/table/Table";
+import { IconButton } from "../buttons/IconButton";
+import { Input } from "../forms/Input";
+import { Select } from "../forms/Select";
+import { Icon, type IconName } from "../icons/Icon";
+import { Table, TableBody, TableCell, TableColumnHeader, TableHead, TableRow } from "./Table";
 
 type Status = "On track" | "At risk" | "Blocked" | "Complete";
 type WorkItem = { id: string; name: string; project: string; owner: string; status: Status; priority: "High" | "Medium" | "Low"; due: string; updated: string };

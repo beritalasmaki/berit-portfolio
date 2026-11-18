@@ -1,4 +1,4 @@
-import { NavigationLink, type NavigationItem } from "@/components/navigation/NavigationLink";
+import { NavigationLink, type NavigationItem } from "./NavigationLink";
 
 /** Destinations that belong together, with an optional small heading. */
 export type NavigationGroup = { heading?: string; items: NavigationItem[] };

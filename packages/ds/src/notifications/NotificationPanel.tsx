@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { IconButton } from "@/components/buttons/IconButton";
-import { Icon, type IconName } from "@/components/icons/Icon";
+import { IconButton } from "../buttons/IconButton";
+import { Icon, type IconName } from "../icons/Icon";
 
 export type NotificationStatus = "info" | "success" | "warning" | "error";
 

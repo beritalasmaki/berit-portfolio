@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { PageNavGroup } from "@/components/navigation/PageNav";
+import type { PageNavGroup } from "@berit/ds";
 import { DocsShell } from "@/components/navigation/DocsShell";
 
 type ComponentExample = {

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { AlertMark } from "@/components/forms/controlStyles";
+import { AlertMark } from "./controlStyles";
 
 type FieldProps = {
   /** Also set as the id of the control inside, so the label points at it. */

@@ -1,73 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&family=Manrope:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
+@import "@berit/ds/tokens.css";
+@source "../../../packages/ds/src";
 
-:root {
-	--color-content-primary: #222222;
-	--color-content-secondary: #4a4a4a;
-	--color-content-muted: #6b6660;
-	--color-content-inverse: #ffffff;
-	--color-content-muted-dark: #e2ded6;
-	--color-surface-canvas: #ffffff;
-	--color-surface-ground: #fffaf4;
-	--color-surface-glass: rgb(255 251 245 / 0.62);
-	--color-surface-glass-highlight: rgb(255 255 255 / 0.75);
-	--color-surface-subtle: #f5f3ee;
-	--color-surface-raised: #f0eee9;
-	--color-surface-canvas-dark: #222222;
-	--color-surface-raised-dark: #3a3a3a;
-	--color-surface-inverse: #222222;
-	--color-action-primary: #222222;
-	--color-action-accent: #fc890c;
-	--color-action-accent-dark: #a45b0b;
-	--color-action-accent-on-dark: #fc890c;
-	--color-border-default: #eeece7;
-	--color-border-subtle: #e2ded6;
-	--color-border-strong: #6b6660;
-	--color-border-glass: rgb(255 255 255 / 0.85);
-	--color-focus-ring: #222222;
-	--color-focus-ring-on-dark: #ffffff;
-	--blur-glass: blur(16px) saturate(140%);
-	--color-status-info-subtle: #e6f0fb;
-	--color-status-info-default: #3b82c4;
-	--color-status-info-strong: #1f5a99;
-	--color-status-info-on-dark: #8fbbe8;
-	--color-status-success-subtle: #e4f3e8;
-	--color-status-success-default: #3f9d5a;
-	--color-status-success-strong: #1f6b3a;
-	--color-status-success-on-dark: #86cc9b;
-	--color-status-warning-subtle: #fdf4cc;
-	--color-status-warning-default: #f2b705;
-	--color-status-warning-strong: #85590a;
-	--color-status-warning-on-dark: #f8dd74;
-	--color-status-error-subtle: #fbe7e4;
-	--color-status-error-default: #d6453a;
-	--color-status-error-strong: #a12a21;
-	--color-status-error-on-dark: #ee9a92;
-	--gradient-action-primary: linear-gradient(180deg, var(--color-surface-inverse), var(--color-surface-inverse));
-	--gradient-action-primary-hover: linear-gradient(180deg, var(--color-surface-raised-dark), var(--color-surface-raised-dark));
-	--gradient-action-primary-dark: linear-gradient(180deg, var(--color-surface-canvas), var(--color-surface-subtle));
-	--gradient-action-primary-hover-dark: linear-gradient(180deg, var(--color-action-accent), var(--color-status-warning-default));
-	--grid-columns: 4;
-	--grid-gutter: 16px;
-	--grid-margin: 16px;
-	--width-text: 800px;
-	--width-text-narrow: 600px;
-	--width-form: 640px;
-	--width-page: 1440px;
-	--radius-sm: 12px;
-	--radius-md: 20px;
-	--radius-pill: 999px;
-	--shadow-panel: 0 18px 45px rgba(34, 34, 34, 0.08);
-	--shadow-s: 0 1px 2px rgba(34, 34, 34, 0.1), 0 2px 6px rgba(34, 34, 34, 0.08);
-	--shadow-m: 0 4px 8px rgba(34, 34, 34, 0.08), 0 8px 20px rgba(34, 34, 34, 0.1);
-	--shadow-l: 0 12px 24px rgba(34, 34, 34, 0.1), 0 24px 56px rgba(34, 34, 34, 0.14);
-	--shadow-inset: inset 0 1px 0 rgba(226, 222, 214, 0.28), inset 0 -2px 4px rgba(34, 34, 34, 0.55);
+@theme {
+	--font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
-/* Grid tokens change at the Tailwind breakpoints md (768px), lg (1024px) and xl (1280px). */
-@media (min-width: 768px) { :root { --grid-columns: 8; --grid-gutter: 24px; --grid-margin: 24px; } }
-@media (min-width: 1024px) { :root { --grid-columns: 12; --grid-gutter: 24px; --grid-margin: 32px; } }
-@media (min-width: 1280px) { :root { --grid-columns: 12; --grid-gutter: 32px; --grid-margin: 48px; } }
+/* The dark preview surface turns the focus ring white, like any dark surface. */
+.preview-surface[data-preview-theme="dark"] { --color-focus-ring: var(--color-focus-ring-on-dark); }
+
 
 /* A centred page container with the grid margin at its sides, and the column grid itself. */
 .layout-container { width: 100%; max-width: var(--width-page); margin-inline: auto; padding-inline: var(--grid-margin); }
@@ -128,22 +70,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .skip-link:focus { transform: translateY(0); }
 
-.eyebrow {
-	color: var(--preview-accent, var(--color-action-accent-dark));
-	font-family: "IBM Plex Mono", monospace;
-	font-size: 11px;
-	font-weight: 600;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-}
 
-.focus-ring {
-	outline: 2px solid var(--color-focus-ring);
-	outline-offset: 2px;
-}
 
-/* On a dark surface the focus ring turns white. */
-.on-dark, .preview-surface[data-preview-theme="dark"] { --color-focus-ring: var(--color-focus-ring-on-dark); }
 
 /* Glass: a translucent cream fill, a backdrop blur and a light edge. Without backdrop-filter support it falls back to a nearly solid fill. */
 .glass {
@@ -283,15 +211,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	box-shadow: 0 1px 0 rgba(34, 34, 34, 0.06), 0 8px 24px rgba(34, 34, 34, 0.05);
 }
 
-.toast-timer {
-	transform-origin: left;
-	animation: toast-timer linear forwards;
-}
 
-@keyframes toast-timer {
-	from { transform: scaleX(1); }
-	to { transform: scaleX(0); }
-}
 
 @media (prefers-reduced-motion: reduce) {
 	html { scroll-behavior: auto; }

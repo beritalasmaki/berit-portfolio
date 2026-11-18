@@ -1,5 +1,6 @@
 "use client";
 
+import { ButtonLink } from "@berit/ds";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
@@ -650,15 +651,14 @@ export default function Header({
               <GithubIcon />
               {copy.header.githubShort}
             </a>
-            <a
+            <ButtonLink
               href={contactHref}
               data-sound={contactSound}
               onClick={() => setOpen(false)}
-              className="glass-button-ink group inline-flex items-center gap-2 text-nav font-semibold text-white rounded-pill h-11 px-6 hover:text-white focus-visible:text-white focus-visible:outline-white"
+              trailingIcon={<ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />}
             >
               {copy.header.contact}
-              <ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
-            </a>
+            </ButtonLink>
           </nav>
         )}
       </header>

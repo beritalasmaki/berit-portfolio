@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes, ReactNode } from "react";
-import { AlertMark, controlClassName, isInert, Spinner, type FormMode } from "@/components/forms/controlStyles";
+import { AlertMark, controlClassName, isInert, Spinner, type FormMode } from "./controlStyles";
 
 type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
   mode?: FormMode;

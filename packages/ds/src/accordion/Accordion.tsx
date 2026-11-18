@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState, type ReactNode } from "react";
-import { Chevron } from "@/components/forms/controlStyles";
+import { Chevron } from "../forms/controlStyles";
 
 type AccordionProps = {
   /** The heading. It is also the button that opens and closes the section. */

@@ -1,5 +1,5 @@
 import { Fragment, type CSSProperties, type ReactNode } from "react";
-import type { PageNavGroup } from "@/components/navigation/PageNav";
+import type { PageNavGroup } from "@berit/ds";
 import { DocsShell } from "@/components/navigation/DocsShell";
 import { primitiveTokens } from "@/data/tokens";
 import { explainShadowValue, explainTypeValue } from "@/components/documentation/typeValue";

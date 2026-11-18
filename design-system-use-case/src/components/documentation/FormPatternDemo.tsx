@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Field } from "@/components/forms/Field";
-import { FormActions } from "@/components/forms/FormActions";
-import { FormIntro } from "@/components/forms/FormIntro";
-import { FormProgress } from "@/components/forms/FormProgress";
-import { FormSection } from "@/components/forms/FormSection";
-import { Input } from "@/components/forms/Input";
+import { Field } from "@berit/ds";
+import { FormActions } from "@berit/ds";
+import { FormIntro } from "@berit/ds";
+import { FormProgress } from "@berit/ds";
+import { FormSection } from "@berit/ds";
+import { Input } from "@berit/ds";
 
 const steps = ["Your details", "Contact", "Review"];
 

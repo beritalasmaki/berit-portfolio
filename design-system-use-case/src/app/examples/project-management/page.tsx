@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/buttons/Button";
+import { Button } from "@berit/ds";
 import { DeviceMockup } from "@/components/examples/DeviceMockup";
 import { AppShell } from "@/components/examples/AppShell";
 import { MetricCard } from "@/components/examples/MetricCard";
-import { Icon } from "@/components/icons/Icon";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
+import { Icon } from "@berit/ds";
+import { Breadcrumb } from "@berit/ds/next";
 import { DocsShell } from "@/components/navigation/DocsShell";
-import { NotificationPanel } from "@/components/notifications/NotificationPanel";
-import { DataTable } from "@/components/table/DataTable";
+import { NotificationPanel } from "@berit/ds";
+import { DataTable } from "@berit/ds";
 
 export const metadata: Metadata = { title: "Project management" };
 

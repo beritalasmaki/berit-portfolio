@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
-import { Field } from "@/components/forms/Field";
-import { Input } from "@/components/forms/Input";
-import { Radio } from "@/components/forms/Radio";
-import { RadioGroup } from "@/components/forms/RadioGroup";
-import { Select } from "@/components/forms/Select";
+import { Field } from "@berit/ds";
+import { Input } from "@berit/ds";
+import { Radio } from "@berit/ds";
+import { RadioGroup } from "@berit/ds";
+import { Select } from "@berit/ds";
 import { Variation } from "@/components/documentation/Variation";
 
 export const metadata: Metadata = { title: "Form fields" };

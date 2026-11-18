@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { NavigationLink, type NavigationItem } from "@/components/navigation/NavigationLink";
+import { NavigationLink, type NavigationItem } from "./NavigationLink";
 
 type TopNavigationProps = {
   /** The brand: usually a link to the home page with a logo and a name. */
