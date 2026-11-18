@@ -5,7 +5,7 @@ export const howIWorkWithAi: BlogPost = {
   title: "How I work with AI: a template for design projects",
   tabTitle: "How I work with AI",
   excerpt:
-    "My starting point for new design projects is a template where AI drafts, I decide and real people test. It holds written context, checks the AI cannot skip and a record of who decided what. This post explains what is in it and how I use it.",
+    "My starting point for new design projects is a template where AI drafts, I decide and real people test. This post describes what it contains and how I use it.",
   date: "2026-11-18",
   tags: ["AI tools", "AI adoption"],
   body: [
@@ -21,86 +21,80 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "When I built the agent run review screen, I wrote the rules for the AI agent before I wrote any code: what it may do, what it may not, and one rule above the others, no claim without a source. Writing them felt like design work. Deciding what a machine may claim is the same kind of judgment as deciding what a screen may claim.",
+      text: "When I built the agent run review screen, I wrote the rules for the AI agent before any code: what it may do, what it may not, and one rule above the rest, no claim without a source. Deciding what a machine may claim is the same judgment as deciding what a screen may claim.",
     },
     {
       type: "paragraph",
-      text: "That idea grew into a template that is my starting point for new design projects. It is meant for public sector and B2B work, where accessibility and security are requirements and many people have a say. This post explains what is in it and how I use it.",
+      text: "That idea became the template I use as the starting point for new design projects. It is built for public sector and B2B work, where accessibility and security are requirements and many people have a say.",
     },
 
     {
       type: "heading",
-      id: "idea",
-      text: "The idea: AI drafts, I decide, real people test",
-      navLabel: "The idea in one line",
+      id: "roles",
+      text: "Roles and responsibilities",
     },
     {
       type: "paragraph",
-      text: "AI is good at structure and first drafts. It is not good at deciding, and it cannot be the user. So the work is split into three roles.",
+      text: "AI is good at structure and first drafts. It does not decide, and it cannot be the user. The work is split accordingly.",
     },
     {
       type: "list",
       items: [
         "**AI drafts.** Structure, first versions, summaries of my notes and checks against criteria I have set.",
-        "**I decide.** The direction, the trade-offs, what is shared and what ships.",
-        "**Real people test.** User testing that includes users with access needs, security review and legal advice. AI does not stand in for any of them.",
+        "**I decide.** Direction, trade-offs, and what is shared or ships.",
+        "**Real people test.** User testing that includes users with access needs, security review and legal advice. AI does not replace any of them.",
       ],
-    },
-    {
-      type: "paragraph",
-      text: "The split matters most where the stakes are high. In a public sector service I need to be able to say what was checked, by whom, and what was only assumed.",
     },
 
     {
       type: "heading",
       id: "context",
-      text: "Written context beats a clever prompt",
-      navLabel: "Written context beats a prompt",
+      text: "Project context in writing",
     },
     {
       type: "paragraph",
-      text: "An AI assistant starts every session knowing nothing about the project. Without written context it fills the gaps with generic guesses, and the result could belong to any product.",
+      text: "An AI assistant starts every session knowing nothing about the project. Without written context it guesses, and the result could belong to any product.",
     },
     {
       type: "paragraph",
-      text: "So each client project gets its own private workspace, created from the template. It holds short documents that the AI reads before it helps: who the product is for, the problem written as a user situation with no solution inside it, who decides what, what the product must do, and a log of decisions. I paste in my raw notes, the AI drafts, and I correct. Anything it cannot find in my material is marked as a gap, not guessed.",
+      text: "Each client project gets its own private workspace, created from the template. It holds short documents that the AI reads before it helps: who the product is for, the problem as a user situation, who decides what, the requirements and a decision log. I give it my raw notes, it drafts, and I correct. Whatever it cannot find in the notes is marked as a gap.",
     },
     {
       type: "paragraph",
-      text: "The workspace is mine, not the client's. I never put it in the client's repository. If the client wants a document from it, such as the decision log, I hand that file over.",
+      text: "The workspace is mine, not the client's, and never goes into the client's repository. Documents the client needs, such as the decision log, I hand over as files.",
     },
 
     {
       type: "heading",
       id: "process",
-      text: "How a project goes",
+      text: "Process",
     },
     {
       type: "paragraph",
-      text: "Six stages. Each has a skill, which is a set of instructions written for the AI, and a document that holds the result.",
+      text: "Six stages. Each has a skill, a set of instructions written for the AI, and a document that holds the result.",
     },
     {
       type: "findings",
       items: [
         {
           title: "Frame the problem",
-          body: "I write the request down as it was handed to me, but I aim to anonymise it, so that neither the client nor any person is named. I keep the client's information confidential. Then I write the problem as a situation a user is in. If a solution is hiding inside it, I rewrite it.",
+          body: "I write the request down as it was handed to me, and I aim to anonymise it so that neither the client nor any person is named. Client information stays confidential. Then I describe the problem as a situation a user is in, and rewrite it if a solution is hiding inside.",
         },
         {
           title: "Understand the people",
-          body: "A stakeholder map shows who decides what. Most disagreements only show up as the project goes on, so at the start what matters is knowing who has the final say when they do. Conflicts are added side by side as they appear. I do not let the AI resolve them.",
+          body: "A stakeholder map shows who decides what. Most disagreements appear only as the project goes on, so at the start what matters is knowing who has the final say. Conflicts are added side by side as they appear, and the AI does not resolve them.",
         },
         {
           title: "Design",
-          body: "Flows come with error paths and every screen state. The AI starts each state as missing, and only I can mark it as designed.",
+          body: "Flows include error paths, and every screen has all of its states. The AI marks each state as missing until I confirm it is designed.",
         },
         {
           title: "Check",
-          body: "Accessibility, security and privacy, and a review of which choices were left at default. Contrast is calculated by a script, never estimated. This is a design-stage review, not an audit.",
+          body: "Accessibility, security and privacy, and a review of which choices were left at default. Contrast is calculated by a script. This is a design-stage review, not an audit.",
         },
         {
           title: "Hand off",
-          body: "A handoff names what is final, who approved it and what each vendor provides, so nothing is left to guess.",
+          body: "A handoff states what is final, who approved it and what each vendor provides, so nothing is left to guess.",
         },
         {
           title: "Record and reflect",
@@ -110,109 +104,87 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Between checking and handing off, real people take over: user testing that includes users with access needs, security review and legal advice. The template makes room for that step. It never replaces it.",
+      text: "Between checking and handing off, real people take over: user testing that includes users with access needs, security review and legal advice.",
     },
 
     {
       type: "heading",
       id: "flows",
-      text: "User flows: I map the hard paths too",
-      navLabel: "The hard paths too",
+      text: "User flows and hard paths",
     },
     {
       type: "paragraph",
-      text: "In a user flow I do not draw only the happy path, where everything goes well. I also map the situations where something goes wrong or is hard for the user: error messages, a session that times out, a lost connection, and what happens when the user is not allowed to do something.",
+      text: "A user flow is more than the happy path. I also map the situations where something goes wrong or is hard: error messages, a session that times out, a lost connection, and what happens when the user is not allowed to do something.",
     },
     {
       type: "paragraph",
-      text: "The same path can be smooth for one user and unbearably hard for another. So for each step I ask who finds it hard, for example someone with little digital experience, someone using assistive technology, someone in a hurry on a phone, or someone who is interrupted halfway. Every step gets the system's response, and every screen gets all of its states.",
+      text: "The same path can be smooth for one user and unbearably hard for another. For each step I ask who finds it hard, for example someone with little digital experience, someone using assistive technology, someone in a hurry on a phone or someone who is interrupted halfway.",
     },
 
     {
       type: "heading",
-      id: "limits",
-      text: "The limits I do not bend",
-      navLabel: "Limits I do not bend",
+      id: "boundaries",
+      text: "Boundaries",
     },
     {
       type: "list",
       items: [
-        "**A design is never called accessible, compliant or tested.** Each check ends as pass, fail or cannot tell from a design. A clean result means no fails found in what was shown, nothing more.",
-        "**Every claim is labelled.** Evidence with a source, or a gap. No invented quotes, research or numbers.",
+        "**No design is called accessible, compliant or tested.** Each check ends as pass, fail or cannot tell from a design.",
+        "**Every claim is labelled** as evidence with a source, or as a gap. No invented quotes, research or numbers.",
         "**Client data stays out.** No real names, personal data or confidential figures in prompts or files. I use placeholders.",
         "**Decisions are recorded by role,** not by name.",
       ],
     },
     {
       type: "paragraph",
-      text: "In client projects I use AI only when the client allows it, and I find that out before the work starts. Some clients, especially in the public sector, also limit where their material may be stored. The project config asks about both on day one.",
+      text: "In client projects I use AI only when the client allows it, and I find that out before the work starts. Some clients also limit where their material may be stored. The project configuration asks about both on the first day.",
     },
 
     {
       type: "heading",
-      id: "truth",
-      text: "Where the documents live",
+      id: "documentation",
+      text: "Documentation",
     },
     {
       type: "paragraph",
-      text: "The documents are Markdown files in Git, which gives me history and one source of truth. If the team reads them somewhere else, such as Confluence, that copy is read-only. Jira stays where it is: tickets need owners and status, and Git is no good for that.",
-    },
-    {
-      type: "paragraph",
-      text: "At the end of a project I deliver the final versions to the client, because they should not depend on my private repository for their own project history. The cost of this setup is that publishing a copy is manual. I have not automated it yet.",
+      text: "The documents are Markdown files in Git, which gives history and one source of truth. If the team reads them elsewhere, such as in Confluence, that copy is read-only. Jira stays for tickets. At the end of a project I hand the final versions to the client, so their project history does not depend on my private repository.",
     },
 
     {
       type: "heading",
       id: "checks",
-      text: "How the rules stay true",
+      text: "Automated checks",
     },
     {
       type: "paragraph",
-      text: "A rule written in a file is easy to break quietly. The main rules file grows too long, a skill's description stops it from loading, a colour change drops below the contrast minimum. So the repository checks itself. One script runs on every push and fails when something is wrong, whether the change was made by me or by the AI.",
+      text: "A rule written in a file is easy to break quietly. A script runs on every push and fails if, for example, the main rules file grows too long, a skill stops loading or a colour falls below the contrast minimum. It does not matter whether I or the AI made the change.",
     },
     {
       type: "paragraph",
-      text: "The same thinking decided how I handle design quality. I first planned a list of banned styles to keep AI work from looking generic. I dropped it. A ban list puts the banned thing in front of the model, and it goes out of date. I now give the AI annotated examples of good work from my own projects, each with what it decided and what it gave up.",
+      text: "For design quality I do not rely on lists of banned styles. I give the AI annotated examples of good work from my own projects, each with what it decided and what it gave up.",
     },
 
     {
       type: "heading",
       id: "weight",
-      text: "Is this too heavy to keep up?",
-      navLabel: "Is it too heavy?",
+      text: "Keeping it lightweight",
     },
     {
       type: "paragraph",
-      text: "It can be. A client may well ask whether a process like this is too heavy to do and to maintain, and if I tried to do everything, it would be. So I built it to start small.",
+      text: "A process like this is heavy if you try to do everything. It is built to start small.",
     },
     {
       type: "list",
       items: [
         "**Five documents to begin with.** The others are added only when someone will read and use them.",
-        "**AI writes the first version.** I give it my raw notes and correct the result, so I rarely start from a blank page.",
-        "**The rules check themselves.** A script runs on every push, so nobody has to remember to keep them true.",
-        "**No document without a reader.** Each one has a named reader and a use. If I cannot name them, I do not write it.",
+        "**The AI writes the first version.** I give it raw notes and correct the result.",
+        "**The rules check themselves,** so nobody has to remember to keep them true.",
+        "**No document without a reader.** Each has a named reader and a use.",
       ],
     },
     {
       type: "paragraph",
-      text: "Some parts are still heavy. Publishing a read-only copy to the client's tools is manual, and logging decisions takes a habit. Making those two lighter is next on my list.",
-    },
-
-    {
-      type: "heading",
-      id: "own-way",
-      text: "My way, not the only way",
-      navLabel: "My way",
-    },
-    {
-      type: "paragraph",
-      text: "This is not the only right way to use AI in design. It is my way, and it is still taking shape. The template is a first version, and I will keep changing it as I use it, whenever a part turns out to be too heavy or impractical. The guiding line stays the same: AI helps me draft, and the decisions and the responsibility stay with people.",
-    },
-    {
-      type: "quote",
-      text: "A process that is too heavy does not get used. So I keep mine as light as responsible work allows.",
+      text: "Two parts are still manual: publishing a read-only copy to the client's tools, and logging decisions. Making those lighter is next.",
     },
   ],
 };
