@@ -15,8 +15,8 @@ export const howIWorkWithAiFi: BlogPost = {
       items: [
         { label: "Katso pohja GitHubissa", href: "https://github.com/beritalasmaki/project-set-up-template" },
         {
-          label: "Lue ohje (englanniksi)",
-          href: "https://github.com/beritalasmaki/project-set-up-template/blob/main/docs/using-this-template.md",
+          label: "Lue ohje",
+          href: "https://github.com/beritalasmaki/project-set-up-template/blob/main/docs/ohjeet-suomeksi.md",
         },
       ],
     },
