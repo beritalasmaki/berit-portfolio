@@ -84,6 +84,8 @@ function blockText(block: BlogBlock): string {
       return block.items.join(" ");
     case "findings":
       return block.items.map((item) => `${item.title} ${item.body}`).join(" ");
+    case "links":
+      return block.items.map((item) => item.label).join(" ");
     case "image":
       return block.caption ?? "";
     case "okr":

@@ -5,10 +5,20 @@ export const howIWorkWithAi: BlogPost = {
   title: "How I work with AI: a template for design projects",
   tabTitle: "How I work with AI",
   excerpt:
-    "I start design projects from a template where AI drafts, I decide and real people test. It holds written context, checks Claude cannot skip and a record of who decided what. This post explains what is in it, how I use it and what it does not prove yet.",
+    "I start design projects from a template where AI drafts, I decide and real people test. It holds written context, checks the AI cannot skip and a record of who decided what. This post explains what is in it, how I use it and what it does not prove yet.",
   date: "2026-11-18",
   tags: ["AI tools", "AI adoption"],
   body: [
+    {
+      type: "links",
+      items: [
+        { label: "View the template on GitHub", href: "https://github.com/beritalasmaki/project-set-up-template" },
+        {
+          label: "Read the guide",
+          href: "https://github.com/beritalasmaki/project-set-up-template/blob/main/docs/using-this-template.md",
+        },
+      ],
+    },
     {
       type: "paragraph",
       text: "When I built the agent run review screen, I wrote the rules for the AI agent before I wrote any code: what it may do, what it may not, and one rule above the others, no claim without a source. Writing them felt like design work. Deciding what a machine may claim is the same kind of judgment as deciding what a screen may claim.",
@@ -21,7 +31,7 @@ export const howIWorkWithAi: BlogPost = {
     {
       type: "heading",
       id: "idea",
-      text: "The idea: Claude drafts, I decide, real people test",
+      text: "The idea: AI drafts, I decide, real people test",
       navLabel: "The idea in one line",
     },
     {
@@ -31,7 +41,7 @@ export const howIWorkWithAi: BlogPost = {
     {
       type: "list",
       items: [
-        "**Claude drafts.** Structure, first versions, summaries of my notes and checks against criteria I have set.",
+        "**AI drafts.** Structure, first versions, summaries of my notes and checks against criteria I have set.",
         "**I decide.** The direction, the trade-offs, what is shared and what ships.",
         "**Real people test.** User testing, testing with disabled people, security review and legal advice. AI does not stand in for any of them.",
       ],
@@ -49,11 +59,11 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Claude starts every session knowing nothing about the project. Without written context it fills the gaps with generic guesses, and the result could belong to any product.",
+      text: "An AI assistant starts every session knowing nothing about the project. Without written context it fills the gaps with generic guesses, and the result could belong to any product.",
     },
     {
       type: "paragraph",
-      text: "So each client project gets its own private workspace, created from the template. It holds short documents that Claude reads before it helps: who the product is for, the problem written as a user situation with no solution inside it, who decides what, what the product must do, and a log of decisions. I paste in my raw notes, Claude drafts, and I correct. Anything it cannot find in my material is marked as a gap, not guessed.",
+      text: "So each client project gets its own private workspace, created from the template. It holds short documents that the AI reads before it helps: who the product is for, the problem written as a user situation with no solution inside it, who decides what, what the product must do, and a log of decisions. I paste in my raw notes, the AI drafts, and I correct. Anything it cannot find in my material is marked as a gap, not guessed.",
     },
     {
       type: "paragraph",
@@ -67,7 +77,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Six stages. Each has a skill that drafts and a document that holds the result.",
+      text: "Six stages. Each has a skill, which is a set of instructions written for the AI, and a document that holds the result.",
     },
     {
       type: "findings",
@@ -78,11 +88,11 @@ export const howIWorkWithAi: BlogPost = {
         },
         {
           title: "Understand the people",
-          body: "A stakeholder map shows who decides what and where interests conflict. Conflicts are written side by side. I do not let Claude resolve them.",
+          body: "A stakeholder map shows who decides what and where interests conflict. Conflicts are written side by side. I do not let the AI resolve them.",
         },
         {
           title: "Design",
-          body: "Flows come with error paths and every screen state. Claude starts each state as missing, and only I can mark it as designed.",
+          body: "Flows come with error paths and every screen state. The AI starts each state as missing, and only I can mark it as designed.",
         },
         {
           title: "Check",
@@ -106,20 +116,21 @@ export const howIWorkWithAi: BlogPost = {
     {
       type: "heading",
       id: "limits",
-      text: "What it never does",
+      text: "The limits I do not bend",
+      navLabel: "Limits I do not bend",
     },
     {
       type: "list",
       items: [
-        "**It never calls a design accessible, compliant or tested.** Each check ends as pass, fail or cannot tell from a design. A clean result means no fails found in what was shown, nothing more.",
-        "**It labels every claim.** Evidence with a source, or a gap. No invented quotes, research or numbers.",
-        "**It keeps client data out.** No real names, personal data or confidential figures in prompts or files. I use placeholders.",
-        "**It records decisions by role,** not by name.",
+        "**A design is never called accessible, compliant or tested.** Each check ends as pass, fail or cannot tell from a design. A clean result means no fails found in what was shown, nothing more.",
+        "**Every claim is labelled.** Evidence with a source, or a gap. No invented quotes, research or numbers.",
+        "**Client data stays out.** No real names, personal data or confidential figures in prompts or files. I use placeholders.",
+        "**Decisions are recorded by role,** not by name.",
       ],
     },
     {
       type: "paragraph",
-      text: "In client projects I use this only when the client allows AI tools, and I check that before the work starts. Some clients, especially in the public sector, also limit where their material may be stored. The project config asks about both on day one.",
+      text: "In client projects I use AI only when the client allows it, and I find that out before the work starts. Some clients, especially in the public sector, also limit where their material may be stored. The project config asks about both on day one.",
     },
 
     {
@@ -143,11 +154,11 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "A rule written in a file is easy to break quietly. The main rules file grows too long, a skill's description stops it from loading, a colour change drops below the contrast minimum. So the repository checks itself. One script runs on every push and fails when something is wrong, whether the change was made by me or by Claude.",
+      text: "A rule written in a file is easy to break quietly. The main rules file grows too long, a skill's description stops it from loading, a colour change drops below the contrast minimum. So the repository checks itself. One script runs on every push and fails when something is wrong, whether the change was made by me or by the AI.",
     },
     {
       type: "paragraph",
-      text: "The same thinking decided how I handle design quality. I first planned a list of banned styles to keep AI work from looking generic. I dropped it. A ban list puts the banned thing in front of the model, and it goes out of date. I now give Claude annotated examples of good work from my own projects, each with what it decided and what it gave up.",
+      text: "The same thinking decided how I handle design quality. I first planned a list of banned styles to keep AI work from looking generic. I dropped it. A ban list puts the banned thing in front of the model, and it goes out of date. I now give the AI annotated examples of good work from my own projects, each with what it decided and what it gave up.",
     },
 
     {
@@ -166,10 +177,6 @@ export const howIWorkWithAi: BlogPost = {
     {
       type: "quote",
       text: "AI makes drafting faster. It does not make deciding, testing or being accountable faster, and that is the part I want to keep.",
-    },
-    {
-      type: "paragraph",
-      text: "The template is public: [project-set-up-template on GitHub](https://github.com/beritalasmaki/project-set-up-template). The step-by-step guide is in [using-this-template](https://github.com/beritalasmaki/project-set-up-template/blob/main/docs/using-this-template.md).",
     },
   ],
 };

@@ -342,7 +342,7 @@ export const fi: Dictionary = {
   aiProcess: {
     kicker: "Lähtökohta · Ensimmäinen versio",
     heading: "Näin prosessini kulkee tekoälyn kanssa",
-    body: "Käytän tekoälyä luonnosteluun ja tarkistamiseen, en päättämiseen. Projektin konteksti kirjoitetaan ylös ensin, jotta Claude työskentelee faktojen eikä arvausten pohjalta, ja oikeat ihmiset testaavat. Asiakasprojekteissa käytän tätä vain, jos asiakas sallii tekoälytyökalut.",
+    body: "Käytän tekoälyä luonnosteluun ja tarkistamiseen, en päättämiseen. Projektin konteksti kirjoitetaan ensin ylös, jotta tekoäly toimii faktojen eikä arvausten pohjalta, ja oikeat ihmiset testaavat. Asiakasprojekteissa käytän tekoälyä vain silloin, kun asiakas on sen sallinut.",
     linkLabel: "Lue, miten työskentelen tekoälyn kanssa →",
   },
 

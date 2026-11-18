@@ -6,59 +6,69 @@ export const howIWorkWithAiFi: BlogPost = {
   title: "Näin työskentelen tekoälyn kanssa: pohja suunnitteluun",
   tabTitle: "Näin työskentelen tekoälyn kanssa",
   excerpt:
-    "Aloitan suunnitteluprojektit pohjasta, jossa tekoäly luonnostelee, minä päätän ja oikeat ihmiset testaavat. Siinä on kirjallinen konteksti, tarkistuksia joita Claude ei voi ohittaa ja kirjaus siitä, kuka päätti mitä. Tässä kirjoituksessa kerron, mitä pohjassa on, miten käytän sitä ja mitä se ei vielä todista.",
+    "Aloitan suunnitteluprojektit pohjasta, jossa tekoäly luonnostelee, minä päätän ja oikeat ihmiset testaavat. Pohjassa on kirjoitettu konteksti, tarkistuksia joita ei voi ohittaa ja kirjaus siitä, kuka päätti mitä. Kerron, mitä pohjassa on, miten käytän sitä ja mitä pohja ei vielä todista.",
   date: "2026-11-18",
   tags: ["Tekoälytyökalut", "Tekoälyn käyttöönotto"],
   body: [
     {
-      type: "paragraph",
-      text: "Kun rakensin agenttiajojen katselmointinäkymän, kirjoitin säännöt tekoälyagentille ennen kuin kirjoitin riviäkään koodia: mitä se saa tehdä, mitä ei, ja yksi sääntö muiden edelle: ei väitettä ilman lähdettä. Sääntöjen kirjoittaminen tuntui suunnittelutyöltä. Sen päättäminen, mitä kone saa väittää, on samanlaista harkintaa kuin sen päättäminen, mitä näkymä saa väittää.",
+      type: "links",
+      items: [
+        { label: "Katso pohja GitHubissa", href: "https://github.com/beritalasmaki/project-set-up-template" },
+        {
+          label: "Lue ohje (englanniksi)",
+          href: "https://github.com/beritalasmaki/project-set-up-template/blob/main/docs/using-this-template.md",
+        },
+      ],
     },
     {
       type: "paragraph",
-      text: "Tästä ajatuksesta kasvoi pohja, josta aloitan nykyään suunnitteluprojektit. Se on tehty julkisen sektorin ja B2B-työhön, jossa saavutettavuus ja tietoturva ovat vaatimuksia ja monella ihmisellä on sananvaltaa. Tässä kirjoituksessa kerron, mitä pohjassa on, miten käytän sitä ja mitä se ei vielä todista.",
+      text: "Kun rakensin agenttiajojen katselmointinäkymää, kirjoitin tekoälyagentille pelisäännöt ennen kuin tein riviäkään koodia. Mitä se saa tehdä, mitä ei, ja yksi sääntö ennen kaikkia muita: ei väitettä ilman lähdettä. Sääntöjen kirjoittaminen tuntui suunnittelulta. Sen päättäminen, mitä kone saa väittää, on samaa työtä kuin sen päättäminen, mitä näkymä saa väittää.",
+    },
+    {
+      type: "paragraph",
+      text: "Tästä ajatuksesta syntyi pohja, josta aloitan nykyään suunnitteluprojektini. Tein sen julkisen sektorin ja B2B-projekteja varten, joissa saavutettavuus ja tietoturva ovat vaatimuksia ja monella on sananvaltaa. Kerron tässä, mitä pohjassa on, miten käytän sitä ja mitä pohja ei vielä todista.",
     },
 
     {
       type: "heading",
       id: "idea",
-      text: "Ydinajatus: Claude luonnostelee, minä päätän, oikeat ihmiset testaavat",
-      navLabel: "Ydinajatus yhdellä rivillä",
+      text: "Perusajatus: tekoäly luonnostelee, minä päätän, oikeat ihmiset testaavat",
+      navLabel: "Perusajatus yhdellä rivillä",
     },
     {
       type: "paragraph",
-      text: "Tekoäly on hyvä rakenteissa ja ensimmäisissä luonnoksissa. Se ei ole hyvä päättämään, eikä se voi olla käyttäjä. Siksi työ jaetaan kolmeen rooliin.",
+      text: "Tekoäly on hyvä tekemään rakenteita ja ensimmäisiä luonnoksia. Päättämään siitä ei ole, eikä se voi olla käyttäjä. Siksi jaan työn kolmeen rooliin.",
     },
     {
       type: "list",
       items: [
-        "**Claude luonnostelee.** Rakenteen, ensimmäiset versiot, yhteenvedot muistiinpanoistani ja tarkistukset asettamiani kriteerejä vasten.",
-        "**Minä päätän.** Suunnan, kompromissit ja sen, mitä jaetaan ja mitä julkaistaan.",
-        "**Oikeat ihmiset testaavat.** Käyttäjätestaus, testaus vammaisten ihmisten kanssa, tietoturvakatselmointi ja juridinen neuvonta. Tekoäly ei korvaa mitään näistä.",
+        "**Tekoäly luonnostelee.** Rakenteet, ensimmäiset versiot ja tiivistykset muistiinpanoistani. Lisäksi tekoäly tarkistaa työtä kriteereillä, jotka olen asettanut.",
+        "**Minä päätän.** Suunnan, kompromissit ja sen, mitä jaetaan ja mitä viedään eteenpäin.",
+        "**Oikeat ihmiset testaavat.** Käyttäjätestit, testaus vammaisten ihmisten kanssa, tietoturvatarkastus ja juridinen arvio. Näitä tekoäly ei korvaa.",
       ],
     },
     {
       type: "paragraph",
-      text: "Jako on tärkein siellä, missä panokset ovat korkeat. Julkisen sektorin palvelussa minun pitää pystyä sanomaan, mitä tarkistettiin, kuka tarkisti ja mikä oli vain oletus.",
+      text: "Jako painaa eniten silloin, kun panokset ovat isot. Julkisen sektorin palvelussa minun täytyy pystyä kertomaan, mitä on tarkistettu, kuka sen teki ja mikä on vain oletus.",
     },
 
     {
       type: "heading",
       id: "context",
-      text: "Kirjallinen konteksti voittaa taitavan kehotteen",
-      navLabel: "Konteksti voittaa kehotteen",
+      text: "Hyvää promptia tärkeämpää on kirjoittaa konteksti ylös",
+      navLabel: "Konteksti on promptia tärkeämpi",
     },
     {
       type: "paragraph",
-      text: "Claude aloittaa jokaisen istunnon tietämättä projektista mitään. Ilman kirjallista kontekstia se täyttää aukot yleisillä arvauksilla, ja lopputulos voisi kuulua mihin tahansa tuotteeseen.",
+      text: "Kun istunto alkaa, tekoäly ei tiedä projektista mitään. Jos sille ei kerro, se arvaa aukot yleisellä tavalla, ja tulos voisi olla minkä tahansa tuotteen.",
     },
     {
       type: "paragraph",
-      text: "Siksi jokaiselle asiakasprojektille luodaan oma yksityinen työtila pohjasta. Siinä on lyhyitä dokumentteja, jotka Claude lukee ennen kuin se auttaa: kenelle tuote on tehty, ongelma kirjoitettuna käyttäjän tilanteena ilman ratkaisua sen sisällä, kuka päättää mitä, mitä tuotteen pitää tehdä ja päätösloki. Liitän mukaan raakamuistiinpanoni, Claude luonnostelee ja minä korjaan. Mitä se ei löydä materiaalistani, merkitään aukoksi eikä arvata.",
+      text: "Siksi jokaiselle asiakasprojektille tehdään oma yksityinen työtila pohjasta. Siellä on lyhyitä dokumentteja, jotka tekoäly lukee ennen kuin se alkaa auttaa: kenelle tuote on tehty, ongelma kirjoitettuna käyttäjän tilanteena ilman ratkaisua, kuka päättää mistäkin, mitä tuotteen pitää osata ja päätösloki. Annan mukaan omat raakamuistiinpanoni, tekoäly luonnostelee ja minä korjaan. Mitä muistiinpanoistani ei löydy, merkitään aukoksi eikä arvata.",
     },
     {
       type: "paragraph",
-      text: "Työtila on minun, ei asiakkaan. En koskaan vie sitä asiakkaan repositorioon. Jos asiakas haluaa siitä dokumentin, esimerkiksi päätöslokin, annan sen tiedostona.",
+      text: "Työtila on minun eikä asiakkaan. En vie sitä koskaan asiakkaan repositorioon. Jos asiakas haluaa jonkin dokumentin, vaikkapa päätöslokin, annan sen heille tiedostona.",
     },
 
     {
@@ -68,73 +78,73 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Kuusi vaihetta. Jokaisella on skilli, joka luonnostelee, ja dokumentti, joka tallentaa tuloksen.",
+      text: "Vaiheita on kuusi. Jokaiseen kuuluu skill eli tekoälylle kirjoitettu ohje sekä dokumentti, johon tulos kirjataan.",
     },
     {
       type: "findings",
       items: [
         {
           title: "Ongelman muotoilu",
-          body: "Lainaan toimeksiannon sellaisenaan ja kirjoitan ongelman tilanteena, jossa käyttäjä on. Jos ratkaisu piilee sen sisällä, kirjoitan sen uudelleen.",
+          body: "Kirjoitan toimeksiannon ylös sellaisenaan. Sen jälkeen kuvaan ongelman tilanteena, jossa käyttäjä on. Jos ratkaisu on jo piilossa ongelman kuvauksessa, kirjoitan sen uusiksi.",
         },
         {
           title: "Ihmisten ymmärtäminen",
-          body: "Sidosryhmäkartta näyttää, kuka päättää mitä ja missä edut ovat ristiriidassa. Ristiriidat kirjataan rinnakkain. En anna Clauden ratkaista niitä.",
+          body: "Sidosryhmäkartasta näkee, kuka päättää mistäkin ja missä kohdissa toiveet ovat ristiriidassa. Ristiriidat laitetaan vierekkäin, enkä anna tekoälyn ratkaista niitä.",
         },
         {
           title: "Suunnittelu",
-          body: "Käyttäjävirrat kuvataan virhepolkuineen, ja jokaisen näkymän kaikki tilat otetaan mukaan. Claude aloittaa jokaisen tilan merkinnällä puuttuu, ja vain minä voin merkitä sen suunnitelluksi.",
+          body: "Käyttäjävirroille kirjataan virhetilanteet ja jokaisen näkymän kaikki tilat. Tekoäly merkitsee aluksi kaikki tilat puuttuviksi, ja vain minä voin merkitä tilan suunnitelluksi.",
         },
         {
           title: "Tarkistus",
-          body: "Saavutettavuus, tietoturva ja yksityisyys sekä katsaus siihen, mitkä valinnat jäivät oletuksiksi. Kontrastin laskee skripti, sitä ei arvioida.",
+          body: "Käyn läpi saavutettavuuden, tietoturvan ja yksityisyyden sekä katson, mitkä valinnat jäivät pelkiksi oletuksiksi. Kontrastit laskee skripti, niitä ei arvioida silmämääräisesti.",
         },
         {
           title: "Luovutus",
-          body: "Luovutus kertoo, mikä on valmista, kuka hyväksyi sen ja mitä kukin toimittaja toimittaa, jotta mitään ei jää arvattavaksi.",
+          body: "Luovutuksessa kerrotaan, mikä on valmista, kuka sen hyväksyi ja mitä kukin toimittaja tekee. Mitään ei jää arvailun varaan.",
         },
         {
           title: "Kirjaaminen ja pohdinta",
-          body: "Päätökset kirjataan sen kanssa, kuka päätti ja miksi. Projektin lopussa loki toimii pohjana case studylle, josta luottamukselliset tiedot on poistettu.",
+          body: "Päätökset kirjataan niin, että näkyy kuka päätti ja miksi. Projektin lopussa lokista tehdään case study ilman luottamuksellisia tietoja.",
         },
       ],
     },
     {
       type: "paragraph",
-      text: "Tarkistuksen ja luovutuksen välissä oikeat ihmiset ottavat vastuun: käyttäjätestaus, testaus vammaisten ihmisten kanssa, tietoturvakatselmointi ja juridinen neuvonta. Pohja jättää tälle vaiheelle tilaa. Se ei koskaan korvaa sitä.",
+      text: "Tarkistuksen ja luovutuksen välissä vastuu siirtyy oikeille ihmisille: käyttäjätesteille, testaukselle vammaisten ihmisten kanssa, tietoturvatarkastukselle ja juridiselle arviolle. Pohjassa on tälle vaiheelle oma paikkansa, mutta tekoäly ei korvaa sitä.",
     },
 
     {
       type: "heading",
       id: "limits",
-      text: "Mitä se ei koskaan tee",
+      text: "Rajat, joista en tingi",
     },
     {
       type: "list",
       items: [
-        "**Se ei koskaan väitä suunnitelmaa saavutettavaksi, vaatimustenmukaiseksi tai testatuksi.** Jokainen tarkistus päättyy tulokseen läpi, hylätty tai ei voida päätellä suunnitelmasta. Puhdas tulos tarkoittaa, ettei näytetystä löytynyt virheitä, ei muuta.",
-        "**Se merkitsee jokaisen väitteen.** Todisteena lähteineen tai aukkona. Ei keksittyjä lainauksia, tutkimustuloksia tai lukuja.",
-        "**Se pitää asiakasdatan poissa.** Ei oikeita nimiä, henkilötietoja tai luottamuksellisia lukuja kehotteissa eikä tiedostoissa. Käytän paikkamerkkejä.",
-        "**Se kirjaa päätökset roolin mukaan,** ei nimen.",
+        "**Suunnitelmaa ei koskaan sanota saavutettavaksi, vaatimustenmukaiseksi tai testatuksi.** Jokaisen tarkistuksen tulos on läpi, hylätty tai ei voida päätellä suunnitelmasta. Puhdas tulos tarkoittaa vain sitä, ettei näytetystä löytynyt virheitä.",
+        "**Jokainen väite merkitään.** Joko todisteeksi lähteineen tai aukoksi. Keksittyjä lainauksia, tutkimustuloksia tai lukuja ei käytetä.",
+        "**Asiakasdata ei päädy tekoälylle.** Kehotteissa ja tiedostoissa ei ole oikeita nimiä, henkilötietoja eikä luottamuksellisia lukuja. Käytän paikkamerkkejä.",
+        "**Päätökset kirjataan roolin mukaan,** ei nimen.",
       ],
     },
     {
       type: "paragraph",
-      text: "Asiakasprojekteissa käytän tätä vain, jos asiakas sallii tekoälytyökalut, ja tarkistan sen ennen kuin työ alkaa. Osa asiakkaista, erityisesti julkisella sektorilla, rajoittaa myös sitä, missä heidän aineistoaan saa säilyttää. Projektin asetustiedosto kysyy molemmat heti ensimmäisenä päivänä.",
+      text: "Asiakasprojekteissa käytän tekoälyä vain silloin, kun asiakas on sen sallinut. Selvitän asian jo ennen työn alkua. Osa asiakkaista, etenkin julkisella sektorilla, rajaa myös sitä, missä heidän aineistoaan saa säilyttää. Projektin asetustiedostossa kysytään molemmat heti ensimmäisenä.",
     },
 
     {
       type: "heading",
       id: "truth",
-      text: "Missä dokumentit asuvat",
+      text: "Missä dokumentit säilyvät",
     },
     {
       type: "paragraph",
-      text: "Dokumentit ovat Markdown-tiedostoja Gitissä, mikä antaa minulle historian ja yhden totuuden lähteen. Jos tiimi lukee niitä jossain muualla, esimerkiksi Confluencessa, se kopio on vain luettavissa. Jira pysyy siellä missä on: tiketit tarvitsevat vastuuhenkilön ja tilan, eikä Git sovellu siihen.",
+      text: "Dokumentit ovat Markdown-tiedostoja Gitissä. Siellä on historia ja yksi oikea versio. Jos tiimi lukee dokumentteja jossain muualla, esimerkiksi Confluencessa, se kopio on vain luettavissa. Jira pysyy ennallaan, koska tiketit tarvitsevat vastuuhenkilön ja tilan, eikä Git sovellu siihen.",
     },
     {
       type: "paragraph",
-      text: "Projektin lopussa toimitan lopulliset versiot asiakkaalle, koska heidän ei pidä olla riippuvaisia minun yksityisestä repositoriostani oman projektinsa historian osalta. Tämän tavan hinta on, että kopion julkaiseminen on käsityötä. En ole vielä automatisoinut sitä.",
+      text: "Projektin lopussa annan lopulliset versiot asiakkaalle, koska heidän oman projektinsa historia ei saa riippua minun yksityisestä repositoriostani. Tässä tavassa on yksi huono puoli: kopion julkaiseminen tehdään käsin. En ole vielä automatisoinut sitä.",
     },
 
     {
@@ -144,11 +154,11 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tiedostoon kirjoitettu sääntö rikkoutuu helposti huomaamatta. Pääsääntötiedosto kasvaa liian pitkäksi, skillin kuvaus estää sitä latautumasta tai värimuutos pudottaa kontrastin alle vähimmäisrajan. Siksi repositorio tarkistaa itse itsensä. Yksi skripti pyörii jokaisen pushin yhteydessä ja epäonnistuu, kun jokin on pielessä, oli muutoksen tehnyt minä tai Claude.",
+      text: "Tiedostoon kirjoitettu sääntö unohtuu helposti. Pääohjetiedosto kasvaa liian pitkäksi, jonkin skillin kuvaus estää sen latautumisen tai värimuutos pudottaa kontrastin alle rajan. Siksi repositorio tarkistaa itse itsensä: yksi skripti ajetaan jokaisen pushin yhteydessä, ja se hälyttää, jos jokin on pielessä. Sama pätee, vaikka muutoksen olisi tehnyt tekoäly.",
     },
     {
       type: "paragraph",
-      text: "Sama ajattelu ratkaisi sen, miten käsittelen suunnittelun laatua. Suunnittelin ensin listan kielletyistä tyyleistä, jotta tekoälyn työ ei näyttäisi geneeriseltä. Luovuin siitä. Kieltolista nostaa kielletyn asian mallin eteen, ja se vanhenee. Annan nykyään Claudelle annotoituja esimerkkejä hyvästä työstä omista projekteistani, ja jokaisessa kerrotaan, mitä siinä päätettiin ja mistä luovuttiin.",
+      text: "Sama ajatus ratkaisi sen, miten käsittelen suunnittelun laatua. Suunnittelin alkuun listan kielletyistä tyyleistä, jotta tekoälyn tekemä ei näyttäisi geneeriseltä. Luovuin siitä. Kieltolista nostaa kielletyn asian tekoälyn eteen, ja lista vanhenee. Nykyään annan tekoälylle esimerkkejä hyvästä työstä omista projekteistani. Jokaisessa kerrotaan, mitä siinä päätettiin ja mistä luovuttiin.",
     },
 
     {
@@ -158,19 +168,15 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tämä on ensimmäinen versio, enkä ole vielä käyttänyt sitä oikeassa projektissa. Esimerkit siinä ovat fiktiivisiä. Testit, jotka tarkistavat, latautuuko jokainen skilli silloin kun pitää, on kirjoitettu mutta niitä ei ole ajettu. Ja saavutettavuustarkistukset ovat suunnitteluvaiheen katsauksia, eivät auditointeja. Ne eivät korvaa testausta avustavilla teknologioilla ja vammaisten ihmisten kanssa.",
+      text: "Tämä on ensimmäinen versio, enkä ole vielä käyttänyt sitä oikeassa projektissa. Pohjan esimerkit ovat keksittyjä. Testit, joilla tarkistetaan, että jokainen skilli latautuu silloin kun pitää, on kirjoitettu mutta ei vielä ajettu. Saavutettavuustarkistukset ovat suunnitteluvaiheen katselmointeja, eivät auditointeja. Ne eivät korvaa testausta avustavilla teknologioilla eivätkä testausta vammaisten ihmisten kanssa.",
     },
     {
       type: "paragraph",
-      text: "Seuraava askeleeni on käyttää sitä yhdessä oikeassa projektissa asiakkaan luvalla ja muuttaa kaikki, mikä ei kestä ensimmäistä viikkoa.",
+      text: "Seuraavaksi aion kokeilla pohjaa yhdessä oikeassa projektissa asiakkaan luvalla ja muuttaa sen, mikä ei kestä ensimmäistä viikkoa.",
     },
     {
       type: "quote",
-      text: "Tekoäly nopeuttaa luonnostelua. Se ei nopeuta päättämistä, testaamista tai vastuun kantamista, ja juuri ne haluan pitää itselläni.",
-    },
-    {
-      type: "paragraph",
-      text: "Pohja on julkinen: [project-set-up-template GitHubissa](https://github.com/beritalasmaki/project-set-up-template). Vaiheittainen ohje on tiedostossa [using-this-template](https://github.com/beritalasmaki/project-set-up-template/blob/main/docs/using-this-template.md).",
+      text: "Tekoäly nopeuttaa luonnostelua. Päättäminen, testaaminen ja vastuun kantaminen eivät nopeudu, ja ne haluan pitää itselläni.",
     },
   ],
 };

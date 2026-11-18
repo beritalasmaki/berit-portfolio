@@ -40,6 +40,10 @@ export type BlogBlock =
     }
   /** Numbered lead-in + explanation list, the same as in the case studies. */
   | { type: "findings"; items: Finding[] }
+  /** A row of links to other sites, styled like the site's accent-underline
+   * text links with the ↗ arrow. Each opens in a new tab. Use it for the
+   * links a reader should see first, such as a project's repository. */
+  | { type: "links"; items: { label: string; href: string }[] }
   /** A worked OKR example drawn as a diagram in the site's own styles
    * (`components/blog/OkrDiagram.tsx`) rather than a picture of one, so
    * its text reflows on a phone and reads out to a screen reader. */

@@ -341,7 +341,7 @@ export const en = {
   aiProcess: {
     kicker: "Starting point · First version",
     heading: "How my process works with AI",
-    body: "I use AI to draft and to check, never to decide. The project's context is written down first, so Claude works from facts and not from guesses, and real people test. In client projects I use this only when the client allows AI tools.",
+    body: "I use AI to draft and to check, never to decide. The project's context is written down first, so the AI works from facts and not from guesses, and real people test. In client projects I use this only when the client allows AI tools.",
     linkLabel: "Read how I work with AI →",
   },
 
