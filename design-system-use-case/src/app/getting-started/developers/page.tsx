@@ -9,8 +9,8 @@ const installCode = `git clone <repository-url>
 cd design-system-use-case
 npm install
 npm run dev`;
-const importCode = `import { Button } from "@/components/buttons/Button";
-import { Card, CardBody } from "@/components/cards/Card";
+const importCode = `import { Button } from "@berit/ds";
+import { Card, CardBody } from "@berit/ds";
 
 export function ProjectActions() {
   return (

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
-import { Icon, type IconName } from "@/components/icons/Icon";
-import { IconButton } from "@/components/buttons/IconButton";
+import { Icon, type IconName } from "@berit/ds";
+import { IconButton } from "@berit/ds";
 
 export const metadata: Metadata = { title: "Icons" };
 

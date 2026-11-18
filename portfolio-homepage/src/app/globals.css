@@ -1,3 +1,6 @@
+/* DS by Berit: the shared design tokens (colours, radii, shadows) as CSS variables. */
+@import "@berit/ds/tokens.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

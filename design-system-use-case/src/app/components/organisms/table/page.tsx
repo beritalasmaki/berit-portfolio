@@ -1,11 +1,11 @@
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import type { Metadata } from "next";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
-import { DataTable } from "@/components/table/DataTable";
-import { Input } from "@/components/forms/Input";
-import { Select } from "@/components/forms/Select";
+import { DataTable } from "@berit/ds";
+import { Input } from "@berit/ds";
+import { Select } from "@berit/ds";
 import { Variation } from "@/components/documentation/Variation";
-import { Table, TableBody, TableCell, TableColumnHeader, TableHead, TableRow } from "@/components/table/Table";
+import { Table, TableBody, TableCell, TableColumnHeader, TableHead, TableRow } from "@berit/ds";
 
 export const metadata: Metadata = { title: "Table" };
 

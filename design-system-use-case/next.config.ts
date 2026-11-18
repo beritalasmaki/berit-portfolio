@@ -13,6 +13,7 @@ const moved: Record<string, string> = {
 };
 
 const nextConfig: NextConfig = {
+  transpilePackages: ["@berit/ds"],
   async redirects() {
     return Object.entries(moved).map(([from, to]) => ({ source: `/components/${from}`, destination: `/components/${to}`, permanent: true }));
   },

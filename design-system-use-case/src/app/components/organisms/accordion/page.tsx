@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Accordion } from "@/components/accordion/Accordion";
+import { Accordion } from "@berit/ds";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
 

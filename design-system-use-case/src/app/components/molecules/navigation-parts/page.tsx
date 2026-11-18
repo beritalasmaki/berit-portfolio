@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
 import { Variation } from "@/components/documentation/Variation";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
-import { NavigationLink } from "@/components/navigation/NavigationLink";
-import { Tabs } from "@/components/navigation/Tabs";
+import { Breadcrumb } from "@berit/ds/next";
+import { NavigationLink } from "@berit/ds/next";
+import { Tabs } from "@berit/ds";
 
 export const metadata: Metadata = { title: "Links, tabs and breadcrumbs" };
 

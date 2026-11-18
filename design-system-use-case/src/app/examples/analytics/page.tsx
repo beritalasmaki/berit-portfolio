@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/buttons/Button";
-import { Card, CardBody } from "@/components/cards/Card";
+import { Button } from "@berit/ds";
+import { Card, CardBody } from "@berit/ds";
 import { DeviceMockup } from "@/components/examples/DeviceMockup";
 import { AppShell } from "@/components/examples/AppShell";
 import { LineChart } from "@/components/examples/LineChart";
 import { MetricCard } from "@/components/examples/MetricCard";
-import { Select } from "@/components/forms/Select";
-import { Icon } from "@/components/icons/Icon";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
+import { Select } from "@berit/ds";
+import { Icon } from "@berit/ds";
+import { Breadcrumb } from "@berit/ds/next";
 import { DocsShell } from "@/components/navigation/DocsShell";
-import { Tabs } from "@/components/navigation/Tabs";
-import { NotificationPanel } from "@/components/notifications/NotificationPanel";
-import { DataTable } from "@/components/table/DataTable";
+import { Tabs } from "@berit/ds";
+import { NotificationPanel } from "@berit/ds";
+import { DataTable } from "@berit/ds";
 
 export const metadata: Metadata = { title: "Analytics" };
 

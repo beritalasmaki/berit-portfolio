@@ -5,10 +5,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // This project lives in a subdirectory of a larger personal repo that
-  // has its own root package-lock.json (an unrelated sibling project) —
-  // pin the workspace root so Next.js doesn't try to infer it.
-  outputFileTracingRoot: __dirname,
+  // This project is a workspace of the repo root, next to the design system
+  // package (packages/ds) it imports. Trace files from the repo root so that
+  // package is included in the build output.
+  outputFileTracingRoot: path.join(__dirname, ".."),
+  transpilePackages: ["@berit/ds"],
   eslint: {
     // Linting is run separately via `npm run lint`.
     ignoreDuringBuilds: false,

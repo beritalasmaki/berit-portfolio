@@ -1,3 +1,5 @@
+> The system components (buttons, cards, forms, icons, navigation, notifications, table, tags, accordion) now live in the shared package `packages/ds` (`@berit/ds`) so the portfolio can use them too. This folder keeps the documentation-only components. Where the text below says a system component is in this folder, look in `packages/ds/src`.
+
 # Components
 
 This folder holds the React components used across the design system.

@@ -1,5 +1,6 @@
 "use client";
 
+import { ButtonLink } from "@berit/ds";
 import Image from "next/image";
 import { useEffect, useId, useState, type ReactNode } from "react";
 import { site } from "@/data/site";
@@ -280,17 +281,17 @@ export default function AboutMe({ copy }: { copy: Dictionary["about"] }) {
             </p>
           ))}
         </div>
-        <a
+        <ButtonLink
           href={site.linkedinUrl}
           data-sound="social"
           target="_blank"
           rel="noreferrer"
-          className="glass-button-ink group inline-flex items-center gap-2 text-white text-nav font-semibold h-11 px-6 rounded-pill self-start whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
+          className="self-start"
+          leadingIcon={<LinkedInIcon />}
+          trailingIcon={<ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />}
         >
-          <LinkedInIcon />
           {copy.linkedin}
-          <ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
-        </a>
+        </ButtonLink>
 
         {/* Closes out the bio column: the paragraphs above are the
             professional story, this is the bit of personality at the end of

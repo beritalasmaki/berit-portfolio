@@ -4,7 +4,7 @@ import type { Config } from "tailwindcss";
 // for this site. Do not introduce new colors/sizes/radii without adding
 // them there first.
 const config: Config = {
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}", "../packages/ds/src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {

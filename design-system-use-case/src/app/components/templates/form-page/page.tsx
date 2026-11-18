@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
 import { TemplateRegion } from "@/components/documentation/TemplateRegion";
-import { FormActions } from "@/components/forms/FormActions";
-import { FormProgress } from "@/components/forms/FormProgress";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
-import { NavigationLink } from "@/components/navigation/NavigationLink";
+import { FormActions } from "@berit/ds";
+import { FormProgress } from "@berit/ds";
+import { Breadcrumb } from "@berit/ds/next";
+import { NavigationLink } from "@berit/ds/next";
 
 export const metadata: Metadata = { title: "Form page template" };
 

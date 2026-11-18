@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
-import { IconButton } from "@/components/buttons/IconButton";
-import { Input } from "@/components/forms/Input";
-import { Icon, type IconName } from "@/components/icons/Icon";
+import { IconButton } from "@berit/ds";
+import { Input } from "@berit/ds";
+import { Icon, type IconName } from "@berit/ds";
 import { BrandMark } from "@/components/navigation/BrandMark";
-import { NavigationLink } from "@/components/navigation/NavigationLink";
+import { NavigationLink } from "@berit/ds/next";
 
 const navItems: { label: string; icon: IconName; id: string; disabled?: boolean }[] = [
   { label: "Overview", icon: "bar_chart", id: "overview" },

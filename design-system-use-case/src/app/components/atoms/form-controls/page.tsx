@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Checkbox } from "@/components/forms/Checkbox";
+import { Checkbox } from "@berit/ds";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
-import { Field } from "@/components/forms/Field";
-import { Icon } from "@/components/icons/Icon";
-import { Input } from "@/components/forms/Input";
-import { Radio } from "@/components/forms/Radio";
-import { Select } from "@/components/forms/Select";
+import { Field } from "@berit/ds";
+import { Icon } from "@berit/ds";
+import { Input } from "@berit/ds";
+import { Radio } from "@berit/ds";
+import { Select } from "@berit/ds";
 import { Variation } from "@/components/documentation/Variation";
-import type { FormMode } from "@/components/forms/controlStyles";
+import type { FormMode } from "@berit/ds";
 
 export const metadata: Metadata = { title: "Form controls" };
 

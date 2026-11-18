@@ -1,6 +1,6 @@
-import { Card, CardBody, CardFooter, CardHeader } from "@/components/cards/Card";
+import { Card, CardBody, CardFooter, CardHeader } from "@berit/ds";
 import type { Metadata } from "next";
-import { CardImage } from "@/components/cards/CardImage";
+import { CardImage } from "@berit/ds/next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
 import { Variation } from "@/components/documentation/Variation";

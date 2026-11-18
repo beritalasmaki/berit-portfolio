@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
 import { Variation } from "@/components/documentation/Variation";
-import { FormActions } from "@/components/forms/FormActions";
-import { FormProgress } from "@/components/forms/FormProgress";
+import { FormActions } from "@berit/ds";
+import { FormProgress } from "@berit/ds";
 
 export const metadata: Metadata = { title: "Form progress and actions" };
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/buttons/Button";
-import { NotificationPanel, type NotificationStatus } from "@/components/notifications/NotificationPanel";
-import { Toast, type ToastStatus } from "@/components/notifications/Toast";
+import { Button } from "@berit/ds";
+import { NotificationPanel, type NotificationStatus } from "@berit/ds";
+import { Toast, type ToastStatus } from "@berit/ds";
 
 const panels: { status: NotificationStatus; title: string; text: string }[] = [
   { status: "info", title: "Applications close on Friday", text: "You can save a draft and come back later." },
