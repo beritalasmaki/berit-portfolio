@@ -338,6 +338,42 @@ export const en = {
     },
   },
 
+  aiProcess: {
+    kicker: "Starting point · First version",
+    heading: "How my process works with AI",
+    intro:
+      "I use AI to draft and to check, never to decide. The project's context is written down before design work starts, so Claude works from facts and not from guesses, and I review everything it drafts.",
+    steps: [
+      {
+        title: "Check the rules first",
+        body: "This is my starting point for new client projects. I use AI there only when the client allows it, and I check that before the work starts.",
+      },
+      {
+        title: "Write the context down",
+        body: "Who the users are, who decides, and what the product must never do. Claude reads this before it helps.",
+      },
+      {
+        title: "Claude drafts, I decide",
+        body: "It drafts flows, maps and checks from my notes. Anything it cannot back up is marked as a gap, not guessed.",
+      },
+      {
+        title: "Check before sharing",
+        body: "Accessibility is checked at design stage, and a script calculates the contrast. Claude never calls a design accessible or tested.",
+      },
+      {
+        title: "Real people test",
+        body: "Users, disabled users, security and legal reviewers do what AI cannot. Every decision is logged with who decided and why.",
+      },
+    ],
+    imageSrc: "/ai-process/workflow-en.png",
+    imageAlt:
+      "The six stages of the workflow, from framing the problem to recording decisions, with a step where real people test and a box for the decision log and guardrails that apply throughout.",
+    status: "This is a first version. I have not used it on a real project yet.",
+    repoLabel: "View the template on GitHub",
+    guideLabel: "Read how it works",
+    opensNewTab: " (opens in a new tab)",
+  },
+
   contact: {
     headingLine1: "What could we",
     headingLine2Before: "make ",
