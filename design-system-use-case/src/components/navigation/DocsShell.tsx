@@ -1,10 +1,11 @@
 "use client";
 
-import { NavigationLink } from "@/components/navigation/NavigationLink";
 import { usePathname } from "next/navigation";
 import { useRef, useState, type ReactNode } from "react";
 import { PageNav, type PageNavGroup } from "@/components/navigation/PageNav";
-import { SiteHeader } from "@/components/navigation/SiteHeader";
+import { SideNavigation, type NavigationGroup } from "@/components/navigation/SideNavigation";
+import { SiteBrand, SiteHeader, SiteHeaderAction } from "@/components/navigation/SiteHeader";
+import { TopNavigation } from "@/components/navigation/TopNavigation";
 import { siteSections } from "@/components/navigation/siteMap";
 
 type DocsShellProps = {
@@ -28,28 +29,19 @@ export function DocsShell({ children, topLink = { href: "/", label: "Back to lan
   const menuOpen = menuPath === pathname;
   const menuButton = useRef<HTMLButtonElement>(null);
 
-  const pageLinks = (
-    <nav aria-label={`${section.label} pages`}>
-      <p className="eyebrow mb-4">{section.label}</p>
-      {section.groups.map((group, index) => (
-        <div key={group.heading ?? index} className={group.heading ? "mt-6" : ""}>
-          {group.heading ? <p className="eyebrow mb-1 px-3">{group.heading}</p> : null}
-          <ul className="m-0 list-none space-y-1 p-0">
-            {group.links.map((link) => <li key={link.href}><NavigationLink href={link.href} aria-current={pathname === link.href ? "page" : undefined}>{link.label}</NavigationLink></li>)}
-          </ul>
-        </div>
-      ))}
-    </nav>
-  );
+  const sectionItems = siteSections.map((item) => ({ href: item.href, label: item.label, current: item.id === section.id }));
+  const pageGroups: NavigationGroup[] = section.groups.map((group) => ({ heading: group.heading, items: group.links.map((link) => ({ href: link.href, label: link.label, current: pathname === link.href })) }));
+  const actionIcon = topLink.label === "Back to landing page" ? "arrow_back" : "arrow_forward";
+  const pageLinks = <SideNavigation heading={section.label} label={`${section.label} pages`} groups={pageGroups} />;
 
   return (
     <div className="min-h-screen bg-[var(--color-surface-canvas)]">
-      <SiteHeader actionHref={topLink.href} actionLabel={topLink.label} actionIcon={topLink.label === "Back to landing page" ? "arrow_back" : "arrow_forward"} />
+      <div className="hidden px-6 pt-4 lg:block lg:px-10">
+        <TopNavigation className="mx-auto max-w-[var(--width-page)]" label="Main sections" brand={<SiteBrand />} items={sectionItems} action={<SiteHeaderAction href={topLink.href} label={topLink.label} icon={actionIcon} />} />
+      </div>
+      <div className="lg:hidden"><SiteHeader actionHref={topLink.href} actionLabel={topLink.label} actionIcon={actionIcon} /></div>
 
-      <div className="border-b border-[var(--color-border-default)] px-6 lg:px-10">
-        <nav aria-label="Main sections" className="mx-auto hidden max-w-[var(--width-page)] gap-2 py-2 lg:flex">
-          {siteSections.map((item) => <NavigationLink key={item.id} href={item.href} aria-current={item.id === section.id ? "true" : undefined}>{item.label}</NavigationLink>)}
-        </nav>
+      <div className="border-b border-[var(--color-border-default)] px-6 lg:hidden">
         <div className="flex items-center justify-between py-2 lg:hidden">
           <p className="m-0 text-sm font-semibold">{section.label}</p>
           <button
@@ -66,14 +58,14 @@ export function DocsShell({ children, topLink = { href: "/", label: "Back to lan
         </div>
         {menuOpen ? (
           <div id="docs-menu" className="max-h-[70vh] space-y-6 overflow-y-auto pb-6 lg:hidden">
-            <nav aria-label="Main sections (menu)"><p className="eyebrow mb-2">Sections</p><ul className="m-0 list-none space-y-1 p-0">{siteSections.map((item) => <li key={item.id}><NavigationLink href={item.href} aria-current={item.id === section.id ? "true" : undefined}>{item.label}</NavigationLink></li>)}</ul></nav>
+            <SideNavigation heading="Sections" label="Main sections (menu)" items={sectionItems} />
             {pageLinks}
           </div>
         ) : null}
       </div>
 
-      <div className="mx-auto grid max-w-[var(--width-page)] lg:grid-cols-[240px_1fr]">
-        <aside className="hidden px-6 py-6 lg:block lg:min-h-[calc(100vh-130px)] lg:border-r lg:border-[var(--color-border-default)] lg:px-8 lg:py-10">{pageLinks}</aside>
+      <div className="mx-auto grid max-w-[var(--width-page)] lg:grid-cols-[304px_1fr]">
+        <aside className="hidden px-6 py-6 lg:block lg:min-h-[calc(100vh-130px)] lg:border-r lg:border-[var(--color-border-default)] lg:px-4 lg:py-10">{pageLinks}</aside>
         <main id="main-content" className="min-w-0 px-6 py-10 lg:px-12 lg:py-14">{pageNav ? <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_14rem] xl:gap-12"><div className="min-w-0">{children}</div><PageNav groups={pageNav} /></div> : children}</main>
       </div>
     </div>

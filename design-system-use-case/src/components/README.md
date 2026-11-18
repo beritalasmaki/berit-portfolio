@@ -48,4 +48,4 @@ component. The pages that use it live in `src/app/examples`.
 
 ## Navigation
 
-- `navigation/TopNavigation.tsx` and `navigation/SideNavigation.tsx` are the two navigation organisms. Both take an `items` list (`NavigationItem`: `href`, `label`, `current`, `disabled`) and render `NavigationLink`. `TopNavigation` also takes a `brand` and one optional `action`; `SideNavigation` takes an optional `heading`.
+- `navigation/TopNavigation.tsx` and `navigation/SideNavigation.tsx` are the two navigation organisms. Both take an `items` list (`NavigationItem`: `href`, `label`, `current`, `disabled`) and render `NavigationLink`. `TopNavigation` also takes a `brand` and one optional `action`; `SideNavigation` takes an optional `heading`, and `groups` (headed lists) instead of `items` for a longer list. `DocsShell` is built from both.
