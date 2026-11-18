@@ -121,8 +121,8 @@ export const environmentalDataToolFi: CaseStudy = {
   ],
 
   whatIWouldDoDifferently: [
-    "Jos voisin palata ajassa taaksepäin, ajaisin suunnittelujärjestelmän aloittamista aiemmin. Organisaatiolla oli suunnitelmia aloittaa sellainen jossain vaiheessa, mutta kun hyvin pieni kehitystiimi ylläpiti jo yli 200:aa eri järjestelmää, priorisointi oli vaikeaa. Lisäksi sisäisesti oli vielä paljon epäselvää, esimerkiksi se, millä tasolla suunnittelujärjestelmä kannattaisi rakentaa organisaatiolle, jolla on niin monta järjestelmää ja niin vähän resursseja.",
-    "Tämä on hyvä muistutus siitä, ettei suunnittelujärjestelmä ole pelkkä suunnittelupäätös. Organisaatiolla pitää olla myös kapasiteettia ja selkeyttä sen tukemiseen. Ajaisin sitä edelleen aiemmin ensi kerralla, mutta lähtisin liikkeelle realistisemmin: pienellä ja riittävän hyödyllisellä kokonaisuudella, joka osoittaa arvonsa nopeasti, sen sijaan että odottaisin ihanteellisia olosuhteita, joita ei ehkä koskaan tule.",
+    "Jos voisin palata ajassa taaksepäin, ajaisin Design Systemin aloittamista aiemmin. Organisaatiolla oli suunnitelmia aloittaa sellainen jossain vaiheessa, mutta kun hyvin pieni kehitystiimi ylläpiti jo yli 200:aa eri järjestelmää, priorisointi oli vaikeaa. Lisäksi sisäisesti oli vielä paljon epäselvää, esimerkiksi se, millä tasolla Design System kannattaisi rakentaa organisaatiolle, jolla on niin monta järjestelmää ja niin vähän resursseja.",
+    "Tämä on hyvä muistutus siitä, ettei Design System ole pelkkä suunnittelupäätös. Organisaatiolla pitää olla myös kapasiteettia ja selkeyttä sen tukemiseen. Ajaisin sitä edelleen aiemmin ensi kerralla, mutta lähtisin liikkeelle realistisemmin: pienellä ja riittävän hyödyllisellä kokonaisuudella, joka osoittaa arvonsa nopeasti, sen sijaan että odottaisin ihanteellisia olosuhteita, joita ei ehkä koskaan tule.",
   ],
 
   methods: ["Kevyt kartoitus", "Yhteissuunnittelun työpajat", "Käytettävyystestaus", "Lean-suunnittelu"],

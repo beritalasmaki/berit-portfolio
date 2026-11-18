@@ -16,7 +16,7 @@ export const aiPilotToEverydayPracticeFi: BlogPost = {
   body: [
     {
       type: "paragraph",
-      text: "Yliopistoprojektissa, jossa olin mukana, jotkut kehittäjät rakensivat omia käyttöliittymäkomponenttejaan sen sijaan, että olisivat käyttäneet suunnittelujärjestelmän komponentteja. Heillä oli tiukka määräaika, ja uuden tekeminen tuntui nopeammalta kuin oikean komponentin etsiminen. Sen sijaan, että olisin käsitellyt asiaa sääntörikkomuksena, yritin tehdä olemassa olevista komponenteista helpommin löydettäviä ja otin suunnittelujärjestelmätiimin mukaan, kun uusi komponentti todella tarvittiin.",
+      text: "Yliopistoprojektissa, jossa olin mukana, jotkut kehittäjät rakensivat omia käyttöliittymäkomponenttejaan sen sijaan, että olisivat käyttäneet Design Systemin komponentteja. Heillä oli tiukka määräaika, ja uuden tekeminen tuntui nopeammalta kuin oikean komponentin etsiminen. Sen sijaan, että olisin käsitellyt asiaa sääntörikkomuksena, yritin tehdä olemassa olevista komponenteista helpommin löydettäviä ja otin Design System -tiimin mukaan, kun uusi komponentti todella tarvittiin.",
     },
     {
       type: "paragraph",
