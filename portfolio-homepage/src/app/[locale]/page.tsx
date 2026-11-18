@@ -65,7 +65,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <CaseStudyCards locale={locale} copy={t.caseStudies} />
         </Reveal>
         <Reveal>
-          <AboutSection copy={{ about: t.about, whatIDo: t.whatIDo, process: t.process, aiProcess: t.aiProcess }} />
+          <AboutSection locale={locale} copy={{ about: t.about, whatIDo: t.whatIDo, process: t.process, aiProcess: t.aiProcess }} />
         </Reveal>
         <Reveal>
           <ContactSection copy={t.contact} />

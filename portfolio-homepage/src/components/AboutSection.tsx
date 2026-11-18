@@ -1,10 +1,17 @@
+import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import AboutMe from "./AboutMe";
 import AiProcess from "./AiProcess";
 import ProcessTimeline from "./ProcessTimeline";
 import WhatIDo from "./WhatIDo";
 
-export default function AboutSection({ copy }: { copy: Pick<Dictionary, "about" | "whatIDo" | "process" | "aiProcess"> }) {
+export default function AboutSection({
+  locale,
+  copy,
+}: {
+  locale: Locale;
+  copy: Pick<Dictionary, "about" | "whatIDo" | "process" | "aiProcess">;
+}) {
   return (
     <section id="about" aria-labelledby="about-heading" className="mt-rhythm">
       <div className="flex items-end justify-between gap-grid-gap-lg flex-wrap">
@@ -26,7 +33,7 @@ export default function AboutSection({ copy }: { copy: Pick<Dictionary, "about" 
 
       {/* How I work with AI sits under the timeline, inside My process. */}
       <ProcessTimeline copy={copy.process}>
-        <AiProcess copy={copy.aiProcess} />
+        <AiProcess locale={locale} copy={copy.aiProcess} />
       </ProcessTimeline>
 
       <div className="flex items-center gap-4 glass rounded-card p-card-pad mt-grid-gap">

@@ -3,6 +3,8 @@ import { aiAdoptionStrategy } from "./ai-adoption-starts-with-strategy";
 import { aiPilotToEverydayPractice } from "./from-ai-pilot-to-everyday-practice";
 import { designEngineering } from "./design-engineering";
 import { designEngineeringFi } from "./fi/design-engineering";
+import { howIWorkWithAi } from "./how-i-work-with-ai";
+import { howIWorkWithAiFi } from "./fi/how-i-work-with-ai";
 import { howToStartDesignSystemWork } from "./how-to-start-design-system-work";
 import { howToStartDesignSystemWorkFi } from "./fi/how-to-start-design-system-work";
 import { aiAdoptionStrategyFi } from "./fi/ai-adoption-starts-with-strategy";
@@ -20,8 +22,8 @@ const sortNewestFirst = (registry: BlogPost[]): BlogPost[] =>
 // `translationOf`. To publish a post in one language only, add it to just
 // that language's list.
 const registries: Record<Locale, BlogPost[]> = {
-  en: sortNewestFirst([aiAdoptionStrategy, aiPilotToEverydayPractice, designEngineering, howToStartDesignSystemWork]),
-  fi: sortNewestFirst([aiAdoptionStrategyFi, aiPilotToEverydayPracticeFi, designEngineeringFi, howToStartDesignSystemWorkFi]),
+  en: sortNewestFirst([aiAdoptionStrategy, aiPilotToEverydayPractice, designEngineering, howToStartDesignSystemWork, howIWorkWithAi]),
+  fi: sortNewestFirst([aiAdoptionStrategyFi, aiPilotToEverydayPracticeFi, designEngineeringFi, howToStartDesignSystemWorkFi, howIWorkWithAiFi]),
 };
 
 export function getPosts(locale: Locale): BlogPost[] {

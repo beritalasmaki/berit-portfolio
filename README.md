@@ -16,7 +16,7 @@ As a designer, most of my work lives in Figma, workshops, and stakeholder conver
 | `Agent run review dashboard` | A single production-quality screen for reviewing what an AI agent changed, before a human releases it. | React 19 + TypeScript, Vite, Tailwind CSS, shadcn/ui, lucide-react (icons) | [https://demo-t-example.vercel.app/](https://demo-t-example.vercel.app/) | https://github.com/beritalasmaki/demo-t-example |
 | [`portfolio-homepage`](./portfolio-homepage) | My personal UX/product design portfolio site | Next.js, TypeScript, Tailwind CSS | https://portfolio-homepage-navy.vercel.app/ | This repo |
 | `Design System Case study` | Simple Design System structure | Typescript, CSS | https://design-system-use-case.vercel.app/ | This repo |
-| [`project-set-up-template`](https://github.com/beritalasmaki/project-set-up-template) | A set-up for design projects where AI is used with clear roles, written context and checks. First version, not yet used on a real project. | Markdown, Python (self-checks), GitHub Actions | Shown on the portfolio homepage under "My process" | https://github.com/beritalasmaki/project-set-up-template |
+| [`project-set-up-template`](https://github.com/beritalasmaki/project-set-up-template) | A set-up for design projects where AI is used with clear roles, written context and checks. First version, not yet used on a real project. | Markdown, Python (self-checks), GitHub Actions | Explained in a blog post, and linked from "My process" on the portfolio homepage | https://github.com/beritalasmaki/project-set-up-template |
 
 *(This list is a work in progress, updated as new experiments get added.)*
 

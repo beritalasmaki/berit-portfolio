@@ -342,37 +342,8 @@ export const fi: Dictionary = {
   aiProcess: {
     kicker: "Lähtökohta · Ensimmäinen versio",
     heading: "Näin prosessini kulkee tekoälyn kanssa",
-    intro:
-      "Käytän tekoälyä luonnosteluun ja tarkistamiseen, en päättämiseen. Projektin konteksti kirjoitetaan ylös ennen suunnittelutyötä, jotta Claude työskentelee faktojen eikä arvausten pohjalta, ja käyn läpi kaiken, mitä se luonnostelee.",
-    steps: [
-      {
-        title: "Tarkistan säännöt ensin",
-        body: "Tämä on lähtökohtani uusiin asiakasprojekteihin. Käytän siinä tekoälyä vain, jos asiakas sallii sen, ja tarkistan sen ennen kuin työ alkaa.",
-      },
-      {
-        title: "Kirjoitan kontekstin ylös",
-        body: "Keitä käyttäjät ovat, kuka päättää ja mitä tuote ei saa koskaan tehdä. Claude lukee tämän ennen kuin se auttaa.",
-      },
-      {
-        title: "Claude luonnostelee, minä päätän",
-        body: "Se luonnostelee kulkuja, karttoja ja tarkistuksia muistiinpanoistani. Mitä se ei pysty perustelemaan, merkitään aukoksi eikä arvata.",
-      },
-      {
-        title: "Tarkistan ennen jakamista",
-        body: "Saavutettavuus tarkistetaan suunnitteluvaiheessa, ja kontrastin laskee skripti. Claude ei koskaan väitä suunnitelmaa saavutettavaksi tai testatuksi.",
-      },
-      {
-        title: "Oikeat ihmiset testaavat",
-        body: "Käyttäjät, vammaiset käyttäjät sekä tietoturva- ja juristikatselmoijat tekevät sen, mitä tekoäly ei voi. Jokainen päätös kirjataan sen kanssa, kuka päätti ja miksi.",
-      },
-    ],
-    imageSrc: "/ai-process/workflow-fi.png",
-    imageAlt:
-      "Työnkulun kuusi vaihetta ongelman muotoilusta päätösten kirjaamiseen. Mukana on vaihe, jossa oikeat ihmiset testaavat, sekä laatikko päätöslokille ja suojakaiteille, jotka ovat voimassa koko ajan.",
-    status: "Tämä on ensimmäinen versio. En ole vielä käyttänyt sitä oikeassa projektissa.",
-    repoLabel: "Katso pohja GitHubissa",
-    guideLabel: "Lue ohje (englanniksi)",
-    opensNewTab: " (avautuu uuteen välilehteen)",
+    body: "Käytän tekoälyä luonnosteluun ja tarkistamiseen, en päättämiseen. Projektin konteksti kirjoitetaan ylös ensin, jotta Claude työskentelee faktojen eikä arvausten pohjalta, ja oikeat ihmiset testaavat. Asiakasprojekteissa käytän tätä vain, jos asiakas sallii tekoälytyökalut.",
+    linkLabel: "Lue, miten työskentelen tekoälyn kanssa →",
   },
 
   contact: {
