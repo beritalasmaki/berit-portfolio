@@ -1,6 +1,9 @@
 import Link from "next/link";
 import type { ComponentProps } from "react";
 
+/** One destination in a navigation. `current` marks the page the person is on. */
+export type NavigationItem = { href: string; label: string; current?: boolean; disabled?: boolean };
+
 type NavigationLinkProps = ComponentProps<typeof Link> & {
   /** A link that cannot be used right now. It is shown as text, not as a link, and is not reachable with Tab. */
   disabled?: boolean;

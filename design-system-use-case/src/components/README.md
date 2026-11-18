@@ -45,3 +45,7 @@ component. The pages that use it live in `src/app/examples`.
 - `buttons/IconButton.tsx` is an icon-only 44px button and requires a `label`. `Button` takes `leadingIcon` and `trailingIcon`.
 - `forms` gained an error mode, `RadioGroup`, `Calendar`, `DatePicker` (with `dates.ts` for DD/MM/YYYY helpers), and the form patterns `FormIntro`, `FormSection`, `FormProgress` and `FormActions`. `Field` can mark a control required or optional, and `Input` takes icons.
 - `notifications` holds `NotificationPanel` (info, success, warning, error) and `Toast` (success, error, warning).
+
+## Navigation
+
+- `navigation/TopNavigation.tsx` and `navigation/SideNavigation.tsx` are the two navigation organisms. Both take an `items` list (`NavigationItem`: `href`, `label`, `current`, `disabled`) and render `NavigationLink`. `TopNavigation` also takes a `brand` and one optional `action`; `SideNavigation` takes an optional `heading`.
