@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
-import { Field } from "@/components/forms/Field";
-import { Input } from "@/components/forms/Input";
-import { Radio } from "@/components/forms/Radio";
-import { RadioGroup } from "@/components/forms/RadioGroup";
-import { Select } from "@/components/forms/Select";
+import { Field } from "@berit/ds";
+import { Input } from "@berit/ds";
+import { Radio } from "@berit/ds";
+import { RadioGroup } from "@berit/ds";
+import { Select } from "@berit/ds";
 import { Variation } from "@/components/documentation/Variation";
 
 export const metadata: Metadata = { title: "Form fields" };
@@ -68,7 +68,7 @@ export default function FormFieldsPage() {
               </Variation>
             </div>
             <Variation label="Grouped choices" className="w-full">
-              <fieldset className="m-0 w-full rounded-lg border border-[var(--preview-border,var(--color-border-default))] p-4">
+              <fieldset className="m-0 w-full rounded-[var(--radius-sm)] border border-[var(--preview-border,var(--color-border-default))] p-4">
                 <legend className="px-2 text-sm font-semibold text-[var(--preview-content,var(--color-content-primary))]">Email frequency</legend>
                 <div className="mt-2 grid">
                   <Radio name="frequency" value="daily" label="Daily summary" defaultChecked />

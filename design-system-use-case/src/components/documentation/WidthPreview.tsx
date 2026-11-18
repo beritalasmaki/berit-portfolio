@@ -13,7 +13,7 @@ export function WidthPreview() {
           return (
             <li key={token.name}>
               <div className="mb-1 flex flex-wrap items-baseline gap-x-4 text-sm"><span className="token-name">{token.name}</span><span className="font-semibold">{token.value}</span></div>
-              <div aria-hidden="true" className="h-8 rounded-lg border border-[var(--color-action-accent-dark)] bg-[var(--color-status-warning-subtle)]" style={{ width: `${(px / page) * 100}%` }} />
+              <div aria-hidden="true" className="h-8 rounded-[var(--radius-sm)] border border-[var(--color-action-accent-dark)] bg-[var(--color-status-warning-subtle)]" style={{ width: `${(px / page) * 100}%` }} />
             </li>
           );
         })}

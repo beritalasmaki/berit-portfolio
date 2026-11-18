@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Icon } from "@/components/icons/Icon";
+import { Icon } from "@berit/ds";
 
 const figmaUrl = "https://www.figma.com/design/WlwWrwDWzt5shl0sYocASJ/Design-System-by-Berit";
 

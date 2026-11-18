@@ -1,0 +1,14 @@
+import type { Metadata } from "next";
+import { Accordion } from "@berit/ds";
+import { CodeTabs } from "@/components/documentation/CodeTabs";
+import { ComponentPage } from "@/components/documentation/ComponentPage";
+
+export const metadata: Metadata = { title: "Accordion" };
+
+const cssCode = `.accordion {\n  padding: 24px;\n  border: 1px solid var(--color-border-default);\n  border-radius: 20px;\n  background: var(--color-surface-glass);\n  backdrop-filter: var(--blur-glass);\n}\n.accordion-panel {\n  margin-top: 16px;\n  padding-top: 16px;\n  border-top: 1px solid var(--color-border-subtle);\n}`;
+
+export default function AccordionPage() {
+  return <ComponentPage name="Accordion" eyebrow="Components / organisms" description="An accordion is a card-shaped section whose content can be folded away, so a long page stays easy to scan." usage={<p className="m-0">Use an accordion for supporting detail that not everyone needs, such as background or reflections on a long page. Keep the main message visible and do not hide anything people must read.</p>} contract={["The heading is the button that opens and closes the section. It has no box of its own. The words Show more and Show less beside a chevron tell people it can be pressed, and the chevron turns upside down when the section is open. A divider appears between the heading and the content once it is open.", "The optional eyebrow above the heading should say something the heading does not, such as In hindsight above What I would do differently. It should never repeat the heading. The heading level is set with a prop so that the page outline stays in order."]} accessibility={["The heading holds a real button with aria-expanded, and the button points at the content it controls with aria-controls. The button is at least 44px tall and works with Tab, Enter and Space.", "While the section is closed its content is hidden from keyboard and screen reader users, so Tab never lands on something that cannot be seen. The chevron is decoration, and the Show more and Show less words carry the meaning."]} examples={[
+    { title: "Closed and open", description: "An accordion starts closed unless it is told to open.", content: <CodeTabs view={<div className="flex flex-col gap-4"><Accordion eyebrow="Background" title="How it started"><p className="body-copy m-0">The team had three separate tools and no shared language. We began by listing what was already in use.</p></Accordion><Accordion eyebrow="In hindsight" title="What I would do differently" defaultOpen><p className="body-copy m-0">I would involve developers earlier and test the first version with real data.</p></Accordion></div>} cssCode={cssCode} javascriptCode={`<Accordion eyebrow="Background" title="How it started">\n  <p>The team had three separate tools.</p>\n</Accordion>\n<Accordion title="What I would do differently" defaultOpen>\n  <p>I would involve developers earlier.</p>\n</Accordion>`} /> },
+  ]} />;
+}

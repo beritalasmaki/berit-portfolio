@@ -1,9 +1,9 @@
+import { Tag } from "@berit/ds";
+
 /** A post's topic tag, in the same glass pill as the case studies' skill tags. */
 export default function TagPill({ tag }: { tag: string }) {
   return (
-    <span className="inline-block font-mono-label text-mono-label-em uppercase text-ink glass-pill rounded-pill py-2 px-4 whitespace-nowrap">
-      {tag}
-    </span>
+    <Tag>{tag}</Tag>
   );
 }
 

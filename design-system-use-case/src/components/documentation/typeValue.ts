@@ -28,7 +28,7 @@ export function explainTypeValue(value: string): string[] {
   return lines;
 }
 
-const colourName = (r: number, g: number, b: number) => (r === 31 && g === 35 && b === 33 ? "dark charcoal" : r === 199 && g === 209 && b === 200 ? "light sage" : `rgb(${r}, ${g}, ${b})`);
+const colourName = (r: number, g: number, b: number) => (r === 34 && g === 34 && b === 34 ? "ink" : r === 226 && g === 222 && b === 214 ? "light stone" : `rgb(${r}, ${g}, ${b})`);
 
 /** Turns a shadow token value into plain-language sentences, one per layer. */
 export function explainShadowValue(value: string): string[] {

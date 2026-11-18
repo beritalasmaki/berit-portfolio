@@ -1,5 +1,5 @@
-import { Card, CardBody } from "@/components/cards/Card";
-import { Icon } from "@/components/icons/Icon";
+import { Card, CardBody } from "@berit/ds";
+import { Icon } from "@berit/ds";
 
 type MetricCardProps = {
   label: string;

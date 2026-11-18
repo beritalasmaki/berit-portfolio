@@ -1,3 +1,4 @@
+import { ButtonLink } from "@berit/ds";
 import Image from "next/image";
 import { Fragment } from "react";
 import HeroChaos from "./HeroChaos";
@@ -81,20 +82,23 @@ export default function Hero({ copy }: { copy: Dictionary["hero"] }) {
                 globals.css (and disabled there under
                 prefers-reduced-motion). No scroll handler here — one
                 behaviour, defined once. */}
-            <a
+            <ButtonLink
               href="#contact"
-              className="glass-button-ink group inline-flex items-center gap-2 text-white text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap hover:text-white focus-visible:text-white focus-visible:outline-white"
+              data-sound="pop"
+              className="px-8 py-4"
+              trailingIcon={<ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />}
             >
               {copy.primaryCta}
-              <ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
-            </a>
-            <a
+            </ButtonLink>
+            <ButtonLink
+              variant="secondary"
               href="#case-studies"
-              className="glass-button group inline-flex items-center gap-2 text-ink text-nav font-semibold py-4 px-8 rounded-pill whitespace-nowrap hover:text-ink focus-visible:text-ink"
+              data-sound="pop"
+              className="group px-8 py-4"
+              trailingIcon={<ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />}
             >
               {copy.secondaryCta}
-              <ArrowRightIcon className="transition-transform duration-500 ease-accel-decel group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5" />
-            </a>
+            </ButtonLink>
           </div>
         </div>
 

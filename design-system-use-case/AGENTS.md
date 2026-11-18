@@ -34,18 +34,19 @@ silently.
 
 ## Structure
 
+- `../packages/ds/` — the design system itself, as the shared package `@berit/ds`: the components (`src/`) and the CSS variables components actually use (`src/tokens.css`). The portfolio uses it too, so a change here shows up in both sites. See its README.
 - `src/data/tokens.ts` — documented token definitions
-- `src/app/globals.css` — the CSS variables components actually use
-- `src/components/` — React components
+- `src/app/globals.css` — imports the tokens and holds the documentation site's own styles
+- `src/components/` — documentation-only components (page templates, previews, the docs shell)
 - `src/app/` — pages, one folder per route
 
 ### Where things go
 
-System components live in `src/components`, each in its own folder named
+System components live in `../packages/ds/src`, each in its own folder named
 after the component type, for example `buttons` or `cards`.
 
 Components that exist only to build the documentation site belong in
-`src/components/documentation`. Do not mix the two. They will be split
+`src/components/documentation` in this app, not in the package. Do not mix the two. They will be split
 into `ui/` and `docs/` once there are enough components to justify it,
 so keep the boundary clear in the meantime.
 
@@ -63,7 +64,7 @@ Tokens live in two places and they are maintained by hand:
 
 - `src/data/tokens.ts` documents the system and feeds the token tables
   on the documentation site
-- `src/app/globals.css` holds the CSS variables components actually use
+- `../packages/ds/src/tokens.css` holds the CSS variables components actually use
 
 These two can drift apart. When you change a value, change it in both.
 When you add a CSS variable, add the matching semantic token as well.

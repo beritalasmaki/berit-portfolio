@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
 import { TemplateRegion } from "@/components/documentation/TemplateRegion";
-import { FormActions } from "@/components/forms/FormActions";
-import { FormProgress } from "@/components/forms/FormProgress";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
-import { NavigationLink } from "@/components/navigation/NavigationLink";
+import { FormActions } from "@berit/ds";
+import { FormProgress } from "@berit/ds";
+import { Breadcrumb } from "@berit/ds/next";
+import { NavigationLink } from "@berit/ds/next";
 
 export const metadata: Metadata = { title: "Form page template" };
 
@@ -24,7 +24,7 @@ export default function FormPageTemplatePage() {
         title: "Layout",
         description: "Dashed boxes are content that is filled in per form. Navigation, breadcrumb, progress and buttons use the system's own components.",
         content: <CodeTabs
-          view={<div className="w-full overflow-hidden rounded-2xl border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))] text-[var(--preview-content,var(--color-content-primary))]">
+          view={<div className="w-full overflow-hidden rounded-[var(--radius-md)] border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))] text-[var(--preview-content,var(--color-content-primary))]">
             <header className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--preview-border,var(--color-border-default))] p-4">
               <Link href="#top" className="font-bold">DS by Berit</Link>
               <nav aria-label="Top navigation" className="flex flex-wrap gap-1"><NavigationLink href="#work">Work</NavigationLink><NavigationLink href="#applications" aria-current="page">Applications</NavigationLink><NavigationLink href="#help">Help</NavigationLink></nav>

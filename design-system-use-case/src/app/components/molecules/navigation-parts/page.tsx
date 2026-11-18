@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { CodeTabs } from "@/components/documentation/CodeTabs";
 import { ComponentPage } from "@/components/documentation/ComponentPage";
 import { Variation } from "@/components/documentation/Variation";
-import { Breadcrumb } from "@/components/navigation/Breadcrumb";
-import { NavigationLink } from "@/components/navigation/NavigationLink";
-import { Tabs } from "@/components/navigation/Tabs";
+import { Breadcrumb } from "@berit/ds/next";
+import { NavigationLink } from "@berit/ds/next";
+import { Tabs } from "@berit/ds";
 
 export const metadata: Metadata = { title: "Links, tabs and breadcrumbs" };
 
@@ -41,13 +41,13 @@ export default function NavigationPartsPage() {
     description="The small pieces of navigation: a link to a destination, tabs that switch views, and breadcrumbs that show where a page sits."
     usage={<p className="m-0">Use links for single destinations, breadcrumbs to show where a page sits in a hierarchy, and tabs to switch between peer views of one thing without leaving the page.</p>}
     contract={["The navigation link points to a destination and has three statuses: default, active for the current page, and disabled for a destination that is not available right now. Tabs switch between views of the same thing without leaving the page, and breadcrumbs show where the current page sits in the hierarchy and always end with the current page, which is not a link.", "Tabs move focus with the arrow keys, Home and End, and only one tab stays in the Tab order at a time. Together these three small parts are the building blocks of the larger navigation sections."]}
-    accessibility={["The active link is marked for assistive technology as the current page and has a filled background, so it never relies on colour alone. A disabled link is shown as plain text that is marked as unavailable, so it is skipped by the Tab key and announced as not available.", "Breadcrumbs are an ordered list inside their own navigation landmark, and the last item is marked as the current page. Tabs use the standard tablist, tab and tabpanel roles, so screen readers describe them correctly."]}
+    accessibility={["The active link is marked for assistive technology as the current page and is bold, orange-toned and sits on a frosted pill, so it never relies on colour alone. A disabled link is shown as plain text that is marked as unavailable, so it is skipped by the Tab key and announced as not available.", "Breadcrumbs are an ordered list inside their own navigation landmark, and the last item is marked as the current page. Tabs use the standard tablist, tab and tabpanel roles, so screen readers describe them correctly."]}
     examples={[
       {
         title: "Links",
         description: "A link has three statuses: default, active for the current page, and disabled for a destination that is not available right now.",
         content: <CodeTabs
-          view={<div className="grid max-w-sm gap-4 rounded-2xl border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))] p-4 text-[var(--preview-content,var(--color-content-primary))]"><Variation label="Active" className="w-full"><NavigationLink href="#overview" aria-current="page" className="w-full">Overview</NavigationLink></Variation><Variation label="Default" className="w-full"><NavigationLink href="#projects" className="w-full">Projects</NavigationLink></Variation><Variation label="Disabled" className="w-full"><NavigationLink href="#reports" disabled className="w-full">Reports</NavigationLink></Variation></div>}
+          view={<div className="grid max-w-sm gap-4 rounded-[var(--radius-md)] border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))] p-4 text-[var(--preview-content,var(--color-content-primary))]"><Variation label="Active" className="w-full"><NavigationLink href="#overview" aria-current="page" className="w-full">Overview</NavigationLink></Variation><Variation label="Default" className="w-full"><NavigationLink href="#projects" className="w-full">Projects</NavigationLink></Variation><Variation label="Disabled" className="w-full"><NavigationLink href="#reports" disabled className="w-full">Reports</NavigationLink></Variation></div>}
           cssCode={cssCode}
           javascriptCode={'<NavigationLink href="/overview" aria-current="page">Overview</NavigationLink>\n<NavigationLink href="/projects">Projects</NavigationLink>\n<NavigationLink href="/reports" disabled>Reports</NavigationLink>'}
         />,

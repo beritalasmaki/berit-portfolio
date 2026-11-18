@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { DatePicker } from "@/components/forms/DatePicker";
+import { DatePicker } from "@berit/ds";
 
 /** Documentation only: holds the typed value so the date picker can be tried. */
 export function DatePickerDemo({ defaultValue = "" }: { defaultValue?: string }) {

@@ -17,6 +17,7 @@ As a designer, most of my work lives in Figma, workshops, and stakeholder conver
 | [`portfolio-homepage`](./portfolio-homepage) | My personal UX/product design portfolio site | Next.js, TypeScript, Tailwind CSS | https://portfolio-homepage-navy.vercel.app/ | This repo |
 | `Design System Case study` | Simple Design System structure | Typescript, CSS | https://design-system-use-case.vercel.app/ | This repo |
 | [`project-set-up-template`](https://github.com/beritalasmaki/project-set-up-template) | A set-up for design projects where AI is used with clear roles, written context and checks. First version, not yet used on a real project. | Markdown, Python (self-checks), GitHub Actions | Explained in a blog post, and linked from "My process" on the portfolio homepage | https://github.com/beritalasmaki/project-set-up-template |
+| [`packages/ds`](./packages/ds) | The DS by Berit components and tokens, shared by the portfolio and the design system site | React, TypeScript, CSS variables | used by both sites | This repo |
 
 *(This list is a work in progress, updated as new experiments get added.)*
 

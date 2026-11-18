@@ -65,7 +65,7 @@ export default function PrinciplesPage() {
         <p className="body-copy mt-5 text-lg">These five principles explain how DS by Berit is designed and built. Each one says what it means for designers, what it means in the code, and where you can see it in this system.</p>
         <ol className="m-0 mt-12 list-none space-y-6 p-0">
           {principles.map((principle, index) => (
-            <li key={principle.title} id={`principle-${index + 1}`} className="scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 md:p-8">
+            <li key={principle.title} id={`principle-${index + 1}`} className="scroll-mt-24 rounded-[var(--radius-md)] border border-[var(--color-border-default)] bg-[var(--color-surface-subtle)] p-6 md:p-8">
               <p className="eyebrow mb-2">Principle 0{index + 1} · {principle.field}</p>
               <h2 className="m-0 text-3xl font-extrabold tracking-[-0.04em]">{principle.title}</h2>
               <p className="body-copy mt-3 text-lg">{principle.statement}</p>
@@ -77,7 +77,7 @@ export default function PrinciplesPage() {
             </li>
           ))}
         </ol>
-        <section id="inspiration" aria-labelledby="inspiration-heading" className="on-dark mt-12 scroll-mt-24 rounded-2xl bg-[var(--color-surface-inverse)] p-6 text-white md:p-8">
+        <section id="inspiration" aria-labelledby="inspiration-heading" className="on-dark mt-12 scroll-mt-24 rounded-[var(--radius-md)] bg-[var(--color-surface-inverse)] p-6 text-white md:p-8">
           <p className="eyebrow text-[var(--color-action-accent)]">Where these come from</p>
           <h2 id="inspiration-heading" className="mt-3 text-2xl font-bold">Systems I learn from or find inspiration in</h2>
           <ul className="mt-4 list-disc space-y-4 pl-5 text-white/80">

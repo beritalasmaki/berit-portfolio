@@ -9,7 +9,7 @@ const items: [string, string][] = [
 /** Documentation only: explains how to read the values in the type token list. */
 export function TypeValueKey() {
   return (
-    <section id="reading-values" aria-labelledby="reading-values-heading" className="mt-12 scroll-mt-24 rounded-2xl bg-[var(--color-surface-subtle)] p-6 md:p-8">
+    <section id="reading-values" aria-labelledby="reading-values-heading" className="mt-12 scroll-mt-24 rounded-[var(--radius-md)] bg-[var(--color-surface-subtle)] p-6 md:p-8">
       <h2 id="reading-values-heading" className="m-0 text-2xl font-bold">How to read the values</h2>
       <p className="body-copy mt-3 text-sm">The type tokens below are written in a short form. Under each one there is a plain-language reading of what it means.</p>
       <dl className="mt-6 grid gap-5 md:grid-cols-2">

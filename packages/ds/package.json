@@ -1,0 +1,24 @@
+{
+  "name": "@berit/ds",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DS by Berit: the design system components and tokens shared by the documentation site and the portfolio.",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./next": "./src/next.ts",
+    "./tokens.css": "./src/tokens.css"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": ">=15"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  }
+}
