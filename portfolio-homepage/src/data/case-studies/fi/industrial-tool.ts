@@ -31,13 +31,13 @@ export const industrialToolFi: CaseStudy = {
       "**Tiedon hahmotettavuus:** Tiivistin monimutkaisen datan ja pitkät listat selkeiksi visuaalisiksi kokonaisuuksiksi, jotta olennainen tieto löytyy yhdellä silmäyksellä.",
       "**Käyttöprosessien selkeyttäminen:** Pilkoin raskaat ja monivaiheiset tehtävät ohjatuiksi, steppi stepiltä eteneviksi kokonaisuuksiksi (wizard).",
       "**Käyttökokemuksen varmuus:** Paransin työn jatkuvuutta ja vähensin käyttäjän kuormitusta tuomalla näkymiin automaattisen tallennuksen.",
-      "**Design Systemin uudistus:** Siirsin suunnittelujärjestelmän Sketchistä Figmaan ja rakensin komponentit samalla skaalautuvasti uudelleen.",
+      "**Design Systemin uudistus:** Siirsin Design Systemin Sketchistä Figmaan ja rakensin komponentit samalla skaalautuvasti uudelleen.",
     ],
     outcome:
       "Asiantuntijat hahmottivat tarvitsemansa datan nopeasti, ja monimutkaisten laskentojen tekeminen muuttui varmaksi ja helppokäyttöiseksi koko tiimille. Automaattisen tallennuksen ansiosta työvaiheita ei enää menetetty.\n\nSuunnittelijoiden ja kehittäjien siirtyminen yhteiseen työkaluun selkeytti yhteistyötä, ja sekä kehitystiimi että projektipäällikkö kertoivat päivittäisen työn sujuvoituneen huomattavasti.",
   },
   roleLabel: "UX-suunnittelija (projektin ainoa suunnittelija)",
-  focusLabel: "Asiantuntijatyökalut, datan visualisointi ja suunnittelujärjestelmän uudistaminen",
+  focusLabel: "Asiantuntijatyökalut, datan visualisointi ja Design Systemin uudistaminen",
   categoryTag: "Teollisuusalusta",
   skillTags: [
     {
@@ -45,7 +45,7 @@ export const industrialToolFi: CaseStudy = {
       description: "Muutin tiheän datan helposti silmäiltäviksi dashboardeiksi",
     },
     {
-      label: "Suunnittelujärjestelmän siirto",
+      label: "Design Systemin siirto",
       description: "Rakensin komponenttikirjaston uudelleen Sketchistä Figmaan",
     },
     {
@@ -98,7 +98,7 @@ export const industrialToolFi: CaseStudy = {
     {
       number: "04",
       title: "Perusta, jonka päälle koko tiimi pystyi rakentamaan",
-      body: "Suunnittelujärjestelmän siirto Sketchistä Figmaan ei vain uudistanut työkalua, vaan toi kehittäjät ja suunnittelijat vihdoin samaan ympäristöön. Suunnitelmien luovutus nopeutui ja edestakainen viestittely väheni, kun kahden irrallisen suunnittelutyökalun välillä ei enää tarvinnut tulkita ja muuntaa suunnitelmia. Sain suoraa ja myönteistä palautetta sekä kehittäjiltä että projektipäälliköltä, jotka kertoivat työn sujuvoituneen selvästi.",
+      body: "Design Systemin siirto Sketchistä Figmaan ei vain uudistanut työkalua, vaan toi kehittäjät ja suunnittelijat vihdoin samaan ympäristöön. Suunnitelmien luovutus nopeutui ja edestakainen viestittely väheni, kun kahden irrallisen suunnittelutyökalun välillä ei enää tarvinnut tulkita ja muuntaa suunnitelmia. Sain suoraa ja myönteistä palautetta sekä kehittäjiltä että projektipäälliköltä, jotka kertoivat työn sujuvoituneen selvästi.",
     },
   ],
 
@@ -119,13 +119,13 @@ export const industrialToolFi: CaseStudy = {
     },
     {
       number: "03",
-      title: "Suunnittelujärjestelmän uudistaminen",
-      body: "Alkuperäinen suunnittelujärjestelmä oli Sketchissä, vanhemmassa työkalussa, joka hankaloitti yhteistyötä muun tiimin kanssa. Päivittäisen suunnittelutyön ohella otin vastuulleni kirjaston siirtämisen Figmaan. Siivosin ja rakensin komponentit uudelleen sen sijaan, että olisin vain kopioinut ne sellaisinaan, jotta tiimille jäi käyttökelpoisempi ja helpommin ylläpidettävä perusta, jonka päälle oli hyvä rakentaa jatkossa.",
+      title: "Design Systemin uudistaminen",
+      body: "Alkuperäinen Design System oli Sketchissä, vanhemmassa työkalussa, joka hankaloitti yhteistyötä muun tiimin kanssa. Päivittäisen suunnittelutyön ohella otin vastuulleni kirjaston siirtämisen Figmaan. Siivosin ja rakensin komponentit uudelleen sen sijaan, että olisin vain kopioinut ne sellaisinaan, jotta tiimille jäi käyttökelpoisempi ja helpommin ylläpidettävä perusta, jonka päälle oli hyvä rakentaa jatkossa.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "Jälkikäteen lähestyisin projektin teknistä puolta nykyään toisin. Staattisten mallien luovuttamisen sijaan rakentaisin toimivia prototyyppejä suoraan tekoälytyökaluilla, kuten Claude Designilla, ja kuroisin suunnittelun ja toteutuksen välisen kuilun umpeen paljon nopeammin. Rakentaisin suunnittelujärjestelmän alusta asti myös koodin näkökulmasta, tekisin tiivistä yhteistyötä kehittäjien kanssa ja rakentaisin sitä Claude Codella. Näin siitä ei tulisi vain hyvin järjestetty komponenttikirjasto Figmassa, vaan jotain, mitä kehittäjät voisivat hyödyntää suoraan.",
+    "Jälkikäteen lähestyisin projektin teknistä puolta nykyään toisin. Staattisten mallien luovuttamisen sijaan rakentaisin toimivia prototyyppejä suoraan tekoälytyökaluilla, kuten Claude Designilla, ja kuroisin suunnittelun ja toteutuksen välisen kuilun umpeen paljon nopeammin. Rakentaisin Design Systemin alusta asti myös koodin näkökulmasta, tekisin tiivistä yhteistyötä kehittäjien kanssa ja rakentaisin sitä Claude Codella. Näin siitä ei tulisi vain hyvin järjestetty komponenttikirjasto Figmassa, vaan jotain, mitä kehittäjät voisivat hyödyntää suoraan.",
     "Tiimi toimi koko projektin ajan hyvin yhteen, eikä tiimin koko tai kokoonpano ollut mielestäni koskaan varsinainen ongelma. Oppimista on pikemminkin siinä, miten hyödyntäisin nykypäivän työkaluja ja työtapoja kaventaakseni suunnittelun ja kehityksen välistä kuilua aiemmin ja tehokkaammin.",
   ],
 

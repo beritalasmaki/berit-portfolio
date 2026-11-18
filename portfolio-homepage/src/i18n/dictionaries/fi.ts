@@ -34,13 +34,13 @@ export const fi: Dictionary = {
     jsonLd: {
       jobTitle: "Senior UX- ja tuotesuunnittelija",
       description:
-        "Senior UX- ja tuotesuunnittelija, joka suunnittelee monimutkaisia digitaalisia palveluita Figmasta tuotantovalmiiseen koodiin. Erikoisalueina suunnittelujärjestelmät (Design Systems) ja DesignOps.",
+        "Senior UX- ja tuotesuunnittelija, joka suunnittelee monimutkaisia digitaalisia palveluita Figmasta tuotantovalmiiseen koodiin. Erikoisalueina Design Systems ja DesignOps.",
       knowsAbout: [
         "UX-suunnittelu",
         "UI-suunnittelu",
         "Tuotesuunnittelu",
         "Palvelumuotoilu",
-        "Suunnittelujärjestelmät (Design Systems)",
+        "Design Systems",
         "DesignOps",
         "Käyttäjätutkimus",
         "Käytettävyystestaus",
@@ -260,7 +260,7 @@ export const fi: Dictionary = {
     tabs: {
       zeroToOne: { label: "Uusi tuote (0→1)", duration: "~10 viikkoa" },
       prototype: { label: "Nopea prototyyppi", duration: "~2 viikkoa" },
-      designSystem: { label: "Suunnittelujärjestelmä", duration: "~6 viikkoa" },
+      designSystem: { label: "Design System", duration: "~6 viikkoa" },
       redesign: { label: "Uudistus", duration: "~8 viikkoa" },
     },
     stages: {

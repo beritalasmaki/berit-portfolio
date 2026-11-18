@@ -36,7 +36,7 @@ export const educationPlatformFi: CaseStudy = {
   },
   roleLabel: "UX- ja tuotesuunnittelija, myöhemmin Lead Designer, kolmen vuoden ajan",
   focusLabel:
-    "Palvelumuotoilu, suunnittelujärjestelmät ja suunnittelun yhtenäisyys tiimien välillä usean toimittajan julkisen sektorin alustalla",
+    "Palvelumuotoilu, Design Systemit ja suunnittelun yhtenäisyys tiimien välillä usean toimittajan julkisen sektorin alustalla",
   categoryTag: "Julkisen sektorin alusta",
   skillTags: [
     {
@@ -44,7 +44,7 @@ export const educationPlatformFi: CaseStudy = {
       description: "Kartoitin monimutkaiset koulun työnkulut yhdeksi selkeäksi kokemukseksi",
     },
     {
-      label: "Suunnittelujärjestelmän johtaminen",
+      label: "Design Systemin johtaminen",
       description: "Määrittelin visuaalisen ja toiminnallisen linjan kaikille tiimeille",
     },
     {
@@ -122,8 +122,8 @@ export const educationPlatformFi: CaseStudy = {
   whatIWouldDoDifferently: [
     "Selkeämpi viestintä ja suunnittelu heti alusta. Varmistaisin, että kehitystiimi ymmärtää heti alusta alkaen, ei vain mitä rakennamme, vaan myös miksi.",
     "Onnistumisen mittarit määriteltyinä aiemmin. Jos olisimme alusta asti tienneet, mitä halusimme saavuttaa ja miten sitä mitattaisiin, priorisointi olisi ollut koko projektin ajan helpompaa. Yksi konkreettinen esimerkki, jonka projektin tekninen projektipäällikkö ehdotti jälkikäteen, olisi ollut lainmukaisuuden seuranta suoraan: mitkä sääntelyvaatimukset täyttyivät jo ja mitkä eivät vielä, varsinaisena mittarina koko projektin ajan.",
-    "Jäsennellympi suunnittelujärjestelmä alusta asti. Vuosi oli 2021, ja vaikka suunnittelujärjestelmät olivat jo tuttu käsite, sellaisen toteuttaminen kokonaan koodiin tässä mittakaavassa ei ollut vielä yleistä. Jos voisin palata ajassa taaksepäin, ajaisin tuon perustan rakentamista määrätietoisemmin heti alusta.",
-    "Juridisen ja sääntelyosaamisen mukaan ottaminen aiemmin. Suunnittelujärjestelmän lisäksi projekti olisi hyötynyt juridisen tai sääntelyasiantuntijan mukaantulosta heti alusta, jotta tietosuoja-asetus (GDPR) ja perusopetuslainsäädäntö olisi huomioitu ajoissa. Moni ominaisuustoive perustui siihen, miten edellinen järjestelmä toimi, ja osa niistä ei enää ollut lain mukaan sallittuja.",
+    "Jäsennellympi Design System alusta asti. Vuosi oli 2021, ja vaikka Design Systemit olivat jo tuttu käsite, sellaisen toteuttaminen kokonaan koodiin tässä mittakaavassa ei ollut vielä yleistä. Jos voisin palata ajassa taaksepäin, ajaisin tuon perustan rakentamista määrätietoisemmin heti alusta.",
+    "Juridisen ja sääntelyosaamisen mukaan ottaminen aiemmin. Design Systemin lisäksi projekti olisi hyötynyt juridisen tai sääntelyasiantuntijan mukaantulosta heti alusta, jotta tietosuoja-asetus (GDPR) ja perusopetuslainsäädäntö olisi huomioitu ajoissa. Moni ominaisuustoive perustui siihen, miten edellinen järjestelmä toimi, ja osa niistä ei enää ollut lain mukaan sallittuja.",
     "Ensimmäinen julkaisu aidosti minimituotteena (MVP). Käytännössä emme rakentaneet minimituotetta eli pienintä julkaisemisen arvoista versiota, vaan jotain lopullisen tuotteen kaltaista, joka yritti kattaa kaikki tarpeet heti alusta. Sillä oli todellinen vaikutus sekä aikatauluun että työmäärään.",
     "Päivittäisissä keskusteluissa mukana oleminen aiemmin. Meillä oli säännölliset päivittäiset ja viikoittaiset palaverit, ja tuo rytmi oli oikea, mutta aliarvioin alussa, kuinka paljon arvoa syntyi siitä, että oli jatkuvasti läsnä noissa keskusteluissa.",
     "Suunnittelija mukaan jo kolmansien osapuolten ratkaisuja arvioitaessa. Kun hankitaan valmiita alustoja, suunnittelijan tekemä arvio räätälöintimahdollisuuksista etukäteen olisi auttanut välttämään myöhempiä vaikeita kompromisseja.",

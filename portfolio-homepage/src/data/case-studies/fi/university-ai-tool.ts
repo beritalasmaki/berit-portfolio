@@ -36,7 +36,7 @@ export const universityAiToolFi: CaseStudy = {
   },
   roleLabel: "Senior UX- ja tuotesuunnittelija",
   focusLabel:
-    "UX/UI-suunnittelu, tekoälyhaun käyttäjäpolku, palveluarkkitehtuuri, suunnittelujärjestelmän käyttöönotto ja julkaisun jälkeinen kehitys",
+    "UX/UI-suunnittelu, tekoälyhaun käyttäjäpolku, palveluarkkitehtuuri, Design Systemin käyttöönotto ja julkaisun jälkeinen kehitys",
   categoryTag: "Tekoälyhakualusta",
   skillTags: [
     {
@@ -48,7 +48,7 @@ export const universityAiToolFi: CaseStudy = {
       description: "Toin chatin, lomakkeet ja kasvokkain tapahtuvan neuvonnan yhteen rakenteeseen",
     },
     {
-      label: "Suunnittelujärjestelmän käyttöönotto",
+      label: "Design Systemin käyttöönotto",
       description: "Ohjasin kehittäjiä käyttämään yhteisiä komponentteja kertaluonteisten ratkaisujen sijaan",
     },
     {
@@ -122,7 +122,7 @@ export const universityAiToolFi: CaseStudy = {
     {
       number: "04",
       title: "Yhteiset komponentit kertarakennelmien sijaan",
-      body: "Muotoilun yhtenäisyyden ja laadun varmistamiseksi linjasimme, ettei kertarakennelmia käytetä. Muistutin kehittäjiä käyttämään Design Systemin komponentteja ja yhdistin heidät keskustelemaan DS-kehittäjien kanssa. Otin suunnittelujärjestelmätiimin mukaan aina, kun tarvittiin jotain aidosti uutta.",
+      body: "Muotoilun yhtenäisyyden ja laadun varmistamiseksi linjasimme, ettei kertarakennelmia käytetä. Muistutin kehittäjiä käyttämään Design Systemin komponentteja ja yhdistin heidät keskustelemaan DS-kehittäjien kanssa. Otin Design System -tiimin mukaan aina, kun tarvittiin jotain aidosti uutta.",
     },
   ],
 
