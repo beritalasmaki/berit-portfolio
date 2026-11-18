@@ -13,7 +13,7 @@ export function Checkbox({ label, mode = "default", disabled, className = "", ..
   const choice = choiceClasses(mode);
 
   return (
-    <label className={`inline-flex min-h-11 items-center gap-3 rounded-lg px-2 text-sm transition text-[var(--preview-content,var(--color-content-primary))] ${choice.wrapper} ${isDisabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"} ${className}`}>
+    <label className={`inline-flex min-h-11 items-center gap-3 rounded-[var(--radius-sm)] px-2 text-sm transition text-[var(--preview-content,var(--color-content-primary))] ${choice.wrapper} ${isDisabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"} ${className}`}>
       <input
         type="checkbox"
         disabled={isDisabled}

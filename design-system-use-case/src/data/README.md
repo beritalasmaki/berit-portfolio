@@ -5,7 +5,7 @@ design system: colour, spacing, typography and shape values, with a
 description of what each one is for.
 
 Tokens are defined in two layers. Primitives are the raw values, for
-example `color.charcoal.950`. Semantic tokens reference those primitives
+example `color.ink.950`. Semantic tokens reference those primitives
 by purpose, for example `color.content.primary`. Components should be
 built against the semantic layer, so a value can change without the name
 becoming wrong.

@@ -57,7 +57,7 @@ export function Toast({ status, title, children, onDismiss, duration = 5000, cla
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
-      className={`relative flex w-full max-w-sm flex-col overflow-hidden rounded-2xl border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))] text-[var(--preview-content,var(--color-content-primary))] shadow-[var(--shadow-m)] ${className}`}
+      className={`relative flex w-full max-w-sm flex-col overflow-hidden rounded-[var(--radius-md)] border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))] text-[var(--preview-content,var(--color-content-primary))] shadow-[var(--shadow-m)] ${className}`}
     >
       <div className="flex items-start gap-3 py-1 pl-4 pr-1">
         <Icon name={icons[status]} className={`mt-3 ${iconColor[status]}`} />

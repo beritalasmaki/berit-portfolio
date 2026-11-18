@@ -24,7 +24,7 @@ export default function FormPageTemplatePage() {
         title: "Layout",
         description: "Dashed boxes are content that is filled in per form. Navigation, breadcrumb, progress and buttons use the system's own components.",
         content: <CodeTabs
-          view={<div className="w-full overflow-hidden rounded-2xl border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))] text-[var(--preview-content,var(--color-content-primary))]">
+          view={<div className="w-full overflow-hidden rounded-[var(--radius-md)] border border-[var(--preview-border,var(--color-border-default))] bg-[var(--preview-surface,var(--color-surface-canvas))] text-[var(--preview-content,var(--color-content-primary))]">
             <header className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--preview-border,var(--color-border-default))] p-4">
               <Link href="#top" className="font-bold">DS by Berit</Link>
               <nav aria-label="Top navigation" className="flex flex-wrap gap-1"><NavigationLink href="#work">Work</NavigationLink><NavigationLink href="#applications" aria-current="page">Applications</NavigationLink><NavigationLink href="#help">Help</NavigationLink></nav>

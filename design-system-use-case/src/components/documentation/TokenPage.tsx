@@ -43,7 +43,7 @@ function TokenSwatches({ tokens }: { tokens: readonly Token[] }) {
         const colorValue = resolveColorValue(token.value);
         return (
           <li key={token.name} className="flex flex-col gap-2 rounded-xl border border-[var(--color-border-default)] p-3">
-            <div aria-hidden="true" className="h-14 rounded-lg border border-[var(--color-border-default)]" style={(isGradient ? { backgroundImage: colorValue } : { backgroundColor: colorValue }) as CSSProperties} />
+            <div aria-hidden="true" className="h-14 rounded-[var(--radius-sm)] border border-[var(--color-border-default)]" style={(isGradient ? { backgroundImage: colorValue } : { backgroundColor: colorValue }) as CSSProperties} />
             <div>
               <p className="token-name m-0">{token.name}</p>
               <p className="m-0 mt-1 text-xs font-semibold text-[var(--color-content-primary)]">{isGradient ? "Top to bottom gradient" : token.value}</p>
@@ -120,7 +120,7 @@ export function TokenPage({ active, title, description, tokens = [], sections, i
               {groupIntro?.[group.group] ? <p className="body-copy mt-3 max-w-[var(--width-text)]">{groupIntro[group.group]}</p> : null}
             </div>
           ) : null}
-          <article id={group.id} aria-labelledby={`${group.id}-heading`} className="mt-8 scroll-mt-24 rounded-2xl border border-[var(--color-border-default)] bg-white p-6 md:p-8">
+          <article id={group.id} aria-labelledby={`${group.id}-heading`} className="mt-8 scroll-mt-24 rounded-[var(--radius-md)] border border-[var(--color-border-default)] bg-white p-6 md:p-8">
             <div className="mb-6 flex flex-wrap items-baseline justify-between gap-4">
               {sections ? <h3 id={`${group.id}-heading`} className="m-0 text-2xl font-bold">{group.title}</h3> : <h2 id={`${group.id}-heading`} className="m-0 text-2xl font-bold">{group.title}</h2>}
               <span className="token-name text-[var(--color-content-muted)]">{group.tokens.length} values</span>

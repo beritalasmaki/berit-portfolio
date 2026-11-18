@@ -1,26 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&family=Montserrat:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&family=Manrope:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
 :root {
-	--color-content-primary: #1f2321;
-	--color-content-secondary: #4d5550;
-	--color-content-muted: #4d5550;
+	--color-content-primary: #222222;
+	--color-content-secondary: #4a4a4a;
+	--color-content-muted: #6b6660;
 	--color-content-inverse: #ffffff;
-	--color-content-muted-dark: #c5cec7;
+	--color-content-muted-dark: #e2ded6;
 	--color-surface-canvas: #ffffff;
-	--color-surface-subtle: #f3f6f0;
-	--color-surface-raised: #e8eee5;
-	--color-surface-canvas-dark: #1f2321;
-	--color-surface-raised-dark: #303733;
-	--color-surface-inverse: #1f2321;
-	--color-action-primary: #1f2321;
-	--color-action-accent: #f28b30;
-	--color-action-accent-dark: #b85b16;
-	--color-action-accent-on-dark: #f28b30;
-	--color-border-default: #dce3dc;
-	--color-border-subtle: #c7d1c8;
-	--color-border-strong: #7d8b80;
-	--color-focus-ring: #f2b705;
+	--color-surface-ground: #fffaf4;
+	--color-surface-glass: rgb(255 251 245 / 0.62);
+	--color-surface-glass-highlight: rgb(255 255 255 / 0.75);
+	--color-surface-subtle: #f5f3ee;
+	--color-surface-raised: #f0eee9;
+	--color-surface-canvas-dark: #222222;
+	--color-surface-raised-dark: #3a3a3a;
+	--color-surface-inverse: #222222;
+	--color-action-primary: #222222;
+	--color-action-accent: #fc890c;
+	--color-action-accent-dark: #a45b0b;
+	--color-action-accent-on-dark: #fc890c;
+	--color-border-default: #eeece7;
+	--color-border-subtle: #e2ded6;
+	--color-border-strong: #6b6660;
+	--color-border-glass: rgb(255 255 255 / 0.85);
+	--color-focus-ring: #222222;
+	--color-focus-ring-on-dark: #ffffff;
+	--blur-glass: blur(16px) saturate(140%);
 	--color-status-info-subtle: #e6f0fb;
 	--color-status-info-default: #3b82c4;
 	--color-status-info-strong: #1f5a99;
@@ -37,9 +43,9 @@
 	--color-status-error-default: #d6453a;
 	--color-status-error-strong: #a12a21;
 	--color-status-error-on-dark: #ee9a92;
-	--gradient-action-primary: linear-gradient(180deg, var(--color-surface-raised-dark), var(--color-surface-inverse));
-	--gradient-action-primary-hover: linear-gradient(180deg, var(--color-action-accent-dark), var(--color-action-accent-dark));
-	--gradient-action-primary-dark: linear-gradient(180deg, var(--color-surface-canvas), var(--color-surface-raised));
+	--gradient-action-primary: linear-gradient(180deg, var(--color-surface-inverse), var(--color-surface-inverse));
+	--gradient-action-primary-hover: linear-gradient(180deg, var(--color-surface-raised-dark), var(--color-surface-raised-dark));
+	--gradient-action-primary-dark: linear-gradient(180deg, var(--color-surface-canvas), var(--color-surface-subtle));
 	--gradient-action-primary-hover-dark: linear-gradient(180deg, var(--color-action-accent), var(--color-status-warning-default));
 	--grid-columns: 4;
 	--grid-gutter: 16px;
@@ -48,11 +54,14 @@
 	--width-text-narrow: 600px;
 	--width-form: 640px;
 	--width-page: 1440px;
-	--shadow-panel: 0 18px 45px rgba(31, 35, 33, 0.08);
-	--shadow-s: 0 1px 2px rgba(31, 35, 33, 0.1), 0 2px 6px rgba(31, 35, 33, 0.08);
-	--shadow-m: 0 4px 8px rgba(31, 35, 33, 0.08), 0 8px 20px rgba(31, 35, 33, 0.1);
-	--shadow-l: 0 12px 24px rgba(31, 35, 33, 0.1), 0 24px 56px rgba(31, 35, 33, 0.14);
-	--shadow-inset: inset 0 1px 0 rgba(199, 209, 200, 0.28), inset 0 -2px 4px rgba(31, 35, 33, 0.55);
+	--radius-sm: 12px;
+	--radius-md: 20px;
+	--radius-pill: 999px;
+	--shadow-panel: 0 18px 45px rgba(34, 34, 34, 0.08);
+	--shadow-s: 0 1px 2px rgba(34, 34, 34, 0.1), 0 2px 6px rgba(34, 34, 34, 0.08);
+	--shadow-m: 0 4px 8px rgba(34, 34, 34, 0.08), 0 8px 20px rgba(34, 34, 34, 0.1);
+	--shadow-l: 0 12px 24px rgba(34, 34, 34, 0.1), 0 24px 56px rgba(34, 34, 34, 0.14);
+	--shadow-inset: inset 0 1px 0 rgba(226, 222, 214, 0.28), inset 0 -2px 4px rgba(34, 34, 34, 0.55);
 }
 
 /* Grid tokens change at the Tailwind breakpoints md (768px), lg (1024px) and xl (1280px). */
@@ -70,9 +79,9 @@ html { scroll-behavior: smooth; }
 
 body {
 	margin: 0;
-	background: var(--color-surface-canvas);
+	background: var(--color-surface-ground);
 	color: var(--color-content-primary);
-	font-family: "Montserrat", Helvetica, Arial, sans-serif;
+	font-family: "Manrope", Helvetica, Arial, sans-serif;
 	font-size: 15px;
 	line-height: 1.6;
 }
@@ -98,9 +107,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 :focus-visible {
-	outline: 3px solid var(--color-focus-ring);
+	outline: 2px solid var(--color-focus-ring);
 	outline-offset: 2px;
-	box-shadow: 0 0 0 2px var(--color-surface-inverse);
 }
 
 ::selection { background: var(--color-action-accent); color: var(--color-content-primary); }
@@ -130,9 +138,24 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .focus-ring {
-	outline: 3px solid var(--color-focus-ring);
+	outline: 2px solid var(--color-focus-ring);
 	outline-offset: 2px;
-	box-shadow: 0 0 0 2px var(--color-surface-inverse);
+}
+
+/* On a dark surface the focus ring turns white. */
+.on-dark, .preview-surface[data-preview-theme="dark"] { --color-focus-ring: var(--color-focus-ring-on-dark); }
+
+/* Glass: a translucent cream fill, a backdrop blur and a light edge. Without backdrop-filter support it falls back to a nearly solid fill. */
+.glass {
+	background-color: var(--color-surface-glass);
+	-webkit-backdrop-filter: var(--blur-glass);
+	backdrop-filter: var(--blur-glass);
+	border: 1px solid var(--color-border-glass);
+	box-shadow: 0 8px 22px rgba(34, 34, 34, 0.05);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+	.glass { background-color: rgb(255 251 245 / 0.9); }
 }
 
 /* Put this on a dark surface so eyebrow labels and other accent text use the brighter orange. */
@@ -186,6 +209,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-action-border: transparent;
 	--preview-action-shadow: none;
 	--preview-accent: var(--color-action-accent-dark);
+	--preview-nav-highlight: var(--color-surface-glass-highlight);
+	--preview-nav-highlight-border: var(--color-border-glass);
+	--preview-nav-highlight-shadow: 0 4px 16px rgba(34, 34, 34, 0.08);
+	--preview-tag-surface: var(--color-surface-glass);
+	--preview-card-surface: var(--color-surface-glass);
+	--preview-card-border: var(--color-border-default);
+	--preview-card-blur: var(--blur-glass);
 	--preview-popup-surface: var(--color-surface-canvas);
 	--preview-error: var(--color-status-error-strong);
 	--preview-notice-surface-info: var(--color-status-info-subtle);
@@ -210,7 +240,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-content: var(--color-content-inverse);
 	--preview-content-muted: var(--color-content-muted-dark);
 	--preview-content-secondary: var(--color-content-muted-dark);
-	--preview-border: var(--color-border-strong);
+	--preview-border: var(--color-border-subtle);
 	--preview-action: var(--color-content-inverse);
 	--preview-action-text: var(--color-content-primary);
 	--preview-action-hover-text: var(--color-content-primary);
@@ -219,6 +249,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-action-border: var(--color-border-strong);
 	--preview-action-shadow: var(--shadow-inset);
 	--preview-accent: var(--color-action-accent-on-dark);
+	--preview-nav-highlight: rgb(255 255 255 / 0.12);
+	--preview-nav-highlight-border: rgb(255 255 255 / 0.2);
+	--preview-nav-highlight-shadow: none;
+	--preview-tag-surface: transparent;
+	--preview-card-surface: var(--color-surface-raised-dark);
+	--preview-card-border: var(--color-border-strong);
+	--preview-card-blur: none;
 	--preview-popup-surface: var(--color-surface-raised-dark);
 	--preview-error: var(--color-status-error-on-dark);
 	--preview-notice-surface-info: var(--color-surface-raised-dark);
@@ -235,6 +272,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-notice-icon-error: var(--color-status-error-on-dark);
 	background: var(--preview-surface);
 	color: var(--preview-content);
+}
+
+/* The frosted bar of a header: a translucent cream fill, a stronger blur and a light edge underneath. */
+.glass-bar {
+	background-color: rgb(255 248 239 / 0.55);
+	-webkit-backdrop-filter: blur(20px) saturate(160%);
+	backdrop-filter: blur(20px) saturate(160%);
+	border-bottom: 1px solid rgb(255 255 255 / 0.7);
+	box-shadow: 0 1px 0 rgba(34, 34, 34, 0.06), 0 8px 24px rgba(34, 34, 34, 0.05);
 }
 
 .toast-timer {

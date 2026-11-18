@@ -16,8 +16,8 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 const variants: Record<ButtonVariant, string> = {
   primary:
     "group relative isolate overflow-hidden border border-[var(--preview-action-border,transparent)] bg-[image:var(--preview-action-gradient,var(--gradient-action-primary))] text-[var(--preview-action-text,var(--color-content-inverse))] shadow-[var(--preview-action-shadow,none)] hover:text-[var(--preview-action-hover-text,var(--color-content-inverse))] hover:shadow-none",
-  secondary: "border border-[var(--preview-border,var(--color-border-strong))] text-[var(--preview-content,var(--color-content-primary))] hover:border-[var(--preview-content,var(--color-content-primary))]",
-  tertiary: "text-[var(--preview-accent,var(--color-action-accent-dark))] underline decoration-[var(--color-action-accent)] underline-offset-4 hover:text-[var(--preview-content,var(--color-content-primary))]",
+  secondary: "border border-[var(--preview-border,var(--color-border-subtle))] text-[var(--preview-content,var(--color-content-primary))] hover:border-[var(--preview-content,var(--color-content-primary))]",
+  tertiary: "text-[var(--preview-content,var(--color-content-primary))] underline decoration-[var(--color-action-accent)] decoration-1 underline-offset-8 hover:decoration-2",
 };
 
 const hoverMode = "!text-[var(--preview-action-hover-text,var(--color-content-inverse))] !shadow-none";
@@ -26,13 +26,13 @@ export function Button({ variant = "primary", mode = "default", disabled, childr
   const isLoading = mode === "loading";
   const isDisabled = disabled || mode === "disabled" || isLoading;
   const showHoverLayer = mode === "hover" || mode === "active";
-  const modeClass = mode === "hover" ? (variant === "primary" ? hoverMode : "") : mode === "active" ? (variant === "primary" ? `!scale-[.98] ${hoverMode}` : "!scale-[.98]") : mode === "focus" ? "focus-ring" : "";
+  const modeClass = mode === "hover" ? (variant === "primary" ? `-translate-y-px ${hoverMode}` : "-translate-y-px") : mode === "active" ? (variant === "primary" ? `!scale-[.98] ${hoverMode}` : "!scale-[.98]") : mode === "focus" ? "focus-ring" : "";
   return (
     <button
       type="button"
       aria-busy={isLoading || undefined}
       disabled={isDisabled}
-      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-bold transition ${variants[variant]} ${modeClass} disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-md)] px-4 py-3 text-sm font-bold transition ${variants[variant]} ${modeClass} disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       {...props}
     >
       {variant === "primary" ? <span aria-hidden="true" className={`pointer-events-none absolute -inset-px -z-10 bg-[image:var(--preview-action-gradient-hover,var(--gradient-action-primary-hover))] transition-opacity duration-200 ease-out group-disabled:hidden ${showHoverLayer ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} /> : null}

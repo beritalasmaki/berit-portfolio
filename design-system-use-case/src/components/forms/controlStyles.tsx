@@ -11,7 +11,7 @@ const modeClasses: Record<FormMode, string> = {
 };
 
 const controlBase =
-  "min-h-11 w-full rounded-lg border border-[var(--preview-border,var(--color-border-strong))] bg-[var(--preview-surface,var(--color-surface-canvas))] px-3 text-sm text-[var(--preview-content,var(--color-content-primary))] transition placeholder:text-[var(--preview-content-muted,var(--color-content-muted))] hover:border-[var(--preview-content,var(--color-content-primary))] disabled:cursor-not-allowed disabled:opacity-50";
+  "min-h-11 w-full rounded-[var(--radius-sm)] border border-[var(--preview-border,var(--color-border-strong))] bg-[var(--preview-surface,var(--color-surface-canvas))] px-3 text-sm text-[var(--preview-content,var(--color-content-primary))] transition placeholder:text-[var(--preview-content-muted,var(--color-content-muted))] hover:border-[var(--preview-content,var(--color-content-primary))] disabled:cursor-not-allowed disabled:opacity-50";
 
 export function controlClassName(mode: FormMode, className = "") {
   return `${controlBase} ${modeClasses[mode]} ${className}`.replace(/\s+/g, " ").trim();
