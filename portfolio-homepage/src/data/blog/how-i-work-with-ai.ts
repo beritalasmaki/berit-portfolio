@@ -5,7 +5,7 @@ export const howIWorkWithAi: BlogPost = {
   title: "How I work with AI: a template for design projects",
   tabTitle: "How I work with AI",
   excerpt:
-    "My starting point for new design projects is a template where AI drafts, I decide and real people test. This post describes what it contains and how I use it.",
+    "Well-built context and information architecture give much better results from AI than commands alone. This post describes the template I use as my starting point, and where AI is strong and where people still decide.",
   date: "2026-11-18",
   tags: ["AI tools", "AI adoption"],
   body: [
@@ -21,29 +21,53 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "When I built the agent run review screen, I wrote the rules for the AI agent before any code: what it may do, what it may not, and one rule above the rest, no claim without a source. Deciding what a machine may claim is the same judgment as deciding what a screen may claim.",
+      text: "At first I used AI one command at a time: ask for something, look at the result, adjust the request. What I learned is that the result depends far more on what the AI knows about the project than on how the request is phrased. In my own projects, the design system and the agent run review screen, I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were considerably better.",
     },
     {
       type: "paragraph",
-      text: "That idea became the template I use as the starting point for new design projects. It is built for public sector and B2B work, where accessibility and security are requirements and many people have a say.",
+      text: "That became the template I use as the starting point for new design projects. It is built for public sector and B2B work, where accessibility and security are requirements and many people have a say. The idea behind it is that well-built context and information architecture produce much better results than commands alone.",
     },
 
     {
       type: "heading",
       id: "roles",
-      text: "Roles and responsibilities",
+      text: "Where AI is strong, and where people decide",
+      navLabel: "AI and people",
     },
     {
       type: "paragraph",
-      text: "AI is good at structure and first drafts. It does not decide, and it cannot be the user. The work is split accordingly.",
+      text: "Well-built context made the biggest difference, and it also made the division of work clear. AI is strong at some things, and others still need a person's decisions and guidance. I think that is how it should be.",
+    },
+    {
+      type: "subheading",
+      text: "Where AI is strong",
     },
     {
       type: "list",
       items: [
-        "**AI drafts.** Structure, first versions, summaries of my notes and checks against criteria I have set.",
-        "**I decide.** Direction, trade-offs, and what is shared or ships.",
-        "**Real people test.** User testing that includes users with access needs, security review and legal advice. AI does not replace any of them.",
+        "**Turning raw notes into a structured first draft.** Stakeholder maps, requirements and descriptions of user flows come together quickly.",
+        "**Summarising long material** and finding what is missing from it.",
+        "**Checking consistency.** Does every screen have all its states, and is a term used the same way everywhere.",
+        "**Producing options** to choose from.",
+        "**Repetitive work,** such as tables, formatting and documentation.",
       ],
+    },
+    {
+      type: "subheading",
+      text: "Where people decide and guide",
+    },
+    {
+      type: "list",
+      items: [
+        "**Direction and trade-offs.** What to build, what to leave out and what is good enough.",
+        "**Understanding people and context.** Who really decides, what a user experiences and what the organisation can accept.",
+        "**Accountability.** Accessibility, security and legal questions need a person who answers for them.",
+        "**Testing with real users,** including users with access needs. AI cannot be the user.",
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "This split is not a limitation to work around. It is where the work of a designer remains.",
     },
 
     {
@@ -61,7 +85,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "The workspace is mine, not the client's, and never goes into the client's repository. Documents the client needs, such as the decision log, I hand over as files.",
+      text: "The workspace is mine, not the client's, and never goes into the client's repository.",
     },
 
     {
@@ -71,34 +95,47 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Six stages. Each has a skill, a set of instructions written for the AI, and a document that holds the result.",
+      text: "Six stages. Each has a skill, which is a set of instructions written for the AI, and artefacts, which are the documents that hold the results.",
+    },
+    {
+      type: "timeline",
+      title: "The process in one line",
+      items: [
+        { label: "Frame the problem" },
+        { label: "Understand the people" },
+        { label: "Design" },
+        { label: "Check" },
+        { label: "Real people test", note: "Users, security, legal", highlight: true },
+        { label: "Hand off" },
+        { label: "Record and reflect" },
+      ],
     },
     {
       type: "findings",
       items: [
         {
           title: "Frame the problem",
-          body: "I write the request down as it was handed to me, and I aim to anonymise it so that neither the client nor any person is named. Client information stays confidential. Then I describe the problem as a situation a user is in, and rewrite it if a solution is hiding inside.",
+          body: "**Skill** `problem-framing` · **Artefacts** `00 product context`, `01 problem framing`. Turns the request into a user situation with no solution inside it, and lists what is known and what is missing. I write the request down as it was handed to me and aim to anonymise it, so that neither the client nor any person is named. Client information stays confidential.",
         },
         {
           title: "Understand the people",
-          body: "A stakeholder map shows who decides what. Most disagreements appear only as the project goes on, so at the start what matters is knowing who has the final say. Conflicts are added side by side as they appear, and the AI does not resolve them.",
+          body: "**Skill** `stakeholder-map` · **Artefacts** `02 stakeholder map`, `03 requirements spec`. Shows who decides what, and the requirements with their owners. Most disagreements appear only as the project goes on, so at the start what matters is knowing who has the final say. Conflicts are added side by side as they appear, and the AI does not resolve them.",
         },
         {
           title: "Design",
-          body: "Flows include error paths, and every screen has all of its states. The AI marks each state as missing until I confirm it is designed.",
+          body: "**Skill** `user-flow-and-states` · **Artefacts** `04 user flows and states`, `07 design system rules`. Maps flows step by step, with error paths and every screen state, against the design system rules. The AI marks each state as missing until I confirm it is designed.",
         },
         {
           title: "Check",
-          body: "Accessibility, security and privacy, and a review of which choices were left at default. Contrast is calculated by a script. This is a design-stage review, not an audit.",
+          body: "**Skills** `a11y-gate`, `security-privacy-brief`, `sameness-check` · **Artefacts** `05 accessibility checklist`, `06 security and privacy brief`. Reviews accessibility, data and permissions, and which choices were left at default. Contrast is calculated by a script. This is a design-stage review, not an audit.",
         },
         {
           title: "Hand off",
-          body: "A handoff states what is final, who approved it and what each vendor provides, so nothing is left to guess.",
+          body: "**Skill** `procurement-ready-handoff` · **Artefacts** `08 handoff spec`, `09 stakeholder feedback log`. States what is final, who approved it and what each vendor provides, and keeps review comments together with who decides on them.",
         },
         {
           title: "Record and reflect",
-          body: "Decisions are logged with who decided and why. At the end, the log feeds a case study with the confidential details removed.",
+          body: "**Skills** `decision-log`, `nda-safe-case-study` · **Artefacts** `10 decision log`, `11 case study notes`. Logs decisions with who decided and why. At the end, the log feeds a case study with the confidential details removed.",
         },
       ],
     },
@@ -110,15 +147,25 @@ export const howIWorkWithAi: BlogPost = {
     {
       type: "heading",
       id: "flows",
-      text: "User flows and hard paths",
+      text: "User flows and challenging paths",
+      navLabel: "Challenging paths",
     },
     {
       type: "paragraph",
-      text: "A user flow is more than the happy path. I also map the situations where something goes wrong or is hard: error messages, a session that times out, a lost connection, and what happens when the user is not allowed to do something.",
+      text: "I start with the basic flow: the steps a user takes to reach their goal, and how the system responds at each step. Only then do I go through it step by step and ask which parts could be challenging for some users.",
+    },
+    {
+      type: "list",
+      ordered: true,
+      items: [
+        "**Draw the basic flow.** Each step pairs what the user does with how the system responds.",
+        "**Ask who might find each step challenging, and why.** The same path can be smooth for one user and unbearably hard for another.",
+        "**Add the paths and states those users need:** error messages, more time, another way to do the step, and what happens when something fails.",
+      ],
     },
     {
       type: "paragraph",
-      text: "The same path can be smooth for one user and unbearably hard for another. For each step I ask who finds it hard, for example someone with little digital experience, someone using assistive technology, someone in a hurry on a phone or someone who is interrupted halfway.",
+      text: "For example, in a public service the step “sign in with strong identification” can be easy for someone with a banking app and a smartphone, and a barrier for someone without them. A long form with a time limit can suit most people and be impossible for someone who needs more time or uses a screen reader. For each such step I write down who might struggle and what the design offers instead. If I do not know, I mark it as a gap and find out.",
     },
 
     {
@@ -147,7 +194,15 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "The documents are Markdown files in Git, which gives history and one source of truth. If the team reads them elsewhere, such as in Confluence, that copy is read-only. Jira stays for tickets. At the end of a project I hand the final versions to the client, so their project history does not depend on my private repository.",
+      text: "The documents are Markdown files in Git, which gives history and one source of truth.",
+    },
+    {
+      type: "paragraph",
+      text: "How they reach the client depends on the client's own documentation practices and tools. If the client works in Confluence, the documents go there as pages. Another client may want PDF files, or a folder in their own shared drive. This is the documentation handoff: the files are delivered in the form and the place the client already uses.",
+    },
+    {
+      type: "paragraph",
+      text: "A copy in the client's tool is read-only. The content is copied there from the Git file, for example as a Confluence page or as a PDF attachment, and the copy is marked as a read-only copy. Changes are always made to the source and the copy is refreshed from it, so there are never two competing versions.",
     },
 
     {
@@ -176,10 +231,10 @@ export const howIWorkWithAi: BlogPost = {
     {
       type: "list",
       items: [
-        "**Five documents to begin with.** The others are added only when someone will read and use them.",
-        "**The AI writes the first version.** I give it raw notes and correct the result.",
-        "**The rules check themselves,** so nobody has to remember to keep them true.",
-        "**No document without a reader.** Each has a named reader and a use.",
+        "**Five documents to begin with:** product context, problem framing, stakeholder map, requirements and decision log. The others, such as the accessibility checklist or the handoff spec, are added when a stage needs them.",
+        "**The AI writes the first version.** For example, I paste in my kick-off notes and get back a stakeholder map with roles, decision rights and the gaps marked. I correct it instead of writing it from a blank page.",
+        "**The rules check themselves.** For example, a skill without a “when not to use” line, a broken link or a colour pair below the contrast minimum fails the check, so nobody has to remember to look.",
+        "**No document without a reader.** The stakeholder feedback log, for example, is only made when several stakeholders send conflicting comments, and case study notes only if I plan to publish.",
       ],
     },
     {

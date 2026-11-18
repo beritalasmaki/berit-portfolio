@@ -53,7 +53,11 @@ export type BlogBlock =
   /** Rows of "pill → box → box → pill" flows, one highlighted. */
   | ({ type: "flow" } & FlowExample)
   /** Three rungs of rising height; the last is the goal. */
-  | ({ type: "ladder" } & LadderExample);
+  | ({ type: "ladder" } & LadderExample)
+  /** A process on one line: stages in order, one of them highlighted. Drawn
+   * as real text (`components/blog/TimelineDiagram.tsx`), side by side on a
+   * wide screen and stacked on a phone. */
+  | ({ type: "timeline" } & TimelineExample);
 
 export type StepsExample = {
   title: string;
@@ -77,6 +81,12 @@ export type FlowExample = {
   title: string;
   rows: FlowRow[];
   quote?: { text: string; cite: string };
+};
+
+export type TimelineExample = {
+  title: string;
+  /** In order. A highlighted item carries the orange and no stage number. */
+  items: { label: string; note?: string; highlight?: boolean }[];
 };
 
 export type LadderExample = {

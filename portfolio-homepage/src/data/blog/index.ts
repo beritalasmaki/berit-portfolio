@@ -11,7 +11,7 @@ import { aiAdoptionStrategyFi } from "./fi/ai-adoption-starts-with-strategy";
 import { aiPilotToEverydayPracticeFi } from "./fi/from-ai-pilot-to-everyday-practice";
 import type { BlogBlock, BlogPost } from "./types";
 
-export type { BlogBlock, BlogPost, FlowExample, FlowNode, FlowRow, LadderExample, OkrExample, StepsExample } from "./types";
+export type { BlogBlock, BlogPost, FlowExample, FlowNode, FlowRow, LadderExample, OkrExample, StepsExample, TimelineExample } from "./types";
 
 const sortNewestFirst = (registry: BlogPost[]): BlogPost[] =>
   [...registry].sort((a, b) => b.date.localeCompare(a.date) || (b.series?.part ?? 0) - (a.series?.part ?? 0));
@@ -112,6 +112,8 @@ function blockText(block: BlogBlock): string {
       ].join(" ");
     case "ladder":
       return [block.title, ...block.rungs.map((rung) => `${rung.name} ${rung.text}`)].join(" ");
+    case "timeline":
+      return [block.title, ...block.items.map((item) => `${item.label} ${item.note ?? ""}`)].join(" ");
   }
 }
 

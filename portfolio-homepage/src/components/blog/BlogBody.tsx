@@ -7,6 +7,7 @@ import FlowDiagram from "./FlowDiagram";
 import LadderDiagram from "./LadderDiagram";
 import OkrDiagram from "./OkrDiagram";
 import StepsDiagram from "./StepsDiagram";
+import TimelineDiagram from "./TimelineDiagram";
 
 /**
  * A post's body, block by block, in the case studies' type scale: body-lg
@@ -135,6 +136,12 @@ export default function BlogBody({ blocks, copy }: { blocks: BlogBlock[]; copy: 
             return (
               <div key={i} className="my-2">
                 <LadderDiagram data={block} copy={copy} />
+              </div>
+            );
+          case "timeline":
+            return (
+              <div key={i} className="my-2">
+                <TimelineDiagram data={block} copy={copy} />
               </div>
             );
         }
