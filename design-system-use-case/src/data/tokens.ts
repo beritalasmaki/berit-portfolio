@@ -121,6 +121,7 @@ export const semanticTokens = [
   { name: "color.action.accent", value: "{color.orange.500}", description: "Accent fills, icons, borders and the active marker. Not for text on a light surface." },
   { name: "color.action.accent-dark", value: "{color.orange.700}", description: "Accent text and labels on a light surface (5.2:1 on white). Never use it on a dark background." },
   { name: "color.action.accent-on-dark", value: "{color.orange.500}", description: "Accent for text, fills and borders on a dark canvas." },
+  { name: "color.surface.glass-highlight", value: "rgb(255 255 255 / 0.75)", description: "The frosted pill behind the link being pointed at or the current link in a navigation." },
   { name: "color.border.glass", value: "rgb(255 255 255 / 0.85)", description: "The light edge shared by glass surfaces." },
   { name: "color.border.default", value: "{color.stone.200}", description: "Default component boundary." },
   { name: "color.border.subtle", value: "{color.stone.300}", description: "Boundary on a light surface that needs more definition than the default, such as a preview panel." },

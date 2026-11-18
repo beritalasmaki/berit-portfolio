@@ -33,14 +33,15 @@ export function PageNav({ groups }: { groups: PageNavGroup[] }) {
         {groups.map((group) => (
           <div key={group.heading}>
             <p className="eyebrow mb-2 border-b border-[var(--color-border-default)] pb-2">{group.heading}</p>
-            <ul className="m-0 list-none space-y-1 p-0">
+            <ul className="m-0 list-none space-y-2 p-0">
               {group.items.map((item) => (
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
                     aria-current={current === item.id ? "location" : undefined}
-                    className={`block rounded-[var(--radius-sm)] px-2 py-1.5 text-sm ${current === item.id ? "font-semibold text-[var(--color-content-primary)] bg-[var(--color-surface-subtle)]" : "text-[var(--color-content-secondary)] hover:bg-[var(--color-surface-subtle)]"}`}
+                    className={`flex items-center gap-2 rounded-r-[var(--radius-sm)] border-l-4 py-1 pl-3 text-[15px] ${current === item.id ? "border-[var(--color-action-accent)] font-bold text-[var(--color-action-accent-dark)]" : "border-[var(--color-border-default)] font-semibold text-[var(--color-content-secondary)] hover:text-[var(--color-content-primary)]"}`}
                   >
+                    {current === item.id ? <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-[var(--color-action-accent)]" /> : null}
                     {item.label}
                   </a>
                 </li>

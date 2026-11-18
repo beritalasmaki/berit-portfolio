@@ -6,7 +6,8 @@ type NavigationLinkProps = ComponentProps<typeof Link> & {
   disabled?: boolean;
 };
 
-const base = "block rounded-[var(--radius-sm)] px-3 py-2 text-sm font-semibold transition";
+const base = "flex min-h-11 items-center rounded-[var(--radius-pill)] border px-4 text-[15px] font-semibold tracking-[0.01em] transition";
+const highlight = "border-[var(--preview-nav-highlight-border,var(--color-border-glass))] bg-[var(--preview-nav-highlight,var(--color-surface-glass-highlight))] shadow-[var(--preview-nav-highlight-shadow,0_4px_16px_rgba(34,34,34,0.08))]";
 
 /**
  * A link to a destination. It has three statuses:
@@ -15,11 +16,12 @@ const base = "block rounded-[var(--radius-sm)] px-3 py-2 text-sm font-semibold t
  */
 export function NavigationLink({ disabled = false, className = "", children, ...props }: NavigationLinkProps) {
   if (disabled) {
-    return <span aria-disabled="true" className={`${base} cursor-not-allowed text-[var(--preview-content,var(--color-content-secondary))] opacity-50 ${className}`}>{children}</span>;
+    return <span aria-disabled="true" className={`${base} cursor-not-allowed border-transparent text-[var(--preview-content,var(--color-content-secondary))] opacity-50 ${className}`}>{children}</span>;
   }
-  const active = props["aria-current"] === "page" || props["aria-current"] === true;
+  const current = props["aria-current"];
+  const active = current !== undefined && current !== false && current !== "false";
   const status = active
-    ? "bg-[image:var(--preview-action-gradient,var(--gradient-action-primary))] text-[var(--preview-action-text,var(--color-content-inverse))]"
-    : "text-[var(--preview-content,var(--color-content-secondary))] hover:bg-[var(--preview-surface-raised,var(--color-surface-raised))] hover:text-[var(--preview-content,var(--color-content-primary))]";
+    ? `${highlight} font-bold text-[var(--preview-accent,var(--color-action-accent-dark))]`
+    : "border-transparent text-[var(--preview-content-secondary,var(--color-content-secondary))] hover:border-[var(--preview-nav-highlight-border,var(--color-border-glass))] hover:bg-[var(--preview-nav-highlight,var(--color-surface-glass-highlight))] hover:text-[var(--preview-content,var(--color-content-primary))]";
   return <Link className={`${base} ${status} ${className}`} {...props}>{children}</Link>;
 }

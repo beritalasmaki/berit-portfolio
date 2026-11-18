@@ -10,6 +10,7 @@
 	--color-surface-canvas: #ffffff;
 	--color-surface-ground: #fffaf4;
 	--color-surface-glass: rgb(255 251 245 / 0.62);
+	--color-surface-glass-highlight: rgb(255 255 255 / 0.75);
 	--color-surface-subtle: #f5f3ee;
 	--color-surface-raised: #f0eee9;
 	--color-surface-canvas-dark: #222222;
@@ -208,6 +209,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-action-border: transparent;
 	--preview-action-shadow: none;
 	--preview-accent: var(--color-action-accent-dark);
+	--preview-nav-highlight: var(--color-surface-glass-highlight);
+	--preview-nav-highlight-border: var(--color-border-glass);
+	--preview-nav-highlight-shadow: 0 4px 16px rgba(34, 34, 34, 0.08);
 	--preview-tag-surface: var(--color-surface-glass);
 	--preview-card-surface: var(--color-surface-glass);
 	--preview-card-border: var(--color-border-default);
@@ -245,6 +249,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-action-border: var(--color-border-strong);
 	--preview-action-shadow: var(--shadow-inset);
 	--preview-accent: var(--color-action-accent-on-dark);
+	--preview-nav-highlight: rgb(255 255 255 / 0.12);
+	--preview-nav-highlight-border: rgb(255 255 255 / 0.2);
+	--preview-nav-highlight-shadow: none;
 	--preview-tag-surface: transparent;
 	--preview-card-surface: var(--color-surface-raised-dark);
 	--preview-card-border: var(--color-border-strong);
@@ -265,6 +272,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-notice-icon-error: var(--color-status-error-on-dark);
 	background: var(--preview-surface);
 	color: var(--preview-content);
+}
+
+/* The frosted bar of a header: a translucent cream fill, a stronger blur and a light edge underneath. */
+.glass-bar {
+	background-color: rgb(255 248 239 / 0.55);
+	-webkit-backdrop-filter: blur(20px) saturate(160%);
+	backdrop-filter: blur(20px) saturate(160%);
+	border-bottom: 1px solid rgb(255 255 255 / 0.7);
+	box-shadow: 0 1px 0 rgba(34, 34, 34, 0.06), 0 8px 24px rgba(34, 34, 34, 0.05);
 }
 
 .toast-timer {

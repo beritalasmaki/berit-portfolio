@@ -1,14 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { NavigationLink } from "@/components/navigation/NavigationLink";
 import { usePathname } from "next/navigation";
 import { useRef, useState, type ReactNode } from "react";
 import { PageNav, type PageNavGroup } from "@/components/navigation/PageNav";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
 import { siteSections } from "@/components/navigation/siteMap";
-
-const itemClass = (current: boolean) => `block rounded-[var(--radius-sm)] px-3 py-2 text-sm font-semibold ${current ? "bg-[var(--color-surface-inverse)] text-white" : "text-[var(--color-content-secondary)] hover:bg-[var(--color-surface-subtle)]"}`;
-const topClass = (current: boolean) => `inline-flex min-h-11 items-center border-b-2 px-3 text-sm font-semibold ${current ? "border-[var(--color-action-accent)] text-[var(--color-content-primary)]" : "border-transparent text-[var(--color-content-secondary)] hover:text-[var(--color-content-primary)]"}`;
 
 type DocsShellProps = {
   children: ReactNode;
@@ -38,7 +35,7 @@ export function DocsShell({ children, topLink = { href: "/", label: "Back to lan
         <div key={group.heading ?? index} className={group.heading ? "mt-6" : ""}>
           {group.heading ? <p className="eyebrow mb-1 px-3">{group.heading}</p> : null}
           <ul className="m-0 list-none space-y-1 p-0">
-            {group.links.map((link) => <li key={link.href}><Link href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={itemClass(pathname === link.href)}>{link.label}</Link></li>)}
+            {group.links.map((link) => <li key={link.href}><NavigationLink href={link.href} aria-current={pathname === link.href ? "page" : undefined}>{link.label}</NavigationLink></li>)}
           </ul>
         </div>
       ))}
@@ -50,8 +47,8 @@ export function DocsShell({ children, topLink = { href: "/", label: "Back to lan
       <SiteHeader actionHref={topLink.href} actionLabel={topLink.label} actionIcon={topLink.label === "Back to landing page" ? "arrow_back" : "arrow_forward"} />
 
       <div className="border-b border-[var(--color-border-default)] px-6 lg:px-10">
-        <nav aria-label="Main sections" className="mx-auto hidden max-w-[var(--width-page)] gap-2 lg:flex">
-          {siteSections.map((item) => <Link key={item.id} href={item.href} aria-current={item.id === section.id ? "true" : undefined} className={topClass(item.id === section.id)}>{item.label}</Link>)}
+        <nav aria-label="Main sections" className="mx-auto hidden max-w-[var(--width-page)] gap-2 py-2 lg:flex">
+          {siteSections.map((item) => <NavigationLink key={item.id} href={item.href} aria-current={item.id === section.id ? "true" : undefined}>{item.label}</NavigationLink>)}
         </nav>
         <div className="flex items-center justify-between py-2 lg:hidden">
           <p className="m-0 text-sm font-semibold">{section.label}</p>
@@ -62,14 +59,14 @@ export function DocsShell({ children, topLink = { href: "/", label: "Back to lan
             aria-controls="docs-menu"
             onClick={() => setMenuPath(menuOpen ? null : pathname)}
             onKeyDown={(event) => { if (event.key === "Escape") { setMenuPath(null); menuButton.current?.focus(); } }}
-            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--color-border-strong)] px-4 text-sm font-semibold"
+            className="inline-flex min-h-11 items-center gap-2 rounded-[var(--radius-pill)] border border-[var(--color-border-subtle)] px-6 text-[15px] font-semibold"
           >
             <span aria-hidden="true" className="material-symbols-outlined">{menuOpen ? "close" : "menu"}</span>Menu
           </button>
         </div>
         {menuOpen ? (
           <div id="docs-menu" className="max-h-[70vh] space-y-6 overflow-y-auto pb-6 lg:hidden">
-            <nav aria-label="Main sections (menu)"><p className="eyebrow mb-2">Sections</p><ul className="m-0 list-none space-y-1 p-0">{siteSections.map((item) => <li key={item.id}><Link href={item.href} aria-current={item.id === section.id ? "true" : undefined} className={itemClass(item.id === section.id)}>{item.label}</Link></li>)}</ul></nav>
+            <nav aria-label="Main sections (menu)"><p className="eyebrow mb-2">Sections</p><ul className="m-0 list-none space-y-1 p-0">{siteSections.map((item) => <li key={item.id}><NavigationLink href={item.href} aria-current={item.id === section.id ? "true" : undefined}>{item.label}</NavigationLink></li>)}</ul></nav>
             {pageLinks}
           </div>
         ) : null}
