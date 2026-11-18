@@ -21,7 +21,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "At first I used AI one command at a time: ask for something, look at the result, adjust the request. What I learned is that the result depends far more on what the AI knows about the project than on how the request is phrased. In my own projects, the design system and the agent run review screen, I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were considerably better.",
+      text: "At first I used AI one command at a time: ask for something, look at the result, adjust the request. What I learned is that the result depends far more on what the AI knows about the project than on how the request is phrased. In my own projects, [my design system](https://design-system-use-case.vercel.app/) and [an agent run review screen](https://demo-t-example.vercel.app/), I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were considerably better.",
     },
     {
       type: "paragraph",
