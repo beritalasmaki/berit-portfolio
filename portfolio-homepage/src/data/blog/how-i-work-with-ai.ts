@@ -88,7 +88,7 @@ export const howIWorkWithAi: BlogPost = {
         },
         {
           title: "Understand the people",
-          body: "A stakeholder map shows who decides what and where interests conflict. Conflicts are written side by side. I do not let the AI resolve them.",
+          body: "A stakeholder map shows who decides what. Most disagreements only show up as the project goes on, so at the start what matters is knowing who has the final say when they do. Conflicts are added side by side as they appear. I do not let the AI resolve them.",
         },
         {
           title: "Design",

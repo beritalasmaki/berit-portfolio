@@ -89,7 +89,7 @@ export const howIWorkWithAiFi: BlogPost = {
         },
         {
           title: "Ihmisten ymmärtäminen",
-          body: "Sidosryhmäkartasta näkee, kuka päättää mistäkin ja missä kohdissa toiveet ovat ristiriidassa. Ristiriidat laitetaan vierekkäin, enkä anna tekoälyn ratkaista niitä.",
+          body: "Sidosryhmäkartasta näkee, kuka päättää mistäkin. Erimielisyydet nousevat yleensä esiin vasta projektin aikana, joten alussa tärkeintä on tietää, kenen sana painaa, kun niin käy. Ristiriidat kirjataan vierekkäin sitä mukaa kuin ne tulevat esiin, enkä anna tekoälyn ratkaista niitä.",
         },
         {
           title: "Suunnittelu",
