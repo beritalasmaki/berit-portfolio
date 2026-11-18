@@ -26,7 +26,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tästä syntyi pohja, joka on lähtökohtani uusiin suunnitteluprojekteihin. Tein sen julkisen sektorin ja B2B-projekteja varten, joissa saavutettavuus ja tietoturva ovat vaatimuksia ja monella on sananvaltaa. Ajatuksena on, että hyvin laadittu konteksti ja tietoarkkitehtuuri tekoälyn taustalla tuottavat paljon parempia tuloksia kuin pelkät komennot.",
+      text: "Tästä syntyi pohja, joka on lähtökohtani uusiin suunnitteluprojekteihin. Tein sen projekteihin, joissa saavutettavuus ja tietoturva ovat vaatimuksia ja monella on sananvaltaa. Tällaisia ovat esimerkiksi julkisen sektorin ja B2B-projektit. Ajatuksena on, että hyvin laadittu konteksti ja tietoarkkitehtuuri tekoälyn taustalla tuottavat paljon parempia tuloksia kuin pelkät komennot.",
     },
 
     {

@@ -25,7 +25,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "That became the template I use as the starting point for new design projects. It is built for public sector and B2B work, where accessibility and security are requirements and many people have a say. The idea behind it is that well-built context and information architecture produce much better results than commands alone.",
+      text: "That became the template I use as the starting point for new design projects. It is built for projects where accessibility and security are requirements and many people have a say, such as public sector and B2B projects. The idea behind it is that well-built context and information architecture produce much better results than commands alone.",
     },
 
     {
