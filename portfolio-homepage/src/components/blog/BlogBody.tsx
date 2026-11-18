@@ -29,7 +29,7 @@ export default function BlogBody({ blocks, copy }: { blocks: BlogBlock[]; copy: 
               <h2
                 key={i}
                 id={block.id}
-                className="mt-6 first:mt-0 mb-0 max-w-prose-cs text-card-h3 text-ink text-balance"
+                className="mt-6 first:mt-0 mb-0 max-w-prose-cs text-card-h3 text-ink"
               >
                 {block.text}
               </h2>

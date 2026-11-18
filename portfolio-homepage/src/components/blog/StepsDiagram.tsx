@@ -14,7 +14,7 @@ export default function StepsDiagram({ data, copy }: { data: StepsExample; copy:
     <figure className="m-0 rounded-card glass p-card-pad">
       <figcaption className="flex flex-col gap-2">
         <span className="font-mono-label text-mono-label uppercase text-muted">{copy.diagram}</span>
-        <span className="text-card-h3 text-ink text-balance">{data.title}</span>
+        <span className="text-card-h3 text-ink">{data.title}</span>
       </figcaption>
 
       <ol className="mt-8 mb-0 p-0 list-none grid grid-cols-1 sm:grid-cols-2 gap-4">

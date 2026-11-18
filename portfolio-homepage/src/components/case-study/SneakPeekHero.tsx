@@ -79,7 +79,7 @@ export default function SneakPeekHero({
           {/* The H1 states the result ("Monitoring, calculation and reporting, in
               one place."), not just the topic; the project's title sits in the
               eyebrow above and stays the page's <title>. */}
-          <h1 id="case-study-title" className="m-0 text-section-h2 text-ink max-w-[22em] text-balance">
+          <h1 id="case-study-title" className="m-0 text-section-h2 text-ink max-w-prose-cs">
             {study.headline.replace(/\n/g, " ")}
           </h1>
           <p className="m-0 max-w-prose-cs text-lead text-body">{study.description}</p>

@@ -77,7 +77,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
           <Reveal>
             <section aria-labelledby="blog-title" className="border-t border-rule pt-[clamp(32px,4vw,48px)]">
               <p className="font-mono-label text-mono-label uppercase text-muted m-0">{t.blog.eyebrow}</p>
-              <h1 id="blog-title" className="mt-4 m-0 text-hero max-w-[18em]">
+              <h1 id="blog-title" className="mt-4 m-0 text-hero max-w-prose-cs">
                 {t.blog.heading[0]}
                 <span className="text-accent-hero">{t.blog.heading[1]}</span>
               </h1>

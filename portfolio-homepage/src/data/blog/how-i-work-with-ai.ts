@@ -5,7 +5,7 @@ export const howIWorkWithAi: BlogPost = {
   title: "How I work with AI: a template for design projects",
   tabTitle: "How I work with AI",
   excerpt:
-    "I start design projects from a template where AI drafts, I decide and real people test. It holds written context, checks the AI cannot skip and a record of who decided what. This post explains what is in it, how I use it and what it does not prove yet.",
+    "My starting point for new design projects is a template where AI drafts, I decide and real people test. It holds written context, checks the AI cannot skip and a record of who decided what. This post explains what is in it and how I use it.",
   date: "2026-11-18",
   tags: ["AI tools", "AI adoption"],
   body: [
@@ -25,7 +25,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "That idea grew into a template I now start design projects from. It is meant for public sector and B2B work, where accessibility and security are requirements and many people have a say. This post explains what is in it, how I use it and what it does not prove yet.",
+      text: "That idea grew into a template that is my starting point for new design projects. It is meant for public sector and B2B work, where accessibility and security are requirements and many people have a say. This post explains what is in it and how I use it.",
     },
 
     {
@@ -84,7 +84,7 @@ export const howIWorkWithAi: BlogPost = {
       items: [
         {
           title: "Frame the problem",
-          body: "I quote the request as it was handed to me, then write the problem as a situation a user is in. If a solution is hiding inside it, I rewrite it.",
+          body: "I write the request down as it was handed to me, but I aim to anonymise it, so that neither the client nor any person is named. I keep the client's information confidential. Then I write the problem as a situation a user is in. If a solution is hiding inside it, I rewrite it.",
         },
         {
           title: "Understand the people",
@@ -96,7 +96,7 @@ export const howIWorkWithAi: BlogPost = {
         },
         {
           title: "Check",
-          body: "Accessibility, security and privacy, and a review of which choices were left at default. Contrast is calculated by a script, never estimated.",
+          body: "Accessibility, security and privacy, and a review of which choices were left at default. Contrast is calculated by a script, never estimated. This is a design-stage review, not an audit.",
         },
         {
           title: "Hand off",
@@ -111,6 +111,21 @@ export const howIWorkWithAi: BlogPost = {
     {
       type: "paragraph",
       text: "Between checking and handing off, real people take over: user testing that includes users with access needs, security review and legal advice. The template makes room for that step. It never replaces it.",
+    },
+
+    {
+      type: "heading",
+      id: "flows",
+      text: "User flows: I map the hard paths too",
+      navLabel: "The hard paths too",
+    },
+    {
+      type: "paragraph",
+      text: "In a user flow I do not draw only the happy path, where everything goes well. I also map the situations where something goes wrong or is hard for the user: error messages, a session that times out, a lost connection, and what happens when the user is not allowed to do something.",
+    },
+    {
+      type: "paragraph",
+      text: "The same path can be smooth for one user and unbearably hard for another. So for each step I ask who finds it hard, for example someone with little digital experience, someone using assistive technology, someone in a hurry on a phone, or someone who is interrupted halfway. Every step gets the system's response, and every screen gets all of its states.",
     },
 
     {
@@ -163,20 +178,41 @@ export const howIWorkWithAi: BlogPost = {
 
     {
       type: "heading",
-      id: "unknown",
-      text: "What I do not know yet",
+      id: "weight",
+      text: "Is this too heavy to keep up?",
+      navLabel: "Is it too heavy?",
     },
     {
       type: "paragraph",
-      text: "This is a first version, and I have not used it on a real project yet. The examples in it are fictional. The tests that check whether each skill loads when it should are written but not run. And the accessibility checks are design-stage reviews, not audits. They do not replace testing with assistive technology, or user testing with people who have access needs.",
+      text: "It can be. A client may well ask whether a process like this is too heavy to do and to maintain, and if I tried to do everything, it would be. So I built it to start small.",
+    },
+    {
+      type: "list",
+      items: [
+        "**Five documents to begin with.** The others are added only when someone will read and use them.",
+        "**AI writes the first version.** I give it my raw notes and correct the result, so I rarely start from a blank page.",
+        "**The rules check themselves.** A script runs on every push, so nobody has to remember to keep them true.",
+        "**No document without a reader.** Each one has a named reader and a use. If I cannot name them, I do not write it.",
+      ],
     },
     {
       type: "paragraph",
-      text: "My next step is to use it on one real project, with the client's permission, and change whatever does not survive the first week.",
+      text: "Some parts are still heavy. Publishing a read-only copy to the client's tools is manual, and logging decisions takes a habit. Making those two lighter is next on my list.",
+    },
+
+    {
+      type: "heading",
+      id: "own-way",
+      text: "My way, not the only way",
+      navLabel: "My way",
+    },
+    {
+      type: "paragraph",
+      text: "This is not the only right way to use AI in design. It is my way, and it is still taking shape. The template is a first version, and I will keep changing it as I use it, whenever a part turns out to be too heavy or impractical. The guiding line stays the same: AI helps me draft, and the decisions and the responsibility stay with people.",
     },
     {
       type: "quote",
-      text: "AI makes drafting faster. It does not make deciding, testing or being accountable faster, and that is the part I want to keep.",
+      text: "A process that is too heavy does not get used. So I keep mine as light as responsible work allows.",
     },
   ],
 };

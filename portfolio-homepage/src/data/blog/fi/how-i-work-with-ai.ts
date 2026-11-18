@@ -3,10 +3,10 @@ import type { BlogPost } from "../types";
 export const howIWorkWithAiFi: BlogPost = {
   slug: "nain-tyoskentelen-tekoalyn-kanssa",
   translationOf: "how-i-work-with-ai",
-  title: "Näin työskentelen tekoälyn kanssa: pohja suunnitteluun",
+  title: "Näin työskentelen tekoälyn kanssa",
   tabTitle: "Näin työskentelen tekoälyn kanssa",
   excerpt:
-    "Aloitan suunnitteluprojektit pohjasta, jossa tekoäly luonnostelee, minä päätän ja oikeat ihmiset testaavat. Pohjassa on kirjoitettu konteksti, tarkistuksia joita ei voi ohittaa ja kirjaus siitä, kuka päätti mitä. Kerron, mitä pohjassa on, miten käytän sitä ja mitä pohja ei vielä todista.",
+    "Uusien suunnitteluprojektieni lähtökohta on pohja, jossa tekoäly luonnostelee, minä päätän ja oikeat ihmiset testaavat. Pohjassa on kirjoitettu konteksti, tarkistuksia joita ei voi ohittaa ja kirjaus siitä, kuka päätti mitä. Kerron, mitä pohjassa on ja miten käytän sitä.",
   date: "2026-11-18",
   tags: ["Tekoälytyökalut", "Tekoälyn käyttöönotto"],
   body: [
@@ -26,7 +26,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tästä ajatuksesta syntyi pohja, josta aloitan nykyään suunnitteluprojektini. Tein sen julkisen sektorin ja B2B-projekteja varten, joissa saavutettavuus ja tietoturva ovat vaatimuksia ja monella on sananvaltaa. Kerron tässä, mitä pohjassa on, miten käytän sitä ja mitä pohja ei vielä todista.",
+      text: "Tästä ajatuksesta syntyi pohja, joka on lähtökohtani uusiin suunnitteluprojekteihin. Tein sen julkisen sektorin ja B2B-projekteja varten, joissa saavutettavuus ja tietoturva ovat vaatimuksia ja monella on sananvaltaa. Kerron tässä, mitä pohjassa on ja miten käytän sitä.",
     },
 
     {
@@ -85,7 +85,7 @@ export const howIWorkWithAiFi: BlogPost = {
       items: [
         {
           title: "Ongelman muotoilu",
-          body: "Kirjoitan toimeksiannon ylös sellaisenaan. Sen jälkeen kuvaan ongelman tilanteena, jossa käyttäjä on. Jos ratkaisu on jo piilossa ongelman kuvauksessa, kirjoitan sen uusiksi.",
+          body: "Kirjoitan toimeksiannon ylös sellaisenaan, mutta pyrin anonymisoimaan tekstin niin, ettei asiakkaan tai kenenkään henkilön nimi näy missään. Asiakkaan tiedot pidän salaisina. Sen jälkeen kuvaan ongelman tilanteena, jossa käyttäjä on. Jos ratkaisu on jo piilossa ongelman kuvauksessa, kirjoitan sen uusiksi.",
         },
         {
           title: "Ihmisten ymmärtäminen",
@@ -97,7 +97,7 @@ export const howIWorkWithAiFi: BlogPost = {
         },
         {
           title: "Tarkistus",
-          body: "Käyn läpi saavutettavuuden, tietoturvan ja yksityisyyden sekä katson, mitkä valinnat jäivät pelkiksi oletuksiksi. Kontrastit laskee skripti, niitä ei arvioida silmämääräisesti.",
+          body: "Käyn läpi saavutettavuuden, tietoturvan ja yksityisyyden sekä katson, mitkä valinnat jäivät pelkiksi oletuksiksi. Kontrastit laskee skripti, niitä ei arvioida silmämääräisesti. Tämä on suunnitteluvaiheen katselmointi, ei auditointi.",
         },
         {
           title: "Luovutus",
@@ -112,6 +112,21 @@ export const howIWorkWithAiFi: BlogPost = {
     {
       type: "paragraph",
       text: "Tarkistuksen ja luovutuksen välissä vastuu siirtyy oikeille ihmisille: käyttäjätesteille (mukana myös käyttäjät, joilla on saavutettavuustarpeita), tietoturvatarkastukselle ja juridiselle arviolle. Pohjassa on tälle vaiheelle oma paikkansa, mutta tekoäly ei korvaa sitä.",
+    },
+
+    {
+      type: "heading",
+      id: "flows",
+      text: "Käyttäjävirrat: kartoitan myös hankalat polut",
+      navLabel: "Myös hankalat polut",
+    },
+    {
+      type: "paragraph",
+      text: "Käyttäjävirroissa en piirrä pelkkää onnistunutta polkua, jossa kaikki sujuu hyvin. Kartoitan myös tilanteet, joissa jokin menee pieleen tai on käyttäjälle vaikea: virheilmoitukset, istunnon vanheneminen, yhteyden katkeaminen ja se, mitä tapahtuu, kun käyttäjällä ei ole oikeutta tehdä jotain.",
+    },
+    {
+      type: "paragraph",
+      text: "Sama polku voi olla yhdelle käyttäjälle sujuva ja toiselle sietämättömän vaikea. Siksi kysyn jokaisesta vaiheesta, kenelle se on hankala. Se voi olla esimerkiksi käyttäjä, jolla on vähän digitaitoja, käyttäjä, joka käyttää apuvälineitä, kiireessä puhelimella asioiva tai joku, jonka tekeminen keskeytyy kesken kaiken. Jokaiselle vaiheelle kirjataan, mitä järjestelmä vastaa, ja jokaiselle näkymälle kaikki sen tilat.",
     },
 
     {
@@ -163,20 +178,41 @@ export const howIWorkWithAiFi: BlogPost = {
 
     {
       type: "heading",
-      id: "unknown",
-      text: "Mitä en vielä tiedä",
+      id: "weight",
+      text: "Onko tämä liian raskasta?",
+      navLabel: "Onko tämä raskasta?",
     },
     {
       type: "paragraph",
-      text: "Tämä on ensimmäinen versio, enkä ole vielä käyttänyt sitä oikeassa projektissa. Pohjan esimerkit ovat keksittyjä. Testit, joilla tarkistetaan, että jokainen skilli latautuu silloin kun pitää, on kirjoitettu mutta ei vielä ajettu. Saavutettavuustarkistukset ovat suunnitteluvaiheen katselmointeja, eivät auditointeja. Ne eivät korvaa testausta apuvälineillä eivätkä käyttäjätestejä käyttäjillä, joilla on saavutettavuustarpeita.",
+      text: "On, jos yrittää tehdä kaiken. Asiakas saattaa aivan perustellusti kysyä, eikö tällainen prosessi ole raskas toteuttaa ja ylläpitää. Siksi rakensin sen niin, että alkuun pääsee pienellä.",
+    },
+    {
+      type: "list",
+      items: [
+        "**Aloitus viidellä dokumentilla.** Muut lisätään vasta, kun joku oikeasti lukee ja käyttää niitä.",
+        "**Tekoäly tekee ensimmäisen version.** Annan raakamuistiinpanoni ja korjaan tuloksen, joten tyhjältä sivulta harvoin tarvitsee aloittaa.",
+        "**Säännöt tarkistuvat itse.** Skripti ajetaan jokaisen pushin yhteydessä, joten kenenkään ei tarvitse muistaa pitää niitä voimassa.",
+        "**Ei dokumenttia ilman lukijaa.** Jokaiselle on nimetty lukija ja käyttö. Jos en osaa nimetä niitä, en kirjoita dokumenttia.",
+      ],
     },
     {
       type: "paragraph",
-      text: "Seuraavaksi aion kokeilla pohjaa yhdessä oikeassa projektissa asiakkaan luvalla ja muuttaa sen, mikä ei kestä ensimmäistä viikkoa.",
+      text: "Joitakin raskaita kohtia on yhä. Lukukopion julkaiseminen asiakkaan työkaluihin tehdään käsin, ja päätösten kirjaaminen vaatii tottumuksen. Näiden keventäminen on seuraavana listallani.",
+    },
+
+    {
+      type: "heading",
+      id: "own-way",
+      text: "Oma tapani, ei ainoa oikea",
+      navLabel: "Oma tapani",
+    },
+    {
+      type: "paragraph",
+      text: "Tämä ei ole ainoa oikea tapa käyttää tekoälyä suunnittelussa. Se on minun tapani, ja se muotoutuu edelleen. Pohja on ensimmäinen versio, ja kehitän sitä käytön myötä: muutan sitä aina, kun huomaan jonkin kohdan olevan turhan raskas tai epäkäytännöllinen. Ohjenuora pysyy samana: tekoäly auttaa luonnostelemaan, mutta päätökset ja vastuu pysyvät ihmisellä.",
     },
     {
       type: "quote",
-      text: "Tekoäly nopeuttaa luonnostelua. Päättäminen, testaaminen ja vastuun kantaminen eivät nopeudu, ja ne haluan pitää itselläni.",
+      text: "Liian raskas prosessi jää käyttämättä. Siksi pidän omani niin kevyenä kuin vastuullinen työ sallii.",
     },
   ],
 };

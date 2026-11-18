@@ -12,7 +12,7 @@ export default function FlowDiagram({ data, copy }: { data: FlowExample; copy: D
     <figure className="m-0 rounded-card glass p-card-pad">
       <figcaption className="flex flex-col gap-2">
         <span className="font-mono-label text-mono-label uppercase text-muted">{copy.diagram}</span>
-        <span className="text-card-h3 text-ink text-balance">{data.title}</span>
+        <span className="text-card-h3 text-ink">{data.title}</span>
       </figcaption>
 
       <div className="mt-8 flex flex-col gap-4">
