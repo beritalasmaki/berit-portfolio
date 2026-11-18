@@ -11,8 +11,7 @@ export default function ContactSection({ copy }: { copy: Dictionary["contact"] }
     <section id="contact" aria-labelledby="contact-heading" className="mt-rhythm">
       <div className="glass rounded-card px-pane-pad py-contact-y grid grid-cols-1 lg:grid-cols-2 gap-grid-gap-lg items-end">
         <h2 id="contact-heading" className="m-0 text-contact-h2 text-ink">
-          {copy.headingLine1}
-          <br />
+          {copy.headingLine1}{" "}
           {copy.headingLine2Before}
           <span className="text-accent-hero">{copy.headingAccent}</span>
         </h2>

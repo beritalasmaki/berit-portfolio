@@ -47,12 +47,7 @@ export default function Hero({ copy }: { copy: Dictionary["hero"] }) {
             className="m-0 text-hero fade-up-item"
             style={{ animationDelay: "1650ms" }}
           >
-            {copy.headline.map((line, i) => (
-              <Fragment key={line}>
-                {i > 0 && <br />}
-                {line}
-              </Fragment>
-            ))}
+            {copy.headline.join(" ")}
           </h1>
           {/* Proof first, then the promise: a stat line (numbers in
               accent-dark, the AA-safe orange for text; the dots are
