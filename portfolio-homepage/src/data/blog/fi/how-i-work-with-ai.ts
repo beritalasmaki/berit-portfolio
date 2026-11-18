@@ -141,7 +141,7 @@ export const howIWorkWithAiFi: BlogPost = {
             { label: "Skill", values: ["user-flow-and-states"] },
             { label: "Artefaktit", values: ["04 user flows and states", "07 design system rules"] },
           ],
-          body: "Käyttäjäpolut kuvataan vaihe vaiheelta virhetilanteineen, ja jokaiselle näkymälle listataan kaikki tilat suunnittelujärjestelmän sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan niiden olevan suunniteltuja.",
+          body: "Käyttäjäpolut kuvataan vaihe vaiheelta virhetilanteineen, ja jokaiselle näkymälle listataan kaikki tilat Design Systemin sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan niiden olevan suunniteltuja.",
         },
         {
           title: "Tarkistus",
