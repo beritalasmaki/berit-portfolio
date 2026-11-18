@@ -87,11 +87,11 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Jokaiselle asiakasprojektille tehdään oma yksityinen työtila pohjasta. Siellä on lyhyitä dokumentteja, jotka tekoäly lukee ennen kuin se alkaa auttaa: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Annan mukaan raakamuistiinpanoni, tekoäly luonnostelee ja minä korjaan. Mitä muistiinpanoista ei löydy, merkitään aukoksi.",
+      text: "Jokaiselle asiakasprojektille tehdään oma yksityinen työtila (Git-repositorio, jossa tiedostoilla on versiohistoria) tästä pohjasta. Siellä on lyhyitä dokumentteja, jotka tekoäly lukee ennen kuin se alkaa auttaa: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Annan mukaan raakamuistiinpanoni, tekoäly luonnostelee ja minä korjaan. Mitä muistiinpanoista ei löydy, merkitään aukoksi.",
     },
     {
       type: "paragraph",
-      text: "Työtila on minun eikä asiakkaan, enkä vie sitä koskaan asiakkaan repositorioon.",
+      text: "Tämä työtila on minun eikä asiakkaan, enkä vie sitä koskaan asiakkaan omaan repositorioon.",
     },
 
     {
@@ -141,7 +141,7 @@ export const howIWorkWithAiFi: BlogPost = {
             { label: "Skill", values: ["user-flow-and-states"] },
             { label: "Artefaktit", values: ["04 user flows and states", "07 design system rules"] },
           ],
-          body: "Käyttäjäpolut kuvataan vaihe vaiheelta virhetilanteineen, ja jokaiselle näkymälle listataan kaikki tilat suunnittelujärjestelmän sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan niiden olevan suunniteltuja.",
+          body: "Käyttäjäpolut kuvataan vaihe vaiheelta virhetilanteineen, ja jokaiselle näkymälle listataan kaikki tilat Design Systemin sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan niiden olevan suunniteltuja.",
         },
         {
           title: "Tarkistus",
