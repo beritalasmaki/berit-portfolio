@@ -38,6 +38,7 @@ export const siteSections: SiteSection[] = [
       { heading: "Atoms", links: [
         { href: "/components/atoms/icons", label: "Icons" },
         { href: "/components/atoms/buttons", label: "Buttons" },
+        { href: "/components/atoms/tags", label: "Tags" },
         { href: "/components/atoms/form-controls", label: "Form controls" },
       ] },
       { heading: "Molecules", links: [
@@ -50,6 +51,7 @@ export const siteSections: SiteSection[] = [
       { heading: "Organisms", links: [
         { href: "/components/organisms/navigation", label: "Navigation" },
         { href: "/components/organisms/cards", label: "Cards" },
+        { href: "/components/organisms/accordion", label: "Accordion" },
         { href: "/components/organisms/table", label: "Table" },
         { href: "/components/organisms/forms", label: "Multi-step form" },
       ] },

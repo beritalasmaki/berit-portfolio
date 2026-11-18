@@ -8,6 +8,7 @@ const levels = [
   { level: "Atoms", text: "The smallest parts. They cannot be broken down further and are used inside everything else.", items: [
     ["Icons", "A small set of line icons and the icon-only button.", "atoms/icons"],
     ["Buttons", "Primary, secondary and tertiary buttons, with icons, loading and disabled states.", "atoms/buttons"],
+    ["Tags", "Small static labels for a category, topic or skill.", "atoms/tags"],
     ["Form controls", "Input, select, checkbox and radio in every mode.", "atoms/form-controls"],
   ] },
   { level: "Molecules", text: "Small groups of atoms that work as one unit.", items: [
@@ -20,6 +21,7 @@ const levels = [
   { level: "Organisms", text: "Larger sections built from molecules and atoms.", items: [
     ["Navigation", "Top and side navigation.", "organisms/navigation"],
     ["Cards", "Cards for metrics, actions, images and selectable content.", "organisms/cards"],
+    ["Accordion", "A card-shaped section whose content folds away.", "organisms/accordion"],
     ["Table", "Sorting, filtering, selection and empty states for tabular data.", "organisms/table"],
     ["Multi-step form", "An introduction, sections, progress and actions put together.", "organisms/forms"],
   ] },

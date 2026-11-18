@@ -208,6 +208,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-action-border: transparent;
 	--preview-action-shadow: none;
 	--preview-accent: var(--color-action-accent-dark);
+	--preview-tag-surface: var(--color-surface-glass);
 	--preview-card-surface: var(--color-surface-glass);
 	--preview-card-border: var(--color-border-default);
 	--preview-card-blur: var(--blur-glass);
@@ -244,6 +245,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	--preview-action-border: var(--color-border-strong);
 	--preview-action-shadow: var(--shadow-inset);
 	--preview-accent: var(--color-action-accent-on-dark);
+	--preview-tag-surface: transparent;
 	--preview-card-surface: var(--color-surface-raised-dark);
 	--preview-card-border: var(--color-border-strong);
 	--preview-card-blur: none;
