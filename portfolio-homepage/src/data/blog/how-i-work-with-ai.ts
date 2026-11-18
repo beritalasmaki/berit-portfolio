@@ -53,6 +53,10 @@ export const howIWorkWithAi: BlogPost = {
       ],
     },
     {
+      type: "paragraph",
+      text: "Drafts and summaries still always have to be checked, not accepted blindly, because the AI can overlook important points. That is why I write down my own key points before I ask the AI to summarise or draft anything. That way I notice at once if something important is missing from its version.",
+    },
+    {
       type: "subheading",
       text: "Where people's decisions and guidance are needed",
     },
@@ -115,27 +119,51 @@ export const howIWorkWithAi: BlogPost = {
       items: [
         {
           title: "Frame the problem",
-          body: "The request is turned into a user situation with no solution inside it, and what is known and what is missing is listed. I write the request down as it was handed to me and aim to anonymise it, so that neither the client nor any person is named. Client information stays confidential. AI instructions (skill): problem-framing. Documents (artefacts): 00 product context and 01 problem framing.",
+          meta: [
+            { label: "Skill", value: "problem-framing" },
+            { label: "Artefacts", value: "00 product context, 01 problem framing" },
+          ],
+          body: "The request is turned into a user situation with no solution inside it, and what is known and what is missing is listed. I write the request down as it was handed to me and aim to anonymise it, so that neither the client nor any person is named. Client information stays confidential.",
         },
         {
           title: "Understand the people",
-          body: "Work out who decides what, and record the requirements with their owners. Most disagreements appear only as the project goes on, so at the start what matters is knowing who has the final say. Conflicts are added side by side as they appear, and the AI does not resolve them. AI instructions (skill): stakeholder-map. Documents (artefacts): 02 stakeholder map and 03 requirements spec.",
+          meta: [
+            { label: "Skill", value: "stakeholder-map" },
+            { label: "Artefacts", value: "02 stakeholder map, 03 requirements spec" },
+          ],
+          body: "Work out who decides what, and record the requirements with their owners. Most disagreements appear only as the project goes on, so at the start what matters is knowing who has the final say. Conflicts are added side by side as they appear, and the AI does not resolve them.",
         },
         {
           title: "Design",
-          body: "User paths are mapped step by step with error situations, and every screen gets all its states listed against the design system rules. The AI marks each state as missing until I confirm it is designed. AI instructions (skill): user-flow-and-states. Documents (artefacts): 04 user flows and states and 07 design system rules.",
+          meta: [
+            { label: "Skill", value: "user-flow-and-states" },
+            { label: "Artefacts", value: "04 user flows and states, 07 design system rules" },
+          ],
+          body: "User paths are mapped step by step with error situations, and every screen gets all its states listed against the design system rules. The AI marks each state as missing until I confirm it is designed.",
         },
         {
           title: "Check",
-          body: "Accessibility, data and permissions are reviewed, along with which choices were left at default. Contrast is calculated by a script. This is a design-stage review, not an audit. AI instructions (skills): a11y-gate, security-privacy-brief and sameness-check. Documents (artefacts): 05 accessibility checklist and 06 security and privacy brief.",
+          meta: [
+            { label: "Skills", value: "a11y-gate, security-privacy-brief, sameness-check" },
+            { label: "Artefacts", value: "05 accessibility checklist, 06 security and privacy brief" },
+          ],
+          body: "Accessibility, data and permissions are reviewed, along with which choices were left at default. Contrast is calculated by a script. This is a design-stage review, not an audit.",
         },
         {
           title: "Hand off",
-          body: "States what is final, who approved it and what each vendor provides, and keeps review comments together with who decides on them. AI instructions (skill): procurement-ready-handoff. Documents (artefacts): 08 handoff spec and 09 stakeholder feedback log.",
+          meta: [
+            { label: "Skill", value: "procurement-ready-handoff" },
+            { label: "Artefacts", value: "08 handoff spec, 09 stakeholder feedback log" },
+          ],
+          body: "States what is final, who approved it and what each vendor provides, and keeps review comments together with who decides on them.",
         },
         {
           title: "Record and reflect",
-          body: "Decisions are logged with who decided and why. At the end, the log feeds a case study with the confidential details removed. AI instructions (skills): decision-log and nda-safe-case-study. Documents (artefacts): 10 decision log and 11 case study notes.",
+          meta: [
+            { label: "Skills", value: "decision-log, nda-safe-case-study" },
+            { label: "Artefacts", value: "10 decision log, 11 case study notes" },
+          ],
+          body: "Decisions are logged with who decided and why. At the end, the log feeds a case study with the confidential details removed.",
         },
       ],
     },

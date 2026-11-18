@@ -54,6 +54,10 @@ export const howIWorkWithAiFi: BlogPost = {
       ],
     },
     {
+      type: "paragraph",
+      text: "Luonnokset ja tiivistelmät on silti aina tarkistettava eikä niitä saa hyväksyä sokeasti, koska tekoäly voi jättää huomioimatta tärkeitä asioita. Siksi kirjoitan omat nostoni ylös jo ennen kuin pyydän tekoälyä tiivistämään tai luonnostelemaan. Näin huomaan heti, jos jokin tärkeä asia on jäänyt sen versiosta pois.",
+    },
+    {
       type: "subheading",
       text: "Missä asioissa tarvitaan ihmisen päätöksentekoa ja ohjausta",
     },
@@ -117,27 +121,51 @@ export const howIWorkWithAiFi: BlogPost = {
       items: [
         {
           title: "Ongelman muotoilu",
-          body: "Toimeksianto muutetaan käyttäjän tilanteeksi, jossa ei ole ratkaisua valmiina, ja listataan, mitä tiedetään ja mikä puuttuu. Kirjoitan toimeksiannon ylös sellaisenaan, mutta pyrin anonymisoimaan sen niin, ettei asiakkaan tai kenenkään henkilön nimi näy. Asiakkaan tiedot pidän salaisina. Tekoälyn ohje (skill): problem-framing. Dokumentit (artefaktit): 00 product context ja 01 problem framing.",
+          meta: [
+            { label: "Skill", value: "problem-framing" },
+            { label: "Artefaktit", value: "00 product context, 01 problem framing" },
+          ],
+          body: "Toimeksianto muutetaan käyttäjän tilanteeksi, jossa ei ole ratkaisua valmiina, ja listataan, mitä tiedetään ja mikä puuttuu. Kirjoitan toimeksiannon ylös sellaisenaan, mutta pyrin anonymisoimaan sen niin, ettei asiakkaan tai kenenkään henkilön nimi näy. Asiakkaan tiedot pidän salaisina.",
         },
         {
           title: "Ihmisten ymmärtäminen",
-          body: "Selvitetään, kuka päättää mistäkin, ja kirjataan vaatimukset omistajineen. Erimielisyydet nousevat yleensä esiin vasta projektin aikana, joten alussa tärkeintä on tietää, kenen sana painaa. Ristiriidat kirjataan vierekkäin sitä mukaa kuin ne tulevat esiin, enkä anna tekoälyn ratkaista niitä. Tekoälyn ohje (skill): stakeholder-map. Dokumentit (artefaktit): 02 stakeholder map ja 03 requirements spec.",
+          meta: [
+            { label: "Skill", value: "stakeholder-map" },
+            { label: "Artefaktit", value: "02 stakeholder map, 03 requirements spec" },
+          ],
+          body: "Selvitetään, kuka päättää mistäkin, ja kirjataan vaatimukset omistajineen. Erimielisyydet nousevat yleensä esiin vasta projektin aikana, joten alussa tärkeintä on tietää, kenen sana painaa. Ristiriidat kirjataan vierekkäin sitä mukaa kuin ne tulevat esiin, enkä anna tekoälyn ratkaista niitä.",
         },
         {
           title: "Suunnittelu",
-          body: "Käyttäjäpolut kuvataan vaihe vaiheelta virhetilanteineen, ja jokaiselle näkymälle listataan kaikki tilat suunnittelujärjestelmän sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan niiden olevan suunniteltuja. Tekoälyn ohje (skill): user-flow-and-states. Dokumentit (artefaktit): 04 user flows and states ja 07 design system rules.",
+          meta: [
+            { label: "Skill", value: "user-flow-and-states" },
+            { label: "Artefaktit", value: "04 user flows and states, 07 design system rules" },
+          ],
+          body: "Käyttäjäpolut kuvataan vaihe vaiheelta virhetilanteineen, ja jokaiselle näkymälle listataan kaikki tilat suunnittelujärjestelmän sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan niiden olevan suunniteltuja.",
         },
         {
           title: "Tarkistus",
-          body: "Käydään läpi saavutettavuus, tiedot ja käyttöoikeudet sekä se, mitkä valinnat jäivät pelkiksi oletuksiksi. Kontrastit laskee skripti. Tämä on suunnitteluvaiheen katselmointi, ei auditointi. Tekoälyn ohjeet (skillit): a11y-gate, security-privacy-brief ja sameness-check. Dokumentit (artefaktit): 05 accessibility checklist ja 06 security and privacy brief.",
+          meta: [
+            { label: "Skillit", value: "a11y-gate, security-privacy-brief, sameness-check" },
+            { label: "Artefaktit", value: "05 accessibility checklist, 06 security and privacy brief" },
+          ],
+          body: "Käydään läpi saavutettavuus, tiedot ja käyttöoikeudet sekä se, mitkä valinnat jäivät pelkiksi oletuksiksi. Kontrastit laskee skripti. Tämä on suunnitteluvaiheen katselmointi, ei auditointi.",
         },
         {
           title: "Luovutus",
-          body: "Kerrotaan, mikä on valmista, kuka sen hyväksyi ja mitä kukin toimittaja tekee. Katselmoinnin kommentit kootaan yhteen sen kanssa, kuka niistä päättää. Tekoälyn ohje (skill): procurement-ready-handoff. Dokumentit (artefaktit): 08 handoff spec ja 09 stakeholder feedback log.",
+          meta: [
+            { label: "Skill", value: "procurement-ready-handoff" },
+            { label: "Artefaktit", value: "08 handoff spec, 09 stakeholder feedback log" },
+          ],
+          body: "Kerrotaan, mikä on valmista, kuka sen hyväksyi ja mitä kukin toimittaja tekee. Katselmoinnin kommentit kootaan yhteen sen kanssa, kuka niistä päättää.",
         },
         {
           title: "Kirjaaminen ja pohdinta",
-          body: "Päätökset kirjataan niin, että näkyy kuka päätti ja miksi. Projektin lopussa lokista tehdään case study ilman luottamuksellisia tietoja. Tekoälyn ohjeet (skillit): decision-log ja nda-safe-case-study. Dokumentit (artefaktit): 10 decision log ja 11 case study notes.",
+          meta: [
+            { label: "Skillit", value: "decision-log, nda-safe-case-study" },
+            { label: "Artefaktit", value: "10 decision log, 11 case study notes" },
+          ],
+          body: "Päätökset kirjataan niin, että näkyy kuka päätti ja miksi. Projektin lopussa lokista tehdään case study ilman luottamuksellisia tietoja.",
         },
       ],
     },

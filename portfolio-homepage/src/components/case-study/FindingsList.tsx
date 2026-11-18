@@ -31,6 +31,16 @@ export default function FindingsList({ items }: { items: Finding[] }) {
             <p className="m-0 max-w-prose-cs text-body-em font-semibold text-ink text-pretty">
               {item.title}
             </p>
+            {item.meta && item.meta.length > 0 && (
+              <dl className="m-0 flex flex-col gap-2 sm:grid sm:grid-cols-[7.5rem_1fr] sm:gap-x-4 sm:gap-y-1">
+                {item.meta.map((entry) => (
+                  <div key={entry.label} className="flex flex-col gap-1 sm:contents">
+                    <dt className="font-mono-label text-mono-label uppercase text-muted">{entry.label}</dt>
+                    <dd className="m-0 text-body-sm text-ink">{entry.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
             <p className="m-0 max-w-prose-cs text-body-lg text-body">{item.body}</p>
           </div>
         </li>
