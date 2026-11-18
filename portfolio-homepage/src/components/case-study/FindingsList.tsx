@@ -31,6 +31,7 @@ export default function FindingsList({ items }: { items: Finding[] }) {
             <p className="m-0 max-w-prose-cs text-body-em font-semibold text-ink text-pretty">
               {item.title}
             </p>
+            <p className="m-0 max-w-prose-cs text-body-lg text-body">{item.body}</p>
             {item.meta && item.meta.length > 0 && (
               <dl className="m-0 my-2 flex max-w-prose-cs flex-col gap-4 rounded-frame border border-rule bg-cream/50 p-4 sm:grid sm:grid-cols-[7.5rem_1fr] sm:items-baseline sm:gap-x-4 sm:gap-y-3 sm:p-5">
                 {item.meta.map((entry) => (
@@ -50,7 +51,6 @@ export default function FindingsList({ items }: { items: Finding[] }) {
                 ))}
               </dl>
             )}
-            <p className="m-0 max-w-prose-cs text-body-lg text-body">{item.body}</p>
           </div>
         </li>
       ))}
