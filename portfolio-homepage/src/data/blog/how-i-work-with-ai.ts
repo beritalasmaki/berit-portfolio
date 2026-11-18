@@ -120,48 +120,48 @@ export const howIWorkWithAi: BlogPost = {
         {
           title: "Frame the problem",
           meta: [
-            { label: "Skill", value: "problem-framing" },
-            { label: "Artefacts", value: "00 product context, 01 problem framing" },
+            { label: "Skill", values: ["problem-framing"] },
+            { label: "Artefacts", values: ["00 product context", "01 problem framing"] },
           ],
           body: "The request is turned into a user situation with no solution inside it, and what is known and what is missing is listed. I write the request down as it was handed to me and aim to anonymise it, so that neither the client nor any person is named. Client information stays confidential.",
         },
         {
           title: "Understand the people",
           meta: [
-            { label: "Skill", value: "stakeholder-map" },
-            { label: "Artefacts", value: "02 stakeholder map, 03 requirements spec" },
+            { label: "Skill", values: ["stakeholder-map"] },
+            { label: "Artefacts", values: ["02 stakeholder map", "03 requirements spec"] },
           ],
           body: "Work out who decides what, and record the requirements with their owners. Most disagreements appear only as the project goes on, so at the start what matters is knowing who has the final say. Conflicts are added side by side as they appear, and the AI does not resolve them.",
         },
         {
           title: "Design",
           meta: [
-            { label: "Skill", value: "user-flow-and-states" },
-            { label: "Artefacts", value: "04 user flows and states, 07 design system rules" },
+            { label: "Skill", values: ["user-flow-and-states"] },
+            { label: "Artefacts", values: ["04 user flows and states", "07 design system rules"] },
           ],
           body: "User paths are mapped step by step with error situations, and every screen gets all its states listed against the design system rules. The AI marks each state as missing until I confirm it is designed.",
         },
         {
           title: "Check",
           meta: [
-            { label: "Skills", value: "a11y-gate, security-privacy-brief, sameness-check" },
-            { label: "Artefacts", value: "05 accessibility checklist, 06 security and privacy brief" },
+            { label: "Skills", values: ["a11y-gate", "security-privacy-brief", "sameness-check"] },
+            { label: "Artefacts", values: ["05 accessibility checklist", "06 security and privacy brief"] },
           ],
           body: "Accessibility, data and permissions are reviewed, along with which choices were left at default. Contrast is calculated by a script. This is a design-stage review, not an audit.",
         },
         {
           title: "Hand off",
           meta: [
-            { label: "Skill", value: "procurement-ready-handoff" },
-            { label: "Artefacts", value: "08 handoff spec, 09 stakeholder feedback log" },
+            { label: "Skill", values: ["procurement-ready-handoff"] },
+            { label: "Artefacts", values: ["08 handoff spec", "09 stakeholder feedback log"] },
           ],
           body: "States what is final, who approved it and what each vendor provides, and keeps review comments together with who decides on them.",
         },
         {
           title: "Record and reflect",
           meta: [
-            { label: "Skills", value: "decision-log, nda-safe-case-study" },
-            { label: "Artefacts", value: "10 decision log, 11 case study notes" },
+            { label: "Skills", values: ["decision-log", "nda-safe-case-study"] },
+            { label: "Artefacts", values: ["10 decision log", "11 case study notes"] },
           ],
           body: "Decisions are logged with who decided and why. At the end, the log feeds a case study with the confidential details removed.",
         },

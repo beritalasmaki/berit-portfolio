@@ -96,8 +96,8 @@ export type ChallengeSubsection = {
 export type Finding = {
   title: string;
   body: string;
-  /** Optional labelled facts shown between the title and the body, e.g. skill and artefact names. */
-  meta?: { label: string; value: string }[];
+  /** Optional labelled facts, each value shown as a tag, shown between the title and the body, e.g. skill and artefact names. */
+  meta?: { label: string; values: string[] }[];
 };
 
 /**
