@@ -25,7 +25,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "I started out using AI one command at a time: I asked for something (most often with precise specs), checked the result and refined the request. Through this I learned that, in the end, the result depends far more on what the AI knows about the project than on how the request is phrased. I then started building a new approach through a few projects of my own (among them [my design system](https://design-system-use-case.vercel.app/) and [an agent run review screen](https://demo-t-example.vercel.app/)). I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were already considerably better.",
+      text: "I started out using AI one command at a time: I asked for something (most often with precise specs), checked the result and refined the request. I learned that, in the end, the result depends far more on what the AI knows about the project than on how the request is phrased. I then started building a new approach through a few projects of my own (among them [my design system](https://design-system-use-case.vercel.app/) and [an agent run review screen](https://demo-t-example.vercel.app/)). I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were already considerably better.",
     },
     {
       type: "paragraph",
@@ -85,11 +85,11 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "After all, the AI knows nothing about the project or the brand when a new session starts. Without properly written context it starts guessing the missing pieces based on its training data and probabilities. That is why the end product may look very much like every other similar product.",
+      text: "After all, the AI knows nothing about the project or the brand when a new session starts. Without properly written context it may start guessing the missing pieces based on its training data and probabilities. That is why the end product may well end up looking very much like every other similar product.",
     },
     {
       type: "paragraph",
-      text: "That is why, when I start a new project, I create its own private workspace (a Git repository) for it from the template I have made. Short documents are then added to it, and the AI reads them before the work starts: who the product is for, the problem as a user situation, who decides what, the requirements and a decision log. I also add my raw notes, which the AI drafts from and I correct. Whatever cannot be found in the notes is marked as something to find out (a gap).",
+      text: "That is why I now create a private workspace (a Git repository) for every new project from a template of my own. Short documents are added to the workspace, and the AI reads them before the work starts: who the product is for, the problem as a user situation, who decides what, the requirements and a decision log. I also add my raw notes, which the AI drafts from and I correct. Whatever cannot be found in the notes is marked as something to find out (a gap).",
     },
     {
       type: "paragraph",
