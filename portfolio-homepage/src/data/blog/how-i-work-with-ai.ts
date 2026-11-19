@@ -25,13 +25,13 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "That became a template that now works well as a starting point for new projects. I originally built it for projects where accessibility and security play an important role and there are several stakeholders. Such projects are often found in the public sector and in critical industries, for example banking, insurance, healthcare and security.",
+      text: "That became a template that now works well as a starting point for new projects. The starting point was to build it for projects where accessibility and security play an important role and there are several stakeholders. These are often, for example, public sector projects and critical industries such as banking, insurance, healthcare and security.",
     },
 
     {
       type: "heading",
       id: "roles",
-      text: "Where AI works well and where people's guidance is needed",
+      text: "What AI does well, and where people are needed",
       navLabel: "AI and people",
     },
     {
@@ -85,11 +85,11 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "That is why, when I start a new project, I create its own private workspace (a Git repository, where files have a version history) from the template I have made. Short documents are added to it, and the AI reads them before the work starts: who the product is for, the problem as a user situation, who decides what, the requirements and a decision log. I also add my raw notes, from which the AI drafts the documents and I correct them. Whatever cannot be found in the notes is marked as something to find out (a gap).",
+      text: "That is why, when I start a new project, I create its own private workspace (a Git repository) for it from the template I have made. Short documents are then added to it, and the AI reads them before the work starts: who the product is for, the problem as a user situation, who decides what, the requirements and a decision log. I also add my raw notes, which the AI drafts from and I correct. Whatever cannot be found in the notes is marked as something to find out (a gap).",
     },
     {
       type: "paragraph",
-      text: "The workspace is for my own working and documentation, and I do not put it in the client's repository unless that is specifically requested.",
+      text: "The idea is that the workspace is for my own working and documentation, and I do not put it in the client's repository unless that is specifically requested.",
     },
 
     {
@@ -180,7 +180,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "I usually start with a path where the user reaches their goal successfully. I think about which steps the user goes through and how the system responds at each step. Only then do I go through the path step by step and ask which parts could be challenging for some users.",
+      text: "I usually start with a path where the user has successfully reached their goal. Let us think about which steps the user goes through to reach it, and how the system responds at each step. Only then do I go through the path step by step and ask which parts could be challenging for some users.",
     },
     {
       type: "list",
@@ -188,12 +188,12 @@ export const howIWorkWithAi: BlogPost = {
       items: [
         "**Draw the successful path.** Each step shows what the user does and how the system responds.",
         "**Ask for each step who might find it challenging, and why.** The same path can be smooth for one user and unbearably hard for another. This is a good place to bounce ideas off the AI.",
-        "**Finally, add the other paths and states.** A path is the route a user takes towards their goal. A state tells which situation a single screen is in.",
+        "**Finally, add the other paths and states:** error messages, more time, another way to do the step, and what happens when something fails.",
       ],
     },
     {
       type: "paragraph",
-      text: "The successful path is only one possible route. Other paths include, for example, another way to do the same step (such as identifying yourself by some means other than online banking credentials) and what happens when something fails and the user goes back. States include, for example, an error message for a wrongly filled field, a loading view, an empty view and extra time that a user is given when their session is about to expire.",
+      text: "A path is the route a user takes towards their goal, and a state tells which situation a single screen is in. Other paths include, for example, another way to do the same step and what happens when something fails. States include, for example, an error message, a loading view, an empty view and extra time.",
     },
     {
       type: "paragraph",
@@ -210,7 +210,7 @@ export const howIWorkWithAi: BlogPost = {
       items: [
         "**No design is called accessible, compliant or tested.** Each check ends as pass, fail or cannot tell from a design.",
         "**Every claim is labelled** as evidence with a source, or as a gap. No invented quotes, research or numbers.",
-        "**Client data stays out.** No real names, personal data or confidential figures in prompts or files. I use placeholders instead, for example He1, He2, He3 for the names of people and X, Y, Z for figures.",
+        "**Client data stays out.** No real names, personal data or confidential figures in prompts or files. Placeholders can be used for these (for example P1, P2, P3 for the names of people and X, Y, Z for figures).",
         "**Decisions are recorded by role,** not by name.",
       ],
     },
@@ -248,11 +248,11 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "To guide the AI I do not use a list of what it must not do, because a long list of prohibitions can create conflicting constraints that affect the result. I give it examples of successful design from my own projects instead. Each example says what was decided and what was given up, so the AI understands the reasons and not only the result.",
+      text: "To guide the AI I do not use a list of what it must not do, It can create conflicting constraints that affect the result. I give it examples of successful design from my own projects instead. Each example says what was decided and what was given up, so the AI understands the reasons and not only the result.",
     },
     {
       type: "paragraph",
-      text: "If you are interested in why this is worth doing, the article [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026) goes through why over-specific instructions and overly precise solution commands turn the AI into little more than a layout worker, while the problem and the real constraints are left in the background. On the limits of language models and what they cannot do, see [PromptQuorum](https://www.promptquorum.com/prompt-engineering/ai-limitations-what-llms-cant-do).",
+      text: "If you are interested in understanding better why this is not recommended, [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026) goes through why over-specific instructions and overly precise solution commands turn the AI into little more than a layout worker, while the problem and the real constraints are left in the background. On the limits of language models and what they cannot do, see [PromptQuorum](https://www.promptquorum.com/prompt-engineering/ai-limitations-what-llms-cant-do).",
     },
 
     {
@@ -275,7 +275,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Delivering documents to the client's tools and logging decisions are still done by hand for now. These too can be made lighter when needed:",
+      text: "The client's tools and the logging of decisions are done by hand. These too can be made lighter in various ways when needed:",
     },
     {
       type: "list",

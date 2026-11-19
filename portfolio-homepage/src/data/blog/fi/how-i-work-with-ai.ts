@@ -26,13 +26,13 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tästä syntyi pohja, joka toimii nyt hyvänä lähtökohtana uusissa projekteissa. Tein sen alun perin projekteihin, joissa saavutettavuus ja tietoturva ovat tärkeässä roolissa ja sidosryhmiä on useampia. Tällaisia ovat usein esimerkiksi julkisen sektorin ja kriittisten toimialojen projektit, kuten pankki-, vakuutus-, terveydenhuolto- ja turvallisuusala.",
+      text: "Tästä syntyi pohja, joka toimii nyt hyvänä lähtökohtana uusissa projekteissa. Lähtökohtana oli tehdä sen projekteihin, joissa saavutettavuus ja tietoturva ovat tärkeässä roolissa ja sidosryhmiä on useampia. Tällaisia ovat usein esimerkiksi julkisen sektorin ja kriittisten toimialojen projekteissa esimerkiksi pankki, vakuutus, terveydenhuolto ja turvallisuuden aloilla.",
     },
 
     {
       type: "heading",
       id: "roles",
-      text: "Missä tekoäly osaa toimia hyvin ja missä tarvitaan ihmisen ohjausta",
+      text: "Mitä tekoäly osaa tehdä hyvin, ja missä asioissa tarvitaan ihmisen apua",
       navLabel: "Tekoäly ja ihminen",
     },
     {
@@ -72,7 +72,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Mielestäni tällainen työnjako toimii hyvin ja varmistaa, että suunnittelijan huomiot ja kädenjälki säilyvät lopputuloksessa.",
+      text: "Mielestäni tällainen työnjako toimii hyvin ja varmistaa että suunnittelijan huomiot ja kädenjälki todella säilyy lopputuloksessa.",
     },
 
     {
@@ -83,15 +83,15 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tekoälyhän ei tiedä projektista tai brändistä mitään, kun uusi istunto alkaa. Ilman kunnolla kirjoitettua kontekstia se alkaa arvailla puuttuvia kohtia koulutusaineistonsa ja todennäköisyyksien perusteella. Siksi lopputuote saattaa näyttää hyvin samanlaiselta kuin kaikki muutkin vastaavat tuotteet.",
+      text: "Tekoälyhän ei tiedä projektista tai brändistä mitään, kun uusi istunto aloitetaan. Ilman kunnollisesti kirjoitettua kontekstia se alkaa arvailemaan puuttuvia aukkoja, joka perustuu sen oppimateriaaliin ja todennäköisyyksiin. Tämän vuoksi lopputuote saattaakin lopulta näyttää hyvin samanlaiselta kuten kaikki muutkin vastaavat tuotteet.",
     },
     {
       type: "paragraph",
-      text: "Siksi nykyään, kun aloitan uuden projektin, teen sille oman yksityisen työtilan (Git-repositorio, jossa tiedostoilla on versiohistoria) luomastani pohjasta. Sinne lisätään lyhyitä dokumentteja, jotka tekoäly lukee ennen työn aloittamista: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Lisäksi liitän mukaan raakamuistiinpanoni, joiden pohjalta tekoäly luonnostelee dokumentit ja minä korjaan ne. Mitä muistiinpanoista ei löydy, merkitään selvitettäväksi asiaksi (aukoksi).",
+      text: "Sen vuoksi nykyään, kun aloitan uutta projektia teen projektille oman yksityisen työtilan (Git-repositorion) luomastani pohjasta. Sinne sitten lisätään lyhyitä dokumentteja, jotka tekoäly lukee ennen työn aloittamista: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Lisäksi liitän mukaan raakamuistiinpanot, jonka tekoäly luonnostelee ja minä korjaan. Mitä muistiinpanoista ei löydy, merkitään selvitettäväksi asiaksi (aukoksi).",
     },
     {
       type: "paragraph",
-      text: "Työtila on oma työskentelyni ja dokumentointini väline, enkä vie sitä asiakkaan omaan repositorioon, ellei sitä erikseen pyydetä.",
+      text: "Ajatuksena on, että työtila on omaa työskentelynäni ja dokumentointia varten, enkä vie sitä asiakkaan omaan repositorioon ellei sitä erikseen pyydetä.",
     },
 
     {
@@ -182,20 +182,20 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Yleensä aloitan käyttäjäpolusta, jossa käyttäjä pääsee onnistuneesti tavoitteeseensa. Mietin, mitä vaiheita käyttäjä käy läpi ja miten järjestelmä vastaa jokaisessa vaiheessa. Vasta sen jälkeen käyn polun läpi vaihe vaiheelta ja mietin, mitkä kohdat voivat olla osalle käyttäjistä haastavia.",
+      text: "Yleensä aloitan käyttäjäpolusta, jossa käyttäjä on onnistuneesti päässyt tavoitteeseensa. Mietitään mitä vaiheita käyttäjä käy läpi, jotta pääsee tavoitteeseensa ja miten järjestelmä vastaa joka vaiheessa. Vasta sen jälkeen käyn polun läpi vaihe vaiheelta ja mietin, mitkä kohdat voivat olla osalle käyttäjistä haastavia.",
     },
     {
       type: "list",
       ordered: true,
       items: [
-        "**Piirrän onnistuneen polun.** Jokaisessa vaiheessa näkyy, mitä käyttäjä tekee ja miten järjestelmä vastaa siihen.",
+        "**Piirrän onnistuneen polun.** Jokaisessa vaiheessa näkyy mitä käyttäjä tekee ja miten järjestelmä vastaa siihen.",
         "**Mietin jokaisen vaiheen kohdalla, kenelle se voi olla haastava ja miksi.** Sama polku voi olla yhdelle käyttäjälle sujuva ja toiselle sietämättömän vaikea. Tässä kohtaa kannattaa sparrailla tekoälyn kanssa.",
-        "**Lopuksi lisään muut polut ja tilat.** Polku on reitti, jota pitkin käyttäjä etenee tavoitteeseensa. Tila kertoo, missä tilanteessa yksittäinen näkymä on.",
+        "**Lopuksi lisätään muut polut ja tilat:** virheilmoitukset, lisäaika, toinen tapa tehdä vaihe ja se, mitä tapahtuu, kun jokin epäonnistuu.",
       ],
     },
     {
       type: "paragraph",
-      text: "Onnistunut polku on vain yksi mahdollinen reitti. Muita polkuja ovat esimerkiksi toinen tapa tehdä sama vaihe (vaikkapa tunnistautuminen muulla tavalla kuin pankkitunnuksilla) sekä se, mitä tapahtuu, kun jokin epäonnistuu ja käyttäjä palaa takaisin. Tiloja ovat esimerkiksi virheilmoitus väärin täytetystä kentästä, latausnäkymä, tyhjä näkymä ja lisäaika, jonka käyttäjä saa, kun istunto on vanhenemassa.",
+      text: "Polku on reitti, jota pitkin käyttäjä etenee tavoitteeseensa, ja tila kertoo, missä tilanteessa yksittäinen näkymä on. Muita polkuja ovat esimerkiksi toinen tapa tehdä sama vaihe ja se, mitä tapahtuu, kun jokin epäonnistuu. Tiloja ovat esimerkiksi virheilmoitus, latausnäkymä, tyhjä näkymä ja lisäaika.",
     },
     {
       type: "paragraph",
@@ -212,7 +212,7 @@ export const howIWorkWithAiFi: BlogPost = {
       items: [
         "**Suunnitelmaa ei sanota saavutettavaksi, vaatimustenmukaiseksi tai testatuksi.** Jokaisen tarkistuksen tulos on läpi, hylätty tai ei voida päätellä suunnitelmasta.",
         "**Jokainen väite merkitään** todisteeksi lähteineen tai aukoksi. Keksittyjä lainauksia, tutkimustuloksia tai lukuja ei käytetä.",
-        "**Asiakasdata ei päädy tekoälylle.** Kehotteissa ja tiedostoissa ei ole oikeita nimiä, henkilötietoja eikä luottamuksellisia lukuja. Niiden tilalla käytän paikkamerkkejä, esimerkiksi henkilöiden nimissä He1, He2, He3 ja luvuissa X, Y, Z.",
+        "**Asiakasdata ei päädy tekoälylle.** Kehotteissa ja tiedostoissa ei ole oikeita nimiä, henkilötietoja eikä luottamuksellisia lukuja. Näissä voidaan käyttää paikkamerkkejä (esim. henkilön nimissä He1, He2, He3 ja luvuissa X, Y, Z).",
         "**Päätökset kirjataan roolin mukaan,** ei nimen.",
       ],
     },
@@ -250,11 +250,11 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tekoälyn ohjaamiseen en käytä listaa siitä, mitä se ei saa tehdä, koska pitkä kieltolista voi luoda ristiriitaisia rajoituksia, jotka vaikuttavat lopputulokseen. Annan sen sijaan esimerkkejä onnistuneesta suunnittelusta omista projekteistani. Jokaisessa esimerkissä kerrotaan, mitä päätettiin ja mistä luovuttiin, jotta tekoäly ymmärtää perustelut eikä vain lopputulosta.",
+      text: "Tekoälyn ohjaamiseen en käytä listaa siitä, mitä se ei saa tehdä. Se voi luoda ristiriitaisia rajoituksia joka vaikuttaa lopputulokseen. Annan sen sijaan esimerkkejä onnistuneesta suunnittelusta omista projekteistani. Jokaisessa esimerkissä kerrotaan, mitä päätettiin ja mistä luovuttiin, jotta tekoäly ymmärtää perustelut eikä vain lopputulosta.",
     },
     {
       type: "paragraph",
-      text: "Jos kiinnostaa, miksi näin kannattaa toimia: artikkeli [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026) käy läpi, miksi ylispesifit ohjeet ja liian tarkat ratkaisukäskyt tekevät tekoälystä lähinnä layout-työläisen, kun ongelma ja todelliset reunaehdot jäävät taka-alalle. Kielimallien rajoista ja siitä, mitä ne eivät osaa, kirjoittaa [PromptQuorum](https://www.promptquorum.com/prompt-engineering/ai-limitations-what-llms-cant-do).",
+      text: "Jos lukijaa kiinnostaa ymmärtää paremmin, miksi näin ei ole suositeltavaa tehdä: [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026) käy läpi, miksi ylispesifit ohjeet ja liian tarkat ratkaisukäskyt tekevät tekoälystä lähinnä layout-työläisen, kun ongelma ja todelliset reunaehdot jäävät taka-alalle. Kielimallien rajoista ja siitä, mitä ne eivät osaa, kirjoittaa [PromptQuorum](https://www.promptquorum.com/prompt-engineering/ai-limitations-what-llms-cant-do).",
     },
 
     {
@@ -265,7 +265,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tällainen prosessi voi koitua raskaaksi, jos yrittää tehdä kaiken kerrallaan. Alkuun pääsee kuitenkin pienemmälläkin tavalla:",
+      text: "Tällainen prosessi voi koitua raskaaksi, jos yrittää tehdä kaiken kerrallaan. Alkuun kuitenkin pääsee pienemmälläkin tavalla:",
     },
     {
       type: "list",
@@ -278,7 +278,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Dokumenttien vieminen asiakkaan työkaluihin ja päätösten kirjaaminen tehdään toistaiseksi käsin. Näitäkin voi tarvittaessa keventää:",
+      text: "Asiakkaan työkalut ja päätösten kirjaaminen tehdään käsin. Näitäkin voidaan tarvittaessa keventää eri tavoin:",
     },
     {
       type: "list",
