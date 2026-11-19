@@ -5,7 +5,7 @@ export const howIWorkWithAi: BlogPost = {
   title: "How I work with AI: a template for design projects",
   tabTitle: "How I work with AI",
   excerpt:
-    "Well-built context and information architecture give much better results from AI than commands alone. This post describes the template I use as my starting point, and where AI works well and where people's guidance and decisions are still needed.",
+    "One way to use AI in design work. Well-built context and information architecture give much better results from AI than commands alone. This post describes the template I use as my starting point, and where AI works well and where people's guidance and decisions are still needed.",
   date: "2026-11-18",
   tags: ["AI tools", "AI adoption"],
   body: [
@@ -21,7 +21,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "This is one way to use AI in design work. There are many, and in this post I describe the one that has worked for me.",
+      text: "This is one way to use AI in design work. There are many, and here I describe an approach that has worked well in my own work.",
     },
     {
       type: "paragraph",
