@@ -254,7 +254,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Jos kiinnostaa, miksi näin kannattaa toimia: Medium-artikkeli *Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer* (Design Bootcamp, 2026) käy läpi, miksi liian tarkat ratkaisukäskyt tekevät tekoälystä lähinnä layout-työläisen, kun ongelma ja todelliset reunaehdot jäävät taka-alalle. Rajoituslistojen toimivuudesta kirjoittavat *Tell AI what not to do with AI prompt constraints* (Candova) ja suomeksi *Promptaus 2026: millainen on hyvä prompti* (AIautomaatio.com). Ne käsittelevät sitä, miten kovat rajat toimivat, miksi pitkä kieltolista heikkenee ja miten ristiriitaiset säännöt syövät mallin päättelyä.",
+      text: "Jos kiinnostaa, miksi näin kannattaa toimia: artikkeli [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026) käy läpi, miksi ylispesifit ohjeet ja liian tarkat ratkaisukäskyt tekevät tekoälystä lähinnä layout-työläisen, kun ongelma ja todelliset reunaehdot jäävät taka-alalle. Kielimallien rajoista ja siitä, mitä ne eivät osaa, kirjoittaa [PromptQuorum](https://www.promptquorum.com/prompt-engineering/ai-limitations-what-llms-cant-do).",
     },
 
     {
