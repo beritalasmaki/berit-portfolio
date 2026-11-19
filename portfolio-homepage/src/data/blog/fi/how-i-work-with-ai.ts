@@ -22,7 +22,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tämä on yksi tapa hyödyntää tekoälyä suunnittelutyössä. Tapoja on monia, ja tässä kirjoituksessa kuvaan sen, joka on toiminut minulle.",
+      text: "Tämä on yksi tapa hyödyntää tekoälyä suunnittelutyössä. Tapoja on monia, ja tässä kerron lähestymistavasta, joka on toiminut omassa työssäni hyvin.",
     },
     {
       type: "paragraph",
