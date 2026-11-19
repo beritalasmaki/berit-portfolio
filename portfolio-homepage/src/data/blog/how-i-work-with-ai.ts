@@ -29,7 +29,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "That became a template that now works well as a starting point for new projects. The starting point was to build it for projects where accessibility and security play an important role and there are several stakeholders. These are often, for example, public sector projects and critical industries such as banking, insurance, healthcare and security.",
+      text: "That became a template that now works well as a starting point for new projects. The idea was to build it for projects where accessibility and security play an important role and there are several stakeholders. These are often, for example, public sector projects and critical industries such as banking, insurance, healthcare and security.",
     },
 
     {
