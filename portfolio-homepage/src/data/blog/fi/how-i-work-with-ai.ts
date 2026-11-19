@@ -30,7 +30,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tästä syntyi pohja, joka toimii nyt hyvänä lähtökohtana uusissa projekteissa. Lähtökohtana oli tehdä sen projekteihin, joissa saavutettavuus ja tietoturva ovat tärkeässä roolissa ja sidosryhmiä on useampia. Tällaisia ovat usein esimerkiksi julkisen sektorin ja kriittisten toimialojen projekteissa esimerkiksi pankki, vakuutus, terveydenhuolto ja turvallisuuden aloilla.",
+      text: "Tästä syntyi pohja, joka toimii nyt hyvänä lähtökohtana uusissa projekteissa. Ajatuksena oli tehdä se projekteihin, joissa saavutettavuus ja tietoturva ovat tärkeässä roolissa ja sidosryhmiä on useampia. Tällaisia ovat usein esimerkiksi julkisen sektorin ja kriittisten toimialojen projekteissa esimerkiksi pankki, vakuutus, terveydenhuolto ja turvallisuuden aloilla.",
     },
 
     {
