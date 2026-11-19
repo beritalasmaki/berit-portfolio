@@ -5,7 +5,7 @@ export const howIWorkWithAi: BlogPost = {
   title: "How I work with AI: a template for design projects",
   tabTitle: "How I work with AI",
   excerpt:
-    "Well-built context and information architecture give much better results from AI than commands alone. This post describes the template I use as my starting point, and where AI is strong and where people still decide.",
+    "One way to use AI in design work. Well-built context and information architecture give much better results from AI than commands alone. This post describes the template I use as my starting point, and where AI works well and where people's guidance and decisions are still needed.",
   date: "2026-11-18",
   tags: ["AI tools", "AI adoption"],
   body: [
@@ -21,11 +21,15 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "At first I used AI one command at a time: ask for something, look at the result, adjust the request. What I learned is that the result depends far more on what the AI knows about the project than on how the request is phrased. In my own projects, [my design system](https://design-system-use-case.vercel.app/) and [an agent run review screen](https://demo-t-example.vercel.app/), I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were considerably better.",
+      text: "This is one way to use AI in design work. There are many, and here I describe an approach that has worked well in my own work.",
     },
     {
       type: "paragraph",
-      text: "That became the template I use as the starting point for new design projects. It is built for projects where accessibility and security are requirements and many people have a say, such as public sector and B2B projects. The idea behind it is that well-built context and information architecture produce much better results than commands alone.",
+      text: "I started out using AI one command at a time: I asked for something (most often with precise specs), checked the result and refined the request. I learned that, in the end, the result depends far more on what the AI knows about the project than on how the request is phrased. I then started building a new approach through a few projects of my own (among them [my design system](https://design-system-use-case.vercel.app/) and [an agent run review screen](https://demo-t-example.vercel.app/)). I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were already considerably better.",
+    },
+    {
+      type: "paragraph",
+      text: "That became a template that now works well as a starting point for new projects. The starting point was to build it for projects where accessibility and security play an important role and there are several stakeholders. These are often, for example, public sector projects and critical industries such as banking, insurance, healthcare and security.",
     },
 
     {
@@ -40,7 +44,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "subheading",
-      text: "Where AI is good",
+      text: "Where it makes sense to use AI",
     },
     {
       type: "list",
@@ -54,7 +58,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Drafts and summaries still always have to be checked, not accepted blindly, because the AI can overlook important points. That is why I write down my own key points before I ask the AI to summarise or draft anything. That way I notice at once if something important is missing from its version.",
+      text: "Drafts and summaries still always have to be checked, not accepted blindly, because the AI can overlook important points. That is why I usually write down my own key points before I ask the AI to summarise or draft anything. That way I notice at once if something important is missing from its version.",
     },
     {
       type: "subheading",
@@ -71,7 +75,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "This split is not a limitation to work around. It is where the work of a designer remains.",
+      text: "In my view this split works well, and it makes sure the designer's observations and handwriting really remain in the result.",
     },
 
     {
@@ -81,15 +85,15 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "An AI assistant starts every session knowing nothing about the project. Without written context it guesses, and the result could belong to any product.",
+      text: "After all, the AI knows nothing about the project or the brand when a new session starts. Without properly written context it may start guessing the missing pieces based on its training data and probabilities. That is why the end product may well end up looking very much like every other similar product.",
     },
     {
       type: "paragraph",
-      text: "Each client project gets its own private workspace, created from the template. It holds short documents that the AI reads before it helps: who the product is for, the problem as a user situation, who decides what, the requirements and a decision log. I give it my raw notes, it drafts, and I correct. Whatever it cannot find in the notes is marked as a gap.",
+      text: "That is why I now create a private workspace (a Git repository) for every new project from a template of my own. Short documents are added to the workspace, and the AI reads them before the work starts: who the product is for, the problem as a user situation, who decides what, the requirements and a decision log. I also add my raw notes, which the AI drafts from and I correct. Whatever cannot be found in the notes is marked as something to find out (a gap).",
     },
     {
       type: "paragraph",
-      text: "The workspace is mine, not the client's, and never goes into the client's repository.",
+      text: "The idea is that the workspace is for my own working and documentation, and I do not put it in the client's repository unless that is specifically requested.",
     },
 
     {
@@ -180,16 +184,20 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "I start with the successful path: the steps a user takes to reach their goal, and how the system responds at each step. Only then do I go through the path step by step and ask which parts could be challenging for some users.",
+      text: "I usually start with a path where the user has successfully reached their goal. Let us think about which steps the user goes through to reach it, and how the system responds at each step. Only then do I go through the path step by step and ask which parts could be challenging for some users.",
     },
     {
       type: "list",
       ordered: true,
       items: [
-        "**Draw the successful path.** Each step pairs what the user does with how the system responds.",
-        "**Ask who might find each step challenging, and why.** The same path can be smooth for one user and unbearably hard for another.",
-        "**Add the paths and states those users need:** error messages, more time, another way to do the step, and what happens when something fails.",
+        "**Draw the successful path.** Each step shows what the user does and how the system responds.",
+        "**Ask for each step who might find it challenging, and why.** The same path can be smooth for one user and unbearably hard for another. This is a good place to bounce ideas off the AI.",
+        "**Finally, add the other paths and states:** error messages, more time, another way to do the step, and what happens when something fails.",
       ],
+    },
+    {
+      type: "paragraph",
+      text: "A path is the route a user takes towards their goal, and a state tells which situation a single screen is in. Other paths include, for example, another way to do the same step and what happens when something fails. States include, for example, an error message, a loading view, an empty view and extra time.",
     },
     {
       type: "paragraph",
@@ -206,7 +214,7 @@ export const howIWorkWithAi: BlogPost = {
       items: [
         "**No design is called accessible, compliant or tested.** Each check ends as pass, fail or cannot tell from a design.",
         "**Every claim is labelled** as evidence with a source, or as a gap. No invented quotes, research or numbers.",
-        "**Client data stays out.** No real names, personal data or confidential figures in prompts or files. I use placeholders.",
+        "**Client data stays out.** No real names, personal data or confidential figures in prompts or files. Placeholders can be used for these (for example P1, P2, P3 for the names of people and X, Y, Z for figures).",
         "**Decisions are recorded by role,** not by name.",
       ],
     },
@@ -244,7 +252,11 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "To guide the AI I do not use a list of what it must not do. I give it examples of successful design from my own projects instead. Each example says what was decided and what was given up, so the AI understands the reasons and not only the result.",
+      text: "To guide the AI I do not use a list of what it must not do, It can create conflicting constraints that affect the result. I give it examples of successful design from my own projects instead. Each example says what was decided and what was given up, so the AI understands the reasons and not only the result.",
+    },
+    {
+      type: "paragraph",
+      text: "If you are interested in understanding better why this is not recommended, [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026) goes through why over-specific instructions and overly precise solution commands turn the AI into little more than a layout worker, while the problem and the real constraints are left in the background. On the limits of language models and what they cannot do, see [PromptQuorum](https://www.promptquorum.com/prompt-engineering/ai-limitations-what-llms-cant-do).",
     },
 
     {
@@ -254,7 +266,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "A process like this is heavy if you try to do everything. It is built to start small.",
+      text: "A process like this can become heavy if you try to do everything at once. You can still get started in a smaller way:",
     },
     {
       type: "list",
@@ -267,7 +279,20 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Delivering documents to the client's tools and logging decisions are still done by hand. I want to make both lighter.",
+      text: "The client's tools and the logging of decisions are done by hand. These too can be made lighter in various ways when needed:",
+    },
+    {
+      type: "list",
+      items: [
+        "**Deliver only the documents that have changed,** and only at agreed milestones, such as after the kick-off, the review and the handoff, not after every small change.",
+        "**Ask the AI to prepare the export version.** It formats the Markdown document into the form the client's tool or a PDF requires, and you check the result.",
+        "**Log a decision in one line as soon as it is made:** the date, the decider's role, the decision and the reason. The AI can draft the line from the meeting notes, and you only approve or correct it.",
+        "**Log only decisions that are hard to undo or that affect others.** Small choices do not need an entry of their own.",
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "The purpose of the template is not to produce more documents but to make sure the AI knows what the project is about and that the designer decides what is done with it. Start small: one project, a few documents and your own notes first. The rest is added as it is needed.",
     },
   ],
 };
