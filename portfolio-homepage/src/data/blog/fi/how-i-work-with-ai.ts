@@ -87,7 +87,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Sen vuoksi nykyään, kun aloitan uutta projektia teen projektille oman yksityisen työtilan (Git-repositorion) luomastani pohjasta. Sinne sitten lisätään lyhyitä dokumentteja, jotka tekoäly lukee ennen työn aloittamista: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Lisäksi liitän mukaan raakamuistiinpanot, jonka tekoäly luonnostelee ja minä korjaan. Mitä muistiinpanoista ei löydy, merkitään selvitettäväksi asiaksi (aukoksi).",
+      text: "Siksi luon nykyään jokaiselle uudelle projektille oman yksityisen työtilan (Git-repositorion) omasta pohjastani. Työtilaan lisätään lyhyitä dokumentteja, jotka tekoäly lukee ennen työn aloittamista: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Lisäksi liitän mukaan raakamuistiinpanot, jonka tekoäly luonnostelee ja minä korjaan. Mitä muistiinpanoista ei löydy, merkitään selvitettäväksi asiaksi (aukoksi).",
     },
     {
       type: "paragraph",
