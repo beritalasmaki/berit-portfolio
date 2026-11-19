@@ -22,6 +22,10 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
+      text: "Tämä on yksi tapa hyödyntää tekoälyä suunnittelutyössä. Tapoja on monia, ja tässä kirjoituksessa kuvaan sen, joka on toiminut minulle.",
+    },
+    {
+      type: "paragraph",
       text: "Aloitin tekoälyn käytön kirjoittamalla komennon kerrallaan: pyysin jotain (useimmiten tarkoillakin spekseillä), tarkistin työn tuloksen ja tarkensin pyyntöä. Opin, että loppujen lopuksi tulos riippuu paljon enemmän siitä, mitä tekoäly tietää projektista, kuin siitä, miten pyynnön muotoilee. Aloin sitten rakentamaan uutta lähestymistapaa muutaman oman projektini kautta (mm. [omassa Design Systemissäni](https://design-system-use-case.vercel.app/) ja [agenttiajojen katselmointinäkymässä](https://demo-t-example.vercel.app/)). Kirjoitin tekoälylle ensin säännöt ja kontekstin: mikä tuote on, mitkä säännöt pätevät ja mitä tekoäly saa ja ei saa tehdä. Tulokset olivat tuolloin jo huomattavasti parempia.",
     },
     {
