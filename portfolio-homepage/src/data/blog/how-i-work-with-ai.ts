@@ -29,7 +29,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "In client projects I use AI only when the client allows it, and I find that out before the work starts. Some clients also limit where their material may be stored. The project configuration asks about both on the first day.",
+      text: "In client projects I use AI only when the client allows it, and I find that out before the work starts. Some clients also limit where their material may be stored.",
     },
 
     {
