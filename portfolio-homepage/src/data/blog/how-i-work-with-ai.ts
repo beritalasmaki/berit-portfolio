@@ -21,10 +21,6 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "This is one way to use AI in design work. There are many, and here I describe an approach that has worked well in my own work.",
-    },
-    {
-      type: "paragraph",
       text: "I started out using AI one command at a time: I asked for something (most often with precise specs), checked the result and refined the request. I learned that, in the end, the result depends far more on what the AI knows about the project than on how the request is phrased. I then started building a new approach through a few projects of my own (among them [my design system](https://design-system-use-case.vercel.app/) and [an agent run review screen](https://demo-t-example.vercel.app/)). I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were already considerably better.",
     },
     {
