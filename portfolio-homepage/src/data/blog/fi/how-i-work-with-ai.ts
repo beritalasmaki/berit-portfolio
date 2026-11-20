@@ -199,11 +199,11 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Polku on reitti, jota pitkin käyttäjä etenee tavoitteeseensa, ja tila kertoo, missä tilanteessa yksittäinen näkymä on. Muita polkuja ovat toinen tapa tehdä sama vaihe ja se, mitä tapahtuu, kun jokin epäonnistuu. Tiloja ovat esimerkiksi virheilmoitus, latausnäkymä, tyhjä näkymä ja lisäaika.",
+      text: "Polku on reitti, jota pitkin käyttäjä etenee tavoitteeseensa, ja tila kertoo, missä tilanteessa yksittäinen näkymä on. Muita polkuja ovat toinen tapa tehdä sama vaihe ja se, mitä tapahtuu, kun jokin epäonnistuu. Tiloja ovat virheilmoitus, latausnäkymä, tyhjä näkymä ja lisäaika.",
     },
     {
       type: "paragraph",
-      text: "Otetaan julkinen palvelu: vaihe ”kirjaudu vahvalla tunnistautumisella” voi olla helppo sellaiselle käyttäjälle, jolla on pankkisovellus ja älypuhelin, ja este käyttäjille, joilla niitä ei ole. Pitkä lomake aikarajalla voi sopia useimmille ja olla mahdoton käyttäjälle, joka tarvitsee enemmän aikaa tai käyttää ruudunlukijaa. Jokaisesta tällaisesta vaiheesta kirjaan, kenellä voi olla vaikeuksia ja mitä suunnittelu tarjoaa tilalle. Jos en tiedä, merkitsen sen aukoksi ja selvitän asian.",
+      text: "Esimerkiksi julkisessa palvelussa vaihe ”kirjaudu vahvalla tunnistautumisella” voi olla helppo sellaiselle käyttäjälle, jolla on pankkisovellus ja älypuhelin, ja este käyttäjille, joilla niitä ei ole. Pitkä lomake aikarajalla voi sopia useimmille ja olla mahdoton käyttäjälle, joka tarvitsee enemmän aikaa tai käyttää ruudunlukijaa. Jokaisesta tällaisesta vaiheesta kirjaan, kenellä voi olla vaikeuksia ja mitä suunnittelu tarjoaa tilalle. Jos en tiedä, merkitsen sen aukoksi ja selvitän asian.",
     },
 
     {

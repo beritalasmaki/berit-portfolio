@@ -197,11 +197,11 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "A path is the route a user takes towards their goal, and a state tells which situation a single screen is in. Other paths include another way to do the same step and what happens when something fails. States include, for example, an error message, a loading view, an empty view and extra time.",
+      text: "A path is the route a user takes towards their goal, and a state tells which situation a single screen is in. Other paths include another way to do the same step and what happens when something fails. States include an error message, a loading view, an empty view and extra time.",
     },
     {
       type: "paragraph",
-      text: "Take a public service: the step “sign in with strong identification” can be easy for someone with a banking app and a smartphone, and a barrier for someone without them. A long form with a time limit can suit most people and be impossible for someone who needs more time or uses a screen reader. For each such step I write down who might struggle and what the design offers instead. If I do not know, I mark it as a gap and find out.",
+      text: "For example, in a public service the step “sign in with strong identification” can be easy for someone with a banking app and a smartphone, and a barrier for someone without them. A long form with a time limit can suit most people and be impossible for someone who needs more time or uses a screen reader. For each such step I write down who might struggle and what the design offers instead. If I do not know, I mark it as a gap and find out.",
     },
 
     {
