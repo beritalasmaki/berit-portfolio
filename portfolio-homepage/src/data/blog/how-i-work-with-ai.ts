@@ -252,11 +252,11 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "To guide the AI I do not use a list of what it must not do, It can create conflicting constraints that affect the result. I give it examples of successful design from my own projects instead. Each example says what was decided and what was given up, so the AI understands the reasons and not only the result.",
+      text: "To guide the AI I do not rely on a list of what it must not do alone. Instead I tell it which constraints apply to the design task: the brand, the technology, accessibility and the business, meaning what the product needs the user to do. I also give it examples of successful design from my own projects. Each example says what was decided and what was given up, so the AI understands the reasons and not only the result.",
     },
     {
       type: "paragraph",
-      text: "If you are interested in understanding better why this is not recommended, [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026) goes through why over-specific instructions and overly precise solution commands turn the AI into little more than a layout worker, while the problem and the real constraints are left in the background. On the limits of language models and what they cannot do, see [PromptQuorum](https://www.promptquorum.com/prompt-engineering/ai-limitations-what-llms-cant-do).",
+      text: "The importance of constraints is also the subject of [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026). According to the article, constraints do not limit the AI's creativity but make it useful, and the more specifically you state them in the prompt, the better the result fits the problem you are solving.",
     },
 
     {

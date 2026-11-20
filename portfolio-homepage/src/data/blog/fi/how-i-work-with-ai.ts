@@ -254,11 +254,11 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tekoälyn ohjaamiseen en käytä listaa siitä, mitä se ei saa tehdä. Se voi luoda ristiriitaisia rajoituksia joka vaikuttaa lopputulokseen. Annan sen sijaan esimerkkejä onnistuneesta suunnittelusta omista projekteistani. Jokaisessa esimerkissä kerrotaan, mitä päätettiin ja mistä luovuttiin, jotta tekoäly ymmärtää perustelut eikä vain lopputulosta.",
+      text: "Tekoälyn ohjaamiseen en käytä pelkkää listaa siitä, mitä se ei saa tehdä. Kerron sen sijaan, mitkä reunaehdot suunnittelutehtävää koskevat: brändi, tekniikka, saavutettavuus ja liiketoiminta eli se, mitä tuotteen pitää saada käyttäjä tekemään. Lisäksi annan esimerkkejä onnistuneesta suunnittelusta omista projekteistani. Jokaisessa esimerkissä kerrotaan, mitä päätettiin ja mistä luovuttiin, jotta tekoäly ymmärtää perustelut eikä vain lopputulosta.",
     },
     {
       type: "paragraph",
-      text: "Jos lukijaa kiinnostaa ymmärtää paremmin, miksi näin ei ole suositeltavaa tehdä: [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026) käy läpi, miksi ylispesifit ohjeet ja liian tarkat ratkaisukäskyt tekevät tekoälystä lähinnä layout-työläisen, kun ongelma ja todelliset reunaehdot jäävät taka-alalle. Kielimallien rajoista ja siitä, mitä ne eivät osaa, kirjoittaa [PromptQuorum](https://www.promptquorum.com/prompt-engineering/ai-limitations-what-llms-cant-do).",
+      text: "Reunaehtojen merkityksestä kirjoittaa myös [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026). Artikkelin mukaan reunaehdot eivät kahlitse tekoälyn luovuutta vaan tekevät siitä käyttökelpoista, ja mitä täsmällisemmin ne kehotteessa kertoo, sitä paremmin tulos soveltuu juuri siihen ongelmaan, jota ratkaisee.",
     },
 
     {
