@@ -250,7 +250,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tekoälyn ohjaamiseen en käytä pelkkää listaa siitä, mitä se ei saa tehdä. Kerron sen sijaan, mitkä reunaehdot suunnittelutehtävää koskevat: brändi, tekniikka, saavutettavuus ja liiketoiminta eli se, mitä tuotteen pitää saada käyttäjä tekemään. Lisäksi annan esimerkkejä onnistuneesta suunnittelusta omista projekteistani. Jokaisessa esimerkissä kerrotaan, mitä päätettiin ja mistä luovuttiin, jotta tekoäly ymmärtää perustelut eikä vain lopputulosta.",
+      text: "Tekoälyn ohjaamiseen en käytä pelkkää listaa siitä, mitä se ei saa tehdä. Kerron sen sijaan, mitkä reunaehdot suunnittelutehtävää koskevat: brändi, tekniikka, saavutettavuus ja liiketoiminta eli se, mitä tuotteen pitää saada käyttäjä tekemään. Lisäksi annan esimerkkejä onnistuneesta suunnittelusta vastaavista projekteista, joita käytän vertailukohtana. Esimerkkien ei tarvitse olla omiani. Niissä esimerkeissä, joista tietoa löytyy, voidaan lisäksi kertoa, mitä päätettiin ja mistä luovuttiin, jotta tekoäly ymmärtää perustelut eikä vain lopputulosta.",
     },
     {
       type: "paragraph",
