@@ -54,7 +54,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Yhteenvetoja tehdessä kirjoitan omat havaintoni ensin. Toistuvat teemat löytyvät nopeasti, mutta tekoäly ei ollut paikalla haastattelussa. Sävy, epäröinti ja se, mitä jätettiin sanomatta, jäävät minun tulkittavikseni.",
+      text: "Yhteenvetoja tehdessä kirjoitan omat havaintoni ensin. Tekoäly löytää toistuvat teemat nopeasti, mutta inhimilliset tulkinnat teen itse: puhetavan, sävyt, eleet, epäröinnin ja sen, mitä jätettiin sanomatta.",
     },
     {
       type: "paragraph",

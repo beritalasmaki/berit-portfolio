@@ -53,7 +53,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "When summarising, I write down my own observations first. The AI finds recurring themes quickly, but it was not in the interview. Tone, hesitation and what was left unsaid remain for me to interpret.",
+      text: "When summarising, I write down my own observations first. The AI finds recurring themes quickly, but I make the human interpretations myself: the way a person speaks, tone, body language, hesitation and what was left unsaid.",
     },
     {
       type: "paragraph",
