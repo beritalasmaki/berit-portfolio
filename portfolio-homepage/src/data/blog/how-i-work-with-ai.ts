@@ -21,7 +21,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "At first I started by typing a command straight to the AI (often with precise specs) and refining the request according to the result. I learned fairly quickly, though, that the result depends far more on what the AI knows about the project than on how the request is phrased. So I started building a new approach through a few projects of my own (among them [my design system](https://design-system-use-case.vercel.app/) and [an agent run review screen](https://demo-t-example.vercel.app/)): I wrote the rules and the context for the AI first, meaning what the product is, which rules apply, and what the AI may and may not do. The results were already considerably better.",
+      text: "At first I started a new conversation with the AI by writing a command straight away and refining it as the conversation went on. I learned quite quickly, though, that in the end the result depends far more on what the AI knows about the project than on how the request is phrased. I then started building a new approach through a few projects of my own (among them [my design system](https://design-system-use-case.vercel.app/) and [an agent run review screen](https://demo-t-example.vercel.app/)). I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were already considerably better.",
     },
     {
       type: "paragraph",

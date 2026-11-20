@@ -22,7 +22,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Alkujaan aloitin tekoälyn kanssa kirjoittamalla suoraan komennon (usein tarkoilla speksseillä) ja tarkentamalla pyyntöä tuloksen mukaan. Opin kuitenkin melko nopeasti, että tulos riippuu paljon enemmän siitä, mitä tekoäly tietää projektista, kuin siitä, miten pyynnön muotoilee. Aloin siksi rakentaa uutta lähestymistapaa muutaman oman projektini kautta (mm. [omassa Design Systemissäni](https://design-system-use-case.vercel.app/) ja [agenttiajojen katselmointinäkymässä](https://demo-t-example.vercel.app/)): kirjoitin tekoälylle ensin säännöt ja kontekstin eli sen, mikä tuote on, mitkä säännöt pätevät ja mitä tekoäly saa ja ei saa tehdä. Tulokset paranivat jo silloin huomattavasti.",
+      text: "Alkujaan aloitin uuden keskustelun tekoälyn kanssa kirjoittamalla suoraan komennon ja tarkentamalla sen mukaan, kun keskustelu eteni. Opin kuitenkin aika nopeasti, että loppujen lopuksi tulos riippuu paljon enemmän siitä, mitä tekoäly tietää projektista, kuin siitä, miten pyynnön muotoilee. Aloin sitten rakentamaan uutta lähestymistapaa muutaman oman projektini kautta (mm. [omassa Design Systemissäni](https://design-system-use-case.vercel.app/) ja [agenttiajojen katselmointinäkymässä](https://demo-t-example.vercel.app/)). Kirjoitin tekoälylle ensin säännöt ja kontekstin: mikä tuote on, mitkä säännöt pätevät ja mitä tekoäly saa ja ei saa tehdä. Tulokset olivat tuolloin jo huomattavasti parempia.",
     },
     {
       type: "paragraph",
@@ -240,7 +240,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tästä on hyötyä myös myöhemmin: sekä tekoäly että tavallinen haku löytävät dokumentit helposti, ja versioista näkee, miten asiat ovat edenneet projektin tai tuotekehityksen aikana. Siksi dokumentit on tärkeää tallentaa oikeisiin kansioihin ja vuosiin, esimerkiksi 2026/Käyttäjätutkimukset/Tutkimuksen teeman nimi ja päivämäärä.",
+      text: "Tästä on hyötyä myös myöhemmin: tekoälyn tai tavallisen hakutoiminnon kautta dokumentit löydetään helposti ja nähdään, miten asiat ovat edistyneet projektin tai tuotekehityksen edetessä. Dokumentit on tärkeää laittaa oikeisiin kansioihin ja vuosiin, esimerkiksi 2026/Käyttäjätutkimukset/Tutkimuksen teeman nimi ja päivämäärä.",
     },
 
     {
