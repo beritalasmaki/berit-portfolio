@@ -186,15 +186,56 @@ export const howIWorkWithAiFi: BlogPost = {
       ],
     },
     {
-      type: "list",
-      ordered: true,
+      type: "findings",
       items: [
-        "**Ongelman muotoilu.** Toimeksianto muutetaan käyttäjän tilanteeksi, jossa ei ole valmista ratkaisua, ja listataan, mitä tiedetään ja mikä puuttuu. Anonymisoin toimeksiannon ennen kuin tekoäly käsittelee sitä.",
-        "**Ihmisten ymmärtäminen.** Selvitetään, kuka päättää mistäkin, ja kirjataan vaatimukset omistajineen. Ristiriidat kirjataan vierekkäin sitä mukaa kuin ne tulevat esiin, mutta tekoäly ei ratkaise niitä.",
-        "**Suunnittelu.** Käyttäjäpolut kuvataan virhetilanteineen, ja jokaisen näkymän tilat listataan Design Systemin sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan ne.",
-        "**Tarkistus.** Käydään läpi saavutettavuus, tiedot ja käyttöoikeudet sekä valinnat, jotka jäivät oletuksiksi. Kontrastit laskee skripti. Tämä on suunnitteluvaiheen katselmointi, ei auditointi.",
-        "**Luovutus.** Kerrotaan, mikä on valmista, kuka sen hyväksyi ja mitä kukin toimittaja tekee.",
-        "**Kirjaaminen ja pohdinta.** Päätökset kirjataan niin, että näkyy, kuka päätti ja miksi. Jos projekti julkaistaan, lokista tehdään lopuksi case study ilman luottamuksellisia tietoja.",
+        {
+          title: "Ongelman muotoilu",
+          meta: [
+            { label: "Skill", values: ["problem-framing"] },
+            { label: "Artefaktit", values: ["00 product context", "01 problem framing"] },
+          ],
+          body: "Toimeksianto muutetaan käyttäjän tilanteeksi, jossa ei ole valmista ratkaisua, ja listataan, mitä tiedetään ja mikä puuttuu. Anonymisoin toimeksiannon ennen kuin tekoäly käsittelee sitä.",
+        },
+        {
+          title: "Ihmisten ymmärtäminen",
+          meta: [
+            { label: "Skill", values: ["stakeholder-map"] },
+            { label: "Artefaktit", values: ["02 stakeholder map", "03 requirements spec"] },
+          ],
+          body: "Selvitetään, kuka päättää mistäkin, ja kirjataan vaatimukset omistajineen. Ristiriidat kirjataan vierekkäin sitä mukaa kuin ne tulevat esiin, mutta tekoäly ei ratkaise niitä.",
+        },
+        {
+          title: "Suunnittelu",
+          meta: [
+            { label: "Skill", values: ["user-flow-and-states"] },
+            { label: "Artefaktit", values: ["04 user flows and states", "07 design system rules"] },
+          ],
+          body: "Käyttäjäpolut kuvataan virhetilanteineen, ja jokaisen näkymän tilat listataan Design Systemin sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan ne.",
+        },
+        {
+          title: "Tarkistus",
+          meta: [
+            { label: "Skillit", values: ["a11y-gate", "security-privacy-brief", "sameness-check"] },
+            { label: "Artefaktit", values: ["05 accessibility checklist", "06 security and privacy brief"] },
+          ],
+          body: "Käydään läpi saavutettavuus, tiedot ja käyttöoikeudet sekä valinnat, jotka jäivät oletuksiksi. Kontrastit laskee skripti. Tämä on suunnitteluvaiheen katselmointi, ei auditointi.",
+        },
+        {
+          title: "Luovutus",
+          meta: [
+            { label: "Skill", values: ["procurement-ready-handoff"] },
+            { label: "Artefaktit", values: ["08 handoff spec", "09 stakeholder feedback log (tarvittaessa)"] },
+          ],
+          body: "Kerrotaan, mikä on valmista, kuka sen hyväksyi ja mitä kukin toimittaja tekee.",
+        },
+        {
+          title: "Kirjaaminen ja pohdinta",
+          meta: [
+            { label: "Skillit", values: ["decision-log", "nda-safe-case-study"] },
+            { label: "Artefaktit", values: ["10 decision log", "11 case study notes"] },
+          ],
+          body: "Päätökset kirjataan niin, että näkyy, kuka päätti ja miksi. Jos projekti julkaistaan, lokista tehdään lopuksi case study ilman luottamuksellisia tietoja.",
+        },
       ],
     },
     {
