@@ -28,7 +28,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Aikaisemmin tein näin: aloitin keskustelun tekoälyn kanssa kirjoittamalla suoraan kehotteen ja tarkensin sitä mukaa kuin keskustelu eteni. Opin kuitenkin nopeasti, että tulos riippuu paljon enemmän siitä, mitä tekoäly tietää projektista, kuin siitä, miten kehotteen muotoilee.",
+      text: "Aiemmin kirjoitin tekoälylle suoraan kehotteen ja tarkensin sitä keskustelun edetessä. Opin kuitenkin nopeasti, että tulos riippuu paljon enemmän siitä, mitä tekoäly tietää projektista, kuin siitä, miten kehotteen muotoilee.",
     },
     {
       type: "paragraph",
@@ -138,7 +138,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Siksi luon jokaiselle uudelle projektille oman yksityisen työtilan (Git-repositorion) pohjastani. Työtilaan lisätään lyhyitä dokumentteja, jotka tekoäly lukee ennen työn aloittamista: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Lisäksi liitän mukaan anonymisoidut raakamuistiinpanot, joista tekoäly luonnostelee ensimmäisen version ja minä korjaan sen. Mitä muistiinpanoista ei löydy, merkitään selvitettäväksi asiaksi eli avoimeksi kysymykseksi.",
+      text: "Siksi luon jokaiselle uudelle projektille oman yksityisen työtilan (Git-repositorion) pohjastani. Työtilaan lisätään lyhyitä dokumentteja, jotka tekoäly lukee ennen työn aloittamista: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Lisäksi liitän mukaan anonymisoidut raakamuistiinpanot, joista tekoäly luonnostelee ensimmäisen version ja minä korjaan sen. Mitä muistiinpanoista ei löydy, merkitään selvitettäväksi asiaksi eli aukoksi.",
     },
     {
       type: "paragraph",
@@ -227,7 +227,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Jokaisesta tällaisesta vaiheesta kirjaan, kenellä voi olla vaikeuksia ja mitä suunnittelu tarjoaa tilalle. Jos en tiedä, merkitsen sen avoimeksi kysymykseksi ja selvitän asian.",
+      text: "Jokaisesta tällaisesta vaiheesta kirjaan, kenellä voi olla vaikeuksia ja mitä suunnittelu tarjoaa tilalle. Jos en tiedä, merkitsen sen aukoksi ja selvitän asian.",
     },
 
     {
@@ -239,7 +239,7 @@ export const howIWorkWithAiFi: BlogPost = {
       type: "list",
       items: [
         "**Ei liioiteltuja väitteitä.** Suunnitelmaa ei sanota saavutettavaksi, vaatimustenmukaiseksi tai testatuksi. Jokaisen tarkistuksen tulos on läpi, hylätty tai ei voida päätellä suunnitelmasta.",
-        "**Todiste tai avoin kysymys.** Jokainen väite merkitään todisteeksi lähteineen tai avoimeksi kysymykseksi. Keksittyjä lainauksia, tutkimustuloksia tai lukuja ei käytetä.",
+        "**Todiste tai aukko.** Jokainen väite merkitään todisteeksi lähteineen tai aukoksi. Keksittyjä lainauksia, tutkimustuloksia tai lukuja ei käytetä.",
         "**Ei henkilötietoja tekoälylle.** Kehotteissa ja tiedostoissa ei ole oikeita nimiä, henkilötietoja eikä luottamuksellisia lukuja. Niiden tilalla käytetään korvaavia nimiä ja lukuja.",
         "**Vain hyväksytty palvelu.** Muuta projektitietoa, kuten vaatimuksia ja tietoturvabriefiä, käsittelen vain tekoälypalvelussa, jonka asiakas on hyväksynyt.",
         "**Rooli, ei nimi.** Päätökset kirjataan roolin mukaan. Jos rooli yksinään tunnistaa henkilön, käytän yleisempää kuvausta.",
@@ -272,15 +272,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Sääntöjä on helppo rikkoa huomaamatta. Siksi projektin tiedostoille ajetaan automaattinen tarkistus aina, kun niihin tehdään muutos. Tarkistus toimii samalla tavalla, tekipä muutoksen minä tai tekoäly. Se tarkistaa esimerkiksi nämä asiat:",
-    },
-    {
-      type: "list",
-      items: [
-        "**Pääohjeen pituus.** Pääohje on tiedosto, jonka tekoäly lukee jokaisen työn alussa. Mitä pidempi se on, sitä enemmän se kuluttaa tekoälyn kontekstia eli tietoa, jonka tekoäly pystyy kerralla huomioimaan, ja sitä todennäköisemmin tärkeät säännöt hukkuvat muun tekstin sekaan. Siksi pääohjeen pitää pysyä tiiviinä. Perusteena on [Claude Coden dokumentaatio](https://code.claude.com/docs/en/memory), jonka mukaan pitkä ohjetiedosto kuluttaa kontekstia ja heikentää ohjeiden noudattamista.",
-        "**Rikkinäiset linkit.** Linkki, joka ei johda mihinkään, jättää lukijan tai tekoälyn ilman tietoa, jonka dokumentti lupaa. Tällöin tekoäly voi alkaa arvailla puuttuvaa sisältöä.",
-        "**Värien kontrasti.** Kontrastisuhde lasketaan ja verrataan saavutettavuusstandardin ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum)) vaatimuksiin, koska liian heikko kontrasti vaikeuttaa tekstin lukemista erityisesti heikkonäköisillä.",
-      ],
+      text: "Sääntöjä on helppo rikkoa huomaamatta. Siksi projektin tiedostoille ajetaan automaattinen tarkistus aina, kun niihin tehdään muutos. Tarkistus huomauttaa esimerkiksi, jos tekoälyn pääohje on kasvanut niin pitkäksi, että tärkeät säännöt hukkuvat muun tekstin sekaan, tiedostossa on rikkinäinen linkki tai värien kontrasti on liian heikko luettavaksi. Se toimii samalla tavalla, tekipä muutoksen minä tai tekoäly.",
     },
 
     {
@@ -297,7 +289,7 @@ export const howIWorkWithAiFi: BlogPost = {
       type: "list",
       items: [
         "**Aloitus viidellä dokumentilla.** Tuotekonteksti, ongelman muotoilu, sidosryhmäkartta, vaatimukset ja päätösloki. Muut, kuten saavutettavuuslista tai luovutusdokumentti, lisätään, kun vaihe tarvitsee niitä.",
-        "**Tekoäly tekee ensimmäisen version.** Liitän esimerkiksi anonymisoidut kick-offin muistiinpanoni ja saan takaisin sidosryhmäkartan, jossa roolit, päätösoikeudet ja avoimet kysymykset on merkitty. Korjaan version sen sijaan, että kirjoittaisin sidosryhmäkartan tyhjältä sivulta.",
+        "**Tekoäly tekee ensimmäisen version.** Liitän esimerkiksi anonymisoidut kick-offin muistiinpanoni ja saan takaisin sidosryhmäkartan, jossa roolit, päätösoikeudet ja aukot on merkitty. Korjaan version sen sijaan, että kirjoittaisin sidosryhmäkartan tyhjältä sivulta.",
         "**Osa säännöistä tarkistuu itse.** Jos tekstiin jää rikkinäinen linkki tai värien kontrasti on liian heikko, automaattinen tarkistus huomauttaa siitä. Näitä minun ei tarvitse muistaa tarkistaa käsin.",
         "**Ei dokumenttia ilman lukijaa.** Dokumentti tehdään vasta, kun joku oikeasti tarvitsee sitä. Palauteloki tehdään esimerkiksi vain silloin, kun usea sidosryhmä antaa ristiriitaista palautetta, ja case study -muistiinpanot vain, jos aion julkaista projektin.",
       ],

@@ -27,7 +27,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "I used to work like this: I started a conversation with the AI by writing a prompt straight away and refined it as the conversation went on. I soon learned, however, that the result depends far more on what the AI knows about the project than on how the prompt is phrased.",
+      text: "I used to write a prompt for the AI straight away and refine it as the conversation went on. I soon learned, however, that the result depends far more on what the AI knows about the project than on how the prompt is phrased.",
     },
     {
       type: "paragraph",
@@ -136,7 +136,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "That is why I create a private workspace (a Git repository) for every new project from my own template. Short documents are added to the workspace, and the AI reads them before the work starts: who the product is for, the problem as a user situation, who decides what, the requirements and a decision log. I also add anonymised raw notes, from which the AI drafts a first version and I correct it. Whatever cannot be found in the notes is marked as something to find out, an open question.",
+      text: "That is why I create a private workspace (a Git repository) for every new project from my own template. Short documents are added to the workspace, and the AI reads them before the work starts: who the product is for, the problem as a user situation, who decides what, the requirements and a decision log. I also add anonymised raw notes, from which the AI drafts a first version and I correct it. Whatever cannot be found in the notes is marked as something to find out, a gap.",
     },
     {
       type: "paragraph",
@@ -226,7 +226,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "For each such step I write down who might struggle and what the design offers instead. If I do not know, I mark it as an open question and find out.",
+      text: "For each such step I write down who might struggle and what the design offers instead. If I do not know, I mark it as a gap and find out.",
     },
 
     {
@@ -238,7 +238,7 @@ export const howIWorkWithAi: BlogPost = {
       type: "list",
       items: [
         "**No inflated claims.** A design is not called accessible, compliant or tested. Each check ends as pass, fail or cannot tell from a design.",
-        "**Evidence or open question.** Every claim is labelled as evidence with a source, or as an open question. No invented quotes, research results or numbers.",
+        "**Evidence or gap.** Every claim is labelled as evidence with a source, or as a gap. No invented quotes, research results or numbers.",
         "**No personal data for the AI.** No real names, personal data or confidential figures in prompts or files. Substitute names and figures are used in their place.",
         "**Only an approved service.** I handle other project information, such as requirements and the security brief, only in an AI service the client has approved.",
         "**Role, not name.** Decisions are recorded by role. If a role alone identifies a person, I use a more general description.",
@@ -271,15 +271,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Rules are easy to break without noticing. So an automatic check runs on the project files whenever they change. It works the same whether I or the AI made the change. It checks, for example, these things:",
-    },
-    {
-      type: "list",
-      items: [
-        "**Length of the main instruction file.** This is the file the AI reads at the start of every task. The longer it is, the more it uses up the AI's context, meaning the information the AI can take into account at once, and the more likely it is that important rules get buried among the rest of the text. That is why the main instruction file has to stay concise. The basis is the [Claude Code documentation](https://code.claude.com/docs/en/memory), according to which a long instruction file uses up context and reduces how well the instructions are followed.",
-        "**Broken links.** A link that leads nowhere leaves the reader or the AI without the information the document promises. The AI may then start guessing the missing content.",
-        "**Colour contrast.** The contrast ratio is calculated and compared with the requirements of the accessibility standard ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum)), because a contrast that is too weak makes text harder to read, especially for people with low vision.",
-      ],
+      text: "Rules are easy to break without noticing. So an automatic check runs on the project files whenever they change. It flags, for example, a main AI instruction file that has grown so long that important rules get buried among the rest of the text, a broken link or a colour contrast that is too weak to read. It works the same whether I or the AI made the change.",
     },
 
     {
@@ -296,7 +288,7 @@ export const howIWorkWithAi: BlogPost = {
       type: "list",
       items: [
         "**Five documents to begin with.** Product context, problem framing, stakeholder map, requirements and decision log. The others, such as the accessibility checklist or the handoff document, are added when a stage needs them.",
-        "**The AI writes the first version.** For example, I paste in my anonymised kick-off notes and get back a stakeholder map with the roles, decision rights and open questions marked. I correct it instead of writing it from a blank page.",
+        "**The AI writes the first version.** For example, I paste in my anonymised kick-off notes and get back a stakeholder map with the roles, decision rights and gaps marked. I correct it instead of writing it from a blank page.",
         "**Some of the rules check themselves.** If a broken link slips into the text or a colour contrast is too weak, the automatic check flags it. I do not have to remember to check these by hand.",
         "**No document without a reader.** A document is made only when someone really needs it. The feedback log, for example, is made only when several stakeholders give conflicting feedback, and case study notes only if I plan to publish the project.",
       ],
