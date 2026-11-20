@@ -145,7 +145,7 @@ export const howIWorkWithAiFi: BlogPost = {
             { label: "Skill", values: ["user-flow-and-states"] },
             { label: "Artefaktit", values: ["04 user flows and states", "07 design system rules"] },
           ],
-          body: "Käyttäjäpolut kuvataan vaihe vaiheelta virhetilanteineen, ja jokaiselle näkymälle listataan kaikki tilat Design Systemin sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan niiden olevan suunniteltuja.",
+          body: "Käyttäjäpolut kuvataan vaihe vaiheelta virhetilanteineen, ja jokaiselle näkymälle listataan kaikki tilat Design Systemin sääntöjä vasten. Tekoäly merkitsee tilat puuttuviksi, kunnes vahvistan niiden olevan suunniteltuja. Jos Design System on asiakkaan oma ja salainen, sen sääntöjä käytetään vain asiakkaan luvalla ja siten kuin asiakkaan kanssa on sovittu.",
         },
         {
           title: "Tarkistus",
@@ -216,7 +216,7 @@ export const howIWorkWithAiFi: BlogPost = {
       items: [
         "**Suunnitelmaa ei sanota saavutettavaksi, vaatimustenmukaiseksi tai testatuksi.** Jokaisen tarkistuksen tulos on läpi, hylätty tai ei voida päätellä suunnitelmasta.",
         "**Jokainen väite merkitään** todisteeksi lähteineen tai aukoksi. Keksittyjä lainauksia, tutkimustuloksia tai lukuja ei käytetä.",
-        "**Asiakasdata ei päädy tekoälylle.** Kehotteissa ja tiedostoissa ei ole oikeita nimiä, henkilötietoja eikä luottamuksellisia lukuja. Niiden tilalla käytetään korvaavia nimiä ja lukuja.",
+        "**Asiakasdata ei päädy tekoälylle.** Kehotteissa ja tiedostoissa ei ole oikeita nimiä, henkilötietoja eikä luottamuksellisia lukuja. Niiden tilalla käytetään korvaavia nimiä ja lukuja. Poikkeus on asiakkaan oma Design System: se on sidoksissa asiakkaan nimeen ja voi olla salainen, joten sen käytöstä tekoälyn kanssa sovitaan asiakkaan kanssa erikseen.",
         "**Päätökset kirjataan roolin mukaan,** ei nimen.",
       ],
     },

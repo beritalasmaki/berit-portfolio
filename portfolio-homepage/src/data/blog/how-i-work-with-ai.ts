@@ -143,7 +143,7 @@ export const howIWorkWithAi: BlogPost = {
             { label: "Skill", values: ["user-flow-and-states"] },
             { label: "Artefacts", values: ["04 user flows and states", "07 design system rules"] },
           ],
-          body: "User paths are mapped step by step with error situations, and every screen gets all its states listed against the design system rules. The AI marks each state as missing until I confirm it is designed.",
+          body: "User paths are mapped step by step with error situations, and every screen gets all its states listed against the design system rules. The AI marks each state as missing until I confirm it is designed. If the design system is the client's own and confidential, its rules are used only with the client's permission and as agreed with the client.",
         },
         {
           title: "Check",
@@ -214,7 +214,7 @@ export const howIWorkWithAi: BlogPost = {
       items: [
         "**No design is called accessible, compliant or tested.** Each check ends as pass, fail or cannot tell from a design.",
         "**Every claim is labelled** as evidence with a source, or as a gap. No invented quotes, research or numbers.",
-        "**Client data stays out.** No real names, personal data or confidential figures in prompts or files. Substitute names and figures are used in their place.",
+        "**Client data stays out.** No real names, personal data or confidential figures in prompts or files. Substitute names and figures are used in their place. The exception is the client's own design system: it is tied to the client's name and may be confidential, so its use with AI is agreed with the client separately.",
         "**Decisions are recorded by role,** not by name.",
       ],
     },
