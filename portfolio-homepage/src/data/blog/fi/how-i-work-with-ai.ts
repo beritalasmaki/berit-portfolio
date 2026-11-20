@@ -6,7 +6,7 @@ export const howIWorkWithAiFi: BlogPost = {
   title: "Näin työskentelen tekoälyn kanssa",
   tabTitle: "Näin työskentelen tekoälyn kanssa",
   excerpt:
-    "Yksi tapa hyödyntää tekoälyä suunnittelutyössä. Hyvin laadittu konteksti ja tietoarkkitehtuuri tuottavat tekoälyltä paljon parempia tuloksia kuin pelkät komennot. Kuvaan pohjan, josta aloitan uudet projektit, sekä sen, missä tekoäly osaa toimia hyvin ja missä edelleen tarvitaan ihmisen ohjausta ja päätöksentekoa.",
+    "Pelkät komennot eivät enää riitä, kun tekoälyä hyödynnetään vaativassa suunnittelutyössä. Jotta työtavat pysyvät tehokkaina mutta kokonaisuus hallinnassa, rakensin projekteihin valmiin kontekstipohjan. Kuvaan tässä kuusivaiheisen prosessini sekä työnjaon: missä tekoäly auttaa parhaiten ja missä tarvitaan ihmisen näkemystä ja vastuuta.",
   date: "2026-11-18",
   tags: ["Tekoälytyökalut", "Tekoälyn käyttöönotto"],
   body: [
