@@ -6,7 +6,7 @@ export const howIWorkWithAiFi: BlogPost = {
   title: "Näin työskentelen tekoälyn kanssa",
   tabTitle: "Näin työskentelen tekoälyn kanssa",
   excerpt:
-    "Pelkät komennot eivät enää riitä, kun tekoälyä hyödynnetään vaativassa suunnittelutyössä. Jotta työtavat pysyvät tehokkaina mutta kokonaisuus hallinnassa, rakensin projekteihin valmiin kontekstipohjan. Kuvaan tässä kuusivaiheisen prosessini sekä työnjaon: missä tekoäly auttaa parhaiten ja missä tarvitaan ihmisen näkemystä ja vastuuta.",
+    "Pelkät kehotteet eivät enää riitä, kun tekoälyä hyödynnetään vaativassa suunnittelutyössä. Jotta työtavat pysyvät tehokkaina mutta kokonaisuus hallinnassa, rakensin projekteihin valmiin kontekstipohjan. Kuvaan tässä kuusivaiheisen prosessini sekä työnjaon: missä tekoäly auttaa parhaiten ja missä tarvitaan ihmisen näkemystä ja vastuuta.",
   date: "2026-11-18",
   tags: ["Tekoälytyökalut", "Tekoälyn käyttöönotto"],
   body: [
@@ -22,7 +22,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Alkujaan aloitin uuden keskustelun tekoälyn kanssa kirjoittamalla suoraan komennon ja tarkentamalla sen mukaan, kun keskustelu eteni. Opin kuitenkin aika nopeasti, että loppujen lopuksi tulos riippuu paljon enemmän siitä, mitä tekoäly tietää projektista, kuin siitä, miten pyynnön muotoilee. Aloin sitten rakentamaan uutta lähestymistapaa muutaman oman projektini kautta (mm. [omassa Design Systemissäni](https://design-system-use-case.vercel.app/) ja [agenttiajojen katselmointinäkymässä](https://demo-t-example.vercel.app/)). Kirjoitin tekoälylle ensin säännöt ja kontekstin: mikä tuote on, mitkä säännöt pätevät ja mitä tekoäly saa ja ei saa tehdä. Tulokset olivat tuolloin jo huomattavasti parempia.",
+      text: "Alkujaan aloitin uuden keskustelun tekoälyn kanssa kirjoittamalla suoraan kehotteen ja tarkentamalla sitä mukaa kuin keskustelu eteni. Opin kuitenkin aika nopeasti, että loppujen lopuksi tulos riippuu paljon enemmän siitä, mitä tekoäly tietää projektista, kuin siitä, miten kehotteen muotoilee. Aloin sitten rakentamaan uutta lähestymistapaa muutaman oman projektini kautta (mm. [omassa Design Systemissäni](https://design-system-use-case.vercel.app/) ja [agenttiajojen katselmointinäkymässä](https://demo-t-example.vercel.app/)). Kirjoitin tekoälylle ensin säännöt ja kontekstin: mikä tuote on, mitkä säännöt pätevät ja mitä tekoäly saa ja ei saa tehdä. Tulokset olivat tuolloin jo huomattavasti parempia.",
     },
     {
       type: "paragraph",
@@ -76,7 +76,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Mielestäni tällainen työnjako toimii hyvin ja varmistaa että suunnittelijan huomiot ja kädenjälki todella säilyy lopputuloksessa.",
+      text: "Mielestäni tällainen työnjako toimii hyvin ja varmistaa, että suunnittelijan huomiot ja kädenjälki säilyvät lopputuloksessa.",
     },
 
     {
@@ -87,15 +87,15 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tekoäly ei tiedä projektista tai brändistä mitään, kun uusi istunto alkaa. Ilman kirjoitettua kontekstia se arvailee puuttuvat kohdat oppimateriaalinsa ja todennäköisyyksien perusteella, ja lopputuote muistuttaa helposti mitä tahansa muuta vastaavaa ratkaisua, jonka lisäksi liiketoiminnan tavoitteet ja asiakaskohtaiset vaatimukset jäävät kokonaan huomioimatta.",
+      text: "Tekoäly ei tiedä projektista tai brändistä mitään, kun uusi istunto alkaa. Ilman kirjoitettua kontekstia se arvailee puuttuvat kohdat oppimateriaalinsa ja todennäköisyyksien perusteella, ja lopputuote muistuttaa helposti mitä tahansa muuta vastaavaa ratkaisua. Lisäksi liiketoiminnan tavoitteet ja asiakaskohtaiset vaatimukset jäävät kokonaan huomioimatta.",
     },
     {
       type: "paragraph",
-      text: "Siksi luon nykyään jokaiselle uudelle projektille oman yksityisen työtilan (Git-repositorion) omasta pohjastani. Työtilaan lisätään lyhyitä dokumentteja, jotka tekoäly lukee ennen työn aloittamista: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Lisäksi liitän mukaan raakamuistiinpanot, jonka tekoäly luonnostelee ja minä korjaan. Mitä muistiinpanoista ei löydy, merkitään selvitettäväksi asiaksi (aukoksi).",
+      text: "Siksi luon nykyään jokaiselle uudelle projektille oman yksityisen työtilan (Git-repositorion) omasta pohjastani. Työtilaan lisätään lyhyitä dokumentteja, jotka tekoäly lukee ennen työn aloittamista: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Lisäksi liitän mukaan anonymisoidut raakamuistiinpanot, joista tekoäly luonnostelee ensimmäisen version ja minä korjaan sen. Mitä muistiinpanoista ei löydy, merkitään selvitettäväksi asiaksi (aukoksi).",
     },
     {
       type: "paragraph",
-      text: "Ajatuksena on, että työtila on omaa työskentelynäni ja dokumentointia varten, enkä vie sitä asiakkaan omaan repositorioon ellei sitä erikseen pyydetä.",
+      text: "Ajatuksena on, että työtila on omaa työskentelyäni ja dokumentointiani varten, enkä vie sitä asiakkaan omaan repositorioon ellei sitä erikseen pyydetä.",
     },
 
     {
@@ -105,7 +105,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Vaiheita on kuusi. Jokaiseen kuuluu skill eli tekoälylle kirjoitettu ohje sekä artefakti eli dokumentti, johon tulos kirjataan.",
+      text: "Vaiheita on kuusi. Jokaiseen kuuluu yksi tai useampi skill eli tekoälylle kirjoitettu ohje sekä artefaktit eli dokumentit, joihin tulos kirjataan.",
     },
     {
       type: "timeline",
@@ -129,7 +129,7 @@ export const howIWorkWithAiFi: BlogPost = {
             { label: "Skill", values: ["problem-framing"] },
             { label: "Artefaktit", values: ["00 product context", "01 problem framing"] },
           ],
-          body: "Toimeksianto muutetaan käyttäjän tilanteeksi, jossa ei ole ratkaisua valmiina, ja listataan, mitä tiedetään ja mikä puuttuu. Kirjoitan toimeksiannon ylös sellaisenaan, mutta pyrin anonymisoimaan sen niin, ettei asiakkaan tai kenenkään henkilön nimi näy. Asiakkaan tiedot pidän salaisina.",
+          body: "Toimeksianto muutetaan käyttäjän tilanteeksi, jossa ei ole ratkaisua valmiina, ja listataan, mitä tiedetään ja mikä puuttuu. Kirjoitan toimeksiannon ylös sellaisenaan, mutta anonymisoin sen niin, ettei asiakkaan tai kenenkään henkilön nimi näy. Asiakkaan tiedot pidän salaisina.",
         },
         {
           title: "Ihmisten ymmärtäminen",
@@ -159,7 +159,7 @@ export const howIWorkWithAiFi: BlogPost = {
           title: "Luovutus",
           meta: [
             { label: "Skill", values: ["procurement-ready-handoff"] },
-            { label: "Artefaktit", values: ["08 handoff spec", "09 stakeholder feedback log"] },
+            { label: "Artefaktit", values: ["08 handoff spec", "09 stakeholder feedback log (tarvittaessa)"] },
           ],
           body: "Kerrotaan, mikä on valmista, kuka sen hyväksyi ja mitä kukin toimittaja tekee. Katselmoinnin kommentit kootaan yhteen sen kanssa, kuka niistä päättää.",
         },
@@ -169,7 +169,7 @@ export const howIWorkWithAiFi: BlogPost = {
             { label: "Skillit", values: ["decision-log", "nda-safe-case-study"] },
             { label: "Artefaktit", values: ["10 decision log", "11 case study notes"] },
           ],
-          body: "Päätökset kirjataan niin, että näkyy kuka päätti ja miksi. Projektin lopussa lokista tehdään case study ilman luottamuksellisia tietoja.",
+          body: "Päätökset kirjataan niin, että näkyy kuka päätti ja miksi. Jos projekti julkaistaan, sen lopussa lokista tehdään case study ilman luottamuksellisia tietoja.",
         },
       ],
     },
@@ -236,7 +236,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Jotta asiakkaan puolella oleva dokumentaatio ei jää vanhaksi, toimitetut versiot numeroidaan ja päivämäärätään, ja uusi versio viedään asiakkaan työkaluun aina, kun dokumentti muuttuu. Vanhat versiot jäävät talteen. Jos asiakas haluaa ylläpitää jotain dokumenttia itse, sovimme heti alussa, että heidän versionsa on siitä lähtien alkuperäinen.",
+      text: "Jotta asiakkaan puolella oleva dokumentaatio ei jää vanhaksi, toimitetut versiot numeroidaan ja päivämäärätään, ja uusi versio viedään asiakkaan työkaluun aina, kun dokumentti muuttuu. Vanhat versiot jäävät talteen. Jos asiakas haluaa ylläpitää jotain dokumenttia itse, sovimme heti alussa, että heidän versionsa on siitä lähtien virallinen versio.",
     },
     {
       type: "paragraph",
@@ -269,15 +269,15 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tällainen prosessi voi koitua raskaaksi, jos yrittää tehdä kaiken kerrallaan. Alkuun kuitenkin pääsee pienemmälläkin tavalla:",
+      text: "Tällainen prosessi voi käydä raskaaksi, jos yrittää tehdä kaiken kerrallaan. Alkuun kuitenkin pääsee pienemmälläkin tavalla:",
     },
     {
       type: "list",
       items: [
         "**Aloitus viidellä dokumentilla:** tuotekonteksti, ongelman muotoilu, sidosryhmäkartta, vaatimukset ja päätösloki. Muut, kuten saavutettavuuslista tai luovutusdokumentti, lisätään, kun vaihe niitä tarvitsee.",
-        "**Tekoäly tekee ensimmäisen version.** Liitän esimerkiksi kick-offin muistiinpanoni ja saan takaisin sidosryhmäkartan, jossa on roolit, päätösoikeudet ja aukot merkittyinä. Korjaan sen sen sijaan, että kirjoittaisin sen tyhjältä sivulta.",
-        "**Säännöt tarkistuvat itse.** Jos tekstiin jää rikkinäinen linkki tai värien kontrasti jää liian heikoksi, automaattinen tarkistus huomauttaa siitä. Minun ei tarvitse muistaa tarkistaa asioita käsin.",
-        "**Ei dokumenttia ilman lukijaa.** Dokumentti tehdään vasta, kun sille on käyttäjä. Palauteloki, johon kirjataan sidosryhmien kommentit ja se, kuka niistä päättää, tehdään vain silloin, kun usea sidosryhmä antaa keskenään ristiriitaista palautetta. Case study -muistiinpanot, joista syntyy portfolioon julkaistava projektiesittely, tehdään vain, jos aion julkaista projektin.",
+        "**Tekoäly tekee ensimmäisen version.** Liitän esimerkiksi anonymisoidut kick-offin muistiinpanoni ja saan takaisin sidosryhmäkartan, jossa on roolit, päätösoikeudet ja aukot merkittyinä. Korjaan sen sen sijaan, että kirjoittaisin sen tyhjältä sivulta.",
+        "**Osa säännöistä tarkistuu itse.** Jos tekstiin jää rikkinäinen linkki tai värien kontrasti jää liian heikoksi, automaattinen tarkistus huomauttaa siitä. Näitä minun ei tarvitse muistaa tarkistaa käsin.",
+        "**Ei dokumenttia ilman tarvetta.** Dokumentti tehdään vasta, kun sille on selkeä tarve. Palauteloki, johon kirjataan sidosryhmien kommentit ja se, kuka niistä päättää, tehdään vain silloin, kun usea sidosryhmä antaa keskenään ristiriitaista palautetta. Case study -muistiinpanot, joista syntyy portfolioon julkaistava projektiesittely, tehdään vain, jos aion julkaista projektin.",
       ],
     },
     {
@@ -287,10 +287,10 @@ export const howIWorkWithAiFi: BlogPost = {
     {
       type: "list",
       items: [
-        "**Vie vain muuttuneet dokumentit,** ja vasta sovituissa välietapeissa, kuten kick-offin, katselmoinnin ja luovutuksen jälkeen, ei jokaisen pienen muutoksen jälkeen.",
-        "**Pyydä tekoälyä valmistelemaan vientiversio.** Se muotoilee Markdown-dokumentin asiakkaan työkalun tai PDF:n vaatimaan muotoon, ja sinä tarkistat lopputuloksen.",
-        "**Kirjaa päätös yhdellä rivillä heti, kun se tehdään:** päivä, päättäjän rooli, päätös ja syy. Tekoäly voi luonnostella rivin palaverin muistiinpanoista, ja sinä vain hyväksyt tai korjaat sen.",
-        "**Kirjaa vain päätökset, joita on vaikea perua tai jotka vaikuttavat muihin.** Pienet valinnat eivät tarvitse omaa merkintää.",
+        "**Vien vain muuttuneet dokumentit,** ja vasta sovituissa välietapeissa, kuten kick-offin, katselmoinnin ja luovutuksen jälkeen, ei jokaisen pienen muutoksen jälkeen.",
+        "**Pyydän tekoälyä valmistelemaan vientiversion.** Se muotoilee Markdown-dokumentin asiakkaan työkalun tai PDF:n vaatimaan muotoon, ja minä tarkistan lopputuloksen.",
+        "**Kirjaan päätöksen yhdellä rivillä heti, kun se tehdään:** päivä, päättäjän rooli, päätös ja syy. Tekoäly voi luonnostella rivin palaverin muistiinpanoista, ja minä vain hyväksyn tai korjaan sen.",
+        "**Kirjaan vain päätökset, joita on vaikea perua tai jotka vaikuttavat muihin.** Pienet valinnat eivät tarvitse omaa merkintää.",
       ],
     },
     {
