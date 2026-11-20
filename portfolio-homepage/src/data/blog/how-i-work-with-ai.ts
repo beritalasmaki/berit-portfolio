@@ -185,15 +185,56 @@ export const howIWorkWithAi: BlogPost = {
       ],
     },
     {
-      type: "list",
-      ordered: true,
+      type: "findings",
       items: [
-        "**Framing the problem.** The request is turned into a user situation with no ready-made solution, and what is known and what is missing is listed. I anonymise the request before the AI handles it.",
-        "**Understanding the people.** Work out who decides what, and record the requirements with their owners. Conflicts are recorded side by side as they appear, but the AI does not resolve them.",
-        "**Design.** User paths are described with their error situations, and the states of each screen are listed against the design system rules. The AI marks the states as missing until I confirm them.",
-        "**Checking.** Accessibility, data and permissions are reviewed, along with the choices that were left as defaults. Contrast is calculated by a script. This is a design-stage review, not an audit.",
-        "**Handing off.** States what is final, who approved it and what each vendor provides.",
-        "**Recording and reflecting.** Decisions are recorded so that it shows who decided and why. If the project is published, the log is finally turned into a case study with no confidential information.",
+        {
+          title: "Framing the problem",
+          meta: [
+            { label: "Skill", values: ["problem-framing"] },
+            { label: "Artefacts", values: ["00 product context", "01 problem framing"] },
+          ],
+          body: "The request is turned into a user situation with no ready-made solution, and what is known and what is missing is listed. I anonymise the request before the AI handles it.",
+        },
+        {
+          title: "Understanding the people",
+          meta: [
+            { label: "Skill", values: ["stakeholder-map"] },
+            { label: "Artefacts", values: ["02 stakeholder map", "03 requirements spec"] },
+          ],
+          body: "Work out who decides what, and record the requirements with their owners. Conflicts are recorded side by side as they appear, but the AI does not resolve them.",
+        },
+        {
+          title: "Design",
+          meta: [
+            { label: "Skill", values: ["user-flow-and-states"] },
+            { label: "Artefacts", values: ["04 user flows and states", "07 design system rules"] },
+          ],
+          body: "User paths are described with their error situations, and the states of each screen are listed against the design system rules. The AI marks the states as missing until I confirm them.",
+        },
+        {
+          title: "Checking",
+          meta: [
+            { label: "Skills", values: ["a11y-gate", "security-privacy-brief", "sameness-check"] },
+            { label: "Artefacts", values: ["05 accessibility checklist", "06 security and privacy brief"] },
+          ],
+          body: "Accessibility, data and permissions are reviewed, along with the choices that were left as defaults. Contrast is calculated by a script. This is a design-stage review, not an audit.",
+        },
+        {
+          title: "Handing off",
+          meta: [
+            { label: "Skill", values: ["procurement-ready-handoff"] },
+            { label: "Artefacts", values: ["08 handoff spec", "09 stakeholder feedback log (as needed)"] },
+          ],
+          body: "States what is final, who approved it and what each vendor provides.",
+        },
+        {
+          title: "Recording and reflecting",
+          meta: [
+            { label: "Skills", values: ["decision-log", "nda-safe-case-study"] },
+            { label: "Artefacts", values: ["10 decision log", "11 case study notes"] },
+          ],
+          body: "Decisions are recorded so that it shows who decided and why. If the project is published, the log is finally turned into a case study with no confidential information.",
+        },
       ],
     },
     {
