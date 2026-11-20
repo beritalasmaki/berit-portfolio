@@ -85,7 +85,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "The AI knows nothing about the project or the brand when a new session starts. Without written context it guesses the missing pieces from its training data and probabilities, and the end product may look just like every other similar product.",
+      text: "The AI knows nothing about the project or the brand when a new session starts. Without written context it guesses the missing pieces from its training data and probabilities, and the end product easily resembles any other similar solution, on top of which the business goals and the client-specific requirements are left entirely unaddressed.",
     },
     {
       type: "paragraph",

@@ -87,7 +87,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tekoäly ei tiedä projektista tai brändistä mitään, kun uusi istunto alkaa. Ilman kirjoitettua kontekstia se arvailee puuttuvat kohdat oppimateriaalinsa ja todennäköisyyksien perusteella, ja lopputuote voi näyttää samanlaiselta kuin kaikki muut vastaavat tuotteet.",
+      text: "Tekoäly ei tiedä projektista tai brändistä mitään, kun uusi istunto alkaa. Ilman kirjoitettua kontekstia se arvailee puuttuvat kohdat oppimateriaalinsa ja todennäköisyyksien perusteella, ja lopputuote muistuttaa helposti mitä tahansa muuta vastaavaa ratkaisua, jonka lisäksi liiketoiminnan tavoitteet ja asiakaskohtaiset vaatimukset jäävät kokonaan huomioimatta.",
     },
     {
       type: "paragraph",
