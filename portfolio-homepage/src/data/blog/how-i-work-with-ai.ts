@@ -248,7 +248,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "To guide the AI I do not rely on a list of what it must not do alone. Instead I tell it which constraints apply to the design task: the brand, the technology, accessibility and the business, meaning what the product needs the user to do. I also give it examples of successful design from my own projects. Each example says what was decided and what was given up, so the AI understands the reasons and not only the result.",
+      text: "To guide the AI I do not rely on a list of what it must not do alone. Instead I tell it which constraints apply to the design task: the brand, the technology, accessibility and the business, meaning what the product needs the user to do. I also give it examples of successful design from comparable projects, which I use as a benchmark. The examples do not have to be my own. For the examples where the information can be found, it also helps to say what was decided and what was given up, so the AI understands the reasons and not only the result.",
     },
     {
       type: "paragraph",
