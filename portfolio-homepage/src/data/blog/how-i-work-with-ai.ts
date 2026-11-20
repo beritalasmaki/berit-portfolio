@@ -5,7 +5,7 @@ export const howIWorkWithAi: BlogPost = {
   title: "How I work with AI: a template for design projects",
   tabTitle: "How I work with AI",
   excerpt:
-    "One way to use AI in design work. Well-built context and information architecture give much better results from AI than commands alone. This post describes the template I use as my starting point, and where AI works well and where people's guidance and decisions are still needed.",
+    "Plain commands are no longer enough when AI is used in demanding design work. To keep the ways of working efficient but the whole under control, I built a ready-made context template for my projects. Here I describe my six-stage process and the division of work: where AI helps most and where a person's insight and responsibility are needed.",
   date: "2026-11-18",
   tags: ["AI tools", "AI adoption"],
   body: [
@@ -21,11 +21,15 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "I started out using AI one command at a time: I asked for something (most often with precise specs), checked the result and refined the request. I learned that, in the end, the result depends far more on what the AI knows about the project than on how the request is phrased. I then started building a new approach through a few projects of my own (among them [my design system](https://design-system-use-case.vercel.app/) and [an agent run review screen](https://demo-t-example.vercel.app/)). I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were already considerably better.",
+      text: "At first I started a new conversation with the AI by writing a command straight away and refining it as the conversation went on. I learned quite quickly, though, that in the end the result depends far more on what the AI knows about the project than on how the request is phrased. I then started building a new approach through a few projects of my own (among them [my design system](https://design-system-use-case.vercel.app/) and [an agent run review screen](https://demo-t-example.vercel.app/)). I wrote the rules and the context for the AI first: what the product is, which rules apply, and what the AI may and may not do. The results were already considerably better.",
     },
     {
       type: "paragraph",
-      text: "That became a template that now works well as a starting point for new projects. The idea was to build it for projects where accessibility and security play an important role and there are several stakeholders. These are often, for example, public sector projects and critical industries such as banking, insurance, healthcare and security.",
+      text: "That became a template that now works well as a starting point for new projects. The idea was to build it for projects where accessibility and security play an important role and there are several stakeholders. These are often public sector projects and projects in critical industries, such as banking, insurance, healthcare and security.",
+    },
+    {
+      type: "paragraph",
+      text: "In client projects I use AI only when the client allows it, and I find that out before the work starts. Some clients also limit where their material may be stored.",
     },
 
     {
@@ -36,7 +40,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Well-built context gives better results and also makes the division of work clearer. AI works well in some things, and in others it still needs a person's decisions and guidance.",
+      text: "Good context also makes the division of work clearer: AI works well in some things, and in others it still needs a person's decisions and guidance.",
     },
     {
       type: "subheading",
@@ -81,7 +85,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "After all, the AI knows nothing about the project or the brand when a new session starts. Without properly written context it may start guessing the missing pieces based on its training data and probabilities. That is why the end product may well end up looking very much like every other similar product.",
+      text: "The AI knows nothing about the project or the brand when a new session starts. Without written context it guesses the missing pieces from its training data and probabilities, and the end product may look just like every other similar product.",
     },
     {
       type: "paragraph",
@@ -187,13 +191,13 @@ export const howIWorkWithAi: BlogPost = {
       ordered: true,
       items: [
         "**Draw the successful path.** Each step shows what the user does and how the system responds.",
-        "**Ask for each step who might find it challenging, and why.** The same path can be smooth for one user and unbearably hard for another. This is a good place to bounce ideas off the AI.",
+        "**Ask for each step who might find it challenging, and why.** The same path can be smooth for one user and unbearably hard for another.",
         "**Finally, add the other paths and states:** error messages, more time, another way to do the step, and what happens when something fails.",
       ],
     },
     {
       type: "paragraph",
-      text: "A path is the route a user takes towards their goal, and a state tells which situation a single screen is in. Other paths include, for example, another way to do the same step and what happens when something fails. States include, for example, an error message, a loading view, an empty view and extra time.",
+      text: "A path is the route a user takes towards their goal, and a state tells which situation a single screen is in. Other paths include another way to do the same step and what happens when something fails. States include an error message, a loading view, an empty view and extra time.",
     },
     {
       type: "paragraph",
@@ -210,13 +214,9 @@ export const howIWorkWithAi: BlogPost = {
       items: [
         "**No design is called accessible, compliant or tested.** Each check ends as pass, fail or cannot tell from a design.",
         "**Every claim is labelled** as evidence with a source, or as a gap. No invented quotes, research or numbers.",
-        "**Client data stays out.** No real names, personal data or confidential figures in prompts or files. Placeholders can be used for these (for example P1, P2, P3 for the names of people and X, Y, Z for figures).",
+        "**Client data stays out.** No real names, personal data or confidential figures in prompts or files. Substitute names and figures are used in their place.",
         "**Decisions are recorded by role,** not by name.",
       ],
-    },
-    {
-      type: "paragraph",
-      text: "In client projects I use AI only when the client allows it, and I find that out before the work starts. Some clients also limit where their material may be stored. The project configuration asks about both on the first day.",
     },
 
     {
@@ -235,6 +235,10 @@ export const howIWorkWithAi: BlogPost = {
     {
       type: "paragraph",
       text: "To keep the client's copy from going out of date, each delivered version is numbered and dated, and a new version is delivered whenever a document changes. Old versions stay available. If the client wants to maintain a document themselves, we agree at the start that their version is the original from then on.",
+    },
+    {
+      type: "paragraph",
+      text: "This also pays off later: both AI and ordinary search find the documents easily, and the versions show how things have progressed over the course of the project or product development. That is why it is important to store documents in the right folders and years, for example 2026/User research/Name of the research theme and date.",
     },
 
     {
