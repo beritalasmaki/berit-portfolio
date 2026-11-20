@@ -28,19 +28,19 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Alkuun aloitin keskustelun tekoälyn kanssa kirjoittamalla suoraan kehotteen ja tarkensin sitä mukaa kuin keskustelu eteni. Opin kuitenkin nopeasti, että tulos riippuu paljon enemmän siitä, mitä tekoäly tietää projektista, kuin siitä, miten kehotteen muotoilee.",
+      text: "Aikaisemmin tein näin: aloitin keskustelun tekoälyn kanssa kirjoittamalla suoraan kehotteen ja tarkensin sitä mukaa kuin keskustelu eteni. Opin kuitenkin nopeasti, että tulos riippuu paljon enemmän siitä, mitä tekoäly tietää projektista, kuin siitä, miten kehotteen muotoilee.",
     },
     {
       type: "paragraph",
-      text: "Aloin rakentaa uutta lähestymistapaa omissa projekteissani, muun muassa [omassa Design Systemissäni](https://design-system-use-case.vercel.app/) ja [agenttiajojen katselmointinäkymässä](https://demo-t-example.vercel.app/). Kirjoitin tekoälylle ensin kontekstin ja säännöt: mikä tuote on, mitä tekoäly saa tehdä ja mitä ei. Tulokset olivat tuolloin jo huomattavasti parempia.",
+      text: "Aloin rakentamaan uutta lähestymistapaa omissa projekteissani, muun muassa [omassa Design Systemissäni](https://design-system-use-case.vercel.app/) ja [agenttiajojen katselmointinäkymässä](https://demo-t-example.vercel.app/). Kirjoitin tekoälylle ensin kontekstin ja säännöt: mikä tuote on, mitä tekoäly saa tehdä ja mitä ei. Tulokset olivat tuolloin jo huomattavasti parempia.",
     },
     {
       type: "paragraph",
-      text: "Tästä syntyi pohja, jota käytän nyt uusien projektien lähtökohtana. Tein sen erityisesti projekteihin, joissa saavutettavuus ja tietoturva ovat tärkeitä ja sidosryhmiä on useita. Tällaisia ovat usein julkisen sektorin sekä pankki-, vakuutus-, terveydenhuolto- ja turvallisuusalan projektit.",
+      text: "Tästä syntyi pohja, jota käytän nyt uusien projektien lähtökohtana. Tein pohjan erityisesti projekteihin, joissa saavutettavuus ja tietoturva ovat tärkeitä ja sidosryhmiä on useita. Tällaisia ovat usein julkisen sektorin sekä pankki-, vakuutus-, terveydenhuolto- ja turvallisuusalan projektit.",
     },
     {
       type: "paragraph",
-      text: "Asiakasprojekteissa käytän tekoälyä vain, kun asiakas on sallinut sen. Selvitän asian ennen työn alkua, ja samalla sovimme, mitä tekoälypalvelua saa käyttää ja missä aineistoa saa säilyttää.",
+      text: "Asiakasprojekteissa käytän tekoälyä vain asiakkaan luvalla. Selvitän asian ennen työn alkua, ja samalla sovimme, mitä tekoälypalvelua saa käyttää ja missä aineistoa saa säilyttää.",
     },
 
     {
@@ -50,11 +50,11 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tutkimuksessa tekoäly nopeuttaa eniten valmistelua ja jäsentämistä. Luonnostelen sen kanssa haastattelurungot ja työpajojen materiaalit sekä suunnittelen työn vaiheet ja aikataulun. Teen sen avulla myös haastatteluista yhteenvedot. Ennen kuin annan haastatteluaineiston tekoälylle, poistan siitä nimet ja muut tunnistettavat tiedot.",
+      text: "Tutkimuksessa tekoäly nopeuttaa eniten valmistelua ja jäsentämistä. Luonnostelen tekoälyn kanssa haastattelurungot ja työpajojen materiaalit sekä suunnittelen työn vaiheet ja aikataulun. Tekoälyn avulla teen myös haastatteluista yhteenvedot. Ennen kuin annan haastatteluaineiston tekoälylle, poistan siitä nimet ja muut tunnistettavat tiedot.",
     },
     {
       type: "paragraph",
-      text: "Yhteenvetoja tehdessä kirjoitan omat havaintoni ensin. Tekoäly löytää toistuvat teemat nopeasti, mutta se ei ollut paikalla haastattelussa. Sävy, epäröinti ja se, mitä jätettiin sanomatta, jäävät minun tulkittavikseni.",
+      text: "Yhteenvetoja tehdessä kirjoitan omat havaintoni ensin. Toistuvat teemat löytyvät nopeasti, mutta tekoäly ei ollut paikalla haastattelussa. Sävy, epäröinti ja se, mitä jätettiin sanomatta, jäävät minun tulkittavikseni.",
     },
     {
       type: "paragraph",
@@ -68,11 +68,11 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Käyttäjäpolkuja piirtäessä tekoäly on hyvä sparrauskumppani. Kun polku pitää avata vaihe vaiheelta, se auttaa löytämään haarat ja virhetilanteet, jotka unohtuvat helposti. Ideoinnissa pyydän siltä variaatioita eli useita tapoja ratkaista sama näkymä tai vaihe. Niistä valitsen ja yhdistelen. Joskus ideointi alkaa silti paperilla ja kynällä.",
+      text: "Käyttäjäpolkuja piirtäessä tekoäly on hyvä sparrauskumppani. Kun polku pitää avata vaihe vaiheelta, tekoälyn avulla löytyvät haarat ja virhetilanteet, jotka unohtuvat helposti. Ideoinnissa pyydän tekoälyltä variaatioita eli useita tapoja ratkaista sama näkymä tai vaihe. Niistä valitsen ja yhdistelen. Joskus ideointi alkaa silti paperilla ja kynällä.",
     },
     {
       type: "paragraph",
-      text: "Prototyypit ja Design Systemin komponentit rakennan tekoälyn kanssa koodiin asti, ja sen avulla myös ylläpidän Design Systemiä. Toimiva prototyyppi näyttää heti, kestääkö suunnitelma oikean käytön.",
+      text: "Prototyypit ja Design Systemin komponentit rakennan tekoälyn kanssa koodiin asti, ja samoin ylläpidän Design Systemiä. Toimiva prototyyppi näyttää heti, kestääkö suunnitelma oikean käytön.",
     },
     {
       type: "paragraph",
@@ -87,7 +87,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Hyvä konteksti selkeyttää myös työnjakoa. Joissakin asioissa tekoäly toimii hyvin, toisissa se tarvitsee edelleen ihmisen päätöksentekoa ja ohjausta.",
+      text: "Hyvä konteksti selkeyttää myös työnjakoa. Joissakin asioissa tekoäly toimii hyvin, toisissa tarvitaan edelleen ihmisen päätöksentekoa ja ohjausta.",
     },
     {
       type: "subheading",
@@ -105,7 +105,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Luonnokset ja tiivistelmät on silti aina tarkistettava, koska tekoäly voi jättää tärkeitä asioita huomiotta. Siksi kirjoitan yleensä omat nostoni ylös ennen kuin pyydän tekoälyä tiivistämään tai luonnostelemaan. Näin huomaan heti, jos jokin tärkeä asia puuttuu sen versiosta.",
+      text: "Luonnokset ja tiivistelmät on silti aina tarkistettava, koska tekoäly voi jättää tärkeitä asioita huomiotta. Siksi kirjoitan yleensä omat nostoni ylös ennen kuin pyydän tekoälyä tiivistämään tai luonnostelemaan. Näin huomaan heti, jos jokin tärkeä asia puuttuu tekoälyn versiosta.",
     },
     {
       type: "subheading",
@@ -134,11 +134,11 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tekoäly ei tiedä projektista tai brändistä mitään, kun uusi istunto alkaa. Ilman kirjoitettua kontekstia se arvailee puuttuvat kohdat oppimateriaalinsa ja todennäköisyyksien perusteella, ja lopputulos muistuttaa helposti mitä tahansa vastaavaa ratkaisua. Lisäksi liiketoiminnan tavoitteet ja asiakaskohtaiset vaatimukset jäävät kokonaan huomioimatta.",
+      text: "Tekoäly ei tiedä projektista tai brändistä mitään, kun uusi istunto alkaa. Ilman kirjoitettua kontekstia tekoäly arvailee puuttuvat kohdat oppimateriaalinsa ja todennäköisyyksien perusteella, ja lopputulos muistuttaa helposti mitä tahansa vastaavaa ratkaisua. Lisäksi liiketoiminnan tavoitteet ja asiakaskohtaiset vaatimukset jäävät kokonaan huomioimatta.",
     },
     {
       type: "paragraph",
-      text: "Siksi luon jokaiselle uudelle projektille oman yksityisen työtilan (Git-repositorion) pohjastani. Työtilaan lisätään lyhyitä dokumentteja, jotka tekoäly lukee ennen työn aloittamista: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Lisäksi liitän mukaan anonymisoidut raakamuistiinpanot, joista tekoäly luonnostelee ensimmäisen version ja minä korjaan sen. Mitä muistiinpanoista ei löydy, merkitään selvitettäväksi asiaksi eli aukoksi.",
+      text: "Siksi luon jokaiselle uudelle projektille oman yksityisen työtilan (Git-repositorion) pohjastani. Työtilaan lisätään lyhyitä dokumentteja, jotka tekoäly lukee ennen työn aloittamista: kenelle tuote on tehty, ongelma käyttäjän tilanteena, kuka päättää mistäkin, vaatimukset ja päätösloki. Lisäksi liitän mukaan anonymisoidut raakamuistiinpanot, joista tekoäly luonnostelee ensimmäisen version ja minä korjaan sen. Mitä muistiinpanoista ei löydy, merkitään selvitettäväksi asiaksi eli avoimeksi kysymykseksi.",
     },
     {
       type: "paragraph",
@@ -227,7 +227,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Jokaisesta tällaisesta vaiheesta kirjaan, kenellä voi olla vaikeuksia ja mitä suunnittelu tarjoaa tilalle. Jos en tiedä, merkitsen sen aukoksi ja selvitän asian.",
+      text: "Jokaisesta tällaisesta vaiheesta kirjaan, kenellä voi olla vaikeuksia ja mitä suunnittelu tarjoaa tilalle. Jos en tiedä, merkitsen sen avoimeksi kysymykseksi ja selvitän asian.",
     },
 
     {
@@ -238,8 +238,8 @@ export const howIWorkWithAiFi: BlogPost = {
     {
       type: "list",
       items: [
-        "**Ei ylilupauksia.** Suunnitelmaa ei sanota saavutettavaksi, vaatimustenmukaiseksi tai testatuksi. Jokaisen tarkistuksen tulos on läpi, hylätty tai ei voida päätellä suunnitelmasta.",
-        "**Todiste tai aukko.** Jokainen väite merkitään todisteeksi lähteineen tai aukoksi. Keksittyjä lainauksia, tutkimustuloksia tai lukuja ei käytetä.",
+        "**Ei liioiteltuja väitteitä.** Suunnitelmaa ei sanota saavutettavaksi, vaatimustenmukaiseksi tai testatuksi. Jokaisen tarkistuksen tulos on läpi, hylätty tai ei voida päätellä suunnitelmasta.",
+        "**Todiste tai avoin kysymys.** Jokainen väite merkitään todisteeksi lähteineen tai avoimeksi kysymykseksi. Keksittyjä lainauksia, tutkimustuloksia tai lukuja ei käytetä.",
         "**Ei henkilötietoja tekoälylle.** Kehotteissa ja tiedostoissa ei ole oikeita nimiä, henkilötietoja eikä luottamuksellisia lukuja. Niiden tilalla käytetään korvaavia nimiä ja lukuja.",
         "**Vain hyväksytty palvelu.** Muuta projektitietoa, kuten vaatimuksia ja tietoturvabriefiä, käsittelen vain tekoälypalvelussa, jonka asiakas on hyväksynyt.",
         "**Rooli, ei nimi.** Päätökset kirjataan roolin mukaan. Jos rooli yksinään tunnistaa henkilön, käytän yleisempää kuvausta.",
@@ -272,7 +272,15 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Sääntöjä on helppo rikkoa huomaamatta. Siksi projektin tiedostoille ajetaan automaattinen tarkistus aina, kun niihin tehdään muutos. Se huomauttaa esimerkiksi, jos tekoälyn pääohje on kasvanut liian pitkäksi, tiedostossa on rikkinäinen linkki tai värien kontrasti on liian heikko. Tarkistus toimii samalla tavalla, tekipä muutoksen minä tai tekoäly.",
+      text: "Sääntöjä on helppo rikkoa huomaamatta. Siksi projektin tiedostoille ajetaan automaattinen tarkistus aina, kun niihin tehdään muutos. Tarkistus toimii samalla tavalla, tekipä muutoksen minä tai tekoäly. Se tarkistaa esimerkiksi nämä asiat:",
+    },
+    {
+      type: "list",
+      items: [
+        "**Pääohjeen pituus.** Pääohje on tiedosto, jonka tekoäly lukee jokaisen työn alussa. Mitä pidempi se on, sitä enemmän se kuluttaa tekoälyn kontekstia eli tietoa, jonka tekoäly pystyy kerralla huomioimaan, ja sitä todennäköisemmin tärkeät säännöt hukkuvat muun tekstin sekaan. Siksi pääohjeen pitää pysyä tiiviinä. Perusteena on [Claude Coden dokumentaatio](https://code.claude.com/docs/en/memory), jonka mukaan pitkä ohjetiedosto kuluttaa kontekstia ja heikentää ohjeiden noudattamista.",
+        "**Rikkinäiset linkit.** Linkki, joka ei johda mihinkään, jättää lukijan tai tekoälyn ilman tietoa, jonka dokumentti lupaa. Tällöin tekoäly voi alkaa arvailla puuttuvaa sisältöä.",
+        "**Värien kontrasti.** Kontrastisuhde lasketaan ja verrataan saavutettavuusstandardin ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum)) vaatimuksiin, koska liian heikko kontrasti vaikeuttaa tekstin lukemista erityisesti heikkonäköisillä.",
+      ],
     },
 
     {
@@ -289,7 +297,7 @@ export const howIWorkWithAiFi: BlogPost = {
       type: "list",
       items: [
         "**Aloitus viidellä dokumentilla.** Tuotekonteksti, ongelman muotoilu, sidosryhmäkartta, vaatimukset ja päätösloki. Muut, kuten saavutettavuuslista tai luovutusdokumentti, lisätään, kun vaihe tarvitsee niitä.",
-        "**Tekoäly tekee ensimmäisen version.** Liitän esimerkiksi anonymisoidut kick-offin muistiinpanoni ja saan takaisin sidosryhmäkartan, jossa roolit, päätösoikeudet ja aukot on merkitty. Korjaan sen sen sijaan, että kirjoittaisin sen tyhjältä sivulta.",
+        "**Tekoäly tekee ensimmäisen version.** Liitän esimerkiksi anonymisoidut kick-offin muistiinpanoni ja saan takaisin sidosryhmäkartan, jossa roolit, päätösoikeudet ja avoimet kysymykset on merkitty. Korjaan version sen sijaan, että kirjoittaisin sidosryhmäkartan tyhjältä sivulta.",
         "**Osa säännöistä tarkistuu itse.** Jos tekstiin jää rikkinäinen linkki tai värien kontrasti on liian heikko, automaattinen tarkistus huomauttaa siitä. Näitä minun ei tarvitse muistaa tarkistaa käsin.",
         "**Ei dokumenttia ilman lukijaa.** Dokumentti tehdään vasta, kun joku oikeasti tarvitsee sitä. Palauteloki tehdään esimerkiksi vain silloin, kun usea sidosryhmä antaa ristiriitaista palautetta, ja case study -muistiinpanot vain, jos aion julkaista projektin.",
       ],
@@ -302,7 +310,7 @@ export const howIWorkWithAiFi: BlogPost = {
       type: "list",
       items: [
         "**Vien vain muuttuneet dokumentit** ja vain sovituissa välietapeissa, kuten kick-offin, katselmoinnin ja luovutuksen jälkeen, en jokaisen pienen muutoksen jälkeen.",
-        "**Pyydän tekoälyä valmistelemaan vientiversion.** Se muotoilee Markdown-dokumentin asiakkaan työkalun tai PDF:n vaatimaan muotoon, ja minä tarkistan lopputuloksen.",
+        "**Pyydän tekoälyä valmistelemaan vientiversion.** Tekoäly muotoilee Markdown-dokumentin asiakkaan työkalun tai PDF:n vaatimaan muotoon, ja minä tarkistan lopputuloksen.",
         "**Kirjaan päätöksen yhdellä rivillä heti, kun se tehdään:** päivä, päättäjän rooli, päätös ja syy. Tekoäly voi luonnostella rivin palaverin muistiinpanoista, ja minä hyväksyn tai korjaan sen.",
         "**Kirjaan vain päätökset, joita on vaikea perua tai jotka vaikuttavat muihin.** Pienet valinnat eivät tarvitse omaa merkintää.",
       ],
@@ -315,7 +323,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Pohjan tarkoitus ei ole tuottaa lisää dokumentteja. Sen tarkoitus on varmistaa, että tekoäly tietää, mistä projektissa on kyse, ja että suunnittelija päättää, mitä sen kanssa tehdään. Aloita pienestä: yksi projekti, muutama dokumentti ja omat muistiinpanot ensin. Loput lisätään sitä mukaa, kun niille on tarvetta.",
+      text: "Pohjan tarkoitus ei ole tuottaa lisää dokumentteja. Tarkoituksena on varmistaa, että tekoäly tietää, mistä projektissa on kyse, ja että suunnittelija päättää, mitä tekoälyllä tehdään. Aloita pienestä: yksi projekti, muutama dokumentti ja omat muistiinpanot ensin. Loput lisätään sitä mukaa, kun niille on tarvetta.",
     },
   ],
 };
