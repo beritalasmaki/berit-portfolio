@@ -350,7 +350,7 @@ export default function TableOfContents({
         </div>
         <div
           ref={scrollRef}
-          className={`relative flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-6 pt-6 [scrollbar-width:thin] [scrollbar-color:theme(colors.rule-strong)_transparent] ${
+          className={`relative flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-6 pt-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
             hasPageLinks ? "pb-2" : "pb-6"
           }`}
         >

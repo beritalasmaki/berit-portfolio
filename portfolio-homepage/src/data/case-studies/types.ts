@@ -154,6 +154,100 @@ export type CaseGlance = {
   outcome: string;
 };
 
+/**
+ * The story layout: a case study told as a narrative, problem → process →
+ * what shipped → impact, with screenshots placed next to the step they are
+ * evidence for instead of in one gallery block. A study with `story` set is
+ * rendered by this layout; one without it keeps the older section layout,
+ * so the studies can move over one at a time.
+ *
+ * Every section heading is the study's own words ("Seven municipalities, two
+ * school worlds"), not a generic label; the generic label is the eyebrow
+ * above it and comes from the dictionary.
+ */
+export type CaseStory = {
+  /** The key facts shown in a card under the hero, two columns. Keep each
+   * value to short lines (an array = one line each) so the card scans.
+   * `wide` puts a fact across the card's full width as a bulleted list
+   * (e.g. "What I did"). */
+  facts: { label: string; value: string | string[]; wide?: boolean }[];
+  /** Hero image: the one screen that sums the product up. */
+  heroImage: GalleryImage;
+  /** heroImage is a transparent multi-screen composite: shown whole, without a frame. */
+  heroBundle?: boolean;
+  /** Two or three sentences, outcome first. `**bold**` allowed. */
+  tldr: string[];
+  background: StorySection;
+  problem: StorySection & {
+    /** The problem in one sentence, shown large. */
+    statement: string;
+    /** What made it hard, one short line each. `**Lead-in:**` allowed. */
+    constraints: string[];
+  };
+  process: {
+    heading: string;
+    intro?: string[];
+    /** Numbered decisions, in the order they were made. */
+    steps: StoryStep[];
+  };
+  shipped: StorySection;
+  impact: {
+    heading: string;
+    /** Where the evidence comes from, said plainly. */
+    intro: string[];
+    /** Large callouts. Only real, sourced figures: a scope fact is fine, an invented metric is not. */
+    highlights: { value: string; label: string }[];
+  };
+  reflections: {
+    heading: string;
+    items: { title: string; body: string }[];
+  };
+};
+
+/** One row of screenshots, or several rows (each row lines up at equal height). */
+export type StoryFigureSet = GalleryImage[] | GalleryImage[][];
+
+export type StorySection = {
+  /** Replaces the dictionary eyebrow, e.g. "Concept" for a section showing
+   * explored rather than shipped work. Never present a concept as shipped. */
+  eyebrow?: string;
+  heading: string;
+  paragraphs: string[];
+  /** Optional labelled list after the paragraphs. `**Lead-in:**` allowed. */
+  listLabel?: string;
+  list?: string[];
+  /** Questions and the design decisions that answered them, shown side by
+   * side (question first). Rendered after the figures, under `listLabel`. */
+  qa?: { question: string; answers: { title: string; body: string }[] }[];
+  /** Optional closing paragraphs after the list, each may start with `**Lead-in:**`. */
+  closing?: string[];
+  /** Small label above the closing paragraphs. */
+  closingLabel?: string;
+  figures?: StoryFigureSet;
+};
+
+export type StoryStep = {
+  title: string;
+  /** `**bold**` allowed. */
+  paragraphs: string[];
+  /** A simple left-to-right flow of steps, drawn as a diagram, for a step
+   * that has no photos or screenshots to show. */
+  flow?: string[];
+  /** Accessible name for the flow diagram. */
+  flowLabel?: string;
+  /** A decision diagram: a question, the paths it splits into, and the
+   * steps every path shares afterwards. For showing how the method was
+   * chosen per situation. */
+  branches?: {
+    question: string;
+    paths: { when: string; title: string; steps: string[] }[];
+    /** Phases every path continues into, in order. A phase with `loop`
+     * repeats; the text says until when. */
+    then?: { label: string; steps: string[]; loop?: string }[];
+  };
+  figures?: StoryFigureSet;
+};
+
 /** Everything beyond the summary — present only on fully-written case studies. */
 export type CaseStudyFullContent = {
   /**
@@ -209,6 +303,8 @@ export type CaseStudyFullContent = {
   /** One or more paragraphs, in order. */
   whatIWouldDoDifferently: string[];
   methods: string[];
+  /** When set, the page uses the story layout. See `CaseStory`. */
+  story?: CaseStory;
 };
 
 export type CaseStudy = CaseStudySummary & Partial<CaseStudyFullContent>;

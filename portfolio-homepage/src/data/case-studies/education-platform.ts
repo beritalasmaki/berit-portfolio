@@ -1,10 +1,95 @@
-import type { CaseStudy } from "./types";
+import type { CaseStudy, GalleryImage } from "./types";
+
+const gallery: GalleryImage[] = [
+  {
+    src: "/case/edu-dashboard.png",
+    alt: "Teacher home view, concept",
+    caption: "Teacher home view, concept",
+    width: 2000,
+    height: 1899,
+  },
+  {
+    src: "/case/edu-mobile-dashboard.png",
+    alt: "Teacher home view on a mobile device, concept",
+    caption: "Home view on mobile, concept",
+    width: 339,
+    height: 2000,
+  },
+  { src: "/case/edu-detail.png", alt: "Student administration detail view", caption: "Student details", width: 553, height: 731 },
+  {
+    src: "/case/edu-timetable.png",
+    alt: "Timetable and course offering view",
+    caption: "Timetable",
+    width: 553,
+    height: 623,
+  },
+  {
+    src: "/case/edu-timetable-edit.png",
+    alt: "Timetable and course offering, editing selections",
+    caption: "Editing selections",
+    width: 553,
+    height: 623,
+  },
+  {
+    src: "/case/edu-mobile-detail.png",
+    alt: "Student administration detail, mobile",
+    caption: "Mobile detail",
+    width: 369,
+    height: 2000,
+  },
+  {
+    src: "/case/edu-mobile-menu.png",
+    alt: "Student tabs menu, mobile",
+    caption: "Mobile menu",
+    width: 410,
+    height: 791,
+  },
+];
+
+/** Photos from workshops and team days. Exported so the Finnish file can reuse the files and sizes. */
+export const processShots: GalleryImage[] = [
+  {
+    src: "/case/edu-process-admission.jpg",
+    alt: "Whiteboard sketch of student admission: how the learner ID, the guardian's application form, the learner profile and the admission decision connect",
+    caption: "Student admission, mapped before design",
+    width: 1125,
+    height: 844,
+  },
+  {
+    src: "/case/edu-process-retro.jpg",
+    alt: "Retro day collage: a whiteboard of team promises, sticky notes mapped by importance and impact, a Lego model and a magazine collage",
+    caption: "Retro day",
+    width: 800,
+    height: 800,
+  },
+  {
+    src: "/case/edu-process-devday.jpg",
+    alt: "Development team day collage: a process diagram, a Jira epic, a use case table and hand-drawn sketches",
+    caption: "Processes, epics, use cases",
+    width: 800,
+    height: 800,
+  },
+  {
+    src: "/case/edu-process-culture.jpg",
+    alt: "Ways-of-working workshop collage: writing on sticky notes, a glossary of school terms and a board game about a school day",
+    caption: "Shared goal, shared language",
+    width: 800,
+    height: 800,
+  },
+];
+
+/** A gallery image by file name, for placing screenshots inside the story. */
+function shot(file: string): GalleryImage {
+  const image = [...gallery, ...processShots].find((g) => g.src === `/case/${file}`);
+  if (!image) throw new Error(`education-platform: no gallery image ${file}`);
+  return image;
+}
 
 export const educationPlatform: CaseStudy = {
   slug: "education-platform",
   title: "Municipal Education System",
   label: "MUNICIPAL EDUCATION SYSTEM · 2021–2024",
-  headline: "Many teams, many systems.\nOne coherent experience.",
+  headline: "Seven municipalities' school systems brought together into one service",
   description:
     "A shared, standardised design foundation that unified usability and logic across several platforms.",
   thumbnail: "/case/education-new-card.png",
@@ -30,11 +115,10 @@ export const educationPlatform: CaseStudy = {
       "**Restoring trust:** After a budget overrun, I took an active role in communicating the progress and value of the design work to stakeholders. We rebuilt trust through transparent communication, regular presence and clear documentation of decisions. This made collaboration between the parties clearer and kept the project moving.",
     ],
     outcome:
-      "Pilot feedback was very positive: teachers and administrative staff praised the platform's ease of use, speed and consistent structure. The platform launched in five municipalities in spring 2026, and a wider rollout across the school network is now being prepared.",
+      "Pilot feedback was very positive: teachers and administrative staff praised the platform's ease of use, speed and consistent structure. The platform launched in five municipalities in spring 2026, and a wider rollout across the school network began in autumn 2026.",
   },
   roleLabel: "UX & Product Designer, and later Lead Designer, over a three-year period",
   focusLabel: "Service design, Design Systems, and cross-team design consistency across a multi-vendor public sector platform",
-  categoryTag: "Public Sector Platform",
   skillTags: [
     {
       label: "Service Design",
@@ -62,55 +146,11 @@ export const educationPlatform: CaseStudy = {
     },
   ],
 
-  gallery: [
-    {
-      src: "/case/edu-dashboard.png",
-      alt: "Teacher home dashboard",
-      caption: "Teacher dashboard",
-      width: 2000,
-      height: 1899,
-    },
-    {
-      src: "/case/edu-mobile-dashboard.png",
-      alt: "Teacher home dashboard, mobile",
-      caption: "Mobile dashboard",
-      width: 339,
-      height: 2000,
-    },
-    { src: "/case/edu-detail.png", alt: "Student administration detail view", caption: "Student details", width: 553, height: 731 },
-    {
-      src: "/case/edu-timetable.png",
-      alt: "Timetable and course offering view",
-      caption: "Timetable",
-      width: 553,
-      height: 623,
-    },
-    {
-      src: "/case/edu-timetable-edit.png",
-      alt: "Timetable and course offering, editing selections",
-      caption: "Editing selections",
-      width: 553,
-      height: 623,
-    },
-    {
-      src: "/case/edu-mobile-detail.png",
-      alt: "Student administration detail, mobile",
-      caption: "Mobile detail",
-      width: 369,
-      height: 2000,
-    },
-    {
-      src: "/case/edu-mobile-menu.png",
-      alt: "Student tabs menu, mobile",
-      caption: "Mobile menu",
-      width: 410,
-      height: 791,
-    },
-  ],
+  gallery,
   sneakPeekImages: ["/case/edu-dashboard.png", "/case/edu-timetable.png"],
 
   impactIntro:
-    "Feedback from the pilot schools has been largely positive. The platform has been described as easy to use, versatile, and modern. Teachers and administrative staff in particular praised how logical the service felt and how well it supported everyday school routines. Usability and speed stood out specifically, with users reporting that they could find what they needed quickly and easily. Practical use cases, like printing report cards and transferring student data, proved reliable in daily use. End users, including teachers, were also involved directly in acceptance testing, which helped ensure the platform actually fit how teaching work happens in practice. The platform only launched in spring 2026, with a wider school rollout this autumn, so the full impact is still ahead of us — what we do know so far is that we delivered a consistent, accessible foundation that several municipalities are now building their daily school administration on.",
+    "Feedback from the pilot schools has been largely positive. The platform has been described as easy to use, versatile, and modern. Teachers and administrative staff in particular praised how logical the service felt and how well it supported everyday school routines. Usability and speed stood out specifically, with users reporting that they could find what they needed quickly and easily. Practical use cases, like printing report cards and transferring student data, proved reliable in daily use. End users, including teachers, were also involved directly in acceptance testing, which helped ensure the platform actually fit how teaching work happens in practice. The platform only launched in spring 2026, with a wider school rollout from autumn 2026, so the full impact is still ahead of us — what we do know so far is that we delivered a consistent, accessible foundation that several municipalities are now building their daily school administration on.",
   impactCards: [
     {
       number: "01",
@@ -148,7 +188,7 @@ export const educationPlatform: CaseStudy = {
     {
       number: "03",
       title: "Facing budget pressure, and rebuilding trust",
-      body: "At one point, the project went over budget, and two municipalities withdrew because it became too expensive for them to continue. Trust suffered, both among stakeholders and within the teams. We rebuilt it by staying visible in the right meetings, communicating clearly about what we were doing and why, and writing decisions down so everyone could follow the reasoning. Looking back, planning the design work more carefully from the very start could have prevented some of this friction. Despite the setbacks, the platform launched in the remaining five municipalities in spring 2026, with a wider rollout to schools planned for this autumn.",
+      body: "At one point, the project went over budget, and two municipalities withdrew because it became too expensive for them to continue. Trust suffered, both among stakeholders and within the teams. We rebuilt it by staying visible in the right meetings, communicating clearly about what we were doing and why, and writing decisions down so everyone could follow the reasoning. Looking back, planning the design work more carefully from the very start could have prevented some of this friction. Despite the setbacks, the platform launched in the remaining five municipalities in spring 2026, and a wider rollout to schools began in autumn 2026.",
     },
   ],
 
@@ -163,4 +203,218 @@ export const educationPlatform: CaseStudy = {
   ],
 
   methods: ["User interviews", "Co-design workshops", "Usability testing", "Discovery research", "Journey Mapping"],
+
+  categoryTag: "Public Sector Education System",
+  story: {
+    facts: [
+      { label: "Role", value: ["UX & Product Designer", "Later Lead Designer"] },
+      { label: "Timeline", value: ["2021–2024, three years"] },
+      {
+        label: "Team",
+        value: [
+          "Three teams (teaching, administration and e-services)",
+          "Each with its own product owner and developers",
+          "Me as the designer across all three",
+          "A service designer alongside me in 2021–2023, a second designer in 2021–2022",
+          "Technical development manager leading delivery",
+        ],
+      },
+      {
+        label: "Methods",
+        value: ["Co-design workshops", "User interviews", "Journey mapping", "Usability and acceptance testing"],
+      },
+      {
+        label: "What I did",
+        wide: true,
+        value: [
+          "Facilitated workshops and ran user interviews",
+          "Designed the design system's UI kit",
+          "Designed the administration service's user interfaces",
+          "Kept visual identity and UX consistent across the system",
+          "Owned accessibility and helped organise external audits",
+          "Kept designs up to date for developers and helped define Jira tickets",
+        ],
+      },
+    ],
+    heroImage: { src: "/case/edu-hero-bundle.png", alt: "Two screens of the platform: the timetable and course offering on desktop, and a student record in the administration service on a mobile device", caption: "", width: 2400, height: 1543 },
+    heroBundle: true,
+    tldr: [
+      "Seven municipalities needed one system to replace the outdated tools used in basic and upper secondary education. Over three years I grew from UX & Product Designer to **Lead Designer**, and made sure a platform built by several teams and vendors looked and worked as one product.",
+      "The platform was rolled out in **five municipalities in autumn 2026**. Pilot schools describe it as easy to use, fast and consistent.",
+    ],
+    background: {
+      heading: "Seven municipalities, two school worlds",
+      paragraphs: [
+        "A public sector consortium set out to replace the systems municipalities use to run everyday school life: timetables, student records, absences and assessment. The new platform had to serve both comprehensive schools and upper secondary schools, each with their own processes and rules.",
+        "The platform is made up of services: a teaching and administration service for school staff, and an e-service for guardians, used for things like school enrolment. There is also a communication service. Several development teams and third-party vendors built them in parallel. The users are teachers and administrative staff as well as guardians and students, on computers and on mobile devices.",
+      ],
+    },
+    problem: {
+      heading: "Many builders, one product",
+      statement:
+        "Seven municipalities' scattered school systems had to become one secure product, built by many vendors.",
+      paragraphs: [
+        "The old systems followed old logic. Some feature requests were straight copies of how the previous system worked, and some of that was no longer even legal. The new platform had to be built around how schools actually work today. Everything was rebuilt: we kept what worked in the old systems and redesigned the processes that didn't.",
+      ],
+      constraints: [
+        "**Two school worlds:** comprehensive and upper secondary schools have different processes and requirements, and both had to work in the same platform.",
+        "**Many builders:** several development teams and a third-party platform worked in parallel, with only 1–3 designers on the project at any time.",
+        "**Many voices:** seven municipalities with their own ways of working, and a long list of stakeholders and user groups.",
+        "**Law, data protection and accessibility:** GDPR and education legislation set strict limits on what the system was allowed to do. As a public sector service it also had to meet accessibility requirements, so every teacher, guardian and student can use it.",
+      ],
+      closingLabel: "When the budget ran over",
+      closing: [
+        "Midway through the project the budget ran over, and two municipalities withdrew because continuing became too expensive for them. Trust suffered, both among stakeholders and within the teams.",
+        "I took an active role in showing the progress and value of the design work. I was present in the right meetings, explained what we were doing and why, and documented decisions so anyone could follow the reasoning. This made collaboration clearer and kept the project moving.",
+      ],
+    },
+    process: {
+      heading: "From research to delivery",
+      steps: [
+        {
+          title: "Research into everyday school life",
+          paragraphs: [
+            "The method depended on the size of what we were designing. For new, large areas of the service, we used a three-phase workshop model, which I proposed and facilitated together with the other designers and the product owner. First we mapped today's pain points, then defined the ideal situation, and finally co-designed concrete concepts with stakeholders. Upper secondary schools had their own working group with representatives from the municipalities.",
+            "For smaller concepts, a few user interviews and co-design sessions were enough, with 1–2 end users from each municipality taking part. In total I facilitated around ten workshops, and whenever a part I was responsible for needed deeper understanding, I ran quick, lightweight user interviews.",
+            "Most of the work was remote, so we also organised in-person days, which we planned and facilitated together. They brought the team closer and made collaboration smoother. On a retro day we reviewed what we had achieved and where to take the work next. On development team days we refined process descriptions, user stories, epics, data models and user interfaces together.",
+            "We used play to make ways of working concrete. Lego, collages and a board game about a school day helped us clarify our goal, sharpen how we work and build a shared vocabulary for school terms. After these days, teammates no longer felt distant. We also clarified how the team works: how information flows between design and development, and how to make the work smoother from here on.",
+          ],
+          figures: [shot("edu-process-retro.jpg"), shot("edu-process-devday.jpg"), shot("edu-process-culture.jpg")],
+        },
+        {
+          title: "Processes mapped before screens",
+          paragraphs: [
+            "Before any screens, we mapped the processes. Our rule was that if you can't draw a process, it isn't clear yet. When designing student admission, I contacted the study secretaries who handle admissions at the schools, and we mapped how the learner's ID, the guardian's application, the learner profile and the admission decision connect.",
+            "At the same time we checked the technical constraints and reconciled them with the user journeys. When something was unclear, we went back to users and developers, clarified it and drew it again, until user needs and system requirements fitted together. Only then did I design the screens.",
+          ],
+          figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
+        },
+        {
+          title: "One visual language for every service",
+          paragraphs: [
+            "I worked on both the teaching and administration service and the guardians' e-service, and made sure they share one visual identity and user experience. With few designers and many teams, I couldn't review every screen. Instead I defined a shared visual direction and a UI kit of reusable components, and later led the visual direction of the whole project.",
+            "Consistency was about more than looks. I worked closely with developers: I regularly explained why something was built a certain way, listened to their ideas and worked out the technical constraints of each part. My bachelor's degree in software development meant I understood the implementation challenges and could discuss them directly with developers.",
+            "The same went for mobile devices. Guardians and students had often found the old mobile apps confusing, so the mobile views use the same structure and components as desktop, and things are where you expect them on any screen.",
+            "A public sector service has to be accessible, so accessibility ran through the whole design process instead of being a final check. I made sure accessibility requirements were written into developers' tickets, so they were built into every feature.",
+          ],
+          figures: [
+            [shot("edu-timetable.png"), shot("edu-timetable-edit.png")],
+            [shot("edu-mobile-dashboard.png"), shot("edu-mobile-menu.png"), shot("edu-mobile-detail.png")],
+          ],
+        },
+        {
+          title: "Testing and iteration",
+          paragraphs: [
+            "I tested the screens with users, some sessions together with the service designer and some on my own. I iterated on the findings and tested again before the screens went into development.",
+            "I also helped organise two accessibility audits carried out by an external partner. The first reviewed user journeys and the visual design, the second the technical implementation.",
+          ],
+          flowLabel: "Testing cycle",
+          flow: ["Test with users", "Iterate on the findings", "Test again", "Into development"],
+        },
+        {
+          title: "Handover and follow-up",
+          paragraphs: [
+            "I handed the designs over to developers and helped define implementation tickets in Jira. I made sure the development team always had up-to-date designs, and followed the implementation through.",
+            "In my final year, as Lead Designer, I was responsible for the whole platform looking and working consistently, including the parts built on third-party platforms. These turned out to be harder to customise than expected. With colours and the logo, we still made them fit so the service didn't feel disjointed.",
+          ],
+        },
+      ],
+    },
+    shipped: {
+      eyebrow: "An example of concept work",
+      heading: "Teacher home view",
+      paragraphs: [
+        "The same wish kept coming up in workshops. Teachers wanted a clear home view that brought everything relevant to their work into one place. I started sketching a concept on my own initiative.",
+        "Before drawing anything, I worked through a few questions about a teacher's working day. Then I mapped out the view and looked for answers to those questions.",
+        "My plan was to take the concept further once it became relevant, but my time on the project ended before that. The concept was not released as such.",
+      ],
+      listLabel: "From questions to design decisions",
+      qa: [
+        {
+          question: "What does a teacher need most in their work?",
+          answers: [
+            {
+              title: "The day's timetable with status labels",
+              body: "At a glance, the teacher sees which lessons already have attendance recorded and which are still missing it.",
+            },
+            {
+              title: "Students who need attention",
+              body: "Absences and falling behind in studies show up early, so the teacher can step in before things get worse.",
+            },
+          ],
+        },
+        {
+          question: "How does the view support moving from one lesson to the next?",
+          answers: [
+            {
+              title: "Next lesson and attendance at the top",
+              body: "Taking attendance at the start of a lesson takes one tap.",
+            },
+          ],
+        },
+        {
+          question: "In which situations does a teacher open the view?",
+          answers: [
+            {
+              title: "Quick links",
+              body: "The most common tasks, such as study planning, support measures, assessment and messages from guardians, are one step away without menus.",
+            },
+          ],
+        },
+        {
+          question: "On what device does a teacher come to the page?",
+          answers: [
+            {
+              title: "The same structure on mobile",
+              body: "Teachers aren't always at a computer, so the view had to work on mobile devices too.",
+            },
+          ],
+        },
+      ],
+      closing: [
+        "**What I would do differently now:** I would separate the timetable and events more clearly, and give the events section a sharper purpose, such as upcoming exams, so the teacher sees right away when exams are coming up. Above all, I would do more thorough user research, because the concept was based on lightweight user interviews and observations from other workshops.",
+      ],
+      figures: [shot("edu-dashboard.png"), shot("edu-mobile-dashboard.png")],
+    },
+    impact: {
+      heading: "Live in five municipalities",
+      intro: [
+        "In the 2024 pilots, a total of 350 future users across Finland tested the platform. In early 2026, dozens of users in different roles, including teachers, tested complete processes spanning several services in acceptance testing. Because no MVP was released, we couldn't test the platform in real use early enough, and no measurable goals could be set. I come back to this in my lessons.",
+        "According to the pilot users, the platform is easy to use, versatile and modern. They found the service easy to learn, and it works logically and simply. The clarity of the interface and its fresh look got particular praise. Everyday tasks such as printing report cards and transferring student data work reliably in daily use.",
+        "The pilots also produced plenty of development ideas. Users found places where they worked differently than had been assumed, and these were turned into a checklist before rollout.",
+        "The platform went into production in pilot schools in spring 2026. Pilot school students received the first report cards produced on the platform, and guardians started using the service too. In the 2026–2027 school year, use is expanding to comprehensive schools in five municipalities, so the full impact will only show later.",
+        "For the municipalities, a shared platform means none of them has to buy and maintain separate systems of its own. Data security is handled in one place, and thanks to the shared UI kit, different vendors don't build the same parts over again.",
+      ],
+      highlights: [
+        { value: "8+", label: "user groups, from municipal officials to principals, teachers, students and guardians" },
+        { value: "5", label: "municipalities adopting the platform in the 2026–2027 school year" },
+        { value: "~100,000", label: "students across the five municipalities" },
+      ],
+    },
+    reflections: {
+      heading: "What I would do differently",
+      items: [
+        {
+          title: "A real MVP",
+          body: "We didn't build the smallest version worth releasing, but something close to a finished product that tried to cover every need from day one. It showed in both the timeline and the workload. A released MVP would have brought real users in earlier, and let us set metrics and follow how development progresses over time.",
+        },
+        {
+          title: "Metrics from day one",
+          body: "If we had known from the start what we were aiming for and how to measure it, prioritising would have been easier. With a released MVP, we could have measured task success rate, and used funnel analysis to see where users drop out of a multi-step process such as student admission. Together they would have shown where and why users fail. Metrics would also have helped when we had to rebuild the municipalities' trust, because numbers make the value of design visible to decision-makers. In hindsight, the technical project manager also suggested tracking legal compliance as a metric, meaning which requirements are already met and which aren't yet.",
+        },
+        {
+          title: "Legal expertise from the start",
+          body: "Some feature requests copied the old system, and not all of it was legal anymore. If a GDPR and education law expert had been involved from the start, I could have designed the screens with legal requirements in mind from the first sketch. Instead, some screens had to be redesigned when the requirements became clear later.",
+        },
+        {
+          title: "A design system in code too",
+          body: "A design system has to exist in code, not only in design files. Our components were based on the Chakra library and collected in Storybook, but the same components were still sometimes coded more than once. As the project went on this got clearer, and I made sure developers used components that were already coded, such as buttons. Now I would organise the design system work better from the start, and push for enough resources for design and for developing DesignOps.",
+        },
+        {
+          title: "A designer in vendor selection",
+          body: "When ready-made platforms are put out to tender, a designer should help assess whether the service can flex to the platform's visual identity and user experience. That assessment belongs before the decision, not after it. It would have spared us some difficult compromises later.",
+        },
+      ],
+    },
+  },
 };
