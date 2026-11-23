@@ -212,8 +212,9 @@ export const educationPlatform: CaseStudy = {
       {
         label: "Team",
         value: [
-          "Across teaching, administration and e-services",
-          "Per team: product owner, 3 developers, service designer and me",
+          "Three teams (teaching, administration and e-services)",
+          "Each with its own product owner, developers and service designer",
+          "Me as the designer across all three",
           "Technical development manager leading delivery",
         ],
       },
