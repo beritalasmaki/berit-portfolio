@@ -283,16 +283,51 @@ export const educationPlatformFi: CaseStudy = {
       heading: "Opettajan etusivu",
       paragraphs: [
         "Työpajoissa toistui sama toive. Opettajat kaipasivat selkeää etusivua, joka kokoaisi kaiken heidän työnsä kannalta olennaisen yhteen paikkaan. Lähdin hahmottelemaan konseptia omasta aloitteestani.",
-        "Ennen kuin piirsin mitään, pohdin muutamaa kysymystä. Mitä opettaja tarvitsee työssään eniten? Miten hän päätyy sivulle ja millä laitteella? Missä tilanteissa hän avaa näkymän? Miten näkymä tukee siirtymää tunnilta toiselle? Sen jälkeen piirsin näkymän auki ja hain vastaukset kysymyksiin.",
+        "Ennen kuin piirsin mitään, pohdin muutamaa kysymystä opettajan työpäivästä. Sen jälkeen piirsin näkymän auki ja hain vastaukset kysymyksiin.",
         "Tarkoitukseni oli viedä konseptia eteenpäin, kun se tulisi ajankohtaiseksi, mutta projektini päättyi ennen sitä. Konseptia ei siis julkaistu sellaisenaan.",
       ],
       listLabel: "Kysymyksistä suunnittelupäätöksiksi",
-      list: [
-        "**Seuraava oppitunti ja läsnäolon kirjaus ylimpänä:** tukee siirtymää tunnilta toiselle, sillä tunnin alussa tehtävä kirjaus onnistuu yhdellä painalluksella.",
-        "**Päivän lukujärjestys tilamerkinnöin:** opettaja näkee yhdellä silmäyksellä, millä tunneilla läsnäolo on jo kirjattu ja mistä se vielä puuttuu.",
-        "**Huomiota tarvitsevat oppilaat:** poissaolot ja opinnoissa jälkeen jääminen näkyvät ajoissa, joten opettaja voi puuttua niihin ennen kuin tilanne pahenee.",
-        "**Pikalinkit:** yleisimpiin tehtäviin, kuten opintosuunnitteluun, tukitoimiin, arviointeihin ja huoltajien viesteihin, pääsee suoraan ilman valikoita.",
-        "**Sama rakenne mobiililaitteella:** opettaja ei ole aina tietokoneen ääressä, joten näkymän piti toimia myös mobiililaitteella.",
+      qa: [
+        {
+          question: "Mitä opettaja tarvitsee työssään eniten?",
+          answers: [
+            {
+              title: "Päivän lukujärjestys tilamerkinnöin",
+              body: "Opettaja näkee yhdellä silmäyksellä, millä tunneilla läsnäolo on jo kirjattu ja mistä se vielä puuttuu.",
+            },
+            {
+              title: "Huomiota tarvitsevat oppilaat",
+              body: "Poissaolot ja opinnoissa jälkeen jääminen näkyvät ajoissa, joten opettaja voi puuttua niihin ennen kuin tilanne pahenee.",
+            },
+          ],
+        },
+        {
+          question: "Miten näkymä tukee siirtymää tunnilta toiselle?",
+          answers: [
+            {
+              title: "Seuraava oppitunti ja läsnäolon kirjaus ylimpänä",
+              body: "Tunnin alussa tehtävä kirjaus onnistuu yhdellä painalluksella.",
+            },
+          ],
+        },
+        {
+          question: "Missä tilanteissa opettaja avaa näkymän?",
+          answers: [
+            {
+              title: "Pikalinkit",
+              body: "Yleisimpiin tehtäviin, kuten opintosuunnitteluun, tukitoimiin, arviointeihin ja huoltajien viesteihin, pääsee suoraan ilman valikoita.",
+            },
+          ],
+        },
+        {
+          question: "Millä laitteella opettaja tulee sivulle?",
+          answers: [
+            {
+              title: "Sama rakenne mobiililaitteella",
+              body: "Opettaja ei ole aina tietokoneen ääressä, joten näkymän piti toimia myös mobiililaitteella.",
+            },
+          ],
+        },
       ],
       closing: [
         "**Mitä tekisin nyt toisin:** Erottaisin lukujärjestyksen ja tapahtumat selkeämmin toisistaan ja antaisin Tapahtumat-osiolle tarkemman käyttötarpeen, esimerkiksi tulevat kokeet, jotta opettaja näkee heti, milloin kokeita on tulossa. Ennen kaikkea tekisin perusteellisemman käyttäjätutkimuksen, sillä konsepti perustui kevyisiin käyttäjähaastatteluihin ja muista työpajoista tehtyihin havaintoihin.",

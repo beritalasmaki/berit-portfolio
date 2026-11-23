@@ -48,6 +48,7 @@ export function storyReadMinutes(story: CaseStory, wordsPerMinute: number): numb
     ...story.process.steps.flatMap((step) => [step.title, ...step.paragraphs]),
     ...story.shipped.paragraphs,
     ...(story.shipped.list ?? []),
+    ...(story.shipped.qa ?? []).flatMap((q) => [q.question, ...q.answers.flatMap((a) => [a.title, a.body])]),
     ...(story.shipped.closing ?? []),
     ...story.impact.intro,
     ...story.reflections.items.flatMap((item) => [item.title, item.body]),
@@ -204,6 +205,30 @@ function Branches({ branches }: { branches: NonNullable<StoryStep["branches"]> }
   );
 }
 
+/** Question on the left, the decision that answers it on the right; one row
+ * per question, stacked on small screens. */
+function QuestionsAndAnswers({ items }: { items: NonNullable<StorySection["qa"]> }) {
+  return (
+    <dl className="m-0 flex flex-col">
+      {items.map((item) => (
+        <div
+          key={item.question}
+          className="grid grid-cols-1 gap-3 border-t border-rule py-6 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-grid-gap"
+        >
+          <dt className="m-0 text-sub-h4 text-ink text-balance">{item.question}</dt>
+          <dd className="m-0 flex flex-col gap-4">
+            {item.answers.map((answer) => (
+              <p key={answer.title} className="m-0 text-body-lg text-body text-pretty">
+                <strong className="font-semibold text-ink">{answer.title}.</strong> {answer.body}
+              </p>
+            ))}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 function Closing({ section }: { section: StorySection }) {
   if (!section.closing || section.closing.length === 0) return null;
   return (
@@ -218,14 +243,22 @@ function ProseWithFigures({ section, copy }: { section: StorySection; copy: Dict
   return (
     <>
       {section.paragraphs.length > 0 && <Paragraphs paragraphs={section.paragraphs} />}
+      {/* Figures before the list: the reader sees the screen before reading
+          why it was designed that way. */}
+      <Figures set={section.figures} copy={copy} />
       {section.list && section.list.length > 0 && (
         <div className="flex flex-col gap-4">
           {section.listLabel && <h3 className={EYEBROW}>{section.listLabel}</h3>}
           <BulletList items={section.list} />
         </div>
       )}
+      {section.qa && section.qa.length > 0 && (
+        <div className="flex flex-col gap-4">
+          {section.listLabel && <h3 className={EYEBROW}>{section.listLabel}</h3>}
+          <QuestionsAndAnswers items={section.qa} />
+        </div>
+      )}
       <Closing section={section} />
-      <Figures set={section.figures} copy={copy} />
     </>
   );
 }

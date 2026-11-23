@@ -214,6 +214,9 @@ export type StorySection = {
   /** Optional labelled list after the paragraphs. `**Lead-in:**` allowed. */
   listLabel?: string;
   list?: string[];
+  /** Questions and the design decisions that answered them, shown side by
+   * side (question first). Rendered after the figures, under `listLabel`. */
+  qa?: { question: string; answers: { title: string; body: string }[] }[];
   /** Optional closing paragraphs after the list, each may start with `**Lead-in:**`. */
   closing?: string[];
   /** Small label above the closing paragraphs. */

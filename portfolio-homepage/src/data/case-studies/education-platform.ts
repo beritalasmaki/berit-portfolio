@@ -324,16 +324,51 @@ export const educationPlatform: CaseStudy = {
       heading: "Teacher home view",
       paragraphs: [
         "The same wish kept coming up in workshops. Teachers wanted a clear home view that brought everything relevant to their work into one place. I started sketching a concept on my own initiative.",
-        "Before drawing anything, I worked through a few questions. What does a teacher need most in their work? How do they get to the page, and on what device? In which situations do they open it? How does the view support moving from one lesson to the next? Then I mapped out the view and looked for answers to those questions.",
+        "Before drawing anything, I worked through a few questions about a teacher's working day. Then I mapped out the view and looked for answers to those questions.",
         "My plan was to take the concept further once it became relevant, but my time on the project ended before that. The concept was not released as such.",
       ],
       listLabel: "From questions to design decisions",
-      list: [
-        "**Next lesson and attendance at the top:** supports moving from one lesson to the next, because taking attendance at the start of a lesson takes one tap.",
-        "**The day's timetable with status labels:** at a glance, the teacher sees which lessons already have attendance recorded and which are still missing it.",
-        "**Students who need attention:** absences and falling behind in studies show up early, so the teacher can step in before things get worse.",
-        "**Quick links:** the most common tasks, such as study planning, support measures, assessment and messages from guardians, are one step away without menus.",
-        "**The same structure on mobile:** teachers aren't always at a computer, so the view had to work on mobile devices too.",
+      qa: [
+        {
+          question: "What does a teacher need most in their work?",
+          answers: [
+            {
+              title: "The day's timetable with status labels",
+              body: "At a glance, the teacher sees which lessons already have attendance recorded and which are still missing it.",
+            },
+            {
+              title: "Students who need attention",
+              body: "Absences and falling behind in studies show up early, so the teacher can step in before things get worse.",
+            },
+          ],
+        },
+        {
+          question: "How does the view support moving from one lesson to the next?",
+          answers: [
+            {
+              title: "Next lesson and attendance at the top",
+              body: "Taking attendance at the start of a lesson takes one tap.",
+            },
+          ],
+        },
+        {
+          question: "In which situations does a teacher open the view?",
+          answers: [
+            {
+              title: "Quick links",
+              body: "The most common tasks, such as study planning, support measures, assessment and messages from guardians, are one step away without menus.",
+            },
+          ],
+        },
+        {
+          question: "On what device does a teacher come to the page?",
+          answers: [
+            {
+              title: "The same structure on mobile",
+              body: "Teachers aren't always at a computer, so the view had to work on mobile devices too.",
+            },
+          ],
+        },
       ],
       closing: [
         "**What I would do differently now:** I would separate the timetable and events more clearly, and give the events section a sharper purpose, such as upcoming exams, so the teacher sees right away when exams are coming up. Above all, I would do more thorough user research, because the concept was based on lightweight user interviews and observations from other workshops.",
