@@ -13,6 +13,7 @@ import ParagraphList from "@/components/case-study/ParagraphList";
 import ScreenshotGallery from "@/components/case-study/ScreenshotGallery";
 import SectionBody from "@/components/case-study/SectionBody";
 import SneakPeekHero from "@/components/case-study/SneakPeekHero";
+import StoryLayout, { storyTocItems } from "@/components/case-study/story/StoryLayout";
 import TableOfContents, { type TocItem } from "@/components/case-study/TableOfContents";
 import Reveal from "@/components/Reveal";
 import { getCaseStudies, getCaseStudyByUrlSlug, hasFullContent } from "@/data/case-studies";
@@ -83,7 +84,14 @@ export default async function CaseStudyPage({
 
   // Built from what the page actually renders, so the TOC can never offer a
   // link to a section that isn't there.
-  const tocItems: TocItem[] = [
+  const story = study.story;
+  const tocItems: TocItem[] = story
+    ? [
+        ...storyTocItems(story, cs),
+        { id: "other", label: cs.other },
+        { id: "back-to-main", label: cs.backToMain, href: homePath(locale) },
+      ]
+    : [
     ...(!full ? [{ id: "about-project", label: cs.aboutProject }] : []),
     ...(study.glance ? [{ id: "glance", label: cs.glance.eyebrow }] : []),
     ...(hasIntro ? [{ id: "starting-point", label: cs.startingPoint }] : []),
@@ -99,7 +107,7 @@ export default async function CaseStudyPage({
     ...(hasDifferently ? [{ id: "differently", label: cs.differently }] : []),
     { id: "other", label: cs.other },
     ...(full ? [{ id: "back-to-main", label: cs.backToMain, href: homePath(locale) }] : []),
-  ] satisfies TocItem[];
+      ];
 
   return (
     <>
@@ -138,119 +146,126 @@ export default async function CaseStudyPage({
           <TableOfContents items={tocItems} title={cs.onThisPage} navigateLabel={cs.navigateTo} />
 
           <div className="min-w-0 flex flex-col gap-[clamp(48px,5vw,64px)]">
-            <Reveal>{full ? (
-                <SneakPeekHero study={study} copy={cs} wordsPerMinute={wordsPerMinute[locale]} />
-              ) : (
-                <CaseStudyHero study={study} copy={cs} />
-              )}</Reveal>
+            {story ? (
+              <StoryLayout study={study} story={story} copy={cs} wordsPerMinute={wordsPerMinute[locale]} />
+            ) : (
+              <>
+                <Reveal>{full ? (
+                    <SneakPeekHero study={study} copy={cs} wordsPerMinute={wordsPerMinute[locale]} />
+                  ) : (
+                    <CaseStudyHero study={study} copy={cs} />
+                  )}</Reveal>
 
-            {study.glance !== undefined && (
-              <Reveal>
-                <CaseStudyGlance glance={study.glance} copy={cs} />
-              </Reveal>
+                {study.glance !== undefined && (
+                  <Reveal>
+                    <CaseStudyGlance glance={study.glance} copy={cs} />
+                  </Reveal>
+                )}
+
+                {/* Each section is gated on its own field rather than on `full`.
+                    The checks are inline (not the `has*` consts above) because
+                    that is what narrows the optional props for TypeScript. */}
+                {study.intro !== undefined && study.intro.length > 0 && (
+                  <Reveal>
+                    <section
+                      id="starting-point"
+                      aria-labelledby="starting-point-heading"
+                      className="rounded-card glass p-card-pad"
+                    >
+                      <p className="font-mono-label text-mono-label uppercase text-muted m-0">{cs.startingPointEyebrow}</p>
+                      <h2 id="starting-point-heading" className="mt-4 m-0 text-section-h2 text-ink">
+                        {cs.startingPoint}
+                      </h2>
+                      <div className="mt-6">
+                        <ParagraphList paragraphs={study.intro} />
+                      </div>
+                    </section>
+                  </Reveal>
+                )}
+
+                {study.gallery !== undefined && study.gallery.length > 0 && (
+                  <Reveal>
+                    <ScreenshotGallery images={study.gallery} copy={cs} />
+                  </Reveal>
+                )}
+
+                {study.impactIntro !== undefined && study.impactCards !== undefined && (
+                  <Reveal>
+                    <ImpactSection intro={study.impactIntro} cards={study.impactCards} copy={cs} />
+                  </Reveal>
+                )}
+
+                {study.howItStarted !== undefined && study.howItStarted.length > 0 && (
+                  <Reveal>
+                    <AccordionSection
+                      id="started"
+                      label={cs.startedEyebrow}
+                      heading={cs.started}
+                      showMore={cs.showMore}
+                      showLess={cs.showLess}
+                      defaultOpen
+                    >
+                      <SectionBody
+                        paragraphs={study.howItStarted}
+                        findings={study.howItStartedFindings}
+                        closing={study.howItStartedClosing}
+                      />
+                    </AccordionSection>
+                  </Reveal>
+                )}
+
+                {/* Content-defined sections, collapsed by default. Clicking their
+                    TOC entry scrolls here and expands the panel via the
+                    `cs:open-section` event every AccordionSection listens for. */}
+                {extraSections.map((section) => (
+                  <Reveal key={section.id}>
+                    <AccordionSection
+                      id={section.id}
+                      label={section.label}
+                      heading={section.heading}
+                      showMore={cs.showMore}
+                      showLess={cs.showLess}
+                    >
+                      <SectionBody
+                        paragraphs={section.paragraphs}
+                        findings={section.findings}
+                        closing={section.closing}
+                      />
+                    </AccordionSection>
+                  </Reveal>
+                ))}
+
+                {study.challenges !== undefined && study.challenges.length > 0 && (
+                  <Reveal>
+                    <AccordionSection
+                      id="challenges"
+                      label={cs.challengesEyebrow}
+                      heading={cs.challenges}
+                      showMore={cs.showMore}
+                      showLess={cs.showLess}
+                    >
+                      <ChallengesSection subsections={study.challenges} />
+                    </AccordionSection>
+                  </Reveal>
+                )}
+
+                {study.whatIWouldDoDifferently !== undefined &&
+                  study.whatIWouldDoDifferently.length > 0 && (
+                    <Reveal>
+                      <AccordionSection
+                        id="differently"
+                        label={cs.differentlyEyebrow}
+                        heading={cs.differently}
+                        showMore={cs.showMore}
+                        showLess={cs.showLess}
+                      >
+                        <ParagraphList paragraphs={study.whatIWouldDoDifferently} />
+                      </AccordionSection>
+                    </Reveal>
+                  )}
+
+              </>
             )}
-
-            {/* Each section is gated on its own field rather than on `full`.
-                The checks are inline (not the `has*` consts above) because
-                that is what narrows the optional props for TypeScript. */}
-            {study.intro !== undefined && study.intro.length > 0 && (
-              <Reveal>
-                <section
-                  id="starting-point"
-                  aria-labelledby="starting-point-heading"
-                  className="rounded-card glass p-card-pad"
-                >
-                  <p className="font-mono-label text-mono-label uppercase text-muted m-0">{cs.startingPointEyebrow}</p>
-                  <h2 id="starting-point-heading" className="mt-4 m-0 text-section-h2 text-ink">
-                    {cs.startingPoint}
-                  </h2>
-                  <div className="mt-6">
-                    <ParagraphList paragraphs={study.intro} />
-                  </div>
-                </section>
-              </Reveal>
-            )}
-
-            {study.gallery !== undefined && study.gallery.length > 0 && (
-              <Reveal>
-                <ScreenshotGallery images={study.gallery} copy={cs} />
-              </Reveal>
-            )}
-
-            {study.impactIntro !== undefined && study.impactCards !== undefined && (
-              <Reveal>
-                <ImpactSection intro={study.impactIntro} cards={study.impactCards} copy={cs} />
-              </Reveal>
-            )}
-
-            {study.howItStarted !== undefined && study.howItStarted.length > 0 && (
-              <Reveal>
-                <AccordionSection
-                  id="started"
-                  label={cs.startedEyebrow}
-                  heading={cs.started}
-                  showMore={cs.showMore}
-                  showLess={cs.showLess}
-                  defaultOpen
-                >
-                  <SectionBody
-                    paragraphs={study.howItStarted}
-                    findings={study.howItStartedFindings}
-                    closing={study.howItStartedClosing}
-                  />
-                </AccordionSection>
-              </Reveal>
-            )}
-
-            {/* Content-defined sections, collapsed by default. Clicking their
-                TOC entry scrolls here and expands the panel via the
-                `cs:open-section` event every AccordionSection listens for. */}
-            {extraSections.map((section) => (
-              <Reveal key={section.id}>
-                <AccordionSection
-                  id={section.id}
-                  label={section.label}
-                  heading={section.heading}
-                  showMore={cs.showMore}
-                  showLess={cs.showLess}
-                >
-                  <SectionBody
-                    paragraphs={section.paragraphs}
-                    findings={section.findings}
-                    closing={section.closing}
-                  />
-                </AccordionSection>
-              </Reveal>
-            ))}
-
-            {study.challenges !== undefined && study.challenges.length > 0 && (
-              <Reveal>
-                <AccordionSection
-                  id="challenges"
-                  label={cs.challengesEyebrow}
-                  heading={cs.challenges}
-                  showMore={cs.showMore}
-                  showLess={cs.showLess}
-                >
-                  <ChallengesSection subsections={study.challenges} />
-                </AccordionSection>
-              </Reveal>
-            )}
-
-            {study.whatIWouldDoDifferently !== undefined &&
-              study.whatIWouldDoDifferently.length > 0 && (
-                <Reveal>
-                  <AccordionSection
-                    id="differently"
-                    label={cs.differentlyEyebrow}
-                    heading={cs.differently}
-                    showMore={cs.showMore}
-                    showLess={cs.showLess}
-                  >
-                    <ParagraphList paragraphs={study.whatIWouldDoDifferently} />
-                  </AccordionSection>
-                </Reveal>
-              )}
 
             <Reveal>
               <OtherCaseStudies locale={locale} currentSlug={study.slug} copy={cs} />

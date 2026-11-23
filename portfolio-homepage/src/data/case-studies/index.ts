@@ -21,6 +21,9 @@ export type {
   ChallengeSubsection,
   Finding,
   ProseSection,
+  CaseStory,
+  StorySection,
+  StoryStep,
 } from "./types";
 export { hasFullContent } from "./types";
 

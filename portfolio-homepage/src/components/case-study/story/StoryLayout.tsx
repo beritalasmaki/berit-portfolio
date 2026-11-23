@@ -1,0 +1,270 @@
+import type { ReactNode } from "react";
+import InlineText from "@/components/blog/InlineText";
+import Reveal from "@/components/Reveal";
+import type { CaseStory, CaseStudy, StorySection } from "@/data/case-studies";
+import type { Dictionary } from "@/i18n/dictionaries";
+import { fmt } from "@/i18n/format";
+import type { TocItem } from "../TableOfContents";
+import StoryFigures from "./StoryFigures";
+
+/*
+ * The story layout: hero → TL;DR → background → problem → process →
+ * what shipped → impact → reflections. One column of text at reading width,
+ * screenshots inside the sections they belong to.
+ *
+ * Hierarchy rule used throughout: the mono eyebrow says *which* part of the
+ * story this is (from the dictionary, same on every study), the heading says
+ * *what happened* (from the content, different on every study).
+ */
+
+const EYEBROW = "font-mono-label text-mono-label uppercase text-accent-dark m-0";
+const PARA = "m-0 max-w-prose-cs text-body-lg text-body text-pretty";
+
+/** Section ids, shared by the page's table of contents and the sections. */
+export function storyTocItems(story: CaseStory, copy: Dictionary["caseStudy"]): TocItem[] {
+  const s = copy.story;
+  return [
+    { id: "tldr", label: s.tldr },
+    { id: "background", label: s.background },
+    { id: "problem", label: s.problem },
+    { id: "process", label: s.process },
+    { id: "shipped", label: s.shipped },
+    { id: "impact", label: s.impact },
+    { id: "reflections", label: s.reflections },
+  ].filter((item) => item.id !== "background" || story.background.paragraphs.length > 0);
+}
+
+/** Reading time from the words a visitor actually reads. */
+export function storyReadMinutes(story: CaseStory, wordsPerMinute: number): number {
+  const text = [
+    ...story.tldr,
+    ...story.background.paragraphs,
+    story.problem.statement,
+    ...story.problem.paragraphs,
+    ...story.problem.constraints,
+    ...(story.process.intro ?? []),
+    ...story.process.steps.flatMap((step) => [step.title, ...step.paragraphs]),
+    ...story.shipped.paragraphs,
+    ...story.impact.intro,
+    ...story.reflections.items.flatMap((item) => [item.title, item.body]),
+  ].join(" ");
+  return Math.max(3, Math.round(text.trim().split(/\s+/).length / wordsPerMinute));
+}
+
+function Paragraphs({ paragraphs }: { paragraphs: string[] }) {
+  return (
+    <div className="flex flex-col gap-5">
+      {paragraphs.map((paragraph, i) => (
+        <p key={i} className={PARA}>
+          <InlineText text={paragraph} />
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function Section({
+  id,
+  eyebrow,
+  heading,
+  children,
+}: {
+  id: string;
+  eyebrow: string;
+  heading: string;
+  children: ReactNode;
+}) {
+  return (
+    <section id={id} aria-labelledby={`${id}-heading`} className="flex flex-col gap-8 border-t border-rule pt-10">
+      <div className="flex flex-col gap-4">
+        <p className={EYEBROW}>{eyebrow}</p>
+        <h2 id={`${id}-heading`} className="m-0 max-w-prose-cs text-section-h2 text-ink text-balance">
+          {heading}
+        </h2>
+      </div>
+      {children}
+    </section>
+  );
+}
+
+function ProseWithFigures({ section, copy }: { section: StorySection; copy: Dictionary["caseStudy"] }) {
+  return (
+    <>
+      {section.paragraphs.length > 0 && <Paragraphs paragraphs={section.paragraphs} />}
+      {section.figures && section.figures.length > 0 && <StoryFigures figures={section.figures} copy={copy} />}
+    </>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true" className="w-4 h-4 shrink-0">
+      <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="10" cy="10" r="7.5" />
+        <path d="M10 5.5 V10 L13 12" />
+      </g>
+    </svg>
+  );
+}
+
+export default function StoryLayout({
+  study,
+  story,
+  copy,
+  wordsPerMinute,
+}: {
+  study: CaseStudy;
+  story: CaseStory;
+  copy: Dictionary["caseStudy"];
+  wordsPerMinute: number;
+}) {
+  const s = copy.story;
+  const readMinutes = storyReadMinutes(story, wordsPerMinute);
+
+  return (
+    <>
+      {/* Hero: what it is and what came of it, then the one screen that
+          sums it up, then the facts a reader scans for (role, time, team). */}
+      <Reveal>
+        <section aria-labelledby="case-study-title" className="flex flex-col gap-8 border-t border-rule pt-[clamp(32px,4vw,48px)]">
+          <div className="flex flex-col gap-6">
+            <p className="font-mono-label text-mono-label uppercase text-muted m-0">
+              {copy.breadcrumbEyebrow} · {study.title}
+            </p>
+            <h1 id="case-study-title" className="m-0 max-w-[18em] text-section-h2 text-ink text-balance">
+              {study.headline.replace(/\n/g, " ")}
+            </h1>
+            <p className="m-0 max-w-prose-cs text-lead text-body">{study.description}</p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              {study.categoryTag && (
+                <span className="font-mono-label text-mono-label-em uppercase text-accent-dark glass-pill rounded-pill py-2 px-4 whitespace-nowrap">
+                  {study.categoryTag}
+                </span>
+              )}
+              <span className="flex items-center gap-2 text-body-sm text-muted">
+                <ClockIcon />
+                {fmt(copy.readingTime, { min: readMinutes })}
+              </span>
+            </div>
+          </div>
+
+          <StoryFigures figures={[story.heroImage]} copy={copy} aspect={16 / 10} priority />
+
+          <dl className="m-0 grid grid-cols-1 gap-x-grid-gap gap-y-6 sm:grid-cols-2 xl:grid-cols-4">
+            {story.facts.map((fact) => (
+              <div key={fact.label} className="flex flex-col gap-2 border-t border-rule pt-4">
+                <dt className={EYEBROW}>{fact.label}</dt>
+                <dd className="m-0 text-body-sm text-ink text-pretty">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      </Reveal>
+
+      {/* TL;DR: the only boxed block, because it's the one a skimming reader
+          should be able to stop at. */}
+      <Reveal>
+        <section id="tldr" aria-labelledby="tldr-heading" className="rounded-card glass p-card-pad flex flex-col gap-5">
+          <h2 id="tldr-heading" className={EYEBROW}>
+            {s.tldr}
+          </h2>
+          {story.tldr.map((paragraph, i) => (
+            <p key={i} className="m-0 max-w-prose-cs text-lead text-ink text-pretty">
+              <InlineText text={paragraph} />
+            </p>
+          ))}
+        </section>
+      </Reveal>
+
+      {story.background.paragraphs.length > 0 && (
+        <Reveal>
+          <Section id="background" eyebrow={s.background} heading={story.background.heading}>
+            <ProseWithFigures section={story.background} copy={copy} />
+          </Section>
+        </Reveal>
+      )}
+
+      <Reveal>
+        <Section id="problem" eyebrow={s.problem} heading={story.problem.heading}>
+          <p className="m-0 max-w-prose-cs text-card-h3 text-ink text-balance border-l-4 border-accent pl-6">
+            {story.problem.statement}
+          </p>
+          {story.problem.paragraphs.length > 0 && <Paragraphs paragraphs={story.problem.paragraphs} />}
+          <div className="flex flex-col gap-4">
+            <h3 className={EYEBROW}>{s.constraints}</h3>
+            <ul className="m-0 flex max-w-prose-cs list-none flex-col gap-3 p-0">
+              {story.problem.constraints.map((item) => (
+                <li key={item} className="flex gap-3 text-body-lg text-body text-pretty">
+                  <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-pill bg-accent" />
+                  <span>
+                    <InlineText text={item} />
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {story.problem.figures && story.problem.figures.length > 0 && (
+            <StoryFigures figures={story.problem.figures} copy={copy} />
+          )}
+        </Section>
+      </Reveal>
+
+      <Section id="process" eyebrow={s.process} heading={story.process.heading}>
+        {story.process.intro && <Paragraphs paragraphs={story.process.intro} />}
+        <ol className="m-0 flex list-none flex-col gap-14 p-0">
+          {story.process.steps.map((step, i) => (
+            <li key={step.title}>
+              <Reveal>
+                <article className="flex flex-col gap-6">
+                  <div className="flex items-baseline gap-5">
+                    <span aria-hidden="true" className="text-step-num text-accent-dark tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="m-0 text-card-h3 text-ink text-balance">{step.title}</h3>
+                  </div>
+                  <Paragraphs paragraphs={step.paragraphs} />
+                  {step.figures && step.figures.length > 0 && <StoryFigures figures={step.figures} copy={copy} />}
+                </article>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <Reveal>
+        <Section id="shipped" eyebrow={s.shipped} heading={story.shipped.heading}>
+          <ProseWithFigures section={story.shipped} copy={copy} />
+        </Section>
+      </Reveal>
+
+      <Reveal>
+        <Section id="impact" eyebrow={s.impact} heading={story.impact.heading}>
+          <Paragraphs paragraphs={story.impact.intro} />
+          <ul className="m-0 grid list-none grid-cols-1 gap-grid-gap p-0 sm:grid-cols-3">
+            {story.impact.highlights.map((item) => (
+              <li key={item.label} className="flex flex-col gap-3 rounded-[16px] bg-cream/50 p-card-pad">
+                <span className="text-section-h2 text-ink tabular-nums">{item.value}</span>
+                <span className="text-body-sm text-body text-pretty">{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      </Reveal>
+
+      <Reveal>
+        <Section id="reflections" eyebrow={s.reflections} heading={story.reflections.heading}>
+          <ul className="m-0 grid list-none grid-cols-1 gap-x-grid-gap gap-y-10 p-0 md:grid-cols-2">
+            {story.reflections.items.map((item) => (
+              <li key={item.title} className="flex flex-col gap-3">
+                <h3 className="m-0 text-sub-h4 text-ink">{item.title}</h3>
+                <p className="m-0 text-body-lg text-body text-pretty">
+                  <InlineText text={item.body} />
+                </p>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      </Reveal>
+    </>
+  );
+}

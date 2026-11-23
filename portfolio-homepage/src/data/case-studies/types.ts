@@ -154,6 +154,64 @@ export type CaseGlance = {
   outcome: string;
 };
 
+/**
+ * The story layout: a case study told as a narrative, problem → process →
+ * what shipped → impact, with screenshots placed next to the step they are
+ * evidence for instead of in one gallery block. A study with `story` set is
+ * rendered by this layout; one without it keeps the older section layout,
+ * so the studies can move over one at a time.
+ *
+ * Every section heading is the study's own words ("Seven municipalities, two
+ * school worlds"), not a generic label; the generic label is the eyebrow
+ * above it and comes from the dictionary.
+ */
+export type CaseStory = {
+  /** The key facts shown under the hero, e.g. Role / Timeline / Team / Methods. */
+  facts: { label: string; value: string }[];
+  /** Hero image: the one screen that sums the product up. */
+  heroImage: GalleryImage;
+  /** Two or three sentences, outcome first. `**bold**` allowed. */
+  tldr: string[];
+  background: StorySection;
+  problem: StorySection & {
+    /** The problem in one sentence, shown large. */
+    statement: string;
+    /** What made it hard, one short line each. `**Lead-in:**` allowed. */
+    constraints: string[];
+  };
+  process: {
+    heading: string;
+    intro?: string[];
+    /** Numbered decisions, in the order they were made. */
+    steps: StoryStep[];
+  };
+  shipped: StorySection;
+  impact: {
+    heading: string;
+    /** Where the evidence comes from, said plainly. */
+    intro: string[];
+    /** Large callouts. Only real, sourced figures: a scope fact is fine, an invented metric is not. */
+    highlights: { value: string; label: string }[];
+  };
+  reflections: {
+    heading: string;
+    items: { title: string; body: string }[];
+  };
+};
+
+export type StorySection = {
+  heading: string;
+  paragraphs: string[];
+  figures?: GalleryImage[];
+};
+
+export type StoryStep = {
+  title: string;
+  /** `**bold**` allowed. */
+  paragraphs: string[];
+  figures?: GalleryImage[];
+};
+
 /** Everything beyond the summary — present only on fully-written case studies. */
 export type CaseStudyFullContent = {
   /**
@@ -209,6 +267,8 @@ export type CaseStudyFullContent = {
   /** One or more paragraphs, in order. */
   whatIWouldDoDifferently: string[];
   methods: string[];
+  /** When set, the page uses the story layout. See `CaseStory`. */
+  story?: CaseStory;
 };
 
 export type CaseStudy = CaseStudySummary & Partial<CaseStudyFullContent>;

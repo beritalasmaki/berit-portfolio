@@ -1,4 +1,57 @@
-import type { CaseStudy } from "./types";
+import type { CaseStudy, GalleryImage } from "./types";
+
+const gallery: GalleryImage[] = [
+  {
+    src: "/case/edu-dashboard.png",
+    alt: "Teacher home dashboard",
+    caption: "Teacher dashboard",
+    width: 2000,
+    height: 1899,
+  },
+  {
+    src: "/case/edu-mobile-dashboard.png",
+    alt: "Teacher home dashboard, mobile",
+    caption: "Mobile dashboard",
+    width: 339,
+    height: 2000,
+  },
+  { src: "/case/edu-detail.png", alt: "Student administration detail view", caption: "Student details", width: 553, height: 731 },
+  {
+    src: "/case/edu-timetable.png",
+    alt: "Timetable and course offering view",
+    caption: "Timetable",
+    width: 553,
+    height: 623,
+  },
+  {
+    src: "/case/edu-timetable-edit.png",
+    alt: "Timetable and course offering, editing selections",
+    caption: "Editing selections",
+    width: 553,
+    height: 623,
+  },
+  {
+    src: "/case/edu-mobile-detail.png",
+    alt: "Student administration detail, mobile",
+    caption: "Mobile detail",
+    width: 369,
+    height: 2000,
+  },
+  {
+    src: "/case/edu-mobile-menu.png",
+    alt: "Student tabs menu, mobile",
+    caption: "Mobile menu",
+    width: 410,
+    height: 791,
+  },
+];
+
+/** A gallery image by file name, for placing screenshots inside the story. */
+function shot(file: string): GalleryImage {
+  const image = gallery.find((g) => g.src === `/case/${file}`);
+  if (!image) throw new Error(`education-platform: no gallery image ${file}`);
+  return image;
+}
 
 export const educationPlatform: CaseStudy = {
   slug: "education-platform",
@@ -62,51 +115,7 @@ export const educationPlatform: CaseStudy = {
     },
   ],
 
-  gallery: [
-    {
-      src: "/case/edu-dashboard.png",
-      alt: "Teacher home dashboard",
-      caption: "Teacher dashboard",
-      width: 2000,
-      height: 1899,
-    },
-    {
-      src: "/case/edu-mobile-dashboard.png",
-      alt: "Teacher home dashboard, mobile",
-      caption: "Mobile dashboard",
-      width: 339,
-      height: 2000,
-    },
-    { src: "/case/edu-detail.png", alt: "Student administration detail view", caption: "Student details", width: 553, height: 731 },
-    {
-      src: "/case/edu-timetable.png",
-      alt: "Timetable and course offering view",
-      caption: "Timetable",
-      width: 553,
-      height: 623,
-    },
-    {
-      src: "/case/edu-timetable-edit.png",
-      alt: "Timetable and course offering, editing selections",
-      caption: "Editing selections",
-      width: 553,
-      height: 623,
-    },
-    {
-      src: "/case/edu-mobile-detail.png",
-      alt: "Student administration detail, mobile",
-      caption: "Mobile detail",
-      width: 369,
-      height: 2000,
-    },
-    {
-      src: "/case/edu-mobile-menu.png",
-      alt: "Student tabs menu, mobile",
-      caption: "Mobile menu",
-      width: 410,
-      height: 791,
-    },
-  ],
+  gallery,
   sneakPeekImages: ["/case/edu-dashboard.png", "/case/edu-timetable.png"],
 
   impactIntro:
@@ -163,4 +172,122 @@ export const educationPlatform: CaseStudy = {
   ],
 
   methods: ["User interviews", "Co-design workshops", "Usability testing", "Discovery research", "Journey Mapping"],
+
+  story: {
+    facts: [
+      { label: "Role", value: "UX & Product Designer, later Lead Designer" },
+      { label: "Timeline", value: "2021–2024, three years" },
+      {
+        label: "Team",
+        value: "1–3 designers at a time, a product owner, several development teams and third-party vendors",
+      },
+      {
+        label: "Methods",
+        value: "Co-design workshops, user interviews, journey mapping, usability and acceptance testing",
+      },
+    ],
+    heroImage: shot("edu-dashboard.png"),
+    tldr: [
+      "Seven municipalities needed one system to replace the outdated tools that ran basic and upper secondary education. Over three years I grew from UX & Product Designer to **Lead Designer**, and kept a platform built by several teams and vendors looking and working like one product.",
+      "The platform went live in **five municipalities in spring 2026**. Pilot schools describe it as easy to use, fast and logical.",
+    ],
+    background: {
+      heading: "Seven municipalities, two school worlds",
+      paragraphs: [
+        "A consortium of public sector organisations set out to replace the systems municipalities use to run their schools: timetables, student records, absences and assessment. The new platform had to serve both comprehensive schools and upper secondary schools, which run on different processes and rules.",
+        "Several development teams and third-party vendors built it in parallel. Its users range from teachers and administrative staff to guardians and students, on computers and on phones.",
+      ],
+    },
+    problem: {
+      heading: "Many builders, one product",
+      statement:
+        "Seven municipalities, two school types and several vendors had to end up with one system that feels like one product.",
+      paragraphs: [
+        "The old systems followed old logic. Some feature requests were straight copies of how the previous system worked, and some of that was no longer even legal. The new platform had to be built around how schools actually work today.",
+      ],
+      constraints: [
+        "**Two school worlds:** comprehensive and upper secondary schools have different processes and requirements, and both had to work in one platform.",
+        "**Many builders:** several development teams and third-party platforms worked in parallel, with only 1–3 designers on the project at any time.",
+        "**Many voices:** seven municipalities, each with its own way of working, and a long list of stakeholders and user groups.",
+        "**Law and data:** GDPR and education legislation set hard limits on what the system was allowed to do.",
+      ],
+    },
+    process: {
+      heading: "From workshops to a shared visual language",
+      steps: [
+        {
+          title: "Start with how schools actually work",
+          paragraphs: [
+            "I proposed a three-phase workshop model, close to the Double Diamond, and led it with the other designers and the product owner. First we mapped today's pain points, then defined what an ideal service would look like, and finally co-designed concrete concepts with stakeholders.",
+            "In total I ran more than 10 workshops. Whenever a part of the service I owned needed more depth, I went straight to the people doing the work. For the student admission view, for example, I contacted the study secretaries who handle admissions at the schools. The rule was simple: hear every municipality, and how they really work.",
+          ],
+          figures: [shot("edu-detail.png")],
+        },
+        {
+          title: "One visual language for every team",
+          paragraphs: [
+            "With few designers and many teams, I couldn't review every screen. Instead I defined a shared visual direction and a UI kit of reusable components, and later led the visual direction across a team of three designers.",
+            "Consistency wasn't only about looks. In regular sessions with developers I explained why something was built a certain way, and listened to their ideas. That made the right choice the easy one, even when no designer was in the room.",
+            "In my final year, as Lead Designer, I was responsible for the whole platform looking and working consistently, including the parts built on third-party platforms. Those turned out to be harder to customise than we expected.",
+          ],
+          figures: [shot("edu-timetable.png"), shot("edu-timetable-edit.png")],
+        },
+        {
+          title: "A phone experience people actually want to use",
+          paragraphs: [
+            "The old systems had mobile apps, but guardians and students often found them confusing. The new mobile views use the same structure and components as the desktop ones, so things are in the same place whatever the screen size.",
+          ],
+          figures: [shot("edu-mobile-dashboard.png"), shot("edu-mobile-menu.png"), shot("edu-mobile-detail.png")],
+        },
+        {
+          title: "Rebuild trust when the budget broke",
+          paragraphs: [
+            "Mid-project the budget ran over, and two municipalities withdrew because continuing became too expensive for them. Trust suffered, both among stakeholders and inside the teams.",
+            "I took an active role in showing the progress and value of the design work. I stayed visible in the right meetings, explained what we were doing and why, and wrote decisions down so anyone could follow the reasoning. It made the collaboration clearer and kept the project moving.",
+          ],
+        },
+      ],
+    },
+    shipped: {
+      heading: "A platform teachers can run their day from",
+      paragraphs: [
+        "The teacher's home view brings the day together: today's timetable, upcoming events, quick links and the students who need attention. The same structure carries over to the phone.",
+      ],
+      figures: [shot("edu-dashboard.png"), shot("edu-mobile-dashboard.png")],
+    },
+    impact: {
+      heading: "Live in five municipalities",
+      intro: [
+        "The evidence is qualitative: feedback from the pilot schools, and acceptance testing in which teachers and other end users tested the platform themselves. We didn't set measurable success metrics at the start, which is one of my lessons below.",
+        "Teachers and administrative staff describe the platform as easy to use, versatile and modern. Speed and logic come up again and again: people find what they need quickly. Everyday tasks such as printing report cards and transferring student data have proved reliable in daily use.",
+        "The platform launched in spring 2026, after my time on the project, and a wider rollout across the school network is being prepared. The full impact is still ahead.",
+      ],
+      highlights: [
+        { value: "5", label: "municipalities using the platform since spring 2026" },
+        { value: "10+", label: "workshops with stakeholders and school staff" },
+        { value: "3", label: "years on the project, growing into Lead Designer" },
+      ],
+    },
+    reflections: {
+      heading: "What I'd do differently",
+      items: [
+        {
+          title: "Define success metrics on day one",
+          body: "Knowing from the start what we wanted to achieve, and how to measure it, would have made prioritising easier. One concrete idea from the technical project manager, in hindsight: track legal compliance as a metric, with which requirements are met and which aren't yet.",
+        },
+        {
+          title: "Ship a real MVP",
+          body: "We weren't building the smallest version worth releasing. We were building something close to a final product that tried to cover every need from day one, and it cost us both time and workload.",
+        },
+        {
+          title: "Bring in legal expertise and a design system early",
+          body: "Some feature requests copied the old system, and parts of it were no longer legal. A GDPR and education-law expert from the start, and a design system deliberately built into code from day one, would have saved rework. In 2021 a coded design system at this scale wasn't common practice yet, but today I'd push for it.",
+        },
+        {
+          title: "Put a designer in vendor evaluation",
+          body: "When ready-made platforms are bought, a designer should assess how far they can be customised before the decision, not after. It would have spared us some hard trade-offs later.",
+        },
+      ],
+    },
+  },
 };

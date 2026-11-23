@@ -1,6 +1,22 @@
 import { educationPlatform as en } from "../education-platform";
-import type { CaseStudy } from "../types";
+import type { CaseStudy, GalleryImage } from "../types";
 import { localizeGallery } from "./helpers";
+
+const gallery = localizeGallery(en.gallery, [
+  { alt: "Opettajan etusivu", caption: "Opettajan dashboard" },
+  { alt: "Opettajan etusivu, mobiili", caption: "Dashboard mobiilissa" },
+  { alt: "Oppilashallinnon tarkempi näkymä", caption: "Oppilaan tiedot" },
+  { alt: "Lukujärjestys ja kurssitarjonta", caption: "Lukujärjestys" },
+  { alt: "Lukujärjestys ja kurssitarjonta, valintojen muokkaus", caption: "Valintojen muokkaus" },
+  { alt: "Oppilashallinnon tiedot, mobiili", caption: "Mobiilinäkymä: tiedot" },
+  { alt: "Oppilaan välilehtivalikko, mobiili", caption: "Mobiilivalikko" },
+]);
+
+function shot(file: string): GalleryImage {
+  const image = gallery.find((g) => g.src === `/case/${file}`);
+  if (!image) throw new Error(`education-platform (fi): no gallery image ${file}`);
+  return image;
+}
 
 export const educationPlatformFi: CaseStudy = {
   slug: "education-platform",
@@ -65,15 +81,7 @@ export const educationPlatformFi: CaseStudy = {
     },
   ],
 
-  gallery: localizeGallery(en.gallery, [
-    { alt: "Opettajan etusivu", caption: "Opettajan dashboard" },
-    { alt: "Opettajan etusivu, mobiili", caption: "Dashboard mobiilissa" },
-    { alt: "Oppilashallinnon tarkempi näkymä", caption: "Oppilaan tiedot" },
-    { alt: "Lukujärjestys ja kurssitarjonta", caption: "Lukujärjestys" },
-    { alt: "Lukujärjestys ja kurssitarjonta, valintojen muokkaus", caption: "Valintojen muokkaus" },
-    { alt: "Oppilashallinnon tiedot, mobiili", caption: "Mobiilinäkymä: tiedot" },
-    { alt: "Oppilaan välilehtivalikko, mobiili", caption: "Mobiilivalikko" },
-  ]),
+  gallery,
   sneakPeekImages: en.sneakPeekImages,
 
   impactIntro:
@@ -136,4 +144,122 @@ export const educationPlatformFi: CaseStudy = {
     "Kartoittava tutkimus",
     "Asiakaspolkujen kartoitus",
   ],
+
+  story: {
+    facts: [
+      { label: "Rooli", value: "UX- ja tuotesuunnittelija, myöhemmin Lead Designer" },
+      { label: "Aikajänne", value: "2021–2024, kolme vuotta" },
+      {
+        label: "Tiimi",
+        value: "1–3 suunnittelijaa kerrallaan, tuoteomistaja, useita kehitystiimejä ja kolmannen osapuolen toimittajia",
+      },
+      {
+        label: "Menetelmät",
+        value: "Yhteiskehittämisen työpajat, käyttäjähaastattelut, asiakaspolkujen kartoitus, käytettävyys- ja hyväksymistestaus",
+      },
+    ],
+    heroImage: shot("edu-dashboard.png"),
+    tldr: [
+      "Seitsemän kuntaa tarvitsi yhden järjestelmän perusopetuksen ja lukion vanhentuneiden työkalujen tilalle. Kolmen vuoden aikana kasvoin UX- ja tuotesuunnittelijasta **Lead Designeriksi** ja pidin huolen siitä, että usean tiimin ja toimittajan rakentama alusta näyttää ja toimii yhtenä tuotteena.",
+      "Alusta otettiin käyttöön **viidessä kunnassa keväällä 2026**. Pilottikoulut kuvaavat sitä helppokäyttöiseksi, nopeaksi ja johdonmukaiseksi.",
+    ],
+    background: {
+      heading: "Seitsemän kuntaa, kaksi koulumaailmaa",
+      paragraphs: [
+        "Julkisen sektorin konsortio lähti korvaamaan järjestelmiä, joilla kunnat pyörittävät koulujensa arkea: lukujärjestyksiä, oppilastietoja, poissaoloja ja arviointia. Uuden alustan piti palvella sekä peruskouluja että lukioita, joilla on omat prosessinsa ja sääntönsä.",
+        "Alustaa rakensi rinnakkain useampi kehitystiimi ja kolmannen osapuolen toimittaja. Käyttäjiä ovat opettajat ja hallintohenkilöstö sekä huoltajat ja oppilaat, niin tietokoneella kuin puhelimella.",
+      ],
+    },
+    problem: {
+      heading: "Monta rakentajaa, yksi tuote",
+      statement:
+        "Seitsemän kunnan, kahden koulumuodon ja usean toimittajan piti päätyä yhteen järjestelmään, joka tuntuu yhdeltä tuotteelta.",
+      paragraphs: [
+        "Vanhat järjestelmät noudattivat vanhaa logiikkaa. Osa toiveista oli suoria kopioita siitä, miten edellinen järjestelmä toimi, eikä kaikki siitä ollut enää edes lainmukaista. Uusi alusta piti rakentaa sen ympärille, miten kouluissa tänään oikeasti työskennellään.",
+      ],
+      constraints: [
+        "**Kaksi koulumaailmaa:** peruskoulun ja lukion prosessit ja vaatimukset eroavat, ja molempien piti toimia samassa alustassa.",
+        "**Monta rakentajaa:** useampi kehitystiimi ja kolmannen osapuolen alusta työskentelivät rinnakkain, ja suunnittelijoita oli kerrallaan vain 1–3.",
+        "**Monta ääntä:** seitsemän kuntaa omine työtapoineen sekä pitkä lista sidosryhmiä ja käyttäjäryhmiä.",
+        "**Laki ja tietosuoja:** GDPR ja opetusta koskeva lainsäädäntö asettivat tiukat rajat sille, mitä järjestelmä sai tehdä.",
+      ],
+    },
+    process: {
+      heading: "Työpajoista yhteiseen visuaaliseen kieleen",
+      steps: [
+        {
+          title: "Lähtökohtana se, miten koulut oikeasti toimivat",
+          paragraphs: [
+            "Ehdotin kolmivaiheista työpajamallia, joka on lähellä Double Diamond -mallia, ja vedin sitä yhdessä muiden suunnittelijoiden ja tuoteomistajan kanssa. Ensin kartoitimme nykyiset kipupisteet, sitten määrittelimme ihannetilanteen ja lopuksi suunnittelimme konkreettiset konseptit yhdessä sidosryhmien kanssa.",
+            "Kaikkiaan vedin yli 10 työpajaa. Kun jokin vastuullani oleva osa palvelua vaati syvempää ymmärrystä, menin suoraan työn tekijöiden luo. Oppilaaksiottonäkymää varten otin esimerkiksi yhteyttä kouluissa oppilaaksiottoa hoitaviin opintosihteereihin. Periaate oli yksinkertainen: kuunnellaan jokaista kuntaa ja sitä, miten siellä oikeasti tehdään töitä.",
+          ],
+          figures: [shot("edu-detail.png")],
+        },
+        {
+          title: "Yksi visuaalinen kieli kaikille tiimeille",
+          paragraphs: [
+            "Kun suunnittelijoita oli vähän ja tiimejä paljon, en voinut tarkistaa jokaista näkymää. Sen sijaan määrittelin yhteisen visuaalisen linjan ja uudelleenkäytettävien komponenttien UI Kitin, ja myöhemmin johdin visuaalista linjaa kolmen suunnittelijan tiimissä.",
+            "Yhtenäisyys ei ollut pelkkää ulkonäköä. Säännöllisissä tapaamisissa kehittäjien kanssa kerroin, miksi jokin rakennetaan tietyllä tavalla, ja kuuntelin heidän ideoitaan. Näin oikeasta ratkaisusta tuli helppo ratkaisu silloinkin, kun suunnittelija ei ollut paikalla.",
+            "Viimeisenä vuotenani Lead Designerina vastasin siitä, että koko alusta näyttää ja toimii johdonmukaisesti, myös kolmannen osapuolen alustoille rakennetut osat. Niiden muokkaaminen osoittautui odotettua vaikeammaksi.",
+          ],
+          figures: [shot("edu-timetable.png"), shot("edu-timetable-edit.png")],
+        },
+        {
+          title: "Mobiilikokemus, jota on oikeasti helppo käyttää",
+          paragraphs: [
+            "Vanhoissa järjestelmissä oli mobiilisovellukset, mutta huoltajat ja oppilaat kokivat ne usein sekaviksi. Uusissa mobiilinäkymissä on sama rakenne ja samat komponentit kuin tietokoneella, joten asiat löytyvät samasta paikasta näytön koosta riippumatta.",
+          ],
+          figures: [shot("edu-mobile-dashboard.png"), shot("edu-mobile-menu.png"), shot("edu-mobile-detail.png")],
+        },
+        {
+          title: "Luottamuksen palauttaminen budjetin ylittyessä",
+          paragraphs: [
+            "Kesken projektin budjetti ylittyi, ja kaksi kuntaa vetäytyi, koska jatkaminen kävi niille liian kalliiksi. Luottamus kärsi sekä sidosryhmissä että tiimien sisällä.",
+            "Otin aktiivisen roolin suunnittelutyön edistymisen ja arvon näyttämisessä. Olin läsnä oikeissa palavereissa, kerroin mitä teimme ja miksi, ja kirjasin päätökset ylös, jotta kuka tahansa pystyi seuraamaan perusteluja. Tämä selkeytti yhteistyötä ja piti hankkeen liikkeellä.",
+          ],
+        },
+      ],
+    },
+    shipped: {
+      heading: "Alusta, josta opettaja hoitaa päivänsä",
+      paragraphs: [
+        "Opettajan etusivu kokoaa päivän yhteen: päivän lukujärjestyksen, tulevat tapahtumat, pikalinkit ja oppilaat, jotka tarvitsevat huomiota. Sama rakenne toimii myös puhelimessa.",
+      ],
+      figures: [shot("edu-dashboard.png"), shot("edu-mobile-dashboard.png")],
+    },
+    impact: {
+      heading: "Käytössä viidessä kunnassa",
+      intro: [
+        "Näyttö on laadullista: pilottikoulujen palautetta ja hyväksymistestausta, jossa opettajat ja muut loppukäyttäjät testasivat alustaa itse. Emme määritelleet mitattavia onnistumisen mittareita alussa, ja se on yksi alla olevista opeistani.",
+        "Opettajat ja hallintohenkilöstö kuvaavat alustaa helppokäyttöiseksi, monipuoliseksi ja moderniksi. Nopeus ja johdonmukaisuus toistuvat palautteessa: tarvittava löytyy nopeasti. Arjen tehtävät, kuten todistusten tulostus ja oppilastietojen siirto, ovat osoittautuneet luotettaviksi päivittäisessä käytössä.",
+        "Alusta julkaistiin keväällä 2026, projektikauteni jälkeen, ja laajempaa käyttöönottoa kouluverkostossa valmistellaan. Täysi vaikutus on siis vielä edessä.",
+      ],
+      highlights: [
+        { value: "5", label: "kuntaa käyttää alustaa keväästä 2026" },
+        { value: "10+", label: "työpajaa sidosryhmien ja koulujen henkilöstön kanssa" },
+        { value: "3", label: "vuotta projektissa, roolina lopulta Lead Designer" },
+      ],
+    },
+    reflections: {
+      heading: "Mitä tekisin toisin",
+      items: [
+        {
+          title: "Mittarit ensimmäisestä päivästä",
+          body: "Jos olisimme alusta asti tienneet, mitä tavoittelemme ja miten sitä mitataan, priorisointi olisi ollut helpompaa. Teknisen projektipäällikön konkreettinen ehdotus jälkikäteen: seurataan lainmukaisuutta mittarina, eli mitkä vaatimukset on jo täytetty ja mitkä eivät vielä.",
+        },
+        {
+          title: "Oikea MVP",
+          body: "Emme rakentaneet pienintä julkaisemisen arvoista versiota, vaan lähes valmista tuotetta, joka yritti kattaa kaikki tarpeet heti alusta. Se näkyi sekä aikataulussa että työmäärässä.",
+        },
+        {
+          title: "Juridiikka ja Design System mukaan heti",
+          body: "Osa toiveista kopioi vanhaa järjestelmää, eikä kaikki siitä ollut enää lainmukaista. GDPR:n ja opetuslainsäädännön asiantuntija heti alusta ja harkiten koodiin rakennettu Design System olisivat säästäneet uudelleentyötä. Vuonna 2021 näin laaja koodattu Design System ei vielä ollut tavallista, mutta nyt vaatisin sitä.",
+        },
+        {
+          title: "Suunnittelija mukaan toimittajavalintaan",
+          body: "Kun valmiita alustoja hankitaan, suunnittelijan pitäisi arvioida niiden muokattavuus ennen päätöstä eikä vasta sen jälkeen. Se olisi säästänyt meidät myöhemmiltä vaikeilta kompromisseilta.",
+        },
+      ],
+    },
+  },
 };
