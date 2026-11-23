@@ -4,41 +4,68 @@ import { useEffect, useRef, useState } from "react";
 
 type Stat = { value: string; label: string };
 
-// Each number counts for this long, then the next one starts.
-const DURATION = 1600;
+// Each number rolls for this long, then the next one starts.
+const DURATION = 1800;
 // A beat after the row settles into view, so the reader is looking at it.
 const START_DELAY = 250;
+// Share of the row that has to be in view before counting starts.
+const VISIBLE = 0.6;
+// Height of one digit cell, matching the number's line height.
+const CELL = 1.05;
 
 /** "10+" → { target: 10, prefix: "", suffix: "+" }. A value with no number in
- * it is shown as it is, without counting. */
+ * it is shown as it is, without rolling. */
 function parse(value: string) {
   const match = /^(\D*)(\d+)(.*)$/.exec(value);
   if (!match) return null;
   return { prefix: match[1], target: Number(match[2]), suffix: match[3] };
 }
 
-// Soft start and soft landing (ease-in-out sine).
+// Soft start and soft landing (ease-in-out sine), like a pen stroke.
 const ease = (t: number) => -(Math.cos(Math.PI * t) - 1) / 2;
-// Share of the row that has to be in view before counting starts.
-const VISIBLE = 0.6;
 
 /**
- * The impact highlights, counting up like a stopwatch when the row scrolls
- * into view: one number at a time, in order, each stopping on its value.
+ * One digit position of a mechanical counter. `place` 0 = ones, 1 = tens…
+ * The ones strip rolls continuously; a higher place only turns while the
+ * place below goes from 9 to 0 (a carry), as on a real odometer. A leading
+ * place grows in from zero width as the value reaches it, so "7" doesn't sit
+ * next to an empty gap on its way to "10".
+ */
+function Digit({ value, place }: { value: number; place: number }) {
+  const unit = Math.pow(10, place);
+  const below = value / unit;
+  const position = place === 0 ? below % 10 : (Math.floor(below) % 10) + Math.max(0, (below % 1) * 10 - 9);
+  const presence = place === 0 ? 1 : Math.min(Math.max(value - (unit - 1), 0), 1);
+  return (
+    <span
+      className="inline-block overflow-hidden align-top"
+      style={{ height: `${CELL}em`, width: `${presence * 0.62}em`, opacity: presence }}
+    >
+      <span className="block" style={{ transform: `translateY(${-position * CELL}em)` }}>
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((digit, i) => (
+          <span key={i} className="block text-center" style={{ height: `${CELL}em`, lineHeight: CELL }}>
+            {digit}
+          </span>
+        ))}
+      </span>
+    </span>
+  );
+}
+
+/**
+ * The impact highlights, rolling up like a mechanical counter when the row
+ * scrolls into view: one number at a time, in order, each settling on its
+ * value with a soft ease-in-out.
  *
  * - The final values are rendered on the server, so without JavaScript (and
  *   for search engines) the numbers are simply there.
- * - Screen readers get the final value only (the ticking digits are hidden),
- *   so nothing is announced while counting.
+ * - Screen readers get the final value only; the rolling digits are hidden.
  * - With "reduce motion" on, the numbers appear immediately (WCAG 2.3.3).
- * - An invisible copy of the final value holds the width, so the layout
- *   doesn't shift while digits change.
  */
 export default function CountUpStats({ stats }: { stats: Stat[] }) {
   const listRef = useRef<HTMLUListElement>(null);
-  // null = show final values (server render, reduced motion, finished).
-  const [shown, setShown] = useState<number[] | null>(null);
-  // How many cards have started; cards not started yet keep their number hidden.
+  // Current (fractional) value per stat while rolling; null = plain final values.
+  const [values, setValues] = useState<number[] | null>(null);
   const [started, setStarted] = useState(stats.length);
 
   useEffect(() => {
@@ -47,45 +74,36 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const parsed = stats.map((stat) => parse(stat.value));
-    setShown(parsed.map(() => 0));
+    setValues(parsed.map(() => 0));
     setStarted(0);
 
     let frame = 0;
     const observer = new IntersectionObserver(
       (entries) => {
         // Not `isIntersecting`: the browser also reports the row the moment
-        // its first pixel enters, which started the count too early.
+        // its first pixel enters, which would start the count too early.
         if (!entries.some((entry) => entry.intersectionRatio >= VISIBLE)) return;
         observer.disconnect();
         const start = performance.now() + START_DELAY;
         const tick = (now: number) => {
           const elapsed = now - start;
-          if (elapsed < 0) {
-            frame = requestAnimationFrame(tick);
-            return;
+          if (elapsed >= 0) {
+            setStarted(Math.min(Math.floor(elapsed / DURATION), stats.length - 1) + 1);
+            setValues(
+              parsed.map((p, i) => {
+                if (!p) return 0;
+                const t = Math.min(Math.max((elapsed - i * DURATION) / DURATION, 0), 1);
+                return ease(t) * p.target;
+              })
+            );
           }
-          const index = Math.min(Math.floor(elapsed / DURATION), stats.length);
-          setStarted(index + 1);
-          setShown(
-            parsed.map((p, i) => {
-              if (!p) return 0;
-              const t = Math.min(Math.max((elapsed - i * DURATION) / DURATION, 0), 1);
-              return Math.round(ease(t) * p.target);
-            })
-          );
-          if (elapsed < stats.length * DURATION) {
-            frame = requestAnimationFrame(tick);
-          } else {
-            setShown(null);
-            setStarted(stats.length);
-          }
+          if (elapsed < stats.length * DURATION) frame = requestAnimationFrame(tick);
         };
         frame = requestAnimationFrame(tick);
       },
-      // Start once most of the row is inside the upper 85% of the screen, not
-      // when its top edge first peeks in while the reader is still scrolling.
-      // Not `threshold: 1`: on a phone the stacked cards are taller than the
-      // screen, so the whole row could never be in view and it would never start.
+      // Start once most of the row is inside the upper 85% of the screen. Not
+      // `threshold: 1`: on a phone the stacked cards are taller than the
+      // screen, so the whole row could never be in view.
       { threshold: VISIBLE, rootMargin: "0px 0px -15% 0px" }
     );
     observer.observe(list);
@@ -99,23 +117,26 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
     <ul ref={listRef} className="m-0 grid list-none grid-cols-1 gap-grid-gap p-0 sm:grid-cols-3">
       {stats.map((stat, i) => {
         const p = parse(stat.value);
-        const current = shown && p ? `${p.prefix}${shown[i]}${p.suffix}` : stat.value;
-        const visible = i < started;
+        const rolling = values !== null && p !== null;
+        const places = p ? String(p.target).length : 0;
         return (
           <li key={stat.label} className="flex flex-col gap-3 rounded-[16px] bg-cream/50 p-card-pad">
-            <span className="text-section-h2 text-ink tabular-nums">
+            <span className="text-section-h2 text-ink tabular-nums" style={{ lineHeight: CELL }}>
               <span className="sr-only">{stat.value}</span>
-              <span aria-hidden="true" className="inline-grid overflow-hidden">
-                <span className="invisible col-start-1 row-start-1">{stat.value}</span>
+              {rolling ? (
                 <span
-                  key={shown ? current : "final"}
-                  className={`col-start-1 row-start-1 ${visible ? "opacity-100" : "opacity-0"} ${
-                    shown && visible ? "count-tick" : ""
-                  }`}
+                  aria-hidden="true"
+                  className={`inline-flex select-none transition-opacity duration-300 ${i < started ? "opacity-100" : "opacity-0"}`}
                 >
-                  {current}
+                  {p.prefix}
+                  {Array.from({ length: places }, (_, k) => places - 1 - k).map((place) => (
+                    <Digit key={place} value={values[i]} place={place} />
+                  ))}
+                  {p.suffix}
                 </span>
-              </span>
+              ) : (
+                <span aria-hidden="true">{stat.value}</span>
+              )}
             </span>
             <span className="text-body-sm text-body text-pretty">{stat.label}</span>
           </li>
