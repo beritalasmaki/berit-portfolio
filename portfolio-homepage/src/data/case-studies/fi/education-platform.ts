@@ -276,7 +276,7 @@ export const educationPlatformFi: CaseStudy = {
       ],
     },
     shipped: {
-      eyebrow: "Konsepti",
+      eyebrow: "Esimerkki konseptityöstä",
       heading: "Opettajan etusivu",
       paragraphs: [
         "Työpajoissa toistui sama toive. Opettajat kaipasivat selkeää etusivua, joka kokoaisi kaiken heidän työnsä kannalta olennaisen yhteen paikkaan. Lähdin hahmottelemaan konseptia omasta aloitteestani.",

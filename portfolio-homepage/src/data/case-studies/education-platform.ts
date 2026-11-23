@@ -317,7 +317,7 @@ export const educationPlatform: CaseStudy = {
       ],
     },
     shipped: {
-      eyebrow: "Concept",
+      eyebrow: "An example of concept work",
       heading: "Teacher home view",
       paragraphs: [
         "The same wish kept coming up in workshops. Teachers wanted a clear home view that brought everything relevant to their work into one place. I started sketching a concept on my own initiative.",
