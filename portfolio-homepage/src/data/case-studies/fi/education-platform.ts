@@ -172,8 +172,9 @@ export const educationPlatformFi: CaseStudy = {
         label: "Tiimi",
         value: [
           "Kolme tiimiä (opetus, hallinto ja asiointipalvelu)",
-          "Jokaisessa oma tuoteomistaja, kehittäjät ja palvelumuotoilija",
+          "Jokaisessa oma tuoteomistaja ja kehittäjät",
           "Minä suunnittelijana kaikissa kolmessa",
+          "Palvelumuotoilija mukana 2021–2023, toinen suunnittelija 2021–2022",
           "Toteutusta johti tekninen kehityspäällikkö",
         ],
       },
