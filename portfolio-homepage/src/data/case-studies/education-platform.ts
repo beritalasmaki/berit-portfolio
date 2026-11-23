@@ -347,9 +347,9 @@ export const educationPlatform: CaseStudy = {
         "The platform went into production in pilot schools in spring 2026. Pilot school students received the first report cards produced on the platform, and guardians started using the service too. In the 2026–2027 school year, use is expanding to comprehensive schools in five municipalities, so the full impact will only show later.",
       ],
       highlights: [
+        { value: "8+", label: "user groups, from municipal officials to principals, teachers, students and guardians" },
         { value: "5", label: "municipalities adopting the platform in the 2026–2027 school year" },
-        { value: "10+", label: "workshops with stakeholders and school staff" },
-        { value: "3", label: "years on the project, ending as Lead Designer" },
+        { value: "160,000", label: "students in the founding municipalities when the project began (2022 estimate)" },
       ],
     },
     reflections: {

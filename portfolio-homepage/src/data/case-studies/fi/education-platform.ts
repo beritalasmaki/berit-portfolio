@@ -306,9 +306,9 @@ export const educationPlatformFi: CaseStudy = {
         "Alusta siirtyi tuotantokäyttöön pilottikouluissa keväällä 2026. Pilottikoulujen oppilaat saivat ensimmäiset alustalla tuotetut lukuvuositodistukset, ja myös huoltajat ottivat palvelun käyttöön. Lukuvuonna 2026–2027 käyttö laajenee perusopetuksen kouluihin viidessä kunnassa, joten koko vaikutus näkyy vasta myöhemmin.",
       ],
       highlights: [
+        { value: "8+", label: "käyttäjäryhmää kunnan virkahenkilöistä rehtoreihin, opettajiin, oppijoihin ja huoltajiin" },
         { value: "5", label: "kuntaa ottaa alustan käyttöön lukuvuonna 2026–2027" },
-        { value: "10+", label: "työpajaa sidosryhmien ja koulujen henkilöstön kanssa" },
-        { value: "3", label: "vuotta projektissa, roolina lopulta Lead Designer" },
+        { value: "160 000", label: "oppijaa kehittäjäkunnissa hankkeen alussa (arvio 2022)" },
       ],
     },
     reflections: {

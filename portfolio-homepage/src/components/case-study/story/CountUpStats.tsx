@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 type Stat = { value: string; label: string };
 
@@ -13,12 +13,14 @@ const VISIBLE = 0.6;
 // Height of one digit cell, matching the number's line height.
 const CELL = 1.05;
 
-/** "10+" → { target: 10, prefix: "", suffix: "+" }. A value with no number in
- * it is shown as it is, without rolling. */
+/** "10+" → { target: 10, prefix: "", suffix: "+", group: "" }. Thousands
+ * separators are kept ("160 000", "160,000") and redrawn while rolling. A
+ * value with no number in it is shown as it is, without rolling. */
 function parse(value: string) {
-  const match = /^(\D*)(\d+)(.*)$/.exec(value);
+  const match = /^(\D*?)(\d{1,3}(?:([\s\u00a0\u202f,])\d{3})*|\d+)(\D*)$/.exec(value);
   if (!match) return null;
-  return { prefix: match[1], target: Number(match[2]), suffix: match[3] };
+  const group = match[3] ?? "";
+  return { prefix: match[1], target: Number(match[2].replace(/\D/g, "")), suffix: match[4], group };
 }
 
 // Soft start and soft landing (ease-in-out sine), like a pen stroke.
@@ -129,7 +131,26 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
                 >
                   {p.prefix}
                   {Array.from({ length: places }, (_, k) => places - 1 - k).map((place) => (
-                    <Digit key={place} value={values[i]} place={place} />
+                    <Fragment key={place}>
+                      {place < places - 2 ? (
+                        // Below the two leading digits nothing rolls: in a big
+                        // number the ones would spin into a blur. They show the
+                        // final digit, so 160 000 counts 10 000, 20 000 …
+                        <span className="inline-block" style={{ width: "0.62em", textAlign: "center" }}>
+                          {String(p.target)[places - 1 - place]}
+                        </span>
+                      ) : (
+                        <Digit value={values[i] / Math.pow(10, Math.max(places - 2, 0))} place={place - Math.max(places - 2, 0)} />
+                      )}
+                      {p.group && place > 0 && place % 3 === 0 && (
+                        <span
+                          className="inline-block overflow-hidden whitespace-pre"
+                          style={{ opacity: Math.min(Math.max(values[i] - (Math.pow(10, place) - 1), 0), 1) }}
+                        >
+                          {values[i] >= Math.pow(10, place) - 1 ? p.group.replace(/\s/, "\u00a0") : ""}
+                        </span>
+                      )}
+                    </Fragment>
                   ))}
                   {p.suffix}
                 </span>
