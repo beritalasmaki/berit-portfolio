@@ -195,7 +195,7 @@ export const educationPlatformFi: CaseStudy = {
         ],
       },
     ],
-    heroImage: { src: "/case/edu-hero-bundle.png", alt: "Kolme alustan näkymää: lukujärjestys ja kurssitarjotin, oppilaan tiedot hallinnon palvelussa sekä samat tiedot mobiililaitteella", caption: "", width: 2400, height: 2098 },
+    heroImage: { src: "/case/edu-hero-bundle.png", alt: "Kaksi alustan näkymää: lukujärjestys ja kurssitarjotin tietokoneella sekä oppilaan tiedot hallinnon palvelussa mobiililaitteella", caption: "", width: 2400, height: 1931 },
     heroBundle: true,
     tldr: [
       "Seitsemän kuntaa tarvitsi yhden järjestelmän perusopetuksen ja lukion vanhentuneiden työkalujen tilalle. Kolmen vuoden aikana kasvoin UX- ja tuotesuunnittelijasta **Lead Designeriksi** ja pidin huolen siitä, että usean tiimin ja toimittajan rakentama alusta näyttää ja toimii yhtenä tuotteena.",
