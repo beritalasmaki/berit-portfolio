@@ -5,7 +5,9 @@ import { useEffect, useRef, useState } from "react";
 type Stat = { value: string; label: string };
 
 // Each number counts for this long, then the next one starts.
-const DURATION = 700;
+const DURATION = 1500;
+// A beat after the row settles into view, so the reader is looking at it.
+const START_DELAY = 250;
 
 /** "10+" → { target: 10, prefix: "", suffix: "+" }. A value with no number in
  * it is shown as it is, without counting. */
@@ -15,7 +17,8 @@ function parse(value: string) {
   return { prefix: match[1], target: Number(match[2]), suffix: match[3] };
 }
 
-const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+// Quick start, long gentle settle onto the final value.
+const easeOut = (t: number) => 1 - Math.pow(1 - t, 4);
 
 /**
  * The impact highlights, counting up like a stopwatch when the row scrolls
@@ -50,9 +53,13 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
       (entries) => {
         if (!entries.some((entry) => entry.isIntersecting)) return;
         observer.disconnect();
-        const start = performance.now();
+        const start = performance.now() + START_DELAY;
         const tick = (now: number) => {
           const elapsed = now - start;
+          if (elapsed < 0) {
+            frame = requestAnimationFrame(tick);
+            return;
+          }
           const index = Math.min(Math.floor(elapsed / DURATION), stats.length);
           setStarted(index + 1);
           setShown(
@@ -71,7 +78,11 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
         };
         frame = requestAnimationFrame(tick);
       },
-      { threshold: 0.2 }
+      // Start once most of the row is inside the upper 85% of the screen, not
+      // when its top edge first peeks in while the reader is still scrolling.
+      // Not `threshold: 1`: on a phone the stacked cards are taller than the
+      // screen, so the whole row could never be in view and it would never start.
+      { threshold: 0.6, rootMargin: "0px 0px -15% 0px" }
     );
     observer.observe(list);
     return () => {
@@ -93,7 +104,7 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
               <span aria-hidden="true" className="inline-grid">
                 <span className="invisible col-start-1 row-start-1">{stat.value}</span>
                 <span
-                  className={`col-start-1 row-start-1 transition-opacity duration-200 ${
+                  className={`col-start-1 row-start-1 ${
                     visible ? "opacity-100" : "opacity-0"
                   }`}
                 >
