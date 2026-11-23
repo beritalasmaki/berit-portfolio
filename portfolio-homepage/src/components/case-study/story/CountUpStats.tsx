@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 type Stat = { value: string; label: string };
 
 // Each number counts for this long, then the next one starts.
-const DURATION = 1500;
+const DURATION = 1600;
 // A beat after the row settles into view, so the reader is looking at it.
 const START_DELAY = 250;
 
@@ -17,8 +17,10 @@ function parse(value: string) {
   return { prefix: match[1], target: Number(match[2]), suffix: match[3] };
 }
 
-// Quick start, long gentle settle onto the final value.
-const easeOut = (t: number) => 1 - Math.pow(1 - t, 4);
+// Soft start and soft landing (ease-in-out sine).
+const ease = (t: number) => -(Math.cos(Math.PI * t) - 1) / 2;
+// Share of the row that has to be in view before counting starts.
+const VISIBLE = 0.6;
 
 /**
  * The impact highlights, counting up like a stopwatch when the row scrolls
@@ -51,7 +53,9 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
     let frame = 0;
     const observer = new IntersectionObserver(
       (entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
+        // Not `isIntersecting`: the browser also reports the row the moment
+        // its first pixel enters, which started the count too early.
+        if (!entries.some((entry) => entry.intersectionRatio >= VISIBLE)) return;
         observer.disconnect();
         const start = performance.now() + START_DELAY;
         const tick = (now: number) => {
@@ -66,7 +70,7 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
             parsed.map((p, i) => {
               if (!p) return 0;
               const t = Math.min(Math.max((elapsed - i * DURATION) / DURATION, 0), 1);
-              return Math.round(easeOut(t) * p.target);
+              return Math.round(ease(t) * p.target);
             })
           );
           if (elapsed < stats.length * DURATION) {
@@ -82,7 +86,7 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
       // when its top edge first peeks in while the reader is still scrolling.
       // Not `threshold: 1`: on a phone the stacked cards are taller than the
       // screen, so the whole row could never be in view and it would never start.
-      { threshold: 0.6, rootMargin: "0px 0px -15% 0px" }
+      { threshold: VISIBLE, rootMargin: "0px 0px -15% 0px" }
     );
     observer.observe(list);
     return () => {
@@ -101,11 +105,12 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
           <li key={stat.label} className="flex flex-col gap-3 rounded-[16px] bg-cream/50 p-card-pad">
             <span className="text-section-h2 text-ink tabular-nums">
               <span className="sr-only">{stat.value}</span>
-              <span aria-hidden="true" className="inline-grid">
+              <span aria-hidden="true" className="inline-grid overflow-hidden">
                 <span className="invisible col-start-1 row-start-1">{stat.value}</span>
                 <span
-                  className={`col-start-1 row-start-1 ${
-                    visible ? "opacity-100" : "opacity-0"
+                  key={shown ? current : "final"}
+                  className={`col-start-1 row-start-1 ${visible ? "opacity-100" : "opacity-0"} ${
+                    shown && visible ? "count-tick" : ""
                   }`}
                 >
                   {current}
