@@ -188,9 +188,9 @@ function FactsCard({ facts }: { facts: CaseStory["facts"] }) {
           <div key={fact.label} className="flex flex-col gap-3 border-t border-rule pt-6 sm:col-span-2">
             <dt className={label}>{fact.label}</dt>
             <dd className="m-0">
-              <ul className="m-0 grid list-none grid-cols-1 gap-x-grid-gap-lg gap-y-2.5 p-0 sm:grid-cols-2">
+              <ul className="m-0 list-none p-0 sm:columns-2 sm:gap-x-grid-gap-lg">
                 {lines(fact.value).map((line) => (
-                  <li key={line} className="flex gap-3 text-body-sm leading-snug text-ink">
+                  <li key={line} className="mb-2.5 flex break-inside-avoid gap-3 text-body-sm leading-snug text-ink">
                     <span aria-hidden="true" className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rounded-pill bg-accent" />
                     <span>{line}</span>
                   </li>

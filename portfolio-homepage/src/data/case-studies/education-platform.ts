@@ -275,7 +275,7 @@ export const educationPlatform: CaseStudy = {
         {
           title: "Bring the team into one room",
           paragraphs: [
-            "Most of the work was remote, so we also organised in-person days, which we planned and facilitated together. They brought the team closer and made collaboration smoother. On a retro day we reviewed what we had achieved and where to take the work next. On development team days we refined process descriptions, user stories, epics, data models and user interfaces together. We also eased the load of remote work with an emotions exercise.",
+            "Most of the work was remote, so we also organised in-person days, which we planned and facilitated together. They brought the team closer and made collaboration smoother. On a retro day we reviewed what we had achieved and where to take the work next. On development team days we refined process descriptions, user stories, epics, data models and user interfaces together.",
             "We used play to make ways of working concrete. Lego, collages and a board game about a school day helped us clarify our goal, sharpen how we work and build a shared vocabulary for school terms. After these days, teammates no longer felt distant. We also clarified how the team works: how information flows between design and development, and how to make the work smoother from here on.",
           ],
           figures: [shot("edu-process-retro.jpg"), shot("edu-process-devday.jpg"), shot("edu-process-culture.jpg")],
@@ -320,17 +320,20 @@ export const educationPlatform: CaseStudy = {
       eyebrow: "Concept",
       heading: "Teacher home view",
       paragraphs: [
-        "As my own concept, I sketched how a teacher's day could come together in one view: the day's timetable, upcoming events, quick links and the students who need attention. I designed the same structure for mobile devices. The concept was not released as such.",
+        "The same wish kept coming up in workshops. Teachers wanted a clear home view that brought everything relevant to their work into one place. I started sketching a concept on my own initiative.",
+        "Before drawing anything, I worked through a few questions. What does a teacher need most in their work? How do they get to the page, and on what device? In which situations do they open it? How does the view support moving from one lesson to the next? Then I mapped out the view and looked for answers to those questions.",
+        "My plan was to take the concept further once it became relevant, but my time on the project ended before that. The concept was not released as such.",
       ],
-      listLabel: "Design decisions",
+      listLabel: "From questions to design decisions",
       list: [
-        "**Next lesson and attendance at the top:** taking attendance at the start of a lesson takes one tap.",
+        "**Next lesson and attendance at the top:** supports moving from one lesson to the next, because taking attendance at the start of a lesson takes one tap.",
         "**The day's timetable with status labels:** at a glance, the teacher sees which lessons already have attendance recorded and which are still missing it.",
         "**Students who need attention:** absences and falling behind in studies show up early, so the teacher can step in before things get worse.",
         "**Quick links:** the most common tasks, such as study planning, support measures, assessment and messages from guardians, are one step away without menus.",
+        "**The same structure on mobile:** teachers aren't always at a computer, so the view had to work on mobile devices too.",
       ],
       closing: [
-        "**What I would do differently now:** I would separate the timetable and events more clearly, and give the events section a sharper purpose, such as upcoming exams, so the teacher sees right away when exams are coming up. Above all, I would do more thorough user research: the concept was based on lightweight user interviews and observations from other workshops.",
+        "**What I would do differently now:** I would separate the timetable and events more clearly, and give the events section a sharper purpose, such as upcoming exams, so the teacher sees right away when exams are coming up. Above all, I would do more thorough user research, because the concept was based on lightweight user interviews and observations from other workshops.",
       ],
       figures: [shot("edu-dashboard.png"), shot("edu-mobile-dashboard.png")],
     },
