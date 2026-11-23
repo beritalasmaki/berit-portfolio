@@ -166,9 +166,11 @@ export type CaseGlance = {
  * above it and comes from the dictionary.
  */
 export type CaseStory = {
-  /** The key facts shown under the hero, e.g. Role / Timeline / Team / Methods.
-   * `wide` gives a long fact (e.g. "What I did") a full row. */
-  facts: { label: string; value: string; wide?: boolean }[];
+  /** The key facts shown in a card under the hero, two columns. Keep each
+   * value to short lines (an array = one line each) so the card scans.
+   * `wide` puts a fact across the card's full width as a bulleted list
+   * (e.g. "What I did"). */
+  facts: { label: string; value: string | string[]; wide?: boolean }[];
   /** Hero image: the one screen that sums the product up. */
   heroImage: GalleryImage;
   /** Two or three sentences, outcome first. `**bold**` allowed. */

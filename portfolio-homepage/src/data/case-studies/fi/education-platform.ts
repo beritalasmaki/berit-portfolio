@@ -166,23 +166,31 @@ export const educationPlatformFi: CaseStudy = {
   categoryTag: "Julkisen sektorin koulutusjärjestelmä",
   story: {
     facts: [
-      { label: "Rooli", value: "UX- ja tuotesuunnittelija, myöhemmin Lead Designer" },
-      { label: "Aikajänne", value: "2021–2024, kolme vuotta" },
+      { label: "Rooli", value: ["UX- ja tuotesuunnittelija", "Myöhemmin Lead Designer"] },
+      { label: "Aikajänne", value: ["2021–2024, kolme vuotta"] },
       {
         label: "Tiimi",
-        wide: true,
-        value:
-          "Työskentelin kolmen tiimin välissä: opetus, hallinto ja asiointipalvelu. Tiimissä oli yleensä tuoteomistaja, 2 front end- ja 1 backend-kehittäjä, palvelumuotoilija ja minä. Koko hankkeen toteutusta johti tekninen kehityspäällikkö.",
+        value: [
+          "Opetus, hallinto ja asiointipalvelu",
+          "Tiimissä tuoteomistaja, 3 kehittäjää, palvelumuotoilija ja minä",
+          "Toteutusta johti tekninen kehityspäällikkö",
+        ],
       },
       {
         label: "Menetelmät",
-        value: "Yhteiskehittämisen työpajat, käyttäjähaastattelut, asiakaspolkujen kartoitus, käytettävyys- ja hyväksymistestaus",
+        value: ["Yhteiskehittämisen työpajat", "Käyttäjähaastattelut", "Asiakaspolkujen kartoitus", "Käytettävyys- ja hyväksymistestaus"],
       },
       {
         label: "Mitä tein",
         wide: true,
-        value:
-          "Fasilitoin työpajoja ja tein käyttäjähaastatteluja. Suunnittelin Design Systemin suunnittelukirjaston (UI Kit) sekä hallintopalvelun käyttöliittymät. Huolehdin, että visuaalinen ilme ja käyttäjäkokemus pysyivät yhtenäisinä koko järjestelmässä. Vastasin saavutettavuudesta ja autoin järjestämään ulkoiset saavutettavuusauditoinnit. Huolehdin, että kehitystiimillä oli aina ajantasaiset suunnitelmat, ja autoin määrittelemään toteutustiketit Jirassa.",
+        value: [
+          "Fasilitoin työpajoja ja tein käyttäjähaastatteluja",
+          "Suunnittelin Design Systemin UI Kitin",
+          "Suunnittelin hallintopalvelun käyttöliittymät",
+          "Pidin visuaalisen ilmeen ja käyttökokemuksen yhtenäisenä",
+          "Vastasin saavutettavuudesta ja autoin järjestämään auditoinnit",
+          "Pidin suunnitelmat ajan tasalla ja autoin määrittelemään Jira-tiketit",
+        ],
       },
     ],
     heroImage: shot("edu-dashboard.png"),

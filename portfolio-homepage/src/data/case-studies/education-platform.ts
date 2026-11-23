@@ -207,23 +207,31 @@ export const educationPlatform: CaseStudy = {
   categoryTag: "Public Sector Education System",
   story: {
     facts: [
-      { label: "Role", value: "UX & Product Designer, later Lead Designer" },
-      { label: "Timeline", value: "2021–2024, three years" },
+      { label: "Role", value: ["UX & Product Designer", "Later Lead Designer"] },
+      { label: "Timeline", value: ["2021–2024, three years"] },
       {
         label: "Team",
-        wide: true,
-        value:
-          "I worked across three teams: teaching, administration and e-services. A team usually had a product owner, 2 front-end developers and 1 back-end developer, a service designer and me. A technical development manager led delivery across the whole project.",
+        value: [
+          "Across teaching, administration and e-services",
+          "Per team: product owner, 3 developers, service designer and me",
+          "Technical development manager leading delivery",
+        ],
       },
       {
         label: "Methods",
-        value: "Co-design workshops, user interviews, journey mapping, usability and acceptance testing",
+        value: ["Co-design workshops", "User interviews", "Journey mapping", "Usability and acceptance testing"],
       },
       {
         label: "What I did",
         wide: true,
-        value:
-          "I facilitated workshops and ran user interviews. I designed the design system's UI kit and the administration service's user interfaces. I kept the visual identity and user experience consistent across the whole system. I was responsible for accessibility and helped organise the external accessibility audits. I made sure the development team always had up-to-date designs, and helped define implementation tickets in Jira.",
+        value: [
+          "Facilitated workshops and ran user interviews",
+          "Designed the design system's UI kit",
+          "Designed the administration service's user interfaces",
+          "Kept visual identity and UX consistent across the system",
+          "Owned accessibility and helped organise external audits",
+          "Kept designs up to date for developers and helped define Jira tickets",
+        ],
       },
     ],
     heroImage: shot("edu-dashboard.png"),

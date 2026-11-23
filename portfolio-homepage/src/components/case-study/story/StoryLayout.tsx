@@ -163,6 +163,47 @@ function ProseWithFigures({ section, copy }: { section: StorySection; copy: Dict
   );
 }
 
+/** Role, timeline, team and the rest in one card: two columns of short
+ * lines, so a reader can scan it in a few seconds. A `wide` fact sits under a
+ * rule across the full width, as a list. */
+function FactsCard({ facts }: { facts: CaseStory["facts"] }) {
+  const lines = (value: string | string[]) => (Array.isArray(value) ? value : [value]);
+  const label = "font-mono-label text-mono-label uppercase text-muted m-0";
+  const short = facts.filter((fact) => !fact.wide);
+  const wide = facts.filter((fact) => fact.wide);
+  return (
+    <div className="rounded-card glass p-card-pad">
+      <dl className="m-0 grid grid-cols-1 gap-x-grid-gap-lg gap-y-7 sm:grid-cols-2">
+        {short.map((fact) => (
+          <div key={fact.label} className="flex flex-col gap-1">
+            <dt className={`${label} mb-1.5`}>{fact.label}</dt>
+            {lines(fact.value).map((line) => (
+              <dd key={line} className="m-0 text-body-sm leading-snug text-ink">
+                {line}
+              </dd>
+            ))}
+          </div>
+        ))}
+        {wide.map((fact) => (
+          <div key={fact.label} className="flex flex-col gap-3 border-t border-rule pt-6 sm:col-span-2">
+            <dt className={label}>{fact.label}</dt>
+            <dd className="m-0">
+              <ul className="m-0 grid list-none grid-cols-1 gap-x-grid-gap-lg gap-y-2.5 p-0 sm:grid-cols-2">
+                {lines(fact.value).map((line) => (
+                  <li key={line} className="flex gap-3 text-body-sm leading-snug text-ink">
+                    <span aria-hidden="true" className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rounded-pill bg-accent" />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
 function ClockIcon() {
   return (
     <svg viewBox="0 0 20 20" aria-hidden="true" className="w-4 h-4 shrink-0">
@@ -217,17 +258,7 @@ export default function StoryLayout({
 
           <StoryFigures figures={[story.heroImage]} copy={copy} aspect={16 / 10} priority />
 
-          <dl className="m-0 grid grid-cols-1 gap-x-grid-gap gap-y-6 sm:grid-cols-2 xl:grid-cols-4">
-            {story.facts.map((fact) => (
-              <div
-                key={fact.label}
-                className={`flex flex-col gap-2 border-t border-rule pt-4 ${fact.wide ? "sm:col-span-2 xl:col-span-4" : ""}`}
-              >
-                <dt className={EYEBROW}>{fact.label}</dt>
-                <dd className={`m-0 text-body-sm text-ink text-pretty ${fact.wide ? "max-w-prose-cs" : ""}`}>{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <FactsCard facts={story.facts} />
         </section>
       </Reveal>
 
