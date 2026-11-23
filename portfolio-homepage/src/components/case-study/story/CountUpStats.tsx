@@ -54,8 +54,8 @@ function Digit({ value, place }: { value: number; place: number }) {
 
 /**
  * The impact highlights, rolling up like a mechanical counter when the row
- * scrolls into view: one number at a time, in order, each settling on its
- * value with a soft ease-in-out.
+ * scrolls into view: one number at a time, in order, each fading in while
+ * it rolls and settling on its value with a soft ease-in-out.
  *
  * - The final values are rendered on the server, so without JavaScript (and
  *   for search engines) the numbers are simply there.
@@ -66,7 +66,8 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
   const listRef = useRef<HTMLUListElement>(null);
   // Current (fractional) value per stat while rolling; null = plain final values.
   const [values, setValues] = useState<number[] | null>(null);
-  const [started, setStarted] = useState(stats.length);
+  // Linear progress 0–1 per stat; drives the fade-in alongside the roll.
+  const [progress, setProgress] = useState<number[]>(() => stats.map(() => 1));
 
   useEffect(() => {
     const list = listRef.current;
@@ -75,7 +76,7 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
 
     const parsed = stats.map((stat) => parse(stat.value));
     setValues(parsed.map(() => 0));
-    setStarted(0);
+    setProgress(parsed.map(() => 0));
 
     let frame = 0;
     const observer = new IntersectionObserver(
@@ -88,14 +89,9 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
         const tick = (now: number) => {
           const elapsed = now - start;
           if (elapsed >= 0) {
-            setStarted(Math.min(Math.floor(elapsed / DURATION), stats.length - 1) + 1);
-            setValues(
-              parsed.map((p, i) => {
-                if (!p) return 0;
-                const t = Math.min(Math.max((elapsed - i * DURATION) / DURATION, 0), 1);
-                return ease(t) * p.target;
-              })
-            );
+            const ts = parsed.map((_, i) => Math.min(Math.max((elapsed - i * DURATION) / DURATION, 0), 1));
+            setProgress(ts);
+            setValues(parsed.map((p, i) => (p ? ease(ts[i]) * p.target : 0)));
           }
           if (elapsed < stats.length * DURATION) frame = requestAnimationFrame(tick);
         };
@@ -126,7 +122,10 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
               {rolling ? (
                 <span
                   aria-hidden="true"
-                  className={`inline-flex select-none transition-opacity duration-300 ${i < started ? "opacity-100" : "opacity-0"}`}
+                  className="inline-flex select-none"
+                  // Fades in with the roll: fully opaque by 60% of the count,
+                  // so the number lands crisp.
+                  style={{ opacity: ease(Math.min(progress[i] / 0.6, 1)) }}
                 >
                   {p.prefix}
                   {Array.from({ length: places }, (_, k) => places - 1 - k).map((place) => (
