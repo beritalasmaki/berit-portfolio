@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import InlineText from "@/components/blog/InlineText";
 import Reveal from "@/components/Reveal";
-import type { CaseStory, CaseStudy, StorySection } from "@/data/case-studies";
+import type { CaseStory, CaseStudy, GalleryImage, StoryFigureSet, StorySection } from "@/data/case-studies";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { fmt } from "@/i18n/format";
 import type { TocItem } from "../TableOfContents";
@@ -87,11 +87,29 @@ function Section({
   );
 }
 
+function figureRows(set: StoryFigureSet | undefined): GalleryImage[][] {
+  if (!set || set.length === 0) return [];
+  return Array.isArray(set[0]) ? (set as GalleryImage[][]) : [set as GalleryImage[]];
+}
+
+/** Each row is its own group: same height inside the row, own lightbox. */
+function Figures({ set, copy }: { set: StoryFigureSet | undefined; copy: Dictionary["caseStudy"] }) {
+  const rows = figureRows(set);
+  if (rows.length === 0) return null;
+  return (
+    <div className="flex flex-col gap-8">
+      {rows.map((row) => (
+        <StoryFigures key={row.map((f) => f.src).join("|")} figures={row} copy={copy} />
+      ))}
+    </div>
+  );
+}
+
 function ProseWithFigures({ section, copy }: { section: StorySection; copy: Dictionary["caseStudy"] }) {
   return (
     <>
       {section.paragraphs.length > 0 && <Paragraphs paragraphs={section.paragraphs} />}
-      {section.figures && section.figures.length > 0 && <StoryFigures figures={section.figures} copy={copy} />}
+      <Figures set={section.figures} copy={copy} />
     </>
   );
 }
@@ -203,9 +221,7 @@ export default function StoryLayout({
               ))}
             </ul>
           </div>
-          {story.problem.figures && story.problem.figures.length > 0 && (
-            <StoryFigures figures={story.problem.figures} copy={copy} />
-          )}
+          <Figures set={story.problem.figures} copy={copy} />
         </Section>
       </Reveal>
 
@@ -223,7 +239,7 @@ export default function StoryLayout({
                     <h3 className="m-0 text-card-h3 text-ink text-balance">{step.title}</h3>
                   </div>
                   <Paragraphs paragraphs={step.paragraphs} />
-                  {step.figures && step.figures.length > 0 && <StoryFigures figures={step.figures} copy={copy} />}
+                  <Figures set={step.figures} copy={copy} />
                 </article>
               </Reveal>
             </li>

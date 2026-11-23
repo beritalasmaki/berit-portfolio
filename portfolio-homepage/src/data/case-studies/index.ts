@@ -24,6 +24,7 @@ export type {
   CaseStory,
   StorySection,
   StoryStep,
+  StoryFigureSet,
 } from "./types";
 export { hasFullContent } from "./types";
 

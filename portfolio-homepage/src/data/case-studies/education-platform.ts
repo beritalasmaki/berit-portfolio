@@ -46,9 +46,48 @@ const gallery: GalleryImage[] = [
   },
 ];
 
+/** Photos from workshops and team days. Exported so the Finnish file can reuse the files and sizes. */
+export const processShots: GalleryImage[] = [
+  {
+    src: "/case/edu-process-upper-secondary.jpg",
+    alt: "The upper secondary school working group, with representatives of the municipalities, giving a thumbs up after a workshop",
+    caption: "Upper secondary workshop",
+    width: 736,
+    height: 352,
+  },
+  {
+    src: "/case/edu-process-admission.jpg",
+    alt: "Whiteboard sketch of student admission: how the learner ID, the guardian's application form, the learner profile and the admission decision connect",
+    caption: "Student admission, drawn before designed",
+    width: 1125,
+    height: 844,
+  },
+  {
+    src: "/case/edu-process-retro.jpg",
+    alt: "Retro day collage: a whiteboard of team promises, sticky notes mapped by importance and impact, a Lego model and a magazine collage",
+    caption: "Retro day",
+    width: 800,
+    height: 800,
+  },
+  {
+    src: "/case/edu-process-devday.jpg",
+    alt: "Development team day collage: a process diagram, a Jira epic, a use case table and hand-drawn sketches",
+    caption: "Processes, epics, use cases",
+    width: 800,
+    height: 800,
+  },
+  {
+    src: "/case/edu-process-culture.jpg",
+    alt: "Ways-of-working workshop collage: writing on sticky notes, a glossary of school terms and a board game about a school day",
+    caption: "Shared goal, shared language",
+    width: 800,
+    height: 800,
+  },
+];
+
 /** A gallery image by file name, for placing screenshots inside the story. */
 function shot(file: string): GalleryImage {
-  const image = gallery.find((g) => g.src === `/case/${file}`);
+  const image = [...gallery, ...processShots].find((g) => g.src === `/case/${file}`);
   if (!image) throw new Error(`education-platform: no gallery image ${file}`);
   return image;
 }
@@ -179,7 +218,8 @@ export const educationPlatform: CaseStudy = {
       { label: "Timeline", value: "2021–2024, three years" },
       {
         label: "Team",
-        value: "1–3 designers at a time, a product owner, several development teams and third-party vendors",
+        value:
+          "In the administration service: a product owner, two front-end and one back-end developer, a service designer and me. A technical development manager ran the whole project.",
       },
       {
         label: "Methods",
@@ -195,7 +235,7 @@ export const educationPlatform: CaseStudy = {
       heading: "Seven municipalities, two school worlds",
       paragraphs: [
         "A consortium of public sector organisations set out to replace the systems municipalities use to run their schools: timetables, student records, absences and assessment. The new platform had to serve both comprehensive schools and upper secondary schools, which run on different processes and rules.",
-        "Several development teams and third-party vendors built it in parallel. Its users range from teachers and administrative staff to guardians and students, on computers and on phones.",
+        "The platform is made up of services: a teaching and administration service for school staff, and e-services for guardians, such as school enrolment. Several development teams and third-party vendors built them in parallel. The users range from teachers and administrative staff to guardians and students, on computers and on phones.",
       ],
     },
     problem: {
@@ -218,15 +258,26 @@ export const educationPlatform: CaseStudy = {
         {
           title: "Start with how schools actually work",
           paragraphs: [
-            "I proposed a three-phase workshop model, close to the Double Diamond, and led it with the other designers and the product owner. First we mapped today's pain points, then defined what an ideal service would look like, and finally co-designed concrete concepts with stakeholders.",
-            "In total I ran more than 10 workshops. Whenever a part of the service I owned needed more depth, I went straight to the people doing the work. For the student admission view, for example, I contacted the study secretaries who handle admissions at the schools. The rule was simple: hear every municipality, and how they really work.",
+            "I proposed a three-phase workshop model, close to the Double Diamond, and led it with the other designers and the product owner. First we mapped today's pain points, then defined what an ideal service would look like, and finally co-designed concrete concepts with stakeholders. Upper secondary schools had their own working group, with representatives from the municipalities.",
+            "In total I ran more than 10 workshops. Whenever a part of the service I owned needed more depth, I went straight to the people doing the work. For student admission, I contacted the study secretaries who handle admissions at the schools. Then we went back to basic tools: if you can't draw a process, it isn't clear yet. Before designing a screen, we drew how the learner's ID, the guardian's application, the learner profile and the admission decision connect.",
           ],
-          figures: [shot("edu-detail.png")],
+          figures: [
+            [shot("edu-process-upper-secondary.jpg"), shot("edu-process-admission.jpg")],
+            [shot("edu-detail.png")],
+          ],
         },
         {
-          title: "One visual language for every team",
+          title: "Bring the team into one room",
           paragraphs: [
-            "With few designers and many teams, I couldn't review every screen. Instead I defined a shared visual direction and a UI kit of reusable components, and later led the visual direction across a team of three designers.",
+            "Most of the work was remote, where teammates easily stay names on a screen. In-person days changed that, and I used them to bring the team closer. On a retro day we looked at what we'd achieved and where to take the work next. On development team days we refined process diagrams, user stories, epics, data models and UIs together, and used an emotion exercise to release the load that builds up in remote work.",
+            "We also used play to make ways of working concrete. Lego, collages and a board game about a school day helped us clarify our goal, sharpen how we work and build a shared vocabulary of school terms. After these days teammates no longer felt distant, and we agreed on how to run better workshops.",
+          ],
+          figures: [shot("edu-process-retro.jpg"), shot("edu-process-devday.jpg"), shot("edu-process-culture.jpg")],
+        },
+        {
+          title: "One visual language for every service",
+          paragraphs: [
+            "I worked across the teaching and administration service and the e-services for guardians, and made sure they share one visual identity and one user experience. With few designers and many teams, I couldn't review every screen. Instead I defined a shared visual direction and a UI kit of reusable components, and later led the visual direction across a team of three designers.",
             "Consistency wasn't only about looks. In regular sessions with developers I explained why something was built a certain way, and listened to their ideas. That made the right choice the easy one, even when no designer was in the room.",
             "In my final year, as Lead Designer, I was responsible for the whole platform looking and working consistently, including the parts built on third-party platforms. Those turned out to be harder to customise than we expected.",
           ],

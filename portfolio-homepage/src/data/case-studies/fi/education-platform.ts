@@ -1,4 +1,4 @@
-import { educationPlatform as en } from "../education-platform";
+import { educationPlatform as en, processShots } from "../education-platform";
 import type { CaseStudy, GalleryImage } from "../types";
 import { localizeGallery } from "./helpers";
 
@@ -12,8 +12,31 @@ const gallery = localizeGallery(en.gallery, [
   { alt: "Oppilaan välilehtivalikko, mobiili", caption: "Mobiilivalikko" },
 ]);
 
+const processFi = localizeGallery(processShots, [
+  {
+    alt: "Lukion työryhmä ja kuntien edustajat peukuttavat työpajan jälkeen",
+    caption: "Lukion työpaja",
+  },
+  {
+    alt: "Oppilaaksioton luonnos valkotaululla: miten oppijatunnus, huoltajan lomake, oppijan profiili ja päätös liittyvät toisiinsa",
+    caption: "Oppilaaksiotto piirrettiin ennen kuin suunniteltiin",
+  },
+  {
+    alt: "Retropäivän kollaasi: tiimin lupaukset taululla, post-it-laput tärkeyden ja vaikutuksen mukaan, Lego-rakennelma ja lehtileikekollaasi",
+    caption: "Retropäivä",
+  },
+  {
+    alt: "Kehitystiimin lähipäivän kollaasi: prosessikaavio, Jiran eepos, käyttötapaustaulukko ja käsin piirretyt luonnokset",
+    caption: "Prosessit, eepokset, käyttötapaukset",
+  },
+  {
+    alt: "Toimintatapatyöpajan kollaasi: post-it-lappujen kirjoittamista, koulusanasto ja koulupäivästä tehty lautapeli",
+    caption: "Yhteinen päämäärä, yhteinen kieli",
+  },
+]);
+
 function shot(file: string): GalleryImage {
-  const image = gallery.find((g) => g.src === `/case/${file}`);
+  const image = [...gallery, ...processFi].find((g) => g.src === `/case/${file}`);
   if (!image) throw new Error(`education-platform (fi): no gallery image ${file}`);
   return image;
 }
@@ -151,7 +174,8 @@ export const educationPlatformFi: CaseStudy = {
       { label: "Aikajänne", value: "2021–2024, kolme vuotta" },
       {
         label: "Tiimi",
-        value: "1–3 suunnittelijaa kerrallaan, tuoteomistaja, useita kehitystiimejä ja kolmannen osapuolen toimittajia",
+        value:
+          "Hallintopalvelussa tuoteomistaja, kaksi front end- ja yksi backend-kehittäjä, palvelumuotoilija ja minä. Koko hankkeen toteutusta johti tekninen kehityspäällikkö.",
       },
       {
         label: "Menetelmät",
@@ -167,7 +191,7 @@ export const educationPlatformFi: CaseStudy = {
       heading: "Seitsemän kuntaa, kaksi koulumaailmaa",
       paragraphs: [
         "Julkisen sektorin konsortio lähti korvaamaan järjestelmiä, joilla kunnat pyörittävät koulujensa arkea: lukujärjestyksiä, oppilastietoja, poissaoloja ja arviointia. Uuden alustan piti palvella sekä peruskouluja että lukioita, joilla on omat prosessinsa ja sääntönsä.",
-        "Alustaa rakensi rinnakkain useampi kehitystiimi ja kolmannen osapuolen toimittaja. Käyttäjiä ovat opettajat ja hallintohenkilöstö sekä huoltajat ja oppilaat, niin tietokoneella kuin puhelimella.",
+        "Alusta koostuu palveluista: koulun henkilöstön opetus- ja hallintopalvelusta sekä huoltajien asiointipalvelusta, jossa hoidetaan esimerkiksi kouluun ilmoittautuminen. Niitä rakensi rinnakkain useampi kehitystiimi ja kolmannen osapuolen toimittaja. Käyttäjiä ovat opettajat ja hallintohenkilöstö sekä huoltajat ja oppilaat, niin tietokoneella kuin puhelimella.",
       ],
     },
     problem: {
@@ -190,15 +214,26 @@ export const educationPlatformFi: CaseStudy = {
         {
           title: "Lähtökohtana se, miten koulut oikeasti toimivat",
           paragraphs: [
-            "Ehdotin kolmivaiheista työpajamallia, joka on lähellä Double Diamond -mallia, ja vedin sitä yhdessä muiden suunnittelijoiden ja tuoteomistajan kanssa. Ensin kartoitimme nykyiset kipupisteet, sitten määrittelimme ihannetilanteen ja lopuksi suunnittelimme konkreettiset konseptit yhdessä sidosryhmien kanssa.",
-            "Kaikkiaan vedin yli 10 työpajaa. Kun jokin vastuullani oleva osa palvelua vaati syvempää ymmärrystä, menin suoraan työn tekijöiden luo. Oppilaaksiottonäkymää varten otin esimerkiksi yhteyttä kouluissa oppilaaksiottoa hoitaviin opintosihteereihin. Periaate oli yksinkertainen: kuunnellaan jokaista kuntaa ja sitä, miten siellä oikeasti tehdään töitä.",
+            "Ehdotin kolmivaiheista työpajamallia, joka on lähellä Double Diamond -mallia, ja vedin sitä yhdessä muiden suunnittelijoiden ja tuoteomistajan kanssa. Ensin kartoitimme nykyiset kipupisteet, sitten määrittelimme ihannetilanteen ja lopuksi suunnittelimme konkreettiset konseptit yhdessä sidosryhmien kanssa. Lukioilla oli oma työryhmänsä, jossa olivat mukana kuntien edustajat.",
+            "Kaikkiaan vedin yli 10 työpajaa. Kun jokin vastuullani oleva osa palvelua vaati syvempää ymmärrystä, menin suoraan työn tekijöiden luo. Oppilaaksiottoa varten otin yhteyttä kouluissa oppilaaksiottoa hoitaviin opintosihteereihin. Sitten palasimme perinteisiin työvälineisiin: jos prosessia ei pysty piirtämään, se on vielä epäselvä. Ennen yhtäkään näkymää piirsimme, miten oppijan tunnus, huoltajan hakemus, oppijan profiili ja oppilaaksiottopäätös liittyvät toisiinsa.",
           ],
-          figures: [shot("edu-detail.png")],
+          figures: [
+            [shot("edu-process-upper-secondary.jpg"), shot("edu-process-admission.jpg")],
+            [shot("edu-detail.png")],
+          ],
         },
         {
-          title: "Yksi visuaalinen kieli kaikille tiimeille",
+          title: "Tiimi samaan huoneeseen",
           paragraphs: [
-            "Kun suunnittelijoita oli vähän ja tiimejä paljon, en voinut tarkistaa jokaista näkymää. Sen sijaan määrittelin yhteisen visuaalisen linjan ja uudelleenkäytettävien komponenttien UI Kitin, ja myöhemmin johdin visuaalista linjaa kolmen suunnittelijan tiimissä.",
+            "Suurin osa työstä tehtiin etänä, jolloin tiimikaverit jäävät helposti nimiksi ruudulla. Lähipäivät muuttivat tämän, ja käytin niitä tiimin lähentämiseen. Retropäivänä katsoimme, mitä olimme saaneet aikaan ja mihin suuntaan työtä viedään. Kehitystiimin lähipäivinä tarkensimme yhdessä prosessikuvia, käyttäjätarinoita, eepoksia, tietomalleja ja käyttöliittymiä, ja purimme etätyössä kertyvää kuormaa tunnetoriharjoituksella.",
+            "Teimme toimintatavoista konkreettisia myös leikin kautta. Legot, kollaasit ja koulupäivästä tehty lautapeli auttoivat kirkastamaan päämäärää, hiomaan työtapoja ja rakentamaan yhteisen sanaston koulun käsitteille. Näiden päivien jälkeen tiimikaverit eivät tuntuneet enää etäisiltä, ja sovimme, miten työpajoja vedetään paremmin.",
+          ],
+          figures: [shot("edu-process-retro.jpg"), shot("edu-process-devday.jpg"), shot("edu-process-culture.jpg")],
+        },
+        {
+          title: "Yksi visuaalinen kieli kaikille palveluille",
+          paragraphs: [
+            "Työskentelin sekä opetus- ja hallintopalvelun että huoltajien asiointipalvelun parissa ja varmistin, että niillä on yhtenäinen visuaalinen ilme ja käyttökokemus. Kun suunnittelijoita oli vähän ja tiimejä paljon, en voinut tarkistaa jokaista näkymää. Sen sijaan määrittelin yhteisen visuaalisen linjan ja uudelleenkäytettävien komponenttien UI Kitin, ja myöhemmin johdin visuaalista linjaa kolmen suunnittelijan tiimissä.",
             "Yhtenäisyys ei ollut pelkkää ulkonäköä. Säännöllisissä tapaamisissa kehittäjien kanssa kerroin, miksi jokin rakennetaan tietyllä tavalla, ja kuuntelin heidän ideoitaan. Näin oikeasta ratkaisusta tuli helppo ratkaisu silloinkin, kun suunnittelija ei ollut paikalla.",
             "Viimeisenä vuotenani Lead Designerina vastasin siitä, että koko alusta näyttää ja toimii johdonmukaisesti, myös kolmannen osapuolen alustoille rakennetut osat. Niiden muokkaaminen osoittautui odotettua vaikeammaksi.",
           ],

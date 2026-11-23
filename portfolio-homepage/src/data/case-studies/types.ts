@@ -199,17 +199,20 @@ export type CaseStory = {
   };
 };
 
+/** One row of screenshots, or several rows (each row lines up at equal height). */
+export type StoryFigureSet = GalleryImage[] | GalleryImage[][];
+
 export type StorySection = {
   heading: string;
   paragraphs: string[];
-  figures?: GalleryImage[];
+  figures?: StoryFigureSet;
 };
 
 export type StoryStep = {
   title: string;
   /** `**bold**` allowed. */
   paragraphs: string[];
-  figures?: GalleryImage[];
+  figures?: StoryFigureSet;
 };
 
 /** Everything beyond the summary — present only on fully-written case studies. */
