@@ -14,10 +14,6 @@ const gallery = localizeGallery(en.gallery, [
 
 const processFi = localizeGallery(processShots, [
   {
-    alt: "Lukion työryhmä ja kuntien edustajat peukuttavat työpajan jälkeen",
-    caption: "Lukion työpaja",
-  },
-  {
     alt: "Oppilaaksioton luonnos valkotaululla: miten oppijatunnus, huoltajan lomake, oppijan profiili ja päätös liittyvät toisiinsa",
     caption: "Oppilaaksiotto piirrettiin ennen kuin suunniteltiin",
   },
@@ -71,7 +67,7 @@ export const educationPlatformFi: CaseStudy = {
       "**Luottamuksen palauttaminen:** Budjettiylityksen jälkeen otin aktiivisen roolin suunnittelutyön edistymisen ja sen arvon viestimisessä sidosryhmille. Rakensimme luottamusta läpinäkyvällä viestinnällä, säännöllisellä läsnäololla ja kirkkaalla päätöksenteon dokumentoinnilla. Tämä selkeytti yhteistyötä eri osapuolten välillä ja varmisti hankkeen etenemisen.",
     ],
     outcome:
-      "Pilottikoulujen palaute oli erittäin myönteistä: opettajat ja hallintohenkilöstö kiittivät alustan helppokäyttöisyyttä, nopeutta ja johdonmukaista rakennetta. Alusta otettiin käyttöön viidessä kunnassa keväällä 2026, ja seuraavaksi valmistellaan järjestelmän laajempaa levittämistä kouluverkostossa.",
+      "Pilottikoulujen palaute oli erittäin myönteistä: opettajat ja hallintohenkilöstö kiittivät alustan helppokäyttöisyyttä, nopeutta ja johdonmukaista rakennetta. Alusta otettiin käyttöön viidessä kunnassa keväällä 2026, ja laajempi käyttöönotto kouluverkostossa alkoi syksyllä 2026.",
   },
   roleLabel: "UX- ja tuotesuunnittelija, myöhemmin Lead Designer, kolmen vuoden ajan",
   focusLabel:
@@ -108,7 +104,7 @@ export const educationPlatformFi: CaseStudy = {
   sneakPeekImages: en.sneakPeekImages,
 
   impactIntro:
-    "Pilottikoulujen palaute on ollut pääosin myönteistä. Alustaa on kuvattu helppokäyttöiseksi, monipuoliseksi ja moderniksi. Erityisesti opettajat ja hallintohenkilöstö kiittelivät sitä, kuinka johdonmukaiselta palvelu tuntuu ja kuinka hyvin se tukee koulun arjen rutiineja. Käytettävyys ja nopeus nousivat erityisesti esiin: käyttäjien mukaan tarvittavan löytäminen onnistui nopeasti ja helposti. Käytännön tehtävät, kuten todistusten tulostus ja oppilastietojen siirto, osoittautuivat luotettaviksi päivittäisessä käytössä. Myös loppukäyttäjät, opettajat mukaan lukien, osallistuivat suoraan hyväksymistestaukseen, joten alusta sopii siihen, miten opetustyötä oikeasti tehdään. Alusta otettiin käyttöön vasta keväällä 2026, ja laajempi käyttöönotto kouluissa on tulossa tänä syksynä, joten täysi vaikutus on vielä edessä. Toistaiseksi tiedämme, että tuloksena on yhtenäinen ja saavutettava perusta, jonka varaan useat kunnat rakentavat nyt päivittäistä koulunhallintoaan.",
+    "Pilottikoulujen palaute on ollut pääosin myönteistä. Alustaa on kuvattu helppokäyttöiseksi, monipuoliseksi ja moderniksi. Erityisesti opettajat ja hallintohenkilöstö kiittelivät sitä, kuinka johdonmukaiselta palvelu tuntuu ja kuinka hyvin se tukee koulun arjen rutiineja. Käytettävyys ja nopeus nousivat erityisesti esiin: käyttäjien mukaan tarvittavan löytäminen onnistui nopeasti ja helposti. Käytännön tehtävät, kuten todistusten tulostus ja oppilastietojen siirto, osoittautuivat luotettaviksi päivittäisessä käytössä. Myös loppukäyttäjät, opettajat mukaan lukien, osallistuivat suoraan hyväksymistestaukseen, joten alusta sopii siihen, miten opetustyötä oikeasti tehdään. Alusta otettiin käyttöön vasta keväällä 2026, ja laajempi käyttöönotto kouluissa alkoi syksyllä 2026, joten täysi vaikutus on vielä edessä. Toistaiseksi tiedämme, että tuloksena on yhtenäinen ja saavutettava perusta, jonka varaan useat kunnat rakentavat nyt päivittäistä koulunhallintoaan.",
   impactCards: [
     {
       number: "01",
@@ -217,15 +213,12 @@ export const educationPlatformFi: CaseStudy = {
             "Ehdotin kolmivaiheista työpajamallia, joka on lähellä Double Diamond -mallia, ja vedin sitä yhdessä muiden suunnittelijoiden ja tuoteomistajan kanssa. Ensin kartoitimme nykyiset kipupisteet, sitten määrittelimme ihannetilanteen ja lopuksi suunnittelimme konkreettiset konseptit yhdessä sidosryhmien kanssa. Lukioilla oli oma työryhmänsä, jossa olivat mukana kuntien edustajat.",
             "Kaikkiaan vedin yli 10 työpajaa. Kun jokin vastuullani oleva osa palvelua vaati syvempää ymmärrystä, menin suoraan työn tekijöiden luo. Oppilaaksiottoa varten otin yhteyttä kouluissa oppilaaksiottoa hoitaviin opintosihteereihin. Sitten palasimme perinteisiin työvälineisiin: jos prosessia ei pysty piirtämään, se on vielä epäselvä. Ennen yhtäkään näkymää piirsimme, miten oppijan tunnus, huoltajan hakemus, oppijan profiili ja oppilaaksiottopäätös liittyvät toisiinsa.",
           ],
-          figures: [
-            [shot("edu-process-upper-secondary.jpg"), shot("edu-process-admission.jpg")],
-            [shot("edu-detail.png")],
-          ],
+          figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
         },
         {
           title: "Tiimi samaan huoneeseen",
           paragraphs: [
-            "Suurin osa työstä tehtiin etänä, jolloin tiimikaverit jäävät helposti nimiksi ruudulla. Lähipäivät muuttivat tämän, ja käytin niitä tiimin lähentämiseen. Retropäivänä katsoimme, mitä olimme saaneet aikaan ja mihin suuntaan työtä viedään. Kehitystiimin lähipäivinä tarkensimme yhdessä prosessikuvia, käyttäjätarinoita, eepoksia, tietomalleja ja käyttöliittymiä, ja purimme etätyössä kertyvää kuormaa tunnetoriharjoituksella.",
+            "Suurin osa työstä tehtiin etänä, jolloin tiimikaverit jäävät helposti nimiksi ruudulla. Lähipäivät muuttivat tämän. Suunnittelimme ja fasilitoimme ne yhdessä, minä vedin aina oman osuuteni, ja käytin niitä tiimin lähentämiseen. Retropäivänä katsoimme, mitä olimme saaneet aikaan ja mihin suuntaan työtä viedään. Kehitystiimin lähipäivinä tarkensimme yhdessä prosessikuvia, käyttäjätarinoita, eepoksia, tietomalleja ja käyttöliittymiä, ja purimme etätyössä kertyvää kuormaa tunnetoriharjoituksella.",
             "Teimme toimintatavoista konkreettisia myös leikin kautta. Legot, kollaasit ja koulupäivästä tehty lautapeli auttoivat kirkastamaan päämäärää, hiomaan työtapoja ja rakentamaan yhteisen sanaston koulun käsitteille. Näiden päivien jälkeen tiimikaverit eivät tuntuneet enää etäisiltä, ja sovimme, miten työpajoja vedetään paremmin.",
           ],
           figures: [shot("edu-process-retro.jpg"), shot("edu-process-devday.jpg"), shot("edu-process-culture.jpg")],
@@ -236,15 +229,12 @@ export const educationPlatformFi: CaseStudy = {
             "Työskentelin sekä opetus- ja hallintopalvelun että huoltajien asiointipalvelun parissa ja varmistin, että niillä on yhtenäinen visuaalinen ilme ja käyttökokemus. Kun suunnittelijoita oli vähän ja tiimejä paljon, en voinut tarkistaa jokaista näkymää. Sen sijaan määrittelin yhteisen visuaalisen linjan ja uudelleenkäytettävien komponenttien UI Kitin, ja myöhemmin johdin visuaalista linjaa kolmen suunnittelijan tiimissä.",
             "Yhtenäisyys ei ollut pelkkää ulkonäköä. Säännöllisissä tapaamisissa kehittäjien kanssa kerroin, miksi jokin rakennetaan tietyllä tavalla, ja kuuntelin heidän ideoitaan. Näin oikeasta ratkaisusta tuli helppo ratkaisu silloinkin, kun suunnittelija ei ollut paikalla.",
             "Viimeisenä vuotenani Lead Designerina vastasin siitä, että koko alusta näyttää ja toimii johdonmukaisesti, myös kolmannen osapuolen alustoille rakennetut osat. Niiden muokkaaminen osoittautui odotettua vaikeammaksi.",
+            "Sama koski puhelimia. Huoltajat ja oppilaat olivat kokeneet vanhat mobiilisovellukset usein sekaviksi, joten mobiilinäkymissä on sama rakenne ja samat komponentit kuin tietokoneella, ja asiat löytyvät odotetusta paikasta näytöstä riippumatta.",
           ],
-          figures: [shot("edu-timetable.png"), shot("edu-timetable-edit.png")],
-        },
-        {
-          title: "Mobiilikokemus, jota on oikeasti helppo käyttää",
-          paragraphs: [
-            "Vanhoissa järjestelmissä oli mobiilisovellukset, mutta huoltajat ja oppilaat kokivat ne usein sekaviksi. Uusissa mobiilinäkymissä on sama rakenne ja samat komponentit kuin tietokoneella, joten asiat löytyvät samasta paikasta näytön koosta riippumatta.",
+          figures: [
+            [shot("edu-timetable.png"), shot("edu-timetable-edit.png")],
+            [shot("edu-mobile-dashboard.png"), shot("edu-mobile-menu.png"), shot("edu-mobile-detail.png")],
           ],
-          figures: [shot("edu-mobile-dashboard.png"), shot("edu-mobile-menu.png"), shot("edu-mobile-detail.png")],
         },
         {
           title: "Luottamuksen palauttaminen budjetin ylittyessä",
@@ -267,7 +257,7 @@ export const educationPlatformFi: CaseStudy = {
       intro: [
         "Näyttö on laadullista: pilottikoulujen palautetta ja hyväksymistestausta, jossa opettajat ja muut loppukäyttäjät testasivat alustaa itse. Emme määritelleet mitattavia onnistumisen mittareita alussa, ja se on yksi alla olevista opeistani.",
         "Opettajat ja hallintohenkilöstö kuvaavat alustaa helppokäyttöiseksi, monipuoliseksi ja moderniksi. Nopeus ja johdonmukaisuus toistuvat palautteessa: tarvittava löytyy nopeasti. Arjen tehtävät, kuten todistusten tulostus ja oppilastietojen siirto, ovat osoittautuneet luotettaviksi päivittäisessä käytössä.",
-        "Alusta julkaistiin keväällä 2026, projektikauteni jälkeen, ja laajempaa käyttöönottoa kouluverkostossa valmistellaan. Täysi vaikutus on siis vielä edessä.",
+        "Alusta julkaistiin keväällä 2026, projektikauteni jälkeen, ja laajempi käyttöönotto kouluverkostossa alkoi syksyllä 2026. Täysi vaikutus on siis vielä edessä.",
       ],
       highlights: [
         { value: "5", label: "kuntaa käyttää alustaa keväästä 2026" },

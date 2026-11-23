@@ -49,13 +49,6 @@ const gallery: GalleryImage[] = [
 /** Photos from workshops and team days. Exported so the Finnish file can reuse the files and sizes. */
 export const processShots: GalleryImage[] = [
   {
-    src: "/case/edu-process-upper-secondary.jpg",
-    alt: "The upper secondary school working group, with representatives of the municipalities, giving a thumbs up after a workshop",
-    caption: "Upper secondary workshop",
-    width: 736,
-    height: 352,
-  },
-  {
     src: "/case/edu-process-admission.jpg",
     alt: "Whiteboard sketch of student admission: how the learner ID, the guardian's application form, the learner profile and the admission decision connect",
     caption: "Student admission, drawn before designed",
@@ -122,7 +115,7 @@ export const educationPlatform: CaseStudy = {
       "**Restoring trust:** After a budget overrun, I took an active role in communicating the progress and value of the design work to stakeholders. We rebuilt trust through transparent communication, regular presence and clear documentation of decisions. This made collaboration between the parties clearer and kept the project moving.",
     ],
     outcome:
-      "Pilot feedback was very positive: teachers and administrative staff praised the platform's ease of use, speed and consistent structure. The platform launched in five municipalities in spring 2026, and a wider rollout across the school network is now being prepared.",
+      "Pilot feedback was very positive: teachers and administrative staff praised the platform's ease of use, speed and consistent structure. The platform launched in five municipalities in spring 2026, and a wider rollout across the school network began in autumn 2026.",
   },
   roleLabel: "UX & Product Designer, and later Lead Designer, over a three-year period",
   focusLabel: "Service design, Design Systems, and cross-team design consistency across a multi-vendor public sector platform",
@@ -158,7 +151,7 @@ export const educationPlatform: CaseStudy = {
   sneakPeekImages: ["/case/edu-dashboard.png", "/case/edu-timetable.png"],
 
   impactIntro:
-    "Feedback from the pilot schools has been largely positive. The platform has been described as easy to use, versatile, and modern. Teachers and administrative staff in particular praised how logical the service felt and how well it supported everyday school routines. Usability and speed stood out specifically, with users reporting that they could find what they needed quickly and easily. Practical use cases, like printing report cards and transferring student data, proved reliable in daily use. End users, including teachers, were also involved directly in acceptance testing, which helped ensure the platform actually fit how teaching work happens in practice. The platform only launched in spring 2026, with a wider school rollout this autumn, so the full impact is still ahead of us — what we do know so far is that we delivered a consistent, accessible foundation that several municipalities are now building their daily school administration on.",
+    "Feedback from the pilot schools has been largely positive. The platform has been described as easy to use, versatile, and modern. Teachers and administrative staff in particular praised how logical the service felt and how well it supported everyday school routines. Usability and speed stood out specifically, with users reporting that they could find what they needed quickly and easily. Practical use cases, like printing report cards and transferring student data, proved reliable in daily use. End users, including teachers, were also involved directly in acceptance testing, which helped ensure the platform actually fit how teaching work happens in practice. The platform only launched in spring 2026, with a wider school rollout from autumn 2026, so the full impact is still ahead of us — what we do know so far is that we delivered a consistent, accessible foundation that several municipalities are now building their daily school administration on.",
   impactCards: [
     {
       number: "01",
@@ -196,7 +189,7 @@ export const educationPlatform: CaseStudy = {
     {
       number: "03",
       title: "Facing budget pressure, and rebuilding trust",
-      body: "At one point, the project went over budget, and two municipalities withdrew because it became too expensive for them to continue. Trust suffered, both among stakeholders and within the teams. We rebuilt it by staying visible in the right meetings, communicating clearly about what we were doing and why, and writing decisions down so everyone could follow the reasoning. Looking back, planning the design work more carefully from the very start could have prevented some of this friction. Despite the setbacks, the platform launched in the remaining five municipalities in spring 2026, with a wider rollout to schools planned for this autumn.",
+      body: "At one point, the project went over budget, and two municipalities withdrew because it became too expensive for them to continue. Trust suffered, both among stakeholders and within the teams. We rebuilt it by staying visible in the right meetings, communicating clearly about what we were doing and why, and writing decisions down so everyone could follow the reasoning. Looking back, planning the design work more carefully from the very start could have prevented some of this friction. Despite the setbacks, the platform launched in the remaining five municipalities in spring 2026, and a wider rollout to schools began in autumn 2026.",
     },
   ],
 
@@ -261,15 +254,12 @@ export const educationPlatform: CaseStudy = {
             "I proposed a three-phase workshop model, close to the Double Diamond, and led it with the other designers and the product owner. First we mapped today's pain points, then defined what an ideal service would look like, and finally co-designed concrete concepts with stakeholders. Upper secondary schools had their own working group, with representatives from the municipalities.",
             "In total I ran more than 10 workshops. Whenever a part of the service I owned needed more depth, I went straight to the people doing the work. For student admission, I contacted the study secretaries who handle admissions at the schools. Then we went back to basic tools: if you can't draw a process, it isn't clear yet. Before designing a screen, we drew how the learner's ID, the guardian's application, the learner profile and the admission decision connect.",
           ],
-          figures: [
-            [shot("edu-process-upper-secondary.jpg"), shot("edu-process-admission.jpg")],
-            [shot("edu-detail.png")],
-          ],
+          figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
         },
         {
           title: "Bring the team into one room",
           paragraphs: [
-            "Most of the work was remote, where teammates easily stay names on a screen. In-person days changed that, and I used them to bring the team closer. On a retro day we looked at what we'd achieved and where to take the work next. On development team days we refined process diagrams, user stories, epics, data models and UIs together, and used an emotion exercise to release the load that builds up in remote work.",
+            "Most of the work was remote, where teammates easily stay names on a screen. In-person days changed that. We planned and facilitated them together, I always led my own part, and I used them to bring the team closer. On a retro day we looked at what we'd achieved and where to take the work next. On development team days we refined process diagrams, user stories, epics, data models and UIs together, and used an emotion exercise to release the load that builds up in remote work.",
             "We also used play to make ways of working concrete. Lego, collages and a board game about a school day helped us clarify our goal, sharpen how we work and build a shared vocabulary of school terms. After these days teammates no longer felt distant, and we agreed on how to run better workshops.",
           ],
           figures: [shot("edu-process-retro.jpg"), shot("edu-process-devday.jpg"), shot("edu-process-culture.jpg")],
@@ -280,15 +270,12 @@ export const educationPlatform: CaseStudy = {
             "I worked across the teaching and administration service and the e-services for guardians, and made sure they share one visual identity and one user experience. With few designers and many teams, I couldn't review every screen. Instead I defined a shared visual direction and a UI kit of reusable components, and later led the visual direction across a team of three designers.",
             "Consistency wasn't only about looks. In regular sessions with developers I explained why something was built a certain way, and listened to their ideas. That made the right choice the easy one, even when no designer was in the room.",
             "In my final year, as Lead Designer, I was responsible for the whole platform looking and working consistently, including the parts built on third-party platforms. Those turned out to be harder to customise than we expected.",
+            "The same went for phones. Guardians and students had often found the old mobile apps confusing, so the mobile views use the same structure and components as desktop, and things are where you expect them on any screen.",
           ],
-          figures: [shot("edu-timetable.png"), shot("edu-timetable-edit.png")],
-        },
-        {
-          title: "A phone experience people actually want to use",
-          paragraphs: [
-            "The old systems had mobile apps, but guardians and students often found them confusing. The new mobile views use the same structure and components as the desktop ones, so things are in the same place whatever the screen size.",
+          figures: [
+            [shot("edu-timetable.png"), shot("edu-timetable-edit.png")],
+            [shot("edu-mobile-dashboard.png"), shot("edu-mobile-menu.png"), shot("edu-mobile-detail.png")],
           ],
-          figures: [shot("edu-mobile-dashboard.png"), shot("edu-mobile-menu.png"), shot("edu-mobile-detail.png")],
         },
         {
           title: "Rebuild trust when the budget broke",
@@ -311,7 +298,7 @@ export const educationPlatform: CaseStudy = {
       intro: [
         "The evidence is qualitative: feedback from the pilot schools, and acceptance testing in which teachers and other end users tested the platform themselves. We didn't set measurable success metrics at the start, which is one of my lessons below.",
         "Teachers and administrative staff describe the platform as easy to use, versatile and modern. Speed and logic come up again and again: people find what they need quickly. Everyday tasks such as printing report cards and transferring student data have proved reliable in daily use.",
-        "The platform launched in spring 2026, after my time on the project, and a wider rollout across the school network is being prepared. The full impact is still ahead.",
+        "The platform launched in spring 2026, after my time on the project, and a wider rollout across the school network began in autumn 2026. The full impact is still ahead.",
       ],
       highlights: [
         { value: "5", label: "municipalities using the platform since spring 2026" },
