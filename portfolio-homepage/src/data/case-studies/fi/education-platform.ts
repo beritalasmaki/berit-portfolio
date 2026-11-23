@@ -219,73 +219,40 @@ export const educationPlatformFi: CaseStudy = {
         "**Monta ääntä:** seitsemän kuntaa omine työtapoineen sekä pitkä lista sidosryhmiä ja käyttäjäryhmiä.",
         "**Laki, tietosuoja ja saavutettavuus:** GDPR ja opetusta koskeva lainsäädäntö asettivat tiukat rajat sille, mitä järjestelmä sai tehdä. Julkisen sektorin palveluna sen piti myös täyttää saavutettavuusvaatimukset, jotta jokainen opettaja, huoltaja ja oppilas pystyy käyttämään sitä.",
       ],
+      closingLabel: "Kun budjetti ylittyi",
+      closing: [
+        "Kesken projektin budjetti ylittyi, ja kaksi kuntaa vetäytyi, koska jatkaminen kävi niille liian kalliiksi. Luottamus kärsi sekä sidosryhmissä että tiimien sisällä.",
+        "Otin aktiivisen roolin suunnittelutyön edistymisen ja arvon näyttämisessä. Olin läsnä oikeissa palavereissa, kerroin mitä teimme ja miksi, ja kirjasin päätökset ylös, jotta kuka tahansa pystyi seuraamaan perusteluja. Tämä selkeytti yhteistyötä ja piti hankkeen liikkeellä.",
+      ],
     },
     process: {
-      heading: "Työpajoista yhteiseen visuaaliseen kieleen",
+      heading: "Tutkimuksesta toteutukseen",
       steps: [
         {
-          title: "Lähtökohtana se, miten koulut oikeasti toimivat",
+          title: "Tutkimus koulujen arjesta",
           paragraphs: [
-            "Menetelmä riippui siitä, kuinka laajasta kokonaisuudesta oli kyse. Kun suunnittelimme uutta ja laajaa kokonaisuutta, käytimme kolmivaiheista työpajamallia, jota ehdotin ja fasilitoin yhdessä muiden suunnittelijoiden ja tuoteomistajan kanssa. Ensin kartoitimme nykyiset kipupisteet, sitten määrittelimme ihannetilanteen ja lopuksi suunnittelimme konkreettiset konseptit yhdessä sidosryhmien kanssa. Lukioilla oli oma työryhmänsä, jossa olivat mukana kuntien edustajat.",
+            "Menetelmä riippui siitä, kuinka laajasta kokonaisuudesta oli kyse. Uusissa ja laajoissa kokonaisuuksissa käytimme kolmivaiheista työpajamallia, jota ehdotin ja fasilitoin yhdessä muiden suunnittelijoiden ja tuoteomistajan kanssa. Ensin kartoitimme nykyiset kipupisteet, sitten määrittelimme ihannetilanteen ja lopuksi suunnittelimme konkreettiset konseptit yhdessä sidosryhmien kanssa. Lukioilla oli oma työryhmänsä, jossa olivat mukana kuntien edustajat.",
             "Pienemmissä konsepteissa riitti muutama käyttäjähaastattelu ja co-design-tilaisuus, joihin otin mukaan 1–2 loppukäyttäjää kustakin kunnasta. Kaikkiaan fasilitoin kymmenkunta työpajaa, ja aina kun vastuullani oleva osuus vaati syvempää ymmärrystä, haastattelin käyttäjiä nopeasti ja kevyesti.",
-            "Esimerkiksi oppilaaksiottoa suunnitellessa otin yhteyttä kouluissa oppilaaksiottoa hoitaviin opintosihteereihin. Ennen yhtäkään näkymää piirsimme auki, miten oppijan tunnus, huoltajan hakemus, oppijan profiili ja oppilaaksiottopäätös liittyvät toisiinsa. Periaatteemme oli, että jos prosessia ei pysty piirtämään, se on vielä epäselvä. Silloin palasimme käyttäjien ja kehittäjien luo, tarkensimme epäselvät kohdat ja piirsimme uudelleen, kunnes käyttäjien tarpeet ja järjestelmän vaatimukset sopivat yhteen. Vasta sitten suunnittelin näkymät. Näkymät testattiin käyttäjillä, niitä iteroitiin ja ne testattiin uudelleen ennen kuin ne siirtyivät kehitykseen. Luovutin suunnitelmat kehittäjille ja seurasin toteutusta loppuun asti.",
-          ],
-          branches: {
-            question: "Kuinka laaja kokonaisuus?",
-            paths: [
-              {
-                when: "Uusi, laaja kokonaisuus",
-                title: "Kolmivaiheinen työpajaprosessi",
-                steps: [
-                  "Nykyisten kipupisteiden kartoitus",
-                  "Ihannetilanteen määrittely",
-                  "Konseptien yhteissuunnittelu sidosryhmien kanssa",
-                ],
-              },
-              {
-                when: "Pienempi konsepti",
-                title: "Kevyt yhteissuunnittelu",
-                steps: ["Käyttäjähaastattelut", "Co-design-tilaisuudet, 1–2 loppukäyttäjää kustakin kunnasta"],
-              },
-            ],
-            then: [
-              {
-                label: "Suunnittelu",
-                steps: [
-                  "Prosessi piirretään auki",
-                  "Tekniset reunaehdot tarkistetaan ja sovitetaan yhteen käyttäjäpolkujen kanssa",
-                  "Epäselvät kohdat tarkennetaan käyttäjien ja kehittäjien kanssa",
-                  "Näkymien suunnittelu",
-                ],
-              },
-              {
-                label: "Testaus",
-                steps: ["Testaus käyttäjillä", "Iterointi havaintojen pohjalta", "Uusi testaus"],
-                loop: "Toistetaan, kunnes ratkaisu toimii käyttäjille",
-              },
-              {
-                label: "Kehitys",
-                steps: ["Suunnitelmien luovutus kehittäjille", "Toteutuksen jälkiseuranta"],
-              },
-            ],
-          },
-          figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
-        },
-        {
-          title: "Tiimi samaan huoneeseen",
-          paragraphs: [
             "Suurin osa työstä tehtiin etänä, joten järjestimme myös lähipäiviä, jotka suunnittelimme ja fasilitoimme yhdessä. Ne lähensivät tiimiä ja tekivät yhteistyöstä sujuvampaa. Retropäivänä arvioimme, mitä olimme saaneet aikaan ja mihin suuntaan työtä kannattaa viedä. Kehitystiimin lähipäivinä tarkensimme yhdessä prosessikuvauksia, käyttäjätarinoita, eepoksia, tietomalleja ja käyttöliittymiä.",
-            "Teimme toimintatavoista konkreettisia myös leikin kautta. Legot, kollaasit ja koulupäivästä tehty lautapeli auttoivat kirkastamaan päämäärää, hiomaan työtapoja ja rakentamaan yhteisen sanaston koulun käsitteille. Näiden päivien jälkeen tiimikaverit eivät tuntuneet enää etäisiltä. Kirkastimme myös, miten tiimi työskentelee: miten tieto kulkee suunnittelun ja kehityksen välillä ja miten työtä voisi jatkossa sujuvoittaa.",
+            "Teimme toimintatavoista konkreettisia myös leikin kautta. Legot, kollaasit ja koulupäivästä tehty lautapeli auttoivat kirkastamaan päämäärää, hiomaan työtapoja ja rakentamaan yhteisen sanaston koulun käsitteille. Näiden päivien jälkeen tiimikaverit eivät tuntuneet enää etäisiltä. Kirkastimme myös tiimin työtapoja eli sitä, miten tieto kulkee suunnittelun ja kehityksen välillä ja miten työtä voisi jatkossa sujuvoittaa.",
           ],
           figures: [shot("edu-process-retro.jpg"), shot("edu-process-devday.jpg"), shot("edu-process-culture.jpg")],
+        },
+        {
+          title: "Prosessit auki ennen näkymiä",
+          paragraphs: [
+            "Ennen näkymiä piirsimme prosessit auki. Periaatteemme oli, että jos prosessia ei pysty piirtämään, se on vielä epäselvä. Oppilaaksiottoa suunnitellessa otin yhteyttä kouluissa oppilaaksiottoa hoitaviin opintosihteereihin, ja piirsimme auki, miten oppijan tunnus, huoltajan hakemus, oppijan profiili ja oppilaaksiottopäätös liittyvät toisiinsa.",
+            "Samalla tarkistimme tekniset reunaehdot ja sovitimme ne yhteen käyttäjäpolkujen kanssa. Kun jokin jäi epäselväksi, palasimme käyttäjien ja kehittäjien luo, tarkensimme ja piirsimme uudelleen, kunnes käyttäjien tarpeet ja järjestelmän vaatimukset sopivat yhteen. Vasta sitten suunnittelin näkymät.",
+          ],
+          figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
         },
         {
           title: "Yksi visuaalinen kieli kaikille palveluille",
           paragraphs: [
             "Työskentelin sekä opetus- ja hallintopalvelun että huoltajien asiointipalvelun parissa ja varmistin, että niillä on yhtenäinen visuaalinen ilme ja käyttökokemus. Kun suunnittelijoita oli vähän ja tiimejä paljon, en voinut tarkistaa jokaista näkymää. Sen sijaan määrittelin yhteisen visuaalisen linjan ja uudelleenkäytettävien komponenttien UI Kitin, ja myöhemmin johdin hankkeen visuaalista linjaa.",
-            "Yhtenäisyys ei ollut pelkkää ulkonäköä. Tein tiivistä yhteistyötä kehittäjien kanssa: kerroin säännöllisesti, miksi jokin rakennetaan tietyllä tavalla, kuuntelin heidän ideoitaan ja selvitin kunkin osan tekniset reunaehdot. Sovelluskehityksen AMK-tutkintoni ansiosta ymmärsin toteutuksen haasteet ja pystyin keskustelemaan niistä kehittäjien kanssa suoraan.",
-            "Viimeisenä vuotenani Lead Designerina vastasin siitä, että koko alusta näyttää ja toimii johdonmukaisesti, myös kolmannen osapuolen alustoille rakennetut osat. Niiden muokkaaminen osoittautui odotettua vaikeammaksi. Värien ja logon avulla saimme ne kuitenkin sovitettua niin, ettei palvelu tuntunut irralliselta.",
+            "Yhtenäisyys ei ollut pelkkää ulkonäköä. Tein tiivistä yhteistyötä kehittäjien kanssa. Kerroin säännöllisesti, miksi jokin rakennetaan tietyllä tavalla, kuuntelin heidän ideoitaan ja selvitin kunkin osan tekniset reunaehdot. Sovelluskehityksen AMK-tutkintoni ansiosta ymmärsin toteutuksen haasteet ja pystyin keskustelemaan niistä kehittäjien kanssa suoraan.",
             "Sama koski mobiililaitteita. Huoltajat ja oppilaat olivat kokeneet vanhat mobiilisovellukset usein sekaviksi, joten mobiilinäkymissä on sama rakenne ja samat komponentit kuin tietokoneella, ja asiat löytyvät odotetusta paikasta näytöstä riippumatta.",
+            "Julkisen sektorin palvelun on oltava saavutettava, joten saavutettavuus kulki mukana koko suunnittelun ajan eikä jäänyt viimeiseksi tarkistukseksi. Varmistin, että saavutettavuusvaatimukset oli kirjattu kehittäjien tiketteihin, jotta ne toteutettiin osana jokaista ominaisuutta.",
           ],
           figures: [
             [shot("edu-timetable.png"), shot("edu-timetable-edit.png")],
@@ -293,24 +260,19 @@ export const educationPlatformFi: CaseStudy = {
           ],
         },
         {
-          title: "Saavutettavuus mukana alusta loppuun",
+          title: "Testaus ja iterointi",
           paragraphs: [
-            "Julkisen sektorin palvelun on oltava saavutettava, joten saavutettavuus kulki mukana koko suunnittelun ajan eikä jäänyt viimeiseksi tarkistukseksi. Varmistin, että saavutettavuusvaatimukset oli kirjattu kehittäjien tiketteihin, jotta ne toteutettiin osana jokaista ominaisuutta.",
-            "Autoin järjestämään kaksi ulkoisen toimijan tekemää saavutettavuusauditointia. Ensimmäisessä tarkistettiin käyttäjäpolut ja visuaalinen ilme, toisessa tekninen toteutus.",
+            "Näkymät testattiin käyttäjillä, niitä iteroitiin havaintojen pohjalta ja ne testattiin uudelleen ennen kuin ne siirtyivät kehitykseen.",
+            "Autoin myös järjestämään kaksi ulkoisen toimijan tekemää saavutettavuusauditointia. Ensimmäisessä tarkistettiin käyttäjäpolut ja visuaalinen ilme, toisessa tekninen toteutus.",
           ],
-          flowLabel: "Saavutettavuuden kulku",
-          flow: [
-            "Saavutettavuusvaatimukset kirjataan kehittäjien tiketteihin",
-            "Toteutus osana jokaista ominaisuutta",
-            "Auditointi 1: käyttäjäpolut ja visuaalinen ilme",
-            "Auditointi 2: tekninen toteutus",
-          ],
+          flowLabel: "Testaussykli",
+          flow: ["Testaus käyttäjillä", "Iterointi havaintojen pohjalta", "Uusi testaus", "Kehitykseen"],
         },
         {
-          title: "Luottamuksen palauttaminen budjetin ylittyessä",
+          title: "Luovutus ja jälkiseuranta",
           paragraphs: [
-            "Kesken projektin budjetti ylittyi, ja kaksi kuntaa vetäytyi, koska jatkaminen kävi niille liian kalliiksi. Luottamus kärsi sekä sidosryhmissä että tiimien sisällä.",
-            "Otin aktiivisen roolin suunnittelutyön edistymisen ja arvon näyttämisessä. Olin läsnä oikeissa palavereissa, kerroin mitä teimme ja miksi, ja kirjasin päätökset ylös, jotta kuka tahansa pystyi seuraamaan perusteluja. Tämä selkeytti yhteistyötä ja piti hankkeen liikkeellä.",
+            "Luovutin suunnitelmat kehittäjille ja autoin määrittelemään toteutustiketit Jirassa. Huolehdin, että kehitystiimillä oli aina ajantasaiset suunnitelmat, ja seurasin toteutusta loppuun asti.",
+            "Viimeisenä vuotenani Lead Designerina vastasin siitä, että koko alusta näyttää ja toimii johdonmukaisesti, myös kolmannen osapuolen alustoille rakennetut osat. Niiden muokkaaminen osoittautui odotettua vaikeammaksi. Värien ja logon avulla saimme ne kuitenkin sovitettua niin, ettei palvelu tuntunut irralliselta.",
           ],
         },
       ],

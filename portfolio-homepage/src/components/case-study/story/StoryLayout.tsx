@@ -43,6 +43,7 @@ export function storyReadMinutes(story: CaseStory, wordsPerMinute: number): numb
     story.problem.statement,
     ...story.problem.paragraphs,
     ...story.problem.constraints,
+    ...(story.problem.closing ?? []),
     ...(story.process.intro ?? []),
     ...story.process.steps.flatMap((step) => [step.title, ...step.paragraphs]),
     ...story.shipped.paragraphs,
@@ -203,6 +204,16 @@ function Branches({ branches }: { branches: NonNullable<StoryStep["branches"]> }
   );
 }
 
+function Closing({ section }: { section: StorySection }) {
+  if (!section.closing || section.closing.length === 0) return null;
+  return (
+    <div className="flex flex-col gap-4">
+      {section.closingLabel && <h3 className={EYEBROW}>{section.closingLabel}</h3>}
+      <Paragraphs paragraphs={section.closing} />
+    </div>
+  );
+}
+
 function ProseWithFigures({ section, copy }: { section: StorySection; copy: Dictionary["caseStudy"] }) {
   return (
     <>
@@ -213,7 +224,7 @@ function ProseWithFigures({ section, copy }: { section: StorySection; copy: Dict
           <BulletList items={section.list} />
         </div>
       )}
-      {section.closing && section.closing.length > 0 && <Paragraphs paragraphs={section.closing} />}
+      <Closing section={section} />
       <Figures set={section.figures} copy={copy} />
     </>
   );
@@ -351,6 +362,7 @@ export default function StoryLayout({
             <h3 className={EYEBROW}>{s.constraints}</h3>
             <BulletList items={story.problem.constraints} />
           </div>
+          <Closing section={story.problem} />
           <Figures set={story.problem.figures} copy={copy} />
         </Section>
       </Reveal>

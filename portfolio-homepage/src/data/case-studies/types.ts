@@ -216,6 +216,8 @@ export type StorySection = {
   list?: string[];
   /** Optional closing paragraphs after the list, each may start with `**Lead-in:**`. */
   closing?: string[];
+  /** Small label above the closing paragraphs. */
+  closingLabel?: string;
   figures?: StoryFigureSet;
 };
 

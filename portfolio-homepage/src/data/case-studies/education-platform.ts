@@ -260,69 +260,40 @@ export const educationPlatform: CaseStudy = {
         "**Many voices:** seven municipalities with their own ways of working, and a long list of stakeholders and user groups.",
         "**Law, data protection and accessibility:** GDPR and education legislation set strict limits on what the system was allowed to do. As a public sector service it also had to meet accessibility requirements, so every teacher, guardian and student can use it.",
       ],
+      closingLabel: "When the budget ran over",
+      closing: [
+        "Midway through the project the budget ran over, and two municipalities withdrew because continuing became too expensive for them. Trust suffered, both among stakeholders and within the teams.",
+        "I took an active role in showing the progress and value of the design work. I was present in the right meetings, explained what we were doing and why, and documented decisions so anyone could follow the reasoning. This made collaboration clearer and kept the project moving.",
+      ],
     },
     process: {
-      heading: "From workshops to a shared visual language",
+      heading: "From research to delivery",
       steps: [
         {
-          title: "Start with how schools actually work",
+          title: "Research into everyday school life",
           paragraphs: [
-            "The method depended on the size of what we were designing. For a new, large area of the service, we used a three-phase workshop model, which I proposed and facilitated together with the other designers and the product owner. First we mapped today's pain points, then defined the ideal situation, and finally co-designed concrete concepts with stakeholders. Upper secondary schools had their own working group with representatives from the municipalities.",
+            "The method depended on the size of what we were designing. For new, large areas of the service, we used a three-phase workshop model, which I proposed and facilitated together with the other designers and the product owner. First we mapped today's pain points, then defined the ideal situation, and finally co-designed concrete concepts with stakeholders. Upper secondary schools had their own working group with representatives from the municipalities.",
             "For smaller concepts, a few user interviews and co-design sessions were enough, with 1–2 end users from each municipality taking part. In total I facilitated around ten workshops, and whenever a part I was responsible for needed deeper understanding, I ran quick, lightweight user interviews.",
-            "When designing student admission, for example, I contacted the study secretaries who handle admissions at the schools. Before a single screen, we mapped the process: how the learner's ID, the guardian's application, the learner profile and the admission decision connect. Our rule was that if you can't draw a process, it isn't clear yet. When something was unclear, we went back to users and developers, clarified it and drew it again, until user needs and system requirements fitted together. Only then did I design the screens. We tested them with users, iterated and tested again before they went into development. I handed the designs over to developers and followed the implementation through.",
-          ],
-          branches: {
-            question: "How big is the area?",
-            paths: [
-              {
-                when: "New, large area",
-                title: "Three-phase workshop process",
-                steps: ["Map today's pain points", "Define the ideal situation", "Co-design concepts with stakeholders"],
-              },
-              {
-                when: "Smaller concept",
-                title: "Lightweight co-design",
-                steps: ["User interviews", "Co-design sessions with 1–2 end users from each municipality"],
-              },
-            ],
-            then: [
-              {
-                label: "Design",
-                steps: [
-                  "Map the process",
-                  "Check technical constraints and reconcile them with user journeys",
-                  "Clarify open questions with users and developers",
-                  "Design the screens",
-                ],
-              },
-              {
-                label: "Testing",
-                steps: ["Test with users", "Iterate on the findings", "Test again"],
-                loop: "Repeated until the solution works for users",
-              },
-              {
-                label: "Development",
-                steps: ["Hand over designs to developers", "Follow up on the implementation"],
-              },
-            ],
-          },
-          figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
-        },
-        {
-          title: "Bring the team into one room",
-          paragraphs: [
             "Most of the work was remote, so we also organised in-person days, which we planned and facilitated together. They brought the team closer and made collaboration smoother. On a retro day we reviewed what we had achieved and where to take the work next. On development team days we refined process descriptions, user stories, epics, data models and user interfaces together.",
             "We used play to make ways of working concrete. Lego, collages and a board game about a school day helped us clarify our goal, sharpen how we work and build a shared vocabulary for school terms. After these days, teammates no longer felt distant. We also clarified how the team works: how information flows between design and development, and how to make the work smoother from here on.",
           ],
           figures: [shot("edu-process-retro.jpg"), shot("edu-process-devday.jpg"), shot("edu-process-culture.jpg")],
         },
         {
+          title: "Processes mapped before screens",
+          paragraphs: [
+            "Before any screens, we mapped the processes. Our rule was that if you can't draw a process, it isn't clear yet. When designing student admission, I contacted the study secretaries who handle admissions at the schools, and we mapped how the learner's ID, the guardian's application, the learner profile and the admission decision connect.",
+            "At the same time we checked the technical constraints and reconciled them with the user journeys. When something was unclear, we went back to users and developers, clarified it and drew it again, until user needs and system requirements fitted together. Only then did I design the screens.",
+          ],
+          figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
+        },
+        {
           title: "One visual language for every service",
           paragraphs: [
             "I worked on both the teaching and administration service and the guardians' e-service, and made sure they share one visual identity and user experience. With few designers and many teams, I couldn't review every screen. Instead I defined a shared visual direction and a UI kit of reusable components, and later led the visual direction of the whole project.",
             "Consistency was about more than looks. I worked closely with developers: I regularly explained why something was built a certain way, listened to their ideas and worked out the technical constraints of each part. My bachelor's degree in software development meant I understood the implementation challenges and could discuss them directly with developers.",
-            "In my final year, as Lead Designer, I was responsible for the whole platform looking and working consistently, including the parts built on third-party platforms. These turned out to be harder to customise than expected. With colours and the logo, we still made them fit so the service didn't feel disjointed.",
             "The same went for mobile devices. Guardians and students had often found the old mobile apps confusing, so the mobile views use the same structure and components as desktop, and things are where you expect them on any screen.",
+            "A public sector service has to be accessible, so accessibility ran through the whole design process instead of being a final check. I made sure accessibility requirements were written into developers' tickets, so they were built into every feature.",
           ],
           figures: [
             [shot("edu-timetable.png"), shot("edu-timetable-edit.png")],
@@ -330,24 +301,19 @@ export const educationPlatform: CaseStudy = {
           ],
         },
         {
-          title: "Accessibility from start to finish",
+          title: "Testing and iteration",
           paragraphs: [
-            "A public sector service has to be accessible, so accessibility ran through the whole design process instead of being a final check. I made sure accessibility requirements were written into developers' tickets, so they were built into every feature.",
-            "I helped organise two accessibility audits carried out by an external partner. The first reviewed user journeys and the visual design, the second the technical implementation.",
+            "We tested the screens with users, iterated on the findings and tested again before they went into development.",
+            "I also helped organise two accessibility audits carried out by an external partner. The first reviewed user journeys and the visual design, the second the technical implementation.",
           ],
-          flowLabel: "How accessibility was handled",
-          flow: [
-            "Accessibility requirements written into developer tickets",
-            "Built in as part of every feature",
-            "Audit 1: user journeys and visual design",
-            "Audit 2: technical implementation",
-          ],
+          flowLabel: "Testing cycle",
+          flow: ["Test with users", "Iterate on the findings", "Test again", "Into development"],
         },
         {
-          title: "Rebuilding trust when the budget ran over",
+          title: "Handover and follow-up",
           paragraphs: [
-            "Midway through the project the budget ran over, and two municipalities withdrew because continuing became too expensive for them. Trust suffered, both among stakeholders and within the teams.",
-            "I took an active role in showing the progress and value of the design work. I was present in the right meetings, explained what we were doing and why, and documented decisions so anyone could follow the reasoning. This made collaboration clearer and kept the project moving.",
+            "I handed the designs over to developers and helped define implementation tickets in Jira. I made sure the development team always had up-to-date designs, and followed the implementation through.",
+            "In my final year, as Lead Designer, I was responsible for the whole platform looking and working consistently, including the parts built on third-party platforms. These turned out to be harder to customise than expected. With colours and the logo, we still made them fit so the service didn't feel disjointed.",
           ],
         },
       ],
