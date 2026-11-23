@@ -228,7 +228,7 @@ export const educationPlatformFi: CaseStudy = {
           paragraphs: [
             "Menetelmä riippui siitä, kuinka laajasta kokonaisuudesta oli kyse. Kun suunnittelimme uutta ja laajaa kokonaisuutta, käytimme kolmivaiheista työpajamallia, jota ehdotin ja fasilitoin yhdessä muiden suunnittelijoiden ja tuoteomistajan kanssa. Ensin kartoitimme nykyiset kipupisteet, sitten määrittelimme ihannetilanteen ja lopuksi suunnittelimme konkreettiset konseptit yhdessä sidosryhmien kanssa. Lukioilla oli oma työryhmänsä, jossa olivat mukana kuntien edustajat.",
             "Pienemmissä konsepteissa riitti muutama käyttäjähaastattelu ja co-design-tilaisuus, joihin otin mukaan 1–2 loppukäyttäjää kustakin kunnasta. Kaikkiaan fasilitoin kymmenkunta työpajaa, ja aina kun vastuullani oleva osuus vaati syvempää ymmärrystä, haastattelin käyttäjiä nopeasti ja kevyesti.",
-            "Esimerkiksi oppilaaksiottoa suunnitellessa otin yhteyttä kouluissa oppilaaksiottoa hoitaviin opintosihteereihin. Ennen yhtäkään näkymää piirsimme auki, miten oppijan tunnus, huoltajan hakemus, oppijan profiili ja oppilaaksiottopäätös liittyvät toisiinsa. Periaatteemme oli, että jos prosessia ei pysty piirtämään, se on vielä epäselvä. Silloin palasimme käyttäjien ja kehittäjien luo, tarkensimme epäselvät kohdat ja piirsimme uudelleen, kunnes käyttäjien tarpeet ja järjestelmän vaatimukset sopivat yhteen. Vasta sitten suunnittelin näkymät.",
+            "Esimerkiksi oppilaaksiottoa suunnitellessa otin yhteyttä kouluissa oppilaaksiottoa hoitaviin opintosihteereihin. Ennen yhtäkään näkymää piirsimme auki, miten oppijan tunnus, huoltajan hakemus, oppijan profiili ja oppilaaksiottopäätös liittyvät toisiinsa. Periaatteemme oli, että jos prosessia ei pysty piirtämään, se on vielä epäselvä. Silloin palasimme käyttäjien ja kehittäjien luo, tarkensimme epäselvät kohdat ja piirsimme uudelleen, kunnes käyttäjien tarpeet ja järjestelmän vaatimukset sopivat yhteen. Vasta sitten suunnittelin näkymät. Näkymät testattiin käyttäjillä, niitä iteroitiin ja ne testattiin uudelleen ennen kuin ne siirtyivät kehitykseen. Luovutin suunnitelmat kehittäjille ja seurasin toteutusta loppuun asti.",
           ],
           branches: {
             question: "Kuinka laaja kokonaisuus?",
@@ -249,10 +249,24 @@ export const educationPlatformFi: CaseStudy = {
               },
             ],
             then: [
-              "Prosessi piirretään auki",
-              "Tekniset reunaehdot tarkistetaan ja sovitetaan yhteen käyttäjäpolkujen kanssa",
-              "Epäselvät kohdat tarkennetaan käyttäjien ja kehittäjien kanssa",
-              "Näkymien suunnittelu",
+              {
+                label: "Suunnittelu",
+                steps: [
+                  "Prosessi piirretään auki",
+                  "Tekniset reunaehdot tarkistetaan ja sovitetaan yhteen käyttäjäpolkujen kanssa",
+                  "Epäselvät kohdat tarkennetaan käyttäjien ja kehittäjien kanssa",
+                  "Näkymien suunnittelu",
+                ],
+              },
+              {
+                label: "Testaus",
+                steps: ["Testaus käyttäjillä", "Iterointi havaintojen pohjalta", "Uusi testaus"],
+                loop: "Toistetaan, kunnes ratkaisu toimii käyttäjille",
+              },
+              {
+                label: "Kehitys",
+                steps: ["Suunnitelmien luovutus kehittäjille", "Toteutuksen jälkiseuranta"],
+              },
             ],
           },
           figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],

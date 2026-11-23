@@ -269,7 +269,7 @@ export const educationPlatform: CaseStudy = {
           paragraphs: [
             "The method depended on the size of what we were designing. For a new, large area of the service, we used a three-phase workshop model, which I proposed and facilitated together with the other designers and the product owner. First we mapped today's pain points, then defined the ideal situation, and finally co-designed concrete concepts with stakeholders. Upper secondary schools had their own working group with representatives from the municipalities.",
             "For smaller concepts, a few user interviews and co-design sessions were enough, with 1–2 end users from each municipality taking part. In total I facilitated around ten workshops, and whenever a part I was responsible for needed deeper understanding, I ran quick, lightweight user interviews.",
-            "When designing student admission, for example, I contacted the study secretaries who handle admissions at the schools. Before a single screen, we mapped the process: how the learner's ID, the guardian's application, the learner profile and the admission decision connect. Our rule was that if you can't draw a process, it isn't clear yet. When something was unclear, we went back to users and developers, clarified it and drew it again, until user needs and system requirements fitted together. Only then did I design the screens.",
+            "When designing student admission, for example, I contacted the study secretaries who handle admissions at the schools. Before a single screen, we mapped the process: how the learner's ID, the guardian's application, the learner profile and the admission decision connect. Our rule was that if you can't draw a process, it isn't clear yet. When something was unclear, we went back to users and developers, clarified it and drew it again, until user needs and system requirements fitted together. Only then did I design the screens. We tested them with users, iterated and tested again before they went into development. I handed the designs over to developers and followed the implementation through.",
           ],
           branches: {
             question: "How big is the area?",
@@ -286,10 +286,24 @@ export const educationPlatform: CaseStudy = {
               },
             ],
             then: [
-              "Map the process",
-              "Check technical constraints and reconcile them with user journeys",
-              "Clarify open questions with users and developers",
-              "Design the screens",
+              {
+                label: "Design",
+                steps: [
+                  "Map the process",
+                  "Check technical constraints and reconcile them with user journeys",
+                  "Clarify open questions with users and developers",
+                  "Design the screens",
+                ],
+              },
+              {
+                label: "Testing",
+                steps: ["Test with users", "Iterate on the findings", "Test again"],
+                loop: "Repeated until the solution works for users",
+              },
+              {
+                label: "Development",
+                steps: ["Hand over designs to developers", "Follow up on the implementation"],
+              },
             ],
           },
           figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],

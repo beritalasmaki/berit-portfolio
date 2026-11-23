@@ -180,12 +180,25 @@ function Branches({ branches }: { branches: NonNullable<StoryStep["branches"]> }
           </div>
         ))}
       </div>
-      {branches.then && branches.then.length > 0 && (
-        <>
+      {branches.then?.map((phase) => (
+        <div key={phase.label} className="flex flex-col gap-3">
           <div aria-hidden="true" className="flex justify-center text-muted">↓</div>
-          <Flow steps={branches.then} />
-        </>
-      )}
+          <div
+            className={`flex flex-col gap-3 rounded-[20px] p-3 ${
+              phase.loop ? "border border-dashed border-accent" : ""
+            }`}
+          >
+            <p className="m-0 font-mono-label text-mono-label uppercase text-accent-dark">{phase.label}</p>
+            <Flow steps={phase.steps} label={phase.label} />
+            {phase.loop && (
+              <p className="m-0 flex items-center gap-2 text-body-sm text-body">
+                <span aria-hidden="true" className="text-accent-dark">↺</span>
+                {phase.loop}
+              </p>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

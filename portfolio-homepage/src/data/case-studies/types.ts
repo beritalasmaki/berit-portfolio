@@ -234,8 +234,9 @@ export type StoryStep = {
   branches?: {
     question: string;
     paths: { when: string; title: string; steps: string[] }[];
-    /** Steps every path continues into. */
-    then?: string[];
+    /** Phases every path continues into, in order. A phase with `loop`
+     * repeats; the text says until when. */
+    then?: { label: string; steps: string[]; loop?: string }[];
   };
   figures?: StoryFigureSet;
 };
