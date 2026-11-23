@@ -89,7 +89,7 @@ export const educationPlatform: CaseStudy = {
   slug: "education-platform",
   title: "Municipal Education System",
   label: "MUNICIPAL EDUCATION SYSTEM · 2021–2024",
-  headline: "Many teams, many systems.\nOne coherent experience.",
+  headline: "Seven municipalities' school systems brought together into one service",
   description:
     "A shared, standardised design foundation that unified usability and logic across several platforms.",
   thumbnail: "/case/education-new-card.png",
@@ -304,7 +304,7 @@ export const educationPlatform: CaseStudy = {
         {
           title: "Testing and iteration",
           paragraphs: [
-            "We tested the screens with users, iterated on the findings and tested again before they went into development.",
+            "I tested the screens with users, some sessions together with the service designer and some on my own. I iterated on the findings and tested again before the screens went into development.",
             "I also helped organise two accessibility audits carried out by an external partner. The first reviewed user journeys and the visual design, the second the technical implementation.",
           ],
           flowLabel: "Testing cycle",

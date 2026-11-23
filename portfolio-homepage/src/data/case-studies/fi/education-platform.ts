@@ -41,7 +41,7 @@ export const educationPlatformFi: CaseStudy = {
   slug: "education-platform",
   title: "Kuntien opetusjärjestelmä",
   label: "KUNTIEN OPETUSJÄRJESTELMÄ · 2021–2024",
-  headline: "Monta tiimiä, monta järjestelmää.\nYksi yhtenäinen kokemus.",
+  headline: "Seitsemän kunnan koulujärjestelmät yhdeksi palveluksi",
   description:
     "Yhteinen, standardoitu suunnitteluperusta, joka yhtenäisti käytettävyyden ja toimintalogiikan usealla alustalla.",
   thumbnail: "/case/education-new-card.png",
@@ -263,7 +263,7 @@ export const educationPlatformFi: CaseStudy = {
         {
           title: "Testaus ja iterointi",
           paragraphs: [
-            "Näkymät testattiin käyttäjillä, niitä iteroitiin havaintojen pohjalta ja ne testattiin uudelleen ennen kuin ne siirtyivät kehitykseen.",
+            "Testasin näkymiä käyttäjillä, osan yhdessä palvelumuotoilijan kanssa ja osan itsenäisesti. Iteroin suunnitelmia havaintojen pohjalta ja testasin ne uudelleen ennen kuin ne siirtyivät kehitykseen.",
             "Autoin myös järjestämään kaksi ulkoisen toimijan tekemää saavutettavuusauditointia. Ensimmäisessä tarkistettiin käyttäjäpolut ja visuaalinen ilme, toisessa tekninen toteutus.",
           ],
           flowLabel: "Testaussykli",

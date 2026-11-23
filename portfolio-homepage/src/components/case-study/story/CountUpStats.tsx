@@ -118,7 +118,7 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
         const rolling = values !== null && p !== null;
         const places = p ? String(p.target).length : 0;
         return (
-          <li key={stat.label} className="flex flex-col gap-3 rounded-[16px] bg-cream/50 p-card-pad">
+          <li key={stat.label} className="flex flex-col items-center gap-3 rounded-[16px] bg-cream/50 p-card-pad text-center">
             <span className="text-section-h2 text-ink tabular-nums" style={{ lineHeight: CELL }}>
               <span className="sr-only">{stat.value}</span>
               {rolling ? (
