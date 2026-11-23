@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import InlineText from "@/components/blog/InlineText";
 import Reveal from "@/components/Reveal";
-import type { CaseStory, CaseStudy, GalleryImage, StoryFigureSet, StorySection } from "@/data/case-studies";
+import type { CaseStory, CaseStudy, GalleryImage, StoryFigureSet, StorySection, StoryStep } from "@/data/case-studies";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { fmt } from "@/i18n/format";
 import type { TocItem } from "../TableOfContents";
@@ -145,6 +145,48 @@ function Flow({ steps, label }: { steps: string[]; label?: string }) {
         </li>
       ))}
     </ol>
+  );
+}
+
+/** A question at the top, the paths it splits into side by side, and the
+ * shared steps they join into below. Read in order by assistive tech: the
+ * question is a heading-like lead, each path a list. */
+function Branches({ branches }: { branches: NonNullable<StoryStep["branches"]> }) {
+  return (
+    <div className="flex flex-col items-stretch gap-3">
+      <p className="m-0 self-center rounded-pill border border-accent bg-white px-5 py-2 text-center text-body-sm font-semibold text-ink">
+        {branches.question}
+      </p>
+      <div aria-hidden="true" className="flex justify-around text-muted">
+        {branches.paths.map((path) => (
+          <span key={path.title}>↓</span>
+        ))}
+      </div>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {branches.paths.map((path) => (
+          <div key={path.title} className="flex flex-col gap-3 rounded-[16px] border border-rule bg-white p-5">
+            <p className="m-0 font-mono-label text-mono-label uppercase text-accent-dark">{path.when}</p>
+            <p className="m-0 text-sub-h4 text-ink">{path.title}</p>
+            <ol className="m-0 flex list-none flex-col gap-2 p-0">
+              {path.steps.map((step, i) => (
+                <li key={step} className="flex gap-3 text-body-sm leading-snug text-ink">
+                  <span aria-hidden="true" className="font-mono-label text-mono-label text-muted tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
+      </div>
+      {branches.then && branches.then.length > 0 && (
+        <>
+          <div aria-hidden="true" className="flex justify-center text-muted">↓</div>
+          <Flow steps={branches.then} />
+        </>
+      )}
+    </div>
   );
 }
 
@@ -314,6 +356,7 @@ export default function StoryLayout({
                     <h3 className="m-0 text-card-h3 text-ink text-balance">{step.title}</h3>
                   </div>
                   <Paragraphs paragraphs={step.paragraphs} />
+                  {step.branches && <Branches branches={step.branches} />}
                   {step.flow && step.flow.length > 0 && <Flow steps={step.flow} label={step.flowLabel} />}
                   <Figures set={step.figures} copy={copy} />
                 </article>

@@ -228,6 +228,15 @@ export type StoryStep = {
   flow?: string[];
   /** Accessible name for the flow diagram. */
   flowLabel?: string;
+  /** A decision diagram: a question, the paths it splits into, and the
+   * steps every path shares afterwards. For showing how the method was
+   * chosen per situation. */
+  branches?: {
+    question: string;
+    paths: { when: string; title: string; steps: string[] }[];
+    /** Steps every path continues into. */
+    then?: string[];
+  };
   figures?: StoryFigureSet;
 };
 

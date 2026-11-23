@@ -226,10 +226,34 @@ export const educationPlatformFi: CaseStudy = {
         {
           title: "Lähtökohtana se, miten koulut oikeasti toimivat",
           paragraphs: [
-            "Ehdotin kolmivaiheista työpajamallia ja fasilitoin sitä yhdessä muiden suunnittelijoiden ja tuoteomistajan kanssa. Ensin kartoitimme nykyiset kipupisteet, sitten määrittelimme ihannetilanteen ja lopuksi suunnittelimme konkreettiset konseptit yhdessä sidosryhmien kanssa. Lukioilla oli oma työryhmänsä, jossa olivat mukana kuntien edustajat.",
-            "Kaikkiaan fasilitoin kymmenkunta työpajaa. Niiden lisäksi tein tiivistä yhteistyötä loppukäyttäjien kanssa. Aina kun vastuullani oleva osuus vaati syvempää ymmärrystä, haastattelin käyttäjiä nopeasti ja kevyesti.",
-            "Esimerkiksi oppilaaksiottoa suunnitellessa otin yhteyttä kouluissa oppilaaksiottoa hoitaviin opintosihteereihin. Ennen yhtäkään näkymää piirsimme prosessin auki: miten oppijan tunnus, huoltajan hakemus, oppijan profiili ja oppilaaksiottopäätös liittyvät toisiinsa. Periaatteemme oli: jos prosessia ei pysty piirtämään, se on vielä epäselvä. Silloin palasimme käyttäjien ja kehittäjien luo, tarkensimme epäselvät kohdat ja piirsimme uudelleen, kunnes käyttäjien tarpeet ja järjestelmän vaatimukset sopivat yhteen. Vasta sitten suunnittelin näkymät.",
+            "Menetelmä riippui siitä, kuinka laajasta kokonaisuudesta oli kyse. Kun suunnittelimme uutta ja laajaa kokonaisuutta, käytimme kolmivaiheista työpajamallia, jota ehdotin ja fasilitoin yhdessä muiden suunnittelijoiden ja tuoteomistajan kanssa. Ensin kartoitimme nykyiset kipupisteet, sitten määrittelimme ihannetilanteen ja lopuksi suunnittelimme konkreettiset konseptit yhdessä sidosryhmien kanssa. Lukioilla oli oma työryhmänsä, jossa olivat mukana kuntien edustajat.",
+            "Pienemmissä konsepteissa riitti muutama käyttäjähaastattelu ja co-design-tilaisuus, joihin otin mukaan 1–2 loppukäyttäjää kustakin kunnasta. Kaikkiaan fasilitoin kymmenkunta työpajaa, ja aina kun vastuullani oleva osuus vaati syvempää ymmärrystä, haastattelin käyttäjiä nopeasti ja kevyesti.",
+            "Esimerkiksi oppilaaksiottoa suunnitellessa otin yhteyttä kouluissa oppilaaksiottoa hoitaviin opintosihteereihin. Ennen yhtäkään näkymää piirsimme auki, miten oppijan tunnus, huoltajan hakemus, oppijan profiili ja oppilaaksiottopäätös liittyvät toisiinsa. Periaatteemme oli, että jos prosessia ei pysty piirtämään, se on vielä epäselvä. Silloin palasimme käyttäjien ja kehittäjien luo, tarkensimme epäselvät kohdat ja piirsimme uudelleen, kunnes käyttäjien tarpeet ja järjestelmän vaatimukset sopivat yhteen. Vasta sitten suunnittelin näkymät.",
           ],
+          branches: {
+            question: "Kuinka laaja kokonaisuus?",
+            paths: [
+              {
+                when: "Uusi, laaja kokonaisuus",
+                title: "Kolmivaiheinen työpajaprosessi",
+                steps: [
+                  "Nykyisten kipupisteiden kartoitus",
+                  "Ihannetilanteen määrittely",
+                  "Konseptien yhteissuunnittelu sidosryhmien kanssa",
+                ],
+              },
+              {
+                when: "Pienempi konsepti",
+                title: "Kevyt yhteissuunnittelu",
+                steps: ["Käyttäjähaastattelut", "Co-design-tilaisuudet, 1–2 loppukäyttäjää kustakin kunnasta"],
+              },
+            ],
+            then: [
+              "Prosessi piirretään auki",
+              "Epäselvät kohdat tarkennetaan käyttäjien ja kehittäjien kanssa",
+              "Näkymien suunnittelu",
+            ],
+          },
           figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
         },
         {
@@ -308,7 +332,7 @@ export const educationPlatformFi: CaseStudy = {
       highlights: [
         { value: "8+", label: "käyttäjäryhmää kunnan virkahenkilöistä rehtoreihin, opettajiin, oppijoihin ja huoltajiin" },
         { value: "5", label: "kuntaa ottaa alustan käyttöön lukuvuonna 2026–2027" },
-        { value: "160 000", label: "oppijaa kehittäjäkunnissa hankkeen alussa (arvio 2022)" },
+        { value: "~100 000", label: "oppijaa viidessä kunnassa (arvio)" },
       ],
     },
     reflections: {

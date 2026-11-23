@@ -267,10 +267,30 @@ export const educationPlatform: CaseStudy = {
         {
           title: "Start with how schools actually work",
           paragraphs: [
-            "I proposed a three-phase workshop model and facilitated it together with the other designers and the product owner. First we mapped today's pain points, then defined the ideal situation, and finally co-designed concrete concepts with stakeholders. Upper secondary schools had their own working group with representatives from the municipalities.",
-            "In total I facilitated around ten workshops. Alongside them I worked closely with end users. Whenever a part I was responsible for needed deeper understanding, I ran quick, lightweight user interviews.",
+            "The method depended on the size of what we were designing. For a new, large area of the service, we used a three-phase workshop model, which I proposed and facilitated together with the other designers and the product owner. First we mapped today's pain points, then defined the ideal situation, and finally co-designed concrete concepts with stakeholders. Upper secondary schools had their own working group with representatives from the municipalities.",
+            "For smaller concepts, a few user interviews and co-design sessions were enough, with 1–2 end users from each municipality taking part. In total I facilitated around ten workshops, and whenever a part I was responsible for needed deeper understanding, I ran quick, lightweight user interviews.",
             "When designing student admission, for example, I contacted the study secretaries who handle admissions at the schools. Before a single screen, we mapped the process: how the learner's ID, the guardian's application, the learner profile and the admission decision connect. Our rule was that if you can't draw a process, it isn't clear yet. When something was unclear, we went back to users and developers, clarified it and drew it again, until user needs and system requirements fitted together. Only then did I design the screens.",
           ],
+          branches: {
+            question: "How big is the area?",
+            paths: [
+              {
+                when: "New, large area",
+                title: "Three-phase workshop process",
+                steps: ["Map today's pain points", "Define the ideal situation", "Co-design concepts with stakeholders"],
+              },
+              {
+                when: "Smaller concept",
+                title: "Lightweight co-design",
+                steps: ["User interviews", "Co-design sessions with 1–2 end users from each municipality"],
+              },
+            ],
+            then: [
+              "Map the process",
+              "Clarify open questions with users and developers",
+              "Design the screens",
+            ],
+          },
           figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
         },
         {
@@ -349,7 +369,7 @@ export const educationPlatform: CaseStudy = {
       highlights: [
         { value: "8+", label: "user groups, from municipal officials to principals, teachers, students and guardians" },
         { value: "5", label: "municipalities adopting the platform in the 2026–2027 school year" },
-        { value: "160,000", label: "students in the founding municipalities when the project began (2022 estimate)" },
+        { value: "~100,000", label: "students across the five municipalities (estimate)" },
       ],
     },
     reflections: {
