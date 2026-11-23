@@ -195,7 +195,8 @@ export const educationPlatformFi: CaseStudy = {
         ],
       },
     ],
-    heroImage: shot("edu-dashboard.png"),
+    heroImage: { src: "/case/edu-hero-bundle.png", alt: "Kolme alustan näkymää: lukujärjestys ja kurssitarjotin, oppilaan tiedot hallinnon palvelussa sekä samat tiedot mobiililaitteella", caption: "", width: 2400, height: 2098 },
+    heroBundle: true,
     tldr: [
       "Seitsemän kuntaa tarvitsi yhden järjestelmän perusopetuksen ja lukion vanhentuneiden työkalujen tilalle. Kolmen vuoden aikana kasvoin UX- ja tuotesuunnittelijasta **Lead Designeriksi** ja pidin huolen siitä, että usean tiimin ja toimittajan rakentama alusta näyttää ja toimii yhtenä tuotteena.",
       "Alusta otettiin käyttöön **viidessä kunnassa syksyllä 2026**. Pilottikoulut kuvaavat alustaa helppokäyttöiseksi, nopeaksi ja johdonmukaiseksi.",
@@ -341,6 +342,7 @@ export const educationPlatformFi: CaseStudy = {
         "Pilotoijien mukaan alusta on helppokäyttöinen, monipuolinen ja moderni. Palvelun koettiin olevan helppo oppia, ja se toimii loogisesti ja yksinkertaisesti. Erityisesti käyttöliittymän selkeyttä ja raikasta ulkoasua kiitettiin. Arjen tehtävät, kuten todistusten tulostus ja oppilastietojen siirto, toimivat luotettavasti päivittäisessä käytössä.",
         "Pilotointi toi myös runsaasti kehitysideoita. Käyttäjät löysivät kohtia, joissa he toimivat eri tavalla kuin oli oletettu, ja niiden pohjalta koottiin tarkistuslista ennen käyttöönottoa.",
         "Alusta siirtyi tuotantokäyttöön pilottikouluissa keväällä 2026. Pilottikoulujen oppilaat saivat ensimmäiset alustalla tuotetut lukuvuositodistukset, ja myös huoltajat ottivat palvelun käyttöön. Lukuvuonna 2026–2027 käyttö laajenee perusopetuksen kouluihin viidessä kunnassa, joten koko vaikutus näkyy vasta myöhemmin.",
+        "Kunnille yhteinen alusta tarkoittaa, ettei jokaisen tarvitse hankkia ja ylläpitää omia erillisiä järjestelmiään. Tietoturva hoidetaan yhdessä paikassa, ja yhteisen UI-kitin ansiosta eri toimittajat eivät rakenna samoja osia uudelleen.",
       ],
       highlights: [
         { value: "8+", label: "käyttäjäryhmää kunnan virkahenkilöistä rehtoreihin, opettajiin, oppijoihin ja huoltajiin" },

@@ -356,7 +356,11 @@ export default function StoryLayout({
             </div>
           </div>
 
-          <StoryFigures figures={[story.heroImage]} copy={copy} aspect={16 / 10} priority />
+          {story.heroBundle ? (
+            <StoryFigures figures={[story.heroImage]} copy={copy} frameless priority />
+          ) : (
+            <StoryFigures figures={[story.heroImage]} copy={copy} aspect={16 / 10} priority />
+          )}
 
           <FactsCard facts={story.facts} />
         </section>

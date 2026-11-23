@@ -32,6 +32,7 @@ export default function StoryFigures({
   copy,
   priority = false,
   aspect,
+  frameless = false,
 }: {
   figures: GalleryImage[];
   copy: Dictionary["caseStudy"];
@@ -39,6 +40,8 @@ export default function StoryFigures({
   priority?: boolean;
   /** Force one crop ratio, e.g. 16/10 for the hero. The lightbox still shows the whole image. */
   aspect?: number;
+  /** A ready-made composite on a transparent background (the hero bundle): no frame, no crop, no lightbox. */
+  frameless?: boolean;
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -48,6 +51,21 @@ export default function StoryFigures({
   function openAt(index: number) {
     lastTriggerRef.current = triggerRefs.current[index];
     setOpenIndex(index);
+  }
+
+  if (frameless) {
+    const figure = figures[0];
+    return (
+      <Image
+        src={figure.src}
+        alt={figure.alt}
+        width={figure.width}
+        height={figure.height}
+        priority={priority}
+        sizes="(min-width: 1024px) 900px, 92vw"
+        className="block h-auto w-full select-none"
+      />
+    );
   }
 
   return (

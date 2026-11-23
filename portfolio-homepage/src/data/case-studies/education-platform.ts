@@ -236,7 +236,8 @@ export const educationPlatform: CaseStudy = {
         ],
       },
     ],
-    heroImage: shot("edu-dashboard.png"),
+    heroImage: { src: "/case/edu-hero-bundle.png", alt: "Three screens of the platform: the timetable and course offering, a student record in the administration service, and the same record on a mobile device", caption: "", width: 2400, height: 2098 },
+    heroBundle: true,
     tldr: [
       "Seven municipalities needed one system to replace the outdated tools used in basic and upper secondary education. Over three years I grew from UX & Product Designer to **Lead Designer**, and made sure a platform built by several teams and vendors looked and worked as one product.",
       "The platform was rolled out in **five municipalities in autumn 2026**. Pilot schools describe it as easy to use, fast and consistent.",
@@ -382,6 +383,7 @@ export const educationPlatform: CaseStudy = {
         "According to the pilot users, the platform is easy to use, versatile and modern. They found the service easy to learn, and it works logically and simply. The clarity of the interface and its fresh look got particular praise. Everyday tasks such as printing report cards and transferring student data work reliably in daily use.",
         "The pilots also produced plenty of development ideas. Users found places where they worked differently than had been assumed, and these were turned into a checklist before rollout.",
         "The platform went into production in pilot schools in spring 2026. Pilot school students received the first report cards produced on the platform, and guardians started using the service too. In the 2026–2027 school year, use is expanding to comprehensive schools in five municipalities, so the full impact will only show later.",
+        "For the municipalities, a shared platform means none of them has to buy and maintain separate systems of its own. Data security is handled in one place, and thanks to the shared UI kit, different vendors don't build the same parts over again.",
       ],
       highlights: [
         { value: "8+", label: "user groups, from municipal officials to principals, teachers, students and guardians" },

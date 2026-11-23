@@ -173,6 +173,8 @@ export type CaseStory = {
   facts: { label: string; value: string | string[]; wide?: boolean }[];
   /** Hero image: the one screen that sums the product up. */
   heroImage: GalleryImage;
+  /** heroImage is a transparent multi-screen composite: shown whole, without a frame. */
+  heroBundle?: boolean;
   /** Two or three sentences, outcome first. `**bold**` allowed. */
   tldr: string[];
   background: StorySection;
