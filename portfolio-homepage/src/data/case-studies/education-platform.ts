@@ -360,7 +360,7 @@ export const educationPlatform: CaseStudy = {
         },
         {
           title: "Metrics from day one",
-          body: "If we had known from the start what we were aiming for and how to measure it, prioritising would have been easier. With a released MVP, we could have measured task success rate, and used funnel analysis to see where users drop out of a multi-step process such as student admission. Together they would have shown where and why users fail. Metrics would also have helped when we had to rebuild the municipalities' trust, because numbers make the value of design visible to decision-makers. In hindsight, the technical project manager also suggested tracking legal compliance as a metric: which requirements are already met and which aren't yet.",
+          body: "If we had known from the start what we were aiming for and how to measure it, prioritising would have been easier. With a released MVP, we could have measured task success rate, and used funnel analysis to see where users drop out of a multi-step process such as student admission. Together they would have shown where and why users fail. Metrics would also have helped when we had to rebuild the municipalities' trust, because numbers make the value of design visible to decision-makers. In hindsight, the technical project manager also suggested tracking legal compliance as a metric, meaning which requirements are already met and which aren't yet.",
         },
         {
           title: "Legal expertise from the start",

@@ -5,6 +5,7 @@ import type { CaseStory, CaseStudy, GalleryImage, StoryFigureSet, StorySection }
 import type { Dictionary } from "@/i18n/dictionaries";
 import { fmt } from "@/i18n/format";
 import type { TocItem } from "../TableOfContents";
+import CountUpStats from "./CountUpStats";
 import StoryFigures from "./StoryFigures";
 
 /*
@@ -331,20 +332,13 @@ export default function StoryLayout({
       <Reveal>
         <Section id="impact" eyebrow={s.impact} heading={story.impact.heading}>
           <Paragraphs paragraphs={story.impact.intro} />
-          <ul className="m-0 grid list-none grid-cols-1 gap-grid-gap p-0 sm:grid-cols-3">
-            {story.impact.highlights.map((item) => (
-              <li key={item.label} className="flex flex-col gap-3 rounded-[16px] bg-cream/50 p-card-pad">
-                <span className="text-section-h2 text-ink tabular-nums">{item.value}</span>
-                <span className="text-body-sm text-body text-pretty">{item.label}</span>
-              </li>
-            ))}
-          </ul>
+          <CountUpStats stats={story.impact.highlights} />
         </Section>
       </Reveal>
 
       <Reveal>
         <Section id="reflections" eyebrow={s.reflections} heading={story.reflections.heading}>
-          <ul className="m-0 grid list-none grid-cols-1 gap-x-grid-gap gap-y-10 p-0 md:grid-cols-2">
+          <ul className="m-0 flex max-w-prose-cs list-none flex-col gap-10 p-0">
             {story.reflections.items.map((item) => (
               <li key={item.title} className="flex flex-col gap-3">
                 <h3 className="m-0 text-sub-h4 text-ink">{item.title}</h3>
