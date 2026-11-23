@@ -287,6 +287,7 @@ export const educationPlatform: CaseStudy = {
             ],
             then: [
               "Map the process",
+              "Check technical constraints and reconcile them with user journeys",
               "Clarify open questions with users and developers",
               "Design the screens",
             ],
@@ -369,7 +370,7 @@ export const educationPlatform: CaseStudy = {
       highlights: [
         { value: "8+", label: "user groups, from municipal officials to principals, teachers, students and guardians" },
         { value: "5", label: "municipalities adopting the platform in the 2026–2027 school year" },
-        { value: "~100,000", label: "students across the five municipalities (estimate)" },
+        { value: "~100,000", label: "students across the five municipalities" },
       ],
     },
     reflections: {

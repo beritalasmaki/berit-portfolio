@@ -250,6 +250,7 @@ export const educationPlatformFi: CaseStudy = {
             ],
             then: [
               "Prosessi piirretään auki",
+              "Tekniset reunaehdot tarkistetaan ja sovitetaan yhteen käyttäjäpolkujen kanssa",
               "Epäselvät kohdat tarkennetaan käyttäjien ja kehittäjien kanssa",
               "Näkymien suunnittelu",
             ],
@@ -332,7 +333,7 @@ export const educationPlatformFi: CaseStudy = {
       highlights: [
         { value: "8+", label: "käyttäjäryhmää kunnan virkahenkilöistä rehtoreihin, opettajiin, oppijoihin ja huoltajiin" },
         { value: "5", label: "kuntaa ottaa alustan käyttöön lukuvuonna 2026–2027" },
-        { value: "~100 000", label: "oppijaa viidessä kunnassa (arvio)" },
+        { value: "~100 000", label: "oppijaa viidessä kunnassa" },
       ],
     },
     reflections: {
