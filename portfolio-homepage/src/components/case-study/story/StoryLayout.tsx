@@ -28,7 +28,7 @@ export function storyTocItems(story: CaseStory, copy: Dictionary["caseStudy"]): 
     { id: "background", label: s.background },
     { id: "problem", label: s.problem },
     { id: "process", label: s.process },
-    { id: "shipped", label: s.shipped },
+    { id: "shipped", label: story.shipped.eyebrow ?? s.shipped },
     { id: "impact", label: s.impact },
     { id: "reflections", label: s.reflections },
   ].filter((item) => item.id !== "background" || story.background.paragraphs.length > 0);
@@ -45,6 +45,8 @@ export function storyReadMinutes(story: CaseStory, wordsPerMinute: number): numb
     ...(story.process.intro ?? []),
     ...story.process.steps.flatMap((step) => [step.title, ...step.paragraphs]),
     ...story.shipped.paragraphs,
+    ...(story.shipped.list ?? []),
+    ...(story.shipped.closing ?? []),
     ...story.impact.intro,
     ...story.reflections.items.flatMap((item) => [item.title, item.body]),
   ].join(" ");
@@ -105,10 +107,57 @@ function Figures({ set, copy }: { set: StoryFigureSet | undefined; copy: Diction
   );
 }
 
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="m-0 flex max-w-prose-cs list-none flex-col gap-3 p-0">
+      {items.map((item) => (
+        <li key={item} className="flex gap-3 text-body-lg text-body text-pretty">
+          <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-pill bg-accent" />
+          <span>
+            <InlineText text={item} />
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Steps in a row joined by arrows; stacks on small screens. Read as an
+ * ordered list by assistive tech. */
+function Flow({ steps, label }: { steps: string[]; label?: string }) {
+  return (
+    <ol aria-label={label} className="m-0 flex list-none flex-col gap-3 p-0 md:flex-row md:items-stretch md:gap-0">
+      {steps.map((step, i) => (
+        <li key={step} className="flex flex-col items-stretch md:flex-1 md:flex-row md:items-center">
+          <div className="flex h-full flex-1 flex-col gap-2 rounded-[16px] border border-rule bg-white p-5">
+            <span aria-hidden="true" className="font-mono-label text-mono-label uppercase text-accent-dark">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span className="text-body-sm text-ink text-pretty">{step}</span>
+          </div>
+          {i < steps.length - 1 && (
+            <span aria-hidden="true" className="self-center py-1 text-muted md:px-2 md:py-0">
+              <span className="md:hidden">↓</span>
+              <span className="hidden md:inline">→</span>
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 function ProseWithFigures({ section, copy }: { section: StorySection; copy: Dictionary["caseStudy"] }) {
   return (
     <>
       {section.paragraphs.length > 0 && <Paragraphs paragraphs={section.paragraphs} />}
+      {section.list && section.list.length > 0 && (
+        <div className="flex flex-col gap-4">
+          {section.listLabel && <h3 className={EYEBROW}>{section.listLabel}</h3>}
+          <BulletList items={section.list} />
+        </div>
+      )}
+      {section.closing && section.closing.length > 0 && <Paragraphs paragraphs={section.closing} />}
       <Figures set={section.figures} copy={copy} />
     </>
   );
@@ -170,9 +219,12 @@ export default function StoryLayout({
 
           <dl className="m-0 grid grid-cols-1 gap-x-grid-gap gap-y-6 sm:grid-cols-2 xl:grid-cols-4">
             {story.facts.map((fact) => (
-              <div key={fact.label} className="flex flex-col gap-2 border-t border-rule pt-4">
+              <div
+                key={fact.label}
+                className={`flex flex-col gap-2 border-t border-rule pt-4 ${fact.wide ? "sm:col-span-2 xl:col-span-4" : ""}`}
+              >
                 <dt className={EYEBROW}>{fact.label}</dt>
-                <dd className="m-0 text-body-sm text-ink text-pretty">{fact.value}</dd>
+                <dd className={`m-0 text-body-sm text-ink text-pretty ${fact.wide ? "max-w-prose-cs" : ""}`}>{fact.value}</dd>
               </div>
             ))}
           </dl>
@@ -210,16 +262,7 @@ export default function StoryLayout({
           {story.problem.paragraphs.length > 0 && <Paragraphs paragraphs={story.problem.paragraphs} />}
           <div className="flex flex-col gap-4">
             <h3 className={EYEBROW}>{s.constraints}</h3>
-            <ul className="m-0 flex max-w-prose-cs list-none flex-col gap-3 p-0">
-              {story.problem.constraints.map((item) => (
-                <li key={item} className="flex gap-3 text-body-lg text-body text-pretty">
-                  <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-pill bg-accent" />
-                  <span>
-                    <InlineText text={item} />
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <BulletList items={story.problem.constraints} />
           </div>
           <Figures set={story.problem.figures} copy={copy} />
         </Section>
@@ -239,6 +282,7 @@ export default function StoryLayout({
                     <h3 className="m-0 text-card-h3 text-ink text-balance">{step.title}</h3>
                   </div>
                   <Paragraphs paragraphs={step.paragraphs} />
+                  {step.flow && step.flow.length > 0 && <Flow steps={step.flow} label={step.flowLabel} />}
                   <Figures set={step.figures} copy={copy} />
                 </article>
               </Reveal>
@@ -248,7 +292,7 @@ export default function StoryLayout({
       </Section>
 
       <Reveal>
-        <Section id="shipped" eyebrow={s.shipped} heading={story.shipped.heading}>
+        <Section id="shipped" eyebrow={story.shipped.eyebrow ?? s.shipped} heading={story.shipped.heading}>
           <ProseWithFigures section={story.shipped} copy={copy} />
         </Section>
       </Reveal>

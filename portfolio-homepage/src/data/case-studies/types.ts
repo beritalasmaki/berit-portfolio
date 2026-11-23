@@ -166,8 +166,9 @@ export type CaseGlance = {
  * above it and comes from the dictionary.
  */
 export type CaseStory = {
-  /** The key facts shown under the hero, e.g. Role / Timeline / Team / Methods. */
-  facts: { label: string; value: string }[];
+  /** The key facts shown under the hero, e.g. Role / Timeline / Team / Methods.
+   * `wide` gives a long fact (e.g. "What I did") a full row. */
+  facts: { label: string; value: string; wide?: boolean }[];
   /** Hero image: the one screen that sums the product up. */
   heroImage: GalleryImage;
   /** Two or three sentences, outcome first. `**bold**` allowed. */
@@ -203,8 +204,16 @@ export type CaseStory = {
 export type StoryFigureSet = GalleryImage[] | GalleryImage[][];
 
 export type StorySection = {
+  /** Replaces the dictionary eyebrow, e.g. "Concept" for a section showing
+   * explored rather than shipped work. Never present a concept as shipped. */
+  eyebrow?: string;
   heading: string;
   paragraphs: string[];
+  /** Optional labelled list after the paragraphs. `**Lead-in:**` allowed. */
+  listLabel?: string;
+  list?: string[];
+  /** Optional closing paragraphs after the list, each may start with `**Lead-in:**`. */
+  closing?: string[];
   figures?: StoryFigureSet;
 };
 
@@ -212,6 +221,11 @@ export type StoryStep = {
   title: string;
   /** `**bold**` allowed. */
   paragraphs: string[];
+  /** A simple left-to-right flow of steps, drawn as a diagram, for a step
+   * that has no photos or screenshots to show. */
+  flow?: string[];
+  /** Accessible name for the flow diagram. */
+  flowLabel?: string;
   figures?: StoryFigureSet;
 };
 

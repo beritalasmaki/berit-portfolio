@@ -423,7 +423,7 @@ export const en = {
     story: {
       tldr: "TL;DR",
       background: "Background",
-      problem: "The problem",
+      problem: "The challenge",
       constraints: "What made it hard",
       process: "Process",
       shipped: "What shipped",

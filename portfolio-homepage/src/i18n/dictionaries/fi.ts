@@ -424,7 +424,7 @@ export const fi: Dictionary = {
     story: {
       tldr: "Lyhyesti",
       background: "Tausta",
-      problem: "Ongelma",
+      problem: "Haaste",
       constraints: "Mikä teki siitä vaikeaa",
       process: "Prosessi",
       shipped: "Mitä julkaistiin",
