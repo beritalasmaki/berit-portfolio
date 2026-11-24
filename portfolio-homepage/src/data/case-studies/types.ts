@@ -203,7 +203,8 @@ export type CaseStory = {
       value: string;
       label: string;
       /** Optional chain from the design work to the result: shown above the
-       * number as "work ↓ what it enabled ↓". Both or neither. */
+       * number as "work ↓ what it enabled ↓". `work` is a first-person
+       * statement ("I designed the calculation tool"). Both or neither. */
       work?: string;
       enabled?: string;
     }[];

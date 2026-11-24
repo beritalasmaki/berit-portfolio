@@ -135,7 +135,7 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
           >
             {stat.work && stat.enabled && (
               <>
-                <span className="text-mono-label uppercase text-accent-dark">{stat.work}</span>
+                <span className="text-sub-h4 text-ink text-balance">{stat.work}</span>
                 <span aria-hidden="true" className="text-body-sm text-body/50">↓</span>
                 <span className="self-center text-body-sm text-ink text-pretty">{stat.enabled}</span>
                 <span aria-hidden="true" className="text-body-sm text-body/50">↓</span>

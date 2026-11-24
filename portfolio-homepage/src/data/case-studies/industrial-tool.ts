@@ -372,19 +372,19 @@ export const industrialTool: CaseStudy = {
       highlights: [
         {
           value: "55%",
-          work: "Calculation tool",
+          work: "I designed the calculation tool",
           enabled: "Experts calculated the right amount of chemical step by step",
           label: "less chemical: under half of what was used before",
         },
         {
           value: "15%",
-          work: "Calculation tool",
+          work: "I designed the calculation tool",
           enabled: "Chemical was dosed only as much as needed",
           label: "less chemical for the same cleaning result",
         },
         {
           value: "19%",
-          work: "Dashboards and reports",
+          work: "I designed the dashboards and reports",
           enabled: "The process was visible around the clock, so manual dosing could be dropped",
           label: "less chemical: almost a fifth was no longer needed",
         },

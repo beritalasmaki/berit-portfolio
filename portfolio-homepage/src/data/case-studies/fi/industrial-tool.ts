@@ -311,19 +311,19 @@ export const industrialToolFi: CaseStudy = {
       highlights: [
         {
           value: "55\u00a0%",
-          work: "Laskentatyökalu",
+          work: "Suunnittelin laskentatyökalun",
           enabled: "Asiantuntija laski oikean kemikaalimäärän vaihe vaiheelta",
           label: "vähemmän kemikaalia: alle puolet entisestä",
         },
         {
           value: "15\u00a0%",
-          work: "Laskentatyökalu",
+          work: "Suunnittelin laskentatyökalun",
           enabled: "Kemikaalia annosteltiin vain sen verran kuin tarvittiin",
           label: "vähemmän kemikaalia samaan puhdistustulokseen",
         },
         {
           value: "19\u00a0%",
-          work: "Dashboardit ja raportit",
+          work: "Suunnittelin dashboardit ja raportit",
           enabled: "Prosessin näki ympäri vuorokauden, joten käsin annostelusta voitiin luopua",
           label: "vähemmän kemikaalia: lähes viidennes jäi tarpeettomaksi",
         },
