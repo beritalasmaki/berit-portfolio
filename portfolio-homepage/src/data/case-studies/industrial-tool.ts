@@ -296,8 +296,6 @@ export const industrialTool: CaseStudy = {
             "Not everything could be standardised. So the tool lets you write your own formula when the standard steps aren't enough. That way it guides the usual cases but doesn't stop the expert in exceptional ones.",
             "No screenshots of the tool survive, so the images are a reconstruction. The steps match the original, but details may differ.",
           ],
-          flowLabel: "How the calculation tool was designed",
-          flow: ["The expert's Excel calculation", "Co-design", "Finishing the designs", "Review with the expert", "Into development"],
           figures: [
             [calcShots[0], calcShots[1], calcShots[2]],
             [calcShots[3], calcShots[4]],

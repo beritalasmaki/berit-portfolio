@@ -248,8 +248,6 @@ export const industrialToolFi: CaseStudy = {
             "Kaikkea ei voinut vakioida. Siksi työkaluun tuli mahdollisuus kirjoittaa oma kaava silloin, kun vakiovaiheet eivät riitä. Näin työkalu ohjaa tavallisissa tapauksissa mutta ei estä asiantuntijaa poikkeustilanteissa.",
             "Työkalusta ei ole jäljellä kuvakaappauksia, joten kuvat ovat rekonstruktio. Vaiheet vastaavat alkuperäistä, yksityiskohdat voivat poiketa.",
           ],
-          flowLabel: "Miten laskentatyökalu suunniteltiin",
-          flow: ["Asiantuntijan Excel-laskenta", "Yhteissuunnittelu", "Viimeistely", "Tarkistus asiantuntijan kanssa", "Kehitykseen"],
           figures: [
             [calcShots[0], calcShots[1], calcShots[2]],
             [calcShots[3], calcShots[4]],
