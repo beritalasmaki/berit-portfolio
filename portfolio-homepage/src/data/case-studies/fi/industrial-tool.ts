@@ -32,7 +32,7 @@ const alertShots = localizeGallery(enAlertShots, [
     caption: "Rekonstruktio · Tilanäkymä",
   },
   {
-    alt: "Hälytysasetukset: aktiivinen hälytys ja kuittauspainike, varoitus- ja hälytysrajat sekä vastaanottajat kanavittain (sähköposti, tehtaan tabletti, sovellus)",
+    alt: "Hälytysasetukset: aktiivinen varoitus ja kuittauspainike, normaali-, keski- ja varoitustaso sekä sähköposti- ja tekstiviestihälytysten vastaanottajat",
     caption: "Rekonstruktio · Hälytysasetukset",
   },
 ]);
@@ -265,7 +265,7 @@ export const industrialToolFi: CaseStudy = {
           paragraphs: [
             "Erillisellä budjetilla suunnittelin hälytysjärjestelmän. Se oli oma web-sovelluksensa eikä osa pääalustaa, ja sitä käytettiin myös tehtaiden tableteilla. Järjestelmä seuraa prosessin kemiallista tilaa ja varoittaa, kun säiliö on täyttymässä tai jokin muu menee vikaan.",
             "Tilanäkymässä näkyvät neljän tunnin riskiennuste, suositellut toimenpiteet ja prosessin eri osien tila. Jokaisella tilalla on värin lisäksi tekstimerkintä, joten tieto ei ole pelkän värin varassa.",
-            "Käyttäjä asettaa hälytysrajat, valitsee vastaanottajat ja kuittaa hälytykset. Hälytys tulee sähköpostiin, tehtaan tabletille ja sovellukseen, jotta se tavoittaa sekä tehtaan prosessinhoitajan että kenttähuollon.",
+            "Käyttäjä asettaa datalle kolme tasoa: normaali (vihreä), keskitaso (oranssi) ja varoitustaso (punainen). Hälytykset näkyvät aina tehtaan tabletilla ja sovelluksessa. Lisäksi käyttäjä valitsee, kuka saa ne myös sähköpostiin tai tekstiviestinä, ja lisää uudet vastaanottajat sähköpostiosoitteella. Näin hälytys tavoittaa sekä tehtaan prosessinhoitajan että kenttähuollon, ja sen voi kuitata samassa näkymässä.",
             "Alkuperäisestä ei ole jäljellä kuvakaappauksia, joten kuvat ovat rekonstruktio yhden säilyneen kuvan pohjalta. Tuotenimet on poistettu.",
           ],
           figures: [alertShots[0], alertShots[1]],
@@ -273,7 +273,8 @@ export const industrialToolFi: CaseStudy = {
         {
           title: "Design System Figmaan",
           paragraphs: [
-            "Design System oli Sketchissä, mikä hankaloitti yhteistyötä kehittäjien kanssa. Päivittäisen suunnittelutyön ohessa siirsin kirjaston Figmaan. Siivosin ja rakensin komponentit uudelleen sen sijaan, että olisin kopioinut ne sellaisinaan.",
+            "Aloitimme suunnittelun Sketchillä, mutta siirryin itse tekemään suunnittelutyötä Figmassa, koska se oli nopeampaa. Ehdotin asiakkaalle, että koko tiimi siirtyisi Figmaan. Siinä UI kitin voi rakentaa selkeämmin, ja prototyypit voi tehdä suoraan Figmassa ilman erillistä InVision-palvelua.",
+            "Siirsin UI kitin Figmaan automaattisella tuonnilla, mutta komponentit hajosivat pahasti. Rakensin ne siksi uudelleen ja järjestin komponentit ja tokenit omiin selkeisiin kansioihinsa.",
           ],
         },
       ],

@@ -75,7 +75,7 @@ export const alertShots: GalleryImage[] = [
   },
   {
     src: "/case/kem-alert-2.png",
-    alt: "Alert settings: an active alarm with an acknowledge button, warning and alarm limits, and recipients by channel (email, plant tablet, in app)",
+    alt: "Alert settings: an active warning with an acknowledge button, normal, mid and warning levels, and recipients for email and text message alerts",
     caption: "Reconstruction · Alert settings",
     width: 2560,
     height: 1560,
@@ -313,7 +313,7 @@ export const industrialTool: CaseStudy = {
           paragraphs: [
             "With a separate budget, I designed an alert system. It was its own web app, not part of the main platform, and it was also used on tablets at the plants. It follows the chemical state of the process and warns when a tank is filling up or something else goes wrong.",
             "The status view shows the risk forecast for the next four hours, recommended actions and the state of each part of the process. Every state has a text label as well as a colour, so it doesn't rely on colour alone.",
-            "Users set the alert limits, choose the recipients and acknowledge alerts. An alert arrives by email, on the plant's tablet and in the app, so it reaches both the process operator at the plant and field service.",
+            "Users set three levels for the data: normal (green), mid level (orange) and warning level (red). Alerts always show on the plant's tablet and in the app. Users also choose who gets them by email or text message, and add new recipients by email address. That way an alert reaches both the process operator at the plant and field service, and it can be acknowledged in the same view.",
             "No screenshots of the original survive, so the images are a reconstruction based on one surviving image. Product names have been removed.",
           ],
           figures: [alertShots[0], alertShots[1]],
@@ -321,7 +321,8 @@ export const industrialTool: CaseStudy = {
         {
           title: "The design system to Figma",
           paragraphs: [
-            "The design system lived in Sketch, which made collaboration with developers harder. Alongside the day-to-day design work, I moved the library to Figma. I cleaned up and rebuilt the components instead of copying them as they were.",
+            "We started designing in Sketch, but I moved my own design work to Figma because it was faster. I suggested to the client that the whole team move to Figma. The UI kit can be built more clearly there, and prototypes can be made directly in Figma without a separate InVision service.",
+            "I moved the UI kit to Figma with an automatic import, but the components broke badly. So I rebuilt them and sorted the components and tokens into their own clear folders.",
           ],
         },
       ],
