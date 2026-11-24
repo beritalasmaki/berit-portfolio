@@ -288,9 +288,8 @@ export const industrialToolFi: CaseStudy = {
     impact: {
       heading: "Vähemmän käsityötä, enemmän luottamusta työkaluun",
       intro: [
-        "**Työni vaikutus asiakkaiden tuloksiin.** Kemikaaleja säästyy, kun annostelua seurataan ja säädetään luotettavan datan pohjalta. Asiakkaat ja asiantuntijat näkivät datan ja tekivät päätöksensä juuri niissä näkymissä, jotka suunnittelin.",
-        "**Laskentatyökalu auttoi löytämään oikean annoksen.** Asiantuntijat laskevat ja tarkistavat annostelun vaihe vaiheelta työkalussa, eivät enää erillisessä Excelissä. Säästöt syntyvät nimenomaan oikeasta annoksesta. Yksi jätevedenpuhdistamo vähensi saostuskemikaalin kulutusta 55 % ja ilmastuksen energiankulutusta 6 %. Toisella puhdistamolla kemikaalia kului yli 15 % vähemmän jokaista poistettua fosforikiloa kohden.",
-        "**Kun prosessin näkee, automaattiseen annosteluun voi luottaa.** Dashboardeilta asiakas näkee annostelun ja prosessin tilan ympäri vuorokauden. Kolmannella puhdistamolla lietteenkäsittelyn kemikaalit oli annosteltu käsin, koska vanhoihin antureihin ei voinut luottaa. Kun annostelu muuttui automaattiseksi, polymeeriä kului noin 19 % vähemmän. Puhdistamon prosessiasiantuntija nosti esiin juuri dashboardit ja raportit: ”Nyt tiedämme, mitä tapahtuu ympäri vuorokauden. Dashboardit ovat hyviä ja raportit tarkkoja.”",
+        "**Työni vaikutus asiakkaiden tuloksiin.** Jätevedenpuhdistamot käyttävät kemikaaleja veden puhdistamiseen. Kun kemikaalia annostellaan juuri oikea määrä, sitä kuluu vähemmän ja kustannukset laskevat. Oikea määrä löytyy, kun prosessia seurataan luotettavan datan avulla, ja asiakkaat ja asiantuntijat tekivät nämä päätökset juuri niissä näkymissä, jotka suunnittelin.",
+        "Yksi puhdistamo oli annostellut kemikaalit käsin, koska sen vanhoihin mittalaitteisiin ei voinut luottaa. Kun annostelu muuttui automaattiseksi ja prosessia pystyi seuraamaan dashboardeilta, puhdistamon prosessiasiantuntija kuvasi muutosta näin: ”Nyt tiedämme, mitä tapahtuu ympäri vuorokauden. Dashboardit ovat hyviä ja raportit tarkkoja.”",
         "**Raportit tukivat myyntiä.** Yrityksen tavoitteena oli koota erilliset tietokannat yhdelle alustalle ja hyödyntää dataa palvelujen myynnissä. Raporttien avulla myyjät ja asiantuntijat pystyvät näyttämään asiakkaalle säästöt selkeästi.",
         "Tulokset ovat kemian, laskenta-algoritmien, asiantuntijoiden ja käyttöliittymän yhteistyön ansiota. Minun osuuteni oli tehdä datasta ja laskennasta niin selkeää, että asiakkaat ja asiantuntijat voivat seurata sitä ja tehdä päätöksiä sen pohjalta.",
         "**Käyttäjien ja tiimin palaute.** Julkaisujen jälkeen kävimme palautteen läpi ja testasimme ominaisuuksia käyttäjien kanssa. Käytettävyyttä ei mitattu tarkasti, joten tältä osin vaikutus perustuu käyttäjiltä ja tiimiltä saatuun palautteeseen.",
@@ -301,20 +300,20 @@ export const industrialToolFi: CaseStudy = {
         {
           value: "55\u00a0%",
           work: "Laskentatyökalu",
-          enabled: "Oikea annos laskettiin vaihe vaiheelta",
-          label: "vähemmän kemikaalia yhdellä puhdistamolla",
+          enabled: "Asiantuntija laski oikean kemikaalimäärän vaihe vaiheelta",
+          label: "vähemmän kemikaalia: alle puolet entisestä",
         },
         {
           value: "15\u00a0%",
           work: "Laskentatyökalu",
-          enabled: "Tarkempi annostelu fosforin poistoon",
-          label: "vähemmän kemikaalia poistettua fosforikiloa kohden",
+          enabled: "Kemikaalia annosteltiin vain sen verran kuin tarvittiin",
+          label: "vähemmän kemikaalia samaan puhdistustulokseen",
         },
         {
           value: "19\u00a0%",
           work: "Dashboardit ja raportit",
-          enabled: "Prosessi näkyy ympäri vuorokauden, joten automaattiseen annosteluun voi luottaa",
-          label: "vähemmän polymeeriä lietteenkäsittelyssä",
+          enabled: "Prosessin näki ympäri vuorokauden, joten käsin annostelusta voitiin luopua",
+          label: "vähemmän kemikaalia: lähes viidennes jäi tarpeettomaksi",
         },
       ],
     },
