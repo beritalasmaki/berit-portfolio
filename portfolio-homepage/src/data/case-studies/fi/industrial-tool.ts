@@ -263,9 +263,9 @@ export const industrialToolFi: CaseStudy = {
         {
           title: "Hälytysjärjestelmä sivuprojektina",
           paragraphs: [
-            "Erillisellä budjetilla suunnittelin hälytysjärjestelmän. Se oli oma web-sovelluksensa eikä osa pääalustaa, ja sitä käytettiin myös tehtaiden tableteilla. Järjestelmä seuraa prosessin kemiallista tilaa ja varoittaa, kun säiliö on täyttymässä tai jokin muu menee vikaan.",
+            "Erillisellä budjetilla suunnittelin hälytysjärjestelmän. Se oli oma web-sovelluksensa eikä osa pääalustaa, ja sitä käytettiin myös tehtailla annostelulaitteisiin kiinnitetyillä näytöillä. Järjestelmä seuraa prosessin kemiallista tilaa ja varoittaa, kun säiliö on täyttymässä tai jokin muu menee vikaan.",
             "Tilanäkymässä näkyvät neljän tunnin riskiennuste, suositellut toimenpiteet ja prosessin eri osien tila. Jokaisella tilalla on värin lisäksi tekstimerkintä, joten tieto ei ole pelkän värin varassa.",
-            "Käyttäjä asettaa datalle kolme tasoa: normaali (vihreä), keskitaso (oranssi) ja varoitustaso (punainen). Hälytykset näkyvät aina tehtaan tabletilla ja sovelluksessa. Lisäksi käyttäjä valitsee, kuka saa ne myös sähköpostiin tai tekstiviestinä, ja lisää uudet vastaanottajat sähköpostiosoitteella. Näin hälytys tavoittaa sekä tehtaan prosessinhoitajan että kenttähuollon, ja sen voi kuitata samassa näkymässä.",
+            "Käyttäjä asettaa datalle kolme tasoa: normaali (vihreä), keskitaso (oranssi) ja varoitustaso (punainen). Hälytykset näkyvät aina laitteen näytöllä tehtaalla ja sovelluksessa. Lisäksi käyttäjä valitsee, kuka saa ne myös sähköpostiin tai tekstiviestinä, ja lisää uudet vastaanottajat sähköpostiosoitteella. Näin hälytys tavoittaa sekä tehtaan prosessinhoitajan että kenttähuollon, ja sen voi kuitata samassa näkymässä.",
             "Alkuperäisestä ei ole jäljellä kuvakaappauksia, joten kuvat ovat rekonstruktio yhden säilyneen kuvan pohjalta. Tuotenimet on poistettu.",
           ],
           figures: [alertShots[0], alertShots[1]],

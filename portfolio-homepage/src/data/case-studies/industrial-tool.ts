@@ -311,9 +311,9 @@ export const industrialTool: CaseStudy = {
         {
           title: "An alert system as a side project",
           paragraphs: [
-            "With a separate budget, I designed an alert system. It was its own web app, not part of the main platform, and it was also used on tablets at the plants. It tracks the chemical state of the process and warns when a tank is filling up or something else goes wrong.",
+            "With a separate budget, I designed an alert system. It was its own web app, not part of the main platform, and it was also used on screens mounted on the dosing equipment at the plants. It tracks the chemical state of the process and warns when a tank is filling up or something else goes wrong.",
             "The status view shows the risk forecast for the next four hours, recommended actions and the state of each part of the process. Every state has a text label as well as a colour, so it doesn't rely on colour alone.",
-            "Users set three levels for the data: normal (green), mid level (orange) and warning level (red). Alerts always show on the plant's tablet and in the app. Users also choose who gets them by email or text message, and add new recipients by email address. That way an alert reaches both the process operator at the plant and field service, and it can be acknowledged in the same view.",
+            "Users set three levels for the data: normal (green), mid level (orange) and warning level (red). Alerts always show on the equipment's screen at the plant and in the app. Users also choose who gets them by email or text message, and add new recipients by email address. That way an alert reaches both the process operator at the plant and field service, and it can be acknowledged in the same view.",
             "No screenshots of the original survive, so the images are a reconstruction based on one surviving image. Product names have been removed.",
           ],
           figures: [alertShots[0], alertShots[1]],
