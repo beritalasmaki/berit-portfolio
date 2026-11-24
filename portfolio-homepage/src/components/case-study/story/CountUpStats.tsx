@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 
-type Stat = { value: string; label: string };
+type Stat = { value: string; label: string; work?: string; enabled?: string };
 
 // Each number rolls for this long, then the next one starts.
 const DURATION = 1800;
@@ -111,14 +111,36 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
     };
   }, [stats]);
 
+  const chained = stats.some((stat) => stat.work && stat.enabled);
+
   return (
-    <ul ref={listRef} className="m-0 grid list-none grid-cols-1 gap-grid-gap p-0 sm:grid-cols-3">
+    <ul
+      ref={listRef}
+      className={`m-0 grid list-none grid-cols-1 gap-grid-gap p-0 sm:grid-cols-3 ${
+        // Chains share rows across the cards (subgrid), so the middle texts,
+        // the numbers and the labels line up whatever their length.
+        chained ? "sm:gap-y-3" : ""
+      }`}
+    >
       {stats.map((stat, i) => {
         const p = parse(stat.value);
         const rolling = values !== null && p !== null;
         const places = p ? String(p.target).length : 0;
         return (
-          <li key={stat.label} className="flex flex-col items-center gap-3 rounded-[16px] bg-cream/50 p-card-pad text-center">
+          <li
+            key={stat.label}
+            className={`flex flex-col items-center gap-3 rounded-[16px] bg-cream/50 p-card-pad text-center ${
+              chained ? "sm:row-span-6 sm:grid sm:grid-rows-subgrid sm:justify-items-center" : ""
+            }`}
+          >
+            {stat.work && stat.enabled && (
+              <>
+                <span className="text-sub-h4 text-ink text-balance">{stat.work}</span>
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-7 w-7 text-accent-dark" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v16M6 14l6 6 6-6" /></svg>
+                <span className="self-center text-body-sm text-ink text-pretty">{stat.enabled}</span>
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-7 w-7 text-accent-dark" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v16M6 14l6 6 6-6" /></svg>
+              </>
+            )}
             <span className="text-section-h2 text-ink tabular-nums" style={{ lineHeight: CELL }}>
               <span className="sr-only">{stat.value}</span>
               {rolling ? (

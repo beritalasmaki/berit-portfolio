@@ -8,7 +8,7 @@ import type { GalleryImage } from "../types";
  */
 export function localizeGallery(
   images: GalleryImage[] | undefined,
-  texts: ReadonlyArray<{ alt: string; caption: string }>
+  texts: ReadonlyArray<{ alt: string; caption: string; tag?: string }>
 ): GalleryImage[] {
   if (!images || images.length !== texts.length) {
     throw new Error(

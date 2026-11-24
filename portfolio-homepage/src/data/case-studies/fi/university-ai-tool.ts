@@ -5,6 +5,7 @@ import { localizeGallery } from "./helpers";
 export const universityAiToolFi: CaseStudy = {
   slug: "university-ai-tool",
   title: "Yliopiston digitaalinen perehdytys ja tekoälyhakukonsepti",
+  cardTitle: "Yliopiston digitaalinen perehdytys ja tekoäly\u00adhaku\u00adkonsepti",
   label: "YLIOPISTON ASIAKASKOKEMUS JA TEKOÄLYTYÖKALUT · 2025–2026",
   headline: "Hajallaan olevat opiskelijapalvelut.\nYksi tekoälyhakuun perustuva portaali.",
   description:

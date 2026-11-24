@@ -16,6 +16,9 @@ export type CaseStudySummary = {
   slug: CaseStudySlug;
   /** Full project title, used as the detail page's <h1>. */
   title: string;
+  /** Title for narrow cards, with soft hyphens (\u00ad) at compound-word
+   * boundaries so long Finnish words break where a reader expects. */
+  cardTitle?: string;
   /** Browser tab title, when `title` doesn't read well before
    * "| By Berit Alasmäki". Defaults to `title`. */
   tabTitle?: string;
@@ -79,6 +82,8 @@ export type GalleryImage = {
   /** Intrinsic pixel dimensions, for next/image's layout-shift-free sizing. */
   width: number;
   height: number;
+  /** Short label shown on the image itself, e.g. "Before" / "After". */
+  tag?: string;
 };
 
 export type ChallengeSubsection = {
@@ -196,7 +201,15 @@ export type CaseStory = {
     /** Where the evidence comes from, said plainly. */
     intro: string[];
     /** Large callouts. Only real, sourced figures: a scope fact is fine, an invented metric is not. */
-    highlights: { value: string; label: string }[];
+    highlights: {
+      value: string;
+      label: string;
+      /** Optional chain from the design work to the result: shown above the
+       * number as "work ↓ what it enabled ↓". `work` names the piece of design
+       * work ("Calculation tool"). Both or neither. */
+      work?: string;
+      enabled?: string;
+    }[];
   };
   reflections: {
     heading: string;

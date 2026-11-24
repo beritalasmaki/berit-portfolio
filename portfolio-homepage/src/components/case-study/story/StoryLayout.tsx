@@ -436,8 +436,18 @@ export default function StoryLayout({
 
       <Reveal>
         <Section id="impact" eyebrow={s.impact} heading={story.impact.heading}>
-          <Paragraphs paragraphs={story.impact.intro} />
-          <CountUpStats stats={story.impact.highlights} />
+          {story.impact.highlights.some((h) => h.work) ? (
+            // Work → result chains lead, so a skimming reader sees the link first.
+            <>
+              <CountUpStats stats={story.impact.highlights} />
+              <Paragraphs paragraphs={story.impact.intro} />
+            </>
+          ) : (
+            <>
+              <Paragraphs paragraphs={story.impact.intro} />
+              <CountUpStats stats={story.impact.highlights} />
+            </>
+          )}
         </Section>
       </Reveal>
 
