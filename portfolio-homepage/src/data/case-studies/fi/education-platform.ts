@@ -212,7 +212,7 @@ export const educationPlatformFi: CaseStudy = {
     problem: {
       heading: "Monta rakentajaa, yksi tuote",
       statement:
-        "Seitsemän kunnan hajanaiset koulujärjestelmät piti koota yhdeksi turvalliseksi tuotteeksi, jota rakensi moni toimittaja.",
+        "Seitsemän kunnan hajanaiset koulujärjestelmät piti koota yhdeksi tuotteeksi, jota rakensi moni toimittaja.",
       paragraphs: [
         "Vanhat järjestelmät noudattivat vanhaa logiikkaa. Osa toiveista oli suoria kopioita siitä, miten edellinen järjestelmä toimi, eikä kaikki siitä ollut enää edes lainmukaista. Uusi alusta piti rakentaa sen ympärille, miten kouluissa tänään oikeasti työskennellään. Kaikki rakennettiin uudelleen: vanhasta otettiin talteen se, mikä toimi, ja huonosti toimivat prosessit mietittiin uusiksi.",
       ],

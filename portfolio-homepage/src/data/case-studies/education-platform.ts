@@ -252,7 +252,7 @@ export const educationPlatform: CaseStudy = {
     problem: {
       heading: "Many builders, one product",
       statement:
-        "Seven municipalities' scattered school systems had to become one secure product, built by many vendors.",
+        "Seven municipalities' scattered school systems had to become one product, built by many vendors.",
       paragraphs: [
         "The old systems followed old logic. Some feature requests were straight copies of how the previous system worked, and some of that was no longer even legal. The new platform had to be built around how schools actually work today. Everything was rebuilt: we kept what worked in the old systems and redesigned the processes that didn't.",
       ],
