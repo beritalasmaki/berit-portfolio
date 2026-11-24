@@ -183,8 +183,9 @@ export const industrialToolFi: CaseStudy = {
     ],
     heroImage: {
       ...en.story!.heroImage,
-      alt: "Alustan dashboard, jossa on KPI-, trendi-, mittari- ja kaaviowidgettejä",
+      alt: "Alustan dashboard, jossa on KPI-, trendi-, mittari- ja kaaviowidgettejä, sekä säiliönäkymä mobiililaitteella",
     },
+    heroBundle: true,
     tldr: [
       "Kansainvälisen kemianteollisuuden yrityksen data-alustalla on **yli kahdeksan käyttäjäryhmää** tehtaiden prosessinhoitajista myyjiin ja data-analyytikoihin, ja jokainen tarvitsee siitä eri asioita. Olin alustan ainoa suunnittelija vuosina 2021–2023.",
       "Asiantuntijat tekivät vaativia laskelmia Excelissä. Suunnittelin niistä yhdessä asiantuntijan kanssa **viisivaiheisen laskentatyökalun**, jossa omaa kaavaa voi käyttää silloin, kun vakiovaiheet eivät riitä. Automaattinen tallennus lopetti työn katoamisen, hälytysjärjestelmä varoittaa, kun säiliö on täyttymässä tai laitteessa on vika, ja UI kitin siirto Figmaan toi suunnittelijat ja kehittäjät samaan työkaluun.",

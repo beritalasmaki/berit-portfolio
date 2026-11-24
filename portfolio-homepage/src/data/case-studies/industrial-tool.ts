@@ -227,12 +227,13 @@ export const industrialTool: CaseStudy = {
       },
     ],
     heroImage: {
-      src: "/case/kem-dash.png",
-      alt: "Dashboard of the platform with KPI, trend, gauge and chart widgets",
+      src: "/case/kem-hero-bundle.png",
+      alt: "The platform dashboard with KPI, trend, gauge and chart widgets, and a tank view on a mobile device",
       caption: "",
-      width: 1043,
-      height: 734,
+      width: 1181,
+      height: 697,
     },
+    heroBundle: true,
     tldr: [
       "An international chemicals company's data platform has **more than eight user groups**, from plant process operators to sales and data analysts, and each needs something different from it. I was the platform's only designer in 2021–2023.",
       "Experts used to do demanding calculations in Excel. Together with an expert I turned them into a **five-step calculation tool** that still allows a custom formula when the standard steps aren't enough. Auto-save stopped work from getting lost, an alert system warns when a tank is filling up or a device fails, and moving the UI kit to Figma put designers and developers in the same tool.",
