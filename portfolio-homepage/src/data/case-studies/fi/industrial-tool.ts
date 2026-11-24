@@ -1,4 +1,4 @@
-import { alertShots as enAlertShots, calcShots as enCalcShots, industrialTool as en, widgetBefore } from "../industrial-tool";
+import { alertShots as enAlertShots, autosaveShots as enAutosaveShots, calcShots as enCalcShots, industrialTool as en, widgetBefore } from "../industrial-tool";
 import type { CaseStudy, GalleryImage } from "../types";
 import { localizeGallery } from "./helpers";
 
@@ -42,6 +42,21 @@ const alertShots = localizeGallery(enAlertShots, [
   {
     alt: "Hälytysasetukset: aktiivinen varoitus ja kuittauspainike, normaali-, keski- ja varoitustaso sekä sähköposti- ja tekstiviestihälytysten vastaanottajat",
     caption: "Rekonstruktio · Työpöytäsovellus, hälytysasetukset",
+  },
+]);
+
+const autosaveShots = localizeGallery(enAutosaveShots, [
+  {
+    alt: "Ennen: Edit dashboard -paneelissa on vain Cancel- ja Save-painikkeet, joten muutokset säilyvät vain, jos käyttäjä muistaa tallentaa",
+    caption: "Ennen · Muutokset tallentuivat vain Save-painikkeella",
+  },
+  {
+    alt: "Automaattinen tallennus pois päältä: kytkimessä lukee Auto-save: Off, ja sen vieressä ovat Cancel- ja Save-painikkeet",
+    caption: "Automaattinen tallennus pois · Cancel ja Save käytössä",
+  },
+  {
+    alt: "Automaattinen tallennus päällä: kytkimessä lukee Auto-save: On ja viimeisin tallennusaika, ja Cancel- ja Save-painikkeiden tilalla on Back to view mode -painike",
+    caption: "Automaattinen tallennus päällä · Viimeisin tallennusaika ja paluu katselutilaan",
   },
 ]);
 
@@ -268,9 +283,11 @@ export const industrialToolFi: CaseStudy = {
         {
           title: "Automaattinen tallennus",
           paragraphs: [
-            "Haastatteluissa selvisi, että data- ja raporttinäkymissä työ katosi, jos käyttäjä unohti tallentaa tai yhteys katkesi. Se oli erityisen hankalaa etänä tehtailla työskenteleville. Suunnittelin näkymiin automaattisen tallennuksen, jonka tila näkyy aina, ja paransin samalla raporttien rakennetta ja sisältöä.",
+            "Haastatteluissa selvisi, että työ katosi, jos käyttäjä unohti tallentaa tai yhteys katkesi. Se oli erityisen hankalaa etänä tehtailla työskenteleville.",
+            "Aiemmin dashboardin muutokset tallentuivat vain Save-painikkeella. Lisäsin Edit dashboard -paneeliin automaattisen tallennuksen kytkimen. Kun automaattinen tallennus on päällä, paneelissa näkyy, milloin muutokset viimeksi tallennettiin, ja Cancel- ja Save-painikkeiden tilalla on paluu katselutilaan. Kun se on pois päältä, käyttäjä tallentaa tai peruu muutokset itse kuten ennenkin.",
+            "Kytkin jätti valinnan käyttäjälle, joten muutoksia ennen tallentamista kokeilevat pystyivät jatkamaan omalla tavallaan. Paransin samalla myös raporttien rakennetta ja sisältöä.",
           ],
-          figures: [screen("kem-datapoints.png")],
+          figures: [[autosaveShots[0]], [autosaveShots[1], autosaveShots[2]]],
         },
         {
           title: "Hälytysjärjestelmä sivuprojektina",
@@ -295,7 +312,7 @@ export const industrialToolFi: CaseStudy = {
     shipped: {
       heading: "Valmis alusta",
       paragraphs: ["Kaikki casessa esitellyt näkymät julkaistiin. Alusta toimii myös mobiililaitteilla."],
-      figures: [screen("kem-dash-menu.png"), screen("kem-mob-a2.png"), screen("kem-mob-b.png")],
+      figures: [screen("kem-datapoints.png"), screen("kem-mob-a2.png"), screen("kem-mob-b.png")],
     },
     impact: {
       heading: "Vähemmän käsityötä, enemmän luottamusta työkaluun",

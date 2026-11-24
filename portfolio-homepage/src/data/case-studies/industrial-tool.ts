@@ -106,6 +106,31 @@ export const widgetBefore: GalleryImage = {
   height: 814,
 };
 
+/** Auto-save in the Edit dashboard panel: before, off and on (original design files). */
+export const autosaveShots: GalleryImage[] = [
+  {
+    src: "/case/kem-autosave-before.png",
+    alt: "Before: the Edit dashboard panel has only Cancel and Save buttons, so changes are kept only when the user remembers to save",
+    caption: "Before · Changes saved only with the Save button",
+    width: 1800,
+    height: 1386,
+  },
+  {
+    src: "/case/kem-autosave-off.png",
+    alt: "Auto-save off: a toggle reads Auto-save: Off, with Cancel and Save buttons beside it",
+    caption: "Auto-save off · Cancel and Save stay available",
+    width: 1800,
+    height: 1446,
+  },
+  {
+    src: "/case/kem-autosave-on.png",
+    alt: "Auto-save on: the toggle reads Auto-save: On with the last saved time, and a Back to view mode button replaces Cancel and Save",
+    caption: "Auto-save on · Last saved time and a way back to view mode",
+    width: 1800,
+    height: 1446,
+  },
+];
+
 export const industrialTool: CaseStudy = {
   slug: "industrial-tool",
   title: "Industrial Data Platform",
@@ -329,9 +354,11 @@ export const industrialTool: CaseStudy = {
         {
           title: "Auto-save",
           paragraphs: [
-            "The interviews showed that in the data and report views, work was lost if a user forgot to save or the connection dropped. That was especially hard for people working remotely at plants. I designed auto-save for these views, with the status always visible, and improved the structure and content of the reports at the same time.",
+            "The interviews showed that work was lost if a user forgot to save or the connection dropped. That was especially hard for people working remotely at plants.",
+            "Before, changes to a dashboard were kept only when the user pressed Save. I added an auto-save toggle to the Edit dashboard panel. When auto-save is on, the panel shows when changes were last saved, and a Back to view mode button replaces Cancel and Save. When it is off, users save or cancel their changes themselves, as before.",
+            "The toggle left the choice to the user, so people who wanted to try changes before keeping them could still work that way. I also improved the structure and content of the reports.",
           ],
-          figures: [screen("kem-datapoints.png")],
+          figures: [[autosaveShots[0]], [autosaveShots[1], autosaveShots[2]]],
         },
         {
           title: "An alert system as a side project",
@@ -356,7 +383,7 @@ export const industrialTool: CaseStudy = {
     shipped: {
       heading: "The finished platform",
       paragraphs: ["Everything shown in this case was released. The platform also works on mobile devices."],
-      figures: [screen("kem-dash-menu.png"), screen("kem-mob-a2.png"), screen("kem-mob-b.png")],
+      figures: [screen("kem-datapoints.png"), screen("kem-mob-a2.png"), screen("kem-mob-b.png")],
     },
     impact: {
       heading: "Less manual work, more trust in the tool",
