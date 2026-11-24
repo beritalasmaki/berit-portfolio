@@ -228,7 +228,7 @@ export const educationPlatform: CaseStudy = {
         wide: true,
         value: [
           "Facilitated workshops and ran user interviews",
-          "Built the design system's UI kit from scratch, used by all three teams and several vendors",
+          "Built the platform's UI kit almost from scratch, on another designer's groundwork of tokens and base components. All three teams and several vendors used it",
           "Designed the administration service's user interfaces",
           "Kept visual identity and UX consistent across the system",
           "Owned accessibility and helped organise external audits",
@@ -239,7 +239,7 @@ export const educationPlatform: CaseStudy = {
     heroImage: { src: "/case/edu-hero-bundle.png", alt: "Two screens of the platform: the timetable and course offering on desktop, and a student record in the administration service on a mobile device", caption: "", width: 1241, height: 1008 },
     heroBundle: true,
     tldr: [
-      "Seven municipalities needed one system to replace the outdated tools used in basic and upper secondary education. Over three years I grew from UX & Product Designer to **Lead Designer**, and made sure a platform built by several teams and vendors looked and worked as one product. I built the design system's **UI kit from scratch**, and every team and vendor used it.",
+      "Seven municipalities needed one system to replace the outdated tools used in basic and upper secondary education. Over three years I grew from UX & Product Designer to **Lead Designer**, and made sure a platform built by several teams and vendors looked and worked as one product. I built the platform's design system **UI kit** starting almost from scratch. Another designer had already done good groundwork, such as the tokens and base components. Every team and vendor used the kit.",
       "The platform was rolled out in **five municipalities in autumn 2026**. Pilot schools describe it as easy to use, fast and consistent.",
     ],
     background: {
@@ -290,9 +290,9 @@ export const educationPlatform: CaseStudy = {
           figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
         },
         {
-          title: "A UI kit from scratch for every service",
+          title: "A UI kit for every service",
           paragraphs: [
-            "I worked on both the teaching and administration service and the guardians' e-service, and made sure they share one visual identity and user experience. With few designers and many teams, I couldn't review every screen. Instead I defined a shared visual direction and a UI kit of reusable components, and later led the visual direction of the whole project.",
+            "I worked on both the teaching and administration service and the guardians' e-service, and made sure they share one visual identity and user experience. With few designers and many teams, I couldn't review every screen. Instead I defined a shared visual direction and built a UI kit of reusable components. Another designer had already done good groundwork, for example the tokens and base components, but I started the UI kit itself almost from scratch. Later I led the visual direction of the whole project.",
             "Consistency was about more than looks. I worked closely with developers: I regularly explained why something was built a certain way, listened to their ideas and worked out the technical constraints of each part. My bachelor's degree in software development meant I understood the implementation challenges and could discuss them directly with developers.",
             "The same went for mobile devices. Guardians and students had often found the old mobile apps confusing, so the mobile views use the same structure and components as desktop, and things are where you expect them on any screen.",
             "A public sector service has to be accessible, so accessibility ran through the whole design process instead of being a final check. I made sure accessibility requirements were written into developers' tickets, so they were built into every feature.",
