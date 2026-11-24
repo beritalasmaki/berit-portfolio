@@ -99,11 +99,11 @@ export const alertShots: GalleryImage[] = [
 
 /** The widget panel before the redesign: a plain list (rebuilt from the current screen). */
 export const widgetBefore: GalleryImage = {
-  src: "/case/kem-dash-edit-before.png",
+  src: "/case/kem-widgets-before.png",
   alt: "Before: the Edit dashboard panel lists the widgets only as blue name bars, scrolled through to find the right one",
   caption: "Before (reconstruction) · Widgets as a list",
-  width: 1044,
-  height: 814,
+  width: 1800,
+  height: 1386,
 };
 
 /** Auto-save in the Edit dashboard panel: before, off and on (original design files). */
@@ -336,7 +336,7 @@ export const industrialTool: CaseStudy = {
             "I also redesigned how widgets are added. Before, they were only a list of names that you scrolled through to find the right one. In the new version each widget is shown as a card with a preview, so you can see what it looks like before you drag it onto the dashboard.",
             "I kept the list alongside the cards. Users who were used to the list could still find it, and the move to cards could happen at their own pace. We added tracking to see how many users started using the cards instead of the list, and the cards were taken up well.",
           ],
-          figures: [widgetBefore, { ...screen("kem-dash-edit.png"), caption: "After · Cards with previews, list view still available" }],
+          figures: [widgetBefore, { ...autosaveShots[0], alt: "After: widgets shown as cards with previews, with a List view option kept beside Card view", caption: "After · Cards with previews, list view still available" }],
         },
         {
           title: "A calculation tool designed with an expert",

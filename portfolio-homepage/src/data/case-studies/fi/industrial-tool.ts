@@ -264,7 +264,7 @@ export const industrialToolFi: CaseStudy = {
           ],
           figures: [
             { ...widgetBefore, alt: "Ennen: Edit dashboard -paneelissa widgetit näkyvät vain sinisinä nimipalkkeina, joita selataan sopivan löytämiseksi", caption: "Ennen (rekonstruktio) · Widgetit listana" },
-            { ...screen("kem-dash-edit.png"), caption: "Jälkeen · Kortit esikatselukuvineen, listanäkymä yhä käytössä" },
+            { ...autosaveShots[0], alt: "Jälkeen: widgetit kortteina esikatselukuvineen, ja Card view -valinnan vieressä on yhä List view", caption: "Jälkeen · Kortit esikatselukuvineen, listanäkymä yhä käytössä" },
           ],
         },
         {
