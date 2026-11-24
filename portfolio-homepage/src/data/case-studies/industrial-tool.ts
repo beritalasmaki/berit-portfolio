@@ -76,7 +76,7 @@ export const alertShots: GalleryImage[] = [
   },
   {
     src: "/case/kem-alert-plant.png",
-    alt: "Touch screen version for the plant: large status tiles, an alert banner with a large acknowledge button, recommendations as large rows and a bottom navigation",
+    alt: "Touch screen version for the plant: an alert banner with a large acknowledge button, the risk forecast, recommendations as large rows, the three process states with their indicators, and a bottom navigation",
     caption: "Reconstruction · Plant touch screen",
     width: 2560,
     height: 1600,
@@ -329,7 +329,7 @@ export const industrialTool: CaseStudy = {
             "With a separate budget, I designed an alert system. It was its own application, not part of the main platform, and it came in two versions: a desktop app, and a version for touch screens mounted on the dosing equipment at the plants. It tracks the chemical state of the process and warns when a tank is filling up or something else goes wrong.",
             "The status view shows the risk forecast for the next four hours, recommended actions and the state of each part of the process. Every state has a text label as well as a colour, so it doesn't rely on colour alone.",
             "In the desktop app, users set three levels for the data: normal (green), mid level (orange) and warning level (red). They also choose who gets alerts by email or text message, and add new recipients by email address. That way an alert reaches both the process operator at the plant and field service.",
-            "On the plant screen, alerts always show and are acknowledged right on the screen. The screen is used with a finger, so text, buttons and navigation are larger and the view is simpler than in the desktop app: the states, the active alert, recommendations and a bottom navigation.",
+            "On the plant screen, alerts always show and are acknowledged right on the screen. The screen is used with a finger, so text, buttons and navigation are larger than in the desktop app. The same information shows at a glance, and the dosing trends have their own tab in the bottom navigation.",
             "The first image is an illustration of the situation of use. No screenshots of the original system survive, so the views are a reconstruction based on one surviving image. Product names have been removed.",
           ],
           figures: [[alertShots[0], alertShots[1]], [alertShots[2], alertShots[3]]],

@@ -32,7 +32,7 @@ const alertShots = localizeGallery(enAlertShots, [
     caption: "Kuvitus · Tehtaan näyttö annostelulaitteessa",
   },
   {
-    alt: "Tehtaan kosketusnäytön versio: isot tilaruudut, hälytyspalkki ja iso kuittauspainike, suositukset isoina riveinä sekä alanavigaatio",
+    alt: "Tehtaan kosketusnäytön versio: hälytyspalkki ja iso kuittauspainike, riskiennuste, suositukset isoina riveinä, prosessin kolme tilaa mittareineen sekä alanavigaatio",
     caption: "Rekonstruktio · Tehtaan kosketusnäyttö",
   },
   {
@@ -274,7 +274,7 @@ export const industrialToolFi: CaseStudy = {
             "Erillisellä budjetilla suunnittelin hälytysjärjestelmän. Se oli oma sovelluksensa eikä osa pääalustaa, ja siitä oli kaksi versiota: työpöytäsovellus ja versio tehtailla annostelulaitteisiin kiinnitetyille kosketusnäytöille. Järjestelmä seuraa prosessin kemiallista tilaa ja varoittaa, kun säiliö on täyttymässä tai jokin muu menee vikaan.",
             "Tilanäkymässä näkyvät neljän tunnin riskiennuste, suositellut toimenpiteet ja prosessin eri osien tila. Jokaisella tilalla on värin lisäksi tekstimerkintä, joten tieto ei ole pelkän värin varassa.",
             "Työpöytäsovelluksessa käyttäjä asettaa datalle kolme tasoa: normaali (vihreä), keskitaso (oranssi) ja varoitustaso (punainen). Lisäksi hän valitsee, kuka saa hälytykset sähköpostiin tai tekstiviestinä, ja lisää uudet vastaanottajat sähköpostiosoitteella. Näin hälytys tavoittaa sekä tehtaan prosessinhoitajan että kenttähuollon.",
-            "Tehtaan näytöllä hälytykset näkyvät aina, ja ne kuitataan suoraan näytöltä. Näyttöä käytetään sormella, joten tekstit, painikkeet ja navigaatio ovat isompia ja näkymä on yksinkertaisempi kuin työpöytäsovelluksessa. Siinä näkyvät vain tilat, aktiivinen hälytys, suositukset ja alareunan navigaatio.",
+            "Tehtaan näytöllä hälytykset näkyvät aina, ja ne kuitataan suoraan näytöltä. Näyttöä käytetään sormella, joten tekstit, painikkeet ja navigaatio ovat isompia kuin työpöytäsovelluksessa. Samat tiedot näkyvät yhdellä silmäyksellä, ja annostelun trendit ovat omalla välilehdellään alareunan navigaatiossa.",
             "Ensimmäinen kuva on kuvitus käyttötilanteesta. Alkuperäisestä järjestelmästä ei ole jäljellä kuvakaappauksia, joten näkymät ovat rekonstruktio yhden säilyneen kuvan pohjalta. Tuotenimet on poistettu.",
           ],
           figures: [[alertShots[0], alertShots[1]], [alertShots[2], alertShots[3]]],
