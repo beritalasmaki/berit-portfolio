@@ -228,7 +228,7 @@ export const educationPlatform: CaseStudy = {
         wide: true,
         value: [
           "Facilitated workshops and ran user interviews",
-          "Designed the design system's UI kit",
+          "Built the design system's UI kit from scratch, used by all three teams and several vendors",
           "Designed the administration service's user interfaces",
           "Kept visual identity and UX consistent across the system",
           "Owned accessibility and helped organise external audits",
@@ -239,7 +239,7 @@ export const educationPlatform: CaseStudy = {
     heroImage: { src: "/case/edu-hero-bundle.png", alt: "Two screens of the platform: the timetable and course offering on desktop, and a student record in the administration service on a mobile device", caption: "", width: 1241, height: 1008 },
     heroBundle: true,
     tldr: [
-      "Seven municipalities needed one system to replace the outdated tools used in basic and upper secondary education. Over three years I grew from UX & Product Designer to **Lead Designer**, and made sure a platform built by several teams and vendors looked and worked as one product.",
+      "Seven municipalities needed one system to replace the outdated tools used in basic and upper secondary education. Over three years I grew from UX & Product Designer to **Lead Designer**, and made sure a platform built by several teams and vendors looked and worked as one product. I built the design system's **UI kit from scratch**, and every team and vendor used it.",
       "The platform was rolled out in **five municipalities in autumn 2026**. Pilot schools describe it as easy to use, fast and consistent.",
     ],
     background: {
@@ -290,7 +290,7 @@ export const educationPlatform: CaseStudy = {
           figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
         },
         {
-          title: "One visual language for every service",
+          title: "A UI kit from scratch for every service",
           paragraphs: [
             "I worked on both the teaching and administration service and the guardians' e-service, and made sure they share one visual identity and user experience. With few designers and many teams, I couldn't review every screen. Instead I defined a shared visual direction and a UI kit of reusable components, and later led the visual direction of the whole project.",
             "Consistency was about more than looks. I worked closely with developers: I regularly explained why something was built a certain way, listened to their ideas and worked out the technical constraints of each part. My bachelor's degree in software development meant I understood the implementation challenges and could discuss them directly with developers.",
