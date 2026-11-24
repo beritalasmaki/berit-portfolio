@@ -58,7 +58,7 @@ export const educationPlatformFi: CaseStudy = {
   ],
   glance: {
     problem:
-      "Perusopetuksessa ja lukiokoulutuksessa aikaisemmin käytetyt vanhentuneet opetus- ja hallintojärjestelmät piti korvata seitsemän kunnan tarpeisiin. Uutta järjestelmää oli mukana rakentamassa useampi kehitystiimi ja kolmannen osapuolen toimittaja. Sidosryhmiä ja käyttäjäryhmiä oli paljon. Alustan tuli palvella saumattomasti kahta erilaista oppilaitosympäristöä, mikä vaati peruskoulun ja lukion prosessien sekä toiminnallisten vaatimusten tarkkaa yhteensovittamista.",
+      "Perusopetuksessa ja lukiokoulutuksessa aikaisemmin käytetyt vanhentuneet opetus- ja hallintojärjestelmät piti korvata seitsemän kunnan tarpeisiin. Uutta järjestelmää oli mukana rakentamassa useampi kehitystiimi ja kolmannen osapuolen toimittaja. Sidosryhmiä ja käyttäjäryhmiä oli paljon. Alustan tuli palvella yhtä aikaa kahta erilaista oppilaitosympäristöä, mikä vaati peruskoulun ja lukion prosessien sekä toiminnallisten vaatimusten yhteensovittamista.",
     role:
       "Kolmen vuoden yhteistyö, jossa toimin UX- ja tuotesuunnittelijana, myöhemmin Lead Designer. Vastasin tuotteen visuaalisesta ilmeestä, käyttäjätutkimuksesta sekä Design Systemin UI Kitistä. Huolehdin saavutettavuudesta ja varmistin suunnittelun yhtenäisyyden eri tiimien välillä. Toimin tiiviissä yhteistyössä tuoteomistajan ja kehittäjien kanssa muun muassa tikettien ja vaatimusten määrittelyssä.",
     decisionsLabel: "Ratkaisu ja toteutus",
@@ -68,7 +68,7 @@ export const educationPlatformFi: CaseStudy = {
       "**Luottamuksen palauttaminen:** Budjettiylityksen jälkeen otin aktiivisen roolin suunnittelutyön edistymisen ja sen arvon viestimisessä sidosryhmille. Rakensimme luottamusta läpinäkyvällä viestinnällä, säännöllisellä läsnäololla ja kirkkaalla päätöksenteon dokumentoinnilla. Tämä selkeytti yhteistyötä eri osapuolten välillä ja varmisti hankkeen etenemisen.",
     ],
     outcome:
-      "Pilottikoulujen palaute oli erittäin myönteistä: opettajat ja hallintohenkilöstö kiittivät alustan helppokäyttöisyyttä, nopeutta ja johdonmukaista rakennetta. Alusta otettiin käyttöön viidessä kunnassa keväällä 2026, ja laajempi käyttöönotto kouluverkostossa alkoi syksyllä 2026.",
+      "Pilottikoulujen palaute oli myönteistä: opettajat ja hallintohenkilöstö kiittivät alustan helppokäyttöisyyttä, nopeutta ja johdonmukaista rakennetta. Alusta otettiin käyttöön viidessä kunnassa keväällä 2026, ja laajempi käyttöönotto kouluverkostossa alkoi syksyllä 2026.",
   },
   roleLabel: "UX- ja tuotesuunnittelija, myöhemmin Lead Designer, kolmen vuoden ajan",
   focusLabel:
@@ -136,7 +136,7 @@ export const educationPlatformFi: CaseStudy = {
     },
     {
       number: "02",
-      title: "Suunnittelusta oikeaksi tuotteeksi",
+      title: "Suunnitelmasta toteutukseen",
       body: "Tein tiivistä yhteistyötä kehitystiimien kanssa, jotta suunnitelmat varmasti toteutettiin tarkoitetulla tavalla. Projektin viimeisenä vuotena Lead Designerina vastasin siitä, että kaikki näytti ja toimi yhdenmukaisesti koko alustalla, myös ulkopuolisten yritysten rakentamissa osissa, joiden räätälöinti osoittautui odotettua vaikeammaksi.",
     },
     {
@@ -151,7 +151,7 @@ export const educationPlatformFi: CaseStudy = {
     "Onnistumisen mittarit määriteltyinä aiemmin. Jos olisimme alusta asti tienneet, mitä halusimme saavuttaa ja miten sitä mitattaisiin, priorisointi olisi ollut koko projektin ajan helpompaa. Yksi konkreettinen esimerkki, jonka projektin tekninen projektipäällikkö ehdotti jälkikäteen, olisi ollut lainmukaisuuden seuranta suoraan: mitkä sääntelyvaatimukset täyttyivät jo ja mitkä eivät vielä, varsinaisena mittarina koko projektin ajan.",
     "Jäsennellympi Design System alusta asti. Vuosi oli 2021, ja vaikka Design Systemit olivat jo tuttu käsite, sellaisen toteuttaminen kokonaan koodiin tässä mittakaavassa ei ollut vielä yleistä. Jos voisin palata ajassa taaksepäin, ajaisin tuon perustan rakentamista määrätietoisemmin heti alusta.",
     "Juridisen ja sääntelyosaamisen mukaan ottaminen aiemmin. Design Systemin lisäksi projekti olisi hyötynyt juridisen tai sääntelyasiantuntijan mukaantulosta heti alusta, jotta tietosuoja-asetus (GDPR) ja perusopetuslainsäädäntö olisi huomioitu ajoissa. Moni ominaisuustoive perustui siihen, miten edellinen järjestelmä toimi, ja osa niistä ei enää ollut lain mukaan sallittuja.",
-    "Ensimmäinen julkaisu aidosti minimituotteena (MVP). Käytännössä emme rakentaneet minimituotetta eli pienintä julkaisemisen arvoista versiota, vaan jotain lopullisen tuotteen kaltaista, joka yritti kattaa kaikki tarpeet heti alusta. Sillä oli todellinen vaikutus sekä aikatauluun että työmäärään.",
+    "Ensimmäinen julkaisu minimituotteena (MVP). Käytännössä emme rakentaneet minimituotetta eli pienintä julkaisemisen arvoista versiota, vaan jotain lopullisen tuotteen kaltaista, joka yritti kattaa kaikki tarpeet heti alusta. Se vaikutti sekä aikatauluun että työmäärään.",
     "Päivittäisissä keskusteluissa mukana oleminen aiemmin. Meillä oli säännölliset päivittäiset ja viikoittaiset palaverit, ja tuo rytmi oli oikea, mutta aliarvioin alussa, kuinka paljon arvoa syntyi siitä, että oli jatkuvasti läsnä noissa keskusteluissa.",
     "Suunnittelija mukaan jo kolmansien osapuolten ratkaisuja arvioitaessa. Kun hankitaan valmiita alustoja, suunnittelijan tekemä arvio räätälöintimahdollisuuksista etukäteen olisi auttanut välttämään myöhempiä vaikeita kompromisseja.",
   ],
@@ -355,7 +355,7 @@ export const educationPlatformFi: CaseStudy = {
       heading: "Mitä tekisin toisin",
       items: [
         {
-          title: "Oikea MVP",
+          title: "Pienempi ensimmäinen julkaisu",
           body: "Emme rakentaneet pienintä julkaisemisen arvoista versiota, vaan lähes valmista tuotetta, joka yritti kattaa kaikki tarpeet heti alusta. Se näkyi sekä aikataulussa että työmäärässä. Julkaistu MVP olisi tuonut oikeat käyttäjät mukaan aikaisemmin, ja sen avulla olisi voitu asettaa mittarit ja seurata, miten kehitys etenee ajan myötä.",
         },
         {

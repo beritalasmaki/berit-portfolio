@@ -123,7 +123,7 @@ export const universityAiToolFi: CaseStudy = {
     {
       number: "04",
       title: "Yhteiset komponentit kertarakennelmien sijaan",
-      body: "Linjasimme, ettei kertarakennelmia tehdä, jotta muotoilu pysyy yhtenäisenä. Muistutin kehittäjiä käyttämään Design Systemin komponentteja ja yhdistin heidät keskustelemaan DS-kehittäjien kanssa. Otin Design System -tiimin mukaan aina, kun tarvittiin jotain aidosti uutta.",
+      body: "Linjasimme, ettei kertarakennelmia tehdä, jotta muotoilu pysyy yhtenäisenä. Muistutin kehittäjiä käyttämään Design Systemin komponentteja ja yhdistin heidät keskustelemaan DS-kehittäjien kanssa. Otin Design System -tiimin mukaan aina, kun tarvittiin jotain uutta.",
     },
   ],
 

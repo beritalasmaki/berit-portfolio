@@ -105,7 +105,7 @@ export const educationPlatform: CaseStudy = {
   ],
   glance: {
     problem:
-      "Outdated teaching and administration systems used in basic and upper secondary education had to be replaced to serve seven municipalities. Several development teams and third-party vendors were building the new system, with many stakeholders and user groups. The platform had to serve two different school environments seamlessly, which meant carefully aligning the processes and functional requirements of comprehensive school and upper secondary school.",
+      "Outdated teaching and administration systems used in basic and upper secondary education had to be replaced to serve seven municipalities. Several development teams and third-party vendors were building the new system, with many stakeholders and user groups. The platform had to serve two different school environments, which meant aligning the processes and functional requirements of comprehensive school and upper secondary school.",
     role:
       "A three-year engagement as UX & Product Designer, later Lead Designer. I was responsible for the product's visual design, user research and the design system's UI kit. I looked after accessibility and kept the design consistent across teams. I worked closely with the product owner and developers, including on defining tickets and requirements.",
     decisionsLabel: "Solution and delivery",
@@ -115,7 +115,7 @@ export const educationPlatform: CaseStudy = {
       "**Restoring trust:** After a budget overrun, I took an active role in communicating the progress and value of the design work to stakeholders. We rebuilt trust through transparent communication, regular presence and clear documentation of decisions. This made collaboration between the parties clearer and kept the project moving.",
     ],
     outcome:
-      "Pilot feedback was very positive: teachers and administrative staff praised the platform's ease of use, speed and consistent structure. The platform launched in five municipalities in spring 2026, and a wider rollout across the school network began in autumn 2026.",
+      "Pilot feedback was positive: teachers and administrative staff praised the platform's ease of use, speed and consistent structure. The platform launched in five municipalities in spring 2026, and a wider rollout across the school network began in autumn 2026.",
   },
   roleLabel: "UX & Product Designer, and later Lead Designer, over a three-year period",
   focusLabel: "Service design, Design Systems, and cross-team design consistency across a multi-vendor public sector platform",
@@ -182,22 +182,22 @@ export const educationPlatform: CaseStudy = {
     },
     {
       number: "02",
-      title: "Turning design into a real product",
+      title: "Getting the design built as designed",
       body: "I worked closely with development teams to make sure our designs were built as intended. In my final year on the project, as Lead Designer, I was responsible for making sure everything looked and worked consistently across the whole platform, including the parts built by outside companies, which turned out to be harder to customize than we expected.",
     },
     {
       number: "03",
       title: "Facing budget pressure, and rebuilding trust",
-      body: "At one point, the project went over budget, and two municipalities withdrew because it became too expensive for them to continue. Trust suffered, both among stakeholders and within the teams. We rebuilt it by staying visible in the right meetings, communicating clearly about what we were doing and why, and writing decisions down so everyone could follow the reasoning. Looking back, planning the design work more carefully from the very start could have prevented some of this friction. Despite the setbacks, the platform launched in the remaining five municipalities in spring 2026, and a wider rollout to schools began in autumn 2026.",
+      body: "At one point, the project went over budget, and two municipalities withdrew because it became too expensive for them to continue. Trust suffered, both among stakeholders and within the teams. We rebuilt it by staying visible in the right meetings, communicating clearly about what we were doing and why, and writing decisions down so everyone could follow the reasoning. Looking back, planning the design work more carefully from the start could have prevented some of this friction. Despite the setbacks, the platform launched in the remaining five municipalities in spring 2026, and a wider rollout to schools began in autumn 2026.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "Clearer communication and planning from day one. I would make sure the development team understood not just what we were building, but why, from the very start.",
+    "Clearer communication and planning from day one. I would make sure the development team understood not just what we were building, but why, from the start.",
     "Defining success metrics earlier. Knowing from the outset what we wanted to achieve and how we'd measure it would have made prioritization easier throughout the project. One concrete example, suggested by the project's technical project manager in hindsight, would have been tracking legal compliance directly: which regulatory requirements were already met, and which ones weren't yet, as an actual metric to follow throughout the project.",
     "A more structured Design System from the beginning. This was 2021, and while Design Systems were a known concept, implementing one fully into code at this scale wasn't yet common practice. If I could go back, I would push for building that foundation more deliberately from day one.",
-    "Involving legal and regulatory expertise earlier. Alongside the design system, the project would have benefited from bringing in a legal or regulatory expert from the very start, to make sure GDPR and basic education legislation were accounted for early on. A number of feature requests were based on how the previous system worked, and some of it was no longer legally permitted.",
-    "Treating the first release as a genuine minimum viable product. In practice we were not building a minimum viable product, meaning the smallest version worth releasing. We were building something closer to a final product that tried to cover every need from day one, which had a real impact on both timeline and workload.",
+    "Involving legal and regulatory expertise earlier. Alongside the design system, the project would have benefited from bringing in a legal or regulatory expert from the start, to make sure GDPR and basic education legislation were accounted for early on. A number of feature requests were based on how the previous system worked, and some of it was no longer legally permitted.",
+    "Treating the first release as a minimum viable product. In practice we were not building a minimum viable product, meaning the smallest version worth releasing. We were building something closer to a final product that tried to cover every need from day one, which affected both timeline and workload.",
     "Being present in daily discussions earlier. We had regular daily and weekly meetings, and that rhythm itself was right, but I underestimated early on how much value came from being consistently present in those conversations.",
     "Involving a designer earlier when evaluating third-party solutions. When purchasing ready-made platforms, having a designer assess customization options upfront would have helped avoid some difficult trade-offs later.",
   ],
@@ -395,7 +395,7 @@ export const educationPlatform: CaseStudy = {
       heading: "What I would do differently",
       items: [
         {
-          title: "A real MVP",
+          title: "A smaller first release",
           body: "We didn't build the smallest version worth releasing, but something close to a finished product that tried to cover every need from day one. It showed in both the timeline and the workload. A released MVP would have brought real users in earlier, and let us set metrics and follow how development progresses over time.",
         },
         {

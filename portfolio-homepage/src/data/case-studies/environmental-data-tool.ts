@@ -27,10 +27,10 @@ export const environmentalDataTool: CaseStudy = {
       "Rethought how the data and workflows should work instead of putting a new interface on the old system",
       "Started with short, lean research directly with the specialists who use the systems",
       "Combined map and table views into one coherent experience",
-      "Built real analytics views (bar charts, scatter plots) so researchers no longer needed Excel for them",
+      "Built analytics views (bar charts, scatter plots) so researchers no longer needed Excel for them",
     ],
     outcome:
-      "Several systems were rebuilt around how researchers work. In the largest project, built-in analytics replaced much of the manual Excel work, and saving and tracking samples became much simpler. Based on feedback from users during the projects.",
+      "Several systems were rebuilt around how researchers work. In the largest project, built-in analytics replaced much of the manual Excel work, and saving and tracking samples became simpler. Based on feedback from users during the projects.",
   },
   roleLabel: "UI/UX Designer (sole designer, long-term client relationship)",
   focusLabel: "Modernizing outdated data systems, combining UX/UI design with lightweight service design",
@@ -87,18 +87,18 @@ export const environmentalDataTool: CaseStudy = {
   impactCards: [
     {
       number: "01",
-      title: "From outdated tools to something built for how the work actually happens",
+      title: "Tools rebuilt around how researchers work",
       body: "We did not only modernize the look of old systems. We rebuilt several of them around how researchers work today, including how they combine map and table data, and how they add new results as their work continues.",
     },
     {
       number: "02",
-      title: "Richer insight through real data visualization",
-      body: "In the largest of these projects, researchers had relied heavily on Excel to make sense of their data. We built proper analytics views directly into the system, so they can spot patterns and understand their data faster, without exporting it first.",
+      title: "Data visualization built into the system",
+      body: "In the largest of these projects, researchers had relied heavily on Excel to make sense of their data. We built analytics views directly into the system, so they can spot patterns and understand their data faster, without exporting it first.",
     },
     {
       number: "03",
       title: "Easier, clearer sample tracking",
-      body: "The improved interfaces made everyday work easier for specialists. Saving new samples and tracking how they changed over time became much simpler than it was with the old systems.",
+      body: "The improved interfaces made everyday work easier for specialists. Saving new samples and tracking how they changed over time became simpler than it was with the old systems.",
     },
   ],
 
@@ -119,18 +119,18 @@ export const environmentalDataTool: CaseStudy = {
     },
     {
       number: "03",
-      title: "Working with real project structure, when it existed",
+      title: "Working with project structure where it existed",
       body: "Projects differed in structure. One project had a dedicated project manager who kept the work on track and made sure we were solving the right problems, and I supported that work from the design side. Other projects were smaller and looser, closer to informal, ongoing collaborations with the specialists themselves.",
     },
     {
       number: "04",
-      title: "Building real data analytics views",
-      body: "In one of the larger projects, we went further than basic interfaces and built proper data analytics views, including bar charts, scatter plots and other visualizations. They gave researchers a richer way to explore their data than the old systems offered. Across all of these projects, staying close to the specialists who used the tools day to day made the difference. The work was demanding, and designing side by side with them made it enjoyable too.",
+      title: "Building data analytics views",
+      body: "In one of the larger projects, we went further than basic interfaces and built data analytics views, including bar charts, scatter plots and other visualizations. They gave researchers a richer way to explore their data than the old systems offered. Across all of these projects, staying close to the specialists who used the tools day to day made the difference. The work was demanding, and designing side by side with them made it enjoyable too.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "If I could go back, I would push harder for starting design system work earlier. The organization had plans to begin at some point, but a very small development team was already stretched across maintaining over 200 systems, so it was hard to prioritize. A lot was also still unclear internally, including what level a design system should be built at for an organization with that many systems and that few resources.",
+    "If I could go back, I would push harder for starting design system work earlier. The organization had plans to begin at some point, but a small development team was already stretched across maintaining over 200 systems, so it was hard to prioritize. A lot was also still unclear internally, including what level a design system should be built at for an organization with that many systems and that few resources.",
     "A design system is not only a design decision. It also depends on the organization having the capacity and clarity to support it. I would still advocate for it earlier next time, but I'd come with a more realistic starting point: something small and useful enough to prove its value quickly, instead of waiting for ideal conditions that may never arrive.",
   ],
 

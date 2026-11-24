@@ -30,7 +30,7 @@ export const environmentalDataToolFi: CaseStudy = {
       "Mietin uudelleen, miten datan ja työnkulkujen kuuluu toimia, enkä vain vaihtanut vanhan järjestelmän käyttöliittymää",
       "Aloitin lyhyellä, kevyellä tutkimuksella suoraan järjestelmiä käyttävien asiantuntijoiden kanssa",
       "Yhdistin kartta- ja taulukkonäkymät yhdeksi johdonmukaiseksi kokonaisuudeksi",
-      "Rakensin oikeat analytiikkanäkymät (pylväs- ja hajontakaaviot), jotta tutkijat eivät tarvinneet niihin Exceliä",
+      "Rakensin analytiikkanäkymät (pylväs- ja hajontakaaviot), jotta tutkijat eivät tarvinneet niihin Exceliä",
     ],
     outcome:
       "Useita järjestelmiä rakennettiin uudelleen sen mukaan, miten tutkijat oikeasti työskentelevät. Suurimmassa projektissa sisäänrakennettu analytiikka korvasi paljon käsin tehtyä Excel-työtä, ja näytteiden tallentaminen ja seuraaminen helpottui selvästi. Perustuu käyttäjiltä projektien aikana saatuun palautteeseen.",
@@ -84,8 +84,8 @@ export const environmentalDataToolFi: CaseStudy = {
     },
     {
       number: "02",
-      title: "Parempia oivalluksia oikean datavisualisoinnin avulla",
-      body: "Näistä projekteista suurimmassa tutkijat olivat turvautuneet paljon Exceliin ymmärtääkseen dataansa. Rakensimme järjestelmään kunnolliset analytiikkanäkymät, joista kuviot ja poikkeamat huomaa nopeammin ilman, että dataa tarvitsee ensin viedä muualle.",
+      title: "Datavisualisointi osaksi järjestelmää",
+      body: "Näistä projekteista suurimmassa tutkijat olivat turvautuneet paljon Exceliin ymmärtääkseen dataansa. Rakensimme järjestelmään analytiikkanäkymät, joista kuviot ja poikkeamat huomaa nopeammin ilman, että dataa tarvitsee ensin viedä muualle.",
     },
     {
       number: "03",
@@ -116,13 +116,13 @@ export const environmentalDataToolFi: CaseStudy = {
     },
     {
       number: "04",
-      title: "Kunnollisten data-analytiikkanäkymien rakentaminen",
-      body: "Yhdessä isoimmista projekteista menimme perusnäkymiä pidemmälle ja rakensimme kunnolliset analytiikkanäkymät, kuten pylväs- ja hajontakaaviot sekä muita visualisointeja. Ne antoivat tutkijoille monipuolisemmat keinot tutkia dataansa kuin vanhat järjestelmät. Kaikissa näissä projekteissa ero syntyi siitä, että pysyin lähellä päivittäin työkalua käyttäviä asiantuntijoita. Työ oli vaativaa, ja rinta rinnan heidän kanssaan suunnittelu oli myös hauskaa.",
+      title: "Data-analytiikkanäkymien rakentaminen",
+      body: "Yhdessä isoimmista projekteista menimme perusnäkymiä pidemmälle ja rakensimme analytiikkanäkymät, kuten pylväs- ja hajontakaaviot sekä muita visualisointeja. Ne antoivat tutkijoille monipuolisemmat keinot tutkia dataansa kuin vanhat järjestelmät. Kaikissa näissä projekteissa ero syntyi siitä, että pysyin lähellä päivittäin työkalua käyttäviä asiantuntijoita. Työ oli vaativaa, ja rinta rinnan heidän kanssaan suunnittelu oli myös hauskaa.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "Jos voisin palata ajassa taaksepäin, ajaisin Design Systemin aloittamista aiemmin. Organisaatiolla oli suunnitelmia aloittaa sellainen jossain vaiheessa, mutta kun hyvin pieni kehitystiimi ylläpiti jo yli 200:aa eri järjestelmää, priorisointi oli vaikeaa. Lisäksi sisäisesti oli vielä paljon epäselvää, esimerkiksi se, millä tasolla Design System kannattaisi rakentaa organisaatiolle, jolla on niin monta järjestelmää ja niin vähän resursseja.",
+    "Jos voisin palata ajassa taaksepäin, ajaisin Design Systemin aloittamista aiemmin. Organisaatiolla oli suunnitelmia aloittaa sellainen jossain vaiheessa, mutta kun pieni kehitystiimi ylläpiti jo yli 200:aa eri järjestelmää, priorisointi oli vaikeaa. Lisäksi sisäisesti oli vielä paljon epäselvää, esimerkiksi se, millä tasolla Design System kannattaisi rakentaa organisaatiolle, jolla on niin monta järjestelmää ja niin vähän resursseja.",
     "Design System ei ole pelkkä suunnittelupäätös. Organisaatiolla pitää olla myös kapasiteettia ja selkeyttä sen tukemiseen. Ajaisin sitä edelleen aiemmin ensi kerralla, mutta lähtisin liikkeelle realistisemmin: pienellä ja riittävän hyödyllisellä kokonaisuudella, joka osoittaa arvonsa nopeasti, sen sijaan että odottaisin ihanteellisia olosuhteita, joita ei ehkä koskaan tule.",
   ],
 

@@ -120,7 +120,7 @@ export const designEngineering: BlogPost = {
       type: "list",
       ordered: true,
       items: [
-        "**Refer to components by their real names.** In code, every component has a name, such as `Button`, `Card` or `TextField`. If you ask an agent to \"make this look like the mockup\", it has to guess, and sometimes it starts building a completely new button. If you instead ask it to \"use the `Button` component for the form's submit button and the `spacing-md` token between the fields\", the agent uses what the team already has.",
+        "**Refer to components by their real names.** In code, every component has a name, such as `Button`, `Card` or `TextField`. If you ask an agent to \"make this look like the mockup\", it has to guess, and sometimes it starts building a new button. If you instead ask it to \"use the `Button` component for the form's submit button and the `spacing-md` token between the fields\", the agent uses what the team already has.",
         "**Know where the files are.** You don't need to be able to rewrite the codebase. You do need to know which folder the components are in, what they're called and which ones belong to the actual design system. Only then can you refer to a component by name.",
         "**Break the work into steps.** Don't ask the agent to build a whole view at once. Work in small parts. If you're making a login form, for example, first ask for the layout only: where the fields and the button go. Then ask for the states, such as how a field looks when it's active, has an error or is disabled. Next, ask for validation: what happens if the email address is wrong. Finally, ask for the responsive layout, or how the form looks on a phone. Check each step against the design. One broad, vague request easily produces a lot of code that looks finished but isn't.",
         "**Read what the agent did.** You don't need to understand the logic, but it's worth checking the styles. Did it use a token or a hardcoded colour? Is the button the real button component, or a `div` styled to look like one? The AI may also create several almost identical buttons, none of which belong to the design system. Visual accuracy is the designer's responsibility, and this is where it gets checked.",
@@ -158,7 +158,7 @@ export const designEngineering: BlogPost = {
       ],
       tip: {
         label: "Tip",
-        text: "A design tool (e.g. Figma or Claude Design) works perfectly well as an aid for the layout, after which the images can be fed to the agent.",
+        text: "A design tool (e.g. Figma or Claude Design) works well as an aid for the layout, after which the images can be fed to the agent.",
       },
     },
     {

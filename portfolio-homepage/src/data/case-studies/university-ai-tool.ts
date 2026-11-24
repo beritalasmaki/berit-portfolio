@@ -131,7 +131,7 @@ export const universityAiTool: CaseStudy = {
     {
       number: "04",
       title: "Encouraging shared components instead of one-off builds",
-      body: "We agreed not to build one-offs, to keep the design consistent. I reminded developers to use the design system's components and connected them with the design system developers to talk things through. I brought in the design system team whenever something genuinely new was needed.",
+      body: "We agreed not to build one-offs, to keep the design consistent. I reminded developers to use the design system's components and connected them with the design system developers to talk things through. I brought in the design system team whenever something new was needed.",
     },
   ],
 
