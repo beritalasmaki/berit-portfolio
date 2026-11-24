@@ -139,7 +139,7 @@ export const industrialTool: CaseStudy = {
   slug: "industrial-tool",
   title: "Industrial Data Platform",
   label: "INDUSTRIAL DATA PLATFORM · 2021–2023",
-  headline: "Making industrial data clear, so chemicals are dosed right",
+  headline: "Monitoring, calculation and reporting for industrial processes and equipment in one service",
   description:
     "I designed the user experience of an international chemical company's data platform as its only designer. When industrial sites and water treatment plants could see their processes clearly, they used less chemical, at best under half of what they used before.",
   thumbnail: "/case/kemira-card.png",

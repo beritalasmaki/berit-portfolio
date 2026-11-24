@@ -67,7 +67,7 @@ export const industrialToolFi: CaseStudy = {
   slug: "industrial-tool",
   title: "Teollisuuden data-alusta",
   label: "TEOLLISUUDEN DATA-ALUSTA · 2021–2023",
-  headline: "Teollisuuden data selkeäksi, jotta kemikaalit annostellaan oikein",
+  headline: "Teollisuuden prosessien ja laitteiden seuranta, laskenta ja raportointi yhdessä palvelussa",
   description:
     "Suunnittelin kansainvälisen kemianteollisuuden yrityksen data-alustan käyttökokemusta alustan ainoana suunnittelijana. Kun tehtaat ja vedenpuhdistamot näkivät prosessinsa selvästi, kemikaalia kului vähemmän, parhaimmillaan alle puolet entisestä.",
   thumbnail: "/case/kemira-card.png",
