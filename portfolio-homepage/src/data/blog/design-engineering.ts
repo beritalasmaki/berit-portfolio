@@ -19,7 +19,7 @@ export const designEngineering: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "For me, it isn't an entirely new direction. It's a return to where I started.",
+      text: "For me it's a return to where I started.",
     },
 
     { type: "heading", id: "started-with-code", text: "I started with code, then became a designer", navLabel: "I started with code" },
@@ -51,7 +51,7 @@ export const designEngineering: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Two things in the definition matter from a designer's point of view. First, the designer still makes the design decisions, while an AI agent writes most of the code. Second, code review stays the same: a developer still decides what ends up in the product. So it isn't about bypassing developers, but about a new way of working together.",
+      text: "Two things in the definition matter from a designer's point of view. First, the designer still makes the design decisions, while an AI agent writes most of the code. Second, code review stays the same: a developer still decides what ends up in the product. So developers stay in the loop. What changes is how designers and developers work together.",
     },
     {
       type: "paragraph",
@@ -114,7 +114,7 @@ export const designEngineering: BlogPost = {
     { type: "heading", id: "five-skills", text: "Five skills that matter more than coding", navLabel: "Skills that matter more" },
     {
       type: "paragraph",
-      text: "If a designer doesn't write the code themselves, what do they need to know? The most important skill isn't coding. It's knowing the codebase well enough to guide an AI agent precisely. Bokor describes five habits, which I explain here in my own words.",
+      text: "If a designer doesn't write the code themselves, what do they need to know? The most important skill is knowing the codebase well enough to guide an AI agent precisely. Bokor describes five habits, which I explain here in my own words.",
     },
     {
       type: "list",
@@ -163,7 +163,7 @@ export const designEngineering: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "All five skills rest on the same thing: knowing the team's own vocabulary. So the hardest part of the design engineer role isn't reading code, but getting into each team's way of working and its vocabulary. You have to learn it again in every team, and the best way to learn it is by working together with developers.",
+      text: "All five skills rest on the same thing: knowing the team's own vocabulary. So the hardest part of the design engineer role is getting into each team's way of working and its vocabulary. You have to learn it again in every team, and the best way to learn it is by working together with developers.",
     },
 
     { type: "heading", id: "design-system", text: "A well-built design system supports the work", navLabel: "Design system as support" },
@@ -240,7 +240,7 @@ export const designEngineering: BlogPost = {
     { type: "heading", id: "summary", text: "Summary" },
     {
       type: "quote",
-      text: "The design engineer isn't there to replace developers' work. The role makes collaboration between design and development smoother.",
+      text: "The design engineer role makes collaboration between design and development smoother, and developers still decide what ships.",
     },
     {
       type: "paragraph",

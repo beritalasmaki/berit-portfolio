@@ -4,7 +4,7 @@ export const universityAiTool: CaseStudy = {
   slug: "university-ai-tool",
   title: "University Digital Onboarding and AI Search Concept",
   label: "UNIVERSITY CX & AI TOOLS · 2025–2026",
-  headline: "Scattered student services. One AI-powered hub.",
+  headline: "One front page and AI search for scattered student services",
   description:
     "An AI-powered search and service hub that lowers support pressure and helps students find what they need on their own.",
   thumbnail: "/case/university-new-card.png",
@@ -13,10 +13,10 @@ export const universityAiTool: CaseStudy = {
   industry: "Higher education",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:
-    "Designed a smarter search and service hub so students can find guidance and support without getting lost in fragmented systems.",
+    "Designed a search and service hub",
 
   intro: [
-    "A major university had information scattered across many separate websites, so students, staff, and visitors often didn't know where to start looking. I joined as Senior UX & Product Designer to turn early concepts into real screens, test them with users, and shape the first version people could actually use.",
+    "A major university had information scattered across many separate websites, so students, staff, and visitors often didn't know where to start looking. I joined as Senior UX & Product Designer to turn early concepts into real screens, test them with users, and shape the first version people could use.",
   ],
   glance: {
     problem:
@@ -26,8 +26,8 @@ export const universityAiTool: CaseStudy = {
     decisions: [
       "One front page and one AI-powered search entry point for all services",
       "Accessible and mobile-friendly from day one",
-      "I put the service's accessibility, clarity and ease of use at the centre of the design and defined clear metrics for the work. I made sure the key user groups were closely involved in development.",
-      "To keep the design consistent and high quality, we agreed not to use one-off builds. I guided developers to use the Design System's components and set up a working collaboration model between developers and the Design System team.",
+      "I focused the design on accessibility, clarity and ease of use, and defined metrics for the work. I involved the key user groups closely in development.",
+      "We agreed not to build one-offs, to keep the design consistent. I guided developers to use the design system's components and set up how developers and the design system team work together.",
     ],
     outcome:
       "Confirmed by user interviews and surveys after launch: people found answers faster, simple questions moved to self-service so staff had more time for cases that needed a person, and the service worked on phones and with assistive technology.",
@@ -108,8 +108,8 @@ export const universityAiTool: CaseStudy = {
 
   howItStarted: [
     "A major university had information scattered across many different websites, making it hard for students, staff, and visitors to find help.",
-    "Service designers had already done the early research and mapped out the initial idea for a central service portal. My job as Senior UX & Product Designer was to turn those early concepts into real screen designs, test them with actual users, and refine them for the first product launch (MVP).",
-    "After launch, I stayed on to collect real user feedback and keep improving the service based on how people actually used it.",
+    "Service designers had already done the early research and mapped out the initial idea for a central service portal. My job as Senior UX & Product Designer was to turn those early concepts into real screen designs, test them with users, and refine them for the first product launch (MVP).",
+    "After launch, I stayed on to collect real user feedback and keep improving the service based on how people used it.",
   ],
 
   challenges: [
@@ -131,15 +131,15 @@ export const universityAiTool: CaseStudy = {
     {
       number: "04",
       title: "Encouraging shared components instead of one-off builds",
-      body: "To keep the design consistent and high quality, we agreed not to use one-off builds. I reminded developers to use the Design System's components and connected them with the Design System developers to talk things through. I brought in the Design System team whenever something genuinely new was needed.",
+      body: "We agreed not to build one-offs, to keep the design consistent. I reminded developers to use the design system's components and connected them with the design system developers to talk things through. I brought in the design system team whenever something genuinely new was needed.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "Set clearer rules for the design before handing it over. Looking back, I would have documented a few key UX principles more clearly before leaving the project, so the experience could stay consistent even without me there to weigh in on changes. After I left, a few small details evolved differently from how they were originally designed, for example, search results appearing below the search bar instead of in the same visible area, so it's not clear when results are loading. Small things like that can add up over time. It taught me something useful: it's not just the design itself that needs documenting, but the reasoning behind it, so that reasoning can still guide decisions even when I'm not in the room anymore.",
-    "Set clearer success metrics from the start, beyond basic usage data. We had Matomo (a privacy-focused web analytics tool) in place, which gave us useful data on things like page views and click behavior. We did actually plan to go further than that, defining metrics that could tell us whether the service was solving the right problem for users, not just how it was being used, but we never managed to get it implemented.",
-    "Looking back, I'd want to solve this without adding extra burden on users, for example, a lightweight, optional feedback prompt after key moments like an AI search result, rather than a separate survey, or looking at indirect signals we already had access to, like whether staff contact volume for common questions changed over time. Having something like this in place from the start would have given us a clearer way to answer the real question: is this actually helping people, not just are people using it.",
-    "Make design's role in the process a bit more structured, not just reactive. I stayed closely involved throughout, checking in regularly with developers and the scrum master, the person who keeps the team's way of working on track. Looking back, I'd set up a few lightweight checkpoints from day one: a short design review before UX-related changes ship, a clear point of contact for technical questions, and the reasoning behind UX decisions written directly into the task descriptions developers already work from, rather than in a separate document nobody has time to read. None of that has to slow a tight timeline down, if it's built into the workflow from the start.",
+    "Set clearer rules for the design before handing it over. I would have documented a few key UX principles before leaving the project, so the experience could stay consistent without me there to weigh in on changes. After I left, a few small details evolved differently from how they were designed. For example, search results appeared below the search bar instead of in the same visible area, so it's not clear when results are loading. Small things like that add up over time. What I learned: the reasoning behind the design needs documenting as well, so it can still guide decisions when I'm not in the room.",
+    "Set clearer success metrics from the start, beyond basic usage data. We had Matomo (a privacy-focused web analytics tool) in place, which gave us data on things like page views and click behavior. We planned to go further and define metrics that could tell us whether the service solved the right problem for users, not only how it was used, but we never got that implemented.",
+    "I'd want to solve this without adding burden on users, for example with a lightweight, optional feedback prompt after key moments like an AI search result, rather than a separate survey. Another option is indirect signals we already had access to, like whether staff contact volume for common questions changed over time. Having this from the start would have answered the real question: is this helping people, not just are people using it.",
+    "Give design a more structured role in the process. I stayed closely involved throughout, checking in regularly with developers and the scrum master, the person who keeps the team's way of working on track. I'd set up a few lightweight checkpoints from day one: a short design review before UX-related changes ship, a clear point of contact for technical questions, and the reasoning behind UX decisions written directly into the task descriptions developers already work from, rather than in a separate document nobody has time to read. Built into the workflow from the start, none of it slows a tight timeline down.",
   ],
 
   methods: ["Journey Mapping", "User Interviews", "Co-design workshops", "Usability Testing"],

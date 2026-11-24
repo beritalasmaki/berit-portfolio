@@ -159,7 +159,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "The importance of constraints is also the subject of the article [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026). According to the article, constraints do not limit the AI's creativity but make it useful. The more specifically you state them in the prompt, the better the result fits the problem you are solving.",
+      text: "The importance of constraints is also the subject of the article [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026). According to the article, constraints are what make the AI's output useful. The more specifically you state them in the prompt, the better the result fits the problem you are solving.",
     },
 
     {
@@ -355,7 +355,7 @@ export const howIWorkWithAi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "The purpose of the template is not to produce more documents. It is to make sure the AI knows what the project is about and that the designer decides what is done with it. Start small: one project, a few documents and your own notes first. The rest is added as it is needed.",
+      text: "The template makes sure the AI knows what the project is about and that the designer decides what is done with it. Start small: one project, a few documents and your own notes first. The rest is added as it is needed.",
     },
   ],
 };

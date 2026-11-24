@@ -98,7 +98,7 @@ export const educationPlatform: CaseStudy = {
   industry: "Public education",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:
-    "Brought structure to a massive public sector platform by uniting complex municipal school workflows into a clear, accessible tool for teachers and administrators.",
+    "Brought complex municipal school workflows into one clear, accessible tool for teachers and administrators.",
 
   intro: [
     "The task was to replace the outdated teaching and upper secondary systems of several municipalities with one unified solution for a public sector consortium. I joined the project as UX & Product Designer and, over three years, grew into its Lead Designer.",
@@ -138,7 +138,7 @@ export const educationPlatform: CaseStudy = {
     },
     {
       label: "Mobile Experience",
-      description: "Delivered a mobile app that actually felt easy to use",
+      description: "Delivered a mobile app that felt easy to use",
     },
     {
       label: "Team Leadership",
@@ -150,22 +150,22 @@ export const educationPlatform: CaseStudy = {
   sneakPeekImages: ["/case/edu-dashboard.png", "/case/edu-timetable.png"],
 
   impactIntro:
-    "Feedback from the pilot schools has been largely positive. The platform has been described as easy to use, versatile, and modern. Teachers and administrative staff in particular praised how logical the service felt and how well it supported everyday school routines. Usability and speed stood out specifically, with users reporting that they could find what they needed quickly and easily. Practical use cases, like printing report cards and transferring student data, proved reliable in daily use. End users, including teachers, were also involved directly in acceptance testing, which helped ensure the platform actually fit how teaching work happens in practice. The platform only launched in spring 2026, with a wider school rollout from autumn 2026, so the full impact is still ahead of us — what we do know so far is that we delivered a consistent, accessible foundation that several municipalities are now building their daily school administration on.",
+    "Feedback from the pilot schools has been largely positive. Users called the platform easy to use, versatile and modern. Teachers and administrative staff praised how logical it felt and how well it supported everyday school routines, and said they found what they needed quickly. Practical tasks like printing report cards and transferring student data proved reliable in daily use. End users, including teachers, took part directly in acceptance testing, which helped make sure the platform fits how teaching work happens. The platform launched only in spring 2026, with a wider school rollout from autumn 2026, so the full impact is still ahead. So far we have delivered a consistent, accessible foundation that several municipalities now build their daily school administration on.",
   impactCards: [
     {
       number: "01",
       title: "Clearer, more usable interfaces",
-      body: "We replaced complex, outdated systems with interfaces that are genuinely easier to understand and use, for teachers, administrators, guardians and students alike, built around real user needs instead of old system logic.",
+      body: "We replaced complex, outdated systems with interfaces that are easier to understand and use, for teachers, administrators, guardians and students alike. They are built around user needs instead of old system logic.",
     },
     {
       number: "02",
-      title: "A mobile experience that actually works",
-      body: "The old systems had mobile apps, but they were often confusing and frustrating to use. For many guardians and students, this may be the first time managing school-related tasks on a phone actually feels easy instead of like a chore.",
+      title: "A mobile experience that works",
+      body: "The old systems had mobile apps, but they were confusing and frustrating to use. For many guardians and students, managing school tasks on a phone may now feel easy for the first time.",
     },
     {
       number: "03",
       title: "One consistent experience, many vendors",
-      body: "Despite several development teams and third-party platforms working in parallel, we delivered an experience that looks and behaves consistently, which is genuinely hard to achieve at this scale.",
+      body: "Several development teams and third-party platforms worked in parallel, and we still delivered an experience that looks and behaves consistently. That is hard to achieve at this scale.",
     },
   ],
 
@@ -183,7 +183,7 @@ export const educationPlatform: CaseStudy = {
     {
       number: "02",
       title: "Turning design into a real product",
-      body: "I worked closely with development teams to make sure our designs were actually built the way they were intended. In my final year on the project, as Lead Designer, I was responsible for making sure everything looked and worked consistently across the whole platform, including the parts built by outside companies, which turned out to be harder to customize than we expected.",
+      body: "I worked closely with development teams to make sure our designs were built as intended. In my final year on the project, as Lead Designer, I was responsible for making sure everything looked and worked consistently across the whole platform, including the parts built by outside companies, which turned out to be harder to customize than we expected.",
     },
     {
       number: "03",

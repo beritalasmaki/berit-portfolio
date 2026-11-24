@@ -17,7 +17,7 @@ export const designEngineeringFi: BlogPost = {
       type: "paragraph",
       text: "Tekoälyn myötä tämä työnjako on alkanut muuttua. Voin nyt tehdä osan työstä suoraan koodissa: toteuttaa komponentteja valmiiksi, tehdä koodilla toimivia prototyyppejä ja kirjoittaa koodia, joka viittaa tiimin oikeisiin komponentteihin. Siksi olen alkanut siirtyä kohti design engineerin roolia.",
     },
-    { type: "paragraph", text: "Siirtymä ei ole minulle täysin uusi suunta, vaan paluu sinne, mistä aloitin." },
+    { type: "paragraph", text: "Minulle siirtymä on paluu sinne, mistä aloitin." },
 
     { type: "heading", id: "started-with-code", text: "Aloitin koodauksesta, mutta jatkoin muotoilijana", navLabel: "Aloitin koodauksesta" },
     {
@@ -48,7 +48,7 @@ export const designEngineeringFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Määritelmässä on kaksi asiaa, jotka ovat suunnittelijan näkökulmasta tärkeitä. Ensinnäkin muotoilija tekee edelleen suunnittelupäätökset, ja tekoälyagentti kirjoittaa suurimman osan koodista. Toiseksi koodikatselmointi (code review) pysyy ennallaan: kehittäjä päättää edelleen, mitä tuotteeseen päätyy. Kyse ei siis ole kehittäjien ohittamisesta vaan uudesta tavasta tehdä työtä yhdessä.",
+      text: "Määritelmässä on kaksi asiaa, jotka ovat suunnittelijan näkökulmasta tärkeitä. Ensinnäkin muotoilija tekee edelleen suunnittelupäätökset, ja tekoälyagentti kirjoittaa suurimman osan koodista. Toiseksi koodikatselmointi (code review) pysyy ennallaan: kehittäjä päättää edelleen, mitä tuotteeseen päätyy. Kehittäjät pysyvät siis mukana. Muuttuu se, miten muotoilija ja kehittäjä tekevät työtä yhdessä.",
     },
     {
       type: "paragraph",
@@ -111,7 +111,7 @@ export const designEngineeringFi: BlogPost = {
     { type: "heading", id: "five-skills", text: "Viisi taitoa, jotka ovat koodausta tärkeämpiä", navLabel: "Koodausta tärkeämmät taidot" },
     {
       type: "paragraph",
-      text: "Jos muotoilija ei kirjoita koodia itse, mitä hänen sitten pitää osata? Tärkein taito ei ole koodaus, vaan koodipohjan tunteminen niin hyvin, että osaa ohjata tekoälyagenttia tarkasti. Bokor kuvaa viisi tapaa, jotka avaan tässä omin sanoin.",
+      text: "Jos muotoilija ei kirjoita koodia itse, mitä hänen sitten pitää osata? Tärkein taito on koodipohjan tunteminen niin hyvin, että osaa ohjata tekoälyagenttia tarkasti. Bokor kuvaa viisi tapaa, jotka avaan tässä omin sanoin.",
     },
     {
       type: "list",
@@ -237,7 +237,7 @@ export const designEngineeringFi: BlogPost = {
     { type: "heading", id: "summary", text: "Yhteenveto" },
     {
       type: "quote",
-      text: "Design Engineerin tarkoitus ei ole korvata kehittäjän työtä, vaan rooli mahdollistaa sujuvamman yhteistyön muotoilun ja kehitystyön välillä.",
+      text: "Design engineerin rooli sujuvoittaa yhteistyötä muotoilun ja kehityksen välillä, ja kehittäjät päättävät edelleen, mitä julkaistaan.",
     },
     {
       type: "paragraph",

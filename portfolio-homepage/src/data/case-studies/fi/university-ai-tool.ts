@@ -7,7 +7,7 @@ export const universityAiToolFi: CaseStudy = {
   title: "Yliopiston digitaalinen perehdytys ja tekoälyhakukonsepti",
   cardTitle: "Yliopiston digitaalinen perehdytys ja tekoäly\u00adhaku\u00adkonsepti",
   label: "YLIOPISTON ASIAKASKOKEMUS JA TEKOÄLYTYÖKALUT · 2025–2026",
-  headline: "Hajallaan olevat opiskelijapalvelut.\nYksi tekoälyhakuun perustuva portaali.",
+  headline: "Yksi etusivu ja tekoälyhaku hajallaan oleville opiskelijapalveluille",
   description:
     "Tekoälyllä tehostettu haku- ja palveluportaali, joka kokoaa yliopiston palvelut yhteen, vähentää tukipalvelujen kuormitusta ja auttaa opiskelijoita löytämään tarvitsemansa itse.",
   thumbnail: "/case/university-new-card.png",
@@ -16,10 +16,10 @@ export const universityAiToolFi: CaseStudy = {
   industry: "Korkeakoulutus",
   ctaLabel: "Tutustu koko asiakasprojektiin",
   otherCaseStudyDescription:
-    "Suunnittelin älykkäämmän haku- ja palveluportaalin, jotta opiskelijat löytävät ohjeet ja tuen eksymättä hajanaisiin järjestelmiin.",
+    "Suunnittelin haku- ja palveluportaalin",
 
   intro: [
-    "Suuren yliopiston tieto oli hajallaan monilla erillisillä verkkosivustoilla, eivätkä opiskelijat, henkilökunta tai vierailijat usein tienneet, mistä etsiä. Liityin projektiin Senior UX- ja tuotesuunnittelijana: tehtäväni oli muuttaa varhaiset konseptit oikeiksi näkymiksi, testata niitä käyttäjillä ja muotoilla ensimmäinen versio, jota ihmiset pystyivät oikeasti käyttämään.",
+    "Suuren yliopiston tieto oli hajallaan monilla erillisillä verkkosivustoilla, eivätkä opiskelijat, henkilökunta tai vierailijat usein tienneet, mistä etsiä. Liityin projektiin Senior UX- ja tuotesuunnittelijana: tehtäväni oli muuttaa varhaiset konseptit oikeiksi näkymiksi, testata niitä käyttäjillä ja muotoilla ensimmäinen versio, jota ihmiset pystyivät käyttämään.",
   ],
   glance: {
     problem:
@@ -29,8 +29,8 @@ export const universityAiToolFi: CaseStudy = {
     decisions: [
       "Yksi etusivu ja yksi tekoälyhakuun perustuva sisäänkäynti kaikkiin palveluihin",
       "Saavutettava ja mobiiliystävällinen alusta asti",
-      "Nostin suunnittelussa keskiöön palvelun saavutettavuuden, selkeyden ja helppokäyttöisyyden sekä määrittelin työlle selkeät mittarit. Varmistin, että avainkäyttäjäryhmät olivat tiiviisti mukana kehityksessä.",
-      "Muotoilun yhtenäisyyden ja laadun takaamiseksi linjasimme, ettei kertarakennelmia käytetä. Ohjasin kehittäjiä hyödyntämään Design Systemin komponentteja ja rakensin toimivan yhteistyömallin kehittäjien ja DS-tiimin välille.",
+      "Keskityin suunnittelussa saavutettavuuteen, selkeyteen ja helppokäyttöisyyteen ja määrittelin työlle mittarit. Varmistin, että avainkäyttäjäryhmät olivat tiiviisti mukana kehityksessä.",
+      "Linjasimme, ettei kertarakennelmia tehdä, jotta muotoilu pysyy yhtenäisenä. Ohjasin kehittäjiä hyödyntämään Design Systemin komponentteja ja rakensin toimivan yhteistyömallin kehittäjien ja DS-tiimin välille.",
     ],
     outcome:
       "Vahvistettu julkaisun jälkeisillä käyttäjähaastatteluilla ja kyselyillä: vastaukset löytyivät nopeammin, yksinkertaiset kysymykset siirtyivät itsepalveluun, jolloin henkilökunnalle jäi enemmän aikaa tilanteisiin, jotka vaativat ihmisen apua, ja palvelu toimi puhelimella ja apuvälineillä.",
@@ -100,7 +100,7 @@ export const universityAiToolFi: CaseStudy = {
 
   howItStarted: [
     "Suuren yliopiston tieto oli hajallaan monilla eri verkkosivustoilla, minkä vuoksi opiskelijoiden, henkilökunnan ja vierailijoiden oli vaikea löytää apua.",
-    "Palvelumuotoilijat olivat jo tehneet alkuvaiheen tutkimuksen ja hahmotelleet idean keskitetystä palveluportaalista. Minun tehtäväni Senior UX- ja tuotesuunnittelijana oli muuttaa nämä varhaiset konseptit oikeiksi käyttöliittymäsuunnitelmiksi, testata niitä oikeilla käyttäjillä ja hioa ne ensimmäistä julkaisua (MVP) varten.",
+    "Palvelumuotoilijat olivat jo tehneet alkuvaiheen tutkimuksen ja hahmotelleet idean keskitetystä palveluportaalista. Minun tehtäväni Senior UX- ja tuotesuunnittelijana oli muuttaa nämä varhaiset konseptit oikeiksi käyttöliittymäsuunnitelmiksi, testata niitä käyttäjillä ja hioa",
     "Julkaisun jälkeenkin jäin mukaan keräämään käyttäjäpalautetta ja kehittämään palvelua sen mukaan, miten sitä todella käytettiin.",
   ],
 
@@ -123,15 +123,15 @@ export const universityAiToolFi: CaseStudy = {
     {
       number: "04",
       title: "Yhteiset komponentit kertarakennelmien sijaan",
-      body: "Muotoilun yhtenäisyyden ja laadun varmistamiseksi linjasimme, ettei kertarakennelmia käytetä. Muistutin kehittäjiä käyttämään Design Systemin komponentteja ja yhdistin heidät keskustelemaan DS-kehittäjien kanssa. Otin Design System -tiimin mukaan aina, kun tarvittiin jotain aidosti uutta.",
+      body: "Linjasimme, ettei kertarakennelmia tehdä, jotta muotoilu pysyy yhtenäisenä. Muistutin kehittäjiä käyttämään Design Systemin komponentteja ja yhdistin heidät keskustelemaan DS-kehittäjien kanssa. Otin Design System -tiimin mukaan aina, kun tarvittiin jotain aidosti uutta.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "Määrittelisin suunnittelun säännöt selkeämmin ennen luovutusta. Jälkikäteen olisin kirjannut muutaman keskeisen UX-periaatteen selkeämmin ylös ennen lähtöäni, jotta kokemus pysyisi yhtenäisenä, vaikka en olisi enää arvioimassa muutoksia. Lähtöni jälkeen muutama pieni yksityiskohta kehittyi eri suuntaan kuin alun perin suunniteltiin. Esimerkiksi hakutulokset ilmestyivät hakukentän alapuolelle eikä samalle näkyvälle alueelle, jolloin ei ollut selvää, milloin tuloksia ladataan. Tällaiset pikkuasiat kasautuvat ajan myötä. Opin tästä, että dokumentoida pitää suunnittelun lisäksi sen perustelut, jotta ne ohjaavat päätöksiä silloinkin, kun en ole itse paikalla.",
+    "Määrittelisin suunnittelun säännöt selkeämmin ennen luovutusta. Olisin kirjannut muutaman keskeisen UX-periaatteen ylös ennen lähtöäni, jotta kokemus pysyisi yhtenäisenä, vaikka en olisi enää arvioimassa muutoksia. Lähtöni jälkeen muutama pieni yksityiskohta kehittyi eri suuntaan kuin alun perin suunniteltiin. Esimerkiksi hakutulokset ilmestyivät hakukentän alapuolelle eikä samalle näkyvälle alueelle, jolloin ei ollut selvää, milloin tuloksia ladataan. Tällaiset pikkuasiat kasautuvat ajan myötä. Opin, että suunnittelun lisäksi pitää dokumentoida sen perustelut, jotta ne ohjaavat päätöksiä silloinkin, kun en ole itse paikalla.",
     "Asettaisin selkeämmät onnistumisen mittarit alusta alkaen, peruskäyttödataa pidemmälle. Käytössämme oli Matomo (yksityisyyttä kunnioittava verkkoanalytiikkatyökalu), joka kertoi esimerkiksi sivunäytöistä ja klikkauskäyttäytymisestä. Suunnittelimme menevämme tätä pidemmälle ja määrittelevämme mittarit, jotka kertoisivat, ratkaiseeko palvelu oikeaa ongelmaa eikä vain sitä, miten sitä käytetään, mutta emme koskaan saaneet niitä toteutettua.",
-    "Haluaisin ratkaista tämän lisäämättä käyttäjille ylimääräistä vaivaa, esimerkiksi kevyellä, vapaaehtoisella palautekehotteella keskeisten hetkien, kuten tekoälyhaun tuloksen, jälkeen erillisen kyselyn sijaan. Toinen keino olisi seurata epäsuoria signaaleja, joihin meillä jo oli pääsy, esimerkiksi sitä, muuttuiko henkilökunnan yhteydenottojen määrä yleisissä kysymyksissä ajan myötä. Näin olisimme saaneet selkeämmän vastauksen oikeaan kysymykseen: auttaako tämä oikeasti ihmisiä, eikä vain se, käyttävätkö he sitä.",
-    "Tekisin suunnittelun roolista prosessissa jäsennellymmän, en vain reagoivan. Olin koko ajan tiiviisti mukana ja tapasin säännöllisesti kehittäjiä ja scrum masteria, joka huolehtii tiimin työtapojen toimivuudesta. Jälkikäteen ottaisin heti alusta käyttöön muutaman kevyen tarkistuspisteen: lyhyen suunnittelukatselmoinnin ennen UX-muutosten julkaisua, selkeän yhteyshenkilön teknisille kysymyksille ja UX-päätösten perustelut kirjattuina suoraan kehittäjien käyttämiin tehtäväkuvauksiin erillisen dokumentin sijaan, jota kukaan ei ehdi lukea. Mikään näistä ei hidasta tiukkaakaan aikataulua, kun se rakennetaan osaksi työnkulkua alusta asti.",
+    "Haluaisin ratkaista tämän lisäämättä käyttäjille vaivaa, esimerkiksi kevyellä, vapaaehtoisella palautekehotteella keskeisten hetkien, kuten tekoälyhaun tuloksen, jälkeen erillisen kyselyn sijaan. Toinen keino olisi seurata epäsuoria signaaleja, joihin meillä jo oli pääsy, esimerkiksi sitä, muuttuiko henkilökunnan yhteydenottojen määrä yleisissä kysymyksissä ajan myötä. Näin olisimme saaneet vastauksen oikeaan kysymykseen: auttaako tämä ihmisiä, eikä vain se, käyttävätkö he sitä.",
+    "Antaisin suunnittelulle jäsennellymmän roolin prosessissa. Olin koko ajan tiiviisti mukana ja tapasin säännöllisesti kehittäjiä ja scrum masteria, joka huolehtii tiimin työtapojen toimivuudesta. Ottaisin heti alusta käyttöön muutaman kevyen tarkistuspisteen: lyhyen suunnittelukatselmoinnin ennen UX-muutosten julkaisua, selkeän yhteyshenkilön teknisille kysymyksille ja UX-päätösten perustelut kirjattuina suoraan kehittäjien käyttämiin tehtäväkuvauksiin erillisen dokumentin sijaan, jota kukaan ei ehdi lukea. Kun nämä rakennetaan osaksi työnkulkua alusta asti, mikään ei hidasta tiukkaakaan aikataulua.",
   ],
 
   methods: ["Asiakaspolkujen kartoitus", "Käyttäjähaastattelut", "Yhteissuunnittelun työpajat", "Käytettävyystestaus"],

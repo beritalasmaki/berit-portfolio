@@ -124,14 +124,9 @@ export const aiPilotToEverydayPracticeFi: BlogPost = {
     },
 
     { type: "heading", id: "summary", text: "Yhteenveto" },
-    { type: "paragraph", text: "Lopulta sarjan voi tiivistää yhteen ajatukseen:" },
-    {
-      type: "quote",
-      text: "Kokeilusta tulee rutiinia vasta, kun uusi tapa työskennellä on helpompi kuin vanha.",
-    },
     {
       type: "paragraph",
-      text: "Organisaatiot pysyvät toimintamallien käytössä, kun ne on rakennettu arjen työkaluihin ja rahoituskriteereihin. Muistutukset intranetissä eivät yksinään riitä.",
+      text: "Kokeilusta tulee rutiinia, kun uusi tapa työskennellä on helpompi kuin vanha. Organisaatiot pysyvät toimintamallin käytössä, kun se on rakennettu arjen työkaluihin ja rahoituskriteereihin. Muistutukset intranetissä eivät riitä.",
     },
   ],
 };

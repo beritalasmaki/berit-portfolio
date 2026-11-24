@@ -151,7 +151,7 @@ export const industrialTool: CaseStudy = {
     "Made an industrial data platform clear, so customers can dose chemicals right and use less of them.",
 
   intro: [
-    "An industrial platform for monitoring and reporting had grown complex over time, with expert users struggling through long text lists and manual calculations. I joined as the sole designer, taking over from a previous one, to make the tool work the way specialists actually needed it to.",
+    "An industrial platform for monitoring and reporting had grown complex over time, with expert users struggling through long text lists and manual calculations. I joined as the sole designer after the previous one, to make the tool fit how specialists work.",
   ],
   glance: {
     problem:
@@ -167,7 +167,7 @@ export const industrialTool: CaseStudy = {
       "**Design system overhaul:** I migrated the design system from Sketch to Figma and rebuilt the components to scale.",
     ],
     outcome:
-      "Specialists grasped the data they needed quickly, and running complex calculations became reliable and easy for the whole team. Thanks to auto-save, work was no longer lost.\n\nMoving designers and developers into one shared tool made collaboration clearer, and both the development team and the project manager told me their day-to-day work became noticeably smoother.",
+      "Specialists found the data they needed faster, and the whole team could run complex calculations, not only the most experienced people. Auto-save stopped work from getting lost.\n\nThe development team and the project manager both told me that having designers and developers in one tool made their day-to-day work smoother.",
   },
   roleLabel: "UX Designer (sole designer on the project)",
   focusLabel: "Expert tools, data visualization, and Design System modernization",
@@ -203,55 +203,55 @@ export const industrialTool: CaseStudy = {
   sneakPeekImages: ["/case/kem-dash.png", "/case/kem-dash-menu.png"],
 
   impactIntro:
-    "After launching new features, we systematically ran feedback and testing sessions with actual users. This continuous loop helped us validate what worked in daily operations, identify areas for refinement, and keep the product evolving based on real user needs.",
+    "After launching new features, we ran feedback and testing sessions with users. The sessions showed what worked in daily operations and what needed refining.",
   impactCards: [
     {
       number: "01",
       title: "Faster, clearer data at a glance",
-      body: "Turning the dashboard's data panels into visual cards meant specialists no longer had to read through long text lists to find what they needed. Information that used to take scanning and interpreting now became something they could understand in seconds, directly speeding up their daily monitoring and reporting work.",
+      body: "Turning the dashboard's data panels into visual cards meant specialists no longer had to read through long text lists to find what they needed. Information that used to take scanning and interpreting could be understood in seconds, which sped up daily monitoring and reporting.",
     },
     {
       number: "02",
       title: "Complex calculations, without the guesswork",
-      body: "Before this, running a complex calculation required deep expertise and careful manual work. The new calculation window guided specialists through the process step by step, reducing the risk of errors and making it possible for more people on the team to run these calculations confidently, not just the most experienced ones.",
+      body: "Running a complex calculation used to take deep expertise and careful manual work. The new calculation window guides specialists step by step. Errors became less likely, and more people on the team could run the calculations, not just the most experienced.",
     },
     {
       number: "03",
       title: "Less lost work, more trust in the tool",
-      body: "Adding auto-save to data and reporting views removed a real, everyday frustration: losing work due to a missed save or a dropped connection, something that mattered a lot to users working with time-sensitive data from remote factory locations.",
+      body: "Auto-save in the data and report views removed an everyday frustration: losing work to a missed save or a dropped connection. That mattered to users working with time-sensitive data from remote plants.",
     },
     {
       number: "04",
       title: "A foundation the whole team could build on",
-      body: "Migrating the Design System from Sketch to Figma didn't just modernize the tool, it meant developers and designers were finally working in the same environment. That made handing designs over faster and reduced the back-and-forth that came from working across two disconnected design tools, freeing up time developers had previously spent interpreting or translating designs between formats. I received direct, positive feedback from both the developers and the project manager, who noted how much smoother their day-to-day work became as a result.",
+      body: "Moving the design system from Sketch to Figma put developers and designers in the same environment. Handovers got faster, and developers spent less time translating designs between two disconnected tools. Both the developers and the project manager told me their day-to-day work became smoother.",
     },
   ],
 
   howItStarted: [
-    "I stepped into an ongoing project, picking up work from a previous designer. Some of the first things I focused on were visual improvements to the interface, for example turning the small panels on the dashboard into visual cards instead of plain text lists, which made them much easier to read at a glance. From there, we also designed an auto-save feature for data and reporting views, and improved the structure and content of reports.",
+    "I stepped into an ongoing project after a previous designer. I started with visual improvements to the interface, for example turning the small dashboard panels from plain text lists into visual cards that are easy to read at a glance. Then we designed auto-save for the data and report views and improved the structure and content of the reports.",
   ],
 
   challenges: [
     {
       number: "01",
       title: "Designing for complex expert workflows",
-      body: "One of the ongoing challenges was clarifying complex work processes for expert users. I designed a calculation window that splits a complex calculation into steps, so specialists could run it through a much simpler interface. What consistently helped was never trying to solve this alone. I worked closely with the specialists and factory workers who used the tool daily, co-designing solutions with them instead of guessing what they needed.",
+      body: "I designed a calculation window that splits a complex calculation into steps, so specialists can run it through a much simpler interface. I did not solve it alone. I worked closely with the specialists and factory workers who used the tool daily and co-designed the solutions with them instead of guessing what they needed.",
     },
     {
       number: "02",
       title: "Research across time zones",
-      body: "A big part of the challenge was simply logistics. Stakeholder interviews often involved people based in the US, which meant working around significant time differences and staying flexible with my own schedule. Having the project manager, who already had strong relationships with these stakeholders, involved in the conversations made it much easier to build trust and get people engaged.",
+      body: "Much of the challenge was logistics. Stakeholder interviews often involved people in the US, so I worked around large time differences and stayed flexible with my schedule. The project manager already had strong relationships with these stakeholders, and having them in the conversations made it easier to build trust.",
     },
     {
       number: "03",
       title: "Modernizing the Design System",
-      body: "The existing Design System lived in Sketch, an older tool that made collaboration with the rest of the team harder. Alongside the day-to-day design work, I took on migrating the library over to Figma, cleaning up and rebuilding components along the way rather than just copying them over as-is, so the team ended up with a more usable and maintainable design foundation to build on going forward.",
+      body: "The design system lived in Sketch, an older tool that made collaboration with the rest of the team harder. Alongside the day-to-day design work, I migrated the library to Figma. I cleaned up and rebuilt the components instead of copying them as they were, so the team got a design foundation that is easier to use and maintain.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "Looking back, I would approach the technical side of this project differently today. Instead of relying on static mockups handed off to developers, I'd use AI tools like Claude Design to build working prototypes directly, closing the gap between design and implementation much faster. I'd also structure the Design System from the start with code-level implementation in mind, working closely with developers and building with Claude Code, so it would be not just a well-organized component library in Figma, but something developers could pull from directly.",
-    "The team itself worked well together throughout the project, and I don't think our size or setup was ever the real issue. The growth I see now is more about how I'd use today's tools and ways of working to close that design-to-development gap earlier and more effectively.",
+    "Today I would approach the technical side differently. Instead of handing static mockups to developers, I would build working prototypes with AI tools like Claude Design, which closes the gap between design and implementation much faster. I would also structure the design system for code from the start, working closely with developers and building with Claude Code, so developers could pull from it directly instead of finding only a well-organised component library in Figma.",
+    "The team worked well together throughout, and I don't think our size or setup was ever the problem. What I would change is how I use today's tools and ways of working to close the design-to-development gap earlier.",
   ],
 
   story: {
@@ -397,7 +397,7 @@ export const industrialTool: CaseStudy = {
         "**Reports supported sales.** The company's goal was to bring separate databases onto one platform and use the data in selling services. With the reports, sales and experts can show customers their savings clearly.",
         "These results came from the chemistry, the calculation algorithms, the experts and the user interface working together. My part was making the data and calculations clear enough for customers and experts to follow and base decisions on.",
         "**Feedback from users and the team.** Interviews were short and schedules tight, so no broad usability metrics were set, apart from tracking how the widget cards were taken up. They weren't needed to decide what to fix first, as a few interviews were enough to show what got in the way most. The impact of the changes is therefore based on feedback from users and the team.",
-        "Experts no longer had to dig for information in long text lists. Calculations were no longer limited to the most experienced people. Work was no longer lost when someone forgot to save or the connection dropped.",
+        "Experts no longer had to dig for information in long text lists. More than the most experienced people could run calculations. A forgotten save or a dropped connection no longer lost work.",
         "According to the developers and the project manager, collaboration became noticeably smoother once designers and developers used the same tool.",
       ],
       highlights: [
@@ -426,7 +426,7 @@ export const industrialTool: CaseStudy = {
       items: [
         {
           title: "Metrics tied to business numbers",
-          body: "The interviews showed what to fix, but not how much a change helped. The company already had KPIs for customers' purchasing behaviour and satisfaction. Now I would tie the design work to them and follow a few light metrics that come straight from the system, without separate research. For example, how many experts do their calculations in the tool instead of Excel, how long a calculation takes, how many support requests come in about lost work, and how often customers open their dashboards. That way the impact would show both in users' daily work and in the business.",
+          body: "The interviews showed what to fix, but not how much a change helped. The company already had KPIs for customers' purchasing behaviour and satisfaction. Now I would tie the design work to them and follow a few light metrics that come straight from the system, without separate research. For example, how many experts do their calculations in the tool instead of Excel, how long a calculation takes, how many support requests come in about lost work, and how often customers open their dashboards.",
         },
         {
           title: "Documenting the process",

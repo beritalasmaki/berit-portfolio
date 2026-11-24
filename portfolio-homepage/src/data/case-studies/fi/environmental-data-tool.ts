@@ -7,7 +7,7 @@ export const environmentalDataToolFi: CaseStudy = {
   title: "Ympäristödatajärjestelmien uudistaminen",
   cardTitle: "Ympäristö\u00addata\u00adjärjestelmien uudistaminen",
   label: "YMPÄRISTÖDATAJÄRJESTELMÄT · 2020–2024",
-  headline: "Vanhentuneet järjestelmät.\nNyt jotain, mihin tutkijat todella luottavat.",
+  headline: "Vanhentuneet ympäristödatajärjestelmät uudistettu tutkijoiden työn ympärille",
   description:
     "Ympäristödatan seuranta- ja raportointityökalut, joilla asiantuntijat löytävät, vertailevat ja julkaisevat tuloksia ilman, että käyttöliittymä on jatkuvasti tiellä.",
   thumbnail: "/case/syke-new-card.png",
@@ -16,7 +16,7 @@ export const environmentalDataToolFi: CaseStudy = {
   industry: "Ympäristötutkimus",
   ctaLabel: "Tutustu koko asiakasprojektiin",
   otherCaseStudyDescription:
-    "Muutin vanhentuneet järjestelmät nykyaikaisiksi, tehokkaiksi työkaluiksi, jotka auttavat ympäristötutkijoita hallitsemaan ja analysoimaan kriittistä dataa.",
+    "Uudistin vanhentuneet järjestelmät nykyaikaisiksi työkaluiksi",
 
   intro: [
     "Ympäristötutkimuslaitos hallitsi ja analysoi kriittistä dataansa vanhentuneilla työkaluilla ja turvautui usein Exceliin, jotta datasta sai edes jotain selvää. Vuosina 2020–2023 tein laitokselle useita projekteja ainoana UX-suunnittelijana ja uudistin näitä työkaluja.",
@@ -27,7 +27,7 @@ export const environmentalDataToolFi: CaseStudy = {
     role:
       "Ainoa UX/UI-suunnittelija useassa projektissa vuosina 2020–2023. Yhdistin UX/UI-suunnittelun ja kevyen palvelumuotoilun.",
     decisions: [
-      "Mietin uudelleen, miten datan ja työnkulkujen kuuluu toimia, sen sijaan että olisin pukenut vanhan järjestelmän uuteen käyttöliittymään",
+      "Mietin uudelleen, miten datan ja työnkulkujen kuuluu toimia, enkä vain vaihtanut vanhan järjestelmän käyttöliittymää",
       "Aloitin lyhyellä, kevyellä tutkimuksella suoraan järjestelmiä käyttävien asiantuntijoiden kanssa",
       "Yhdistin kartta- ja taulukkonäkymät yhdeksi johdonmukaiseksi kokonaisuudeksi",
       "Rakensin oikeat analytiikkanäkymät (pylväs- ja hajontakaaviot), jotta tutkijat eivät tarvinneet niihin Exceliä",
@@ -80,17 +80,17 @@ export const environmentalDataToolFi: CaseStudy = {
     {
       number: "01",
       title: "Vanhoista työkaluista tutkijoiden työtä tukeviin välineisiin",
-      body: "Emme vain uudistaneet vanhojen järjestelmien ulkoasua, vaan rakensimme useita niistä uudelleen sen mukaan, miten tutkijat nykyään oikeasti työskentelevät: miten he yhdistävät kartta- ja taulukkodataa ja miten he lisäävät uusia tuloksia työn edetessä.",
+      body: "Emme uudistaneet pelkästään vanhojen järjestelmien ulkoasua. Rakensimme useita niistä uudelleen sen mukaan, miten tutkijat nykyään työskentelevät: miten he yhdistävät kartta- ja taulukkodataa ja miten he lisäävät uusia tuloksia työn edetessä.",
     },
     {
       number: "02",
       title: "Parempia oivalluksia oikean datavisualisoinnin avulla",
-      body: "Näistä projekteista suurimmassa tutkijat olivat aiemmin turvautuneet paljon Exceliin ymmärtääkseen dataansa. Rakensimme järjestelmään kunnolliset analytiikkanäkymät, joiden avulla kuviot ja poikkeamat huomaa selvästi nopeammin ilman, että dataa tarvitsee ensin viedä muualle.",
+      body: "Näistä projekteista suurimmassa tutkijat olivat turvautuneet paljon Exceliin ymmärtääkseen dataansa. Rakensimme järjestelmään kunnolliset analytiikkanäkymät, joista kuviot ja poikkeamat huomaa nopeammin ilman, että dataa tarvitsee ensin viedä muualle.",
     },
     {
       number: "03",
       title: "Näytteiden seuranta helpompaa ja selkeämpää",
-      body: "Parannetut käyttöliittymät helpottivat asiantuntijoiden arkityötä selvästi. Uusien näytteiden tallentaminen ja niiden muutosten seuraaminen ajan mittaan oli paljon yksinkertaisempaa kuin vanhoissa järjestelmissä.",
+      body: "Parannetut käyttöliittymät helpottivat asiantuntijoiden arkityötä. Uusien näytteiden tallentaminen ja niiden muutosten seuraaminen ajan mittaan oli paljon yksinkertaisempaa kuin vanhoissa järjestelmissä.",
     },
   ],
 
@@ -117,13 +117,13 @@ export const environmentalDataToolFi: CaseStudy = {
     {
       number: "04",
       title: "Kunnollisten data-analytiikkanäkymien rakentaminen",
-      body: "Yhdessä isoimmista projekteista menimme perusnäkymiä pidemmälle ja rakensimme kunnolliset analytiikkanäkymät, kuten pylväs- ja hajontakaaviot sekä muita visualisointeja. Ne antoivat tutkijoille paljon monipuolisemmat keinot tutkia ja ymmärtää dataansa kuin vanhat järjestelmät koskaan. Kaikissa näissä projekteissa ratkaisevaa oli pysyä lähellä päivittäin työkalua käyttäviä asiantuntijoita. Työ oli vaativaa, mutta rinta rinnan heidän kanssaan suunnittelu teki siitä myös aidosti hauskaa, ei pelkästään tehokasta.",
+      body: "Yhdessä isoimmista projekteista menimme perusnäkymiä pidemmälle ja rakensimme kunnolliset analytiikkanäkymät, kuten pylväs- ja hajontakaaviot sekä muita visualisointeja. Ne antoivat tutkijoille monipuolisemmat keinot tutkia dataansa kuin vanhat järjestelmät. Kaikissa näissä projekteissa ero syntyi siitä, että pysyin lähellä päivittäin työkalua käyttäviä asiantuntijoita. Työ oli vaativaa, ja rinta rinnan heidän kanssaan suunnittelu oli myös hauskaa.",
     },
   ],
 
   whatIWouldDoDifferently: [
     "Jos voisin palata ajassa taaksepäin, ajaisin Design Systemin aloittamista aiemmin. Organisaatiolla oli suunnitelmia aloittaa sellainen jossain vaiheessa, mutta kun hyvin pieni kehitystiimi ylläpiti jo yli 200:aa eri järjestelmää, priorisointi oli vaikeaa. Lisäksi sisäisesti oli vielä paljon epäselvää, esimerkiksi se, millä tasolla Design System kannattaisi rakentaa organisaatiolle, jolla on niin monta järjestelmää ja niin vähän resursseja.",
-    "Tämä on hyvä muistutus siitä, ettei Design System ole pelkkä suunnittelupäätös. Organisaatiolla pitää olla myös kapasiteettia ja selkeyttä sen tukemiseen. Ajaisin sitä edelleen aiemmin ensi kerralla, mutta lähtisin liikkeelle realistisemmin: pienellä ja riittävän hyödyllisellä kokonaisuudella, joka osoittaa arvonsa nopeasti, sen sijaan että odottaisin ihanteellisia olosuhteita, joita ei ehkä koskaan tule.",
+    "Design System ei ole pelkkä suunnittelupäätös. Organisaatiolla pitää olla myös kapasiteettia ja selkeyttä sen tukemiseen. Ajaisin sitä edelleen aiemmin ensi kerralla, mutta lähtisin liikkeelle realistisemmin: pienellä ja riittävän hyödyllisellä kokonaisuudella, joka osoittaa arvonsa nopeasti, sen sijaan että odottaisin ihanteellisia olosuhteita, joita ei ehkä koskaan tule.",
   ],
 
   methods: ["Kevyt kartoitus", "Yhteissuunnittelun työpajat", "Käytettävyystestaus", "Lean-suunnittelu"],

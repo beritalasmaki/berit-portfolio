@@ -4,7 +4,7 @@ export const environmentalDataTool: CaseStudy = {
   slug: "environmental-data-tool",
   title: "Modernization of Environmental Data Systems",
   label: "ENVIRONMENTAL DATA SYSTEMS · 2020–2024",
-  headline: "Outdated systems.\nNow something researchers actually trust.",
+  headline: "Outdated environmental data systems, rebuilt around how researchers work",
   description:
     "Monitoring and reporting tools for environmental data, built so specialists can find, compare and publish results without fighting the interface.",
   thumbnail: "/case/syke-new-card.png",
@@ -13,7 +13,7 @@ export const environmentalDataTool: CaseStudy = {
   industry: "Environmental research",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:
-    "Transformed outdated systems into modern, efficient tools that help environmental researchers manage and analyze critical data.",
+    "Rebuilt outdated systems as modern tools that help",
 
   intro: [
     "An environmental research institute relied on outdated tools to manage and analyze critical data, often defaulting to Excel just to make sense of it. Over several projects between 2020 and 2023, I was brought in as the institute's only UX designer to modernize these tools.",
@@ -24,13 +24,13 @@ export const environmentalDataTool: CaseStudy = {
     role:
       "Sole UX/UI designer across several projects in 2020–2023, combining UX/UI design with lightweight service design.",
     decisions: [
-      "Rethought how the data and workflows should work, instead of dressing the old system in a new interface",
+      "Rethought how the data and workflows should work instead of putting a new interface on the old system",
       "Started with short, lean research directly with the specialists who use the systems",
       "Combined map and table views into one coherent experience",
       "Built real analytics views (bar charts, scatter plots) so researchers no longer needed Excel for them",
     ],
     outcome:
-      "Several systems were rebuilt around how researchers actually work. In the largest project, built-in analytics replaced much of the manual Excel work, and saving and tracking samples became much simpler. Based on feedback from users during the projects.",
+      "Several systems were rebuilt around how researchers work. In the largest project, built-in analytics replaced much of the manual Excel work, and saving and tracking samples became much simpler. Based on feedback from users during the projects.",
   },
   roleLabel: "UI/UX Designer (sole designer, long-term client relationship)",
   focusLabel: "Modernizing outdated data systems, combining UX/UI design with lightweight service design",
@@ -88,22 +88,22 @@ export const environmentalDataTool: CaseStudy = {
     {
       number: "01",
       title: "From outdated tools to something built for how the work actually happens",
-      body: "Instead of just modernizing the look of old systems, we rebuilt several of them around how researchers actually work today, including how they combine map and table data, and how they add new results as their work continues.",
+      body: "We did not only modernize the look of old systems. We rebuilt several of them around how researchers work today, including how they combine map and table data, and how they add new results as their work continues.",
     },
     {
       number: "02",
       title: "Richer insight through real data visualization",
-      body: "In the largest of these projects, researchers had previously relied heavily on Excel to make sense of their data. We built proper analytics views directly into the system instead, giving them a much clearer, faster way to spot patterns and understand their data without exporting it elsewhere first.",
+      body: "In the largest of these projects, researchers had relied heavily on Excel to make sense of their data. We built proper analytics views directly into the system, so they can spot patterns and understand their data faster, without exporting it first.",
     },
     {
       number: "03",
       title: "Easier, clearer sample tracking",
-      body: "The improved interfaces made everyday work noticeably easier for specialists. Saving new samples and tracking how they changed over time became much simpler than it was with the old systems.",
+      body: "The improved interfaces made everyday work easier for specialists. Saving new samples and tracking how they changed over time became much simpler than it was with the old systems.",
     },
   ],
 
   howItStarted: [
-    "Every system I worked on was outdated and needed to be rebuilt, but rarely as an exact copy of the old one. In most cases, we could not simply recreate the old system with a new interface. We had to rethink how the data and workflows should actually work, then build something new on top of that. For a couple of the projects, this meant starting with a short round of research myself, close to what is called Lean Design: gather just enough to start, then learn the rest by building. I did that directly with the system's specialists to gather the material needed before I could start on the actual interface.",
+    "Every system I worked on was outdated and needed to be rebuilt, but rarely as an exact copy of the old one. In most cases we could not recreate the old system with a new interface. We had to rethink how the data and workflows should work, then build something new on top of that. For a couple of the projects, this meant starting with a short round of research myself, close to what is called Lean Design: gather just enough to start, then learn the rest by building. I did that directly with the system's specialists, to get the material I needed before starting on the interface.",
   ],
 
   challenges: [
@@ -115,23 +115,23 @@ export const environmentalDataTool: CaseStudy = {
     {
       number: "02",
       title: "Designing for growing, real-time data",
-      body: "These weren't static systems. Users needed to be able to add new sampling results directly into the system, which meant the data itself kept growing and changing. I worked closely with the specialists who used these systems daily to make sure the design could handle new data being added without breaking the structure we'd built.",
+      body: "These systems were not static. Users needed to add new sampling results directly into the system, so the data kept growing and changing. I worked closely with the specialists who used these systems daily to make sure the design could handle new data without breaking the structure we'd built.",
     },
     {
       number: "03",
       title: "Working with real project structure, when it existed",
-      body: "Not every project had the same level of structure. One project in particular had a dedicated project manager keeping the work on track and making sure we were solving the right problems, and I supported that work from the design side. Other projects were smaller and looser, closer to informal, ongoing collaborations with the specialists themselves.",
+      body: "Projects differed in structure. One project had a dedicated project manager who kept the work on track and made sure we were solving the right problems, and I supported that work from the design side. Other projects were smaller and looser, closer to informal, ongoing collaborations with the specialists themselves.",
     },
     {
       number: "04",
       title: "Building real data analytics views",
-      body: "In one of the larger projects, we went further than basic interfaces and built proper data analytics views, including bar charts, scatter plots, and other visualizations, giving researchers a much richer way to explore and understand their data than the old systems ever offered. Across all of these projects, what consistently made the difference was staying close to the specialists using the tools day to day. The work was demanding, but designing side by side with them made it genuinely enjoyable, not just effective.",
+      body: "In one of the larger projects, we went further than basic interfaces and built proper data analytics views, including bar charts, scatter plots and other visualizations. They gave researchers a richer way to explore their data than the old systems offered. Across all of these projects, staying close to the specialists who used the tools day to day made the difference. The work was demanding, and designing side by side with them made it enjoyable too.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "If I could go back, I would have pushed harder for starting Design System work earlier. The organization did have plans to begin this at some point, but with a very small development team already stretched across maintaining over 200 different systems, it was hard to prioritize. On top of that, a lot was still unclear internally, including what level a Design System should even be built at for an organization with that many systems and that few resources.",
-    "It's a good reminder that a Design System isn't just a design decision, it also depends on the organization having the capacity and clarity to actually support it. I would still advocate for it earlier next time, but I'd also come with a more realistic starting point, something small and useful enough to prove its value quickly, rather than waiting for the ideal conditions that may never arrive.",
+    "If I could go back, I would push harder for starting design system work earlier. The organization had plans to begin at some point, but a very small development team was already stretched across maintaining over 200 systems, so it was hard to prioritize. A lot was also still unclear internally, including what level a design system should be built at for an organization with that many systems and that few resources.",
+    "A design system is not only a design decision. It also depends on the organization having the capacity and clarity to support it. I would still advocate for it earlier next time, but I'd come with a more realistic starting point: something small and useful enough to prove its value quickly, instead of waiting for ideal conditions that may never arrive.",
   ],
 
   methods: ["Lightweight discovery", "Co-design workshops", "Usability testing", "Lean Design"],
