@@ -339,14 +339,14 @@ export const industrialTool: CaseStudy = {
         "After releases we went through feedback and tested features with users. No precise metrics were collected, so the impact is based on feedback from users and the team.",
         "Experts no longer had to read long text lists to find what they needed. More people in the team could run calculations, not only the most experienced. Work was no longer lost because of a forgotten save or a dropped connection.",
         "Developers and the project manager said work went clearly smoother once design and development used the same tool.",
-        "Customers also got measurable results from the service. One wastewater treatment plant cut its coagulant use by 55% and its aeration energy by 6%. At another plant, chemical use per kilo of phosphorus removed fell by more than 15%. A process expert at one customer put the change like this: “Now we know what's happening 24 hours a day.”",
+        "Customers also got measurable results from the service. One wastewater treatment plant cut its coagulant use by 55% and its aeration energy by 6%. At another plant, chemical use per kilo of phosphorus removed fell by more than 15%. A third plant had been dosing its sludge treatment by hand because its old sensors were unreliable. With automatic dosing, polymer use fell by about 19%. The plant's process expert put it like this: “Now we know what's happening 24 hours a day. There are good dashboards, accurate reports.”",
         "These are results of the whole service, shaped by the chemistry, the calculation algorithms and the experts' work. My part was making the data and calculations something customers and experts can follow and understand.",
         "The company's goal was to bring separate databases into one platform and use the data to support selling services. A clearer platform serves both. Sales can show customers the data in an understandable form, and experts spend less time calculating by hand.",
       ],
       highlights: [
         { value: "8+", label: "user groups, from plant process operators to sales and data analysts" },
         { value: "55%", label: "less chemical at one wastewater treatment plant using the service" },
-        { value: "15%", label: "less chemical per kilo of phosphorus removed at another plant" },
+        { value: "19%", label: "less polymer in sludge treatment once dosing moved from manual to automatic" },
       ],
     },
     reflections: {
