@@ -196,7 +196,14 @@ export type CaseStory = {
     /** Where the evidence comes from, said plainly. */
     intro: string[];
     /** Large callouts. Only real, sourced figures: a scope fact is fine, an invented metric is not. */
-    highlights: { value: string; label: string }[];
+    highlights: {
+      value: string;
+      label: string;
+      /** Optional chain from the design work to the result: shown above the
+       * number as "work ↓ what it enabled ↓". Both or neither. */
+      work?: string;
+      enabled?: string;
+    }[];
   };
   reflections: {
     heading: string;

@@ -346,9 +346,24 @@ export const industrialTool: CaseStudy = {
         "Developers and the project manager said work went clearly smoother once design and development used the same tool.",
       ],
       highlights: [
-        { value: "55%", label: "less chemical at one plant once dosing was calculated and followed on the platform" },
-        { value: "15%", label: "less chemical per kilo of phosphorus removed at another plant" },
-        { value: "19%", label: "less polymer once manual dosing gave way to automatic dosing followed on dashboards" },
+        {
+          value: "55%",
+          work: "Calculation tool",
+          enabled: "The right dose, calculated step by step",
+          label: "less chemical at one plant",
+        },
+        {
+          value: "15%",
+          work: "Calculation tool",
+          enabled: "More precise dosing for phosphorus removal",
+          label: "less chemical per kilo of phosphorus removed",
+        },
+        {
+          value: "19%",
+          work: "Dashboards and reports",
+          enabled: "The process is visible around the clock, so automatic dosing can be trusted",
+          label: "less polymer in sludge treatment",
+        },
       ],
     },
     reflections: {

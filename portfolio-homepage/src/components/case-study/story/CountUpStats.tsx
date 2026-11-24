@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 
-type Stat = { value: string; label: string };
+type Stat = { value: string; label: string; work?: string; enabled?: string };
 
 // Each number rolls for this long, then the next one starts.
 const DURATION = 1800;
@@ -119,6 +119,14 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
         const places = p ? String(p.target).length : 0;
         return (
           <li key={stat.label} className="flex flex-col items-center gap-3 rounded-[16px] bg-cream/50 p-card-pad text-center">
+            {stat.work && stat.enabled && (
+              <>
+                <span className="text-mono-label uppercase text-accent-dark">{stat.work}</span>
+                <span aria-hidden="true" className="text-body-sm text-body/50">↓</span>
+                <span className="text-body-sm text-ink text-pretty">{stat.enabled}</span>
+                <span aria-hidden="true" className="mt-auto text-body-sm text-body/50">↓</span>
+              </>
+            )}
             <span className="text-section-h2 text-ink tabular-nums" style={{ lineHeight: CELL }}>
               <span className="sr-only">{stat.value}</span>
               {rolling ? (
