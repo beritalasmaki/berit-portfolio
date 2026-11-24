@@ -188,7 +188,7 @@ export const educationPlatformFi: CaseStudy = {
         wide: true,
         value: [
           "Fasilitoin työpajoja ja tein käyttäjähaastatteluja",
-          "Suunnittelin Design Systemin UI Kitin",
+          "Rakensin Design Systemin UI kitin alusta asti, ja sitä käyttivät kaikki kolme tiimiä ja useampi toimittaja",
           "Suunnittelin hallintopalvelun käyttöliittymät",
           "Pidin visuaalisen ilmeen ja käyttökokemuksen yhtenäisenä",
           "Vastasin saavutettavuudesta ja autoin järjestämään auditoinnit",
@@ -199,7 +199,7 @@ export const educationPlatformFi: CaseStudy = {
     heroImage: { src: "/case/edu-hero-bundle.png", alt: "Kaksi alustan näkymää: lukujärjestys ja kurssitarjotin tietokoneella sekä oppilaan tiedot hallinnon palvelussa mobiililaitteella", caption: "", width: 1241, height: 1008 },
     heroBundle: true,
     tldr: [
-      "Seitsemän kuntaa tarvitsi yhden järjestelmän perusopetuksen ja lukion vanhentuneiden työkalujen tilalle. Kolmen vuoden aikana kasvoin UX- ja tuotesuunnittelijasta **Lead Designeriksi** ja pidin huolen siitä, että usean tiimin ja toimittajan rakentama alusta näyttää ja toimii yhtenä tuotteena.",
+      "Seitsemän kuntaa tarvitsi yhden järjestelmän perusopetuksen ja lukion vanhentuneiden työkalujen tilalle. Kolmen vuoden aikana kasvoin UX- ja tuotesuunnittelijasta **Lead Designeriksi** ja pidin huolen siitä, että usean tiimin ja toimittajan rakentama alusta näyttää ja toimii yhtenä tuotteena. Rakensin alustalle Design Systemin **UI kitin alusta asti**, ja sitä käyttivät kaikki tiimit ja toimittajat.",
       "Alusta otettiin käyttöön **viidessä kunnassa syksyllä 2026**. Pilottikoulut kuvaavat alustaa helppokäyttöiseksi, nopeaksi ja johdonmukaiseksi.",
     ],
     background: {
@@ -250,7 +250,7 @@ export const educationPlatformFi: CaseStudy = {
           figures: [shot("edu-process-admission.jpg"), shot("edu-detail.png")],
         },
         {
-          title: "Yksi visuaalinen kieli kaikille palveluille",
+          title: "UI kit alusta asti kaikille palveluille",
           paragraphs: [
             "Työskentelin sekä opetus- ja hallintopalvelun että huoltajien asiointipalvelun parissa ja varmistin, että niillä on yhtenäinen visuaalinen ilme ja käyttökokemus. Kun suunnittelijoita oli vähän ja tiimejä paljon, en voinut tarkistaa jokaista näkymää. Sen sijaan määrittelin yhteisen visuaalisen linjan ja uudelleenkäytettävien komponenttien UI Kitin, ja myöhemmin johdin hankkeen visuaalista linjaa.",
             "Yhtenäisyys ei ollut pelkkää ulkonäköä. Tein tiivistä yhteistyötä kehittäjien kanssa. Kerroin säännöllisesti, miksi jokin rakennetaan tietyllä tavalla, kuuntelin heidän ideoitaan ja selvitin kunkin osan tekniset reunaehdot. Sovelluskehityksen AMK-tutkintoni ansiosta ymmärsin toteutuksen haasteet ja pystyin keskustelemaan niistä kehittäjien kanssa suoraan.",
