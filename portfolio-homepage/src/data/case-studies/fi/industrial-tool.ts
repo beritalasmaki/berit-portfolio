@@ -1,4 +1,4 @@
-import { calcShots as enCalcShots, industrialTool as en } from "../industrial-tool";
+import { alertShots as enAlertShots, calcShots as enCalcShots, industrialTool as en } from "../industrial-tool";
 import type { CaseStudy, GalleryImage } from "../types";
 import { localizeGallery } from "./helpers";
 
@@ -24,6 +24,17 @@ const calcShots = localizeGallery(enCalcShots, [
   { alt: "Vaihe 3: datasta täytetyt lähtöarvot, joista jokaisessa lukee, mistä arvo tuli", caption: "Rekonstruktio · 3 Lähtöarvot" },
   { alt: "Vaihe 4: valmiin kaavan valinta tai oman, taulukkolaskennan tapaisen kaavan kirjoittaminen", caption: "Rekonstruktio · 4 Kaava" },
   { alt: "Vaihe 5: tulokset, suositeltu annostus, yhteenveto lähtötiedoista ja tallennus raporttiin", caption: "Rekonstruktio · 5 Tulokset" },
+]);
+
+const alertShots = localizeGallery(enAlertShots, [
+  {
+    alt: "Hälytysjärjestelmän tilanäkymä: neljän tunnin riskiennuste, suositellut toimenpiteet, värikoodatut kemialliset tilat tekstimerkintöineen ja annostelun trendit",
+    caption: "Rekonstruktio · Tilanäkymä",
+  },
+  {
+    alt: "Hälytysasetukset: aktiivinen hälytys ja kuittauspainike, varoitus- ja hälytysrajat sekä vastaanottajat kanavittain (sähköposti, tehtaan tabletti, sovellus)",
+    caption: "Rekonstruktio · Hälytysasetukset",
+  },
 ]);
 
 export const industrialToolFi: CaseStudy = {
@@ -192,6 +203,7 @@ export const industrialToolFi: CaseStudy = {
         "Tuotantopäälliköt ja tehtaanjohtajat",
         "Laskenta-asiantuntijat ja data-analyytikot, jotka arvioivat dataa ja tekevät sen pohjalta suunnitelmia ja tilauksia",
         "Myyjät, jotka esittelevät ja myyvät alustaa asiakkaille",
+        "Tehtaiden ostajat, jotka tilaavat kemikaaleja lisää",
       ],
     },
     problem: {
@@ -211,17 +223,21 @@ export const industrialToolFi: CaseStudy = {
       heading: "Jatkuvaa kehitystä asiantuntijoiden kanssa",
       steps: [
         {
-          title: "Nopeat parannukset heti alussa",
+          title: "Haastattelut: mitä eri käyttäjät tarvitsevat",
           paragraphs: [
-            "Jatkoin edellisen suunnittelijan työtä ja aloitin näkymistä, joissa ongelma oli selvin. Muutin dashboardin paneelit tekstilistoista visuaalisiksi korteiksi, jolloin tilanteen näkee yhdellä silmäyksellä.",
+            "Haastattelin kolmea asiakasta, paria kenttähuollon asiantuntijaa, jotka kävivät tarkistamassa laitteita asiakkaiden tehtailla, sekä myyjiä. Myyjät tekivät asiakkaiden kulutuksen pohjalta raportteja ja tarjosivat niiden avulla kustannustehokkaampia ratkaisuja.",
+            "Selvitin kahta asiaa. Ensin dashboardia eli sitä, mitä asiantuntijat siltä tarvitsevat ja miten he sitä käyttävät. Sitten raportointia eli sitä, miten raportteja rakennetaan ja mihin niitä käytetään. Myyjä, asiantuntija ja tehtaan ostaja etsivät samasta raportista eri asioita, joten selvitin, mikä on tärkeää kullekin.",
+            "Oli koronan aika, joten haastattelut tehtiin etänä. Haastateltavat olivat Euroopassa ja Yhdysvalloissa, joten sovitin aikatauluni suuriin aikaeroihin. Mukana oli projektipäällikkö, jolla oli jo hyvät suhteet asiakkaisiin, mikä helpotti luottamuksen rakentamista. Tiimin kanssa tapasimme muutaman kerran yrityksen toimistolla tiimipäivissä.",
+            "**Mitä haastatteluista nousi esiin:** työ katosi, jos tallennus unohtui tai yhteys katkesi, ja widgettejä oli vaikea selata ja vertailla ennen kuin ne lisättiin dashboardille. Nämä havainnot ohjasivat dashboardin ja automaattisen tallennuksen suunnittelua.",
           ],
-          figures: [screen("kem-dash-menu.png")],
         },
         {
-          title: "Haastattelut eri aikavyöhykkeillä",
+          title: "Selkeämpi dashboard",
           paragraphs: [
-            "Haastatteluihin osallistui usein käyttäjiä Yhdysvalloista, joten sovitin aikatauluni suuriin aikaeroihin. Mukana oli projektipäällikkö, jolla oli jo hyvät suhteet näihin sidosryhmiin. Se helpotti luottamuksen rakentamista ja ihmisten saamista mukaan.",
+            "Aloitin näkymistä, joissa ongelma oli selvin. Muutin dashboardin paneelit tekstilistoista visuaalisiksi korteiksi, jolloin tilanteen näkee yhdellä silmäyksellä.",
+            "Suunnittelin myös uudelleen sen, miten widgettejä lisätään. Ne näkyvät esikatseluina, joten jokaisen ulkoasun näkee ennen kuin sen raahaa dashboardille.",
           ],
+          figures: [screen("kem-dash-menu.png")],
         },
         {
           title: "Laskentatyökalu yhdessä asiantuntijan kanssa",
@@ -241,15 +257,19 @@ export const industrialToolFi: CaseStudy = {
         {
           title: "Automaattinen tallennus",
           paragraphs: [
-            "Data- ja raporttinäkymissä työ katosi, jos käyttäjä unohti tallentaa tai yhteys katkesi. Se oli erityisen hankalaa etänä tehtailla työskenteleville. Suunnittelin näkymiin automaattisen tallennuksen ja paransin samalla raporttien rakennetta ja sisältöä.",
+            "Haastatteluissa selvisi, että data- ja raporttinäkymissä työ katosi, jos käyttäjä unohti tallentaa tai yhteys katkesi. Se oli erityisen hankalaa etänä tehtailla työskenteleville. Suunnittelin näkymiin automaattisen tallennuksen, jonka tila näkyy aina, ja paransin samalla raporttien rakennetta ja sisältöä.",
           ],
           figures: [screen("kem-dash-edit.png")],
         },
         {
           title: "Hälytysjärjestelmä sivuprojektina",
           paragraphs: [
-            "Erillisellä budjetilla suunnittelin järjestelmän, joka varoittaa, kun säiliö on täyttymässä tai laitteessa on muu virhetilanne. Hälytys menee sekä tehtaan prosessinhoitajalle että kenttähuollolle.",
+            "Erillisellä budjetilla suunnittelin hälytysjärjestelmän. Se oli oma web-sovelluksensa eikä osa pääalustaa, ja sitä käytettiin myös tehtaiden tableteilla. Järjestelmä seuraa prosessin kemiallista tilaa ja varoittaa, kun säiliö on täyttymässä tai jokin muu menee vikaan.",
+            "Tilanäkymässä näkyvät neljän tunnin riskiennuste, suositellut toimenpiteet ja prosessin eri osien tila. Jokaisella tilalla on värin lisäksi tekstimerkintä, joten tieto ei ole pelkän värin varassa.",
+            "Käyttäjä asettaa hälytysrajat, valitsee vastaanottajat ja kuittaa hälytykset. Hälytys tulee sähköpostiin, tehtaan tabletille ja sovellukseen, jotta se tavoittaa sekä tehtaan prosessinhoitajan että kenttähuollon.",
+            "Alkuperäisestä ei ole jäljellä kuvakaappauksia, joten kuvat ovat rekonstruktio yhden säilyneen kuvan pohjalta. Tuotenimet on poistettu.",
           ],
+          figures: [alertShots[0], alertShots[1]],
         },
         {
           title: "Design System Figmaan",

@@ -64,6 +64,24 @@ function screen(file: string): GalleryImage {
   return image;
 }
 
+/** Reconstructed alert system views (a separate app, not part of the main platform). */
+export const alertShots: GalleryImage[] = [
+  {
+    src: "/case/kem-alert-1.png",
+    alt: "Alert system status view: a four-hour risk forecast, recommended actions, colour-coded chemical states with text labels, and dosing trends",
+    caption: "Reconstruction · Status view",
+    width: 2560,
+    height: 1560,
+  },
+  {
+    src: "/case/kem-alert-2.png",
+    alt: "Alert settings: an active alarm with an acknowledge button, warning and alarm limits, and recipients by channel (email, plant tablet, in app)",
+    caption: "Reconstruction · Alert settings",
+    width: 2560,
+    height: 1560,
+  },
+];
+
 export const industrialTool: CaseStudy = {
   slug: "industrial-tool",
   title: "Industrial Data & Expert Interface Design",
@@ -233,6 +251,7 @@ export const industrialTool: CaseStudy = {
         "Production managers and plant managers",
         "Calculation experts and data analysts who assess the data and plan and order based on it",
         "Sales people who present and sell the platform to customers",
+        "Purchasers at the plants who order more chemicals",
       ],
     },
     problem: {
@@ -252,17 +271,21 @@ export const industrialTool: CaseStudy = {
       heading: "Continuous development with experts",
       steps: [
         {
-          title: "Quick improvements first",
+          title: "Interviews: what different users need",
           paragraphs: [
-            "I picked up the previous designer's work and started with the views where the problem was most obvious. I turned the dashboard panels from text lists into visual cards, so the situation is clear at a glance.",
+            "I interviewed three customers, a couple of field service experts who checked equipment at customers' plants, and sales people. Sales used customers' consumption data to build reports and offer more cost-effective solutions.",
+            "I looked into two things. First the dashboard: what experts need from it and how they use it. Then reporting: how reports are built and what they are used for. A sales person, an expert and the plant's purchaser look for different things in the same report, so I worked out what matters to each.",
+            "It was the time of the pandemic, so the interviews were remote. People were in Europe and the United States, so I fitted my schedule around large time differences. The project manager, who already had good relationships with the customers, joined the conversations, which made it easier to build trust. With the team we met a few times at the company's office on team days.",
+            "**What the interviews showed:** work was lost if someone forgot to save or the connection dropped, and widgets were hard to browse and compare before adding them to the dashboard. These findings shaped the dashboard and auto-save work.",
           ],
-          figures: [screen("kem-dash-menu.png")],
         },
         {
-          title: "Interviews across time zones",
+          title: "A clearer dashboard",
           paragraphs: [
-            "Interviews often included users in the United States, so I fitted my schedule around large time differences. The project manager, who already had good relationships with these stakeholders, joined the conversations. That made it easier to build trust and get people involved.",
+            "I started with the views where the problem was most obvious. I turned the dashboard panels from text lists into visual cards, so the situation is clear at a glance.",
+            "I also redesigned how widgets are added. They are shown as previews, so you can see what each one looks like before you drag it onto the dashboard.",
           ],
+          figures: [screen("kem-dash-menu.png")],
         },
         {
           title: "A calculation tool designed with an expert",
@@ -282,15 +305,19 @@ export const industrialTool: CaseStudy = {
         {
           title: "Auto-save",
           paragraphs: [
-            "In the data and report views, work was lost if a user forgot to save or the connection dropped. That was especially hard for people working remotely at plants. I designed auto-save for these views and improved the structure and content of the reports at the same time.",
+            "The interviews showed that in the data and report views, work was lost if a user forgot to save or the connection dropped. That was especially hard for people working remotely at plants. I designed auto-save for these views, with the status always visible, and improved the structure and content of the reports at the same time.",
           ],
           figures: [screen("kem-dash-edit.png")],
         },
         {
           title: "An alert system as a side project",
           paragraphs: [
-            "With a separate budget, I designed a system that warns when a tank is filling up or a device has another fault. The alert goes to both the plant's process operator and field service.",
+            "With a separate budget, I designed an alert system. It was its own web app, not part of the main platform, and it was also used on tablets at the plants. It follows the chemical state of the process and warns when a tank is filling up or something else goes wrong.",
+            "The status view shows the risk forecast for the next four hours, recommended actions and the state of each part of the process. Every state has a text label as well as a colour, so it doesn't rely on colour alone.",
+            "Users set the alert limits, choose the recipients and acknowledge alerts. An alert arrives by email, on the plant's tablet and in the app, so it reaches both the process operator at the plant and field service.",
+            "No screenshots of the original survive, so the images are a reconstruction based on one surviving image. Product names have been removed.",
           ],
+          figures: [alertShots[0], alertShots[1]],
         },
         {
           title: "The design system to Figma",
