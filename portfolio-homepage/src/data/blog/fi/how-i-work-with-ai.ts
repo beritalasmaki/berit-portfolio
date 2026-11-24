@@ -160,7 +160,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Reunaehtojen merkityksestä kirjoittaa myös artikkeli [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026). Artikkelin mukaan reunaehdot eivät kahlitse tekoälyn luovuutta vaan tekevät siitä käyttökelpoista. Mitä täsmällisemmin ne kehotteessa kertoo, sitä paremmin tulos sopii juuri siihen ongelmaan, jota ratkaisee.",
+      text: "Reunaehtojen merkityksestä kirjoittaa myös artikkeli [Why Your AI Prompts Aren't Working — And How to Fix Them as a Designer](https://medium.com/design-bootcamp/why-your-ai-prompts-arent-working-and-how-to-fix-them-as-a-designer-18d26592290f) (Medium / Design Bootcamp, 2026). Artikkelin mukaan reunaehdot tekevät tekoälyn tuotoksesta käyttökelpoista. Mitä täsmällisemmin ne kehotteessa kertoo, sitä paremmin tulos sopii juuri siihen ongelmaan, jota ratkaisee.",
     },
 
     {
@@ -356,7 +356,7 @@ export const howIWorkWithAiFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Pohjan tarkoitus ei ole tuottaa lisää dokumentteja. Tarkoituksena on varmistaa, että tekoäly tietää, mistä projektissa on kyse, ja että suunnittelija päättää, mitä tekoälyllä tehdään. Aloita pienestä: yksi projekti, muutama dokumentti ja omat muistiinpanot ensin. Loput lisätään sitä mukaa, kun niille on tarvetta.",
+      text: "Pohja varmistaa, että tekoäly tietää, mistä projektissa on kyse, ja että suunnittelija päättää, mitä tekoälyllä tehdään. Aloita pienestä: yksi projekti, muutama dokumentti ja omat muistiinpanot ensin. Loput lisätään sitä mukaa, kun niille on tarvetta.",
     },
   ],
 };

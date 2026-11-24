@@ -51,7 +51,7 @@ export const educationPlatformFi: CaseStudy = {
   industry: "Julkinen koulutus",
   ctaLabel: "Tutustu koko asiakasprojektiin",
   otherCaseStudyDescription:
-    "Tein valtavasta julkisen sektorin alustasta selkeän: kokosin monimutkaiset kuntien koulutyönkulut saavutettavaksi työkaluksi opettajille ja hallintohenkilöstölle.",
+    "Kokosin monimutkaiset",
 
   intro: [
     "Tehtävänä oli korvata usean kunnan vanhentuneet opetus- ja lukiojärjestelmät yhtenäisellä ratkaisulla julkisen sektorin konsortiolle. Liityin projektiin UX- ja tuotesuunnittelijana, ja kasvoin kolmen vuoden aikana hankkeen Lead Designeriksi.",
@@ -92,7 +92,7 @@ export const educationPlatformFi: CaseStudy = {
     },
     {
       label: "Mobiilikokemus",
-      description: "Suunnittelin mobiilisovelluksen, jota oli oikeasti helppo käyttää",
+      description: "Suunnittelin mobiilisovelluksen, jota oli helppo käyttää",
     },
     {
       label: "Tiimin johtaminen",
@@ -104,22 +104,22 @@ export const educationPlatformFi: CaseStudy = {
   sneakPeekImages: en.sneakPeekImages,
 
   impactIntro:
-    "Pilottikoulujen palaute on ollut pääosin myönteistä. Alustaa on kuvattu helppokäyttöiseksi, monipuoliseksi ja moderniksi. Erityisesti opettajat ja hallintohenkilöstö kiittelivät sitä, kuinka johdonmukaiselta palvelu tuntuu ja kuinka hyvin se tukee koulun arjen rutiineja. Käytettävyys ja nopeus nousivat erityisesti esiin: käyttäjien mukaan tarvittavan löytäminen onnistui nopeasti ja helposti. Käytännön tehtävät, kuten todistusten tulostus ja oppilastietojen siirto, osoittautuivat luotettaviksi päivittäisessä käytössä. Myös loppukäyttäjät, opettajat mukaan lukien, osallistuivat suoraan hyväksymistestaukseen, joten alusta sopii siihen, miten opetustyötä oikeasti tehdään. Alusta otettiin käyttöön vasta keväällä 2026, ja laajempi käyttöönotto kouluissa alkoi syksyllä 2026, joten täysi vaikutus on vielä edessä. Toistaiseksi tiedämme, että tuloksena on yhtenäinen ja saavutettava perusta, jonka varaan useat kunnat rakentavat nyt päivittäistä koulunhallintoaan.",
+    "Pilottikoulujen palaute on ollut pääosin myönteistä. Alustaa on kuvattu helppokäyttöiseksi, monipuoliseksi ja moderniksi. Opettajat ja hallintohenkilöstö kiittelivät sitä, kuinka johdonmukaiselta palvelu tuntuu ja kuinka hyvin se tukee koulun arjen rutiineja. Käyttäjien mukaan tarvittavan löytäminen onnistui nopeasti. Käytännön tehtävät, kuten todistusten tulostus ja oppilastietojen siirto, osoittautuivat luotettaviksi päivittäisessä käytössä. Myös loppukäyttäjät, opettajat mukaan lukien, osallistuivat suoraan hyväksymistestaukseen, joten alusta sopii siihen, miten opetustyötä tehdään. Alusta otettiin käyttöön vasta keväällä 2026, ja laajempi käyttöönotto kouluissa alkoi syksyllä 2026, joten täysi vaikutus on vielä edessä. Toistaiseksi tuloksena on yhtenäinen ja saavutettava perusta, jonka varaan useat kunnat rakentavat nyt päivittäistä koulunhallintoaan.",
   impactCards: [
     {
       number: "01",
       title: "Selkeämmät ja käytettävämmät käyttöliittymät",
-      body: "Korvasimme monimutkaiset, vanhentuneet järjestelmät käyttöliittymillä, jotka ovat aidosti helpompia ymmärtää ja käyttää niin opettajille, hallintohenkilöstölle, huoltajille kuin oppilaillekin. Ne on rakennettu todellisten käyttäjätarpeiden pohjalta eikä vanhan järjestelmän logiikan mukaan.",
+      body: "Korvasimme monimutkaiset, vanhentuneet järjestelmät käyttöliittymillä, jotka ovat helpompia ymmärtää ja käyttää niin opettajille, hallintohenkilöstölle, huoltajille kuin oppilaillekin. Ne on rakennettu käyttäjätarpeiden pohjalta eikä vanhan järjestelmän logiikan mukaan.",
     },
     {
       number: "02",
-      title: "Mobiilikokemus, joka oikeasti toimii",
-      body: "Vanhoissa järjestelmissä oli mobiilisovelluksia, mutta ne olivat usein sekavia ja turhauttavia käyttää. Monelle huoltajalle ja oppilaalle tämä voi olla ensimmäinen kerta, kun kouluasioiden hoitaminen puhelimella tuntuu helpolta eikä pakkopullalta.",
+      title: "Mobiilikokemus, joka toimii",
+      body: "Vanhoissa järjestelmissä oli mobiilisovelluksia, mutta ne olivat sekavia ja turhauttavia käyttää. Monelle huoltajalle ja oppilaalle kouluasioiden hoitaminen puhelimella voi nyt tuntua helpolta ensimmäistä kertaa.",
     },
     {
       number: "03",
       title: "Yksi yhtenäinen kokemus, monta toimittajaa",
-      body: "Vaikka useat kehitystiimit ja kolmansien osapuolten alustat työskentelivät rinnakkain, lopputulos näyttää ja toimii yhdenmukaisesti. Tässä mittakaavassa se on todella vaikea saavuttaa.",
+      body: "Useat kehitystiimit ja kolmansien osapuolten alustat työskentelivät rinnakkain, ja lopputulos silti näyttää ja toimii yhdenmukaisesti. Tässä mittakaavassa se on vaikea saavuttaa.",
     },
   ],
 

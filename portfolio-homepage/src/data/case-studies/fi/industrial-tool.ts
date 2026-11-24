@@ -95,7 +95,7 @@ export const industrialToolFi: CaseStudy = {
       "**Design Systemin uudistus:** Siirsin Design Systemin Sketchistä Figmaan ja rakensin komponentit samalla skaalautuvasti uudelleen.",
     ],
     outcome:
-      "Asiantuntijat hahmottivat tarvitsemansa datan nopeasti, ja monimutkaisten laskentojen tekeminen muuttui varmaksi ja helppokäyttöiseksi koko tiimille. Automaattisen tallennuksen ansiosta työvaiheita ei enää menetetty.\n\nSuunnittelijoiden ja kehittäjien siirtyminen yhteiseen työkaluun selkeytti yhteistyötä, ja sekä kehitystiimi että projektipäällikkö kertoivat päivittäisen työn sujuvoituneen huomattavasti.",
+      "Asiantuntijat löysivät tarvitsemansa datan nopeammin, ja monimutkaisia laskelmia pystyi tekemään koko tiimi, ei vain kokeneimmat. Automaattinen tallennus lopetti työn katoamisen.\n\nKehitystiimi ja projektipäällikkö kertoivat molemmat, että päivittäinen työ sujui paremmin, kun suunnittelijat ja kehittäjät käyttivät samaa työkalua.",
   },
   roleLabel: "UX-suunnittelija (projektin ainoa suunnittelija)",
   focusLabel: "Asiantuntijatyökalut, datan visualisointi ja Design Systemin uudistaminen",
@@ -131,39 +131,39 @@ export const industrialToolFi: CaseStudy = {
   sneakPeekImages: en.sneakPeekImages,
 
   impactIntro:
-    "Uusien ominaisuuksien julkaisun jälkeen kävimme systemaattisesti läpi palautetta ja testasimme niitä oikeiden käyttäjien kanssa. Tämän jatkuvan kierron ansiosta näimme, mikä toimi arjessa, missä oli parannettavaa ja miten tuotetta kannatti kehittää todellisten tarpeiden mukaan.",
+    "Uusien ominaisuuksien julkaisun jälkeen kävimme läpi palautetta ja testasimme niitä oikeiden käyttäjien kanssa. Testit näyttivät, mikä toimi arjessa ja mitä piti vielä parantaa.",
   impactCards: [
     {
       number: "01",
       title: "Data selkeänä yhdellä silmäyksellä",
-      body: "Kun dashboardin datapaneelit muutettiin visuaalisiksi korteiksi, asiantuntijoiden ei enää tarvinnut kahlata pitkiä tekstilistoja löytääkseen tarvitsemansa. Tieto, jonka hahmottaminen vaati ennen selaamista ja tulkintaa, ymmärrettiin nyt sekunneissa, mikä nopeutti suoraan päivittäistä seuranta- ja raportointityötä.",
+      body: "Kun dashboardin datapaneelit muutettiin visuaalisiksi korteiksi, asiantuntijoiden ei enää tarvinnut kahlata pitkiä tekstilistoja löytääkseen tarvitsemansa. Tiedon, jonka hahmottaminen vaati ennen selaamista ja tulkintaa, ymmärsi nyt sekunneissa, mikä nopeutti päivittäistä seuranta- ja raportointityötä.",
     },
     {
       number: "02",
       title: "Monimutkaiset laskennat ilman arvailua",
-      body: "Aiemmin monimutkaisen laskennan ajaminen vaati syvää asiantuntemusta ja huolellista käsityötä. Uusi laskentaikkuna vei asiantuntijat läpi prosessin vaihe vaiheelta. Virheiden riski pieneni, ja laskentoja pystyi ajamaan varmoin mielin useampi tiimiläinen, ei vain kokeneimmat.",
+      body: "Monimutkaisen laskennan ajaminen vaati ennen syvää asiantuntemusta ja huolellista käsityötä. Uusi laskentaikkuna vie asiantuntijat läpi prosessin vaihe vaiheelta. Virheiden riski pieneni, ja laskentoja pystyi ajamaan useampi tiimiläinen, ei vain kokeneimmat.",
     },
     {
       number: "03",
       title: "Vähemmän menetettyä työtä, enemmän luottamusta työkaluun",
-      body: "Automaattinen tallennus data- ja raporttinäkymiin poisti arkisen ja todella ärsyttävän ongelman: työ ei enää kadonnut unohtuneen tallennuksen tai katkenneen yhteyden takia. Sillä oli iso merkitys käyttäjille, jotka työskentelivät aikakriittisen datan parissa etätehtailta.",
+      body: "Automaattinen tallennus data- ja raporttinäkymissä poisti arkisen ärsytyksen: työ ei enää kadonnut unohtuneen tallennuksen tai katkenneen yhteyden takia. Sillä oli merkitystä käyttäjille, jotka työskentelivät aikakriittisen datan parissa etätehtailta.",
     },
     {
       number: "04",
       title: "Perusta, jonka päälle koko tiimi pystyi rakentamaan",
-      body: "Design Systemin siirto Sketchistä Figmaan ei vain uudistanut työkalua, vaan toi kehittäjät ja suunnittelijat vihdoin samaan ympäristöön. Suunnitelmien luovutus nopeutui ja edestakainen viestittely väheni, kun kahden irrallisen suunnittelutyökalun välillä ei enää tarvinnut tulkita ja muuntaa suunnitelmia. Sain suoraa ja myönteistä palautetta sekä kehittäjiltä että projektipäälliköltä, jotka kertoivat työn sujuvoituneen selvästi.",
+      body: "Kun Design System siirtyi Sketchistä Figmaan, kehittäjät ja suunnittelijat työskentelivät vihdoin samassa ympäristössä. Luovutus nopeutui, ja kehittäjien ei tarvinnut tulkita suunnitelmia kahden irrallisen työkalun välillä. Sekä kehittäjät että projektipäällikkö kertoivat työn sujuvoituneen.",
     },
   ],
 
   howItStarted: [
-    "Hyppäsin mukaan käynnissä olevaan projektiin ja jatkoin edellisen suunnittelijan työtä. Aloitin käyttöliittymän visuaalisista parannuksista: muutin esimerkiksi dashboardin pienet paneelit tekstilistoista visuaalisiksi korteiksi, jolloin ne hahmotti yhdellä silmäyksellä. Sen jälkeen suunnittelimme data- ja raporttinäkymiin automaattisen tallennuksen ja paransimme raporttien rakennetta ja sisältöä.",
+    "Tulin mukaan käynnissä olevaan projektiin edellisen suunnittelijan jälkeen. Aloitin käyttöliittymän visuaalisista parannuksista: muutin esimerkiksi dashboardin pienet paneelit tekstilistoista visuaalisiksi korteiksi, jotka hahmottaa yhdellä silmäyksellä. Sen jälkeen suunnittelimme data- ja raporttinäkymiin automaattisen tallennuksen ja paransimme raporttien rakennetta ja sisältöä.",
   ],
 
   challenges: [
     {
       number: "01",
       title: "Monimutkaisten asiantuntijatyönkulkujen suunnittelu",
-      body: "Yksi jatkuva haaste oli selkeyttää monimutkaisia työprosesseja asiantuntijakäyttäjille. Suunnittelin laskentaikkunan, joka pilkkoo monimutkaisen laskennan vaiheisiin, jolloin asiantuntijat pystyivät ajamaan sen paljon yksinkertaisemmalla käyttöliittymällä. Ratkaisevaa oli, etten yrittänyt selvittää tätä yksin. Työskentelin tiiviisti työkalua päivittäin käyttävien asiantuntijoiden ja tehdastyöntekijöiden kanssa ja suunnittelimme ratkaisut yhdessä sen sijaan, että olisin arvaillut heidän tarpeitaan.",
+      body: "Suunnittelin laskentaikkunan, joka pilkkoo monimutkaisen laskennan vaiheisiin, jolloin asiantuntijat pystyvät ajamaan sen paljon yksinkertaisemmalla käyttöliittymällä. En ratkaissut sitä yksin. Työskentelin tiiviisti työkalua päivittäin käyttävien asiantuntijoiden ja tehdastyöntekijöiden kanssa ja suunnittelimme ratkaisut yhdessä sen sijaan, että olisin arvaillut heidän tarpeitaan.",
     },
     {
       number: "02",
@@ -173,13 +173,13 @@ export const industrialToolFi: CaseStudy = {
     {
       number: "03",
       title: "Design Systemin uudistaminen",
-      body: "Alkuperäinen Design System oli Sketchissä, vanhemmassa työkalussa, joka hankaloitti yhteistyötä muun tiimin kanssa. Päivittäisen suunnittelutyön ohella otin vastuulleni kirjaston siirtämisen Figmaan. Siivosin ja rakensin komponentit uudelleen sen sijaan, että olisin vain kopioinut ne sellaisinaan, jotta tiimille jäi käyttökelpoisempi ja helpommin ylläpidettävä perusta, jonka päälle oli hyvä rakentaa jatkossa.",
+      body: "Design System oli Sketchissä, vanhemmassa työkalussa, joka hankaloitti yhteistyötä muun tiimin kanssa. Päivittäisen suunnittelutyön ohella siirsin kirjaston Figmaan. Siivosin ja rakensin komponentit uudelleen sen sijaan, että olisin kopioinut ne sellaisinaan, jotta tiimille jäi helpommin käytettävä ja ylläpidettävä perusta.",
     },
   ],
 
   whatIWouldDoDifferently: [
-    "Jälkikäteen lähestyisin projektin teknistä puolta nykyään toisin. Staattisten mallien luovuttamisen sijaan rakentaisin toimivia prototyyppejä suoraan tekoälytyökaluilla, kuten Claude Designilla, ja kuroisin suunnittelun ja toteutuksen välisen kuilun umpeen paljon nopeammin. Rakentaisin Design Systemin alusta asti myös koodin näkökulmasta, tekisin tiivistä yhteistyötä kehittäjien kanssa ja rakentaisin sitä Claude Codella. Näin siitä ei tulisi vain hyvin järjestetty komponenttikirjasto Figmassa, vaan jotain, mitä kehittäjät voisivat hyödyntää suoraan.",
-    "Tiimi toimi koko projektin ajan hyvin yhteen, eikä tiimin koko tai kokoonpano ollut mielestäni koskaan varsinainen ongelma. Oppimista on pikemminkin siinä, miten hyödyntäisin nykypäivän työkaluja ja työtapoja kaventaakseni suunnittelun ja kehityksen välistä kuilua aiemmin ja tehokkaammin.",
+    "Lähestyisin projektin teknistä puolta nykyään toisin. Staattisten mallien luovuttamisen sijaan rakentaisin toimivia prototyyppejä tekoälytyökaluilla, kuten Claude Designilla, ja kuroisin suunnittelun ja toteutuksen välisen kuilun umpeen paljon nopeammin. Rakentaisin Design Systemin alusta asti myös koodin näkökulmasta, tekisin tiivistä yhteistyötä kehittäjien kanssa ja rakentaisin sitä Claude Codella. Näin kehittäjät voisivat hyödyntää sitä suoraan, eikä se olisi vain hyvin järjestetty komponenttikirjasto Figmassa.",
+    "Tiimi toimi koko projektin ajan hyvin yhteen, eikä tiimin koko tai kokoonpano ollut mielestäni koskaan ongelma. Muuttaisin sen, miten käytän nykypäivän työkaluja ja työtapoja kaventaakseni suunnittelun ja kehityksen välistä kuilua aiemmin.",
   ],
 
   story: {

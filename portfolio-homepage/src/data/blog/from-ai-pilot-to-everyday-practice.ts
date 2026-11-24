@@ -123,14 +123,9 @@ export const aiPilotToEverydayPractice: BlogPost = {
     },
 
     { type: "heading", id: "summary", text: "Summary" },
-    { type: "paragraph", text: "In the end, the series comes down to one idea:" },
-    {
-      type: "quote",
-      text: "An experiment becomes routine only when the new way of working is easier than the old one.",
-    },
     {
       type: "paragraph",
-      text: "Organizations keep using frameworks when they are built into everyday tools and funding criteria. Reminders on the intranet are not enough on their own.",
+      text: "An experiment becomes routine when the new way of working is easier than the old one. Organizations keep using a framework when it is built into everyday tools and funding criteria. Reminders on the intranet are not enough.",
     },
   ],
 };
