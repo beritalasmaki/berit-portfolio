@@ -291,12 +291,14 @@ export const industrialToolFi: CaseStudy = {
         "Julkaisujen jälkeen kävimme palautetta läpi ja testasimme ominaisuuksia käyttäjien kanssa. Tarkkoja mittareita ei kerätty, joten vaikutus perustuu käyttäjiltä ja tiimiltä saatuun palautteeseen.",
         "Asiantuntijoiden ei enää tarvinnut lukea pitkiä tekstilistoja löytääkseen tarvitsemansa. Laskentoja pystyi ajamaan useampi tiimiläinen, ei vain kokeneimmat. Työ ei enää kadonnut unohtuneen tallennuksen tai katkenneen yhteyden takia.",
         "Kehittäjät ja projektipäällikkö kertoivat, että työ sujui selvästi paremmin, kun suunnittelu ja kehitys toimivat samassa työkalussa.",
+        "Asiakkaat saivat palvelusta myös mitattavia tuloksia. Yksi jätevedenpuhdistamo vähensi saostuskemikaalin kulutusta 55 % ja ilmastuksen energiankulutusta 6 %. Toisella puhdistamolla kemikaalia kului yli 15 % vähemmän jokaista poistettua fosforikiloa kohden. Erään asiakkaan prosessiasiantuntija kuvasi muutosta näin: ”Nyt tiedämme, mitä tapahtuu ympäri vuorokauden.”",
+        "Nämä ovat koko palvelun tuloksia, joihin vaikuttivat kemia, laskenta-algoritmit ja asiantuntijoiden työ. Minun osuuteni oli tehdä datasta ja laskennasta sellaista, että asiakkaat ja asiantuntijat pystyvät seuraamaan ja ymmärtämään sitä.",
         "Yrityksen tavoite oli koota erilliset tietokannat yhdeksi alustaksi ja käyttää dataa palvelujen myynnin tukena. Selkeämpi alusta palvelee molempia. Myyjät voivat näyttää asiakkaalle datan ymmärrettävässä muodossa, ja asiantuntijat käyttävät vähemmän aikaa käsin laskemiseen.",
       ],
       highlights: [
         { value: "8+", label: "käyttäjäryhmää tehtaiden prosessinhoitajista myyjiin ja data-analyytikoihin" },
-        { value: "5", label: "vaihetta laskentatyökalussa, joka korvasi Excelin" },
-        { value: "1", label: "suunnittelija koko alustalle" },
+        { value: "55\u00a0%", label: "vähemmän kemikaalia yhdellä jätevedenpuhdistamolla palvelun avulla" },
+        { value: "15\u00a0%", label: "vähemmän kemikaalia jokaista poistettua fosforikiloa kohden toisella puhdistamolla" },
       ],
     },
     reflections: {
