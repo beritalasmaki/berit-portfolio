@@ -338,7 +338,7 @@ export const industrialToolFi: CaseStudy = {
         },
         {
           title: "Prosessin dokumentointi",
-          body: "Minulla ei ole tästä projektista luonnoksia, työpajakuvia eikä kuvia vanhoista näkymistä. Nykyään tallentaisin ne alusta asti, koska ne näyttävät, miten ratkaisuihin päädyttiin.",
+          body: "Vanhoista näkymistä minulla on kuvia, mutta luonnoksia ja työpajakuvia ei ole tallessa. Nykyään tallentaisin koko prosessin alusta asti, koska juuri luonnokset ja työpajat näyttävät, miten ratkaisuihin päädyttiin.",
         },
         {
           title: "Toimivat prototyypit",

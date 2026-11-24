@@ -399,7 +399,7 @@ export const industrialTool: CaseStudy = {
         },
         {
           title: "Documenting the process",
-          body: "I have no sketches, workshop photos or images of the old views from this project. Today I would save them from the start, because they show how the solutions came about.",
+          body: "I have images of the old views, but no sketches or workshop photos from this project. Today I would document the whole process from the start, because sketches and workshops are what show how the solutions came about.",
         },
         {
           title: "Working prototypes",
