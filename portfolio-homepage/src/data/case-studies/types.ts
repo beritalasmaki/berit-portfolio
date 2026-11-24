@@ -82,6 +82,8 @@ export type GalleryImage = {
   /** Intrinsic pixel dimensions, for next/image's layout-shift-free sizing. */
   width: number;
   height: number;
+  /** Short label shown on the image itself, e.g. "Before" / "After". */
+  tag?: string;
 };
 
 export type ChallengeSubsection = {

@@ -49,14 +49,17 @@ const autosaveShots = localizeGallery(enAutosaveShots, [
   {
     alt: "Ennen: Edit dashboard -paneelissa on vain Cancel- ja Save-painikkeet, joten muutokset säilyvät vain, jos käyttäjä muistaa tallentaa",
     caption: "Ennen · Muutokset tallentuivat vain Save-painikkeella",
+    tag: "Ennen",
   },
   {
     alt: "Automaattinen tallennus pois päältä: kytkimessä lukee Auto-save: Off, ja sen vieressä ovat Cancel- ja Save-painikkeet",
     caption: "Automaattinen tallennus pois · Cancel ja Save käytössä",
+    tag: "Jälkeen · Pois",
   },
   {
     alt: "Automaattinen tallennus päällä: kytkimessä lukee Auto-save: On ja viimeisin tallennusaika, ja Cancel- ja Save-painikkeiden tilalla on Back to view mode -painike",
     caption: "Automaattinen tallennus päällä · Viimeisin tallennusaika ja paluu katselutilaan",
+    tag: "Jälkeen · Päällä",
   },
 ]);
 
@@ -263,8 +266,8 @@ export const industrialToolFi: CaseStudy = {
             "Jätin listan korttien rinnalle. Listaan tottuneet käyttäjät löysivät sen yhä, ja siirtymä kortteihin sai tapahtua vaiheittain. Lisäsimme seurannan, jolla näimme, kuinka moni alkoi käyttää kortteja listan sijaan, ja kortit otettiin hyvin käyttöön.",
           ],
           figures: [
-            { ...widgetBefore, alt: "Ennen: Edit dashboard -paneelissa widgetit näkyvät vain sinisinä nimipalkkeina, joita selataan sopivan löytämiseksi", caption: "Ennen (rekonstruktio) · Widgetit listana" },
-            { ...autosaveShots[0], alt: "Jälkeen: widgetit kortteina esikatselukuvineen, ja Card view -valinnan vieressä on yhä List view", caption: "Jälkeen · Kortit esikatselukuvineen, listanäkymä yhä käytössä" },
+            { ...widgetBefore, alt: "Ennen: Edit dashboard -paneelissa widgetit näkyvät vain sinisinä nimipalkkeina, joita selataan sopivan löytämiseksi", caption: "Ennen (rekonstruktio) · Widgetit listana", tag: "Ennen" },
+            { ...autosaveShots[0], alt: "Jälkeen: widgetit kortteina esikatselukuvineen, ja Card view -valinnan vieressä on yhä List view", caption: "Jälkeen · Kortit esikatselukuvineen, listanäkymä yhä käytössä", tag: "Jälkeen" },
           ],
         },
         {

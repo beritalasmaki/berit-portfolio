@@ -103,6 +103,14 @@ export default function StoryFigures({
                     sizes={single ? "(min-width: 1024px) 900px, 92vw" : "(min-width: 1024px) 600px, 92vw"}
                     className="object-cover object-top"
                   />
+                  {figure.tag && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-3 top-3 rounded-pill bg-ink px-3 py-1.5 font-mono-label text-mono-label uppercase text-white shadow-[0_2px_8px_rgba(34,34,34,0.18)] ring-1 ring-white/70"
+                    >
+                      {figure.tag}
+                    </span>
+                  )}
                 </span>
               </button>
               <figcaption className="font-mono-label text-mono-label uppercase text-muted">
