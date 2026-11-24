@@ -236,7 +236,7 @@ export const educationPlatform: CaseStudy = {
         ],
       },
     ],
-    heroImage: { src: "/case/edu-hero-bundle.png", alt: "Two screens of the platform: the timetable and course offering on desktop, and a student record in the administration service on a mobile device", caption: "", width: 1262, height: 990 },
+    heroImage: { src: "/case/edu-hero-bundle.png", alt: "Two screens of the platform: the timetable and course offering on desktop, and a student record in the administration service on a mobile device", caption: "", width: 1241, height: 1008 },
     heroBundle: true,
     tldr: [
       "Seven municipalities needed one system to replace the outdated tools used in basic and upper secondary education. Over three years I grew from UX & Product Designer to **Lead Designer**, and made sure a platform built by several teams and vendors looked and worked as one product.",
