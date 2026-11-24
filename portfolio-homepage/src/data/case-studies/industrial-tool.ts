@@ -336,17 +336,19 @@ export const industrialTool: CaseStudy = {
     impact: {
       heading: "Less manual work, more trust in the tool",
       intro: [
-        "After releases we went through feedback and tested features with users. No precise metrics were collected, so the impact is based on feedback from users and the team.",
+        "**How my work shows in customers' results.** Chemical savings come from following and adjusting dosing based on the right data. The views I designed were where customers and experts saw that data and made their decisions.",
+        "**The calculation tool helped find the right dose.** Experts calculate and check dosing step by step in the tool instead of a separate Excel file, and the savings come from getting the dose right. One wastewater treatment plant cut its coagulant use by 55% and its aeration energy by 6%. At another plant, chemical use per kilo of phosphorus removed fell by more than 15%.",
+        "**Visibility built trust in automatic dosing.** On the dashboards, customers see dosing and the state of the process around the clock. A third plant had been dosing its sludge treatment by hand because its old sensors were unreliable. When it moved to automatic dosing, polymer use fell by about 19%. The plant's process expert named the dashboards and reports in particular: “Now we know what's happening 24 hours a day. There are good dashboards, accurate reports.”",
+        "**Reports supported selling services.** The company's goal was to bring separate databases into one platform and use the data to support selling services. With the reports, sales and experts can show customers their savings in an understandable form.",
+        "These results came from the chemistry, the calculation algorithms, the experts and the user interface working together. My part was making the data and calculations something customers and experts can follow and base decisions on.",
+        "**What users and the team said.** After releases we went through feedback and tested features with users. No precise usability metrics were collected, so this part of the impact is based on feedback from users and the team.",
         "Experts no longer had to read long text lists to find what they needed. More people in the team could run calculations, not only the most experienced. Work was no longer lost because of a forgotten save or a dropped connection.",
         "Developers and the project manager said work went clearly smoother once design and development used the same tool.",
-        "Customers also got measurable results from the service. One wastewater treatment plant cut its coagulant use by 55% and its aeration energy by 6%. At another plant, chemical use per kilo of phosphorus removed fell by more than 15%. A third plant had been dosing its sludge treatment by hand because its old sensors were unreliable. With automatic dosing, polymer use fell by about 19%. The plant's process expert put it like this: “Now we know what's happening 24 hours a day. There are good dashboards, accurate reports.”",
-        "These are results of the whole service, shaped by the chemistry, the calculation algorithms and the experts' work. My part was making the data and calculations something customers and experts can follow and understand.",
-        "The company's goal was to bring separate databases into one platform and use the data to support selling services. A clearer platform serves both. Sales can show customers the data in an understandable form, and experts spend less time calculating by hand.",
       ],
       highlights: [
-        { value: "8+", label: "user groups, from plant process operators to sales and data analysts" },
-        { value: "55%", label: "less chemical at one wastewater treatment plant using the service" },
-        { value: "19%", label: "less polymer in sludge treatment once dosing moved from manual to automatic" },
+        { value: "55%", label: "less chemical at one plant once dosing was calculated and followed on the platform" },
+        { value: "15%", label: "less chemical per kilo of phosphorus removed at another plant" },
+        { value: "19%", label: "less polymer once manual dosing gave way to automatic dosing followed on dashboards" },
       ],
     },
     reflections: {

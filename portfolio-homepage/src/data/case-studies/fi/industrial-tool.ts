@@ -288,17 +288,19 @@ export const industrialToolFi: CaseStudy = {
     impact: {
       heading: "Vähemmän käsityötä, enemmän luottamusta työkaluun",
       intro: [
-        "Julkaisujen jälkeen kävimme palautetta läpi ja testasimme ominaisuuksia käyttäjien kanssa. Tarkkoja mittareita ei kerätty, joten vaikutus perustuu käyttäjiltä ja tiimiltä saatuun palautteeseen.",
+        "**Miten työni näkyy asiakkaiden tuloksissa.** Kemikaalisäästöt syntyvät, kun annostelua seurataan ja säädetään oikean datan perusteella. Suunnittelemani näkymät olivat se kohta, jossa asiakkaat ja asiantuntijat näkivät datan ja tekivät päätöksensä.",
+        "**Laskentatyökalu auttoi löytämään oikean annostuksen.** Asiantuntijat laskevat ja tarkistavat annostelun työkalussa vaihe vaiheelta eivätkä erillisessä Excelissä, ja säästöt syntyvät juuri oikeasta annostuksesta. Yksi jätevedenpuhdistamo vähensi saostuskemikaalin kulutusta 55 % ja ilmastuksen energiankulutusta 6 %. Toisella puhdistamolla kemikaalia kului yli 15 % vähemmän jokaista poistettua fosforikiloa kohden.",
+        "**Näkyvyys toi luottamusta automaattiseen annosteluun.** Dashboardeilla asiakas näkee annostelun ja prosessin tilan ympäri vuorokauden. Kolmas puhdistamo oli annostellut lietteenkäsittelyn kemikaalit käsin, koska vanhat anturit eivät toimineet luotettavasti. Automaattiseen annosteluun siirryttäessä polymeeriä kului noin 19 % vähemmän. Puhdistamon prosessiasiantuntija mainitsi muutoksessa juuri dashboardit ja raportit: ”Nyt tiedämme, mitä tapahtuu ympäri vuorokauden. Dashboardit ovat hyviä ja raportit tarkkoja.”",
+        "**Raportit tukivat palvelujen myyntiä.** Yrityksen tavoite oli koota erilliset tietokannat yhdeksi alustaksi ja käyttää dataa palvelujen myynnin tukena. Raporttien avulla myyjät ja asiantuntijat näyttävät asiakkaalle säästöt ymmärrettävässä muodossa.",
+        "Tulokset syntyivät kemian, laskenta-algoritmien, asiantuntijoiden ja käyttöliittymän yhteistyönä. Minun osuuteni oli tehdä datasta ja laskennasta sellaista, että asiakkaat ja asiantuntijat pystyvät seuraamaan sitä ja tekemään sen perusteella päätöksiä.",
+        "**Mitä käyttäjät ja tiimi kertoivat.** Julkaisujen jälkeen kävimme palautetta läpi ja testasimme ominaisuuksia käyttäjien kanssa. Käytettävyydestä ei kerätty tarkkoja mittareita, joten tämä osa vaikutuksesta perustuu käyttäjiltä ja tiimiltä saatuun palautteeseen.",
         "Asiantuntijoiden ei enää tarvinnut lukea pitkiä tekstilistoja löytääkseen tarvitsemansa. Laskentoja pystyi ajamaan useampi tiimiläinen, ei vain kokeneimmat. Työ ei enää kadonnut unohtuneen tallennuksen tai katkenneen yhteyden takia.",
         "Kehittäjät ja projektipäällikkö kertoivat, että työ sujui selvästi paremmin, kun suunnittelu ja kehitys toimivat samassa työkalussa.",
-        "Asiakkaat saivat palvelusta myös mitattavia tuloksia. Yksi jätevedenpuhdistamo vähensi saostuskemikaalin kulutusta 55 % ja ilmastuksen energiankulutusta 6 %. Toisella puhdistamolla kemikaalia kului yli 15 % vähemmän jokaista poistettua fosforikiloa kohden. Kolmannella puhdistamolla lietteenkäsittely oli tehty käsin, koska vanhat anturit eivät toimineet luotettavasti. Automaattisen annostelun myötä polymeeriä kului noin 19 % vähemmän. Puhdistamon prosessiasiantuntija kuvasi muutosta näin: ”Nyt tiedämme, mitä tapahtuu ympäri vuorokauden. Dashboardit ovat hyviä ja raportit tarkkoja.”",
-        "Nämä ovat koko palvelun tuloksia, joihin vaikuttivat kemia, laskenta-algoritmit ja asiantuntijoiden työ. Minun osuuteni oli tehdä datasta ja laskennasta sellaista, että asiakkaat ja asiantuntijat pystyvät seuraamaan ja ymmärtämään sitä.",
-        "Yrityksen tavoite oli koota erilliset tietokannat yhdeksi alustaksi ja käyttää dataa palvelujen myynnin tukena. Selkeämpi alusta palvelee molempia. Myyjät voivat näyttää asiakkaalle datan ymmärrettävässä muodossa, ja asiantuntijat käyttävät vähemmän aikaa käsin laskemiseen.",
       ],
       highlights: [
-        { value: "8+", label: "käyttäjäryhmää tehtaiden prosessinhoitajista myyjiin ja data-analyytikoihin" },
-        { value: "55\u00a0%", label: "vähemmän kemikaalia yhdellä jätevedenpuhdistamolla palvelun avulla" },
-        { value: "19\u00a0%", label: "vähemmän polymeeriä lietteenkäsittelyssä, kun annostelu siirtyi käsin tehdystä automaattiseen" },
+        { value: "55\u00a0%", label: "vähemmän kemikaalia yhdellä puhdistamolla, kun annostelu laskettiin ja sitä seurattiin alustalla" },
+        { value: "15\u00a0%", label: "vähemmän kemikaalia jokaista poistettua fosforikiloa kohden toisella puhdistamolla" },
+        { value: "19\u00a0%", label: "vähemmän polymeeriä, kun käsin tehty annostelu vaihtui automaattiseen ja dashboardeilla seurattavaan" },
       ],
     },
     reflections: {
