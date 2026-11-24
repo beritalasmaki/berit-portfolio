@@ -366,8 +366,8 @@ export const educationPlatformFi: CaseStudy = {
           body: "Osa toiveista kopioi vanhaa järjestelmää, eikä kaikki siitä ollut enää lainmukaista. Jos GDPR:n ja opetuslainsäädännön asiantuntija olisi ollut mukana heti alusta, olisin voinut suunnitella näkymät lakivaatimukset huomioiden ensimmäisestä luonnoksesta lähtien. Nyt osa näkymistä jouduttiin suunnittelemaan uudelleen, kun vaatimukset selvisivät myöhemmin.",
         },
         {
-          title: "Design System myös koodiin",
-          body: "Design Systemin pitää näkyä myös koodissa, ei vain suunnittelutiedostoissa. Komponentit perustuivat Chakra-kirjastoon ja niistä koottiin Storybook, mutta samoja komponentteja koodattiin silti välillä useaan kertaan. Hankkeen edetessä tilanne selkeytyi, ja varmistin, että kehittäjät käyttivät valmiiksi koodattuja komponentteja, kuten painikkeita. Nyt järjestäisin Design System -työn paremmin heti alusta ja vaatisin hankkeeseen riittävät resurssit suunnitteluun ja DesignOpsin kehittämiseen.",
+          title: "Design System -työlle omistaja ja resurssit",
+          body: "Komponentit perustuivat Chakra-kirjastoon ja ne oli koottu Storybookiin, mutta useampi tiimi ja toimittaja koodasi silti samoja komponentteja uudelleen. Kun rakentajia on monta, pelkkä kirjasto ei riitä. Jonkun pitää vastata siitä, että olemassa olevia komponentteja käytetään. Projektin edetessä varmistin itse, että kehittäjät käyttivät jo koodattuja komponentteja, kuten painikkeita. Nyt vaatisin alusta asti, että Design Systemillä on nimetty omistaja ja aikaa myös DesignOpsin kehittämiseen.",
         },
         {
           title: "Suunnittelija mukaan toimittajavalintaan",
