@@ -5,6 +5,7 @@ import { localizeGallery } from "./helpers";
 export const environmentalDataToolFi: CaseStudy = {
   slug: "environmental-data-tool",
   title: "Ympäristödatajärjestelmien uudistaminen",
+  cardTitle: "Ympäristö\u00addata\u00adjärjestelmien uudistaminen",
   label: "YMPÄRISTÖDATAJÄRJESTELMÄT · 2020–2024",
   headline: "Vanhentuneet järjestelmät.\nNyt jotain, mihin tutkijat todella luottavat.",
   description:

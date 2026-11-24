@@ -16,6 +16,9 @@ export type CaseStudySummary = {
   slug: CaseStudySlug;
   /** Full project title, used as the detail page's <h1>. */
   title: string;
+  /** Title for narrow cards, with soft hyphens (\u00ad) at compound-word
+   * boundaries so long Finnish words break where a reader expects. */
+  cardTitle?: string;
   /** Browser tab title, when `title` doesn't read well before
    * "| By Berit Alasmäki". Defaults to `title`. */
   tabTitle?: string;

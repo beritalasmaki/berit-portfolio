@@ -40,6 +40,7 @@ const alertShots = localizeGallery(enAlertShots, [
 export const industrialToolFi: CaseStudy = {
   slug: "industrial-tool",
   title: "Teollisuuden data ja asiantuntijakäyttöliittymien suunnittelu",
+  cardTitle: "Teollisuuden data ja asiantuntija\u00adkäyttö\u00adliittymien suunnittelu",
   label: "TEOLLISUUDEN DATATYÖKALUT · 2021–2023",
   headline: "Monimutkainen teollisuusdata selkeäksi kahdeksalle käyttäjäryhmälle",
   description:

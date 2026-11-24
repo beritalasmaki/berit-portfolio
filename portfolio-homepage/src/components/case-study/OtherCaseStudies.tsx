@@ -74,8 +74,8 @@ export default function OtherCaseStudies({
                     isIsolatedLast ? "lg:justify-center" : ""
                   }`}
                 >
-                  <h3 className="m-0 text-card-h3 text-ink group-hover:underline group-focus-visible:underline decoration-accent underline-offset-4">
-                    {study.title}
+                  <h3 className="m-0 text-card-h3 lg:text-sub-h4 text-ink group-hover:underline group-focus-visible:underline decoration-accent underline-offset-4">
+                    {study.cardTitle ?? study.title}
                   </h3>
                   <p className="m-0 text-body-sm text-body">{study.otherCaseStudyDescription}</p>
                   <span className="mt-auto text-nav font-semibold text-ink border-b border-accent pb-2 self-start whitespace-nowrap transition-[border-color] duration-200 ease-linear group-hover:border-accent-dark group-focus-visible:border-accent-dark">

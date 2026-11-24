@@ -40,6 +40,7 @@ function shot(file: string): GalleryImage {
 export const educationPlatformFi: CaseStudy = {
   slug: "education-platform",
   title: "Kuntien opetusjärjestelmä",
+  cardTitle: "Kuntien opetus\u00adjärjestelmä",
   label: "KUNTIEN OPETUSJÄRJESTELMÄ · 2021–2024",
   headline: "Seitsemän kunnan koulujärjestelmät yhdeksi palveluksi",
   description:

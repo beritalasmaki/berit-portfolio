@@ -111,20 +111,34 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
     };
   }, [stats]);
 
+  const chained = stats.some((stat) => stat.work && stat.enabled);
+
   return (
-    <ul ref={listRef} className="m-0 grid list-none grid-cols-1 gap-grid-gap p-0 sm:grid-cols-3">
+    <ul
+      ref={listRef}
+      className={`m-0 grid list-none grid-cols-1 gap-grid-gap p-0 sm:grid-cols-3 ${
+        // Chains share rows across the cards (subgrid), so the middle texts,
+        // the numbers and the labels line up whatever their length.
+        chained ? "sm:gap-y-3" : ""
+      }`}
+    >
       {stats.map((stat, i) => {
         const p = parse(stat.value);
         const rolling = values !== null && p !== null;
         const places = p ? String(p.target).length : 0;
         return (
-          <li key={stat.label} className="flex flex-col items-center gap-3 rounded-[16px] bg-cream/50 p-card-pad text-center">
+          <li
+            key={stat.label}
+            className={`flex flex-col items-center gap-3 rounded-[16px] bg-cream/50 p-card-pad text-center ${
+              chained ? "sm:row-span-6 sm:grid sm:grid-rows-subgrid sm:justify-items-center" : ""
+            }`}
+          >
             {stat.work && stat.enabled && (
               <>
                 <span className="text-mono-label uppercase text-accent-dark">{stat.work}</span>
                 <span aria-hidden="true" className="text-body-sm text-body/50">↓</span>
-                <span className="text-body-sm text-ink text-pretty">{stat.enabled}</span>
-                <span aria-hidden="true" className="mt-auto text-body-sm text-body/50">↓</span>
+                <span className="self-center text-body-sm text-ink text-pretty">{stat.enabled}</span>
+                <span aria-hidden="true" className="text-body-sm text-body/50">↓</span>
               </>
             )}
             <span className="text-section-h2 text-ink tabular-nums" style={{ lineHeight: CELL }}>
