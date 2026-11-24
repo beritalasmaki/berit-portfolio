@@ -396,8 +396,8 @@ export const industrialTool: CaseStudy = {
           body: "Instead of static images, I would build working prototypes with AI tools. The expert could try the calculation tool with real data before development.",
         },
         {
-          title: "A design system in code too",
-          body: "I would build the design system closely with developers, so that it is used in code and not only in Figma.",
+          title: "A clear process for the design system",
+          body: "The developers used Storybook, so there was a component library in code too. But the work wasn't organised as a design system, and there was no agreed process for things like how a new component makes it into the library. Now I would agree with the team from the start who decides on new components, how they are documented, and how the Figma UI kit and Storybook stay in step.",
         },
       ],
     },

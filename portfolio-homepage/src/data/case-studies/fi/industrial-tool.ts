@@ -341,8 +341,8 @@ export const industrialToolFi: CaseStudy = {
           body: "Staattisten kuvien sijaan rakentaisin toimivia prototyyppejä tekoälytyökaluilla. Asiantuntija pääsisi kokeilemaan laskentatyökalua oikealla datalla jo ennen kehitystä.",
         },
         {
-          title: "Design System myös koodiin",
-          body: "Rakentaisin Design Systemin tiiviisti kehittäjien kanssa niin, että se on käytössä myös koodissa eikä vain Figmassa.",
+          title: "Design Systemille selkeä prosessi",
+          body: "Kehittäjillä oli käytössä Storybook, joten komponenttikirjasto oli olemassa myös koodissa. Työtä ei kuitenkaan ollut järjestetty Design Systemiksi, eikä ollut sovittu, miten esimerkiksi uusi komponentti päätyy kirjastoon. Nyt sopisin tiimin kanssa heti alussa, kuka päättää uusista komponenteista, miten ne dokumentoidaan ja miten Figman UI kit ja Storybook pysyvät samassa tahdissa.",
         },
       ],
     },
