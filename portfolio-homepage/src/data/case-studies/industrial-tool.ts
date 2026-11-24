@@ -84,7 +84,7 @@ export const alertShots: GalleryImage[] = [
 
 export const industrialTool: CaseStudy = {
   slug: "industrial-tool",
-  title: "Industrial Data & Expert Interface Design",
+  title: "Industrial Data Platform",
   label: "INDUSTRIAL DATA TOOLS · 2021–2023",
   headline: "Making industrial data clear, so chemicals are dosed right",
   description:
@@ -340,7 +340,7 @@ export const industrialTool: CaseStudy = {
         "One plant had been dosing by hand because its old measuring equipment couldn't be trusted. Once dosing became automatic and the process could be followed on the dashboards, the plant's process expert described the change like this: “Now we know what's happening 24 hours a day. There are good dashboards, accurate reports.”",
         "**Reports supported sales.** The company's goal was to bring separate databases onto one platform and use the data in selling services. With the reports, sales and experts can show customers their savings clearly.",
         "These results came from the chemistry, the calculation algorithms, the experts and the user interface working together. My part was making the data and calculations clear enough for customers and experts to follow and base decisions on.",
-        "**Feedback from users and the team.** After releases we went through feedback and tested features with users. Usability wasn't measured precisely, so this part of the impact is based on feedback from users and the team.",
+        "**Feedback from users and the team.** Interviews were short and schedules tight, so no separate usability metrics were set. They weren't needed to decide what to fix first, as a few interviews were enough to show what got in the way most. The impact of the changes is therefore based on feedback from users and the team.",
         "Experts no longer had to dig for information in long text lists. People other than the most experienced could do calculations. Work was no longer lost when someone forgot to save or the connection dropped.",
         "According to the developers and the project manager, collaboration went clearly better once designers and developers used the same tool.",
       ],
@@ -369,8 +369,8 @@ export const industrialTool: CaseStudy = {
       heading: "What I would do differently",
       items: [
         {
-          title: "Metrics from the start",
-          body: "I would measure things like time spent on calculations, calculation errors and support requests about lost work, before and after the changes. Then the impact could be shown in numbers, not only as feedback.",
+          title: "Metrics tied to business numbers",
+          body: "The interviews showed what to fix, but not how much a change helped. The company already had KPIs for customers' purchasing behaviour and satisfaction. Now I would tie the design work to them and follow a few light metrics that come straight from the system, without separate research. For example, how many experts do their calculations in the tool instead of Excel, how long a calculation takes, how many support requests come in about lost work, and how often customers open their dashboards. That way the impact would show both in users' daily work and in the business.",
         },
         {
           title: "Documenting the process",

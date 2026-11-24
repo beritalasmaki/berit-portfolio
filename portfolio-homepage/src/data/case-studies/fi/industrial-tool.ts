@@ -39,8 +39,7 @@ const alertShots = localizeGallery(enAlertShots, [
 
 export const industrialToolFi: CaseStudy = {
   slug: "industrial-tool",
-  title: "Teollisuuden data ja asiantuntijakäyttöliittymien suunnittelu",
-  cardTitle: "Teollisuuden data ja asiantuntija\u00adkäyttö\u00adliittymien suunnittelu",
+  title: "Teollisuuden data-alusta",
   label: "TEOLLISUUDEN DATATYÖKALUT · 2021–2023",
   headline: "Teollisuuden data selkeäksi, jotta kemikaalit annostellaan oikein",
   description:
@@ -293,7 +292,7 @@ export const industrialToolFi: CaseStudy = {
         "Yksi puhdistamo oli annostellut kemikaalit käsin, koska sen vanhoihin mittalaitteisiin ei voinut luottaa. Kun annostelu muuttui automaattiseksi ja prosessia pystyi seuraamaan dashboardeilta, puhdistamon prosessiasiantuntija kuvasi muutosta näin: ”Nyt tiedämme, mitä tapahtuu ympäri vuorokauden. Dashboardit ovat hyviä ja raportit tarkkoja.”",
         "**Raportit tukivat myyntiä.** Yrityksen tavoitteena oli koota erilliset tietokannat yhdelle alustalle ja hyödyntää dataa palvelujen myynnissä. Raporttien avulla myyjät ja asiantuntijat pystyvät näyttämään asiakkaalle säästöt selkeästi.",
         "Tulokset ovat kemian, laskenta-algoritmien, asiantuntijoiden ja käyttöliittymän yhteistyön ansiota. Minun osuuteni oli tehdä datasta ja laskennasta niin selkeää, että asiakkaat ja asiantuntijat voivat seurata sitä ja tehdä päätöksiä sen pohjalta.",
-        "**Käyttäjien ja tiimin palaute.** Julkaisujen jälkeen kävimme palautteen läpi ja testasimme ominaisuuksia käyttäjien kanssa. Käytettävyyttä ei mitattu tarkasti, joten tältä osin vaikutus perustuu käyttäjiltä ja tiimiltä saatuun palautteeseen.",
+        "**Käyttäjien ja tiimin palaute.** Haastattelut olivat lyhyitä ja aikataulut tiukkoja, joten käytettävyydelle ei asetettu omia mittareita. Siihen, mitä kannatti korjata ensin, mittareita ei tarvittu, sillä muutama haastattelu riitti näyttämään, mikä hankaloitti työtä eniten. Muutosten vaikutus perustuu siksi käyttäjiltä ja tiimiltä saatuun palautteeseen.",
         "Asiantuntijoiden ei enää tarvinnut etsiä tietoa pitkistä tekstilistoista. Laskelmia pystyivät tekemään muutkin kuin tiimin kokeneimmat. Työ ei enää kadonnut, vaikka tallennus unohtui tai yhteys katkesi.",
         "Kehittäjien ja projektipäällikön mukaan yhteistyö sujui selvästi paremmin, kun suunnittelijat ja kehittäjät käyttivät samaa työkalua.",
       ],
@@ -322,8 +321,8 @@ export const industrialToolFi: CaseStudy = {
       heading: "Mitä tekisin toisin",
       items: [
         {
-          title: "Mittarit alusta asti",
-          body: "Mittaisin esimerkiksi laskentaan kuluvaa aikaa, laskentavirheitä ja kadonneeseen työhön liittyviä tukipyyntöjä ennen muutoksia ja niiden jälkeen. Silloin vaikutuksen voisi näyttää lukuina eikä vain palautteena.",
+          title: "Mittarit, jotka kytkeytyvät liiketoiminnan lukuihin",
+          body: "Haastattelut kertoivat, mitä korjata, mutta eivät sitä, kuinka paljon muutos auttoi. Yrityksellä oli jo KPI-mittareita asiakkaiden ostokäyttäytymiselle ja tyytyväisyydelle. Nyt kytkisin suunnittelutyön niihin ja seuraisin muutamaa kevyttä mittaria, jotka saa suoraan järjestelmästä ilman erillistä tutkimusta. Seuraisin esimerkiksi sitä, kuinka moni asiantuntija tekee laskelmat työkalussa Excelin sijaan, kuinka kauan laskelma kestää, kuinka monta tukipyyntöä kadonneesta työstä tulee ja kuinka usein asiakkaat avaavat dashboardeja. Näin vaikutus näkyisi sekä käyttäjien arjessa että liiketoiminnassa.",
         },
         {
           title: "Prosessin dokumentointi",
