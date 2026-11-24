@@ -42,16 +42,16 @@ export const industrialToolFi: CaseStudy = {
   title: "Teollisuuden data ja asiantuntijakäyttöliittymien suunnittelu",
   cardTitle: "Teollisuuden data ja asiantuntija\u00adkäyttö\u00adliittymien suunnittelu",
   label: "TEOLLISUUDEN DATATYÖKALUT · 2021–2023",
-  headline: "Monimutkainen teollisuusdata selkeäksi kahdeksalle käyttäjäryhmälle",
+  headline: "Teollisuuden data selkeäksi, jotta kemikaalit annostellaan oikein",
   description:
-    "Uudistin kansainvälisen kemianteollisuuden yrityksen data-alustan käyttökokemusta vuosina 2021–2023 alustan ainoana suunnittelijana. Alustalla seurataan asiakkaiden tehtaiden kemikaalisäiliöitä ja laitteita, lasketaan kemikaalien annostelua ja kulutusta ja tehdään raportteja.",
+    "Suunnittelin kansainvälisen kemianteollisuuden yrityksen data-alustan käyttökokemusta alustan ainoana suunnittelijana. Kun tehtaat ja vedenpuhdistamot näkivät prosessinsa selvästi, kemikaalia kului vähemmän, parhaimmillaan alle puolet entisestä.",
   thumbnail: "/case/kemira-card.png",
   thumbnailAlt: "Teollisuuden data-alustan dashboard",
   projectCount: "2",
   industry: "Teollisuus",
   ctaLabel: "Tutustu koko asiakasprojektiin",
   otherCaseStudyDescription:
-    "Rakensin käytännönläheisiä asiantuntijatyökaluja teollisuuden datatyönkulkuihin, jotta monimutkaiset laskennat ja seuranta olisivat asiantuntijoille luotettavampia.",
+    "Tein teollisuuden data-alustasta selkeän, jotta asiakkaat pystyvät annostelemaan kemikaalit oikein ja käyttämään niitä vähemmän.",
 
   intro: [
     "Teollisuuden seuranta- ja raportointialustasta oli vuosien mittaan tullut monimutkainen. Asiantuntijat kahlasivat pitkiä tekstilistoja ja tekivät laskelmia käsin. Tulin mukaan projektin ainoaksi suunnittelijaksi edellisen suunnittelijan jälkeen, ja tavoitteena oli saada työkalu toimimaan niin kuin asiantuntijat oikeasti tarvitsivat.",

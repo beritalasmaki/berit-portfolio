@@ -86,16 +86,16 @@ export const industrialTool: CaseStudy = {
   slug: "industrial-tool",
   title: "Industrial Data & Expert Interface Design",
   label: "INDUSTRIAL DATA TOOLS · 2021–2023",
-  headline: "Complex industrial data made clear for eight user groups",
+  headline: "Making industrial data clear, so chemicals are dosed right",
   description:
-    "I improved the user experience of an international chemicals company's data platform in 2021–2023 as its only designer. The platform is used to monitor chemical tanks and equipment at customers' plants, calculate chemical dosing and consumption, and create reports.",
+    "I designed the user experience of an international chemical company's data platform as its only designer. When industrial sites and water treatment plants could see their processes clearly, they used less chemical, at best under half of what they used before.",
   thumbnail: "/case/kemira-card.png",
   thumbnailAlt: "Dashboard of an industrial data platform",
   projectCount: "2",
   industry: "Industrial",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:
-    "Built practical expert tools for industrial data workflows, making complex calculations and monitoring more reliable for specialists.",
+    "Made an industrial data platform clear, so customers can dose chemicals right and use less of them.",
 
   intro: [
     "An industrial platform for monitoring and reporting had grown complex over time, with expert users struggling through long text lists and manual calculations. I joined as the sole designer, taking over from a previous one, to make the tool work the way specialists actually needed it to.",
