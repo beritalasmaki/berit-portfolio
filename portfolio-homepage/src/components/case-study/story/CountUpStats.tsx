@@ -136,9 +136,9 @@ export default function CountUpStats({ stats }: { stats: Stat[] }) {
             {stat.work && stat.enabled && (
               <>
                 <span className="text-sub-h4 text-ink text-balance">{stat.work}</span>
-                <span aria-hidden="true" className="text-body-sm text-body/50">↓</span>
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-7 w-7 text-accent-dark" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v16M6 14l6 6 6-6" /></svg>
                 <span className="self-center text-body-sm text-ink text-pretty">{stat.enabled}</span>
-                <span aria-hidden="true" className="text-body-sm text-body/50">↓</span>
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-7 w-7 text-accent-dark" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v16M6 14l6 6 6-6" /></svg>
               </>
             )}
             <span className="text-section-h2 text-ink tabular-nums" style={{ lineHeight: CELL }}>
