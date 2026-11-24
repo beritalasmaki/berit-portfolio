@@ -16,7 +16,7 @@ export const universityAiToolFi: CaseStudy = {
   industry: "Korkeakoulutus",
   ctaLabel: "Tutustu koko asiakasprojektiin",
   otherCaseStudyDescription:
-    "Suunnittelin haku- ja palveluportaalin",
+    "Suunnittelin haku- ja palveluportaalin, jotta opiskelijat löytävät ohjeet ja tuen eksymättä hajanaisiin järjestelmiin.",
 
   intro: [
     "Suuren yliopiston tieto oli hajallaan monilla erillisillä verkkosivustoilla, eivätkä opiskelijat, henkilökunta tai vierailijat usein tienneet, mistä etsiä. Liityin projektiin Senior UX- ja tuotesuunnittelijana: tehtäväni oli muuttaa varhaiset konseptit oikeiksi näkymiksi, testata niitä käyttäjillä ja muotoilla ensimmäinen versio, jota ihmiset pystyivät käyttämään.",
@@ -100,7 +100,7 @@ export const universityAiToolFi: CaseStudy = {
 
   howItStarted: [
     "Suuren yliopiston tieto oli hajallaan monilla eri verkkosivustoilla, minkä vuoksi opiskelijoiden, henkilökunnan ja vierailijoiden oli vaikea löytää apua.",
-    "Palvelumuotoilijat olivat jo tehneet alkuvaiheen tutkimuksen ja hahmotelleet idean keskitetystä palveluportaalista. Minun tehtäväni Senior UX- ja tuotesuunnittelijana oli muuttaa nämä varhaiset konseptit oikeiksi käyttöliittymäsuunnitelmiksi, testata niitä käyttäjillä ja hioa",
+    "Palvelumuotoilijat olivat jo tehneet alkuvaiheen tutkimuksen ja hahmotelleet idean keskitetystä palveluportaalista. Minun tehtäväni Senior UX- ja tuotesuunnittelijana oli muuttaa nämä varhaiset konseptit oikeiksi käyttöliittymäsuunnitelmiksi, testata niitä käyttäjillä ja hioa ne ensimmäistä julkaisua (MVP) varten.",
     "Julkaisun jälkeenkin jäin mukaan keräämään käyttäjäpalautetta ja kehittämään palvelua sen mukaan, miten sitä todella käytettiin.",
   ],
 
