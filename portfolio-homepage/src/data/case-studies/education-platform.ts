@@ -407,8 +407,8 @@ export const educationPlatform: CaseStudy = {
           body: "Some feature requests copied the old system, and not all of it was legal anymore. If a GDPR and education law expert had been involved from the start, I could have designed the screens with legal requirements in mind from the first sketch. Instead, some screens had to be redesigned when the requirements became clear later.",
         },
         {
-          title: "A design system in code too",
-          body: "A design system has to exist in code, not only in design files. Our components were based on the Chakra library and collected in Storybook, but the same components were still sometimes coded more than once. As the project went on this got clearer, and I made sure developers used components that were already coded, such as buttons. Now I would organise the design system work better from the start, and push for enough resources for design and for developing DesignOps.",
+          title: "An owner and resources for the design system",
+          body: "Our components were based on the Chakra library and collected in Storybook, but several teams and vendors still coded the same components again. With many builders, a library alone isn't enough. Someone has to be responsible for making sure existing components are used. As the project went on, I made sure myself that developers used components that were already coded, such as buttons. Now I would insist from the start that the design system has a named owner and time for developing DesignOps too.",
         },
         {
           title: "A designer in vendor selection",
