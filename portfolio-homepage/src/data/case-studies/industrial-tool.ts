@@ -235,7 +235,7 @@ export const industrialTool: CaseStudy = {
     {
       number: "01",
       title: "Designing for complex expert workflows",
-      body: "I designed a calculation window that splits a complex calculation into steps, so specialists can run it through a much simpler interface. I did not solve it alone. I worked closely with the specialists and factory workers who used the tool daily and co-designed the solutions with them instead of guessing what they needed.",
+      body: "I designed a calculation window that splits a complex calculation into steps, so specialists can run it through a simpler interface. I did not solve it alone. I worked closely with the specialists and factory workers who used the tool daily and co-designed the solutions with them instead of guessing what they needed.",
     },
     {
       number: "02",
@@ -250,7 +250,7 @@ export const industrialTool: CaseStudy = {
   ],
 
   whatIWouldDoDifferently: [
-    "Today I would approach the technical side differently. Instead of handing static mockups to developers, I would build working prototypes with AI tools like Claude Design, which closes the gap between design and implementation much faster. I would also structure the design system for code from the start, working closely with developers and building with Claude Code, so developers could pull from it directly instead of finding only a well-organised component library in Figma.",
+    "Today I would approach the technical side differently. Instead of handing static mockups to developers, I would build working prototypes with AI tools like Claude Design, which closes the gap between design and implementation faster. I would also structure the design system for code from the start, working closely with developers and building with Claude Code, so developers could pull from it directly instead of finding only a well-organised component library in Figma.",
     "The team worked well together throughout, and I don't think our size or setup was ever the problem. What I would change is how I use today's tools and ways of working to close the design-to-development gap earlier.",
   ],
 
@@ -309,8 +309,8 @@ export const industrialTool: CaseStudy = {
       ],
     },
     problem: {
-      heading: "One platform, very different users",
-      statement: "Complex data had to serve very different users, from the plant process operator to the data analyst.",
+      heading: "One platform, more than eight user groups",
+      statement: "Complex data had to serve users with different needs, from the plant process operator to the data analyst.",
       paragraphs: [
         "The platform had grown over the years. Dashboard panels were long text lists, calculations were done by hand in Excel, and work was lost if someone forgot to save or the connection dropped.",
       ],
@@ -398,7 +398,7 @@ export const industrialTool: CaseStudy = {
         "These results came from the chemistry, the calculation algorithms, the experts and the user interface working together. My part was making the data and calculations clear enough for customers and experts to follow and base decisions on.",
         "**Feedback from users and the team.** Interviews were short and schedules tight, so no broad usability metrics were set, apart from tracking how the widget cards were taken up. They weren't needed to decide what to fix first, as a few interviews were enough to show what got in the way most. The impact of the changes is therefore based on feedback from users and the team.",
         "Experts no longer had to dig for information in long text lists. More than the most experienced people could run calculations. A forgotten save or a dropped connection no longer lost work.",
-        "According to the developers and the project manager, collaboration became noticeably smoother once designers and developers used the same tool.",
+        "According to the developers and the project manager, collaboration became smoother once designers and developers used the same tool.",
       ],
       highlights: [
         {

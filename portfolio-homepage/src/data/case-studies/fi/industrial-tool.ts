@@ -163,7 +163,7 @@ export const industrialToolFi: CaseStudy = {
     {
       number: "01",
       title: "Monimutkaisten asiantuntijatyönkulkujen suunnittelu",
-      body: "Suunnittelin laskentaikkunan, joka pilkkoo monimutkaisen laskennan vaiheisiin, jolloin asiantuntijat pystyvät ajamaan sen paljon yksinkertaisemmalla käyttöliittymällä. En ratkaissut sitä yksin. Työskentelin tiiviisti työkalua päivittäin käyttävien asiantuntijoiden ja tehdastyöntekijöiden kanssa ja suunnittelimme ratkaisut yhdessä sen sijaan, että olisin arvaillut heidän tarpeitaan.",
+      body: "Suunnittelin laskentaikkunan, joka pilkkoo monimutkaisen laskennan vaiheisiin, jolloin asiantuntijat pystyvät ajamaan sen yksinkertaisemmalla käyttöliittymällä. En ratkaissut sitä yksin. Työskentelin tiiviisti työkalua päivittäin käyttävien asiantuntijoiden ja tehdastyöntekijöiden kanssa ja suunnittelimme ratkaisut yhdessä sen sijaan, että olisin arvaillut heidän tarpeitaan.",
     },
     {
       number: "02",
@@ -178,7 +178,7 @@ export const industrialToolFi: CaseStudy = {
   ],
 
   whatIWouldDoDifferently: [
-    "Lähestyisin projektin teknistä puolta nykyään toisin. Staattisten mallien luovuttamisen sijaan rakentaisin toimivia prototyyppejä tekoälytyökaluilla, kuten Claude Designilla, ja kuroisin suunnittelun ja toteutuksen välisen kuilun umpeen paljon nopeammin. Rakentaisin Design Systemin alusta asti myös koodin näkökulmasta, tekisin tiivistä yhteistyötä kehittäjien kanssa ja rakentaisin sitä Claude Codella. Näin kehittäjät voisivat hyödyntää sitä suoraan, eikä se olisi vain hyvin järjestetty komponenttikirjasto Figmassa.",
+    "Lähestyisin projektin teknistä puolta nykyään toisin. Staattisten mallien luovuttamisen sijaan rakentaisin toimivia prototyyppejä tekoälytyökaluilla, kuten Claude Designilla, ja kuroisin suunnittelun ja toteutuksen välisen kuilun umpeen nopeammin. Rakentaisin Design Systemin alusta asti myös koodin näkökulmasta, tekisin tiivistä yhteistyötä kehittäjien kanssa ja rakentaisin sitä Claude Codella. Näin kehittäjät voisivat hyödyntää sitä suoraan, eikä se olisi vain hyvin järjestetty komponenttikirjasto Figmassa.",
     "Tiimi toimi koko projektin ajan hyvin yhteen, eikä tiimin koko tai kokoonpano ollut mielestäni koskaan ongelma. Muuttaisin sen, miten käytän nykypäivän työkaluja ja työtapoja kaventaakseni suunnittelun ja kehityksen välistä kuilua aiemmin.",
   ],
 
@@ -234,8 +234,8 @@ export const industrialToolFi: CaseStudy = {
       ],
     },
     problem: {
-      heading: "Yksi alusta, hyvin erilaiset käyttäjät",
-      statement: "Monimutkaisen datan piti palvella hyvin erilaisia käyttäjiä tehtaan prosessinhoitajasta data-analyytikkoon.",
+      heading: "Yksi alusta, yli kahdeksan käyttäjäryhmää",
+      statement: "Monimutkaisen datan piti palvella käyttäjiä, joilla oli eri tarpeita, tehtaan prosessinhoitajasta data-analyytikkoon.",
       paragraphs: [
         "Alusta oli kasvanut vuosien mittaan. Dashboardin paneelit olivat pitkiä tekstilistoja, laskelmat tehtiin Excelissä käsin, ja työ katosi, jos tallennus unohtui tai yhteys katkesi.",
       ],
@@ -326,7 +326,7 @@ export const industrialToolFi: CaseStudy = {
         "Tulokset ovat kemian, laskenta-algoritmien, asiantuntijoiden ja käyttöliittymän yhteistyön ansiota. Minun osuuteni oli tehdä datasta ja laskennasta niin selkeää, että asiakkaat ja asiantuntijat voivat seurata sitä ja tehdä päätöksiä sen pohjalta.",
         "**Käyttäjien ja tiimin palaute.** Haastattelut olivat lyhyitä ja aikataulut tiukkoja, joten käytettävyydelle ei asetettu kattavia mittareita widgettikorttien käyttöönoton seurantaa lukuun ottamatta. Siihen, mitä kannatti korjata ensin, mittareita ei tarvittu, sillä muutama haastattelu riitti näyttämään, mikä hankaloitti työtä eniten. Muutosten vaikutus perustuu siksi käyttäjiltä ja tiimiltä saatuun palautteeseen.",
         "Asiantuntijoiden ei enää tarvinnut etsiä tietoa pitkistä tekstilistoista. Laskelmia pystyivät tekemään muutkin kuin tiimin kokeneimmat. Työ ei enää kadonnut, vaikka tallennus unohtui tai yhteys katkesi.",
-        "Kehittäjien ja projektipäällikön mukaan yhteistyö sujui selvästi paremmin, kun suunnittelijat ja kehittäjät käyttivät samaa työkalua.",
+        "Kehittäjien ja projektipäällikön mukaan yhteistyö sujui paremmin, kun suunnittelijat ja kehittäjät käyttivät samaa työkalua.",
       ],
       highlights: [
         {

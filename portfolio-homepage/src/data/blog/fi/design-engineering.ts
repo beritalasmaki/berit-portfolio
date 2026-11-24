@@ -66,7 +66,7 @@ export const designEngineeringFi: BlogPost = {
       items: [
         "**Yhteinen työkalu.** [Teollisuuden datatyökalussa](/fi/tyot/teollisuuden-data-ja-asiantuntijatyokalut) siirsin komponenttikirjaston Sketchistä Figmaan, jotta muotoilijat ja kehittäjät työskentelivät samassa ympäristössä.",
         "**Yhteinen ymmärrys.** [Kuntien opetusjärjestelmässä](/fi/tyot/koulutuksen-digitaalinen-palvelualusta) pidimme kehittäjien kanssa säännöllisiä tapaamisia, joissa kävimme läpi ratkaisujen taustoja ja kuulimme kehittäjien ideoita.",
-        "**Yhteiset komponentit.** [Yliopiston projektissa](/fi/tyot/yliopiston-perehdytys-ja-tekoalyhaku) tein design systemin komponenteista helpommin löydettäviä ja otin design system -tiimin mukaan aina, kun tarvittiin aidosti jotain uutta.",
+        "**Yhteiset komponentit.** [Yliopiston projektissa](/fi/tyot/yliopiston-perehdytys-ja-tekoalyhaku) tein design systemin komponenteista helpommin löydettäviä ja otin design system -tiimin mukaan aina, kun tarvittiin jotain uutta.",
       ],
     },
     {
@@ -155,7 +155,7 @@ export const designEngineeringFi: BlogPost = {
       ],
       tip: {
         label: "Vinkki",
-        text: "Asettelussa voi aivan hyvin käyttää suunnittelutyökalua apuna (esim. Figma tai Claude Design), jonka jälkeen kuvat voidaan syöttää agentille.",
+        text: "Asettelussa voi hyvin käyttää suunnittelutyökalua apuna (esim. Figma tai Claude Design), jonka jälkeen kuvat voidaan syöttää agentille.",
       },
     },
     {
