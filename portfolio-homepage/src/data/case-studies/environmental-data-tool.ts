@@ -13,7 +13,7 @@ export const environmentalDataTool: CaseStudy = {
   industry: "Environmental research",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:
-    "Rebuilt outdated systems as modern tools that help",
+    "Rebuilt outdated systems as modern tools that help environmental researchers manage and analyze critical data.",
 
   intro: [
     "An environmental research institute relied on outdated tools to manage and analyze critical data, often defaulting to Excel just to make sense of it. Over several projects between 2020 and 2023, I was brought in as the institute's only UX designer to modernize these tools.",

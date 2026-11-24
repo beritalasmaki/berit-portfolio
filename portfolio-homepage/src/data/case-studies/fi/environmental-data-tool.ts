@@ -16,7 +16,7 @@ export const environmentalDataToolFi: CaseStudy = {
   industry: "Ympäristötutkimus",
   ctaLabel: "Tutustu koko asiakasprojektiin",
   otherCaseStudyDescription:
-    "Uudistin vanhentuneet järjestelmät nykyaikaisiksi työkaluiksi",
+    "Uudistin vanhentuneet järjestelmät nykyaikaisiksi työkaluiksi, jotka auttavat ympäristötutkijoita hallitsemaan ja analysoimaan kriittistä dataa.",
 
   intro: [
     "Ympäristötutkimuslaitos hallitsi ja analysoi kriittistä dataansa vanhentuneilla työkaluilla ja turvautui usein Exceliin, jotta datasta sai edes jotain selvää. Vuosina 2020–2023 tein laitokselle useita projekteja ainoana UX-suunnittelijana ja uudistin näitä työkaluja.",

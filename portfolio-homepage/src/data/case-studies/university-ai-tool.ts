@@ -13,7 +13,7 @@ export const universityAiTool: CaseStudy = {
   industry: "Higher education",
   ctaLabel: "Explore the full case study",
   otherCaseStudyDescription:
-    "Designed a search and service hub",
+    "Designed a search and service hub so students can find guidance and support without getting lost in fragmented systems.",
 
   intro: [
     "A major university had information scattered across many separate websites, so students, staff, and visitors often didn't know where to start looking. I joined as Senior UX & Product Designer to turn early concepts into real screens, test them with users, and shape the first version people could use.",
