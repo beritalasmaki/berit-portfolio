@@ -250,7 +250,6 @@ export const industrialToolFi: CaseStudy = {
           paragraphs: [
             "Erillisellä budjetilla suunnittelin järjestelmän, joka varoittaa, kun säiliö on täyttymässä tai laitteessa on muu virhetilanne. Hälytys menee sekä tehtaan prosessinhoitajalle että kenttähuollolle.",
           ],
-          figures: [screen("kem-tank.png")],
         },
         {
           title: "Design System Figmaan",

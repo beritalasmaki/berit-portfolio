@@ -291,7 +291,6 @@ export const industrialTool: CaseStudy = {
           paragraphs: [
             "With a separate budget, I designed a system that warns when a tank is filling up or a device has another fault. The alert goes to both the plant's process operator and field service.",
           ],
-          figures: [screen("kem-tank.png")],
         },
         {
           title: "The design system to Figma",
