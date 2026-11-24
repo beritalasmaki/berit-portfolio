@@ -28,7 +28,7 @@ export const en = {
     blog: {
       title: "Blog",
       description:
-        "Writing on UX, product design and bringing AI into organizations — notes from ten years of design work.",
+        "Writing on UX, product design and bringing AI into organizations, from ten years of design work.",
     },
     jsonLd: {
       jobTitle: "Senior UX & Product Designer",
@@ -103,17 +103,17 @@ export const en = {
   },
 
   clients: {
-    heading: "Experience with well-known organisations",
+    heading: "Organisations I've worked with",
   },
 
   mindTabs: {
     heading: "How do I work?",
-    aside: "A good collaboration starts with a better question.",
+    aside: "Three questions about how I work.",
     tablistLabel: "Questions",
     tabs: [
       {
         question: "How do I keep my collaboration skills up to date?",
-        body: "Developer collaboration looks different today than it did a few years ago. I keep adapting to that: I do not just hand a finished design over and disappear, I stay part of the conversation while developers are building. I build working prototypes myself with tools like Claude Design, and I also work directly in code: building a component, or a specific part of a site, as a first version for a developer to review. That way developers see real components early, with their loading, error and empty states, instead of static images to interpret.",
+        body: "Developer collaboration looks different than it did a few years ago. I stay in the conversation while developers build, instead of handing over a finished design and disappearing. I build working prototypes myself with tools like Claude Design, and I also work directly in code: a component, or a specific part of a site, as a first version for a developer to review. Developers see real components early, with their loading, error and empty states, instead of static images to interpret.",
         highlight:
           "On a municipal education system with many municipalities and vendors, I ran the team's daily meetings and created the workshop process the team used to move from research to real concepts.",
         linkLabel: "See the Municipal Education System case study →",
@@ -121,7 +121,7 @@ export const en = {
       },
       {
         question: "How do I approach complex problems?",
-        body: "I start by mapping the problem: who is affected, how the work happens today and where it gets stuck. Then I build early concepts and test them with real users. I do not try to plan every detail in advance. I plan enough to get moving, then adapt as we learn, and I keep the goal and the measures of success in sight so that the changes stay purposeful.",
+        body: "I start by mapping the problem: who is affected, how the work happens today and where it gets stuck. Then I build early concepts and test them with real users. I plan enough to get moving, not every detail in advance, then adapt as we learn. I keep the goal and the measures of success in sight, so each change still points at the goal.",
         highlight:
           "Modernizing old environmental data systems meant working with tools researchers had used for years without a clear structure. Instead of waiting for a perfect solution, I focused on releasing something useful quickly, and then improving it based on what we learned.",
         linkLabel: "See the Environmental Data Systems case study →",

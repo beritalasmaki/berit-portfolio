@@ -354,7 +354,7 @@ export const industrialToolFi: CaseStudy = {
       items: [
         {
           title: "Mittarit, jotka kytkeytyvät liiketoiminnan lukuihin",
-          body: "Haastattelut kertoivat, mitä korjata, mutta eivät sitä, kuinka paljon muutos auttoi. Yrityksellä oli jo KPI-mittareita asiakkaiden ostokäyttäytymiselle ja tyytyväisyydelle. Nyt kytkisin suunnittelutyön niihin ja seuraisin muutamaa kevyttä mittaria, jotka saa suoraan järjestelmästä ilman erillistä tutkimusta. Seuraisin esimerkiksi sitä, kuinka moni asiantuntija tekee laskelmat työkalussa Excelin sijaan, kuinka kauan laskelma kestää, kuinka monta tukipyyntöä kadonneesta työstä tulee ja kuinka usein asiakkaat avaavat dashboardeja. Näin vaikutus näkyisi sekä käyttäjien arjessa että liiketoiminnassa.",
+          body: "Haastattelut kertoivat, mitä korjata, mutta eivät sitä, kuinka paljon muutos auttoi. Yrityksellä oli jo KPI-mittareita asiakkaiden ostokäyttäytymiselle ja tyytyväisyydelle. Nyt kytkisin suunnittelutyön niihin ja seuraisin muutamaa kevyttä mittaria, jotka saa suoraan järjestelmästä ilman erillistä tutkimusta. Seuraisin esimerkiksi sitä, kuinka moni asiantuntija tekee laskelmat työkalussa Excelin sijaan, kuinka kauan laskelma kestää, kuinka monta tukipyyntöä kadonneesta työstä tulee ja kuinka usein asiakkaat avaavat dashboardeja.",
         },
         {
           title: "Prosessin dokumentointi",

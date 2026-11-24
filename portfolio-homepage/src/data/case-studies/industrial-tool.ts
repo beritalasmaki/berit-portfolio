@@ -397,7 +397,7 @@ export const industrialTool: CaseStudy = {
         "**Reports supported sales.** The company's goal was to bring separate databases onto one platform and use the data in selling services. With the reports, sales and experts can show customers their savings clearly.",
         "These results came from the chemistry, the calculation algorithms, the experts and the user interface working together. My part was making the data and calculations clear enough for customers and experts to follow and base decisions on.",
         "**Feedback from users and the team.** Interviews were short and schedules tight, so no broad usability metrics were set, apart from tracking how the widget cards were taken up. They weren't needed to decide what to fix first, as a few interviews were enough to show what got in the way most. The impact of the changes is therefore based on feedback from users and the team.",
-        "Experts no longer had to dig for information in long text lists. Calculations were no longer limited to the most experienced people. Work was no longer lost when someone forgot to save or the connection dropped.",
+        "Experts no longer had to dig for information in long text lists. More than the most experienced people could run calculations. A forgotten save or a dropped connection no longer lost work.",
         "According to the developers and the project manager, collaboration became noticeably smoother once designers and developers used the same tool.",
       ],
       highlights: [
@@ -426,7 +426,7 @@ export const industrialTool: CaseStudy = {
       items: [
         {
           title: "Metrics tied to business numbers",
-          body: "The interviews showed what to fix, but not how much a change helped. The company already had KPIs for customers' purchasing behaviour and satisfaction. Now I would tie the design work to them and follow a few light metrics that come straight from the system, without separate research. For example, how many experts do their calculations in the tool instead of Excel, how long a calculation takes, how many support requests come in about lost work, and how often customers open their dashboards. That way the impact would show both in users' daily work and in the business.",
+          body: "The interviews showed what to fix, but not how much a change helped. The company already had KPIs for customers' purchasing behaviour and satisfaction. Now I would tie the design work to them and follow a few light metrics that come straight from the system, without separate research. For example, how many experts do their calculations in the tool instead of Excel, how long a calculation takes, how many support requests come in about lost work, and how often customers open their dashboards.",
         },
         {
           title: "Documenting the process",
