@@ -1,4 +1,4 @@
-import { alertShots as enAlertShots, calcShots as enCalcShots, industrialTool as en } from "../industrial-tool";
+import { alertShots as enAlertShots, calcShots as enCalcShots, industrialTool as en, widgetBefore } from "../industrial-tool";
 import type { CaseStudy, GalleryImage } from "../types";
 import { localizeGallery } from "./helpers";
 
@@ -244,9 +244,13 @@ export const industrialToolFi: CaseStudy = {
           title: "Selkeämpi dashboard",
           paragraphs: [
             "Aloitin näkymistä, joissa ongelma oli selvin. Muutin dashboardin paneelit tekstilistoista visuaalisiksi korteiksi, jolloin tilanteen näkee yhdellä silmäyksellä.",
-            "Suunnittelin myös uudelleen sen, miten widgettejä lisätään. Ne näkyvät esikatseluina, joten jokaisen ulkoasun näkee ennen kuin sen raahaa dashboardille.",
+            "Suunnittelin myös uudelleen sen, miten widgettejä lisätään. Aiemmin ne olivat pelkkä nimilista, jota selattiin alaspäin, kunnes sopiva löytyi. Uudessa versiossa jokainen widget näkyy korttina, jossa on esikatselukuva, joten sen ulkoasun näkee ennen kuin sen raahaa dashboardille.",
+            "Jätin listan korttien rinnalle. Listaan tottuneet käyttäjät löysivät sen yhä, ja siirtymä kortteihin sai tapahtua vaiheittain. Lisäsimme seurannan, jolla näimme, kuinka moni alkoi käyttää kortteja listan sijaan, ja kortit otettiin hyvin käyttöön.",
           ],
-          figures: [screen("kem-dash-menu.png")],
+          figures: [
+            { ...widgetBefore, alt: "Ennen: Edit dashboard -paneelissa widgetit näkyvät vain sinisinä nimipalkkeina, joita selataan sopivan löytämiseksi", caption: "Ennen (rekonstruktio) · Widgetit listana" },
+            { ...screen("kem-dash-edit.png"), caption: "Jälkeen · Kortit esikatselukuvineen, listanäkymä yhä käytössä" },
+          ],
         },
         {
           title: "Laskentatyökalu yhdessä asiantuntijan kanssa",
@@ -266,7 +270,7 @@ export const industrialToolFi: CaseStudy = {
           paragraphs: [
             "Haastatteluissa selvisi, että data- ja raporttinäkymissä työ katosi, jos käyttäjä unohti tallentaa tai yhteys katkesi. Se oli erityisen hankalaa etänä tehtailla työskenteleville. Suunnittelin näkymiin automaattisen tallennuksen, jonka tila näkyy aina, ja paransin samalla raporttien rakennetta ja sisältöä.",
           ],
-          figures: [screen("kem-dash-edit.png")],
+          figures: [screen("kem-datapoints.png")],
         },
         {
           title: "Hälytysjärjestelmä sivuprojektina",
@@ -291,7 +295,7 @@ export const industrialToolFi: CaseStudy = {
     shipped: {
       heading: "Valmis alusta",
       paragraphs: ["Kaikki casessa esitellyt näkymät julkaistiin. Alusta toimii myös mobiililaitteilla."],
-      figures: [screen("kem-datapoints.png"), screen("kem-mob-a2.png"), screen("kem-mob-b.png")],
+      figures: [screen("kem-dash-menu.png"), screen("kem-mob-a2.png"), screen("kem-mob-b.png")],
     },
     impact: {
       heading: "Vähemmän käsityötä, enemmän luottamusta työkaluun",
@@ -300,7 +304,7 @@ export const industrialToolFi: CaseStudy = {
         "Yksi puhdistamo oli annostellut kemikaalit käsin, koska sen vanhoihin mittalaitteisiin ei voinut luottaa. Kun annostelu muuttui automaattiseksi ja prosessia pystyi seuraamaan dashboardeilta, puhdistamon prosessiasiantuntija kuvasi muutosta näin: ”Nyt tiedämme, mitä tapahtuu ympäri vuorokauden. Dashboardit ovat hyviä ja raportit tarkkoja.”",
         "**Raportit tukivat myyntiä.** Yrityksen tavoitteena oli koota erilliset tietokannat yhdelle alustalle ja hyödyntää dataa palvelujen myynnissä. Raporttien avulla myyjät ja asiantuntijat pystyvät näyttämään asiakkaalle säästöt selkeästi.",
         "Tulokset ovat kemian, laskenta-algoritmien, asiantuntijoiden ja käyttöliittymän yhteistyön ansiota. Minun osuuteni oli tehdä datasta ja laskennasta niin selkeää, että asiakkaat ja asiantuntijat voivat seurata sitä ja tehdä päätöksiä sen pohjalta.",
-        "**Käyttäjien ja tiimin palaute.** Haastattelut olivat lyhyitä ja aikataulut tiukkoja, joten käytettävyydelle ei asetettu omia mittareita. Siihen, mitä kannatti korjata ensin, mittareita ei tarvittu, sillä muutama haastattelu riitti näyttämään, mikä hankaloitti työtä eniten. Muutosten vaikutus perustuu siksi käyttäjiltä ja tiimiltä saatuun palautteeseen.",
+        "**Käyttäjien ja tiimin palaute.** Haastattelut olivat lyhyitä ja aikataulut tiukkoja, joten käytettävyydelle ei asetettu kattavia mittareita widgettikorttien käyttöönoton seurantaa lukuun ottamatta. Siihen, mitä kannatti korjata ensin, mittareita ei tarvittu, sillä muutama haastattelu riitti näyttämään, mikä hankaloitti työtä eniten. Muutosten vaikutus perustuu siksi käyttäjiltä ja tiimiltä saatuun palautteeseen.",
         "Asiantuntijoiden ei enää tarvinnut etsiä tietoa pitkistä tekstilistoista. Laskelmia pystyivät tekemään muutkin kuin tiimin kokeneimmat. Työ ei enää kadonnut, vaikka tallennus unohtui tai yhteys katkesi.",
         "Kehittäjien ja projektipäällikön mukaan yhteistyö sujui selvästi paremmin, kun suunnittelijat ja kehittäjät käyttivät samaa työkalua.",
       ],

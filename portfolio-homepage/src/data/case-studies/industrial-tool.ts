@@ -97,6 +97,15 @@ export const alertShots: GalleryImage[] = [
   },
 ];
 
+/** The widget panel before the redesign: a plain list (rebuilt from the current screen). */
+export const widgetBefore: GalleryImage = {
+  src: "/case/kem-dash-edit-before.png",
+  alt: "Before: the Edit dashboard panel lists the widgets only as blue name bars, scrolled through to find the right one",
+  caption: "Before (reconstruction) · Widgets as a list",
+  width: 1044,
+  height: 814,
+};
+
 export const industrialTool: CaseStudy = {
   slug: "industrial-tool",
   title: "Industrial Data Platform",
@@ -299,9 +308,10 @@ export const industrialTool: CaseStudy = {
           title: "A clearer dashboard",
           paragraphs: [
             "I started with the views where the problem was most obvious. I turned the dashboard panels from text lists into visual cards, so the situation is clear at a glance.",
-            "I also redesigned how widgets are added. They are shown as previews, so you can see what each one looks like before you drag it onto the dashboard.",
+            "I also redesigned how widgets are added. Before, they were only a list of names that you scrolled through to find the right one. In the new version each widget is shown as a card with a preview, so you can see what it looks like before you drag it onto the dashboard.",
+            "I kept the list alongside the cards. Users who were used to the list could still find it, and the move to cards could happen at their own pace. We added tracking to see how many users started using the cards instead of the list, and the cards were taken up well.",
           ],
-          figures: [screen("kem-dash-menu.png")],
+          figures: [widgetBefore, { ...screen("kem-dash-edit.png"), caption: "After · Cards with previews, list view still available" }],
         },
         {
           title: "A calculation tool designed with an expert",
@@ -321,7 +331,7 @@ export const industrialTool: CaseStudy = {
           paragraphs: [
             "The interviews showed that in the data and report views, work was lost if a user forgot to save or the connection dropped. That was especially hard for people working remotely at plants. I designed auto-save for these views, with the status always visible, and improved the structure and content of the reports at the same time.",
           ],
-          figures: [screen("kem-dash-edit.png")],
+          figures: [screen("kem-datapoints.png")],
         },
         {
           title: "An alert system as a side project",
@@ -346,7 +356,7 @@ export const industrialTool: CaseStudy = {
     shipped: {
       heading: "The finished platform",
       paragraphs: ["Everything shown in this case was released. The platform also works on mobile devices."],
-      figures: [screen("kem-datapoints.png"), screen("kem-mob-a2.png"), screen("kem-mob-b.png")],
+      figures: [screen("kem-dash-menu.png"), screen("kem-mob-a2.png"), screen("kem-mob-b.png")],
     },
     impact: {
       heading: "Less manual work, more trust in the tool",
@@ -355,7 +365,7 @@ export const industrialTool: CaseStudy = {
         "One plant had been dosing by hand because its old measuring equipment couldn't be trusted. Once dosing became automatic and the process could be followed on the dashboards, the plant's process expert described the change like this: “Now we know what's happening 24 hours a day. There are good dashboards, accurate reports.”",
         "**Reports supported sales.** The company's goal was to bring separate databases onto one platform and use the data in selling services. With the reports, sales and experts can show customers their savings clearly.",
         "These results came from the chemistry, the calculation algorithms, the experts and the user interface working together. My part was making the data and calculations clear enough for customers and experts to follow and base decisions on.",
-        "**Feedback from users and the team.** Interviews were short and schedules tight, so no separate usability metrics were set. They weren't needed to decide what to fix first, as a few interviews were enough to show what got in the way most. The impact of the changes is therefore based on feedback from users and the team.",
+        "**Feedback from users and the team.** Interviews were short and schedules tight, so no broad usability metrics were set, apart from tracking how the widget cards were taken up. They weren't needed to decide what to fix first, as a few interviews were enough to show what got in the way most. The impact of the changes is therefore based on feedback from users and the team.",
         "Experts no longer had to dig for information in long text lists. Calculations were no longer limited to the most experienced people. Work was no longer lost when someone forgot to save or the connection dropped.",
         "According to the developers and the project manager, collaboration became noticeably smoother once designers and developers used the same tool.",
       ],
