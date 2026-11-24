@@ -28,6 +28,10 @@ const calcShots = localizeGallery(enCalcShots, [
 
 const alertShots = localizeGallery(enAlertShots, [
   {
+    alt: "Kuvitus prosessinhoitajasta, joka tarkistaa hälytysjärjestelmän tilan tehdashallissa ruostumattomaan annostelulaitteeseen kiinnitetyltä kosketusnäytöltä",
+    caption: "Kuvitus · Hälytysjärjestelmä annostelulaitteeseen kiinnitetyllä näytöllä",
+  },
+  {
     alt: "Hälytysjärjestelmän tilanäkymä: neljän tunnin riskiennuste, suositellut toimenpiteet, värikoodatut kemialliset tilat tekstimerkintöineen ja annostelun trendit",
     caption: "Rekonstruktio · Tilanäkymä",
   },
@@ -266,9 +270,9 @@ export const industrialToolFi: CaseStudy = {
             "Erillisellä budjetilla suunnittelin hälytysjärjestelmän. Se oli oma web-sovelluksensa eikä osa pääalustaa, ja sitä käytettiin myös tehtailla annostelulaitteisiin kiinnitetyillä näytöillä. Järjestelmä seuraa prosessin kemiallista tilaa ja varoittaa, kun säiliö on täyttymässä tai jokin muu menee vikaan.",
             "Tilanäkymässä näkyvät neljän tunnin riskiennuste, suositellut toimenpiteet ja prosessin eri osien tila. Jokaisella tilalla on värin lisäksi tekstimerkintä, joten tieto ei ole pelkän värin varassa.",
             "Käyttäjä asettaa datalle kolme tasoa: normaali (vihreä), keskitaso (oranssi) ja varoitustaso (punainen). Hälytykset näkyvät aina laitteen näytöllä tehtaalla ja sovelluksessa. Lisäksi käyttäjä valitsee, kuka saa ne myös sähköpostiin tai tekstiviestinä, ja lisää uudet vastaanottajat sähköpostiosoitteella. Näin hälytys tavoittaa sekä tehtaan prosessinhoitajan että kenttähuollon, ja sen voi kuitata samassa näkymässä.",
-            "Alkuperäisestä ei ole jäljellä kuvakaappauksia, joten kuvat ovat rekonstruktio yhden säilyneen kuvan pohjalta. Tuotenimet on poistettu.",
+            "Ensimmäinen kuva on kuvitus käyttötilanteesta. Alkuperäisestä järjestelmästä ei ole jäljellä kuvakaappauksia, joten näkymät ovat rekonstruktio yhden säilyneen kuvan pohjalta. Tuotenimet on poistettu.",
           ],
-          figures: [alertShots[0], alertShots[1]],
+          figures: [[alertShots[0]], [alertShots[1], alertShots[2]]],
         },
         {
           title: "Design System Figmaan",
