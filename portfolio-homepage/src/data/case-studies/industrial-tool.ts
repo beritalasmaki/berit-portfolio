@@ -85,7 +85,7 @@ export const alertShots: GalleryImage[] = [
 export const industrialTool: CaseStudy = {
   slug: "industrial-tool",
   title: "Industrial Data Platform",
-  label: "INDUSTRIAL DATA TOOLS · 2021–2023",
+  label: "INDUSTRIAL DATA PLATFORM · 2021–2023",
   headline: "Making industrial data clear, so chemicals are dosed right",
   description:
     "I designed the user experience of an international chemical company's data platform as its only designer. When industrial sites and water treatment plants could see their processes clearly, they used less chemical, at best under half of what they used before.",
@@ -235,14 +235,14 @@ export const industrialTool: CaseStudy = {
     },
     heroBundle: true,
     tldr: [
-      "An international chemicals company's data platform has **more than eight user groups**, from plant process operators to sales and data analysts, and each needs something different from it. I was the platform's only designer in 2021–2023.",
+      "An international chemical company's data platform has **more than eight user groups**, from plant process operators to sales and data analysts, and each needs something different from it. I was the platform's only designer in 2021–2023.",
       "Experts used to do demanding calculations in Excel. Together with an expert I turned them into a **five-step calculation tool** that still allows a custom formula when the standard steps aren't enough. Auto-save stopped work from getting lost, an alert system warns when a tank is filling up or a device fails, and moving the UI kit to Figma put designers and developers in the same tool.",
     ],
     background: {
       heading: "Remote data from customers' plants",
       paragraphs: [
         "The company supplies chemicals to industry and water treatment plants. Its chemical tanks and dosing equipment sit at customers' plants, and their data is monitored remotely.",
-        "Before the platform, the data lived in many separate databases. The platform was built to collect, view and analyse it in one place. Customers use it to follow their own processes, and the company's experts help them with analysis and troubleshooting. Sales uses the data to support selling services.",
+        "Before the platform, the data lived in many separate databases. The platform was built to collect, view and analyse it in one place. Customers use it to follow their own processes, and the company's experts help them with analysis and troubleshooting. Sales uses the data when selling services.",
         "I joined the ongoing project in 2021 after the previous designer. I was the platform's only designer, so I was responsible for the whole user experience.",
       ],
       listLabel: "Users",
@@ -250,8 +250,8 @@ export const industrialTool: CaseStudy = {
         "Plant process operators who follow tanks and equipment day to day",
         "Field service experts who visit plants and make sure the equipment works",
         "Production managers and plant managers",
-        "Calculation experts and data analysts who assess the data and plan and order based on it",
-        "Sales people who present and sell the platform to customers",
+        "Calculation experts and data analysts who analyse the data and plan and place orders based on it",
+        "Salespeople who present and sell the platform to customers",
         "Purchasers at the plants who order more chemicals",
       ],
     },
@@ -274,9 +274,9 @@ export const industrialTool: CaseStudy = {
         {
           title: "Interviews: what different users need",
           paragraphs: [
-            "I interviewed three customers, a couple of field service experts who checked equipment at customers' plants, and sales people. Sales used customers' consumption data to build reports and offer more cost-effective solutions.",
-            "I looked into two things. First the dashboard: what experts need from it and how they use it. Then reporting: how reports are built and what they are used for. A sales person, an expert and the plant's purchaser look for different things in the same report, so I worked out what matters to each.",
-            "It was the time of the pandemic, so the interviews were remote. People were in Europe and the United States, so I fitted my schedule around large time differences. The project manager, who already had good relationships with the customers, joined the conversations, which made it easier to build trust. With the team we met a few times at the company's office on team days.",
+            "I interviewed three customers, a couple of field service experts who checked equipment at customers' plants, and salespeople. Sales used customers' consumption data to build reports and offer more cost-effective solutions.",
+            "I looked into two things. First the dashboard: what experts need from it and how they use it. Then reporting: how reports are built and what they are used for. A salesperson, an expert and the plant's purchaser look for different things in the same report, so I worked out what matters to each.",
+            "This was during the pandemic, so the interviews were remote. People were in Europe and the United States, so I fitted my schedule around large time differences. The project manager, who already had good relationships with the customers, joined the conversations, which made it easier to build trust. The team met a few times at the company's office for team days.",
             "**What the interviews showed:** work was lost if someone forgot to save or the connection dropped, and widgets were hard to browse and compare before adding them to the dashboard. These findings shaped the dashboard and auto-save work.",
           ],
         },
@@ -291,9 +291,9 @@ export const industrialTool: CaseStudy = {
         {
           title: "A calculation tool designed with an expert",
           paragraphs: [
-            "A calculation expert did chemical dosing and consumption calculations in Excel. They wanted a tool that splits the calculation into clear steps. The result was a five-step calculation tool that opens in a modal from a Make a calculation button.",
+            "A calculation expert worked out chemical dosing and consumption in Excel. They wanted a tool that splits the calculation into clear steps. The result was a five-step calculation tool that opens in a modal from the Make a calculation button.",
             "We designed it together. We went through the steps of the calculation and worked out in which order the information is needed. I finished the designs on my own and showed them to the expert before development.",
-            "Not everything could be standardised. So the tool lets you write your own formula when the standard steps aren't enough. That way it guides the usual cases but doesn't stop the expert in exceptional ones.",
+            "Not everything could be standardised. So the tool lets you write your own formula when the standard steps aren't enough. That way it guides the usual cases but doesn't hold the expert back in the exceptions.",
             "No screenshots of the tool survive, so the images are a reconstruction. The steps match the original, but details may differ.",
           ],
           figures: [
@@ -311,7 +311,7 @@ export const industrialTool: CaseStudy = {
         {
           title: "An alert system as a side project",
           paragraphs: [
-            "With a separate budget, I designed an alert system. It was its own web app, not part of the main platform, and it was also used on tablets at the plants. It follows the chemical state of the process and warns when a tank is filling up or something else goes wrong.",
+            "With a separate budget, I designed an alert system. It was its own web app, not part of the main platform, and it was also used on tablets at the plants. It tracks the chemical state of the process and warns when a tank is filling up or something else goes wrong.",
             "The status view shows the risk forecast for the next four hours, recommended actions and the state of each part of the process. Every state has a text label as well as a colour, so it doesn't rely on colour alone.",
             "Users set three levels for the data: normal (green), mid level (orange) and warning level (red). Alerts always show on the plant's tablet and in the app. Users also choose who gets them by email or text message, and add new recipients by email address. That way an alert reaches both the process operator at the plant and field service, and it can be acknowledged in the same view.",
             "No screenshots of the original survive, so the images are a reconstruction based on one surviving image. Product names have been removed.",
@@ -335,13 +335,13 @@ export const industrialTool: CaseStudy = {
     impact: {
       heading: "Less manual work, more trust in the tool",
       intro: [
-        "**How my work shows in customers' results.** Wastewater treatment plants use chemicals to clean water. When the dose is exactly right, less chemical is used and costs come down. The right dose comes from following the process with reliable data, and customers and experts made those decisions in the very views I designed.",
+        "**How my work shaped customers' results.** Industrial sites and water treatment plants use chemicals to treat water. When the dose is exactly right, less chemical is used and costs come down. The right dose comes from following the process with reliable data, and customers and experts made those decisions in the very views I designed.",
         "One plant had been dosing by hand because its old measuring equipment couldn't be trusted. Once dosing became automatic and the process could be followed on the dashboards, the plant's process expert described the change like this: “Now we know what's happening 24 hours a day. There are good dashboards, accurate reports.”",
         "**Reports supported sales.** The company's goal was to bring separate databases onto one platform and use the data in selling services. With the reports, sales and experts can show customers their savings clearly.",
         "These results came from the chemistry, the calculation algorithms, the experts and the user interface working together. My part was making the data and calculations clear enough for customers and experts to follow and base decisions on.",
         "**Feedback from users and the team.** Interviews were short and schedules tight, so no separate usability metrics were set. They weren't needed to decide what to fix first, as a few interviews were enough to show what got in the way most. The impact of the changes is therefore based on feedback from users and the team.",
-        "Experts no longer had to dig for information in long text lists. People other than the most experienced could do calculations. Work was no longer lost when someone forgot to save or the connection dropped.",
-        "According to the developers and the project manager, collaboration went clearly better once designers and developers used the same tool.",
+        "Experts no longer had to dig for information in long text lists. Calculations were no longer limited to the most experienced people. Work was no longer lost when someone forgot to save or the connection dropped.",
+        "According to the developers and the project manager, collaboration became noticeably smoother once designers and developers used the same tool.",
       ],
       highlights: [
         {
