@@ -74,7 +74,6 @@ export default async function CaseStudyPage({
   // one with an intro and a "How it started" but no gallery yet gets exactly
   // those two sections instead of all-or-nothing.
   const full = hasFullContent(study);
-  const hasIntro = study.intro !== undefined && study.intro.length > 0;
   const hasGallery = study.gallery !== undefined && study.gallery.length > 0;
   const hasImpact = study.impactIntro !== undefined && study.impactCards !== undefined;
   const hasStarted = study.howItStarted !== undefined && study.howItStarted.length > 0;
@@ -95,7 +94,6 @@ export default async function CaseStudyPage({
     : [
     ...(!full ? [{ id: "about-project", label: cs.aboutProject }] : []),
     ...(study.glance ? [{ id: "glance", label: cs.glance.eyebrow }] : []),
-    ...(hasIntro ? [{ id: "starting-point", label: cs.startingPoint }] : []),
     ...(hasGallery ? [{ id: "screens", label: cs.screensToc }] : []),
     ...(hasImpact ? [{ id: "impact", label: cs.impact }] : []),
     ...(hasStarted ? [{ id: "started", label: cs.started }] : []),
@@ -159,7 +157,7 @@ export default async function CaseStudyPage({
 
                 {study.introVideo !== undefined && (
                   <Reveal>
-                    <IntroVideo video={study.introVideo} />
+                    <IntroVideo video={study.introVideo} playLabel={cs.watchVideo} />
                   </Reveal>
                 )}
 
@@ -172,24 +170,6 @@ export default async function CaseStudyPage({
                 {/* Each section is gated on its own field rather than on `full`.
                     The checks are inline (not the `has*` consts above) because
                     that is what narrows the optional props for TypeScript. */}
-                {study.intro !== undefined && study.intro.length > 0 && (
-                  <Reveal>
-                    <section
-                      id="starting-point"
-                      aria-labelledby="starting-point-heading"
-                      className="rounded-card glass p-card-pad"
-                    >
-                      <p className="font-mono-label text-mono-label uppercase text-muted m-0">{cs.startingPointEyebrow}</p>
-                      <h2 id="starting-point-heading" className="mt-4 m-0 text-section-h2 text-ink">
-                        {cs.startingPoint}
-                      </h2>
-                      <div className="mt-6">
-                        <ParagraphList paragraphs={study.intro} />
-                      </div>
-                    </section>
-                  </Reveal>
-                )}
-
                 {study.gallery !== undefined && study.gallery.length > 0 && (
                   <Reveal>
                     <ScreenshotGallery images={study.gallery} copy={cs} />
