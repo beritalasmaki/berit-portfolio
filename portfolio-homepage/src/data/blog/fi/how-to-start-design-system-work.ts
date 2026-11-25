@@ -50,11 +50,12 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Design System -työ menee usein pieleen samalla tavalla. Dan Mall kuvaa kirjassaan *Design that Scales* (2023) tilanteen, jossa työtä tehdään tyhjiössä.",
+      text: "Design System -työ menee usein pieleen samalla tavalla. Dan Mall kuvaa sen kirjassaan *Design that Scales* (2023):",
     },
     {
-      type: "paragraph",
+      type: "quote",
       text: "Jos Design System -tiimillä ei ole suoraa yhteyttä tuotetiimien arkeen ja todellisiin tarpeisiin, strategia lipsahtaa helposti arvailuksi: tehdään mahdollisimman paljon komponentteja siltä varalta, että joku niitä joskus tarvitsee. Silloin järjestelmä paisuu, monimutkaistuu ja alkaa palvella enemmän itseään kuin tuotteita.",
+      cite: "Dan Mall, Design that Scales (2023), vapaasti suomennettu",
     },
     {
       type: "paragraph",
