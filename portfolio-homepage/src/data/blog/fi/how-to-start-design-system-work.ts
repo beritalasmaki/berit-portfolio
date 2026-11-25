@@ -50,7 +50,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Design System -työ menee usein pieleen samalla tavalla: järjestelmää rakennetaan erillään niistä tiimeistä, jotka sitä käyttävät. Dan Mall kuvaa ilmiön kirjassaan *Design that Scales* (2023):",
+      text: "Design System -työ ajautuu usein sivuraiteille, kun järjestelmää rakennetaan erillään käyttäjätiimeistä. Dan Mall kuvaa ilmiön kirjassaan *Design that Scales* (2023):",
     },
     {
       type: "quote",
