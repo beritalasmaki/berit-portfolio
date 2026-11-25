@@ -206,7 +206,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "atomic",
-      title: "Monivaiheinen lomake (Multi-step form) hajotetaan palasiksi",
+      title: "Monivaiheinen lomake palasina",
       levels: [
         {
           name: "Atomi",
