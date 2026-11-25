@@ -267,6 +267,25 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
+      text: "Itse järjestän Figma-tiedoston samaa mallia noudattaen: ensin tokenit, sitten atomit, molekyylit ja organismit ja lopuksi sivupohjat. Alla on esimerkki omasta Design System -tiedostostani.",
+    },
+    {
+      type: "image",
+      src: "/blog/miten-design-system-tyo-kannattaa-aloittaa/figma-file-organisation.png",
+      alt: "Figma-tiedoston rakenne: About, Tokens, Atoms, Molecules, Organisms ja Templates sekä kunkin osion sisältämät komponentit ja sivupohjat.",
+      caption: "Figma-tiedoston rakenne: tokenit omana osionaan ja niiden jälkeen atomit, molekyylit, organismit ja sivupohjat.",
+      width: 751,
+      height: 317,
+    },
+    {
+      type: "links",
+      items: [
+        { label: "Design System -esimerkkisivusto", href: "https://design-system-use-case.vercel.app/" },
+        { label: "UI Kit Figmassa", href: "https://www.figma.com/design/WlwWrwDWzt5shl0sYocASJ/Design-System-by-Berit?node-id=4-4" },
+      ],
+    },
+    {
+      type: "paragraph",
       text: "Alussa päätetään myös, sidotaanko Design System tiettyyn teknologiaan, kuten Reactiin. Suosittelen, että ainakin tokenit määritellään teknologiasta riippumattomasti. Silloin ne voi ottaa käyttöön missä tahansa teknologiassa, vaikka yrityksen valinnat muuttuisivat.",
     },
     {
