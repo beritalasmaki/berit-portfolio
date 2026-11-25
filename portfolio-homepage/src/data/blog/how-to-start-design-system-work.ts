@@ -58,7 +58,7 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Building in a vacuum isn't only a technical mistake, it's a human one. You can't assume people will welcome a design system. To many designers and developers it can feel like an insult: the feeling is that their own work is being shut down and replaced by a shared system.",
+      text: "Building in a vacuum isn't only a technical mistake, it's a human one. You can't assume people will welcome a design system. To many designers and developers it can look like a threat to their professional skill: it can feel as if their own work is being devalued and replaced by a shared system.",
     },
     {
       type: "paragraph",

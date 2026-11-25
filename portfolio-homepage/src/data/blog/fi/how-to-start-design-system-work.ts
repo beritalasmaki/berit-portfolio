@@ -59,7 +59,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tyhjiössä tekeminen ei ole pelkkä tekninen virhe, vaan myös ihmisiin liittyvä. Ei voi olettaa, että ihmiset ottavat Design Systemin ilomielin vastaan. Monelle suunnittelijalle ja kehittäjälle se voi tuntua kunnianloukkaukselta: syntyy fiilis, että tässä ajetaan oma työ alas ja korvataan se yhteisellä järjestelmällä.",
+      text: "Tyhjiössä tekeminen ei ole pelkkä tekninen virhe, vaan myös ihmisiin liittyvä. Ei voi olettaa, että ihmiset ottavat Design Systemin ilomielin vastaan. Monelle suunnittelijalle ja kehittäjälle se voi näyttäytyä uhkana omalle ammattitaidolle: voi syntyä tunne, että oma työ arvotetaan alas ja korvataan yhteisellä järjestelmällä.",
     },
     {
       type: "paragraph",
