@@ -57,7 +57,10 @@ export type BlogBlock =
   /** A process on one line: stages in order, one of them highlighted. Drawn
    * as real text (`components/blog/TimelineDiagram.tsx`), side by side on a
    * wide screen and stacked on a phone. */
-  | ({ type: "timeline" } & TimelineExample);
+  | ({ type: "timeline" } & TimelineExample)
+  /** A component broken into atomic-design levels, with tokens set apart
+   * (`components/blog/AtomicDiagram.tsx`). */
+  | ({ type: "atomic" } & AtomicExample);
 
 export type StepsExample = {
   title: string;
@@ -88,6 +91,17 @@ export type TimelineExample = {
   labelledBy: string;
   /** In order. A highlighted item carries the orange and no stage number. */
   items: { label: string; note?: string; highlight?: boolean }[];
+};
+
+export type AtomicExample = {
+  title: string;
+  eyebrow?: string;
+  /** Shown above a level's parts, e.g. "Koostuu:". */
+  joinLabel: string;
+  /** Largest to smallest. `parts` is empty for the smallest level. */
+  levels: { name: string; example: string; text: string; parts: string[] }[];
+  /** Set apart from the levels: the values every level uses. */
+  tokens: { eyebrow: string; name: string; text: string; parts: string[] };
 };
 
 export type LadderExample = {

@@ -209,6 +209,37 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
       text: "Atomic Design -mallissa esimerkiksi painike ja tekstikenttä ovat atomeja, niistä koottu hakukenttä on molekyyli, ja ylätunniste, jossa on logo, hakukenttä ja navigaatio, on organismi. Organismeista kootaan vielä sivupohjia (templates) ja valmiita sivuja (pages), joissa osat nähdään kokonaisissa näkymissä ja oikealla sisällöllä.",
     },
     {
+      type: "atomic",
+      title: "Komponentti hajotetaan palasiksi",
+      joinLabel: "Koostuu",
+      levels: [
+        {
+          name: "Organismi",
+          example: "Ylätunniste",
+          text: "Valmis kokonaisuus, joka koostuu useammasta osasta.",
+          parts: ["Logo", "Hakukenttä", "Navigaatio"],
+        },
+        {
+          name: "Molekyyli",
+          example: "Hakukenttä",
+          text: "Pieni kokonaisuus, jossa muutama osa toimii yhdessä.",
+          parts: ["Tekstikenttä", "Painike"],
+        },
+        {
+          name: "Atomi",
+          example: "Tekstikenttä, painike",
+          text: "Pienin osa, jota ei jaeta enempää.",
+          parts: [],
+        },
+      ],
+      tokens: {
+        eyebrow: "Oma kerroksensa",
+        name: "Tokenit",
+        text: "Tokenit eivät ole osa komponentteja vaan niiden alla: nimettyjä arvoja, joita kaikki tasot käyttävät.",
+        parts: ["Värit", "Fonttikoot", "Välistykset"],
+      },
+    },
+    {
       type: "paragraph",
       text: "Mielestäni Atomic Design on paras vaihtoehto, koska se toimii sekä suunnittelijoille että kehittäjille ja kasvaa järjestelmän mukana:",
     },
