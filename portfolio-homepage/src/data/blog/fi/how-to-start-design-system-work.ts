@@ -220,6 +220,13 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
               height: 93,
             },
             {
+              label: "Label (Otsikko)",
+              src: "/blog/how-to-start-design-system-work/atomic-label.png",
+              alt: "Lomakekentän otsikko Full name tähtimerkillä, joka kertoo kentän olevan pakollinen.",
+              width: 172,
+              height: 52,
+            },
+            {
               label: "Text field (Tekstikenttä)",
               src: "/blog/how-to-start-design-system-work/atomic-text-field.png",
               alt: "Tyhjä tekstikenttä, jossa on teksti Research workspace.",

@@ -219,6 +219,13 @@ export const howToStartDesignSystemWork: BlogPost = {
               height: 93,
             },
             {
+              label: "Label",
+              src: "/blog/how-to-start-design-system-work/atomic-label.png",
+              alt: "A form field label, Full name, with an asterisk marking the field as required.",
+              width: 172,
+              height: 52,
+            },
+            {
               label: "Text field",
               src: "/blog/how-to-start-design-system-work/atomic-text-field.png",
               alt: "A text field with the text Research workspace.",
