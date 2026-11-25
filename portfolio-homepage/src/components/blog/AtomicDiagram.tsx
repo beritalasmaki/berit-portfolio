@@ -12,7 +12,7 @@ import type { Dictionary } from "@/i18n/dictionaries";
 const LEVELS = [
   "border border-rule-strong bg-cream/70",
   "border-[1.5px] border-accent bg-accent/15",
-  "border-2 border-accent bg-accent/30 shadow-frame-accent",
+  "border-2 border-accent bg-accent/30",
 ] as const;
 
 function Chips({ items }: { items: string[] }) {
@@ -33,43 +33,44 @@ function Chips({ items }: { items: string[] }) {
 export default function AtomicDiagram({ data, copy }: { data: AtomicExample; copy: Dictionary["blog"] }) {
   return (
     <figure className="m-0 rounded-card glass p-card-pad">
-      <figcaption className="flex flex-col gap-2">
+      <figcaption className="flex flex-col gap-1">
         <span className="font-mono-label text-mono-label uppercase text-muted">{data.eyebrow ?? copy.diagram}</span>
         <span className="text-card-h3 text-ink">{data.title}</span>
       </figcaption>
 
-      <ol className="mt-8 mb-0 flex list-none flex-col gap-3 p-0">
+      <ol className="mt-5 mb-0 flex list-none flex-col gap-2 p-0">
         {data.levels.map((level, i) => {
           const tone = LEVELS[Math.min(i, LEVELS.length - 1)];
-          const last = i === data.levels.length - 1;
           return (
-            <li key={level.name} className="flex flex-col gap-3">
-              <div className={`flex min-w-0 flex-col gap-2 rounded-card p-6 ${tone}`}>
-                <span className="font-mono-label text-mono-label uppercase text-muted">{level.name}</span>
-                <span className="text-sub-h4 text-ink">{level.example}</span>
-                <span className="text-body-sm text-ink-alt">{level.text}</span>
+            <li
+              key={level.name}
+              className={`grid min-w-0 grid-cols-1 gap-x-6 gap-y-2 rounded-card px-5 py-4 md:grid-cols-[170px_1fr] md:items-center ${tone}`}
+            >
+              <div className="flex flex-col">
+                <span className="text-sub-h4 text-ink">{level.name}</span>
+                <span className="text-[13px] leading-snug text-muted">{level.text}</span>
+              </div>
+              <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2">
+                <span className="text-body-sm font-bold text-ink">{level.example}</span>
                 {level.parts.length > 0 && (
-                  <div className="mt-2 flex flex-col gap-2">
+                  <>
                     <span className="font-mono-label text-mono-label uppercase text-muted">{data.joinLabel}</span>
                     <Chips items={level.parts} />
-                  </div>
+                  </>
                 )}
               </div>
-              {!last && (
-                <span aria-hidden="true" className="pl-6 font-mono-label text-mono-label text-muted">
-                  ↓
-                </span>
-              )}
             </li>
           );
         })}
       </ol>
 
-      <div className="mt-8 flex flex-col gap-2 rounded-card border-2 border-dashed border-rule-strong p-6">
-        <span className="font-mono-label text-mono-label uppercase text-muted">{data.tokens.eyebrow}</span>
-        <span className="text-sub-h4 text-ink">{data.tokens.name}</span>
-        <span className="text-body-sm text-ink-alt">{data.tokens.text}</span>
-        <div className="mt-2">
+      <div className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 rounded-card border-2 border-dashed border-rule-strong px-5 py-4 md:grid-cols-[170px_1fr] md:items-center">
+        <div className="flex flex-col">
+          <span className="text-sub-h4 text-ink">{data.tokens.name}</span>
+          <span className="text-[13px] leading-snug text-muted">{data.tokens.eyebrow}</span>
+        </div>
+        <div className="flex min-w-0 flex-col gap-2">
+          <span className="text-body-sm text-ink-alt">{data.tokens.text}</span>
           <Chips items={data.tokens.parts} />
         </div>
       </div>
