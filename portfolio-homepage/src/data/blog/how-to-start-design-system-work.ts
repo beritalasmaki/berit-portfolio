@@ -14,6 +14,11 @@ export const howToStartDesignSystemWork: BlogPost = {
   },
   body: [
     {
+      type: "quote",
+      text: "A design system is the official story of how an organization designs and builds digital interfaces.",
+      cite: "Brad Frost",
+    },
+    {
       type: "paragraph",
       text: "Design system work usually starts from one of two situations. Either a company already has several digital services it wants to make consistent, or a new company wants to build a design system alongside its product. The start is different, but the conditions for success are the same.",
     },
@@ -36,18 +41,107 @@ export const howToStartDesignSystemWork: BlogPost = {
       text: "**The design system is part of the business strategy.** A design system has to support the company's goals, such as faster development, a consistent customer experience or accessibility. When the link to those goals is visible, it's easier for management to justify resources for it in the future. Then the design system is seen as part of all digital work, not as a side project of the IT department.",
     },
 
-    { type: "heading", id: "existing-services", text: "When the company already has digital services", navLabel: "When services already exist" },
     {
-      type: "paragraph",
-      text: "**1. Map the current state.** Start by mapping the existing services and collecting the elements and solution patterns that repeat across them, such as buttons, forms and cards. The mapping also shows what works well and what doesn't. Turn the solutions that work into components and improve the weaker ones. It also tells you which colours, font sizes and spacings the tokens need.",
+      type: "heading",
+      id: "vacuum",
+      text: "The common mistake: building in a vacuum",
+      navLabel: "Building in a vacuum",
     },
     {
       type: "paragraph",
-      text: "**2. First components.** Begin by choosing a few of the most used components and finish them carefully, but only as far as the services have a real need. For a button, that could mean variations (primary, secondary, tertiary) and the states it needs. Add new variations only when a real use for them appears. A dark theme and separate mobile versions are decisions too: design them only if they are truly needed.",
+      text: "Design system work often goes wrong in the same way. Dan Mall describes it in his book *Design that Scales* (2023):",
+    },
+    {
+      type: "quote",
+      text: "When design system work is done in a vacuum and a design system team doesn't have specific use cases, their strategy seems to be something akin to “let's provide as many elements as product teams might need at any point,” leading to a bloated design system.",
+      cite: "Dan Mall, Design that Scales (2023)",
     },
     {
       type: "paragraph",
-      text: "**3. Phased adoption.** Build new services with the components from the start. Roll out the design system to old services in phases, with a plan of its own that has a schedule, responsible people and a clear starting point. Without a plan, updates easily go undone. Many old systems need renewing anyway, for example for security reasons, and it makes sense to tie the adoption of the design system to those renewals.",
+      text: "The way out is to start from real work. This is how I approach design system projects, especially when a product family already exists.",
+    },
+
+    {
+      type: "heading",
+      id: "product-family",
+      text: "My approach when a product family already exists",
+      navLabel: "When a product family exists",
+    },
+    {
+      type: "paragraph",
+      text: "I start from what already works, not from a blank page. The work goes in four steps:",
+    },
+    {
+      type: "findings",
+      items: [
+        {
+          title: "Audit",
+          body: "I go through the products and see which UI parts are used most, and in how many different versions.",
+        },
+        {
+          title: "Best parts",
+          body: "I keep the best existing solutions and clean up the ones that need it. I build on other designers' work instead of replacing it.",
+        },
+        {
+          title: "Pilots",
+          body: "I run several different pilots: a new product, a redesigned feature, and a whole view rebuilt as a prototype on the system. They show other designers and the developers what the system gives them.",
+        },
+        {
+          title: "Need before wish",
+          body: "I build what teams need, not everything they ask for. That keeps the system small and in use.",
+        },
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "**Phased adoption.** Build new services with the components from the start. Roll out the design system to old services in phases, with a plan that has a schedule, responsible people and a clear starting point. Tie it to the renewals old systems need anyway, for example for security reasons.",
+    },
+
+    {
+      type: "heading",
+      id: "pilots",
+      text: "Pilots: the best way to start and sustain a design system",
+      navLabel: "Pilots",
+    },
+    {
+      type: "paragraph",
+      text: "A pilot is a small, real project built with the design system as it grows. When Mall drives a pilot, the question that steers it is this:",
+    },
+    {
+      type: "quote",
+      text: "What do we NEED to be able to make with our design system? And not: What do we WANT to be able to make with our design system?",
+      cite: "Dan Mall, Design that Scales (2023)",
+    },
+    {
+      type: "list",
+      items: [
+        "**Don't start from the flagship products.** Build the products with the least red tape first, and do as many of them as you can, quickly. Be creative with the kinds of pilots you run and watch the design system grow naturally.",
+        "**Run three pilots at the same time.** Use a pilot scoreboard to pick three in sequence. Three is the smallest number at which patterns start to emerge.",
+        "**Give components context.** Pilots show components in real use, which you wouldn't get otherwise.",
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "When the system is built from components and variations that already exist, each ready-made variation is easier to create, because it comes from specific product requirements and a previously tested version.",
+    },
+
+    {
+      type: "heading",
+      id: "reuse-earlier-work",
+      text: "Why earlier work is the starting point",
+    },
+    {
+      type: "paragraph",
+      text: "Building on what designers have already made is not a shortcut. As Mall puts it:",
+    },
+    {
+      type: "quote",
+      text: "It's not about reinventing the wheel; it's about mass producing the wheel so more people can more easily experience their own adventures.",
+      cite: "Dan Mall, Design that Scales (2023)",
+    },
+    {
+      type: "paragraph",
+      text: "A design system is also “a place that spotlights teams' accomplishments”, so teams see their own work in it. The purpose of the design system team is to collect the best practices and prepare them for scaling. The result is that teams get a sharper focus on the most important and relevant customer needs.",
     },
 
     { type: "heading", id: "no-services-yet", text: "When there are no services yet" },
@@ -105,7 +199,7 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "In practice, tokens can be stored in one place, from where they are converted automatically into, for example, CSS variables, and the same names are used in Figma. Components can be built with one technology if all services are made with it. If there are several technologies, Web Components are an alternative: they work in most web technologies but require more specialist skills.",
+      text: "In practice, tokens can be stored in one place and converted automatically into, for example, CSS variables, with the same names used in Figma. If services use several technologies, Web Components work in most of them but require more specialist skills.",
     },
 
     { type: "heading", id: "series-continues", text: "The series continues" },
@@ -115,7 +209,7 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "The series is based on my thesis *Productising and managing a design system: Developing a service model for public sector digitalisation projects* (Vaasa University of Applied Sciences, 2026), which is available on [Theseus](https://www.theseus.fi/items/f6a21835-ccc6-496c-b6a3-341a814a798c). The thesis is written in Finnish.",
+      text: "The series is based on my thesis *Productising and managing a design system: Developing a service model for public sector digitalisation projects* (Vaasa University of Applied Sciences, 2026), which is available on [Theseus](https://www.theseus.fi/items/f6a21835-ccc6-496c-b6a3-341a814a798c). The thesis is written in Finnish. The quotes in this part are from Dan Mall's book *Design that Scales: Creating a Sustainable Design System Practice* (2023), except the opening one by Brad Frost.",
     },
   ],
 };

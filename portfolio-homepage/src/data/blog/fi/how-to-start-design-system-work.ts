@@ -15,6 +15,11 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
   },
   body: [
     {
+      type: "quote",
+      text: "A design system is the official story of how an organization designs and builds digital interfaces.",
+      cite: "Brad Frost",
+    },
+    {
       type: "paragraph",
       text: "Design System -työssä on yleensä kaksi lähtötilannetta. Joko yrityksellä on jo useita digitaalisia palveluita, joita halutaan yhtenäistää, tai uusi yritys haluaa rakentaa tuotteensa rinnalle Design Systemin. Aloitus on erilainen, mutta onnistumisen edellytykset ovat samat.",
     },
@@ -37,18 +42,107 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
       text: "**Design System on osa liiketoimintastrategiaa.** Design Systemin pitää tukea yrityksen tavoitteita, kuten nopeampaa kehitystä, yhtenäistä asiakaskokemusta tai saavutettavuutta. Kun yhteys tavoitteisiin näkyy, johdon on helpompi perustella sille resurssit myös jatkossa. Silloin Design System nähdään osana kaikkea digitaalista tekemistä eikä IT-osaston sivuprojektina.",
     },
 
-    { type: "heading", id: "existing-services", text: "Kun yrityksellä on jo digitaalisia palveluita", navLabel: "Kun palveluita on jo" },
     {
-      type: "paragraph",
-      text: "**1. Nykytilan kartoitus.** Työ kannattaa aloittaa kartoittamalla nykyiset palvelut ja keräämällä niistä yhteen toistuvat elementit ja ratkaisumallit, kuten painikkeet, lomakkeet ja kortit. Kartoituksessa näkee samalla, mikä toimii hyvin ja mikä ei. Toimivista ratkaisuista kannattaa tehdä komponentteja ja heikompia kehittää. Kartoitus kertoo myös, mitä värejä, fonttikokoja ja välistyksiä tokeneihin tarvitaan.",
+      type: "heading",
+      id: "vacuum",
+      text: "Yleinen virhe: rakentaminen tyhjiössä",
+      navLabel: "Rakentaminen tyhjiössä",
     },
     {
       type: "paragraph",
-      text: "**2. Ensimmäiset komponentit.** Aluksi kannattaa valita muutama eniten käytetty komponentti ja viimeistellä ne huolellisesti, mutta vain niiltä osin kuin palveluissa on todellista tarvetta. Painikkeessa se voi tarkoittaa esimerkiksi variaatioita (primary, secondary, tertiary) ja tarvittavia tiloja. Uusia variaatioita kannattaa lisätä vasta, kun niille tulee oikea käyttötarve. Myös tumma teema ja erilliset mobiiliversiot ovat päätöksiä: ne kannattaa suunnitella vain, jos niitä todella tarvitaan.",
+      text: "Design System -työ menee usein pieleen samalla tavalla. Dan Mall kuvaa sen kirjassaan *Design that Scales* (2023):",
+    },
+    {
+      type: "quote",
+      text: "When design system work is done in a vacuum and a design system team doesn't have specific use cases, their strategy seems to be something akin to “let's provide as many elements as product teams might need at any point,” leading to a bloated design system.",
+      cite: "Dan Mall, Design that Scales (2023)",
     },
     {
       type: "paragraph",
-      text: "**3. Vaiheittainen käyttöönotto.** Uudet palvelut kannattaa rakentaa heti komponenteilla. Vanhojen palveluiden käyttöönotto kannattaa vaiheistaa ja sille kannattaa tehdä oma suunnitelma, jossa on aikataulu, vastuuhenkilöt ja selkeä aloitus. Ilman suunnitelmaa päivitykset jäävät helposti tekemättä. Monet vanhat järjestelmät vaativat uudistamista muutenkin, esimerkiksi tietoturvan vuoksi, ja Design Systemin käyttöönotto kannattaa kytkeä näihin uudistuksiin.",
+      text: "Ulos pääsee lähtemällä liikkeelle oikeasta työstä. Näin lähestyn Design System -projekteja varsinkin silloin, kun tuoteperhe on jo olemassa.",
+    },
+
+    {
+      type: "heading",
+      id: "product-family",
+      text: "Näin lähestyn työtä, kun tuoteperhe on jo olemassa",
+      navLabel: "Kun tuoteperhe on jo olemassa",
+    },
+    {
+      type: "paragraph",
+      text: "Lähden liikkeelle siitä, mikä jo toimii, en tyhjältä pöydältä. Työ etenee neljässä vaiheessa:",
+    },
+    {
+      type: "findings",
+      items: [
+        {
+          title: "Audit",
+          body: "Käyn tuotteet läpi ja katson, mitkä UI-osat ovat eniten käytössä ja kuinka monena eri versiona.",
+        },
+        {
+          title: "Parhaat osat",
+          body: "Pidän parhaat olemassa olevat ratkaisut ja siivoan ne, jotka sitä tarvitsevat. Rakennan muiden suunnittelijoiden työn päälle sen sijaan, että korvaisin sen.",
+        },
+        {
+          title: "Pilotit",
+          body: "Ajan useita erilaisia pilotteja: uusi tuote, uudistettu ominaisuus ja kokonainen näkymä prototyyppinä järjestelmän päälle. Ne näyttävät muille suunnittelijoille ja kehittäjille, mitä järjestelmä heille antaa.",
+        },
+        {
+          title: "Tarve ennen toivetta",
+          body: "Rakennan sen, mitä tiimit tarvitsevat, en kaikkea mitä ne pyytävät. Silloin järjestelmä pysyy pienenä ja käytössä.",
+        },
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "**Vaiheittainen käyttöönotto.** Uudet palvelut kannattaa rakentaa heti komponenteilla. Vanhojen palveluiden käyttöönotto kannattaa vaiheistaa ja sille kannattaa tehdä oma suunnitelma, jossa on aikataulu, vastuuhenkilöt ja selkeä aloitus. Käyttöönoton voi kytkeä uudistuksiin, joita vanhat järjestelmät vaativat muutenkin, esimerkiksi tietoturvan vuoksi.",
+    },
+
+    {
+      type: "heading",
+      id: "pilots",
+      text: "Pilotit: paras tapa aloittaa ja ylläpitää Design System",
+      navLabel: "Pilotit",
+    },
+    {
+      type: "paragraph",
+      text: "Pilotti on pieni, oikea projekti, joka tehdään kasvavalla Design Systemillä. Kun Mall ajaa pilottia, sitä ohjaa tämä kysymys:",
+    },
+    {
+      type: "quote",
+      text: "What do we NEED to be able to make with our design system? And not: What do we WANT to be able to make with our design system?",
+      cite: "Dan Mall, Design that Scales (2023)",
+    },
+    {
+      type: "list",
+      items: [
+        "**Älä aloita flagship-tuotteista.** Rakenna ensin tuotteet, joissa on vähiten byrokratiaa, ja tee niitä mahdollisimman monta nopeasti. Ole luova pilottien tyypeissä ja katso, miten Design System kasvaa luontevasti.",
+        "**Tee kolme pilottia samaan aikaan.** Valitse kolme peräkkäin pilottien tulostaulun avulla. Kolme on pienin määrä, jossa kuviot alkavat näkyä.",
+        "**Anna komponenteille konteksti.** Pilotit näyttävät komponentit oikeassa käytössä, mitä ei muuten saisi.",
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "Kun järjestelmää rakennetaan jo tehdyistä komponenteista ja variaatioista, jokainen valmis variaatio on helpompi tehdä, koska se perustuu tiettyihin tuotevaatimuksiin ja jo testattuun versioon.",
+    },
+
+    {
+      type: "heading",
+      id: "reuse-earlier-work",
+      text: "Miksi aiempi työ on lähtökohta",
+    },
+    {
+      type: "paragraph",
+      text: "Suunnittelijoiden aiemman työn päälle rakentaminen ei ole oikotie. Mallin sanoin:",
+    },
+    {
+      type: "quote",
+      text: "It's not about reinventing the wheel; it's about mass producing the wheel so more people can more easily experience their own adventures.",
+      cite: "Dan Mall, Design that Scales (2023)",
+    },
+    {
+      type: "paragraph",
+      text: "Design System on myös “a place that spotlights teams' accomplishments”, eli tiimit näkevät siinä oman työnsä. Design System -tiimin tarkoitus on kerätä parhaat käytännöt ja valmistella ne skaalattaviksi. Tuloksena tiimit saavat tarkemman fokuksen tärkeimpiin ja oleellisimpiin asiakastarpeisiin.",
     },
 
     { type: "heading", id: "no-services-yet", text: "Kun palveluita ei vielä ole" },
@@ -106,7 +200,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Käytännössä tokenit voi tallentaa yhteen paikkaan, josta ne muunnetaan automaattisesti esimerkiksi CSS-muuttujiksi, ja samat nimet otetaan käyttöön Figmassa. Komponentit voi rakentaa yhdellä teknologialla, jos kaikki palvelut tehdään sillä. Jos teknologioita on useita, vaihtoehtona ovat Web Componentit, jotka toimivat useimmissa web-teknologioissa mutta vaativat enemmän erityisosaamista.",
+      text: "Käytännössä tokenit voi tallentaa yhteen paikkaan, josta ne muunnetaan automaattisesti esimerkiksi CSS-muuttujiksi, ja samat nimet otetaan käyttöön Figmassa. Jos palveluissa on useita teknologioita, Web Componentit toimivat useimmissa niistä mutta vaativat enemmän erityisosaamista.",
     },
 
     { type: "heading", id: "series-continues", text: "Sarja jatkuu" },
@@ -116,7 +210,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Sarja perustuu opinnäytetyöhöni *Design Systemin tuotteistaminen ja johtaminen: Palvelumallin kehittäminen julkisen sektorin digitalisaatiohankkeisiin* (Vaasan ammattikorkeakoulu, 2026), joka löytyy [Theseuksesta](https://www.theseus.fi/items/f6a21835-ccc6-496c-b6a3-341a814a798c).",
+      text: "Sarja perustuu opinnäytetyöhöni *Design Systemin tuotteistaminen ja johtaminen: Palvelumallin kehittäminen julkisen sektorin digitalisaatiohankkeisiin* (Vaasan ammattikorkeakoulu, 2026), joka löytyy [Theseuksesta](https://www.theseus.fi/items/f6a21835-ccc6-496c-b6a3-341a814a798c). Tämän osan lainaukset ovat Dan Mallin kirjasta *Design that Scales: Creating a Sustainable Design System Practice* (2023), lukuun ottamatta avauksen Brad Frostin lainausta.",
     },
   ],
 };
