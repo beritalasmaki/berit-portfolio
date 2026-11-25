@@ -6,8 +6,10 @@ import type { Dictionary } from "@/i18n/dictionaries";
  * A component broken into its parts, smallest at the top and the finished
  * solution at the bottom, each level shown with real examples from a design
  * system. Tokens sit apart in a dashed box at the very top, because they
- * aren't a level of the components but the values every level uses. All
- * levels share one neutral look so that nothing reads as highlighted.
+ * aren't a level of the components but the values every level uses. There is
+ * one card only: the sections inside it are told apart by thin rules (a
+ * dashed one under the tokens), not by cards of their own, and all levels
+ * share one neutral look so that nothing reads as highlighted.
  *
  * Each level's examples sit in an even grid of equal-height tiles, with the
  * image centred in its tile and the caption under it, so a row lines up
@@ -48,7 +50,7 @@ export default function AtomicDiagram({ data, copy }: { data: AtomicExample; cop
         <span className="text-card-h3 text-ink">{data.title}</span>
       </figcaption>
 
-      <div className="mt-5 flex flex-col gap-3 rounded-card border-2 border-dashed border-rule-strong px-5 py-4">
+      <div className="mt-6 flex flex-col gap-3 border-t border-rule-strong pt-5 pb-5">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <span className="text-sub-h4 text-ink">{data.tokens.name}</span>
           <span className="text-[13px] leading-snug text-muted">{data.tokens.eyebrow}</span>
@@ -57,11 +59,11 @@ export default function AtomicDiagram({ data, copy }: { data: AtomicExample; cop
         <Chips items={data.tokens.parts} />
       </div>
 
-      <ol className="mt-3 mb-0 flex list-none flex-col gap-3 p-0">
-        {data.levels.map((level) => (
+      <ol className="m-0 flex list-none flex-col p-0">
+        {data.levels.map((level, i) => (
           <li
             key={level.name}
-            className="flex min-w-0 flex-col gap-4 rounded-card border border-rule-strong bg-cream/70 px-5 py-4"
+            className={`flex min-w-0 flex-col gap-4 border-t py-5 border-rule-strong ${i === 0 ? "border-dashed" : ""}`}
           >
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <span className="text-sub-h4 text-ink">{level.name}</span>
