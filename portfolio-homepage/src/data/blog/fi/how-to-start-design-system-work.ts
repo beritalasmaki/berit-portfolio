@@ -206,7 +206,24 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Atomic Design -mallissa esimerkiksi painike ja tekstikenttä ovat atomeja, niistä koottu hakukenttä on molekyyli, ja ylätunniste, jossa on logo, hakukenttä ja navigaatio, on organismi. Mallin lisäksi kannattaa sopia muutamasta käytännöstä:",
+      text: "Atomic Design -mallissa esimerkiksi painike ja tekstikenttä ovat atomeja, niistä koottu hakukenttä on molekyyli, ja ylätunniste, jossa on logo, hakukenttä ja navigaatio, on organismi.",
+    },
+    {
+      type: "paragraph",
+      text: "Mielestäni Atomic Design on paras vaihtoehto, koska se toimii sekä suunnittelijoille että kehittäjille ja kasvaa järjestelmän mukana:",
+    },
+    {
+      type: "list",
+      items: [
+        "**Yhteinen kieli.** Suunnittelijat, kehittäjät ja tuoteomistajat puhuvat samoista asioista samoilla nimillä, eikä jokaisessa keskustelussa tarvitse ensin sopia termeistä.",
+        "**Jokainen osa tehdään vain kerran.** Isommat kokonaisuudet koostuvat samoista pienistä osista, joten esimerkiksi painikkeeseen tehty muutos päivittyy kaikkialle, missä sitä käytetään.",
+        "**Sopii olemassa olevan työn päälle.** Kartoituksessa löytyneet toistuvat elementit on helppo sijoittaa tasoille, ja pilotit voi rakentaa pienistä osista isompiin.",
+        "**Kasvaa tarpeen mukaan.** Voit aloittaa muutamalla atomilla ja tokeneilla ja lisätä isompia kokonaisuuksia vasta, kun niille on oikea tarve.",
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "Mallissa on myös rajatapauksia, esimerkiksi se, onko jokin osa molekyyli vai organismi. Siksi rajat kannattaa sopia yhdessä jo alussa. Mallin lisäksi kannattaa sopia muutamasta käytännöstä:",
     },
     {
       type: "list",
