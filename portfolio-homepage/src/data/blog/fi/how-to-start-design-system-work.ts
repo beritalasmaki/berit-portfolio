@@ -300,7 +300,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Sarja perustuu opinnäytetyöhöni *Design Systemin tuotteistaminen ja johtaminen: Palvelumallin kehittäminen julkisen sektorin digitalisaatiohankkeisiin* (Vaasan ammattikorkeakoulu, 2026), joka löytyy [Theseuksesta](https://www.theseus.fi/items/f6a21835-ccc6-496c-b6a3-341a814a798c). Tämän osan lainaukset on suomennettu vapaasti, ja ne ovat Dan Mallin kirjasta *Design that Scales: Creating a Sustainable Design System Practice* (2023), lukuun ottamatta avauksen Brad Frostin lainausta.",
+      text: "Sarja perustuu opinnäytetyöhöni *Design Systemin tuotteistaminen ja johtaminen: Palvelumallin kehittäminen julkisen sektorin digitalisaatiohankkeisiin* (Vaasan ammattikorkeakoulu, 2026), joka löytyy [Theseuksesta](https://www.theseus.fi/items/f6a21835-ccc6-496c-b6a3-341a814a798c).",
     },
   ],
 };

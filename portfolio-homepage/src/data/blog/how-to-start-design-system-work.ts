@@ -44,12 +44,12 @@ export const howToStartDesignSystemWork: BlogPost = {
     {
       type: "heading",
       id: "vacuum",
-      text: "The common mistake: building in a vacuum",
-      navLabel: "Building in a vacuum",
+      text: "The common mistake: building apart from the product teams",
+      navLabel: "Building apart from teams",
     },
     {
       type: "paragraph",
-      text: "Design system work often goes wrong in the same way. Dan Mall describes it in his book *Design that Scales* (2023):",
+      text: "Design system work often ends up on the sidelines when the system is built apart from the teams that use it. Dan Mall describes the phenomenon in his book *Design that Scales* (2023):",
     },
     {
       type: "quote",
@@ -58,23 +58,23 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Building in a vacuum isn't only a technical mistake, it's a human one. You can't assume people will welcome a design system. To many designers and developers it can look like a threat to their professional skill: it can feel as if their own work is being devalued and replaced by a shared system.",
+      text: "Building apart from the teams isn't only a technical mistake, it's a human one. You can't assume people will welcome a design system. To many designers and developers it can look like a threat to their professional skill: it can feel as if their own work is being devalued and replaced by a shared system.",
     },
     {
       type: "paragraph",
-      text: "That's why a design system has to be a project of the whole organisation, one that takes everyone's handprint into account. When the system is built from solutions teams have already made, they see their own work in it and don't experience it as a threat. In practice, that means for example:",
+      text: "That's why a design system has to be a project of the whole organisation, one that takes everyone's handprint into account. In practice, that means for example:",
     },
     {
       type: "list",
       items: [
-        "**Involve the makers from the start.** Designers and developers take part in the decisions and aren't only the receivers of a finished system.",
-        "**Make earlier work visible.** Say which team a component's solution came from and why it was chosen.",
-        "**Show what the team gets.** A design system should reduce teams' work, not just add rules to it.",
+        "**Involve the makers from the start.** Designers and developers from the product teams take part in deciding the solutions, instead of only receiving a ready-made system.",
+        "**Give credit where it's due.** Say openly which team a component's solution came from and why it was chosen as part of the shared system.",
+        "**Show the concrete benefit.** A design system should make teams' everyday work easier, not just bring more rules and restrictions. A ready-made form component, for example, with accessibility and error messages already solved, saves every team from doing the same work again.",
       ],
     },
     {
       type: "paragraph",
-      text: "The way out is to start from real work. This is how I approach design system projects, especially when a product family already exists.",
+      text: "This works best when you start from real work and real needs. This is exactly how I approach design system projects, especially when a product family already exists.",
     },
 
     {
@@ -92,25 +92,25 @@ export const howToStartDesignSystemWork: BlogPost = {
       items: [
         {
           title: "Audit",
-          body: "I go through the products and see which UI parts are used most, and in how many different versions.",
+          body: "I go through the current products and find out which UI parts repeat most, and how many different versions of them have come to exist.",
         },
         {
           title: "Best parts",
-          body: "I keep the best existing solutions and clean up the ones that need it. I build on other designers' work instead of replacing it.",
+          body: "I keep the best existing solutions and unify the parts that need tidying. I make use of other designers' work instead of throwing it away and starting from scratch.",
         },
         {
           title: "Pilots",
-          body: "I run several different pilots: a new product, a redesigned feature, and a whole view rebuilt as a prototype on the system. They show other designers and the developers what the system gives them.",
+          body: "I test the system in practice with a few different pilots: for example a new product, a feature being redesigned, or a prototype of a whole view. They show other designers and developers directly how the system makes their work easier.",
         },
         {
           title: "Need before wish",
-          body: "I build what teams need, not everything they ask for. That keeps the system small and in use.",
+          body: "I build what teams really need, not everything that gets asked for. That keeps the system manageable and in active use.",
         },
       ],
     },
     {
       type: "paragraph",
-      text: "**Phased adoption.** Build new services with the components from the start. Roll out the design system to old services in phases, with a plan that has a schedule, responsible people and a clear starting point. Tie it to the renewals old systems need anyway, for example for security reasons.",
+      text: "**Phased adoption.** New services should be built with the components from the start. For old services, adoption should be split into phases, with its own plan that has a clear start, a schedule and responsible people. The change goes most easily when it is tied to other updates the old systems need anyway, such as security renewals.",
     },
 
     {
@@ -121,34 +121,36 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "A pilot is a small, real project built with the design system as it grows. When Mall drives a pilot, the question that steers it is this:",
+      text: "A pilot is a small, real project built with the design system as it grows. Mall steers a pilot with one question:",
     },
     {
       type: "quote",
-      text: "What do we NEED to be able to make with our design system? And not: What do we WANT to be able to make with our design system?",
+      text: "What do we __need__ to be able to make with our design system? And not: What do we __want__ to be able to make with our design system?",
       cite: "Dan Mall, Design that Scales (2023)",
+    },
+    {
+      type: "paragraph",
+      text: "In other words, the starting point is need, not want.",
     },
     {
       type: "list",
       items: [
-        "**Don't start from the flagship products.** Build the products with the least red tape first, and do as many of them as you can, quickly. Be creative with the kinds of pilots you run and watch the design system grow naturally.",
-        "**Run three pilots at the same time.** Use a pilot scoreboard to pick three in sequence. Three is the smallest number at which patterns start to emerge.",
-        "**Give components context.** Pilots show components in real use, which you wouldn't get otherwise.",
+        "**Don't start from flagship products.** Start from products with the least red tape and carry them to the finish quickly. Experiment boldly with different kinds of pilots and let the design system grow naturally with them.",
+        "**Run three pilots in parallel.** Choose the pilots in advance by agreed criteria, for example how quickly they can be finished and how little red tape they involve. Three is the smallest number at which you can already see which needs and solutions repeat from one product to another.",
+        "**Give components context.** Pilots show components in a real environment. That kind of understanding doesn't come from designing parts in isolation.",
+        "**Build on what exists.** When new versions are made from existing components, each new variation is easier to create than the last. It doesn't come from guesswork but from the requirements of a real product and a base that has already been tested.",
       ],
-    },
-    {
-      type: "paragraph",
-      text: "When the system is built from components and variations that already exist, each ready-made variation is easier to create, because it comes from specific product requirements and a previously tested version.",
     },
 
     {
       type: "heading",
       id: "reuse-earlier-work",
-      text: "Why earlier work is the starting point",
+      text: "Why build a design system on earlier work?",
+      navLabel: "Why build on earlier work",
     },
     {
       type: "paragraph",
-      text: "Building on what designers have already made is not a shortcut. As Mall puts it:",
+      text: "Making use of work that other designers have already done is not a shortcut or laziness. As Mall sums it up:",
     },
     {
       type: "quote",
@@ -157,7 +159,11 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "A design system is also “a place that spotlights teams' accomplishments”, so teams see their own work in it. The purpose of the design system team is to collect the best practices and prepare them for scaling. The result is that teams get a sharper focus on the most important and relevant customer needs.",
+      text: "A design system works as a showcase for teams' successes (“a place that spotlights teams' accomplishments”). When teams recognise their own handprint in the system, commitment comes naturally.",
+    },
+    {
+      type: "paragraph",
+      text: "The design system team's task is to collect the best practices and refine them for others to use. Then product teams don't have to spend time solving the basics, and can focus on what really matters to customers.",
     },
 
     { type: "heading", id: "no-services-yet", text: "When there are no services yet" },
@@ -293,7 +299,7 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "The series is based on my thesis *Productising and managing a design system: Developing a service model for public sector digitalisation projects* (Vaasa University of Applied Sciences, 2026), which is available on [Theseus](https://www.theseus.fi/items/f6a21835-ccc6-496c-b6a3-341a814a798c). The thesis is written in Finnish. The quotes in this part are from Dan Mall's book *Design that Scales: Creating a Sustainable Design System Practice* (2023), except the opening one by Brad Frost.",
+      text: "The series is based on my thesis *Productising and managing a design system: Developing a service model for public sector digitalisation projects* (Vaasa University of Applied Sciences, 2026), which is available on [Theseus](https://www.theseus.fi/items/f6a21835-ccc6-496c-b6a3-341a814a798c). The thesis is written in Finnish.",
     },
   ],
 };
