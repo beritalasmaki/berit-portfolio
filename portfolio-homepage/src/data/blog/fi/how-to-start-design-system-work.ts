@@ -137,7 +137,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
       type: "list",
       items: [
         "**Älä aloita lippulaivatuotteista.** Aloita tuotteista, joissa on vähiten byrokratiaa, ja vie niitä maaliin nopeassa tahdissa. Kokeile rohkeasti erilaisia pilotteja ja anna Design Systemin kasvaa luontevasti niiden mukana.",
-        "**Tee kolme pilottia rinnakkain.** Valitse kolme pilottia peräkkäin erillisen valinta- tai pisteytystaulukon avulla. Kolme on pienin määrä, josta alkaa jo nähdä, mitkä tarpeet ja ratkaisut toistuvat tuotteesta toiseen.",
+        "**Tee kolme pilottia rinnakkain.** Valitse pilotit etukäteen sovittujen perusteiden mukaan, esimerkiksi sen mukaan, kuinka nopeasti ne saa maaliin ja kuinka vähän byrokratiaa niihin liittyy. Kolme on pienin määrä, josta alkaa jo nähdä, mitkä tarpeet ja ratkaisut toistuvat tuotteesta toiseen.",
         "**Anna komponenteille konteksti.** Pilotit näyttävät komponentit oikeassa käyttöympäristössä. Sellaista ymmärrystä ei synny suunnittelemalla osia irrallaan.",
         "**Rakenna aiemman päälle.** Kun uusia versioita tehdään jo olemassa olevien komponenttien pohjalta, jokainen uusi variaatio on edellistä helpompi toteuttaa. Se ei synny arvauksesta, vaan perustuu oikean tuotteen vaatimuksiin ja jo testattuun pohjaan.",
       ],
