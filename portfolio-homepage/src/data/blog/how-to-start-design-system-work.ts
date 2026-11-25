@@ -191,10 +191,6 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Good examples can be found in the large open design systems. IBM's [Carbon Design System](https://carbondesignsystem.com) names colours by purpose, for example `$text-secondary` or `$layer`, and each theme gives them its own values. This way the same token can be dark in a light theme and light in a dark theme. Google's [Material Design 3](https://m3.material.io) in turn shows how a whole tonal palette and matching colour roles can be derived from a single brand colour.",
-    },
-    {
-      type: "paragraph",
       text: "Nathan Curtis's article [Color in Design Systems](https://medium.com/eightshapes-llc/color-in-design-systems-a1c80f65fa3) gives practical advice on bringing brand colours into a design system. Among other things, he recommends agreeing on the brand's main colours early, involving the people responsible for the brand before changes are made to them, and checking contrast at the start and again along the way.",
     },
 

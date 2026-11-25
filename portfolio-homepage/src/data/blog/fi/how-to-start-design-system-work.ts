@@ -192,10 +192,6 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Hyviä esimerkkejä löytyy suurista avoimista Design Systemeistä. IBM:n [Carbon Design System](https://carbondesignsystem.com) nimeää värit käyttötarkoituksen mukaan, esimerkiksi `$text-secondary` tai `$layer`, ja jokainen teema antaa niille omat arvonsa. Näin sama token voi olla vaaleassa teemassa tumma ja tummassa teemassa vaalea. Googlen [Material Design 3](https://m3.material.io) puolestaan näyttää, miten yhdestä brändiväristä voidaan johtaa kokonainen sävypaletti ja siihen sopivat väriroolit.",
-    },
-    {
-      type: "paragraph",
       text: "Käytännön neuvoja brändivärien viemisestä Design Systemiin antaa Nathan Curtisin artikkeli [Color in Design Systems](https://medium.com/eightshapes-llc/color-in-design-systems-a1c80f65fa3). Hän suosittelee esimerkiksi sopimaan brändin pääväreistä varhain, ottamaan brändistä vastaavat mukaan ennen kuin niihin tehdään muutoksia ja tarkistamaan kontrastit heti alussa ja uudelleen matkan varrella.",
     },
 
