@@ -247,10 +247,10 @@ export const howToStartDesignSystemWork: BlogPost = {
             },
             {
               label: "Form progress",
-              src: "/blog/how-to-start-design-system-work/atomic-form-progress.png",
-              alt: "The progress of a three-step form: the first step is in progress and the next two have not started.",
+              src: "/blog/how-to-start-design-system-work/atomic-form-progress-v2.png",
+              alt: "The progress of a three-step form: three numbered steps with the first one selected.",
               width: 795,
-              height: 198,
+              height: 120,
             },
             {
               label: "Form actions",
@@ -267,10 +267,10 @@ export const howToStartDesignSystemWork: BlogPost = {
           items: [
             {
               label: "Multi-step form",
-              src: "/blog/how-to-start-design-system-work/atomic-multi-step-form.png",
+              src: "/blog/how-to-start-design-system-work/atomic-multi-step-form-v2.png",
               alt: "A finished multi-step form: an introduction, the progress through the steps, a form field and the buttons.",
               width: 834,
-              height: 903,
+              height: 765,
             },
           ],
         },

@@ -248,10 +248,10 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
             },
             {
               label: "Form progress (Lomakkeen eteneminen)",
-              src: "/blog/how-to-start-design-system-work/atomic-form-progress.png",
-              alt: "Kolmivaiheisen lomakkeen eteneminen: ensimmäinen vaihe on kesken ja kaksi seuraavaa ei ole aloitettu.",
+              src: "/blog/how-to-start-design-system-work/atomic-form-progress-v2.png",
+              alt: "Kolmivaiheisen lomakkeen eteneminen: kolme numeroitua vaihetta, joista ensimmäinen on valittuna.",
               width: 795,
-              height: 198,
+              height: 120,
             },
             {
               label: "Form actions (Lomakkeen painikkeet)",
@@ -268,10 +268,10 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
           items: [
             {
               label: "Multi-step form (Monivaiheinen lomake)",
-              src: "/blog/how-to-start-design-system-work/atomic-multi-step-form.png",
+              src: "/blog/how-to-start-design-system-work/atomic-multi-step-form-v2.png",
               alt: "Valmis monivaiheinen lomake: johdanto, vaiheiden eteneminen, lomakekenttä ja painikkeet.",
               width: 834,
-              height: 903,
+              height: 765,
             },
           ],
         },

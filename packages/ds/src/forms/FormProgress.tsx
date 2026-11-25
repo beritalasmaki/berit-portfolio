@@ -13,17 +13,14 @@ type FormProgressProps = {
 const statusText = { complete: "Completed", current: "In progress", upcoming: "Not started" } as const;
 
 /**
- * Where the person is in a multi-step form: numbered nodes on one line, a status under each step, and "Step 2 of 4" as text.
- * The line fills with the accent colour as steps are completed.
+ * Where the person is in a multi-step form: numbered nodes on one line with the step name under each.
+ * The line fills with the accent colour as steps are completed. The position is not repeated as a heading or a label:
+ * the status of each step ("Completed", "In progress", "Not started") is read out by assistive technology but not shown.
  */
 export function FormProgress({ steps, current, label = "Form progress", className = "" }: FormProgressProps) {
   return (
     <nav aria-label={label} className={className}>
-      <p className="m-0 flex flex-wrap items-baseline gap-2">
-        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--preview-accent,var(--color-action-accent-dark))]">Step {current} of {steps.length}</span>
-        <span className="text-[15px] font-semibold text-[var(--preview-content,var(--color-content-primary))]">{steps[current - 1]}</span>
-      </p>
-      <ol className="m-0 mt-4 flex list-none p-0">
+      <ol className="m-0 flex list-none p-0">
         {steps.map((step, index) => {
           const number = index + 1;
           const state = number < current ? "complete" : number === current ? "current" : "upcoming";
@@ -42,7 +39,7 @@ export function FormProgress({ steps, current, label = "Form progress", classNam
                 <span aria-hidden="true" className={line(number < current, index === steps.length - 1)} />
               </div>
               <span className={`text-sm ${state === "current" ? "font-bold text-[var(--preview-content,var(--color-content-primary))]" : "font-semibold text-[var(--preview-content-secondary,var(--color-content-secondary))]"}`}>{step}</span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--preview-content-muted,var(--color-content-muted))]">{statusText[state]}</span>
+              <span className="sr-only">{statusText[state]}</span>
             </li>
           );
         })}
