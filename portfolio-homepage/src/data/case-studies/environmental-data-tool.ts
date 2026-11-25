@@ -64,8 +64,10 @@ export const environmentalDataTool: CaseStudy = {
 
   gallery: [
     { src: "/case/syke-graph.png", alt: "Observation data graph view", caption: "Observation data", width: 1208, height: 700 },
-    { src: "/case/syke-table.png", alt: "Monitoring locations table", caption: "Monitoring locations", width: 1208, height: 708 },
-    { src: "/case/syke-map.png", alt: "Monitoring locations map", caption: "Locations map", width: 1208, height: 714 },
+    { src: "/case/syke-water-list.png", alt: "Water monitoring: monitoring locations list", caption: "Water monitoring, list", width: 1800, height: 1162 },
+    { src: "/case/syke-water-map.png", alt: "Water monitoring: monitoring locations map", caption: "Water monitoring, map", width: 1800, height: 1205 },
+    { src: "/case/syke-zooplankton-map.png", alt: "Zooplankton system: sampling sites map", caption: "Zooplankton, map", width: 1800, height: 1205 },
+    { src: "/case/syke-diatom-map.png", alt: "Diatom system: observation sites map", caption: "Diatoms, map", width: 1800, height: 1205 },
     {
       src: "/case/syke-redlist.png",
       alt: "Red List of habitat types service",
@@ -81,7 +83,7 @@ export const environmentalDataTool: CaseStudy = {
       height: 1802,
     },
   ],
-  sneakPeekImages: ["/case/syke-map.png", "/case/syke-graph.png"],
+  sneakPeekImages: ["/case/syke-water-map.png", "/case/syke-graph.png"],
 
   impactIntro: "These impacts are based on feedback gathered directly from users during the projects.",
   impactCards: [
