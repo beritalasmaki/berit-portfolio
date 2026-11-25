@@ -67,7 +67,7 @@ export const environmentalDataTool: CaseStudy = {
     { src: "/case/syke-water-list.png", alt: "Water monitoring: monitoring locations list", caption: "Water monitoring, list", width: 1800, height: 1162 },
     { src: "/case/syke-water-map.png", alt: "Water monitoring: monitoring locations map", caption: "Water monitoring, map", width: 1800, height: 1205 },
     { src: "/case/syke-zooplankton-map.png", alt: "Zooplankton system: sampling sites map", caption: "Zooplankton, map", width: 1800, height: 1205 },
-    { src: "/case/syke-diatom-map.png", alt: "Diatom system: observation sites map", caption: "Diatoms, map", width: 1800, height: 1205 },
+    { src: "/case/syke-diatom-map-v2.png", alt: "Diatom system: observation sites map", caption: "Diatoms, map", width: 1800, height: 1205 },
     {
       src: "/case/syke-redlist.png",
       alt: "Red List of habitat types service",
