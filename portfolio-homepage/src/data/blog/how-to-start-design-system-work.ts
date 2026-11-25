@@ -195,11 +195,60 @@ export const howToStartDesignSystemWork: BlogPost = {
     { type: "heading", id: "structure-and-technology", text: "Structure and technology" },
     {
       type: "paragraph",
-      text: "I usually use Brad Frost's Atomic Design model, where larger wholes are built from small parts: atoms into molecules, and molecules into organisms. Choose the structure at the start, so that everyone uses the same terms.",
+      text: "I usually use Brad Frost's [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/) model, where larger wholes are built from small parts: atoms into molecules, and molecules into organisms. Choose the structure at the start, so that everyone uses the same terms.",
     },
     {
       type: "paragraph",
-      text: "In Atomic Design, for example, a button and a text field are atoms, a search field built from them is a molecule, and a header with a logo, a search field and navigation is an organism. Besides the model, it's worth agreeing on a few practices:",
+      text: "In Atomic Design, for example, a button and a text field are atoms, a search field built from them is a molecule, and a header with a logo, a search field and navigation is an organism. Organisms are then put together into templates and finished pages, where the parts are seen in whole views with real content.",
+    },
+    {
+      type: "atomic",
+      title: "A component broken into parts",
+      joinLabel: "Made of",
+      levels: [
+        {
+          name: "Organism",
+          example: "Header",
+          text: "A finished whole",
+          parts: ["Logo", "Search field", "Navigation"],
+        },
+        {
+          name: "Molecule",
+          example: "Search field",
+          text: "A few parts together",
+          parts: ["Text field", "Button"],
+        },
+        {
+          name: "Atom",
+          example: "Text field, button",
+          text: "The smallest part",
+          parts: [],
+        },
+      ],
+      tokens: {
+        eyebrow: "Its own layer",
+        name: "Tokens",
+        text: "Named values that every level uses.",
+        parts: ["Colours", "Font sizes", "Spacing"],
+      },
+    },
+    {
+      type: "paragraph",
+      text: "I think Atomic Design is the best option, because it works for both designers and developers and grows with the system:",
+    },
+    {
+      type: "list",
+      items: [
+        "**A shared language.** Designers, developers and product owners talk about the same things with the same names, so terms don't have to be agreed again in every conversation.",
+        "**Every part is made only once.** Larger wholes are built from the same small parts, so a change to a button, for example, updates everywhere it is used.",
+        "**Faster prototyping.** New views are put together quickly from ready-made, tested parts, and can be tried with real content already at the template and page level.",
+        "**Fits on top of existing work.** The repeated elements found in the audit are easy to place on the levels, and pilots can be built from small parts to larger ones.",
+        "**Grows as needed.** You can start with a few atoms and tokens and add larger wholes only when there is a real need.",
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "The model also has borderline cases, for example whether a part is a molecule or an organism. According to some design teams, not every level needs to be followed to the letter: the biggest benefit comes from defining the atoms carefully and relying on them, and molecules and organisms are talked about only when it helps. I see the model first and foremost as a flexible way of thinking, with limits worth agreeing together at the start. Besides the model, it's worth agreeing on a few practices:",
     },
     {
       type: "list",
@@ -211,11 +260,30 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "At the start you also decide whether the design system is tied to a specific technology, such as React. I recommend that at least the tokens are defined independently of technology. Then they can be adopted in any technology, even if the company's choices change.",
+      text: "I organise my Figma files by the same model: tokens first, then atoms, molecules and organisms, and finally templates. Below is an example from my own design system file.",
+    },
+    {
+      type: "image",
+      src: "/blog/how-to-start-design-system-work/figma-file-organisation.png",
+      alt: "The structure of a Figma file: About, Tokens, Atoms, Molecules, Organisms and Templates, with the components and templates in each section.",
+      caption: "The structure of a Figma file: tokens as their own section, followed by atoms, molecules, organisms and templates.",
+      width: 751,
+      height: 317,
+    },
+    {
+      type: "links",
+      items: [
+        { label: "Design system example site", href: "https://design-system-use-case.vercel.app/" },
+        { label: "UI kit in Figma", href: "https://www.figma.com/design/WlwWrwDWzt5shl0sYocASJ/Design-System-by-Berit?node-id=4-4" },
+      ],
     },
     {
       type: "paragraph",
-      text: "In practice, tokens can be stored in one place and converted automatically into, for example, CSS variables, with the same names used in Figma. If services use several technologies, Web Components work in most of them but require more specialist skills.",
+      text: "At the start you also decide whether the design system is tied to a specific technology. Tokens are usually defined independently of technology: they are stored in a JSON file, from which they are easy to adapt to different technologies, for example as CSS variables. The same names are used in Figma too.",
+    },
+    {
+      type: "paragraph",
+      text: "The technology for the components depends on what the services are built with. If all services use the same technology, build the components with it. React is often recommended as the basis for a design system when flexibility is wanted. If there are several technologies, Web Components are an alternative: they work in most web technologies but require more specialist skills.",
     },
 
     { type: "heading", id: "series-continues", text: "The series continues" },

@@ -286,11 +286,11 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Alussa päätetään myös, sidotaanko Design System tiettyyn teknologiaan, kuten Reactiin. Suosittelen, että ainakin tokenit määritellään teknologiasta riippumattomasti. Silloin ne voi ottaa käyttöön missä tahansa teknologiassa, vaikka yrityksen valinnat muuttuisivat.",
+      text: "Alussa päätetään myös, sidotaanko Design System tiettyyn teknologiaan. Tokenit määritellään yleensä teknologiariippumattomasti: ne tallennetaan JSON-tiedostoon, josta ne on helppo sovittaa eri teknologioihin, esimerkiksi CSS-muuttujiksi. Samat nimet otetaan käyttöön myös Figmassa.",
     },
     {
       type: "paragraph",
-      text: "Käytännössä tokenit voi tallentaa yhteen paikkaan, josta ne muunnetaan automaattisesti esimerkiksi CSS-muuttujiksi, ja samat nimet otetaan käyttöön Figmassa. Jos palveluissa on useita teknologioita, Web Componentit toimivat useimmissa niistä mutta vaativat enemmän erityisosaamista.",
+      text: "Komponenttien teknologia riippuu siitä, millä palvelut on tehty. Jos kaikki palvelut käyttävät samaa teknologiaa, komponentit kannattaa rakentaa sillä. Reactia suositellaan usein Design Systemin pohjaksi, kun halutaan joustavuutta. Jos teknologioita on useita, vaihtoehtona ovat Web Componentit, jotka toimivat useimmissa web-teknologioissa mutta vaativat enemmän erityisosaamista.",
     },
 
     { type: "heading", id: "series-continues", text: "Sarja jatkuu" },
