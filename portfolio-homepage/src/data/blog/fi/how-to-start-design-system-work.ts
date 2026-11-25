@@ -224,7 +224,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Mallissa on myös rajatapauksia, esimerkiksi se, onko jokin osa molekyyli vai organismi. Kaikkia tasoja ei kannata noudattaa orjallisesti, ettei aika kulu rajatapausten pohdintaan. Pidän mallia ennen kaikkea joustavana ajattelutapana, jonka rajat kannattaa sopia yhdessä jo alussa. Mallin lisäksi kannattaa sopia muutamasta käytännöstä:",
+      text: "Mallissa on myös rajatapauksia, esimerkiksi se, onko jokin osa molekyyli vai organismi. Joidenkin suunnittelutiimien kokemusten mukaan kaikkia tasoja ei kannata noudattaa orjallisesti: suurin hyöty syntyy siitä, että atomit määritellään huolella ja niihin nojataan, ja molekyyleistä ja organismeista puhutaan vain silloin, kun siitä on apua. Pidän itsekin mallia ennen kaikkea joustavana ajattelutapana, jonka rajat kannattaa sopia yhdessä jo alussa. Mallin lisäksi kannattaa sopia muutamasta käytännöstä:",
     },
     {
       type: "list",
