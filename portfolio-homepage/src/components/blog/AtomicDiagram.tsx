@@ -117,7 +117,9 @@ export default function AtomicDiagram({ data, copy }: { data: AtomicExample; cop
                       style={{ width: Math.round(item.width / IMAGE_SCALE), maxWidth: "100%", height: "auto" }}
                     />
                   </div>
-                  <span className="text-[13px] leading-snug font-semibold text-ink">{item.label}</span>
+                  <span className="self-start rounded-[18px] border border-rule-strong bg-white px-3 py-1 text-[13px] leading-[18px] font-semibold text-ink">
+                    {item.label}
+                  </span>
                 </li>
               ))}
             </ul>
