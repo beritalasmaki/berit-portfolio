@@ -27,6 +27,38 @@ const COLUMNS: Record<number, string> = {
   3: "sm:grid-cols-3",
 };
 
+/** Ball-based icons: one ball, a few balls joined, and a larger group of joined balls inside an outline. */
+function LevelIcon({ kind }: { kind: "atom" | "molecule" | "organism" }) {
+  const common = { width: 24, height: 24, viewBox: "0 0 24 24", "aria-hidden": true, className: "shrink-0 self-center text-ink" } as const;
+  if (kind === "atom") {
+    return (
+      <svg {...common}>
+        <circle cx="12" cy="12" r="6" fill="currentColor" />
+      </svg>
+    );
+  }
+  if (kind === "molecule") {
+    return (
+      <svg {...common} fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M7 17 12 6l5 11Z" />
+        <circle cx="12" cy="6" r="3.2" fill="currentColor" />
+        <circle cx="7" cy="17" r="3.2" fill="currentColor" />
+        <circle cx="17" cy="17" r="3.2" fill="currentColor" />
+      </svg>
+    );
+  }
+  return (
+    <svg {...common} fill="none" stroke="currentColor" strokeWidth="1.5">
+      <rect x="1.75" y="1.75" width="20.5" height="20.5" rx="6" />
+      <path d="M8 8h8v8H8Z" strokeWidth="1.25" />
+      <circle cx="8" cy="8" r="2.4" fill="currentColor" />
+      <circle cx="16" cy="8" r="2.4" fill="currentColor" />
+      <circle cx="8" cy="16" r="2.4" fill="currentColor" />
+      <circle cx="16" cy="16" r="2.4" fill="currentColor" />
+    </svg>
+  );
+}
+
 function Chips({ items }: { items: string[] }) {
   return (
     <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
@@ -65,7 +97,8 @@ export default function AtomicDiagram({ data, copy }: { data: AtomicExample; cop
             key={level.name}
             className={`flex min-w-0 flex-col gap-4 border-t py-5 border-rule-strong ${i === 0 ? "border-dashed" : ""}`}
           >
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <LevelIcon kind={level.icon} />
               <span className="text-sub-h4 text-ink">{level.name}</span>
               <span className="text-[13px] leading-snug text-muted">{level.text}</span>
             </div>

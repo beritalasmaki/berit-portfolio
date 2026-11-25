@@ -101,6 +101,8 @@ export type AtomicExample = {
    * shows real examples as screenshots (saved at 1.5x). */
   levels: {
     name: string;
+    /** Small ball-based icon drawn in front of the name. */
+    icon: "atom" | "molecule" | "organism";
     text: string;
     items: { label: string; src: string; alt: string; width: number; height: number }[];
   }[];

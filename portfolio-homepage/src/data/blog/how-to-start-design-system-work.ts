@@ -209,6 +209,7 @@ export const howToStartDesignSystemWork: BlogPost = {
       levels: [
         {
           name: "Atom",
+          icon: "atom",
           text: "The smallest part",
           items: [
             {
@@ -236,6 +237,7 @@ export const howToStartDesignSystemWork: BlogPost = {
         },
         {
           name: "Molecule",
+          icon: "molecule",
           text: "A few parts together",
           items: [
             {
@@ -256,6 +258,7 @@ export const howToStartDesignSystemWork: BlogPost = {
         },
         {
           name: "Organism",
+          icon: "organism",
           text: "A finished whole",
           items: [
             {

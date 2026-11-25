@@ -210,6 +210,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
       levels: [
         {
           name: "Atomi",
+          icon: "atom",
           text: "Pienin osa",
           items: [
             {
@@ -237,6 +238,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
         },
         {
           name: "Molekyyli",
+          icon: "molecule",
           text: "Muutama osa yhdessä",
           items: [
             {
@@ -257,6 +259,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
         },
         {
           name: "Organismi",
+          icon: "organism",
           text: "Valmis kokonaisuus",
           items: [
             {
