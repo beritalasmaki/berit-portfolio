@@ -202,11 +202,11 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     { type: "heading", id: "structure-and-technology", text: "Rakenne ja teknologia" },
     {
       type: "paragraph",
-      text: "Käytän yleensä Brad Frostin Atomic Design -mallia, jossa pienistä osista kootaan isompia kokonaisuuksia: atomeista molekyylejä ja molekyyleistä organismeja. Rakenne kannattaa valita heti alussa, jotta kaikki käyttävät samoja nimityksiä.",
+      text: "Käytän yleensä Brad Frostin [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/) -mallia, jossa pienistä osista kootaan isompia kokonaisuuksia: atomeista molekyylejä ja molekyyleistä organismeja. Rakenne kannattaa valita heti alussa, jotta kaikki käyttävät samoja nimityksiä.",
     },
     {
       type: "paragraph",
-      text: "Atomic Design -mallissa esimerkiksi painike ja tekstikenttä ovat atomeja, niistä koottu hakukenttä on molekyyli, ja ylätunniste, jossa on logo, hakukenttä ja navigaatio, on organismi.",
+      text: "Atomic Design -mallissa esimerkiksi painike ja tekstikenttä ovat atomeja, niistä koottu hakukenttä on molekyyli, ja ylätunniste, jossa on logo, hakukenttä ja navigaatio, on organismi. Organismeista kootaan vielä sivupohjia (templates) ja valmiita sivuja (pages), joissa osat nähdään kokonaisissa näkymissä ja oikealla sisällöllä.",
     },
     {
       type: "paragraph",
@@ -217,13 +217,14 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
       items: [
         "**Yhteinen kieli.** Suunnittelijat, kehittäjät ja tuoteomistajat puhuvat samoista asioista samoilla nimillä, eikä jokaisessa keskustelussa tarvitse ensin sopia termeistä.",
         "**Jokainen osa tehdään vain kerran.** Isommat kokonaisuudet koostuvat samoista pienistä osista, joten esimerkiksi painikkeeseen tehty muutos päivittyy kaikkialle, missä sitä käytetään.",
+        "**Nopeampi prototypointi.** Valmiista ja testatuista osista kootaan uusia näkymiä nopeasti, ja niitä voi kokeilla oikealla sisällöllä jo sivupohja- ja sivutasolla.",
         "**Sopii olemassa olevan työn päälle.** Kartoituksessa löytyneet toistuvat elementit on helppo sijoittaa tasoille, ja pilotit voi rakentaa pienistä osista isompiin.",
         "**Kasvaa tarpeen mukaan.** Voit aloittaa muutamalla atomilla ja tokeneilla ja lisätä isompia kokonaisuuksia vasta, kun niille on oikea tarve.",
       ],
     },
     {
       type: "paragraph",
-      text: "Mallissa on myös rajatapauksia, esimerkiksi se, onko jokin osa molekyyli vai organismi. Siksi rajat kannattaa sopia yhdessä jo alussa. Mallin lisäksi kannattaa sopia muutamasta käytännöstä:",
+      text: "Mallissa on myös rajatapauksia, esimerkiksi se, onko jokin osa molekyyli vai organismi. Kaikkia tasoja ei kannata noudattaa orjallisesti, ettei aika kulu rajatapausten pohdintaan. Pidän mallia ennen kaikkea joustavana ajattelutapana, jonka rajat kannattaa sopia yhdessä jo alussa. Mallin lisäksi kannattaa sopia muutamasta käytännöstä:",
     },
     {
       type: "list",
