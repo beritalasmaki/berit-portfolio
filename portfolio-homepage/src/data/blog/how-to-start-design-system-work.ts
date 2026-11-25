@@ -58,6 +58,22 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
+      text: "Building in a vacuum isn't only a technical mistake, it's a human one. You can't assume people will welcome a design system. To many designers and developers it can feel like an insult: the feeling is that their own work is being shut down and replaced by a shared system.",
+    },
+    {
+      type: "paragraph",
+      text: "That's why a design system has to be a project of the whole organisation, one that takes everyone's handprint into account in one way or another. When the system is built from solutions teams have already made, they see their own work in it and don't experience it as a threat. In practice, that means for example:",
+    },
+    {
+      type: "list",
+      items: [
+        "**Involve the makers from the start.** Designers and developers take part in the decisions and aren't only the receivers of a finished system.",
+        "**Make earlier work visible.** Say which team a component's solution came from and why it was chosen.",
+        "**Show what the team gets.** A design system should reduce teams' work, not just add rules to it.",
+      ],
+    },
+    {
+      type: "paragraph",
       text: "The way out is to start from real work. This is how I approach design system projects, especially when a product family already exists.",
     },
 

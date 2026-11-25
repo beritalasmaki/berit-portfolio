@@ -16,8 +16,8 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
   body: [
     {
       type: "quote",
-      text: "A design system is the official story of how an organization designs and builds digital interfaces.",
-      cite: "Brad Frost",
+      text: "Design System on organisaation virallinen tarina siitä, miten se suunnittelee ja rakentaa digitaalisia käyttöliittymiä.",
+      cite: "Brad Frost, vapaasti suomennettu",
     },
     {
       type: "paragraph",
@@ -54,8 +54,24 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "quote",
-      text: "When design system work is done in a vacuum and a design system team doesn't have specific use cases, their strategy seems to be something akin to “let's provide as many elements as product teams might need at any point,” leading to a bloated design system.",
-      cite: "Dan Mall, Design that Scales (2023)",
+      text: "Kun Design System -työtä tehdään tyhjiössä eikä Design System -tiimillä ole konkreettisia käyttötapauksia, strategiaksi jää helposti jotain sen kaltaista kuin “tarjotaan niin paljon elementtejä kuin tuotetiimit voisivat milloin tahansa tarvita”. Seurauksena on paisunut Design System.",
+      cite: "Dan Mall, Design that Scales (2023), vapaasti suomennettu",
+    },
+    {
+      type: "paragraph",
+      text: "Tyhjiössä tekeminen ei ole pelkkä tekninen virhe, vaan myös ihmisiin liittyvä. Ei voi olettaa, että ihmiset ottavat Design Systemin ilomielin vastaan. Monelle suunnittelijalle ja kehittäjälle se voi tuntua kunnianloukkaukselta: syntyy fiilis, että tässä ajetaan oma työ alas ja korvataan se yhteisellä järjestelmällä.",
+    },
+    {
+      type: "paragraph",
+      text: "Siksi Design System pitää olla koko organisaation yhteinen projekti, jossa kaikkien kädenjälki otetaan huomioon tavalla tai toisella. Kun järjestelmä rakennetaan tiimien jo tekemistä ratkaisuista, tiimit näkevät siinä oman työnsä eivätkä koe sitä uhkana. Käytännössä se tarkoittaa esimerkiksi näitä:",
+    },
+    {
+      type: "list",
+      items: [
+        "**Ota tekijät mukaan alusta asti.** Suunnittelijat ja kehittäjät osallistuvat päätöksentekoon eivätkä ole vain valmiin järjestelmän vastaanottajia.",
+        "**Tee aiempi työ näkyväksi.** Kerro, minkä tiimin ratkaisusta komponentti on peräisin ja miksi se valittiin.",
+        "**Näytä, mitä tiimi saa.** Design Systemin pitää vähentää tiimien työtä eikä lisätä siihen pelkkiä sääntöjä.",
+      ],
     },
     {
       type: "paragraph",
@@ -110,8 +126,8 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "quote",
-      text: "What do we NEED to be able to make with our design system? And not: What do we WANT to be able to make with our design system?",
-      cite: "Dan Mall, Design that Scales (2023)",
+      text: "Mitä meidän TÄYTYY pystyä tekemään Design Systemillämme? Emme: mitä me HALUAISIMME pystyä tekemään Design Systemillämme?",
+      cite: "Dan Mall, Design that Scales (2023), vapaasti suomennettu",
     },
     {
       type: "list",
@@ -137,12 +153,12 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "quote",
-      text: "It's not about reinventing the wheel; it's about mass producing the wheel so more people can more easily experience their own adventures.",
-      cite: "Dan Mall, Design that Scales (2023)",
+      text: "Kyse ei ole pyörän keksimisestä uudelleen vaan pyörän massatuotannosta, jotta useampi ihminen voi helpommin lähteä omille seikkailuilleen.",
+      cite: "Dan Mall, Design that Scales (2023), vapaasti suomennettu",
     },
     {
       type: "paragraph",
-      text: "Design System on myös “a place that spotlights teams' accomplishments”, eli tiimit näkevät siinä oman työnsä. Design System -tiimin tarkoitus on kerätä parhaat käytännöt ja valmistella ne skaalattaviksi. Tuloksena tiimit saavat tarkemman fokuksen tärkeimpiin ja oleellisimpiin asiakastarpeisiin.",
+      text: "Design System on myös paikka, joka nostaa tiimien saavutukset esiin (Mallin sanoin “a place that spotlights teams' accomplishments”), eli tiimit näkevät siinä oman työnsä. Design System -tiimin tarkoitus on kerätä parhaat käytännöt ja valmistella ne skaalattaviksi. Tuloksena tiimit saavat tarkemman fokuksen tärkeimpiin ja oleellisimpiin asiakastarpeisiin.",
     },
 
     { type: "heading", id: "no-services-yet", text: "Kun palveluita ei vielä ole" },
@@ -210,7 +226,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Sarja perustuu opinnäytetyöhöni *Design Systemin tuotteistaminen ja johtaminen: Palvelumallin kehittäminen julkisen sektorin digitalisaatiohankkeisiin* (Vaasan ammattikorkeakoulu, 2026), joka löytyy [Theseuksesta](https://www.theseus.fi/items/f6a21835-ccc6-496c-b6a3-341a814a798c). Tämän osan lainaukset ovat Dan Mallin kirjasta *Design that Scales: Creating a Sustainable Design System Practice* (2023), lukuun ottamatta avauksen Brad Frostin lainausta.",
+      text: "Sarja perustuu opinnäytetyöhöni *Design Systemin tuotteistaminen ja johtaminen: Palvelumallin kehittäminen julkisen sektorin digitalisaatiohankkeisiin* (Vaasan ammattikorkeakoulu, 2026), joka löytyy [Theseuksesta](https://www.theseus.fi/items/f6a21835-ccc6-496c-b6a3-341a814a798c). Tämän osan lainaukset on suomennettu vapaasti, ja ne ovat Dan Mallin kirjasta *Design that Scales: Creating a Sustainable Design System Practice* (2023), lukuun ottamatta avauksen Brad Frostin lainausta.",
     },
   ],
 };
