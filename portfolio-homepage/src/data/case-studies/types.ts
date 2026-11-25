@@ -75,6 +75,17 @@ export type ImpactCard = {
   body: string;
 };
 
+export type IntroVideo = {
+  src: string;
+  poster: string;
+  /** Accessible name for the player: what the video shows. */
+  label: string;
+  /** Short visible caption under the video. */
+  caption: string;
+  width: number;
+  height: number;
+};
+
 export type GalleryImage = {
   src: string;
   alt: string;
@@ -281,6 +292,8 @@ export type CaseStudyFullContent = {
    * areas specific to this project. */
   skillTags: SkillTag[];
   gallery: GalleryImage[];
+  /** Optional walkthrough video shown right after the hero, before the brief. */
+  introVideo?: IntroVideo;
   /**
    * `src` values of 2-3 `gallery` images to feature in the sneak-peek
    * hero's stacked "peek" card — the strongest, most-legible-at-a-glance

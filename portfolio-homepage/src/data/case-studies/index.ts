@@ -18,6 +18,7 @@ export type {
   CaseGlance,
   ImpactCard,
   GalleryImage,
+  IntroVideo,
   ChallengeSubsection,
   Finding,
   ProseSection,
