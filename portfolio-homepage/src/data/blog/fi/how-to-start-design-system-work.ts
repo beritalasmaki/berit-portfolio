@@ -45,12 +45,12 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     {
       type: "heading",
       id: "vacuum",
-      text: "Yleinen virhe: rakentaminen tyhjiössä",
-      navLabel: "Rakentaminen tyhjiössä",
+      text: "Yleinen virhe: Design Systemiä rakennetaan erillään tuotetiimeistä",
+      navLabel: "Rakentaminen erillään tiimeistä",
     },
     {
       type: "paragraph",
-      text: "Design System -työ menee usein pieleen samalla tavalla. Dan Mall kuvaa sen kirjassaan *Design that Scales* (2023):",
+      text: "Design System -työ menee usein pieleen samalla tavalla: järjestelmää rakennetaan erillään niistä tiimeistä, jotka sitä käyttävät. Dan Mall kuvaa ilmiön kirjassaan *Design that Scales* (2023):",
     },
     {
       type: "quote",
@@ -59,7 +59,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Tyhjiössä tekeminen ei ole pelkkä tekninen virhe, vaan myös ihmisiin liittyvä. Ei voi olettaa, että ihmiset ottavat Design Systemin ilomielin vastaan. Monelle suunnittelijalle ja kehittäjälle se voi näyttäytyä uhkana omalle ammattitaidolle: voi syntyä tunne, että oma työ arvotetaan alas ja korvataan yhteisellä järjestelmällä.",
+      text: "Erillään tekeminen ei ole pelkkä tekninen virhe, vaan myös ihmisiin liittyvä. Ei voi olettaa, että ihmiset ottavat Design Systemin ilomielin vastaan. Monelle suunnittelijalle ja kehittäjälle se voi näyttäytyä uhkana omalle ammattitaidolle: voi syntyä tunne, että oma työ arvotetaan alas ja korvataan yhteisellä järjestelmällä.",
     },
     {
       type: "paragraph",
