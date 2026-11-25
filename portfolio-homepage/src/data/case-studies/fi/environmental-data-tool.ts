@@ -75,6 +75,11 @@ export const environmentalDataToolFi: CaseStudy = {
     { alt: "Luontotyyppien uhanalaisuuden palvelu (punainen lista)", caption: "Punaisen listan palvelu" },
     { alt: "Luontotyyppien uhanalaisuuden palvelu, mobiili", caption: "Punainen lista, mobiili" },
   ]),
+  introVideo: {
+    ...en.introVideo!,
+    label: "Esittely vesien seurannan prototyypistä: kartta, suodattimet, seurantapaikan tiedot ja listanäkymä",
+    caption: "Prototyypin esittely: seurantapaikkojen löytäminen kartalta, suodatus ja seurantapaikan tietojen avaaminen.",
+  },
   sneakPeekImages: en.sneakPeekImages,
 
   impactIntro: "Nämä vaikutukset perustuvat palautteeseen, jota keräsimme suoraan käyttäjiltä projektien aikana.",

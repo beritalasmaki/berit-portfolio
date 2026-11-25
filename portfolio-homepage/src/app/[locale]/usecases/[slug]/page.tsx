@@ -7,6 +7,7 @@ import AccordionSection from "@/components/case-study/AccordionSection";
 import CaseStudyGlance from "@/components/case-study/CaseStudyGlance";
 import CaseStudyHero from "@/components/case-study/CaseStudyHero";
 import ChallengesSection from "@/components/case-study/ChallengesSection";
+import IntroVideo from "@/components/case-study/IntroVideo";
 import ImpactSection from "@/components/case-study/ImpactSection";
 import OtherCaseStudies from "@/components/case-study/OtherCaseStudies";
 import ParagraphList from "@/components/case-study/ParagraphList";
@@ -155,6 +156,12 @@ export default async function CaseStudyPage({
                   ) : (
                     <CaseStudyHero study={study} copy={cs} />
                   )}</Reveal>
+
+                {study.introVideo !== undefined && (
+                  <Reveal>
+                    <IntroVideo video={study.introVideo} />
+                  </Reveal>
+                )}
 
                 {study.glance !== undefined && (
                   <Reveal>

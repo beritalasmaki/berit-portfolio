@@ -83,6 +83,14 @@ export const environmentalDataTool: CaseStudy = {
       height: 1802,
     },
   ],
+  introVideo: {
+    src: "/case/video/syke-prototype.mp4",
+    poster: "/case/video/syke-prototype-poster.jpg",
+    label: "Walkthrough of the water monitoring prototype: map, filters, site details and list view",
+    caption: "Prototype walkthrough: finding monitoring sites on the map, filtering, and opening site details.",
+    width: 1440,
+    height: 964,
+  },
   sneakPeekImages: ["/case/syke-water-map.png", "/case/syke-graph.png"],
 
   impactIntro: "These impacts are based on feedback gathered directly from users during the projects.",
