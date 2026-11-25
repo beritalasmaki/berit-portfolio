@@ -68,8 +68,10 @@ export const environmentalDataToolFi: CaseStudy = {
 
   gallery: localizeGallery(en.gallery, [
     { alt: "Havaintodatan kuvaajanäkymä", caption: "Havaintodata" },
-    { alt: "Seurantapaikkojen taulukko", caption: "Seurantapaikat" },
-    { alt: "Seurantapaikkojen kartta", caption: "Paikkakartta" },
+    { alt: "Vesien tilan seuranta: seurantapaikkojen lista", caption: "Vesien seuranta, lista" },
+    { alt: "Vesien tilan seuranta: seurantapaikkojen kartta", caption: "Vesien seuranta, kartta" },
+    { alt: "Eläinplanktonjärjestelmä: näytteenottopaikkojen kartta", caption: "Eläinplankton, kartta" },
+    { alt: "Piilevätietojärjestelmä: havaintopaikkojen kartta", caption: "Piilevät, kartta" },
     { alt: "Luontotyyppien uhanalaisuuden palvelu (punainen lista)", caption: "Punaisen listan palvelu" },
     { alt: "Luontotyyppien uhanalaisuuden palvelu, mobiili", caption: "Punainen lista, mobiili" },
   ]),
