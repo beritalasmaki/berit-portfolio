@@ -62,7 +62,7 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "That's why a design system has to be a project of the whole organisation, one that takes everyone's handprint into account in one way or another. When the system is built from solutions teams have already made, they see their own work in it and don't experience it as a threat. In practice, that means for example:",
+      text: "That's why a design system has to be a project of the whole organisation, one that takes everyone's handprint into account. When the system is built from solutions teams have already made, they see their own work in it and don't experience it as a threat. In practice, that means for example:",
     },
     {
       type: "list",
@@ -79,9 +79,9 @@ export const howToStartDesignSystemWork: BlogPost = {
 
     {
       type: "heading",
-      id: "product-family",
-      text: "My approach when a product family already exists",
-      navLabel: "When a product family exists",
+      id: "existing-services",
+      text: "When the company already has digital services",
+      navLabel: "When services already exist",
     },
     {
       type: "paragraph",

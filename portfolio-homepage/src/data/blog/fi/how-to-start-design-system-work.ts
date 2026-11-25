@@ -50,12 +50,11 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Design System -työ menee usein pieleen samalla tavalla. Dan Mall kuvaa sen kirjassaan *Design that Scales* (2023):",
+      text: "Design System -työ menee usein pieleen samalla tavalla. Dan Mall kuvaa kirjassaan *Design that Scales* (2023) tilanteen, jossa työtä tehdään tyhjiössä.",
     },
     {
-      type: "quote",
-      text: "Kun Design System -työtä tehdään tyhjiössä eikä Design System -tiimillä ole konkreettisia käyttötapauksia, strategiaksi jää helposti jotain sen kaltaista kuin “tarjotaan niin paljon elementtejä kuin tuotetiimit voisivat milloin tahansa tarvita”. Seurauksena on paisunut Design System.",
-      cite: "Dan Mall, Design that Scales (2023), vapaasti suomennettu",
+      type: "paragraph",
+      text: "Jos Design System -tiimillä ei ole suoraa yhteyttä tuotetiimien arkeen ja todellisiin tarpeisiin, strategia lipsahtaa helposti arvailuksi: tehdään mahdollisimman paljon komponentteja siltä varalta, että joku niitä joskus tarvitsee. Silloin järjestelmä paisuu, monimutkaistuu ja alkaa palvella enemmän itseään kuin tuotteita.",
     },
     {
       type: "paragraph",
@@ -63,26 +62,26 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Siksi Design System pitää olla koko organisaation yhteinen projekti, jossa kaikkien kädenjälki otetaan huomioon tavalla tai toisella. Kun järjestelmä rakennetaan tiimien jo tekemistä ratkaisuista, tiimit näkevät siinä oman työnsä eivätkä koe sitä uhkana. Käytännössä se tarkoittaa esimerkiksi näitä:",
+      text: "Siksi Design System pitää olla koko organisaation yhteinen projekti, jossa kaikkien kädenjälki otetaan huomioon. Käytännössä tämä tarkoittaa esimerkiksi seuraavia asioita:",
     },
     {
       type: "list",
       items: [
-        "**Ota tekijät mukaan alusta asti.** Suunnittelijat ja kehittäjät osallistuvat päätöksentekoon eivätkä ole vain valmiin järjestelmän vastaanottajia.",
-        "**Tee aiempi työ näkyväksi.** Kerro, minkä tiimin ratkaisusta komponentti on peräisin ja miksi se valittiin.",
-        "**Näytä, mitä tiimi saa.** Design Systemin pitää vähentää tiimien työtä eikä lisätä siihen pelkkiä sääntöjä.",
+        "**Ota tekijät mukaan alusta asti.** Tuotetiimien suunnittelijat ja kehittäjät ovat mukana päättämässä ratkaisuista, eivät vain ottamassa vastaan valmiiksi pureskeltua järjestelmää.",
+        "**Anna kunnia sinne, minne se kuuluu.** Kerro avoimesti, minkä tiimin ratkaisusta komponentti on lähtöisin ja miksi juuri se valittiin osaksi yhteistä järjestelmää.",
+        "**Näytä konkreettinen hyöty.** Design Systemin tehtävä on helpottaa tiimien arkea, ei vain tuoda lisää sääntöjä ja rajoitteita. Esimerkiksi valmis lomakekomponentti, jonka saavutettavuus ja virheilmoitukset on jo ratkaistu, säästää jokaisen tiimin tekemästä samaa työtä uudelleen.",
       ],
     },
     {
       type: "paragraph",
-      text: "Ulos pääsee lähtemällä liikkeelle oikeasta työstä. Näin lähestyn Design System -projekteja varsinkin silloin, kun tuoteperhe on jo olemassa.",
+      text: "Parhaiten tämä onnistuu, kun lähtee liikkeelle oikeasta työstä ja todellisista tarpeista. Juuri näin lähestyn Design System -projekteja etenkin silloin, kun tuoteperhe on jo olemassa.",
     },
 
     {
       type: "heading",
-      id: "product-family",
-      text: "Näin lähestyn työtä, kun tuoteperhe on jo olemassa",
-      navLabel: "Kun tuoteperhe on jo olemassa",
+      id: "existing-services",
+      text: "Kun yrityksellä on jo digitaalisia palveluita",
+      navLabel: "Kun palveluita on jo",
     },
     {
       type: "paragraph",
@@ -92,26 +91,26 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
       type: "findings",
       items: [
         {
-          title: "Audit",
-          body: "Käyn tuotteet läpi ja katson, mitkä UI-osat ovat eniten käytössä ja kuinka monena eri versiona.",
+          title: "Kartoitus",
+          body: "Käyn nykyiset tuotteet läpi ja selvitän, mitkä käyttöliittymän osat toistuvat eniten – ja kuinka monta erilaista versiota niistä on ehtinyt syntyä.",
         },
         {
-          title: "Parhaat osat",
-          body: "Pidän parhaat olemassa olevat ratkaisut ja siivoan ne, jotka sitä tarvitsevat. Rakennan muiden suunnittelijoiden työn päälle sen sijaan, että korvaisin sen.",
+          title: "Parhaat osat talteen",
+          body: "Säilytän parhaat olemassa olevat ratkaisut ja yhtenäistän ne kohdat, jotka kaipaavat siistimistä. Hyödynnän muiden suunnittelijoiden tekemää työtä sen sijaan, että heittäisin sen roskiin ja aloittaisin alusta.",
         },
         {
           title: "Pilotit",
-          body: "Ajan useita erilaisia pilotteja: uusi tuote, uudistettu ominaisuus ja kokonainen näkymä prototyyppinä järjestelmän päälle. Ne näyttävät muille suunnittelijoille ja kehittäjille, mitä järjestelmä heille antaa.",
+          body: "Testaan järjestelmää käytännössä muutaman erilaisen pilotin avulla: esimerkiksi uuden tuotteen, uudistettavan ominaisuuden tai kokonaisen näkymän prototyypin kautta. Ne näyttävät muille suunnittelijoille ja kehittäjille suoraan, miten järjestelmä helpottaa heidän työtään.",
         },
         {
           title: "Tarve ennen toivetta",
-          body: "Rakennan sen, mitä tiimit tarvitsevat, en kaikkea mitä ne pyytävät. Silloin järjestelmä pysyy pienenä ja käytössä.",
+          body: "Rakennan sitä, mitä tiimit oikeasti tarvitsevat, en kaikkea, mitä keksitään pyytää. Näin järjestelmä pysyy hallittavana ja aktiivisessa käytössä.",
         },
       ],
     },
     {
       type: "paragraph",
-      text: "**Vaiheittainen käyttöönotto.** Uudet palvelut kannattaa rakentaa heti komponenteilla. Vanhojen palveluiden käyttöönotto kannattaa vaiheistaa ja sille kannattaa tehdä oma suunnitelma, jossa on aikataulu, vastuuhenkilöt ja selkeä aloitus. Käyttöönoton voi kytkeä uudistuksiin, joita vanhat järjestelmät vaativat muutenkin, esimerkiksi tietoturvan vuoksi.",
+      text: "**Käyttöönotto vaiheittain.** Uudet palvelut kannattaa rakentaa komponenteilla heti alusta alkaen. Vanhojen palveluiden kohdalla käyttöönotto taas kannattaa pilkkoa vaiheisiin ja tehdä sille oma suunnitelma, jossa on selkeä aloitus, aikataulu ja vastuuhenkilöt. Helpoiten muutos etenee, kun sen kytkee muihin päivityksiin, jotka vanhoihin järjestelmiin on tehtävä joka tapauksessa – kuten tietoturvauudistuksiin.",
     },
 
     {
@@ -126,39 +125,45 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "quote",
-      text: "Mitä meidän TÄYTYY pystyä tekemään Design Systemillämme? Emme: mitä me HALUAISIMME pystyä tekemään Design Systemillämme?",
+      text: "Mitä meidän __täytyy__ pystyä rakentamaan Design Systemillämme? Ei sitä, mitä kaikkea __haluaisimme__ sillä rakentaa.",
       cite: "Dan Mall, Design that Scales (2023), vapaasti suomennettu",
+    },
+    {
+      type: "paragraph",
+      text: "Eli ensisijaisesti mennään tarve edellä, ei halu edellä.",
     },
     {
       type: "list",
       items: [
-        "**Älä aloita flagship-tuotteista.** Rakenna ensin tuotteet, joissa on vähiten byrokratiaa, ja tee niitä mahdollisimman monta nopeasti. Ole luova pilottien tyypeissä ja katso, miten Design System kasvaa luontevasti.",
-        "**Tee kolme pilottia samaan aikaan.** Valitse kolme peräkkäin pilottien tulostaulun avulla. Kolme on pienin määrä, jossa kuviot alkavat näkyä.",
-        "**Anna komponenteille konteksti.** Pilotit näyttävät komponentit oikeassa käytössä, mitä ei muuten saisi.",
+        "**Älä aloita lippulaivatuotteista.** Aloita tuotteista, joissa on vähiten byrokratiaa, ja vie niitä maaliin nopeassa tahdissa. Kokeile rohkeasti erilaisia pilotteja ja anna Design Systemin kasvaa luontevasti niiden mukana.",
+        "**Tee kolme pilottia rinnakkain.** Valitse kolme pilottia peräkkäin erillisen valinta- tai pisteytystaulukon avulla. Kolme on pienin määrä, josta alkaa jo nähdä, mitkä tarpeet ja ratkaisut toistuvat tuotteesta toiseen.",
+        "**Anna komponenteille konteksti.** Pilotit näyttävät komponentit oikeassa käyttöympäristössä. Sellaista ymmärrystä ei synny suunnittelemalla osia irrallaan.",
+        "**Rakenna aiemman päälle.** Kun uusia versioita tehdään jo olemassa olevien komponenttien pohjalta, jokainen uusi variaatio on edellistä helpompi toteuttaa. Se ei synny arvauksesta, vaan perustuu oikean tuotteen vaatimuksiin ja jo testattuun pohjaan.",
       ],
-    },
-    {
-      type: "paragraph",
-      text: "Kun järjestelmää rakennetaan jo tehdyistä komponenteista ja variaatioista, jokainen valmis variaatio on helpompi tehdä, koska se perustuu tiettyihin tuotevaatimuksiin ja jo testattuun versioon.",
     },
 
     {
       type: "heading",
       id: "reuse-earlier-work",
-      text: "Miksi aiempi työ on lähtökohta",
+      text: "Miksi Design System kannattaa rakentaa aiemman työn pohjalle?",
+      navLabel: "Miksi rakentaa aiemman päälle",
     },
     {
       type: "paragraph",
-      text: "Suunnittelijoiden aiemman työn päälle rakentaminen ei ole oikotie. Mallin sanoin:",
+      text: "Muiden suunnittelijoiden tekemän työn hyödyntäminen ei ole oikotie tai laiskuutta. Kuten Dan Mall asian tiivistää:",
     },
     {
       type: "quote",
-      text: "Kyse ei ole pyörän keksimisestä uudelleen vaan pyörän massatuotannosta, jotta useampi ihminen voi helpommin lähteä omille seikkailuilleen.",
+      text: "Kyse ei ole pyörän keksimisestä uudelleen, vaan jo toimivan pyörän saamisesta kaikkien käyttöön – jotta useampi pääsee helpommin liikkeelle omille seikkailuilleen.",
       cite: "Dan Mall, Design that Scales (2023), vapaasti suomennettu",
     },
     {
       type: "paragraph",
-      text: "Design System on myös paikka, joka nostaa tiimien saavutukset esiin (Mallin sanoin “a place that spotlights teams' accomplishments”), eli tiimit näkevät siinä oman työnsä. Design System -tiimin tarkoitus on kerätä parhaat käytännöt ja valmistella ne skaalattaviksi. Tuloksena tiimit saavat tarkemman fokuksen tärkeimpiin ja oleellisimpiin asiakastarpeisiin.",
+      text: "Design System toimii näyteikkunana tiimien onnistumisille (“a place that spotlights teams' accomplishments”). Kun tiimit tunnistavat järjestelmästä oman kätensä jäljen, sitoutuminen syntyy luonnostaan.",
+    },
+    {
+      type: "paragraph",
+      text: "Design System -tiimin tehtävä on kerätä parhaat käytännöt talteen ja jalostaa ne muidenkin käyttöön. Silloin tuotetiimien ei tarvitse käyttää aikaa perusasioiden ratkomiseen, vaan ne voivat keskittyä siihen, millä on asiakkaille oikeasti merkitystä.",
     },
 
     { type: "heading", id: "no-services-yet", text: "Kun palveluita ei vielä ole" },
