@@ -209,6 +209,7 @@ export const howToStartDesignSystemWork: BlogPost = {
       levels: [
         {
           name: "Atom",
+          icon: "atom",
           text: "The smallest part",
           items: [
             {
@@ -236,6 +237,7 @@ export const howToStartDesignSystemWork: BlogPost = {
         },
         {
           name: "Molecule",
+          icon: "molecule",
           text: "A few parts together",
           items: [
             {
@@ -246,31 +248,25 @@ export const howToStartDesignSystemWork: BlogPost = {
               height: 176,
             },
             {
-              label: "Form progress",
-              src: "/blog/how-to-start-design-system-work/atomic-form-progress.png",
-              alt: "The progress of a three-step form: the first step is in progress and the next two have not started.",
+              label: "Form progress and actions",
+              src: "/blog/how-to-start-design-system-work/atomic-form-progress-and-actions.png",
+              alt: "The progress and buttons of a form: three numbered steps with the first one selected, and the buttons Cancel and Next.",
               width: 795,
-              height: 198,
-            },
-            {
-              label: "Form actions",
-              src: "/blog/how-to-start-design-system-work/atomic-form-actions.png",
-              alt: "The buttons for the first step of a form: Cancel and Next.",
-              width: 457,
-              height: 90,
+              height: 232,
             },
           ],
         },
         {
           name: "Organism",
+          icon: "organism",
           text: "A finished whole",
           items: [
             {
               label: "Multi-step form",
-              src: "/blog/how-to-start-design-system-work/atomic-multi-step-form.png",
+              src: "/blog/how-to-start-design-system-work/atomic-multi-step-form-v3.png",
               alt: "A finished multi-step form: an introduction, the progress through the steps, a form field and the buttons.",
-              width: 834,
-              height: 903,
+              width: 813,
+              height: 747,
             },
           ],
         },

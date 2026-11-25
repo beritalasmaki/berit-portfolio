@@ -206,10 +206,11 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "atomic",
-      title: "Monivaiheinen lomake (Multi-step form) hajotetaan palasiksi",
+      title: "Monivaiheinen lomake pilkottuna osiin",
       levels: [
         {
           name: "Atomi",
+          icon: "atom",
           text: "Pienin osa",
           items: [
             {
@@ -237,6 +238,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
         },
         {
           name: "Molekyyli",
+          icon: "molecule",
           text: "Muutama osa yhdessä",
           items: [
             {
@@ -247,31 +249,25 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
               height: 176,
             },
             {
-              label: "Form progress (Lomakkeen eteneminen)",
-              src: "/blog/how-to-start-design-system-work/atomic-form-progress.png",
-              alt: "Kolmivaiheisen lomakkeen eteneminen: ensimmäinen vaihe on kesken ja kaksi seuraavaa ei ole aloitettu.",
+              label: "Form progress and actions (Lomakkeen eteneminen ja painikkeet)",
+              src: "/blog/how-to-start-design-system-work/atomic-form-progress-and-actions.png",
+              alt: "Lomakkeen eteneminen ja painikkeet: kolme numeroitua vaihetta, joista ensimmäinen on valittuna, sekä painikkeet Cancel ja Next.",
               width: 795,
-              height: 198,
-            },
-            {
-              label: "Form actions (Lomakkeen painikkeet)",
-              src: "/blog/how-to-start-design-system-work/atomic-form-actions.png",
-              alt: "Lomakkeen ensimmäisen vaiheen painikkeet Cancel ja Next.",
-              width: 457,
-              height: 90,
+              height: 232,
             },
           ],
         },
         {
           name: "Organismi",
+          icon: "organism",
           text: "Valmis kokonaisuus",
           items: [
             {
               label: "Multi-step form (Monivaiheinen lomake)",
-              src: "/blog/how-to-start-design-system-work/atomic-multi-step-form.png",
+              src: "/blog/how-to-start-design-system-work/atomic-multi-step-form-v3.png",
               alt: "Valmis monivaiheinen lomake: johdanto, vaiheiden eteneminen, lomakekenttä ja painikkeet.",
-              width: 834,
-              height: 903,
+              width: 813,
+              height: 747,
             },
           ],
         },

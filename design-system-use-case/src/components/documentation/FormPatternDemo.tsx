@@ -18,7 +18,7 @@ export function FormPatternDemo() {
     <form className="grid w-full max-w-[var(--width-text-narrow)] gap-6" onSubmit={(event) => event.preventDefault()}>
       <FormIntro title="Apply for a place">Answering takes about three minutes. You can go back to change an answer before you send.</FormIntro>
       <FormProgress steps={steps} current={step} />
-      <FormSection title={steps[step - 1]} description={`Step ${step} of ${steps.length}`}>
+      <FormSection title={steps[step - 1]} hideTitle description={`Step ${step} of ${steps.length}`}>
         {step === 1 ? <Field id="demo-full-name" label="Full name" hint="As it appears on your passport" required><Input id="demo-full-name" required aria-describedby="demo-full-name-hint" /></Field> : null}
         {step === 2 ? <Field id="demo-contact-email" label="Email" hint="We send the confirmation here" required><Input id="demo-contact-email" type="email" required aria-describedby="demo-contact-email-hint" /></Field> : null}
         {step === 3 ? <p className="m-0 text-sm">Check your answers, then send your application.</p> : null}
