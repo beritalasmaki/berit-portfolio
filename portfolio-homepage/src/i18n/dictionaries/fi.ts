@@ -409,6 +409,7 @@ export const fi: Dictionary = {
     focus: "Painopiste:",
     readingTime: "~{min} min lukuaika",
     startingPointEyebrow: "Toimeksianto",
+    watchVideo: "Katso esittely",
     startingPoint: "Lähtötilanne",
     aboutProject: "Tietoa projektista",
     screensToc: "Esimerkkejä käyttöliittymänäkymistä",

@@ -408,6 +408,7 @@ export const en = {
     focus: "Focus:",
     readingTime: "~{min} min read",
     startingPointEyebrow: "The brief",
+    watchVideo: "Watch the walkthrough",
     startingPoint: "Starting Point",
     aboutProject: "About the project",
     screensToc: "Examples of UI-screens",
