@@ -202,30 +202,71 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "Atomic Design -mallissa esimerkiksi painike ja tekstikenttä ovat atomeja, niistä koottu hakukenttä on molekyyli, ja ylätunniste, jossa on logo, hakukenttä ja navigaatio, on organismi. Organismeista kootaan vielä sivupohjia (templates) ja valmiita sivuja (pages), joissa osat nähdään kokonaisissa näkymissä ja oikealla sisällöllä.",
+      text: "Atomic Design -mallissa esimerkiksi painike ja tekstikenttä ovat atomeja, niistä koottu lomakekenttä on molekyyli, ja kokonainen monivaiheinen lomake on organismi. Organismeista kootaan vielä sivupohjia (templates) ja valmiita sivuja (pages), joissa osat nähdään kokonaisissa näkymissä ja oikealla sisällöllä.",
     },
     {
       type: "atomic",
-      title: "Komponentti hajotetaan palasiksi",
-      joinLabel: "Koostuu",
+      title: "Monivaiheinen lomake (Multi-step form) hajotetaan palasiksi",
       levels: [
         {
-          name: "Organismi",
-          example: "Ylätunniste",
-          text: "Valmis kokonaisuus",
-          parts: ["Logo", "Hakukenttä", "Navigaatio"],
+          name: "Atomi",
+          text: "Pienin osa",
+          items: [
+            {
+              label: "Button (Painike)",
+              src: "/blog/how-to-start-design-system-work/atomic-button.png",
+              alt: "Kaksi painiketta: tumma täytetty painike ja ääriviivapainike.",
+              width: 397,
+              height: 93,
+            },
+            {
+              label: "Text field (Tekstikenttä)",
+              src: "/blog/how-to-start-design-system-work/atomic-text-field.png",
+              alt: "Tyhjä tekstikenttä, jossa on teksti Research workspace.",
+              width: 255,
+              height: 86,
+            },
+          ],
         },
         {
           name: "Molekyyli",
-          example: "Hakukenttä",
           text: "Muutama osa yhdessä",
-          parts: ["Tekstikenttä", "Painike"],
+          items: [
+            {
+              label: "Form field (Lomakekenttä)",
+              src: "/blog/how-to-start-design-system-work/atomic-form-field.png",
+              alt: "Lomakekenttä: otsikko Full name, ohjeteksti ja tekstikenttä.",
+              width: 795,
+              height: 176,
+            },
+            {
+              label: "Form progress (Lomakkeen eteneminen)",
+              src: "/blog/how-to-start-design-system-work/atomic-form-progress.png",
+              alt: "Kolmivaiheisen lomakkeen eteneminen: ensimmäinen vaihe on kesken ja kaksi seuraavaa ei ole aloitettu.",
+              width: 795,
+              height: 198,
+            },
+            {
+              label: "Form actions (Lomakkeen painikkeet)",
+              src: "/blog/how-to-start-design-system-work/atomic-form-actions.png",
+              alt: "Lomakkeen ensimmäisen vaiheen painikkeet Cancel ja Next.",
+              width: 457,
+              height: 90,
+            },
+          ],
         },
         {
-          name: "Atomi",
-          example: "Tekstikenttä, painike",
-          text: "Pienin osa",
-          parts: [],
+          name: "Organismi",
+          text: "Valmis kokonaisuus",
+          items: [
+            {
+              label: "Multi-step form (Monivaiheinen lomake)",
+              src: "/blog/how-to-start-design-system-work/atomic-multi-step-form.png",
+              alt: "Valmis monivaiheinen lomake: johdanto, vaiheiden eteneminen, lomakekenttä ja painikkeet.",
+              width: 834,
+              height: 903,
+            },
+          ],
         },
       ],
       tokens: {

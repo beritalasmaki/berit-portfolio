@@ -115,7 +115,7 @@ function blockText(block: BlogBlock): string {
     case "atomic":
       return [
         block.title,
-        ...block.levels.map((level) => `${level.name} ${level.example} ${level.text} ${level.parts.join(" ")}`),
+        ...block.levels.map((level) => `${level.name} ${level.text} ${level.items.map((item) => item.label).join(" ")}`),
         `${block.tokens.name} ${block.tokens.text} ${block.tokens.parts.join(" ")}`,
       ].join(" ");
     case "timeline":

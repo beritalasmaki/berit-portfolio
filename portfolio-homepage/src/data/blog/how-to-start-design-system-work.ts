@@ -201,30 +201,71 @@ export const howToStartDesignSystemWork: BlogPost = {
     },
     {
       type: "paragraph",
-      text: "In Atomic Design, for example, a button and a text field are atoms, a search field built from them is a molecule, and a header with a logo, a search field and navigation is an organism. Organisms are then put together into templates and finished pages, where the parts are seen in whole views with real content.",
+      text: "In Atomic Design, for example, a button and a text field are atoms, a form field built from them is a molecule, and a whole multi-step form is an organism. Organisms are then put together into templates and finished pages, where the parts are seen in whole views with real content.",
     },
     {
       type: "atomic",
-      title: "A component broken into parts",
-      joinLabel: "Made of",
+      title: "A multi-step form broken into parts",
       levels: [
         {
-          name: "Organism",
-          example: "Header",
-          text: "A finished whole",
-          parts: ["Logo", "Search field", "Navigation"],
+          name: "Atom",
+          text: "The smallest part",
+          items: [
+            {
+              label: "Button",
+              src: "/blog/how-to-start-design-system-work/atomic-button.png",
+              alt: "Two buttons: a dark filled button and an outlined button.",
+              width: 397,
+              height: 93,
+            },
+            {
+              label: "Text field",
+              src: "/blog/how-to-start-design-system-work/atomic-text-field.png",
+              alt: "A text field with the text Research workspace.",
+              width: 255,
+              height: 86,
+            },
+          ],
         },
         {
           name: "Molecule",
-          example: "Search field",
           text: "A few parts together",
-          parts: ["Text field", "Button"],
+          items: [
+            {
+              label: "Form field",
+              src: "/blog/how-to-start-design-system-work/atomic-form-field.png",
+              alt: "A form field: the label Full name, a hint and a text field.",
+              width: 795,
+              height: 176,
+            },
+            {
+              label: "Form progress",
+              src: "/blog/how-to-start-design-system-work/atomic-form-progress.png",
+              alt: "The progress of a three-step form: the first step is in progress and the next two have not started.",
+              width: 795,
+              height: 198,
+            },
+            {
+              label: "Form actions",
+              src: "/blog/how-to-start-design-system-work/atomic-form-actions.png",
+              alt: "The buttons for the first step of a form: Cancel and Next.",
+              width: 457,
+              height: 90,
+            },
+          ],
         },
         {
-          name: "Atom",
-          example: "Text field, button",
-          text: "The smallest part",
-          parts: [],
+          name: "Organism",
+          text: "A finished whole",
+          items: [
+            {
+              label: "Multi-step form",
+              src: "/blog/how-to-start-design-system-work/atomic-multi-step-form.png",
+              alt: "A finished multi-step form: an introduction, the progress through the steps, a form field and the buttons.",
+              width: 834,
+              height: 903,
+            },
+          ],
         },
       ],
       tokens: {

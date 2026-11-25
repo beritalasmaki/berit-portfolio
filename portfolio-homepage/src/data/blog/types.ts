@@ -94,12 +94,16 @@ export type TimelineExample = {
 };
 
 export type AtomicExample = {
+  /** Names the component that is broken into parts. */
   title: string;
   eyebrow?: string;
-  /** Shown above a level's parts, e.g. "Koostuu:". */
-  joinLabel: string;
-  /** Largest to smallest. `parts` is empty for the smallest level. */
-  levels: { name: string; example: string; text: string; parts: string[] }[];
+  /** Smallest to largest: the finished solution comes last. Each level
+   * shows real examples as screenshots (saved at 1.5x). */
+  levels: {
+    name: string;
+    text: string;
+    items: { label: string; src: string; alt: string; width: number; height: number }[];
+  }[];
   /** Set apart from the levels: the values every level uses. */
   tokens: { eyebrow: string; name: string; text: string; parts: string[] };
 };
