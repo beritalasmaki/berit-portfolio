@@ -249,7 +249,7 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
               height: 176,
             },
             {
-              label: "Form progress and actions (Lomakkeen eteneminen ja painikkeet)",
+              label: "Form progress and actions (Eteneminen ja painikkeet)",
               src: "/blog/how-to-start-design-system-work/atomic-form-progress-and-actions.png",
               alt: "Lomakkeen eteneminen ja painikkeet: kolme numeroitua vaihetta, joista ensimmäinen on valittuna, sekä painikkeet Cancel ja Next.",
               width: 795,
@@ -286,7 +286,6 @@ export const howToStartDesignSystemWorkFi: BlogPost = {
     {
       type: "list",
       items: [
-        "**Yhteinen kieli.** Suunnittelijat, kehittäjät ja tuoteomistajat puhuvat samoista asioista samoilla nimillä, eikä jokaisessa keskustelussa tarvitse ensin sopia termeistä.",
         "**Jokainen osa tehdään vain kerran.** Isommat kokonaisuudet koostuvat samoista pienistä osista, joten esimerkiksi painikkeeseen tehty muutos päivittyy kaikkialle, missä sitä käytetään.",
         "**Nopeampi prototypointi.** Valmiista ja testatuista osista kootaan uusia näkymiä nopeasti, ja niitä voi kokeilla oikealla sisällöllä jo sivupohja- ja sivutasolla.",
         "**Sopii olemassa olevan työn päälle.** Kartoituksessa löytyneet toistuvat elementit on helppo sijoittaa tasoille, ja pilotit voi rakentaa pienistä osista isompiin.",

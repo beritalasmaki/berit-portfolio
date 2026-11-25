@@ -285,7 +285,6 @@ export const howToStartDesignSystemWork: BlogPost = {
     {
       type: "list",
       items: [
-        "**A shared language.** Designers, developers and product owners talk about the same things with the same names, so terms don't have to be agreed again in every conversation.",
         "**Every part is made only once.** Larger wholes are built from the same small parts, so a change to a button, for example, updates everywhere it is used.",
         "**Faster prototyping.** New views are put together quickly from ready-made, tested parts, and can be tried with real content already at the template and page level.",
         "**Fits on top of existing work.** The repeated elements found in the audit are easy to place on the levels, and pilots can be built from small parts to larger ones.",
