@@ -6,7 +6,7 @@ export const environmentalDataToolFi: CaseStudy = {
   slug: "environmental-data-tool",
   title: "Ympäristödatajärjestelmien uudistaminen",
   cardTitle: "Ympäristö\u00addata\u00adjärjestelmien uudistaminen",
-  label: "YMPÄRISTÖDATAJÄRJESTELMÄT · 2020–2024",
+  label: "YMPÄRISTÖDATAJÄRJESTELMÄT · 2020–2022",
   headline: "Vanhentuneet ympäristödatajärjestelmät uudistettu tutkijoiden työn ympärille",
   description:
     "Ympäristödatan seuranta- ja raportointityökalut, joilla asiantuntijat löytävät, vertailevat ja julkaisevat tuloksia ilman, että käyttöliittymä on jatkuvasti tiellä.",
@@ -19,13 +19,13 @@ export const environmentalDataToolFi: CaseStudy = {
     "Uudistin vanhentuneet järjestelmät nykyaikaisiksi työkaluiksi, jotka auttavat ympäristötutkijoita hallitsemaan ja analysoimaan kriittistä dataa.",
 
   intro: [
-    "Ympäristötutkimuslaitos hallitsi ja analysoi kriittistä dataansa vanhentuneilla työkaluilla ja turvautui usein Exceliin, jotta datasta sai edes jotain selvää. Vuosina 2020–2023 tein laitokselle useita projekteja ainoana UX-suunnittelijana ja uudistin näitä työkaluja.",
+    "Ympäristötutkimuslaitos hallitsi ja analysoi kriittistä dataansa vanhentuneilla työkaluilla ja turvautui usein Exceliin, jotta datasta sai edes jotain selvää. Vuosina 2020–2022 tein laitokselle useita projekteja ainoana UX-suunnittelijana ja uudistin näitä työkaluja.",
   ],
   glance: {
     problem:
       "Ympäristötutkimuslaitos hallitsi ja analysoi kriittistä dataansa vanhentuneilla työkaluilla ja turvautui usein Exceliin, jotta datasta sai edes jotain selvää.",
     role:
-      "Ainoa UX/UI-suunnittelija useassa projektissa vuosina 2020–2023. Yhdistin UX/UI-suunnittelun ja kevyen palvelumuotoilun.",
+      "Ainoa UX/UI-suunnittelija useassa projektissa vuosina 2020–2022. Yhdistin UX/UI-suunnittelun ja kevyen palvelumuotoilun.",
     decisions: [
       "Mietin uudelleen, miten datan ja työnkulkujen kuuluu toimia, enkä vain vaihtanut vanhan järjestelmän käyttöliittymää",
       "Aloitin lyhyellä, kevyellä tutkimuksella suoraan järjestelmiä käyttävien asiantuntijoiden kanssa",

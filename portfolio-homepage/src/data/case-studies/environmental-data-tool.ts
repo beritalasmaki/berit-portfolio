@@ -3,7 +3,7 @@ import type { CaseStudy } from "./types";
 export const environmentalDataTool: CaseStudy = {
   slug: "environmental-data-tool",
   title: "Modernization of Environmental Data Systems",
-  label: "ENVIRONMENTAL DATA SYSTEMS · 2020–2024",
+  label: "ENVIRONMENTAL DATA SYSTEMS · 2020–2022",
   headline: "Outdated environmental data systems, rebuilt around how researchers work",
   description:
     "Monitoring and reporting tools for environmental data, built so specialists can find, compare and publish results without fighting the interface.",
@@ -16,13 +16,13 @@ export const environmentalDataTool: CaseStudy = {
     "Rebuilt outdated systems as modern tools that help environmental researchers manage and analyze critical data.",
 
   intro: [
-    "An environmental research institute relied on outdated tools to manage and analyze critical data, often defaulting to Excel just to make sense of it. Over several projects between 2020 and 2023, I was brought in as the institute's only UX designer to modernize these tools.",
+    "An environmental research institute relied on outdated tools to manage and analyze critical data, often defaulting to Excel just to make sense of it. Over several projects between 2020 and 2022, I was brought in as the institute's only UX designer to modernize these tools.",
   ],
   glance: {
     problem:
       "An environmental research institute managed and analysed critical data with outdated tools and often fell back on Excel just to make sense of it.",
     role:
-      "Sole UX/UI designer across several projects in 2020–2023, combining UX/UI design with lightweight service design.",
+      "Sole UX/UI designer across several projects in 2020–2022, combining UX/UI design with lightweight service design.",
     decisions: [
       "Rethought how the data and workflows should work instead of putting a new interface on the old system",
       "Started with short, lean research directly with the specialists who use the systems",
